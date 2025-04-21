@@ -1,7 +1,6 @@
 [build]
   publish = "dist"
   command = "npm install && npm run build"
-  functions  = "netlify/functions"          # default functions folder :contentReference[oaicite:3]{index=3}
 
 [[redirects]]
   from = "/api/*"
@@ -12,6 +11,3 @@
   from = "/*"
   to = "/404"
   status = 404
-
-[functions]
-  directory = "netlify/functions"
