@@ -8,12 +8,14 @@ export async function handler(event) {
   }
 
   try {
-    const info = await ytdl.getInfo(videoId);                              // :contentReference[oaicite:6]{index=6}
-    const streams = ytdl.filterFormats(info.formats, 'audioandvideo')      // :contentReference[oaicite:7]{index=7}
+    // Fetch metadata & filter for muxed MP4s
+    const info    = await ytdl.getInfo(videoId);                                // :contentReference[oaicite:0]{index=0}  
+    const streams = ytdl.filterFormats(info.formats, 'audioandvideo')           // :contentReference[oaicite:1]{index=1}
       .map(fmt => ({
         qualityLabel: fmt.qualityLabel || fmt.itag,
         url: fmt.url
       }));
+
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
