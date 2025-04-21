@@ -573,5 +573,3 @@ module.exports = function (eleventyConfig) {
     passthroughFileCopy: true,
   };
 };
-     eleventyConfig.addPassthroughCopy("downloader.html");
-};
