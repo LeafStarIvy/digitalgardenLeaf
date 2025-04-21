@@ -94,8 +94,6 @@ function getAnchorAttributes(filePath, linkTitle) {
 const tagRegex = /(^|\s|\>)(#[^\s!@#$%^&*()=+\.,\[{\]};:'"?><]+)(?!([^<]*>))/g;
 
 module.exports = function (eleventyConfig) {
-   eleventyConfig.addPassthroughCopy("downloader.html");
-};
   eleventyConfig.setLiquidOptions({
     dynamicPartials: true,
   });
@@ -574,4 +572,6 @@ module.exports = function (eleventyConfig) {
     markdownTemplateEngine: false,
     passthroughFileCopy: true,
   };
+};
+     eleventyConfig.addPassthroughCopy("downloader.html");
 };
