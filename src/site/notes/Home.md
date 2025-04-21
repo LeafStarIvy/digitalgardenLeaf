@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-04-18T17:23:40.019+02:00","updated":"2025-04-21T16:18:44.788+02:00"}
+{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-04-18T17:23:40.019+02:00","updated":"2025-04-21T18:41:27.925+02:00"}
 ---
 
 
@@ -11,7 +11,7 @@
 ---
 
 <!-- Full-width nebula background -->
-![Nebula Banner](images/nebula-banner.jpg){ width=100% }  
+![Nebula Banner](/img/user/_file/Nebulabanner.jpg){ width=100% }  
 
 ---
 
