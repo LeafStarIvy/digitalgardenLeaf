@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-04-18T17:23:40.019+02:00","updated":"2025-04-23T07:27:41.493+02:00"}
+{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-04-18T17:23:40.019+02:00","updated":"2025-04-23T07:40:08.269+02:00"}
 ---
 
 
@@ -15,7 +15,10 @@
 
 ---
 
-<a href="obsidian://open?vault=System%201&file=Image%20to%20SVG%20Converter.md"> <img src="_file/Nebulabanner.jpg" alt="Nebula Banner" style="max-width:100%; height:auto;" /> </a>
+<a href="obsidian://open?vault=System%201&file=Music%20Dashboard.md" target="_blank">
+  <img src="/img/user/_file/Nebulabanner.jpg" alt="Nebula Banner" style="max-width:100%; height:auto;" />
+</a>
+
 
 
 ## 🌟 Constellations (Main Sections)
