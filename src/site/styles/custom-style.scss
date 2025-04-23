@@ -1,241 +1,214 @@
 /***
- * CUSTOM STYLE SCSS - UNLEASHED
- * Fully revamped with advanced cosmic effects, module classes, animations, and utility mixins.
+ * CUSTOM STYLE SCSS
+ * Fully unleashed cosmic dashboard styling & functionality
  ***/
 
-// 1. PALETTE & VARIABLES
+// 1. PALETTE VARIABLES & GLOBAL THEMING
 // ------------------------------------------------------------------
 :root {
-  /* Primary cosmic palette */
-  --bg-start: #000000;                 /* Pure Space */
-  --bg-end: #4A4E8A;                   /* Galactic Indigo */
-  --color-text: #E0B2FF;               /* Ethereal Glow */
-  --color-link: #8AD6EE;               /* Comet Trail */
-  --color-highlight: #BFA6E0;          /* Nebula Lavender */
-  --color-cta: #FFD77A;                /* Solar Flare */
-  --color-surface: #1E254E;            /* Deep Space */
-  --color-surface-alt: #6C789C;        /* Stardust Blue */
-  --color-muted: #CFDACB;              /* Interstellar Gray */
-
-  /* Section accents */
-  --accent-knowledge: #BFA6E0;
-  --accent-projects: #8AD6EE;
-  --accent-creative: #FFD77A;
-  --accent-tools: #E0B2FF;
-
-  /* Typography */
-  --font-main: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-
-  /* Layout */
-  --content-width: 720px;
-  --gutter: 1rem;
-  --radius: 10px;
-  --shadow-light: 0 4px 15px rgba(0,0,0,0.4);
+  /* Core Galaxy Palette */
+  --background-primary: #12142A;   /* Cosmic Void */
+  --background-secondary: #1E254E; /* Deep Space */
+  --surface-1: #6C789C;            /* Stardust Blue */
+  --surface-2: #A3B3BF;            /* Moonstone */
+  --text-primary: #E0B2FF;         /* Ethereal Glow */
+  --text-accent: #FFD77A;          /* Solar Flare */
+  --link-color: #8AD6EE;           /* Comet Trail */
+  --highlight: #BFA6E0;            /* Nebula Lavender */
+  --muted: #CFDACB;                /* Interstellar Gray */
+  
+  /* Dynamic Sections */
+  --section-home: #1E254E;
+  --section-projects: #6C789C;
+  --section-learn: #BFA6E0;
+  --section-studio: #8AD6EE;
+  --section-reflect: #FFD77A;
 }
 
-// 2. GLOBAL BACKGROUND & STARFIELD
-// ------------------------------------------------------------------
 body {
   margin: 0;
   padding: 0;
-  color: var(--color-text);
-  font-family: var(--font-main);
-  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
-  background-attachment: fixed;
-  position: relative;
+  font-family: var(--font-family-main, 'Inter', sans-serif);
+  background: linear-gradient(to top right, #000000, #4A4E8A) fixed;
+  color: var(--text-primary);
   overflow-x: hidden;
 }
 
-// Starfield overlay
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0;
-  width: 200%; height: 200%;
-  background: transparent url("/img/starfield.png") repeat;
-  animation: pan 120s linear infinite;
-  opacity: 0.25;
-  pointer-events: none;
+/* 2. LAYOUT & GRID SYSTEM */
+.site-container {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "nav    main"
+    "footer footer";
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
 }
 
-@keyframes pan {
-  from { transform: translate(0,0); }
-  to   { transform: translate(-50%, -50%); }
+.header { grid-area: header; }
+.nav    { grid-area: nav; overflow-y: auto; background: var(--background-secondary); }
+.main   { grid-area: main; padding: 2rem; overflow-y: auto; }
+.footer { grid-area: footer; padding: 1rem; text-align: center; background: var(--surface-2); }
+
+/* Responsive collapse nav */
+@media (max-width: 900px) {
+  .site-container { grid-template-columns: 60px 1fr; }
+  .nav { width: 60px; }
 }
 
-// 3. LAYOUT & CONTAINERS
-// ------------------------------------------------------------------
-#leafs-observatory {
-  max-width: var(--content-width);
-  margin: auto;
-  padding: var(--gutter);
-}
-
-.module {
-  @include glass-card(16px,0.08);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: var(--radius);
-  padding: var(--gutter);
-  margin-bottom: var(--gutter);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-.module:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-light);
-}
-
-// Section-specific accents
-.module[data-module="knowledge"] { border-left: 6px solid var(--accent-knowledge); }
-.module[data-module="projects"]  { border-left: 6px solid var(--accent-projects); }
-.module[data-module="creative"]  { border-left: 6px solid var(--accent-creative); }
-.module[data-module="tools"]     { border-left: 6px solid var(--accent-tools); }
-
-// 4. HEADERS & TYPOGRAPHY
-// ------------------------------------------------------------------
-h1, h2, h3 {
-  color: var(--color-text);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-}
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: var(--gutter);
-}
-h2 {
-  font-size: 1.8rem;
-  margin-top: var(--gutter);
-  margin-bottom: calc(var(--gutter)/2);
-}
-a {
-  color: var(--color-link);
+/* 3. NAVIGATION & QUICK‑LAUNCH */
+.nav ul { list-style: none; padding: 1rem; }
+.nav li { margin: 1rem 0; }
+.nav a {
+  display: block;
+  color: var(--link-color);
   text-decoration: none;
-  position: relative;
-}
-a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px; left: 0;
-  width: 0; height: 2px;
-  background: var(--color-link);
-  transition: width 0.3s ease;
-}
-a:hover::after { width: 100%; }
-
-// 5. BUTTONS & CTAs
-// ------------------------------------------------------------------
-.btn {
-  display: inline-block;
-  padding: 0.7em 1.4em;
-  font-family: var(--font-main);
-  border-radius: var(--radius);
-  text-transform: uppercase;
-  font-weight: 600;
-  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
   transition: background 0.3s ease;
 }
-.btn-primary { background: var(--color-cta); color: #000; }
-.btn-secondary { background: var(--color-highlight); color: #000; }
+.nav a:hover,
+.nav a.active {
+  background: rgba(255,255,255,0.1);
+}
 
-// 6. NAVIGATION
-// ------------------------------------------------------------------
-.navbar {
-  position: fixed; top: 0; left: 0; right: 0;
-  background: rgba(30,37,78,0.8);
-  backdrop-filter: blur(8px);
-  padding: 0.5rem var(--gutter);
+/* 4. HEADER & SEARCH */
+.header {
+  background: var(--background-secondary);
+  padding: 1rem 2rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  z-index: 1000;
+  justify-content: space-between;
 }
-.navbar a {
-  color: var(--color-text);
-  margin: 0 0.5rem;
-}
-
-// 7. COLLAPSIBLE PANELS
-// ------------------------------------------------------------------
-.collapsible {
-  cursor: pointer;
-  position: relative;
-}
-.collapsible::after {
-  content: "▼";
-  position: absolute;
-  right: 0; top: 0;
-  transform: rotate(0deg);
-  transition: transform 0.3s ease;
-}
-.collapsible.collapsed::after {
-  transform: rotate(-90deg);
-}
-.collapsible-content {
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-}
-
-// 8. MEDIA & EMBEDS
-// ------------------------------------------------------------------
-img, iframe, audio, video {
-  max-width: 100%;
-  border-radius: var(--radius);
-  margin: var(--gutter) 0;
-}
-
-// 9. SEARCH & FILTER WIDGET
-// ------------------------------------------------------------------
 .search-box {
-  @include glass-card(10px,0.1);
-  padding: var(--gutter);
-  margin-bottom: var(--gutter);
-  position: sticky; top: 60px;
-  z-index: 900;
+  position: relative;
+  flex: 1;
+  max-width: 400px;
 }
 .search-box input {
   width: 100%;
-  padding: 0.8em;
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  border-radius: var(--border-radius);
   border: none;
-  border-radius: var(--radius);
-  font-size: 1rem;
-  background: rgba(255,255,255,0.1);
-  color: var(--color-text);
+  background: var(--surface-2);
+  color: var(--text-primary);
 }
-.search-box input:focus {
-  outline: 2px solid var(--color-link);
+.search-box .icon {
+  position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);
+  color: var(--muted);
 }
 
-// 10. MODULE FILTER TAGS
-// ------------------------------------------------------------------
-.tag {
+/* 5. CARDS & PANELS */
+.card {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Section accent banners */
+.section-header {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.section-header::before {
+  content: '';
   display: inline-block;
-  background: var(--color-surface-alt);
-  color: var(--color-highlight);
-  padding: 0.2em 0.6em;
-  border-radius: var(--radius);
-  font-size: 0.85rem;
-  margin: 0 0.2rem 0.2rem 0;
+  width: 8px;
+  height: 24px;
+  background: var(--section-home);
+  margin-right: 0.5rem;
+}
+.section-header.projects::before { background: var(--section-projects); }
+.section-header.learn::before    { background: var(--section-learn); }
+.section-header.studio::before   { background: var(--section-studio); }
+.section-header.reflect::before  { background: var(--section-reflect); }
+
+/* 6. MODULE WIDGETS */
+.widget {
+  position: relative;
+  margin-bottom: 2rem;
+}
+.widget .title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.widget .content {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+.widget::-webkit-scrollbar-thumb {
+  background: var(--highlight);
 }
 
-// 11. TWINKLING EFFECT
-// ------------------------------------------------------------------
-@keyframes twinkle {
-  0%,100% { opacity: 0.6; }
-  50% { opacity: 1; }
+/* 7. ANIMATED BACKGROUND PARTICLES */
+@keyframes particle-move {
+  0% { transform: translate(0,0) scale(1); opacity: 1; }
+  100% { transform: translate(100px, -200px) scale(0.5); opacity: 0; }
 }
-.star {
-  width: 4px; height: 4px;
-  background: #FFF;
-  border-radius: 50%;
+.particle {
   position: absolute;
-  animation: twinkle 2s infinite ease-in-out;
+  width: 4px;
+  height: 4px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 50%;
+  animation: particle-move 10s linear infinite;
 }
-// You can position <div class="star"> elements absolutely inside modules for custom sparkle.
+/* JS should generate .particle elements dynamically */
 
-// 12. RESPONSIVE TWEAKS
-// ------------------------------------------------------------------
-@media (max-width: 768px) {
-  #leafs-observatory { padding: 0.5rem; }
-  .navbar { flex-wrap: wrap; }
+/* 8. INTERACTIVE ELEMENTS */
+.btn {
+  display: inline-block;
+  padding: 0.6em 1.2em;
+  border-radius: var(--border-radius);
+  font-family: var(--font-family-main);
+  transition: background 0.2s, transform 0.15s;
+  cursor: pointer;
 }
+.btn.primary { background: var(--background-secondary); color: #fff; }
+.btn.accent { background: var(--highlight); color: #000; }
+.btn:hover { transform: translateY(-2px); }
+
+/* 9. RESPONSIVE ENHANCEMENTS */
+@media (max-width: 1200px) {
+  .site-container { grid-template-columns: 200px 1fr; }
+}
+@media (max-width: 800px) {
+  .site-container { grid-template-areas:
+      "header"
+      "main"
+      "nav"
+      "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto auto;
+  }
+  .nav { height: 60px; display: flex; justify-content: space-around; }
+  .nav ul { flex-direction: row; }
+}
+
+/* 10. DARK/LIGHT MODE TOGGLE */
+.theme-toggle {
+  position: absolute; top: 1rem; right: 1rem;
+  cursor: pointer; font-size: 1.5rem; color: var(--text-primary);
+}
+.theme-light { filter: brightness(1.05); }
+.theme-dark  { filter: brightness(0.9); }
+
+/* 11. UTILITY CLASSES */
+.text-center { text-align: center; }
+.mt-1 { margin-top: 1rem; }
+.mb-1 { margin-bottom: 1rem; }
+.p-2  { padding: 2rem; }
+
+/* END of custom-style.scss */
