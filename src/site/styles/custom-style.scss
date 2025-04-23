@@ -81,24 +81,24 @@ html, body {
   --gif2-url: url('/img/fractal-2.gif');
   --gif2-top:    80%;
   --gif2-left:   20%;
-  --gif2-width:  40%;
-  --gif2-height: 40%;
+  --gif2-width:  30%;
+  --gif2-height: 30%;
   --gif2-opacity: 0.04;
-  --gif2-rotate: -8deg;
+  --gif2-rotate: 0deg;
   --gif3-url: url('/img/fractal-3.gif');
   --gif3-bottom: 15%;
-  --gif3-right:  25%;
+  --gif3-right:  15%;
   --gif3-width:  40%;
   --gif3-height: 40%;
   --gif3-opacity: 0.05;
-  --gif3-rotate: 20deg;
+  --gif3-rotate: 0deg;
   --gif4-url: url('/img/fractal-4.gif');
   --gif4-top:    50%;
-  --gif4-right:  50%;
+  --gif4-right:  25%;
   --gif4-width:  40%;
   --gif4-height: 40%;
   --gif4-opacity: 0.02;
-  --gif4-rotate: -15deg;
+  --gif4-rotate: 0deg;
 }
 
 // Shared pseudos for GIFs at -1 index, below patterned and content
