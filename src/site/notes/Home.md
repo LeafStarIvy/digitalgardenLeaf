@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-04-18T17:23:40.019+02:00","updated":"2025-04-23T07:09:16.470+02:00"}
+{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-04-18T17:23:40.019+02:00","updated":"2025-04-23T07:16:16.208+02:00"}
 ---
 
 
@@ -15,22 +15,12 @@
 
 ---
 
-![ _file/Nebulabanner.jpg | 300 ](Untitled)
-
-
-![[ _file/Nebulabanner.jpg \| 300 ]]](Image to SVG Converter)
-
-
-[[Image to SVG Converter\|![_file/Nebulabanner.jpg](/img/user/_file/Nebulabanner.jpg)]]
-
-
-
 <a href="obsidian://open?vault=System%201&file=Image%20to%20SVG%20Converter.md">
-  <img src="_file/Nebulabanner.jpg" alt="Nebula Banner" style="max-width:100%; height:100%;" />
+  <img src="_file/Nebulabanner.jpg" alt="Nebula Banner" style="max-width:100%; height:auto;" />
 </a>
 
-<a href="/Image-to-SVG-Converter.html">
-  <img src="/attachments/Nebulabanner.jpg" alt="Nebula Banner" style="max-width:100%; height:auto;" />
+<a href="obsidian://open?vault=System%201&file=Image%20to%20SVG%20Converter.md" target="_blank">
+  <img src="_file/Nebulabanner.jpg" alt="Nebula Banner" style="max-width:100%; height:auto;" />
 </a>
 
 
