@@ -43,143 +43,140 @@ body {
 }
 
 /* ------------------------------------------------------------------
-   2. GLOBAL BACKGROUND & FOUR FRACTAL OVERLAYS (ALL NUMERIC)
+   1. CSS VARIABLES (configurable per‐GIF)
    ------------------------------------------------------------------ */
-body {
-  /* core gradient */
+:root {
+  /* GIF 1 */
+  --gif1-url: url('/img/fractal-1.gif');
+  --gif1-top:    10%;
+  --gif1-left:   50%;
+  --gif1-width:  120%;
+  --gif1-height: 120%;
+  --gif1-opacity: 0.03;
+  --gif1-rotate: 12deg;
+
+  /* GIF 2 */
+  --gif2-url: url('/img/fractal-2.gif');
+  --gif2-top:    80%;
+  --gif2-left:   20%;
+  --gif2-width:  100%;
+  --gif2-height: 100%;
+  --gif2-opacity: 0.04;
+  --gif2-rotate: -8deg;
+
+  /* GIF 3 */
+  --gif3-url: url('/img/fractal-3.gif');
+  --gif3-bottom: 15%;
+  --gif3-right:  25%;
+  --gif3-width:  90%;
+  --gif3-height: 90%;
+  --gif3-opacity: 0.05;
+  --gif3-rotate: 20deg;
+
+  /* GIF 4 */
+  --gif4-url: url('/img/fractal-4.gif');
+  --gif4-top:    50%;
+  --gif4-right:  50%;
+  --gif4-width:  110%;
+  --gif4-height: 110%;
+  --gif4-opacity: 0.02;
+  --gif4-rotate: -15deg;
+}
+
+/* ------------------------------------------------------------------
+   2. BASE LAYOUT
+   ------------------------------------------------------------------ */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  position: relative;
+  /* your gradient background */
   background: linear-gradient(
     var(--bg-gradient-dir),
     var(--bg-gradient-start),
     var(--bg-gradient-end)
-  ) fixed center/cover;
-  position: relative;
-  overflow-x: hidden;
+  ) fixed;
   color: var(--text-primary);
 }
 
-/* 2a. NUMERIC VARIABLES FOR LAYERS */
-:root {
-  /* file URLs (keep these unchanged once uploaded) */
-  --fract1-url: url('/img/fractal-1.gif');
-  --fract2-url: url('/img/fractal-2.gif');
-  --fract3-url: url('/img/fractal-3.png');
-  --fract4-url: url('/img/fractal-4.svg');
-
-  /* OFFSET PERCENTAGES (0–100) */
-  --f1-off-x: 50;   /* percent from left */
-  --f1-off-y: 10;   /* percent from top */
-  --f2-off-x: 85;   /* percent from left */
-  --f2-off-y: 95;   /* percent from top */
-  --f3-off-x: 50;
-  --f3-off-y: 50;
-  --f4-off-x: 20;
-  --f4-off-y: 80;
-
-  /* SIZE PERCENTAGES (0–200) */
-  --f1-w: 120;     /* width as % of viewport */
-  --f1-h: 120;     /* height as % of viewport */
-  --f2-w: 80;
-  --f2-h: 80;
-  --f3-w: 60;
-  --f3-h: 60;
-  --f4-w: 30;
-  --f4-h: 30;
-
-  /* TRANSFORMS */
-  --f1-rot: 0;     /* degrees */
-  --f1-scale: 1.2; /* multiplier */
-  --f2-rot: 12;
-  --f2-scale: 1;
-  --f3-rot: 0;
-  --f3-scale: 1;
-  --f4-rot: 0;
-  --f4-scale: 1;
-
-  /* OPACITY (0.00–1.00) */
-  --f1-op: 0.03;
-  --f2-op: 0.04;
-  --f3-op: 0.02;
-  --f4-op: 0.05;
-}
-
-/* 2b. LAYER 1 & 2 on <html> via pseudo–elements */
-html {
-  position: relative;
-}
-html::before,
-html::after {
-  content: '';
-  position: fixed;
-  pointer-events: none;
-  z-index: 0;
-  background-repeat: no-repeat;
-}
-
-/* Layer 1 */
-html::before {
-  background-image: var(--fract1-url);
-  background-position: calc(var(--f1-off-x) * 1%) calc(var(--f1-off-y) * 1%);
-  background-size: calc(var(--f1-w) * 1%) calc(var(--f1-h) * 1%);
-  opacity: var(--f1-op);
-  transform: translateX(calc(var(--f1-off-x) * -1%))
-             translateY(calc(var(--f1-off-y) * -1%))
-             rotate(var(--f1-rot)deg)
-             scale(var(--f1-scale));
-}
-
-/* Layer 2 */
-html::after {
-  background-image: var(--fract2-url);
-  background-position: calc(var(--f2-off-x) * 1%) calc(var(--f2-off-y) * 1%);
-  background-size: calc(var(--f2-w) * 1%) calc(var(--f2-h) * 1%);
-  opacity: var(--f2-op);
-  transform: translateX(calc(var(--f2-off-x) * -1%))
-             translateY(calc(var(--f2-off-y) * -1%))
-             rotate(var(--f2-rot)deg)
-             scale(var(--f2-scale));
-  animation: fadeInOut 20s ease-in-out infinite; /* if GIF */
-}
-
-/* 2c. LAYER 3 & 4 on <body> via pseudo–elements */
-body::before,
-body::after {
-  content: '';
-  position: fixed;
-  pointer-events: none;
-  z-index: 0;
-  background-repeat: no-repeat;
-}
-
-/* Layer 3 */
-body::before {
-  background-image: var(--fract3-url);
-  background-position: calc(var(--f3-off-x) * 1%) calc(var(--f3-off-y) * 1%);
-  background-size: calc(var(--f3-w) * 1%) calc(var(--f3-h) * 1%);
-  opacity: var(--f3-op);
-  transform: rotate(var(--f3-rot)deg) scale(var(--f3-scale));
-}
-
-/* Layer 4 */
-body::after {
-  background-image: var(--fract4-url);
-  background-position: calc(var(--f4-off-x) * 1%) calc(var(--f4-off-y) * 1%);
-  background-size: calc(var(--f4-w) * 1%) calc(var(--f4-h) * 1%);
-  opacity: var(--f4-op);
-  transform: rotate(var(--f4-rot)deg) scale(var(--f4-scale));
-}
-
-/* keyframes for GIF pulsing */
-@keyframes fadeInOut {
-  0%,100% { opacity: calc(var(--f2-op) / 2); }
-  50%     { opacity: calc(var(--f2-op) * 1.5); }
-}
-
-/* keep all content above */
+/* make sure content sits above GIFs */
 .content, .sidebar, .navbar, .callout, .card, .widget {
   position: relative;
   z-index: 1;
 }
 
+/* ------------------------------------------------------------------
+   3. FOUR GIF LAYERS
+   ------------------------------------------------------------------ */
+/* shared styles for all four pseudos */
+html::before,
+body::before,
+html::after,
+body::after {
+  content: '';
+  position: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* GIF #1 on html::before */
+html::before {
+  top:     var(--gif1-top);
+  left:    var(--gif1-left);
+  width:   var(--gif1-width);
+  height:  var(--gif1-height);
+  opacity: var(--gif1-opacity);
+  background-image: var(--gif1-url);
+  transform: translate(-50%, -50%) rotate(var(--gif1-rotate));
+}
+
+/* GIF #2 on body::before */
+body::before {
+  top:     var(--gif2-top);
+  left:    var(--gif2-left);
+  width:   var(--gif2-width);
+  height:  var(--gif2-height);
+  opacity: var(--gif2-opacity);
+  background-image: var(--gif2-url);
+  transform: translate(-50%, -50%) rotate(var(--gif2-rotate));
+}
+
+/* GIF #3 on html::after */
+html::after {
+  bottom:  var(--gif3-bottom);
+  right:   var(--gif3-right);
+  width:   var(--gif3-width);
+  height:  var(--gif3-height);
+  opacity: var(--gif3-opacity);
+  background-image: var(--gif3-url);
+  transform: translate( var(--gif3-right), var(--gif3-bottom) ) rotate(var(--gif3-rotate));
+}
+
+/* GIF #4 on body::after */
+body::after {
+  top:     var(--gif4-top);
+  right:   var(--gif4-right);
+  width:   var(--gif4-width);
+  height:  var(--gif4-height);
+  opacity: var(--gif4-opacity);
+  background-image: var(--gif4-url);
+  transform: translate( var(--gif4-right), -50% ) rotate(var(--gif4-rotate));
+}
+
+/* ------------------------------------------------------------------
+   4. OPTIONAL: Per-layer animation
+   ------------------------------------------------------------------ */
+/* Example: a slow pulse on GIF 2 */
+@keyframes pulse {
+  0%, 100% { opacity: calc(var(--gif2-opacity) * 0.5); }
+  50%      { opacity: calc(var(--gif2-opacity) * 1.2); }
+}
+body::before {
+  animation: pulse 30s ease-in-out infinite;
+}
 
 // 3. MIXINS & UTILITIES
 // ------------------------------------------------------------------
