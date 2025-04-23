@@ -1,189 +1,202 @@
-// custom-style.scss
-// Place your overrides and custom utilities here. This file takes precedence over style.css
+/* custom-style.scss - Overrides and custom styles for Digital Garden Plugin
+ * This file loads after style.css and takes precedence.
+ * Make any custom changes here.
+ */
 
-// =====================
-// 1. Variable Definitions
-// =====================
-// Gradient background defaults
-$gradient-top-color: #6a0dad !default;    // Purple
-$gradient-bottom-color: #000000 !default; // Black
-$gradient-direction: to bottom !default;   // Direction of the fade
-
-// Typography
-$font-base: 'Inter', sans-serif !default;
-$font-heading: 'Poppins', sans-serif !default;
-$text-color: var(--text-normal) !default;
-$link-color: var(--text-accent) !default;
-
-// Spacing scale
-$spacing-unit: 1rem !default;
-
-// Border radius & shadows
-$border-radius: 0.75rem !default;
-$box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !default;
-
-// Button defaults
-$btn-padding: 0.6em 1.2em !default;
-$btn-radius: 0.375rem !default;
-
-// Callout map: type => (color, icon)
-$callout-types: (
-  info:    (color: #00b0ff,  icon: 'lucide-info'),
-  warning: (color: #ffa500,  icon: 'lucide-alert-triangle'),
-  success: (color: #00c853,  icon: 'lucide-check-circle-2'),
-  danger:  (color: #ff1744,  icon: 'lucide-zap'),
-  tip:     (color: #00bfa5,  icon: 'lucide-flame'),
-  quote:   (color: #9e9e9e,  icon: 'lucide-quote')
-) !default;
-
-// =====================
-// 2. CSS Custom Properties
-// =====================
+/*============================
+=     CSS Variables        =
+============================*/
 :root {
-  --gradient-top: #{$gradient-top-color};
-  --gradient-bottom: #{$gradient-bottom-color};
-  --gradient-direction: #{$gradient-direction};
+  // Gradient Background Colors (Top to Bottom)
+  --bg-gradient-top: #8e44ad;    // adjust to your preferred top color
+  --bg-gradient-bottom: #000000; // adjust to your preferred bottom color
 
-  --font-base: #{$font-base};
-  --font-heading: #{$font-heading};
-  --text-color: #{$text-color};
-  --link-color: #{$link-color};
+  // Core Palette
+  --color-primary:   #4A90E2;
+  --color-secondary: #50C878;
+  --color-accent:    #FF6B6B;
+  --color-success:   #28a745;
+  --color-warning:   #ffc107;
+  --color-danger:    #dc3545;
+  --color-info:      #17a2b8;
+  --color-neutral:   #7a7a7a;
 
-  --spacing-unit: #{$spacing-unit};
-  --border-radius: #{$border-radius};
-  --box-shadow: #{$box-shadow};
+  // Typography
+  --font-main:      'Inter', sans-serif;
+  --font-mono:      'JetBrains Mono', monospace;
+  --font-heading:   'Poppins', sans-serif;
 
-  --btn-padding: #{$btn-padding};
-  --btn-radius: #{$btn-radius};
+  // Spacing Scale
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  // Border & Radius
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  // Shadows
+  --shadow-light: 0 2px 8px rgba(0,0,0,0.1);
+  --shadow-heavy: 0 4px 16px rgba(0,0,0,0.2);
 }
 
-// =====================
-// 3. Mixins & Utilities
-// =====================
-// Gradient background mixin
+/*============================
+=      SCSS Mixins         =
+============================*/
+
+// Gradient Background Mixin
 @mixin gradient-bg(
-  $direction: var(--gradient-direction),
-  $start: var(--gradient-top),
-  $end: var(--gradient-bottom)
+  $direction: to top,
+  $start: var(--bg-gradient-bottom),
+  $end: var(--bg-gradient-top)
 ) {
   background: linear-gradient($direction, $start, $end);
 }
 
-// Responsive helper
-@mixin respond($breakpoint) {
-  @if $breakpoint == sm {
-    @media (max-width: 640px) { @content; }
-  } @else if $breakpoint == md {
-    @media (max-width: 768px) { @content; }
-  } @else if $breakpoint == lg {
-    @media (max-width: 1024px) { @content; }
+// Center content flex
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Fluid typography
+@mixin fluid-type($min-size, $max-size, $min-vw: 320px, $max-vw: 1200px) {
+  font-size: clamp($min-size, #{($min-size / $min-vw) * 100}vw, $max-size);
+}
+
+// Container
+@mixin container($max-width: 750px) {
+  max-width: $max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+/*============================
+=      Global Styles        =
+============================*/
+
+body {
+  @include gradient-bg();
+  background-attachment: fixed;
+  color: var(--text-normal);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  @include container(100%);
+  transition: background 0.5s ease;
+}
+
+// Links
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+  &:hover, &:focus {
+    border-color: var(--color-accent);
   }
 }
 
-// =====================
-// 4. Base Styles
-// =====================
-body {
-  @include gradient-bg;
-  font-family: var(--font-base);
-  color: var(--text-color);
-  transition: background 0.5s ease, color 0.3s ease;
+a.is-unresolved {
+  opacity: 0.7;
+  border-bottom-style: dashed;
 }
 
-a {
-  color: var(--link-color);
-  text-decoration: underline;
-  transition: color 0.2s;
-  &:hover { color: lighten(var(--link-color), 10%); }
-}
-
+// Headings
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-md);
   line-height: 1.2;
-  margin-bottom: 0.5em;
 }
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.75rem; }
+h1 {@include fluid-type(2rem, 3rem);} h2 {@include fluid-type(1.75rem, 2.5rem);} h3 {@include fluid-type(1.5rem, 2rem);} h4 {@include fluid-type(1.25rem, 1.75rem);} h5 {@include fluid-type(1.1rem, 1.5rem);} h6 {@include fluid-type(1rem, 1.25rem);}
 
-// =====================
-// 5. Utility Classes
-// =====================
-// Spacing helpers
-@for $i from 1 through 6 {
-  .m-#{$i} { margin: $i * var(--spacing-unit); }
-  .p-#{$i} { padding: $i * var(--spacing-unit); }
+// Buttons
+%button-base {
+  padding: var(--space-sm) var(--space-md);
+  border: none;
+  border-radius: var(--radius-md);
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
-.text-shadow { text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
-.bg-fade { @include gradient-bg; }
-
-// =====================
-// 6. Buttons
-// =====================
-.btn {
-  display: inline-block;
-  padding: var(--btn-padding);
-  border-radius: var(--btn-radius);
-  font-weight: 600;
-  background-color: var(--link-color);
-  color: #fff;
-  border: 2px solid transparent;
-  transition: background-color 0.3s, border-color 0.3s;
-  &:hover { background-color: darken(var(--link-color), 10%); }
-  &.outline {
+.button {
+  @extend %button-base;
+  &--primary { background: var(--color-primary); color: white; }
+  &--secondary { background: var(--color-secondary); color: white; }
+  &--accent { background: var(--color-accent); color: white; }
+  &--outline {
     background: transparent;
-    color: var(--link-color);
-    border-color: var(--link-color);
-    &:hover { background-color: rgba(var(--link-color), 0.1); }
+    border: 2px solid currentColor;
   }
+  &:hover { transform: translateY(-2px); box-shadow: var(--shadow-light); }
 }
 
-// =====================
-// 7. Cards
-// =====================
+// Cards
 .card {
-  background-color: rgba(255,255,255,0.05);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  padding: 1.5rem;
-  margin: 1rem 0;
-  transition: transform 0.2s;
-  &:hover { transform: translateY(-4px); }
+  background: var(--background-secondary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-light);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  &:hover { transform: translateY(-4px); box-shadow: var(--shadow-heavy); }
 }
 
-// =====================
-// 8. Code & Preformatted
-// =====================
+// Code blocks
 pre, code {
-  font-family: 'Fira Code', monospace;
-  background: rgba(0,0,0,0.3);
-  padding: 0.2em 0.4em;
-  border-radius: var(--border-radius);
+  background: rgba(0,0,0,0.1);
+  font-family: var(--font-mono);
+  border-radius: var(--radius-sm);
+}
+pre {
+  padding: var(--space-md);
   overflow-x: auto;
 }
-
-// =====================
-// 9. Callouts
-// =====================
-@each $type, $props in $callout-types {
-  .callout-#{$type} {
-    $col: map-get($props, color);
-    $icon: map-get($props, icon);
-    --callout-color: #{red($col)}, #{green($col)}, #{blue($col)};
-    --callout-icon: #{$icon};
-    border-left: 4px solid $col;
-    background-color: rgba(red($col), green($col), blue($col), 0.1);
-    padding: 1rem;
-    margin: 1rem 0;
-    border-radius: var(--border-radius);
-  }
+code {
+  padding: 0.2em 0.4em;
 }
 
-// =====================
-// 10. Custom Overrides
-// =====================
-// Example: override gradient by setting CSS variables in Netlify or inline
-// :root { --gradient-top: #ffef60; --gradient-bottom: #333; }
+// Tables
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-md) 0;
+  th, td {
+    border: 1px solid var(--border-color);
+    padding: var(--space-sm);
+    text-align: left;
+  }
+  tr:nth-child(even) { background: rgba(0,0,0,0.05); }
+}
 
-// Enjoy customizing! Change variables above to suit your taste.
+// Blockquote
+blockquote {
+  border-left: 4px solid var(--color-info);
+  background: rgba(0,0,0,0.05);
+  padding: var(--space-md);
+  margin: var(--space-lg) 0;
+  font-style: italic;
+}
+
+// Utility Classes
+.text-center { text-align: center; }
+.mt-lg { margin-top: var(--space-lg); }
+.mb-lg { margin-bottom: var(--space-lg); }
+.p-md { padding: var(--space-md); }
+.hide-scrollbar { scrollbar-width: none; -ms-overflow-style: none; &::-webkit-scrollbar { display: none; } }
+
+// Responsive
+@media (max-width: 800px) {
+  body { font-size: 16px; }
+  .content { padding: var(--space-sm); }
+}
+
+/*============================
+=    End of custom-style    =
+============================*/
