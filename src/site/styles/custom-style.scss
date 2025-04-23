@@ -1,191 +1,241 @@
 /***
- * CUSTOM STYLE SCSS
- * Updated with cosmic gradients, palette variables, and utility mixins
+ * CUSTOM STYLE SCSS - UNLEASHED
+ * Fully revamped with advanced cosmic effects, module classes, animations, and utility mixins.
  ***/
 
-// 1. COLOR VARIABLES & THEME CUSTOMIZATION
+// 1. PALETTE & VARIABLES
 // ------------------------------------------------------------------
-body {
-  // Cosmic palette variables
-  --background-primary: #12142A;   // Cosmic Void
-  --background-secondary: #1E254E; // Deep Space
-  --surface-1: #6C789C;            // Stardust Blue
-  --surface-2: #A3B3BF;            // Moonstone
-  --text-primary: #E0B2FF;         // Ethereal Glow
-  --text-accent: #FFD77A;          // Solar Flare
-  --link-color: #8AD6EE;           // Comet Trail
-  --highlight: #BFA6E0;            // Nebula Lavender
-  --graph-main:    var(--text-accent);
-  --graph-muted:   #CFDACB;        // Interstellar Gray
+:root {
+  /* Primary cosmic palette */
+  --bg-start: #000000;                 /* Pure Space */
+  --bg-end: #4A4E8A;                   /* Galactic Indigo */
+  --color-text: #E0B2FF;               /* Ethereal Glow */
+  --color-link: #8AD6EE;               /* Comet Trail */
+  --color-highlight: #BFA6E0;          /* Nebula Lavender */
+  --color-cta: #FFD77A;                /* Solar Flare */
+  --color-surface: #1E254E;            /* Deep Space */
+  --color-surface-alt: #6C789C;        /* Stardust Blue */
+  --color-muted: #CFDACB;              /* Interstellar Gray */
 
-  // Gradient background override (black → deep purple)
-  --bg-gradient-start: #000000;
-  --bg-gradient-end:   #4A4E8A;
-  --bg-gradient-dir:   to top right;
+  /* Section accents */
+  --accent-knowledge: #BFA6E0;
+  --accent-projects: #8AD6EE;
+  --accent-creative: #FFD77A;
+  --accent-tools: #E0B2FF;
 
-  // Typography & layout
-  --font-family-main: 'Inter', sans-serif;
-  --font-family-code: 'JetBrains Mono', monospace;
-  --content-width: 700px;
-  --sidebar-width: 300px;
-  --border-radius: 8px;
-  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  /* Typography */
+  --font-main: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  // Callout styling
-  --callout-border-width: 2px;
-  --callout-padding: 16px;
-  --callout-radius: 8px;
+  /* Layout */
+  --content-width: 720px;
+  --gutter: 1rem;
+  --radius: 10px;
+  --shadow-light: 0 4px 15px rgba(0,0,0,0.4);
 }
 
-// Apply global gradient background
+// 2. GLOBAL BACKGROUND & STARFIELD
+// ------------------------------------------------------------------
 body {
-  background: linear-gradient(
-    var(--bg-gradient-dir),
-    var(--bg-gradient-start),
-    var(--bg-gradient-end)
-  );
+  margin: 0;
+  padding: 0;
+  color: var(--color-text);
+  font-family: var(--font-main);
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
   background-attachment: fixed;
-  color: var(--text-primary);
+  position: relative;
+  overflow-x: hidden;
 }
 
-// 2. MIXINS & UTILITIES
+// Starfield overlay
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 200%; height: 200%;
+  background: transparent url("/img/starfield.png") repeat;
+  animation: pan 120s linear infinite;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+@keyframes pan {
+  from { transform: translate(0,0); }
+  to   { transform: translate(-50%, -50%); }
+}
+
+// 3. LAYOUT & CONTAINERS
 // ------------------------------------------------------------------
-@mixin gradient-bg($dir, $start, $end) {
-  background: linear-gradient($dir, $start, $end);
+#leafs-observatory {
+  max-width: var(--content-width);
+  margin: auto;
+  padding: var(--gutter);
 }
 
-@mixin glass-card($blur: 8px, $alpha: 0.1) {
-  background: rgba(255, 255, 255, $alpha);
-  backdrop-filter: blur($blur);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-}
-
-// 3. PATTERNED BACKGROUND
-// ------------------------------------------------------------------
-.patterned {
-  background-image: url('/img/flower-of-life.svg');
-  background-repeat: repeat;
-  background-size: 200px;
-  opacity: 0.08;
-}
-
-// 4. GLASS CARDS & PANELS
-// ------------------------------------------------------------------
-.card {
-  @include glass-card(12px, 0.12);
-  padding: 1.5rem;
-  margin: 1rem 0;
+.module {
+  @include glass-card(16px,0.08);
   border: 1px solid rgba(255,255,255,0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  }
+  border-radius: var(--radius);
+  padding: var(--gutter);
+  margin-bottom: var(--gutter);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.module:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-light);
 }
 
-// 5. BUTTONS
+// Section-specific accents
+.module[data-module="knowledge"] { border-left: 6px solid var(--accent-knowledge); }
+.module[data-module="projects"]  { border-left: 6px solid var(--accent-projects); }
+.module[data-module="creative"]  { border-left: 6px solid var(--accent-creative); }
+.module[data-module="tools"]     { border-left: 6px solid var(--accent-tools); }
+
+// 4. HEADERS & TYPOGRAPHY
+// ------------------------------------------------------------------
+h1, h2, h3 {
+  color: var(--color-text);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: var(--gutter);
+}
+h2 {
+  font-size: 1.8rem;
+  margin-top: var(--gutter);
+  margin-bottom: calc(var(--gutter)/2);
+}
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  position: relative;
+}
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 2px;
+  background: var(--color-link);
+  transition: width 0.3s ease;
+}
+a:hover::after { width: 100%; }
+
+// 5. BUTTONS & CTAs
 // ------------------------------------------------------------------
 .btn {
   display: inline-block;
-  padding: 0.6em 1.2em;
-  border-radius: var(--border-radius);
-  font-family: var(--font-family-main);
+  padding: 0.7em 1.4em;
+  font-family: var(--font-main);
+  border-radius: var(--radius);
+  text-transform: uppercase;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.15s ease;
+  transition: background 0.3s ease;
+}
+.btn-primary { background: var(--color-cta); color: #000; }
+.btn-secondary { background: var(--color-highlight); color: #000; }
 
-  &--primary { background: var(--background-secondary); color: #fff; }
-  &--accent  { background: var(--highlight);          color: #000; }
-  &--link    { background: transparent;               color: var(--link-color);
-                text-decoration: underline; }
-
-  &:hover { transform: translateY(-2px); }
+// 6. NAVIGATION
+// ------------------------------------------------------------------
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: rgba(30,37,78,0.8);
+  backdrop-filter: blur(8px);
+  padding: 0.5rem var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+.navbar a {
+  color: var(--color-text);
+  margin: 0 0.5rem;
 }
 
-// 6. LINKS & HOVER EFFECTS
+// 7. COLLAPSIBLE PANELS
 // ------------------------------------------------------------------
-a {
-  color: var(--link-color);
+.collapsible {
+  cursor: pointer;
   position: relative;
-  text-decoration: none;
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--link-color);
-    transition: width 0.3s ease;
-  }
-  &:hover::after { width: 100%; }
+}
+.collapsible::after {
+  content: "▼";
+  position: absolute;
+  right: 0; top: 0;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+.collapsible.collapsed::after {
+  transform: rotate(-90deg);
+}
+.collapsible-content {
+  overflow: hidden;
+  transition: max-height 0.4s ease;
 }
 
-// 7. FLOATING ELEMENTS
+// 8. MEDIA & EMBEDS
 // ------------------------------------------------------------------
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-.floating {
-  animation: float 4s ease-in-out infinite;
+img, iframe, audio, video {
+  max-width: 100%;
+  border-radius: var(--radius);
+  margin: var(--gutter) 0;
 }
 
-// 8. CUSTOM SCROLLBAR
+// 9. SEARCH & FILTER WIDGET
 // ------------------------------------------------------------------
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb {
-  background-color: var(--highlight);
-  border-radius: var(--border-radius);
+.search-box {
+  @include glass-card(10px,0.1);
+  padding: var(--gutter);
+  margin-bottom: var(--gutter);
+  position: sticky; top: 60px;
+  z-index: 900;
 }
-
-// 9. DIGITAL GARDEN ADJUSTMENTS
-// ------------------------------------------------------------------
-// Override base graph colors
-:root {
-  --graph-main: var(--text-accent);
-  --graph-muted: var(--graph-muted);
-}
-
-// Large Page Title
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: var(--text-primary);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-}
-
-// Callout styling
-.callout {
-  border-left: var(--callout-border-width) solid var(--highlight);
-  background: rgba(255,255,255,0.05);
-  padding: var(--callout-padding);
-  margin: 1rem 0;
-  border-radius: var(--callout-radius);
-}
-
-// Table styling enhancement
-table {
+.search-box input {
   width: 100%;
-  border-collapse: collapse;
-  margin: 2rem 0;
-  thead { background: var(--surface-1); }
-  th, td {
-    padding: 0.75rem 1rem;
-    border: 1px solid rgba(255,255,255,0.1);
-  }
+  padding: 0.8em;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  background: rgba(255,255,255,0.1);
+  color: var(--color-text);
+}
+.search-box input:focus {
+  outline: 2px solid var(--color-link);
 }
 
-// Dark/light theme toggling
-.theme-light {
-  --bg-gradient-start: #f5f5f5;
-  --bg-gradient-end:   #ffffff;
-  --text-primary: var(--dark-text);
+// 10. MODULE FILTER TAGS
+// ------------------------------------------------------------------
+.tag {
+  display: inline-block;
+  background: var(--color-surface-alt);
+  color: var(--color-highlight);
+  padding: 0.2em 0.6em;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  margin: 0 0.2rem 0.2rem 0;
 }
 
-.theme-dark {
-  --bg-gradient-start: #000000;
-  --bg-gradient-end:   #4A4E8A;
-  --text-primary: #E0B2FF;
+// 11. TWINKLING EFFECT
+// ------------------------------------------------------------------
+@keyframes twinkle {
+  0%,100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.star {
+  width: 4px; height: 4px;
+  background: #FFF;
+  border-radius: 50%;
+  position: absolute;
+  animation: twinkle 2s infinite ease-in-out;
+}
+// You can position <div class="star"> elements absolutely inside modules for custom sparkle.
+
+// 12. RESPONSIVE TWEAKS
+// ------------------------------------------------------------------
+@media (max-width: 768px) {
+  #leafs-observatory { padding: 0.5rem; }
+  .navbar { flex-wrap: wrap; }
 }
