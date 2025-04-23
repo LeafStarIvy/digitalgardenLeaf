@@ -291,50 +291,47 @@ table {
   --bg-gradient-end:   #4A4E8A;
   --text-primary:      #E0B2FF;
 }
-// ─────────────────────────────────────────────────────────────────────────────
-// TITLE GIF MIXIN (fixed)
-// ─────────────────────────────────────────────────────────────────────────────
-
-@function gif-url($file) {
-  @return url('/img/fractal-title.gif');
+// 14. TITLE GIF OVERLAY
+// ------------------------------------------------------------------
+:root {
+  --title-gif-url: url('/img/fractal-title.gif');  // Replace with your GIF path
+  --title-gif-width: 300px;
+  --title-gif-height: 120px;
+  --title-gif-opacity: 0.85;
 }
 
-@mixin title-gif(
-  $file,
-  $width: auto,
-  $height: 100px,
-  $offset: 1rem
-) {
-  body .cm-s-obsidian > header > h1 {
-    position: relative;
-    // use CSS calc() so px + rem works at runtime
-    padding-top: calc(#{$height} + #{$offset});
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translate(-50%, -100%);
-      width:  $width;
-      height: $height;
-      background-image: gif-url($file);
-      background-size: contain;
-      background-repeat: no-repeat;
-      pointer-events: none;
-      z-index: 2;
-    }
+// Add title GIF above the main heading
+.content h1:first-of-type {
+  position: relative;
+  padding-top: 140px;  // Make space for the GIF above
+  margin-top: 0;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--title-gif-width);
+    height: var(--title-gif-height);
+    background-image: var(--title-gif-url);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: var(--title-gif-opacity);
+    z-index: 2;
+    animation: float 6s ease-in-out infinite;
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// EXAMPLE USAGE (keep this!)
-// ─────────────────────────────────────────────────────────────────────────────
-
-@include title-gif(
-  'your-awesome.gif',  // the GIF in /img
-  200px,               // width
-  120px,               // height
-  0.5rem               // gap
-);
-
+// Adjust title GIF responsively
+@media (max-width: 800px) {
+  .content h1:first-of-type {
+    padding-top: 100px;  // Less padding on mobile
+    
+    &::before {
+      width: calc(var(--title-gif-width) * 0.7);  // Scale down on mobile
+      height: calc(var(--title-gif-height) * 0.7);
+    }
+  }
+}
