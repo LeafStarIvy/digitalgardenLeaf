@@ -292,38 +292,30 @@ table {
   --text-primary:      #E0B2FF;
 }
 // ─────────────────────────────────────────────────────────────────────────────
-// 14. TITLE GIF MIXIN
-//    Drop this at the end of your custom-style.scss
+// TITLE GIF MIXIN (fixed)
 // ─────────────────────────────────────────────────────────────────────────────
 
-// 1) Helper to build an img URL from your /img folder
 @function gif-url($file) {
   @return url('/img/fractal-title.gif');
 }
 
-// 2) Mixin to inject a GIF above your h1
-//    $file   = your-gif filename (e.g. "welcome.gif")
-//    $width  = width of the GIF (auto or px/%)
-//    $height = height of the GIF (auto or px/%)
-//    $offset = space between GIF bottom and the title (px/rem)
 @mixin title-gif(
   $file,
   $width: auto,
   $height: 100px,
   $offset: 1rem
 ) {
-  // Target your Obsidian title—adjust selector if needed
   body .cm-s-obsidian > header > h1 {
     position: relative;
-    // Push the text down so it doesn’t overlap the GIF
-    padding-top: $height + $offset;
+    // use CSS calc() so px + rem works at runtime
+    padding-top: calc(#{$height} + #{$offset});
 
     &::before {
       content: '';
       position: absolute;
       top: 0;
       left: 50%;
-      transform: translate(-50%, -100%); // centers and lifts GIF above
+      transform: translate(-50%, -100%);
       width:  $width;
       height: $height;
       background-image: gif-url($file);
@@ -335,14 +327,14 @@ table {
   }
 }
 
-// 3) EXAMPLE USAGE
 // ─────────────────────────────────────────────────────────────────────────────
-// Somewhere after you define the mixin, just do:
+// EXAMPLE USAGE (keep this!)
+// ─────────────────────────────────────────────────────────────────────────────
 
 @include title-gif(
-  'your-awesome.gif',  // filename in /img
+  'your-awesome.gif',  // the GIF in /img
   200px,               // width
   120px,               // height
-  0.5rem               // gap between GIF and title
+  0.5rem               // gap
 );
 
