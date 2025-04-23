@@ -42,8 +42,9 @@ body {
   --widget-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }
 
-// 2. GLOBAL BACKGROUND & FRACTAL OVERLAYS
-// ------------------------------------------------------------------
+/* ------------------------------------------------------------------
+   2. GLOBAL BACKGROUND & FRACTAL OVERLAYS (GIF or VIDEO)
+   ------------------------------------------------------------------ */
 body {
   background: linear-gradient(
     var(--bg-gradient-dir),
@@ -55,15 +56,15 @@ body {
   overflow-x: hidden;
   color: var(--text-primary);
 
-  // FRACTAL LAYER 1: large, faint pattern
+  /* LAYER 1—Static fractal PNG (unchanged) */
   &::before {
     content: '';
     position: fixed;
-    top: 10%;
+    top:  10%;
     left: 50%;
     width: 120%;
     height: 120%;
-    background: url('/img/fractal-pattern-1.png') center center;
+    background: url('/img/fractal-pattern-1.png') center center no-repeat;
     background-size: contain;
     opacity: 0.03;
     transform: translate(-50%, -10%) scale(1.2);
@@ -71,21 +72,28 @@ body {
     z-index: 0;
   }
 
-  // FRACTAL LAYER 2: smaller, more detailed
+  /* LAYER 2—Animated fractal GIF */ 
   &::after {
     content: '';
     position: fixed;
     bottom: 5%;
     right: 15%;
-    width: 80%;
+    width:  80%;
     height: 80%;
-    background: url('/img/fractal-pattern-2.png') center center;
+    background: url('/img/fractal-anim.gif') center center no-repeat;
     background-size: cover;
-    opacity: 0.02;
-    transform: translate(15%, 5%) rotate(15deg);
+    opacity: 0.04;
+    transform: translate(15%, 5%) rotate(12deg);
     pointer-events: none;
     z-index: 0;
+    animation: fadeInOut 20s ease-in-out infinite;
   }
+}
+
+/* Simple opacity pulsing for the GIF layer */
+@keyframes fadeInOut {
+  0%,100%   { opacity: 0.02; }
+  50%       { opacity: 0.06; }
 }
 
 /* Particle.js container (if you opt in later) */
