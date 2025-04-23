@@ -337,3 +337,49 @@ table {
     }
   }
 }
+// Add opacity to right sidebar elements (graph, backlinks)
+// Adjust the opacity value to your preference (0.0 - 1.0)
+:root {
+  --sidebar-opacity: 0.85; // 85% opacity - change as needed
+  --sidebar-hover-opacity: 0.95; // Opacity when hovering
+  --sidebar-transition: opacity 0.3s ease; // Smooth transition effect
+}
+
+// Target the sidebar container and its components
+.sidebar {
+  opacity: var(--sidebar-opacity);
+  transition: var(--sidebar-transition);
+  
+  // Apply opacity to all main components
+  .graph, 
+  .toc, 
+  .backlinks,
+  #link-graph,
+  .sidebar-container {
+    opacity: var(--sidebar-opacity);
+    transition: var(--sidebar-transition);
+  }
+  
+  // Optional: Increase opacity when hovering
+  &:hover {
+    opacity: var(--sidebar-hover-opacity);
+    
+    .graph, 
+    .toc, 
+    .backlinks,
+    #link-graph,
+    .sidebar-container {
+      opacity: var(--sidebar-hover-opacity);
+    }
+  }
+}
+
+// Also apply to fullscreen graph mode
+.graph-fs, #full-graph {
+  opacity: var(--sidebar-opacity);
+  transition: var(--sidebar-transition);
+  
+  &:hover {
+    opacity: var(--sidebar-hover-opacity);
+  }
+}
