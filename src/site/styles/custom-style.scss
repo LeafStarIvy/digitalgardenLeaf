@@ -88,7 +88,7 @@ body {
 /* 2a. FRACTAL LAYER VARIABLES */
 :root {
   /* Asset URLs */
-  --fractal-1-url: '/img/fractal-1.gif';
+  --fractal-1-url: '/img/fractal-.gif';
   --fractal-2-url: '/img/fractal-2.gif';
   --fractal-3-url: '/img/fractal-3.svg';
   --fractal-4-url: '/img/fractal-4.png';
@@ -101,15 +101,15 @@ body {
 
   /* Sizes: "contain", "cover", "80% auto", "200px 200px" */
   --fractal-1-size: 80% auto;
-  --fractal-2-size: 60% auto;
+  --fractal-2-size: 30% auto;
   --fractal-3-size: contain;
   --fractal-4-size: 150px 150px;
 
   /* Opacities */
-  --fractal-1-opacity: 0.03;
-  --fractal-2-opacity: 0.04;
-  --fractal-3-opacity: 0.02;
-  --fractal-4-opacity: 0.05;
+  --fractal-1-opacity: 0.40;
+  --fractal-2-opacity: 0.70;
+  --fractal-3-opacity: 0.40;
+  --fractal-4-opacity: 0.70;
 }
 
 /* 2b. APPLYING OPACITY VIA OVERLAY PSEUDO-ELEMENTS */
