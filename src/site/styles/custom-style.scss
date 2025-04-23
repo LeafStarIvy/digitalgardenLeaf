@@ -1,202 +1,181 @@
-/* custom-style.scss - Overrides and custom styles for Digital Garden Plugin
- * This file loads after style.css and takes precedence.
- * Make any custom changes here.
- */
+/***
+ * CUSTOM STYLE SCSS
+ * This file is loaded after the base style.scss and overrides its defaults.
+ * Add your custom styling here. Keep it in custom-style.scss so updates won't overwrite.
+ ***/
 
-/*============================
-=     CSS Variables        =
-============================*/
-:root {
-  // Gradient Background Colors (Top to Bottom)
-  --bg-gradient-top: #8e44ad;    // adjust to your preferred top color
-  --bg-gradient-bottom: #000000; // adjust to your preferred bottom color
+// 1. COLOR VARIABLES & THEME CUSTOMIZATION
+// ------------------------------------------------------------------
+body {
+  // Base color palette
+  --primary-color: #4A90E2;
+  --secondary-color: #50C878;
+  --accent-color: #FF6B6B;
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --info-color: #17a2b8;
 
-  // Core Palette
-  --color-primary:   #4A90E2;
-  --color-secondary: #50C878;
-  --color-accent:    #FF6B6B;
-  --color-success:   #28a745;
-  --color-warning:   #ffc107;
-  --color-danger:    #dc3545;
-  --color-info:      #17a2b8;
-  --color-neutral:   #7a7a7a;
+  // Light theme overrides
+  --light-bg-start: #ffffff;
+  --light-bg-end:   #f5f5f5;
+  --light-text:     #333333;
+  --light-text-muted: #666666;
+
+  // Dark theme overrides
+  --dark-bg-start: #1e1e1e;
+  --dark-bg-end:   #2d2d2d;
+  --dark-text:     #dcddde;
+  --dark-text-muted: #a0a0a0;
+
+  // Gradient background defaults
+  --bg-gradient-direction: to top;
+  --bg-gradient-start: var(--dark-bg-start);
+  --bg-gradient-end:   var(--dark-bg-end);
 
   // Typography
-  --font-main:      'Inter', sans-serif;
-  --font-mono:      'JetBrains Mono', monospace;
-  --font-heading:   'Poppins', sans-serif;
+  --font-family-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-family-code: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
 
-  // Spacing Scale
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 32px;
+  // Layout
+  --content-width: 750px;
+  --sidebar-width: 300px;
+  --border-radius: 6px;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
-  // Border & Radius
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px;
+  // Callout styling (override strength as needed)
+  --callout-border-width: 1px;
+  --callout-border-opacity: 0.3;
+  --callout-padding: 16px;
+  --callout-radius: 8px;
+  --callout-blend-mode: normal;
 
-  // Shadows
-  --shadow-light: 0 2px 8px rgba(0,0,0,0.1);
-  --shadow-heavy: 0 4px 16px rgba(0,0,0,0.2);
+  // Graph styling
+  --graph-main: var(--accent-color);
+  --graph-muted: var(--text-muted);
+
+  // Apply gradient background
+  background: linear-gradient(
+    var(--bg-gradient-direction),
+    var(--bg-gradient-start),
+    var(--bg-gradient-end)
+  );
+  background-attachment: fixed;
+  color: var(--text-normal);
 }
 
-/*============================
-=      SCSS Mixins         =
-============================*/
+// 2. THEME CLASSES
+// ------------------------------------------------------------------
+.theme-light {
+  --bg-gradient-start: var(--light-bg-start);
+  --bg-gradient-end:   var(--light-bg-end);
+  --text-normal: var(--light-text);
+  --text-muted:  var(--light-text-muted);
+}
 
-// Gradient Background Mixin
-@mixin gradient-bg(
-  $direction: to top,
-  $start: var(--bg-gradient-bottom),
-  $end: var(--bg-gradient-top)
-) {
+.theme-dark {
+  --bg-gradient-start: var(--dark-bg-start);
+  --bg-gradient-end:   var(--dark-bg-end);
+  --text-normal: var(--dark-text);
+  --text-muted:  var(--dark-text-muted);
+}
+
+// 3. MIXINS & UTILITIES
+// ------------------------------------------------------------------
+@mixin gradient-bg($direction, $start, $end) {
   background: linear-gradient($direction, $start, $end);
 }
 
-// Center content flex
-@mixin flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@mixin glass-card($blur: 10px, $alpha: 0.1) {
+  background: rgba(255, 255, 255, $alpha);
+  backdrop-filter: blur($blur);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
 }
 
-// Fluid typography
-@mixin fluid-type($min-size, $max-size, $min-vw: 320px, $max-vw: 1200px) {
-  font-size: clamp($min-size, #{($min-size / $min-vw) * 100}vw, $max-size);
+// Utility classes
+.gradient-radial {
+  background: radial-gradient(circle at center, var(--bg-gradient-start), var(--bg-gradient-end));
 }
 
-// Container
-@mixin container($max-width: 750px) {
-  max-width: $max-width;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--space-md);
-  padding-right: var(--space-md);
+.text-shadow {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/*============================
-=      Global Styles        =
-============================*/
-
-body {
-  @include gradient-bg();
-  background-attachment: fixed;
-  color: var(--text-normal);
-  font-family: var(--font-main);
-  line-height: 1.6;
-  @include container(100%);
-  transition: background 0.5s ease;
-}
-
-// Links
-a {
-  color: var(--color-accent);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
-  &:hover, &:focus {
-    border-color: var(--color-accent);
+// Card component
+.card {
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  background: var(--background-secondary);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   }
 }
-
-a.is-unresolved {
-  opacity: 0.7;
-  border-bottom-style: dashed;
-}
-
-// Headings
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  margin-top: var(--space-lg);
-  margin-bottom: var(--space-md);
-  line-height: 1.2;
-}
-h1 {@include fluid-type(2rem, 3rem);} h2 {@include fluid-type(1.75rem, 2.5rem);} h3 {@include fluid-type(1.5rem, 2rem);} h4 {@include fluid-type(1.25rem, 1.75rem);} h5 {@include fluid-type(1.1rem, 1.5rem);} h6 {@include fluid-type(1rem, 1.25rem);}
 
 // Buttons
-%button-base {
-  padding: var(--space-sm) var(--space-md);
-  border: none;
-  border-radius: var(--radius-md);
-  font: inherit;
+.btn {
+  display: inline-block;
+  padding: 0.6em 1.2em;
+  border-radius: var(--border-radius);
+  font-family: var(--font-family-main);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.button {
-  @extend %button-base;
-  &--primary { background: var(--color-primary); color: white; }
-  &--secondary { background: var(--color-secondary); color: white; }
-  &--accent { background: var(--color-accent); color: white; }
-  &--outline {
-    background: transparent;
-    border: 2px solid currentColor;
-  }
-  &:hover { transform: translateY(-2px); box-shadow: var(--shadow-light); }
+  transition: background 0.2s ease, transform 0.15s ease;
+  &--primary { background: var(--primary-color); color: #fff; }
+  &--secondary { background: var(--secondary-color); color: #fff; }
+  &--accent { background: var(--accent-color); color: #fff; }
+  &:hover { transform: translateY(-2px); }
 }
 
-// Cards
-.card {
-  background: var(--background-secondary);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-light);
-  padding: var(--space-lg);
-  margin-bottom: var(--space-lg);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  &:hover { transform: translateY(-4px); box-shadow: var(--shadow-heavy); }
-}
-
-// Code blocks
-pre, code {
-  background: rgba(0,0,0,0.1);
-  font-family: var(--font-mono);
-  border-radius: var(--radius-sm);
-}
-pre {
-  padding: var(--space-md);
-  overflow-x: auto;
-}
-code {
-  padding: 0.2em 0.4em;
-}
-
-// Tables
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: var(--space-md) 0;
-  th, td {
-    border: 1px solid var(--border-color);
-    padding: var(--space-sm);
-    text-align: left;
-  }
-  tr:nth-child(even) { background: rgba(0,0,0,0.05); }
-}
-
-// Blockquote
-blockquote {
-  border-left: 4px solid var(--color-info);
-  background: rgba(0,0,0,0.05);
-  padding: var(--space-md);
-  margin: var(--space-lg) 0;
-  font-style: italic;
-}
-
-// Utility Classes
-.text-center { text-align: center; }
-.mt-lg { margin-top: var(--space-lg); }
-.mb-lg { margin-bottom: var(--space-lg); }
-.p-md { padding: var(--space-md); }
-.hide-scrollbar { scrollbar-width: none; -ms-overflow-style: none; &::-webkit-scrollbar { display: none; } }
-
-// Responsive
+// 4. RESPONSIVE MEDIA GRADIENT OVERRIDE
+// ------------------------------------------------------------------
 @media (max-width: 800px) {
-  body { font-size: 16px; }
-  .content { padding: var(--space-sm); }
+  body {
+    --bg-gradient-direction: to bottom;
+  }
 }
 
-/*============================
-=    End of custom-style    =
-============================*/
+// 5. EXTRA FUN ANIMATIONS & INTERACTIONS
+// ------------------------------------------------------------------
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+// 6. LINK STYLES
+// ------------------------------------------------------------------
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  position: relative;
+  &:hover::after {
+    width: 100%;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 2px;
+    width: 0;
+    background: var(--accent-color);
+    transition: width 0.3s ease;
+  }
+}
+
+// 7. CUSTOM SCROLLBAR
+// ------------------------------------------------------------------
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: var(--border-radius);
+}
