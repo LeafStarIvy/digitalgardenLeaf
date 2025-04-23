@@ -43,10 +43,10 @@ body {
 }
 
 /* ------------------------------------------------------------------
-   2. GLOBAL BACKGROUND & FOUR FRACTAL OVERLAYS
+   2. GLOBAL BACKGROUND & FOUR FRACTAL OVERLAYS (ALL NUMERIC)
    ------------------------------------------------------------------ */
 body {
-  /* base gradient */
+  /* core gradient */
   background: linear-gradient(
     var(--bg-gradient-dir),
     var(--bg-gradient-start),
@@ -57,42 +57,54 @@ body {
   color: var(--text-primary);
 }
 
-/* 2a. VARIABLES FOR ALL 4 LAYERS */
+/* 2a. NUMERIC VARIABLES FOR LAYERS */
 :root {
-  /* URLs: put your files in /img/ */
-  --fract1-url: url('/img/fractal-1.gif');     /* layer1 */
-  --fract2-url: url('/img/fractal-2.gif');     /* layer2 */
-  --fract3-url: url('/img/fractal-3.png');     /* layer3 */
-  --fract4-url: url('/img/fractal-4.svg');     /* layer4 */
+  /* file URLs (keep these unchanged once uploaded) */
+  --fract1-url: url('/img/fractal-1.gif');
+  --fract2-url: url('/img/fractal-2.gif');
+  --fract3-url: url('/img/fractal-3.png');
+  --fract4-url: url('/img/fractal-4.svg');
 
-  /* Positions */
-  --fract1-pos: bottom right;
-  --fract2-pos: top left;
-  --fract3-pos: center center;
-  --fract4-pos: 20% 80%;
+  /* OFFSET PERCENTAGES (0–100) */
+  --f1-off-x: 50;   /* percent from left */
+  --f1-off-y: 10;   /* percent from top */
+  --f2-off-x: 85;   /* percent from left */
+  --f2-off-y: 95;   /* percent from top */
+  --f3-off-x: 50;
+  --f3-off-y: 50;
+  --f4-off-x: 20;
+  --f4-off-y: 80;
 
-  /* Sizes */
-  --fract1-size: 80% auto;
-  --fract2-size: 60% auto;
-  --fract3-size: contain;
-  --fract4-size: 150px 150px;
+  /* SIZE PERCENTAGES (0–200) */
+  --f1-w: 120;     /* width as % of viewport */
+  --f1-h: 120;     /* height as % of viewport */
+  --f2-w: 80;
+  --f2-h: 80;
+  --f3-w: 60;
+  --f3-h: 60;
+  --f4-w: 30;
+  --f4-h: 30;
 
-  /* Transforms */
-  --fract1-trans: translate(0,0) scale(1);
-  --fract2-trans: translate(0,0) scale(1);
-  --fract3-trans: translate(0,0) rotate(0deg);
-  --fract4-trans: translate(0,0) rotate(0deg);
+  /* TRANSFORMS */
+  --f1-rot: 0;     /* degrees */
+  --f1-scale: 1.2; /* multiplier */
+  --f2-rot: 12;
+  --f2-scale: 1;
+  --f3-rot: 0;
+  --f3-scale: 1;
+  --f4-rot: 0;
+  --f4-scale: 1;
 
-  /* Opacities */
-  --fract1-opacity: 0.03;
-  --fract2-opacity: 0.04;
-  --fract3-opacity: 0.02;
-  --fract4-opacity: 0.05;
+  /* OPACITY (0.00–1.00) */
+  --f1-op: 0.03;
+  --f2-op: 0.04;
+  --f3-op: 0.02;
+  --f4-op: 0.05;
 }
 
-/* 2b. LAYER 1 & 2 on <html> via ::before & ::after */
+/* 2b. LAYER 1 & 2 on <html> via pseudo–elements */
 html {
-  position: relative; /* ensure pseudo-elements position correctly */
+  position: relative;
 }
 html::before,
 html::after {
@@ -103,26 +115,32 @@ html::after {
   background-repeat: no-repeat;
 }
 
-/* Layer 1 = static fractal-1 */
+/* Layer 1 */
 html::before {
-  top:    0; left:   0;
-  width:  100%; height: 100%;
-  background: var(--fract1-url) no-repeat var(--fract1-pos) / var(--fract1-size);
-  opacity: var(--fract1-opacity);
-  transform: var(--fract1-trans);
+  background-image: var(--fract1-url);
+  background-position: calc(var(--f1-off-x) * 1%) calc(var(--f1-off-y) * 1%);
+  background-size: calc(var(--f1-w) * 1%) calc(var(--f1-h) * 1%);
+  opacity: var(--f1-op);
+  transform: translateX(calc(var(--f1-off-x) * -1%))
+             translateY(calc(var(--f1-off-y) * -1%))
+             rotate(var(--f1-rot)deg)
+             scale(var(--f1-scale));
 }
 
-/* Layer 2 = animated fractal-2 */
+/* Layer 2 */
 html::after {
-  top:    0; right:  0;
-  width:  100%; height: 100%;
-  background: var(--fract2-url) no-repeat var(--fract2-pos) / var(--fract2-size);
-  opacity: var(--fract2-opacity);
-  transform: var(--fract2-trans);
-  /* if this is a gif, no animation needed; if you embed MP4, see video snippet below */
+  background-image: var(--fract2-url);
+  background-position: calc(var(--f2-off-x) * 1%) calc(var(--f2-off-y) * 1%);
+  background-size: calc(var(--f2-w) * 1%) calc(var(--f2-h) * 1%);
+  opacity: var(--f2-op);
+  transform: translateX(calc(var(--f2-off-x) * -1%))
+             translateY(calc(var(--f2-off-y) * -1%))
+             rotate(var(--f2-rot)deg)
+             scale(var(--f2-scale));
+  animation: fadeInOut 20s ease-in-out infinite; /* if GIF */
 }
 
-/* 2c. LAYER 3 & 4 on <body> via ::before & ::after */
+/* 2c. LAYER 3 & 4 on <body> via pseudo–elements */
 body::before,
 body::after {
   content: '';
@@ -132,25 +150,36 @@ body::after {
   background-repeat: no-repeat;
 }
 
-/* Layer 3 = fractal-3 */
+/* Layer 3 */
 body::before {
-  bottom: 0; left:  0;
-  width:  var(--fract3-size);
-  height: var(--fract3-size);
-  background: var(--fract3-url) no-repeat var(--fract3-pos);
-  opacity: var(--fract3-opacity);
-  transform: var(--fract3-trans);
+  background-image: var(--fract3-url);
+  background-position: calc(var(--f3-off-x) * 1%) calc(var(--f3-off-y) * 1%);
+  background-size: calc(var(--f3-w) * 1%) calc(var(--f3-h) * 1%);
+  opacity: var(--f3-op);
+  transform: rotate(var(--f3-rot)deg) scale(var(--f3-scale));
 }
 
-/* Layer 4 = fractal-4 (e.g. cogs) */
+/* Layer 4 */
 body::after {
-  bottom: 0; right: 0;
-  width:  var(--fract4-size);
-  height: var(--fract4-size);
-  background: var(--fract4-url) no-repeat var(--fract4-pos);
-  opacity: var(--fract4-opacity);
-  transform: var(--fract4-trans);
+  background-image: var(--fract4-url);
+  background-position: calc(var(--f4-off-x) * 1%) calc(var(--f4-off-y) * 1%);
+  background-size: calc(var(--f4-w) * 1%) calc(var(--f4-h) * 1%);
+  opacity: var(--f4-op);
+  transform: rotate(var(--f4-rot)deg) scale(var(--f4-scale));
 }
+
+/* keyframes for GIF pulsing */
+@keyframes fadeInOut {
+  0%,100% { opacity: calc(var(--f2-op) / 2); }
+  50%     { opacity: calc(var(--f2-op) * 1.5); }
+}
+
+/* keep all content above */
+.content, .sidebar, .navbar, .callout, .card, .widget {
+  position: relative;
+  z-index: 1;
+}
+
 
 // 3. MIXINS & UTILITIES
 // ------------------------------------------------------------------
