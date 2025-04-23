@@ -291,47 +291,49 @@ table {
   --bg-gradient-end:   #4A4E8A;
   --text-primary:      #E0B2FF;
 }
-// 14. TITLE GIF OVERLAY
-// ------------------------------------------------------------------
+// Add this to your custom-style.scss file
+
+// Define the title header GIF variable
 :root {
-  --title-gif-url: url('/img/fractal-title.gif');  // Replace with your GIF path
-  --title-gif-width: 300px;
-  --title-gif-height: 120px;
-  --title-gif-opacity: 0.85;
+  --title-header-gif: url('/img/your-gif-file.gif');
+  --title-header-gif-height: 120px;
+  --title-header-gif-width: 100%;
+  --title-header-gif-margin-bottom: 10px;
 }
 
-// Add title GIF above the main heading
-.content h1:first-of-type {
-  position: relative;
-  padding-top: 140px;  // Make space for the GIF above
-  margin-top: 0;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: var(--title-gif-width);
-    height: var(--title-gif-height);
-    background-image: var(--title-gif-url);
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: var(--title-gif-opacity);
-    z-index: 2;
-    animation: float 6s ease-in-out infinite;
+// Add the GIF above the sidebar title
+.filetree-sidebar {
+  h1 {
+    // Add spacing for the GIF above
+    margin-top: var(--title-header-gif-height);
+    position: relative;
+    
+    // Create the GIF element using pseudo-element
+    &::before {
+      content: '';
+      position: absolute;
+      top: calc(-1 * var(--title-header-gif-height) - var(--title-header-gif-margin-bottom));
+      left: 0;
+      width: var(--title-header-gif-width);
+      height: var(--title-header-gif-height);
+      background-image: var(--title-header-gif);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 1;
+    }
   }
 }
 
-// Adjust title GIF responsively
+// For mobile responsiveness
 @media (max-width: 800px) {
-  .content h1:first-of-type {
-    padding-top: 100px;  // Less padding on mobile
-    
-    &::before {
-      width: calc(var(--title-gif-width) * 0.7);  // Scale down on mobile
-      height: calc(var(--title-gif-height) * 0.7);
+  .filetree-sidebar {
+    h1::before {
+      // Show the GIF even when the h1 is hidden on mobile
+      position: relative;
+      display: block;
+      top: 0;
+      margin-bottom: var(--title-header-gif-margin-bottom);
     }
   }
 }
