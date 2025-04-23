@@ -10,16 +10,20 @@ $gradient-bottom-color: #000000 !default; // Black
 $gradient-direction: to bottom !default;   // Direction of the fade
 
 // Typography
-$font-base: 'Inter', sans-serif !default;\$font-heading: 'Poppins', sans-serif !default;
+$font-base: 'Inter', sans-serif !default;
+$font-heading: 'Poppins', sans-serif !default;
 $text-color: var(--text-normal) !default;
 $link-color: var(--text-accent) !default;
 
-// Spacing scale\ n$spacing-unit: 1rem !default;
+// Spacing scale
+$spacing-unit: 1rem !default;
 
-// Border radius & shadows\ n$border-radius: 0.75rem !default;
+// Border radius & shadows
+$border-radius: 0.75rem !default;
 $box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !default;
 
-// Button defaults\ n$btn-padding: 0.6em 1.2em !default;
+// Button defaults
+$btn-padding: 0.6em 1.2em !default;
 $btn-radius: 0.375rem !default;
 
 // Callout map: type => (color, icon)
