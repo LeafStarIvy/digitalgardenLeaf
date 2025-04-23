@@ -42,123 +42,114 @@ body {
   --widget-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }
 
-// 2. GLOBAL BACKGROUND & MULTI-LAYERED FRACTALS
-// ------------------------------------------------------------------
+/* ------------------------------------------------------------------
+   2. GLOBAL BACKGROUND & FOUR FRACTAL OVERLAYS
+   ------------------------------------------------------------------ */
 body {
-  /* Base gradient */
-  background-image:
-    url('/img/fractal-1.gif'),
-    url('/img/fractal-2.gif'),
-    url('/img/fractal-3.svg'),
-    url('/img/fractal-4.png'),
-    linear-gradient(
-      var(--bg-gradient-dir),
-      var(--bg-gradient-start),
-      var(--bg-gradient-end)
-    );
-  background-position:
-    var(--fractal-1-pos),
-    var(--fractal-2-pos),
-    var(--fractal-3-pos),
-    var(--fractal-4-pos),
-    center center;
-  background-size:
-    var(--fractal-1-size),
-    var(--fractal-2-size),
-    var(--fractal-3-size),
-    var(--fractal-4-size),
-    cover;
-  background-repeat:
-    no-repeat,
-    no-repeat,
-    no-repeat,
-    no-repeat,
-    no-repeat;
-  background-attachment:
-    fixed,
-    fixed,
-    fixed,
-    fixed,
-    fixed;
+  /* base gradient */
+  background: linear-gradient(
+    var(--bg-gradient-dir),
+    var(--bg-gradient-start),
+    var(--bg-gradient-end)
+  ) fixed center/cover;
   position: relative;
   overflow-x: hidden;
   color: var(--text-primary);
 }
 
-/* 2a. FRACTAL LAYER VARIABLES */
+/* 2a. VARIABLES FOR ALL 4 LAYERS */
 :root {
-  /* Asset URLs */
-  --fractal-1-url: '/img/fractal-.gif';
-  --fractal-2-url: '/img/fractal-2.gif';
-  --fractal-3-url: '/img/fractal-3.svg';
-  --fractal-4-url: '/img/fractal-4.png';
+  /* URLs: put your files in /img/ */
+  --fract1-url: url('/img/fractal-1.gif');     /* layer1 */
+  --fract2-url: url('/img/fractal-2.gif');     /* layer2 */
+  --fract3-url: url('/img/fractal-3.png');     /* layer3 */
+  --fract4-url: url('/img/fractal-4.svg');     /* layer4 */
 
-  /* Positions: e.g. "top left", "50% 20%" */
-  --fractal-1-pos: bottom right;
-  --fractal-2-pos: top left;
-  --fractal-3-pos: center center;
-  --fractal-4-pos: 20% 80%;
+  /* Positions */
+  --fract1-pos: bottom right;
+  --fract2-pos: top left;
+  --fract3-pos: center center;
+  --fract4-pos: 20% 80%;
 
-  /* Sizes: "contain", "cover", "80% auto", "200px 200px" */
-  --fractal-1-size: 80% auto;
-  --fractal-2-size: 30% auto;
-  --fractal-3-size: contain;
-  --fractal-4-size: 150px 150px;
+  /* Sizes */
+  --fract1-size: 80% auto;
+  --fract2-size: 60% auto;
+  --fract3-size: contain;
+  --fract4-size: 150px 150px;
+
+  /* Transforms */
+  --fract1-trans: translate(0,0) scale(1);
+  --fract2-trans: translate(0,0) scale(1);
+  --fract3-trans: translate(0,0) rotate(0deg);
+  --fract4-trans: translate(0,0) rotate(0deg);
 
   /* Opacities */
-  --fractal-1-opacity: 0.40;
-  --fractal-2-opacity: 0.70;
-  --fractal-3-opacity: 0.40;
-  --fractal-4-opacity: 0.70;
+  --fract1-opacity: 0.03;
+  --fract2-opacity: 0.04;
+  --fract3-opacity: 0.02;
+  --fract4-opacity: 0.05;
 }
 
-/* 2b. APPLYING OPACITY VIA OVERLAY PSEUDO-ELEMENTS */
-body::before,
-body::after,
-body > .fract-overlay:nth-of-type(3),
-body > .fract-overlay:nth-of-type(4) {
+/* 2b. LAYER 1 & 2 on <html> via ::before & ::after */
+html {
+  position: relative; /* ensure pseudo-elements position correctly */
+}
+html::before,
+html::after {
   content: '';
   position: fixed;
   pointer-events: none;
   z-index: 0;
-}
-
-/* Layer 1 as ::before */
-body::before {
-  background: url(var(--fractal-1-url)) no-repeat var(--fractal-1-pos) / var(--fractal-1-size);
-  opacity: var(--fractal-1-opacity);
-  top: 0; left: 0; right: 0; bottom: 0;
-}
-
-/* Layer 2 as ::after */
-body::after {
-  background: url(var(--fractal-2-url)) no-repeat var(--fractal-2-pos) / var(--fractal-2-size);
-  opacity: var(--fractal-2-opacity);
-  top: 0; left: 0; right: 0; bottom: 0;
-}
-
-/* Layers 3+4 inserted via “fract-overlay” divs */
-.fract-overlay {
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
-.fract-overlay:nth-of-type(1) {
-  background-image: url(var(--fractal-3-url));
-  background-position: var(--fractal-3-pos);
-  background-size: var(--fractal-3-size);
-  opacity: var(--fractal-3-opacity);
-}
-.fract-overlay:nth-of-type(2) {
-  background-image: url(var(--fractal-4-url));
-  background-position: var(--fractal-4-pos);
-  background-size: var(--fractal-4-size);
-  opacity: var(--fractal-4-opacity);
 }
 
-/* Particle.js container (if you opt in later) */
-#particle-container {
-  display: none; /* disable by default to keep fully CSS */
+/* Layer 1 = static fractal-1 */
+html::before {
+  top:    0; left:   0;
+  width:  100%; height: 100%;
+  background: var(--fract1-url) no-repeat var(--fract1-pos) / var(--fract1-size);
+  opacity: var(--fract1-opacity);
+  transform: var(--fract1-trans);
+}
+
+/* Layer 2 = animated fractal-2 */
+html::after {
+  top:    0; right:  0;
+  width:  100%; height: 100%;
+  background: var(--fract2-url) no-repeat var(--fract2-pos) / var(--fract2-size);
+  opacity: var(--fract2-opacity);
+  transform: var(--fract2-trans);
+  /* if this is a gif, no animation needed; if you embed MP4, see video snippet below */
+}
+
+/* 2c. LAYER 3 & 4 on <body> via ::before & ::after */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+}
+
+/* Layer 3 = fractal-3 */
+body::before {
+  bottom: 0; left:  0;
+  width:  var(--fract3-size);
+  height: var(--fract3-size);
+  background: var(--fract3-url) no-repeat var(--fract3-pos);
+  opacity: var(--fract3-opacity);
+  transform: var(--fract3-trans);
+}
+
+/* Layer 4 = fractal-4 (e.g. cogs) */
+body::after {
+  bottom: 0; right: 0;
+  width:  var(--fract4-size);
+  height: var(--fract4-size);
+  background: var(--fract4-url) no-repeat var(--fract4-pos);
+  opacity: var(--fract4-opacity);
+  transform: var(--fract4-trans);
 }
 
 // 3. MIXINS & UTILITIES
