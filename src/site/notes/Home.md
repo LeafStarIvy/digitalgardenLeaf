@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-04-18T17:23:40.019+02:00","updated":"2025-04-23T06:48:29.982+02:00"}
+{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-04-18T17:23:40.019+02:00","updated":"2025-04-23T06:54:28.312+02:00"}
 ---
 
 
@@ -23,6 +23,8 @@
   <img src="_file/Nebulabanner.jpg" alt="Nebula Banner" style="width:100%;max-width:600px;" />
 </a>
 
+
+[[Image to SVG Converter\|![Nebulabanner.jpg](/img/user/_file/Nebulabanner.jpg)]]
 
 
 
