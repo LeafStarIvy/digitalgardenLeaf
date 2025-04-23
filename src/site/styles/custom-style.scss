@@ -4,159 +4,108 @@
  * Add your custom styling here. Keep it in custom-style.scss so updates won't overwrite.
  ***/
 
-// 1. COLOR VARIABLES & THEME CUSTOMIZATION
-// ------------------------------------------------------------------
+// -------------------------------------------------------------
+// 1. PALETTE VARIABLES (Cosmic Bliss Theme)
+// -------------------------------------------------------------
+$cosmic-void:       #12142A;
+$deep-space:        #1E254E;
+$galactic-indigo:   #4A4E8A;
+$stardust-blue:     #6C789C;
+$nebula-lavender:   #BFA6E0;
+$ethereal-glow:     #E0B2FF;
+$solar-flare:       #FFD77A;
+$comet-trail:       #8AD6EE;
+
+// Override base CSS variables
+audition: root {
+  --background-primary:    #{$cosmic-void};
+  --background-secondary:  #{$deep-space};
+  --background-alt:        #{$galactic-indigo};
+  --background-secondary-alt: mix($galactic-indigo, $cosmic-void, 20%);
+
+  --text-primary:          #{$ethereal-glow};
+  --text-accent:           #{$solar-flare};
+  --text-muted:            #{$nebula-lavender};
+
+  --link-color:            #{$comet-trail};
+  --link-hover-color:      darken($comet-trail, 10%);
+
+  --accent-color:          #{$galactic-indigo};
+  --muted-accent:          lighten($galactic-indigo, 20%);
+
+  --border-color:          #{$nebula-lavender};
+  --divider-color:         rgba($ethereal-glow, 0.15);
+
+  // Graph colors
+  --graph-main:            #{$comet-trail};
+  --graph-muted:           rgba($nebula-lavender, 0.5);
+}
+
+// -------------------------------------------------------------
+// 2. GLOBAL BACKGROUND & TYPOGRAPHY
+// -------------------------------------------------------------
 body {
-  // Base color palette
-  --primary-color: #4A90E2;
-  --secondary-color: #50C878;
-  --accent-color: #FF6B6B;
-  --success-color: #28a745;
-  --warning-color: #ffc107;
-  --danger-color: #dc3545;
-  --info-color: #17a2b8;
-
-  // Light theme overrides
-  --light-bg-start: #ffffff;
-  --light-bg-end:   #f5f5f5;
-  --light-text:     #333333;
-  --light-text-muted: #666666;
-
-  // Dark theme overrides
-  --dark-bg-start: #1e1e1e;
-  --dark-bg-end:   #2d2d2d;
-  --dark-text:     #dcddde;
-  --dark-text-muted: #a0a0a0;
-
-  // Gradient background defaults
-  --bg-gradient-direction: to top;
-  --bg-gradient-start: var(--dark-bg-start);
-  --bg-gradient-end:   var(--dark-bg-end);
-
-  // Typography
-  --font-family-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-family-code: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
-
-  // Layout
-  --content-width: 750px;
-  --sidebar-width: 300px;
-  --border-radius: 6px;
-  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
-  // Callout styling (override strength as needed)
-  --callout-border-width: 1px;
-  --callout-border-opacity: 0.3;
-  --callout-padding: 16px;
-  --callout-radius: 8px;
-  --callout-blend-mode: normal;
-
-  // Graph styling
-  --graph-main: var(--accent-color);
-  --graph-muted: var(--text-muted);
-
-  // Apply gradient background
-  background: linear-gradient(
-    var(--bg-gradient-direction),
-    var(--bg-gradient-start),
-    var(--bg-gradient-end)
-  );
+  background: linear-gradient(180deg, $cosmic-void 0%, $nebula-lavender 100%);
   background-attachment: fixed;
-  color: var(--text-normal);
+  font-family: var(--font-family-main);
 }
 
-// 2. THEME CLASSES
-// ------------------------------------------------------------------
-.theme-light {
-  --bg-gradient-start: var(--light-bg-start);
-  --bg-gradient-end:   var(--light-bg-end);
-  --text-normal: var(--light-text);
-  --text-muted:  var(--light-text-muted);
+// Smooth text rendering
+body, .content, p, h1, h2, h3, h4, h5, h6 {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.theme-dark {
-  --bg-gradient-start: var(--dark-bg-start);
-  --bg-gradient-end:   var(--dark-bg-end);
-  --text-normal: var(--dark-text);
-  --text-muted:  var(--dark-text-muted);
-}
-
-// 3. MIXINS & UTILITIES
-// ------------------------------------------------------------------
-@mixin gradient-bg($direction, $start, $end) {
-  background: linear-gradient($direction, $start, $end);
-}
-
-@mixin glass-card($blur: 10px, $alpha: 0.1) {
+// -------------------------------------------------------------
+// 3. GLASS CARD & PANELS
+// -------------------------------------------------------------
+@mixin glass-panel($alpha: 0.15, $blur: 8px) {
   background: rgba(255, 255, 255, $alpha);
   backdrop-filter: blur($blur);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
 }
 
-// Utility classes
-.gradient-radial {
-  background: radial-gradient(circle at center, var(--bg-gradient-start), var(--bg-gradient-end));
+.card, .callout, .content, .transclusion {
+  @include glass-panel(0.12, 12px);
 }
 
-.text-shadow {
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+// Highlight important callouts
+.callout[data-callout="warning"] {
+  border-left: 4px solid $solar-flare;
+}
+.callout[data-callout="info"] {
+  border-left: 4px solid $comet-trail;
 }
 
-// Card component
-.card {
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  padding: 1.5rem;
-  background: var(--background-secondary);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-  }
-}
-
-// Buttons
+// -------------------------------------------------------------
+// 4. BUTTON STYLES
+// -------------------------------------------------------------
 .btn {
-  display: inline-block;
-  padding: 0.6em 1.2em;
+  &--primary { background: $galactic-indigo; color: $ethereal-glow; }
+  &--secondary { background: $stardust-blue; color: $ethereal-glow; }
+  &--accent { background: $solar-flare; color: $cosmic-void; }
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5em 1em;
   border-radius: var(--border-radius);
-  font-family: var(--font-family-main);
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.15s ease;
-  &--primary { background: var(--primary-color); color: #fff; }
-  &--secondary { background: var(--secondary-color); color: #fff; }
-  &--accent { background: var(--accent-color); color: #fff; }
-  &:hover { transform: translateY(-2px); }
-}
+  box-shadow: 0 2px 6px rgba($cosmic-void, 0.5);
+  transition: transform 0.2s ease, background 0.2s;
 
-// 4. RESPONSIVE MEDIA GRADIENT OVERRIDE
-// ------------------------------------------------------------------
-@media (max-width: 800px) {
-  body {
-    --bg-gradient-direction: to bottom;
+  &:hover {
+    transform: translateY(-2px);
   }
 }
 
-// 5. EXTRA FUN ANIMATIONS & INTERACTIONS
-// ------------------------------------------------------------------
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-.floating {
-  animation: float 3s ease-in-out infinite;
-}
-
-// 6. LINK STYLES
-// ------------------------------------------------------------------
-a {
-  color: var(--accent-color);
+// -------------------------------------------------------------
+// 5. LINKS & NAVIGATION
+// -------------------------------------------------------------
+a, .notelink a {
+  color: $comet-trail;
   text-decoration: none;
   position: relative;
-  &:hover::after {
-    width: 100%;
-  }
+
   &::after {
     content: '';
     position: absolute;
@@ -164,18 +113,80 @@ a {
     bottom: -2px;
     height: 2px;
     width: 0;
-    background: var(--accent-color);
+    background: $comet-trail;
     transition: width 0.3s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
   }
 }
 
-// 7. CUSTOM SCROLLBAR
-// ------------------------------------------------------------------
+// Navbar
+.navbar {
+  background-color: $deep-space;
+  border-bottom: 1px solid rgba($ethereal-glow, 0.2);
+}
+
+// Sidebar & filetree
+.filetree-sidebar, .sidebar {
+  background-color: rgba($cosmic-void, 0.9);
+}
+
+// -------------------------------------------------------------
+// 6. SIDEBAR & TOC STYLING
+// -------------------------------------------------------------
+.toc, .backlinks, .graph, .toc-container {
+  background: transparent;
+  @include glass-panel(0.08, 6px);
+  border: none;
+}
+
+.toc-container li {
+  &::before { color: $solar-flare; }
+}
+
+.backlink-card, #link-graph {
+  border: 1px solid rgba($ethereal-glow, 0.2);
+}
+
+// -------------------------------------------------------------
+// 7. ANIMATIONS & INTERACTIVITY
+// -------------------------------------------------------------
+@keyframes float-star {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.05); }
+}
+
+.floating-star {
+  animation: float-star 4s ease-in-out infinite;
+}
+
+// Apply to any icon or image you want to gently drift
+.icon.floating-star, .img.floating-star {
+  @extend .floating-star;
+}
+
+// -------------------------------------------------------------
+// 8. CUSTOM SCROLLBAR
+// -------------------------------------------------------------
 ::-webkit-scrollbar {
   width: 8px;
 }
-::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-track {
+  background: transparent;
+}
 ::-webkit-scrollbar-thumb {
-  background-color: var(--accent-color);
+  background-color: $nebula-lavender;
   border-radius: var(--border-radius);
 }
+
+// -------------------------------------------------------------
+// 9. RESPONSIVE NOTES
+// -------------------------------------------------------------
+@media (max-width: 800px) {
+  body { background: linear-gradient(180deg, $cosmic-void 0%, $galactic-indigo 100%); }
+  .navbar { position: fixed; }
+}
+
+// End of custom-style.scss
