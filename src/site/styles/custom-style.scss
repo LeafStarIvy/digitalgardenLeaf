@@ -1,250 +1,196 @@
-/***
- * CUSTOM STYLE SCSS
- * Fully self-contained cosmic-bliss theme with starfield, fractal patterns,
- * interactive widgets, and responsive design—no external dependencies.
- ***/
-
-// =======================================================================
-// 1. CORE VARIABLES & COSMIC PALETTE
-// =======================================================================
+/*** custom-style.scss ***/
+/* =======================================================================
+   1. CORE VARIABLES & PALETTE
+   ======================================================================= */
 :root {
-  /* Background Gradient */
-  --bg-gradient-start: #000000;      /* Pure Black */
-  --bg-gradient-end:   #4A4E8A;      /* Deep Galactic Indigo */
-  --bg-gradient-dir:   to top right;
+  /* Gradient stops */
+  --bg-start: #000000;
+  --bg-end:   #4A4E8A;
+  --bg-dir:   to top right;
 
-  /* Primary Palette */
-  --background-primary:   #12142A;   /* Cosmic Void */
-  --background-secondary: #1E254E;   /* Deep Space */
-  --surface-1:            #6C789C;   /* Stardust Blue */
-  --surface-2:            #A3B3BF;   /* Moonstone */
-  --text-primary:         #E0B2FF;   /* Ethereal Glow */
-  --text-secondary:       #CFDACB;   /* Interstellar Gray */
-  --text-accent:          #FFD77A;   /* Solar Flare */
-  --link-color:           #8AD6EE;   /* Comet Trail */
-  --highlight:            #BFA6E0;   /* Nebula Lavender */
+  /* Core colors */
+  --bg-primary:   #12142A;
+  --bg-secondary: #1E254E;
+  --surface-1:    #6C789C;
+  --surface-2:    #A3B3BF;
+  --text-primary: #E0B2FF;
+  --text-secondary: #CFDACB;
+  --accent:       #FFD77A;
+  --link:         #8AD6EE;
+  --highlight:    #BFA6E0;
 
-  /* Typography & Layout */
-  --font-sans:            'Inter', sans-serif;
-  --font-mono:            'JetBrains Mono', monospace;
-  --content-max-width:    700px;
-  --sidebar-max-width:    300px;
-  --border-radius:        8px;
-  --box-shadow-light:     0 4px 12px rgba(0,0,0,0.15);
-  --box-shadow-medium:    0 8px 24px rgba(0,0,0,0.2);
+  /* Typography & layout */
+  --font-main:    'Inter', sans-serif;
+  --font-code:    'JetBrains Mono', monospace;
+  --content-w:    700px;
+  --sidebar-w:    300px;
+  --radius:       8px;
+  --shadow-light: 0 4px 12px rgba(0,0,0,0.15);
+  --shadow-med:   0 8px 24px rgba(0,0,0,0.2);
 
-  /* Callout & Widget Defaults */
-  --callout-border:       2px solid var(--highlight);
-  --callout-padding:      16px;
-  --callout-radius:       8px;
-  --widget-bg:            rgba(30,37,78,0.85);
-  --widget-border:        1px solid var(--text-accent);
-  --widget-radius:        8px;
-  --widget-shadow:        0 8px 24px rgba(0,0,0,0.3);
+  /* Callout & widget */
+  --callout-border: 2px solid var(--highlight);
+  --callout-pad:    16px;
+  --widget-bg:      rgba(30,37,78,0.85);
+  --widget-border:  1px solid var(--accent);
 }
 
-// =======================================================================
-// 2. GLOBAL RESET & BACKGROUND
-// =======================================================================
-*{
-  margin: 0; padding: 0;
-  box-sizing: border-box;
-}
+/* =======================================================================
+   2. GLOBAL RESET & BACKGROUND
+   ======================================================================= */
+* { margin:0; padding:0; box-sizing:border-box; }
 html, body {
-  height: 100%; width: 100%;
-  font-family: var(--font-sans);
-  background: linear-gradient(
-    var(--bg-gradient-dir),
-    var(--bg-gradient-start),
-    var(--bg-gradient-end)
-  ) fixed;
+  height:100%; width:100%;
+  font-family:var(--font-main);
+  background: linear-gradient(var(--bg-dir),
+                 var(--bg-start),
+                 var(--bg-end)) fixed; /* MDN: linear-gradient  */
   color: var(--text-primary);
-  position: relative;
   overflow-x: hidden;
+  position: relative;
 }
 
-// Starfield (CSS-only, no external scripts)
+/* =======================================================================
+   3. PURE-CSS STARFIELD
+   ======================================================================= */
+/* Container to hold 5 animated layers */
 #particle-container {
-  position: fixed; top: 0; left: 0;
-  width: 100%; height: 100%;
-  perspective: 500px;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 1;
+  position: fixed; top:0; left:0;
+  width:100%; height:100%;
+  pointer-events:none; z-index:1;
 }
-
-.stars {
-  --count: 300;
-  position: absolute; top: 50%; left: 50%;
-  width: 2px; height: 2px; border-radius: 50%;
-  $shadows: '';
-  @for $i from 1 through var(--count) {
-    $x: random(2000) - 1000;
-    $y: random(2000) - 1000;
-    $l: random(100) + 20;
-    $shadows: #{$shadows}, #{$x}px #{$y}px hsl(0,0%,#{$l}%);
-  }
-  box-shadow: ltrim($shadows, ', ');
-  animation: fly 20s linear infinite;
-}
-@keyframes fly {
-  from { transform: translateZ(0); }
-  to   { transform: translateZ(800px); }
-}
-
-// =======================================================================
-// 3. PATTERN OVERLAY (Flower of Life)
-// =======================================================================
-.patterned {
-  position: fixed;
-  inset: 0;
-  background-image: url('/img/flower-of-life.svg');
+#particle-container .stars {
+  position:absolute; top:0; left:0;
+  width:100%; height:100%;
   background-repeat: repeat;
-  background-size: 200px;
-  opacity: 0.05;
-  pointer-events: none;
-  z-index: 2;
+  background-size:200px 200px;
+  opacity:0;
+  animation: zoom 5s infinite;
+}
+/* 5 layers with different positions & delays (CodePen adaptation) */
+#particle-container .stars:nth-child(1) {
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, #EEE, transparent),
+    radial-gradient(2px 2px at 40px 70px, #FFF, transparent),
+    radial-gradient(2px 2px at 50px 160px, #DDD, transparent),
+    radial-gradient(2px 2px at 90px 40px, #FFF, transparent),
+    radial-gradient(2px 2px at 130px 80px, #FFF, transparent),
+    radial-gradient(2px 2px at 160px 120px, #DDD, transparent);
+  background-position: 50% 50%;
+  animation-delay: 0s;
+}
+#particle-container .stars:nth-child(2) {
+  background-image: var(--particle-img);
+  background-position: 20% 60%; animation-delay: 1s;
+}
+#particle-container .stars:nth-child(3) {
+  background-image: var(--particle-img);
+  background-position: -20% -30%; animation-delay: 2s;
+}
+#particle-container .stars:nth-child(4) {
+  background-image: var(--particle-img);
+  background-position: 40% -80%; animation-delay: 3s;
+}
+#particle-container .stars:nth-child(5) {
+  background-image: var(--particle-img);
+  background-position: -20% 30%; animation-delay: 4s;
 }
 
-// =======================================================================
-// 4. MIXINS & UTILITIES
-// =======================================================================
-@mixin glass($alpha:0.1,$blur:12px){
+/* Shared keyframes */
+@keyframes zoom {
+  0%   { opacity:0; transform: scale(0.5); animation-timing-function: ease-in; }
+  85%  { opacity:1; transform: scale(2.8); animation-timing-function: linear; }
+  100% { opacity:0; transform: scale(3.5); }
+}
+
+/* =======================================================================
+   4. PATTERNED OVERLAY
+   ======================================================================= */
+.patterned {
+  position:fixed; inset:0;
+  background-image: url('/img/flower-of-life.svg');
+  background-repeat: repeat; background-size:200px;
+  opacity:0.05; pointer-events:none; z-index:2;
+}
+
+/* =======================================================================
+   5. MIXINS & GLASS CARDS
+   ======================================================================= */
+@mixin glass($alpha:0.1,$blur:12px) {
   background: rgba(255,255,255,$alpha);
   backdrop-filter: blur($blur);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
 }
-
-// Floating effect
-@keyframes float {
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-6px);}
-}
-
-// =======================================================================
-// 5. CARDS, PANELS & CALL-OUTS
-// =======================================================================
 .card {
   @include glass(0.15,16px);
-  padding: 1.5rem;
-  margin: 2rem auto;
-  max-width: var(--content-max-width);
-  position: relative; z-index: 3;
+  padding: 1.5rem; margin: 2rem auto;
+  max-width: var(--content-w);
   transition: transform .2s, box-shadow .2s;
+  position: relative; z-index:3;
   &:hover {
     transform: translateY(-4px);
-    box-shadow: var(--box-shadow-medium);
+    box-shadow: var(--shadow-med);
   }
 }
 
+/* =======================================================================
+   6. BUTTONS & LINKS
+   ======================================================================= */
+.btn {
+  display:inline-block;
+  padding:.6em 1.2em;
+  border:none; border-radius:var(--radius);
+  font:inherit; cursor:pointer;
+  transition: transform .15s, background .2s;
+}
+.btn-primary { background: var(--bg-secondary); color: #fff; }
+.btn-accent  { background: var(--highlight); color: #000; }
+.btn-link    { background:transparent; color:var(--link); text-decoration:underline; }
+.btn:hover   { transform: translateY(-2px); }
+
+a {
+  color: var(--link);
+  position: relative; text-decoration: none;
+  transition: color .3s;
+}
+a::after {
+  content: '';
+  position: absolute; bottom:-2px; left:0;
+  width:0; height:2px; background: var(--link);
+  transition: width .3s;
+}
+a:hover {
+  color: var(--highlight);
+}
+a:hover::after {
+  width:100%;
+}
+
+/* =======================================================================
+   7. DIGITAL GARDEN OVERRIDES
+   ======================================================================= */
+body {
+  --graph-main: var(--accent);
+  --graph-muted: var(--text-secondary);
+}
 .callout {
   border-left: var(--callout-border);
   background: rgba(255,255,255,0.05);
-  padding: var(--callout-padding);
-  margin: 1.5rem 0;
+  padding: var(--callout-pad);
+  margin:1.5rem 0;
   border-radius: var(--callout-radius);
-  position: relative; z-index: 3;
-}
-
-// =======================================================================
-// 6. BUTTONS
-// =======================================================================
-.btn{
-  display:inline-block;
-  font-family:var(--font-sans);
-  padding:0.6em 1.2em;
-  border:none;
-  border-radius:var(--border-radius);
-  cursor:pointer;
-  transition:transform .15s, background .2s;
-}
-.btn-primary{background:var(--background-secondary);color:#fff;}
-.btn-accent{background:var(--highlight);color:#000;animation:float 6s ease-in-out infinite;}
-.btn-link{background:transparent;color:var(--link-color);text-decoration:underline;}
-.btn:hover{transform:translateY(-2px);}
-
-// =======================================================================
-// 7. LINKS & TEXT
-// =======================================================================
-a {
-  color: var(--link-color);
-  text-decoration: none;
-  position: relative;
-  &:hover { color: var(--highlight); }
-  &::after {
-    content: '';
-    position: absolute; bottom: -2px; left: 0;
-    width: 0; height: 2px;
-    background: var(--link-color);
-    transition: width .3s;
-  }
-  &:hover::after { width: 100%; }
-}
-h1,h2,h3,h4,h5,h6{color:var(--text-primary);}
-
-// =======================================================================
-// 8. WIDGETS & SIDEBAR
-// =======================================================================
-.widget {
-  background: var(--widget-bg);
-  border: var(--widget-border);
-  box-shadow: var(--widget-shadow);
-  border-radius: var(--widget-radius);
-  padding:1rem;
-  margin:1rem auto;
-  max-width:var(--content-max-width);
   position: relative; z-index:3;
 }
-
-.sidebar {
-  position: fixed;
-  top: 80px;
-  right: 20px;
-  width: var(--sidebar-max-width);
-  background: var(--background-secondary);
-  padding:1rem;
-  border-radius:var(--border-radius);
-  box-shadow: var(--box-shadow-light);
-  max-height:calc(100vh - 100px);
-  overflow-y:auto;
-  z-index:4;
+table {
+  width:100%; border-collapse: collapse; margin:2rem 0;
+  thead { background: var(--surface-1); }
+  th, td { padding:.75rem 1rem; border:1px solid rgba(255,255,255,0.1); }
 }
 
-// =======================================================================
-// 9. TABLES & CODE BLOCKS
-// =======================================================================
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin:2rem 0;
-  thead{background:var(--surface-1);}  
-  th,td{padding:.75rem 1rem;border:1px solid rgba(255,255,255,0.1);}
+/* =======================================================================
+   8. RESPONSIVE TWEAKS
+   ======================================================================= */
+@media (max-width: 800px) {
+  #particle-container, .patterned { display: none; }
 }
-pre,code{
-  background:rgba(255,255,255,0.05);
-  padding:.5rem;
-  border-radius:var(--border-radius);
-  font-family:var(--font-mono);
-}
-
-// =======================================================================
-// 10. RESPONSIVE ADJUSTMENTS
-// =======================================================================
-@media(max-width:800px){
-  html,body{background-attachment:scroll;}  
-  .sidebar{position:relative;top:auto;right:auto;width:100%;margin-top:1rem;}
-  .stars, .patterned { display: none; }
-}
-
-// =======================================================================
-// 11. DARK/LIGHT SWITCH (Selective)
-// =======================================================================
-.theme-light{
-  --bg-gradient-start:#f5f5f5;
-  --bg-gradient-end:  #ffffff;
-  --text-primary:#12142A;
-  --link-color:#4A4E8A;
-}
-
-// End of custom-style.scss
