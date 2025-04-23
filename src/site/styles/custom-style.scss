@@ -42,58 +42,71 @@ body {
   --widget-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }
 
-/* ------------------------------------------------------------------
-   2. GLOBAL BACKGROUND & FRACTAL OVERLAYS (GIF or VIDEO)
-   ------------------------------------------------------------------ */
+// 2. GLOBAL BACKGROUND & MULTI-LAYERED FRACTALS
+// ------------------------------------------------------------------
 body {
-  background: linear-gradient(
-    var(--bg-gradient-dir),
-    var(--bg-gradient-start),
-    var(--bg-gradient-end)
-  );
-  background-attachment: fixed;
+  // Basic gradient backdrop
+  background-image:
+    /* Layer 1 – fractal or GIF */    var(--fractal-1-url),
+    /* Layer 2 – fractal or GIF */    var(--fractal-2-url),
+    /* Layer 3 – fractal or SVG */    var(--fractal-3-url),
+    /* Layer 4 – fractal or PNG */    var(--fractal-4-url),
+    /* Base gradient */               linear-gradient(
+                                         var(--bg-gradient-dir),
+                                         var(--bg-gradient-start),
+                                         var(--bg-gradient-end)
+                                       );
+  background-position:
+    var(--fractal-1-pos),
+    var(--fractal-2-pos),
+    var(--fractal-3-pos),
+    var(--fractal-4-pos),
+    center center;
+  background-size:
+    var(--fractal-1-size),
+    var(--fractal-2-size),
+    var(--fractal-3-size),
+    var(--fractal-4-size),
+    cover;
+  background-repeat:
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat;
+  background-attachment:
+    fixed,
+    fixed,
+    fixed,
+    fixed,
+    fixed;
+  color: var(--text-primary);
   position: relative;
   overflow-x: hidden;
-  color: var(--text-primary);
-
-  /* LAYER 1—Static fractal PNG (unchanged) */
-  &::before {
-    content: '';
-    position: fixed;
-    top:  10%;
-    left: 50%;
-    width: 120%;
-    height: 120%;
-    background: url('/img/fractal-pattern-1.png') center center no-repeat;
-    background-size: contain;
-    opacity: 0.03;
-    transform: translate(-50%, -10%) scale(1.2);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* LAYER 2—Animated fractal GIF */ 
-  &::after {
-    content: '';
-    position: fixed;
-    bottom: 5%;
-    right: 15%;
-    width:  80%;
-    height: 80%;
-    background: url('/img/fractal-anim.gif') center center no-repeat;
-    background-size: cover;
-    opacity: 0.04;
-    transform: translate(15%, 5%) rotate(12deg);
-    pointer-events: none;
-    z-index: 0;
-    animation: fadeInOut 20s ease-in-out infinite;
-  }
 }
 
-/* Simple opacity pulsing for the GIF layer */
-@keyframes fadeInOut {
-  0%,100%   { opacity: 0.02; }
-  50%       { opacity: 0.06; }
+/* 2a. CUSTOM CSS VARIABLES FOR FRACTAL LAYERS */
+:root {
+  /* URLs: point to your uploaded files */
+  --fractal-1-url: url('/img/fractal-1.gif');
+  --fractal-2-url: url('/img/fractal-2.gif');
+  --fractal-3-url: url('/img/fractal-3.svg');
+  --fractal-4-url: url('/img/fractal-4.png');
+
+  /* Positions: any valid CSS “x y” (e.g. “top left”, “50% 20%”) */
+  --fractal-1-pos: bottom right;
+  --fractal-2-pos: top left;
+  --fractal-3-pos: center center;
+  --fractal-4-pos: 20% 80%;
+
+  /* Sizes: any CSS size (e.g. “80% auto”, “contain”, “200px 200px”) */
+  --fractal-1-size: 80% auto;
+  --fractal-2-size: 60% auto;
+  --fractal-3-size: contain;
+  --fractal-4-size: 150px 150px;
+
+  /* Optional opacity control – wrap your GIF/SVG in an extra
+     layer if you need to fade it further via RGBA or APNG. */
 }
 
 /* Particle.js container (if you opt in later) */
