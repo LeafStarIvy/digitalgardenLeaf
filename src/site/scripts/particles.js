@@ -1,3 +1,4 @@
+// src/site/scripts/particles.js
 (() => {
   const body = document.body;
   document.addEventListener('pointermove', e => {
