@@ -15,7 +15,11 @@
         
     </head>
     <body class="theme-{{meta.baseTheme}} markdown-preview-view">
+      <!-- full-screen particles.js canvas container -->
+          <div id="particles-js" style="position:fixed; inset:0; z-index:-2;"></div>
+
         <div class="content centered">
+
 
             {%-if not meta.themeStyle%}
                 <div class="font-bg"> &#x1F60E; </div>
