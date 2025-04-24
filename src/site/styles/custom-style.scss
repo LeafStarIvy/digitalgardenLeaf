@@ -403,6 +403,11 @@ body::before {
   will-change: transform;
   z-index: 1;
   transform: translate(0,0);
+    transform: translate(
+    var(--particle-offset-x, 0),
+    var(--particle-offset-y, 0)
+  );
+
 }
 
 // Slow panning of the grid to simulate random drifting
