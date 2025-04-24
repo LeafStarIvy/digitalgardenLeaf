@@ -383,36 +383,31 @@ table {
     opacity: var(--sidebar-hover-opacity);
   }
 }
-/* 1) Container & pseudo-element for particles */
-.workspace,
-.theme-dark {
+// ───────── PARTICLE LAYER ─────────
+body {
   position: relative;
   overflow: hidden;
 }
 
-.workspace::before {
-  content: "";
+// The particle container
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
   pointer-events: none;
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: transparent;
-  --particle-count: 80;
-  --particle-size-min: 1px;
-  --particle-size-max: 4px;
-  animation: fade-particles 10s linear infinite;
-  
-  /* generate N small white dots via box-shadows */
-  box-shadow:
-    /* loop generate box-shadows -- edited via JS below */
-    /* default fallback: 80 random positions */
-    /* e.g. 80x entries like: xpx ypx rgba(255,255,255,0.2) */
-    /* let JS overwrite this on load */
-    ;
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.2) 2px, transparent 2px) 0 0,
+    radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px) 50px 50px;
+  background-size: 100px 100px;
+  animation: drift 60s linear infinite;
+  will-change: transform;
+  z-index: 1;
+  transform: translate(0,0);
 }
 
-/* 2) fade/shift animation */
-@keyframes fade-particles {
-  0%   { transform: translate(0,   0)   scale(1); opacity: 1; }
-  50%  { transform: translate(-25px, 25px) scale(1.2); opacity: 0.6; }
-  100% { transform: translate(0,   0)   scale(1); opacity: 1; }
+// Slow panning of the grid to simulate random drifting
+@keyframes drift {
+  0%   { background-position:   0   0,   50px  50px; }
+  100% { background-position: -1000px 500px, -950px 550px; }
 }
+
