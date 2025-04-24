@@ -383,9 +383,6 @@ table {
     opacity: var(--sidebar-hover-opacity);
   }
 }
-/* Add at the end of src/site/styles/user/custom-style.scss */
-
-/* 1) Particle layer */
 body {
   position: relative;
   overflow: hidden;
@@ -402,8 +399,9 @@ body::before {
   background-size: 100px 100px;
   animation: drift 60s linear infinite;
   will-change: transform;
-  z-index: 1;
-  /* 2) Parallax via CSS vars set by JS */
+  z-index: -2;         /* behind everything */
+
+  /* ← THIS is the “tie to mouse” line */
   transform: translate(
     var(--particle-offset-x, 0),
     var(--particle-offset-y, 0)
