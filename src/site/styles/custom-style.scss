@@ -383,13 +383,14 @@ table {
     opacity: var(--sidebar-hover-opacity);
   }
 }
-// ───────── PARTICLE LAYER ─────────
+/* Add at the end of src/site/styles/user/custom-style.scss */
+
+/* 1) Particle layer */
 body {
   position: relative;
   overflow: hidden;
 }
 
-// The particle container
 body::before {
   content: '';
   position: fixed;
@@ -402,15 +403,13 @@ body::before {
   animation: drift 60s linear infinite;
   will-change: transform;
   z-index: 1;
-  transform: translate(0,0);
-    transform: translate(
+  /* 2) Parallax via CSS vars set by JS */
+  transform: translate(
     var(--particle-offset-x, 0),
     var(--particle-offset-y, 0)
   );
-
 }
 
-// Slow panning of the grid to simulate random drifting
 @keyframes drift {
   0%   { background-position:   0   0,   50px  50px; }
   100% { background-position: -1000px 500px, -950px 550px; }
