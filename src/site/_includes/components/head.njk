@@ -1,5 +1,12 @@
 {% block head %}
   {{ super() }}
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.min.js"></script>
-      <script defer src="/scripts/particles.js"></script>
+  <div id="particles-js" style="position:fixed; inset:0; z-index:-2;"></div>
+  <script src="/scripts/particles.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.particlesJS) {
+        particlesJS.load('particles-js', '/scripts/particles-config.json');
+      }
+    });
+  </script>
 {% endblock %}
