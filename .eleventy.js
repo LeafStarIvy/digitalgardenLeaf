@@ -573,3 +573,19 @@ module.exports = function (eleventyConfig) {
     passthroughFileCopy: true,
   };
 };
+// .eleventy.js
+module.exports = function(eleventyConfig) {
+  // ... your existing config ...
+
+  // If you use the Digital Garden plugin:
+  eleventyConfig.addPlugin(
+    require("@obsidianmd/eleventy-plugin-digital-garden"),
+    {
+      extraHead: [
+        `<script defer src="/js/particles.js"></script>`
+      ]
+    }
+  );
+
+  // ... rest of your config ...
+};
