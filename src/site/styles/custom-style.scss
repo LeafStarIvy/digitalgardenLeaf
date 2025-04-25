@@ -7,49 +7,39 @@
 // 1. CORE VARIABLES & COSMIC PALETTE
 // ------------------------------------------------------------------
 body {
-  /* Base cosmic variables */
-  --background-primary: #12142A;   /* Cosmic Void */
-  --background-secondary: #1E254E; /* Deep Space */
-  --surface-1: #6C789C;            /* Stardust Blue */
-  --surface-2: #A3B3BF;            /* Moonstone */
-  --text-primary: #E0B2FF;         /* Ethereal Glow */
-  --text-accent: #FFD77A;          /* Solar Flare */
-  --link-color: #8AD6EE;           /* Comet Trail */
-  --highlight: #BFA6E0;            /* Nebula Lavender */
-  --text-muted: #CFDACB;           /* Interstellar Gray */
-  --text-normal: #CFDACB;          /* Fallback normal text */
-  --font-family-main: 'Inter', sans-serif;
-  --font-family-code: 'JetBrains Mono', monospace;
+  /* Enhanced cosmic variables */
+  --background-primary: #0A0E23;   /* Deeper Cosmic Void */
+  --background-secondary: #1A2151; /* Rich Deep Space */
+  --surface-1: #7E8CB8;            /* Enhanced Stardust Blue */
+  --surface-2: #B9C7D4;            /* Brighter Moonstone */
+  --text-primary: #F1CBFF;         /* Brighter Ethereal Glow */
+  --text-accent: #FFE396;          /* Richer Solar Flare */
+  --link-color: #9BDDEE;           /* Vibrant Comet Trail */
+  --highlight: #D1BDEC;            /* Enhanced Nebula Lavender */
+  --text-muted: #E0EBE6;           /* Clearer Interstellar Gray */
+  --text-normal: #E0EBE6;          /* Clearer fallback text */
+  --font-family-main: 'Inter', 'SF Pro Display', sans-serif;
+  --font-family-code: 'JetBrains Mono', 'Fira Code', monospace;
   --content-width: 700px;
   --sidebar-width: 300px;
-  --border-radius: 8px;
-  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --callout-border-width: 2px;
-  --callout-padding: 16px;
-  --callout-radius: 8px;
-  --widget-bg: rgba(30, 37, 78, 0.85);
+  --border-radius: 10px;
+  --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  --callout-border-width: 3px;
+  --callout-padding: 18px;
+  --callout-radius: 10px;
+  --widget-bg: rgba(26, 33, 81, 0.85);
   --widget-border: var(--text-accent);
-  --widget-shadow: 0 8px 24px rgba(0,0,0,0.3);
-  --background-primary-alt: rgba(18,20,42,0.85);
-  --background-secondary-alt: rgba(30,37,78,0.85);
-  --bg-gradient-start: #000000;
-  --bg-gradient-end:   #4A4E8A;
-  --bg-gradient-dir:   to top right;
-  --font-weight-light: 300;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-bold: 700;
-  --line-height-tight: 1.2;
-  --line-height-normal: 1.5;
-  --line-height-loose: 1.8;
-  --heading-letter-spacing: -0.025em;
-  --body-letter-spacing: 0.01em;
+  --widget-shadow: 0 12px 32px rgba(0,0,0,0.35);
+  --background-primary-alt: rgba(10,14,35,0.85);
+  --background-secondary-alt: rgba(26,33,81,0.85);
+  --bg-gradient-start: #050817;
+  --bg-gradient-end: #2D3573;
+  --bg-gradient-dir: to top right;
   position: relative;
   z-index: 0;
-  
 }
 
-// 2. BACKGROUND: static fractal PNG + gradient
+// 2. BACKGROUND: enhanced fractal + gradient
 // ------------------------------------------------------------------
 html, body {
   margin: 0;
@@ -58,11 +48,17 @@ html, body {
   background-image:
     url('/img/fractal-pattern-1.png'),
     linear-gradient(var(--bg-gradient-dir), var(--bg-gradient-start), var(--bg-gradient-end));
-  background-size: 120% 120%, cover;
-  background-position: center 10%, center;
+  background-size: 150% 150%, cover;
+  background-position: center center, center;
   background-repeat: no-repeat, no-repeat;
   background-attachment: fixed, fixed;
   color: var(--text-primary);
+  animation: subtle-bg-shift 90s infinite alternate ease-in-out;
+}
+
+@keyframes subtle-bg-shift {
+  0% { background-position: center center, center; }
+  100% { background-position: center 30%, center; }
 }
 
 // 3. PATTERNED OVERLAY (Flower-of-Life watermark)
