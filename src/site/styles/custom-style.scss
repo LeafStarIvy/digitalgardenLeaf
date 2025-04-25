@@ -4,91 +4,64 @@
  * glass effects, and maintains 4 fractal GIF overlays.
  */
 
-// 1. CORE VARIABLES & AURORA PALETTE
+// 1. CORE VARIABLES & FOREST PALETTE
 // ------------------------------------------------------------------
 body {
-  /* Aurora Borealis theme */
-  --background-primary: #0F172A;   /* Deep Night Sky */
-  --background-secondary: #1E293B; /* Midnight Blue */
-  --surface-1: #64748B;            /* Slate Blue */
-  --surface-2: #94A3B8;            /* Foggy Gray */
-  --text-primary: #A5F3FC;         /* Ice Blue */
-  --text-accent: #67E8F9;          /* Cyan */
-  --link-color: #22D3EE;           /* Teal */
-  --highlight: #C084FC;            /* Lavender */
-  --text-muted: #CBD5E1;           /* Light Gray */
-  --text-normal: #F1F5F9;          /* Off White */
-  --font-family-main: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  --font-family-code: 'JetBrains Mono', monospace;
+  /* Forest theme variables */
+  --background-primary: #1A2421;   /* Deep Forest */
+  --background-secondary: #2C3B37; /* Forest Shade */
+  --surface-1: #4E6E63;            /* Pine Green */
+  --surface-2: #8CA99E;            /* Sage */
+  --text-primary: #D3E4CD;         /* Muted Leaf */
+  --text-accent: #E3BC9A;          /* Amber Sunlight */
+  --link-color: #B7D3A8;           /* New Growth */
+  --highlight: #A9C27F;            /* Moss */
+  --text-muted: #BDCDC1;           /* Foggy Glen */
+  --text-normal: #EFF4ED;          /* Birch */
+  --font-family-main: 'Newsreader', 'Merriweather', serif;
+  --font-family-code: 'Fira Code', monospace;
   --content-width: 700px;
   --sidebar-width: 300px;
-  --border-radius: 12px;
-  --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  --border-radius: 4px;
+  --box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   --callout-border-width: 2px;
-  --callout-padding: 16px;
-  --callout-radius: 10px;
-  --widget-bg: rgba(15, 23, 42, 0.8);
-  --widget-border: var(--highlight);
-  --widget-shadow: 0 14px 30px rgba(0,0,0,0.3);
-  --background-primary-alt: rgba(15, 23, 42, 0.85);
-  --background-secondary-alt: rgba(30, 41, 59, 0.85);
-  --bg-gradient-start: #020617;
-  --bg-gradient-end: #1E1B4B;
-  --bg-gradient-dir: to bottom right;
+  --callout-padding: 18px;
+  --callout-radius: 4px;
+  --widget-bg: rgba(44, 59, 55, 0.85);
+  --widget-border: rgba(169, 194, 127, 0.3);
+  --widget-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  --background-primary-alt: rgba(26, 36, 33, 0.9);
+  --background-secondary-alt: rgba(44, 59, 55, 0.9);
+  --bg-gradient-start: #131C19;
+  --bg-gradient-end: #243330;
+  --bg-gradient-dir: to bottom;
   position: relative;
   z-index: 0;
 }
 
-// 2. BACKGROUND: Aurora effect
+// 2. BACKGROUND: Natural texture and gradient
 // ------------------------------------------------------------------
 html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   background-image:
+    url('/img/forest-texture.png'),
     linear-gradient(var(--bg-gradient-dir), var(--bg-gradient-start), var(--bg-gradient-end));
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-size: 200px, cover;
+  background-position: center, center;
+  background-repeat: repeat, no-repeat;
+  background-attachment: fixed, fixed;
   color: var(--text-primary);
-  position: relative;
 }
 
-/* Aurora effect */
-html::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 20% 35%, rgba(67, 56, 202, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 75% 44%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 50% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
-  z-index: -1;
-  animation: aurora-flow 30s infinite alternate ease-in-out;
-}
-
-@keyframes aurora-flow {
-  0% {
-    background-position: 0% 0%, 0% 0%, 0% 0%;
-  }
-  50% {
-    background-position: 20% 10%, -10% 20%, 15% -5%;
-  }
-  100% {
-    background-position: -20% -10%, 10% -20%, -15% 5%;
-  }
-}
-// 3. PATTERNED OVERLAY (Flower-of-Life watermark)
+// 3. ORGANIC OVERLAY (Wood grain texture)
 // ------------------------------------------------------------------
 .patterned {
-  background-image: url('/img/flower-of-life.svg');
+  background-image: url('/img/wood-grain.svg');
   background-repeat: repeat;
-  background-size: 200px;
-  opacity: 0.05;
+  background-size: 300px;
+  opacity: 0.03;
   position: fixed;
   inset: 0;
   pointer-events: none;
