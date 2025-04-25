@@ -1,13 +1,13 @@
 /*
- * ENHANCED COSMIC DIGITAL GARDEN SCSS
- * Evolved cosmic theme with interactive elements, enhanced glassomorphism,
- * parallax effects, animated indicators, improved typography and accessibility
+ * CUSTOM STYLE SCSS - FIXED
+ * Restores original cosmic theme, static PNG fractal, patterned watermark,
+ * glass effects, and maintains 4 fractal GIF overlays.
  */
 
-// 1. EXPANDED CORE VARIABLES & COSMIC PALETTE
+// 1. CORE VARIABLES & COSMIC PALETTE
 // ------------------------------------------------------------------
 body {
-  /* Enhanced cosmic variables */
+  /* Base cosmic variables */
   --background-primary: #12142A;   /* Cosmic Void */
   --background-secondary: #1E254E; /* Deep Space */
   --surface-1: #6C789C;            /* Stardust Blue */
@@ -18,137 +18,44 @@ body {
   --highlight: #BFA6E0;            /* Nebula Lavender */
   --text-muted: #CFDACB;           /* Interstellar Gray */
   --text-normal: #CFDACB;          /* Fallback normal text */
-  
-  /* New accent colors */
-  --accent-red: #FF6B8A;           /* Cosmic Rose */
-  --accent-green: #7AFFB6;         /* Aurora Green */
-  --accent-blue: #60A4FF;          /* Celestial Blue */
-  --accent-orange: #FFAF60;        /* Cosmic Orange */
-  --accent-purple: #B78EFF;        /* Galaxy Purple */
-  
-  /* Typography */
-  --font-family-main: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  --font-family-heading: 'Space Grotesk', 'Inter', sans-serif;
-  --font-family-code: 'JetBrains Mono', 'Fira Code', monospace;
-  --line-height-text: 1.6;
-  --line-height-code: 1.5;
-  --font-size-base: 16px;
-  --font-size-sm: 0.875rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-xxl: 1.5rem;
-  
-  /* Spacing & Layout */
-  --content-width: 720px;
-  --sidebar-width: 320px;
-  --gutter: 2rem;
-  --border-radius-sm: 4px;
+  --font-family-main: 'Inter', sans-serif;
+  --font-family-code: 'JetBrains Mono', monospace;
+  --content-width: 700px;
+  --sidebar-width: 300px;
   --border-radius: 8px;
-  --border-radius-lg: 12px;
-  --box-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
   --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --box-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
-  
-  /* Callouts */
   --callout-border-width: 2px;
-  --callout-padding: 1.25rem;
-  --callout-radius: 10px;
-  
-  /* Components */
+  --callout-padding: 16px;
+  --callout-radius: 8px;
   --widget-bg: rgba(30, 37, 78, 0.85);
   --widget-border: var(--text-accent);
   --widget-shadow: 0 8px 24px rgba(0,0,0,0.3);
   --background-primary-alt: rgba(18,20,42,0.85);
   --background-secondary-alt: rgba(30,37,78,0.85);
-  
-  /* Background gradients */
   --bg-gradient-start: #000000;
-  --bg-gradient-end: #4A4E8A;
-  --bg-gradient-dir: to top right;
-  
-  /* Animations */
-  --transition-fast: 0.15s ease;
-  --transition-normal: 0.3s ease;
-  --transition-slow: 0.5s ease;
-  
-  /* Z-index layers */
-  --z-below: -1;
-  --z-base: 0;
-  --z-above: 1;
-  --z-header: 100;
-  --z-modal: 1000;
-  
+  --bg-gradient-end:   #4A4E8A;
+  --bg-gradient-dir:   to top right;
   position: relative;
-  z-index: var(--z-base);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-text);
-  font-family: var(--font-family-main);
+  z-index: 0;
 }
 
-// 2. ENHANCED BACKGROUND with parallax effect
+// 2. BACKGROUND: static fractal PNG + gradient
 // ------------------------------------------------------------------
-html {
-  height: 100%;
-  overflow-x: hidden;
-  font-size: var(--font-size-base);
-}
-
-body {
+html, body {
   margin: 0;
   padding: 0;
-  min-height: 100%;
+  overflow-x: hidden;
+  background-image:
+    url('/img/fractal-pattern-1.png'),
+    linear-gradient(var(--bg-gradient-dir), var(--bg-gradient-start), var(--bg-gradient-end));
+  background-size: 120% 120%, cover;
+  background-position: center 10%, center;
+  background-repeat: no-repeat, no-repeat;
+  background-attachment: fixed, fixed;
   color: var(--text-primary);
-  background-attachment: fixed;
 }
 
-/* Multiple background layers with paralax effect */
-.cosmic-background {
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-below);
-  overflow: hidden;
-  
-  &__base {
-    position: absolute;
-    inset: -20px;
-    background-image: linear-gradient(var(--bg-gradient-dir), var(--bg-gradient-start), var(--bg-gradient-end));
-    background-size: cover;
-    background-position: center;
-    transform: translateZ(-10px) scale(2);
-  }
-  
-  &__stars {
-    position: absolute;
-    inset: 0;
-    background-image: url('/img/stars-pattern.png');
-    background-size: 200% 200%;
-    opacity: 0.4;
-    animation: float-background 180s linear infinite;
-  }
-  
-  &__fractal {
-    position: absolute;
-    inset: -5%;
-    background-image: url('/img/fractal-pattern-1.png');
-    background-size: 150% 150%;
-    background-position: center 10%;
-    transform: translateZ(-5px) scale(1.5);
-    animation: pulse-slow 60s ease-in-out infinite;
-  }
-}
-
-/* Auto-create cosmic background on page load */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-below);
-  background-image: linear-gradient(var(--bg-gradient-dir), var(--bg-gradient-start), var(--bg-gradient-end));
-  background-size: cover;
-  background-position: center;
-}
-
-// 3. ENHANCED PATTERNED OVERLAY (Flower-of-Life watermark with subtle animation)
+// 3. PATTERNED OVERLAY (Flower-of-Life watermark)
 // ------------------------------------------------------------------
 .patterned {
   background-image: url('/img/flower-of-life.svg');
@@ -158,43 +65,39 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: var(--z-below);
-  animation: rotate-slow 240s linear infinite;
+  z-index: 0;
 }
 
-// 4. ENHANCED GIF OVERLAYS (4 layers with improved animation)
+// 4. GIF OVERLAYS (4 layers)
 // ------------------------------------------------------------------
 :root {
   --gif1-url: url('/img/fractal-1.gif');
-  --gif1-top: 10%;
-  --gif1-left: 50%;
-  --gif1-width: 80%;
+  --gif1-top:    10%;
+  --gif1-left:   50%;
+  --gif1-width:  80%;
   --gif1-height: 80%;
-  --gif1-opacity: 0.03;
+  --gif1-opacity: 0.01;
   --gif1-rotate: 190deg;
-  
   --gif2-url: url('/img/fractal-2.gif');
-  --gif2-top: 90%;
-  --gif2-left: 22%;
-  --gif2-width: 30%;
+  --gif2-top:    90%;
+  --gif2-left:   22%;
+  --gif2-width:  30%;
   --gif2-height: 30%;
-  --gif2-opacity: 0.02;
+  --gif2-opacity: 0.00;
   --gif2-rotate: 65deg;
-  
   --gif3-url: url('/img/fractal-3.gif');
   --gif3-bottom: 20%;
-  --gif3-right: 14%;
-  --gif3-width: 40%;
+  --gif3-right:  14%;
+  --gif3-width:  40%;
   --gif3-height: 40%;
-  --gif3-opacity: 0.02;
+  --gif3-opacity: 0.00;
   --gif3-rotate: 0deg;
-  
   --gif4-url: url('/img/fractal-4.gif');
-  --gif4-top: 50%;
-  --gif4-right: 20%;
-  --gif4-width: 40%;
+  --gif4-top:    50%;
+  --gif4-right:  20%;
+  --gif4-width:  40%;
   --gif4-height: 40%;
-  --gif4-opacity: 0.03;
+  --gif4-opacity: 0.02;
   --gif4-rotate: 0deg;
 }
 
@@ -205,103 +108,58 @@ body::before, body::after, html::before, html::after {
   background-repeat: no-repeat;
   background-size: cover;
   pointer-events: none;
-  z-index: var(--z-below);
-  transition: opacity var(--transition-slow);
+  z-index: -1;
 }
 
 // GIF #1 (body::before)
 body::before {
-  top: var(--gif1-top);
-  left: var(--gif1-left);
-  width: var(--gif1-width);
-  height: var(--gif1-height);
+  top:     var(--gif1-top);
+  left:    var(--gif1-left);
+  width:   var(--gif1-width);
+  height:  var(--gif1-height);
   opacity: var(--gif1-opacity);
   background-image: var(--gif1-url);
   transform: translate(-50%, -50%) rotate(var(--gif1-rotate));
-  animation: drift-slow 120s ease-in-out infinite alternate;
 }
 
 // GIF #2 (body::after)
 body::after {
-  top: var(--gif2-top);
-  left: var(--gif2-left);
-  width: var(--gif2-width);
-  height: var(--gif2-height);
+  top:     var(--gif2-top);
+  left:    var(--gif2-left);
+  width:   var(--gif2-width);
+  height:  var(--gif2-height);
   opacity: var(--gif2-opacity);
   background-image: var(--gif2-url);
   transform: translate(-50%, -50%) rotate(var(--gif2-rotate));
-  animation: pulse-opacity 30s ease-in-out infinite;
+  animation: pulse 30s ease-in-out infinite;
 }
 
 // GIF #3 (html::before)
 html::before {
-  bottom: var(--gif3-bottom);
-  right: var(--gif3-right);
-  width: var(--gif3-width);
-  height: var(--gif3-height);
+  bottom:  var(--gif3-bottom);
+  right:   var(--gif3-right);
+  width:   var(--gif3-width);
+  height:  var(--gif3-height);
   opacity: var(--gif3-opacity);
   background-image: var(--gif3-url);
   transform: translate(50%, 50%) rotate(var(--gif3-rotate));
-  animation: drift-vertical 80s ease-in-out infinite alternate;
 }
 
 // GIF #4 (html::after)
 html::after {
-  top: var(--gif4-top);
-  right: var(--gif4-right);
-  width: var(--gif4-width);
-  height: var(--gif4-height);
+  top:     var(--gif4-top);
+  right:   var(--gif4-right);
+  width:   var(--gif4-width);
+  height:  var(--gif4-height);
   opacity: var(--gif4-opacity);
   background-image: var(--gif4-url);
   transform: translate(50%, -50%) rotate(var(--gif4-rotate));
-  animation: pulse-rotate 60s ease-in-out infinite alternate;
 }
 
-// 5. EXPANDED ANIMATIONS
-// ------------------------------------------------------------------
-@keyframes pulse-opacity {
-  0%, 100% { opacity: calc(var(--gif2-opacity) * 0.5); }
-  50% { opacity: calc(var(--gif2-opacity) * 1.5); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-@keyframes drift-slow {
-  0% { transform: translate(-50%, -50%) rotate(var(--gif1-rotate)) scale(1); }
-  100% { transform: translate(-49%, -48%) rotate(calc(var(--gif1-rotate) + 10deg)) scale(1.05); }
-}
-
-@keyframes drift-vertical {
-  0% { transform: translate(50%, 50%) scale(1); }
-  100% { transform: translate(52%, 48%) scale(1.1); }
-}
-
-@keyframes pulse-rotate {
-  0% { transform: translate(50%, -50%) rotate(var(--gif4-rotate)); }
-  100% { transform: translate(48%, -52%) rotate(calc(var(--gif4-rotate) + 15deg)); }
-}
-
-@keyframes float-background {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 200% 200%; }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { filter: brightness(1) drop-shadow(0 0 5px rgba(224, 178, 255, 0.3)); }
-  50% { filter: brightness(1.2) drop-shadow(0 0 15px rgba(224, 178, 255, 0.6)); }
-}
-
-@keyframes pulse-slow {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.6; }
-}
-
-@keyframes rotate-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+// Add this to section 5. ANIMATIONS
+@keyframes shimmer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
 }
 
 @keyframes fade-in {
@@ -309,716 +167,152 @@ html::after {
   to { opacity: 1; transform: translateY(0); }
 }
 
-// 6. EXPANDED MIXINS & UTILITIES
+// Make content fade in when page loads
+.content-container {
+  animation: fade-in 0.8s ease-out forwards;
+}
+
+// 6. MIXINS & UTILITIES
 // ------------------------------------------------------------------
 @mixin gradient-bg($dir, $start, $end) {
   background: linear-gradient($dir, $start, $end);
 }
 
-@mixin glass-card($blur: 8px, $alpha: 0.1, $border-alpha: 0.2) {
-  background: rgba(30, 37, 78, $alpha);
+@mixin glass-card($blur: 8px, $alpha: 0.1) {
+  background: rgba(255,255,255,$alpha);
   backdrop-filter: blur($blur);
-  -webkit-backdrop-filter: blur($blur);
-  border: 1px solid rgba(255, 255, 255, $border-alpha);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 }
 
-@mixin neon-glow($color, $intensity: 0.4) {
-  box-shadow: 0 0 10px rgba($color, $intensity),
-              0 0 20px rgba($color, $intensity * 0.5);
-}
-
-// 7. ENHANCED GLASS CARDS & PANELS with hover effects
+// 7. GLASS CARDS & PANELS
 // ------------------------------------------------------------------
 .card {
-  @include glass-card(12px, 0.12, 0.15);
-  padding: 1.75rem;
-  margin: 1.5rem 0;
+  @include glass-card(12px, 0.12);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border: 1px solid rgba(255,255,255,0.1);
   position: relative;
-  z-index: var(--z-above);
-  transition: 
-    transform var(--transition-normal),
-    box-shadow var(--transition-normal),
-    backdrop-filter var(--transition-normal);
-  
-  // Enhanced hover effects
+  z-index: 2;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   &:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(16px);
-    
-    &::after {
-      opacity: 0.8;
-    }
-  }
-  
-  // Gradient border effect
-  &::after {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    background: linear-gradient(45deg, var(--accent-purple), var(--link-color), transparent, var(--text-accent));
-    border-radius: calc(var(--border-radius) + 1px);
-    opacity: 0.2;
-    z-index: -1;
-    transition: opacity var(--transition-normal);
-  }
-  
-  // Card header styling
-  .card-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-    
-    h3 {
-      margin: 0;
-      font-size: var(--font-size-xl);
-      color: var(--text-accent);
-    }
-  }
-  
-  // Card footer styling
-  .card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1.25rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: var(--font-size-sm);
-    color: var(--text-muted);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   }
 }
 
-// Card variants
-.card--prominent {
-  @include glass-card(16px, 0.15, 0.2);
-  transform: scale(1.02);
-  
-  &:hover {
-    transform: translateY(-6px) scale(1.03);
-  }
-}
-
-.card--accent {
-  border-left: 4px solid var(--accent-purple);
-}
-
-// 8. ENHANCED BUTTONS with modern styling
+// 8. ENHANCED BUTTONS
 // ------------------------------------------------------------------
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.7em 1.4em;
+  display: inline-block;
+  padding: 0.6em 1.2em;
   border-radius: var(--border-radius);
   font-family: var(--font-family-main);
-  font-weight: 500;
-  font-size: var(--font-size-base);
   cursor: pointer;
-  transition: 
-    transform var(--transition-fast),
-    background var(--transition-fast),
-    box-shadow var(--transition-fast);
-  border: none;
-  position: relative;
-  overflow: hidden;
-  
-  // Button ripple effect
-  &::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 5px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.7);
-    opacity: 0;
-    border-radius: 100%;
-    transform: scale(1, 1) translate(-50%, -50%);
-    transform-origin: 50% 50%;
-  }
-  
-  &:focus:not(:active)::after {
-    animation: ripple-out 0.7s ease-out;
-  }
-  
-  // Button variants  
-  &--primary {
-    background: var(--highlight);
-    color: #12142A;
-    font-weight: 600;
-    box-shadow: 0 4px 12px rgba(191, 166, 224, 0.3);
-    
-    &:hover {
-      background: lighten(#BFA6E0, 5%);
-      box-shadow: 0 6px 16px rgba(191, 166, 224, 0.4);
-    }
-  }
-  
-  &--secondary {
-    background: var(--background-secondary);
-    color: var(--text-primary);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    
-    &:hover {
-      background: lighten(#1E254E, 5%);
-    }
-  }
-  
-  &--accent {
-    background: var(--accent-blue);
-    color: #12142A;
-    font-weight: 600;
-    
-    &:hover {
-      background: lighten(#60A4FF, 5%);
-    }
-  }
-  
-  &--outline {
-    background: transparent;
-    color: var(--text-primary);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    
-    &:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-  }
-  
-  &--link {
-    background: transparent;
-    color: var(--link-color);
-    padding: 0.5em 0.8em;
-    text-decoration: underline;
-    
-    &:hover {
-      text-decoration: none;
-      background: rgba(138, 214, 238, 0.1);
-    }
-  }
-  
-  &--icon {
-    padding: 0.6em;
-    border-radius: 50%;
-    aspect-ratio: 1;
-  }
-  
-  &:hover {
-    transform: translateY(-2px);
-  }
-  
-  &:active {
-    transform: translateY(0);
-  }
+  transition: background 0.2s ease, transform 0.15s ease;
+  &--primary { background: var(--background-secondary); color: #fff; }
+  &--accent  { background: var(--highlight);          color: #000; }
+  &--link    { background: transparent;               color: var(--link-color); text-decoration: underline; }
+  &:hover { transform: translateY(-2px); }
 }
 
-// Button ripple animation
-@keyframes ripple-out {
-  from {
-    opacity: 1;
-    transform: scale(0, 0);
-  }
-  to {
-    opacity: 0;
-    transform: scale(100, 100);
-  }
-}
-
-// Button group
-.btn-group {
-  display: flex;
-  gap: 0.5rem;
-  
-  .btn {
-    border-radius: 0;
-    
-    &:first-child {
-      border-top-left-radius: var(--border-radius);
-      border-bottom-left-radius: var(--border-radius);
-    }
-    
-    &:last-child {
-      border-top-right-radius: var(--border-radius);
-      border-bottom-right-radius: var(--border-radius);
-    }
-  }
-}
-
-// 9. ENHANCED LINK STYLES with glow effect
+// 9. LINK STYLES
 // ------------------------------------------------------------------
 a {
   color: var(--link-color);
   text-decoration: none;
   position: relative;
-  transition: color var(--transition-normal);
-  
+  transition: color 0.3s ease;
   &::after {
     content: '';
     position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
+    bottom: -2px; left: 0;
+    width: 0; height: 2px;
     background: var(--link-color);
-    transition: width var(--transition-normal);
+    transition: width 0.3s ease;
   }
-  
-  &:hover {
-    color: var(--highlight);
-    text-shadow: 0 0 8px rgba(224, 178, 255, 0.4);
-    
-    &::after {
-      width: 100%;
-      background: var(--highlight);
-      box-shadow: 0 0 4px rgba(224, 178, 255, 0.6);
-    }
-  }
-  
-  // External link indicator
-  &[href^="http"]::before {
-    content: '↗';
-    display: inline-block;
-    margin-right: 0.2em;
-    font-size: 0.8em;
-    vertical-align: text-top;
-    opacity: 0.7;
-  }
+  &:hover { color: var(--highlight); }
+  &:hover::after { width: 100%; }
 }
 
-// Special link styling for note links
-.internal-link {
-  color: var(--text-accent);
-  border-bottom: 1px dashed rgba(255, 215, 122, 0.3);
-  
-  &::after {
-    display: none;
-  }
-  
-  &:hover {
-    color: lighten(#FFD77A, 10%);
-    border-bottom: 1px solid rgba(255, 215, 122, 0.8);
-    text-shadow: 0 0 8px rgba(255, 215, 122, 0.4);
-    background: rgba(255, 215, 122, 0.05);
-  }
-  
-  // Unresolved link styling
-  &.is-unresolved {
-    color: var(--accent-red);
-    border-bottom: 1px dashed rgba(255, 107, 138, 0.3);
-    
-    &:hover {
-      color: lighten(#FF6B8A, 10%);
-      border-bottom: 1px solid rgba(255, 107, 138, 0.8);
-      text-shadow: 0 0 8px rgba(255, 107, 138, 0.4);
-      background: rgba(255, 107, 138, 0.05);
-    }
-  }
-}
-
-// Graph connections for linked mentions
-.linked-mention {
-  position: relative;
-  padding: 0 2px;
-  border-radius: 4px;
-  color: var(--accent-purple);
-  background: rgba(183, 142, 255, 0.08);
-  transition: var(--transition-normal);
-  
-  &:hover {
-    background: rgba(183, 142, 255, 0.15);
-  }
-  
-  // Connection indicator
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-purple), transparent);
-    opacity: 0.6;
-  }
-}
-
-// 10. ENHANCED WIDGET STYLE
+// 10. WIDGET STYLE
 // ------------------------------------------------------------------
 .widget {
   background: var(--widget-bg);
-  border: 1px solid rgba(255, 215, 122, 0.2);
+  border: 1px solid var(--widget-border);
   box-shadow: var(--widget-shadow);
   border-radius: var(--border-radius);
-  padding: 1.25rem;
-  margin: 1.25rem 0;
+  padding: 1rem;
+  margin: 1rem 0;
   position: relative;
-  z-index: var(--z-above);
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-  
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-  }
-  
-  // Widget header styling
-  .widget-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    
-    h3, h4 {
-      margin: 0;
-      color: var(--text-accent);
-    }
-  }
-  
-  // Widget footer styling
-  .widget-footer {
-    margin-top: 1rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: var(--font-size-sm);
-    color: var(--text-muted);
-  }
+  z-index: 2;
 }
 
-// 11. ENHANCED CUSTOM SCROLLBAR
+// 11. CUSTOM SCROLLBAR
 // ------------------------------------------------------------------
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
-
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, var(--highlight), #8e79bd);
-  border-radius: 10px;
-  border: 2px solid rgba(0, 0, 0, 0.1);
-  
-  &:hover {
-    background: linear-gradient(to bottom, lighten(#BFA6E0, 5%), #9982c9);
-  }
+  background-color: var(--highlight);
+  border-radius: var(--border-radius);
 }
 
-::-webkit-scrollbar-corner {
-  background: transparent;
-}
-
-// 12. EXPANDED DIGITAL GARDEN OVERRIDES with typography enhancements
+// 12. DIGITAL GARDEN OVERRIDES
 // ------------------------------------------------------------------
-// Typography enhancements
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-heading);
-  line-height: 1.2;
-  font-weight: 600;
-  margin: 2rem 0 1rem;
-  color: var(--text-primary);
-}
-
 h1 {
   font-size: 2.8rem;
-  margin: 0 0 2rem;
-  background: linear-gradient(to right, var(--text-primary), var(--highlight));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
-  animation: fade-in 0.8s ease-out;
-}
-
-h2 {
-  font-size: 2.2rem;
-  color: var(--text-accent);
-  margin-top: 3rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(255, 215, 122, 0.2);
-}
-
-h3 {
-  font-size: 1.8rem;
+  margin-bottom: 1rem;
   color: var(--text-primary);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
-
-h4 {
-  font-size: 1.4rem;
-  color: var(--text-accent);
-}
-
-h5 {
-  font-size: 1.2rem;
-  color: var(--text-primary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-h6 {
-  font-size: 1rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-p {
-  line-height: var(--line-height-text);
-  margin: 0 0 1.5rem;
-}
-
-strong {
-  color: var(--text-accent);
-  font-weight: 600;
-}
-
-em {
-  color: var(--accent-green);
-}
-
-// Content spacing and organization
-.content-wrapper {
-  animation: fade-in 0.5s ease-out;
-}
-
-.main-content {
-  margin: 0 auto;
-  max-width: var(--content-width);
-  padding: 2rem var(--gutter);
-  position: relative;
-  z-index: var(--z-base);
-}
-
-// Enhanced callouts
 .callout {
-  position: relative;
-  margin: 1.5rem 0;
-  padding: var(--callout-padding);
-  border-radius: var(--callout-radius);
-  background: rgba(30, 37, 78, 0.4);
-  backdrop-filter: blur(8px);
   border-left: var(--callout-border-width) solid var(--highlight);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  z-index: var(--z-above);
-  
-  // Title styling
-  .callout-title {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-    color: var(--text-accent);
-    font-weight: 600;
-  }
-  
-  // Variant styling
-  &.callout-info {
-    border-left-color: var(--accent-blue);
-    .callout-title { color: var(--accent-blue); }
-  }
-  
-  &.callout-warning {
-    border-left-color: var(--accent-orange);
-    .callout-title { color: var(--accent-orange); }
-  }
-  
-  &.callout-error {
-    border-left-color: var(--accent-red);
-    .callout-title { color: var(--accent-red); }
-  }
-  
-  &.callout-success {
-    border-left-color: var(--accent-green);
-    .callout-title { color: var(--accent-green); }
-  }
-  
-  &.callout-quote {
-    background: rgba(30, 37, 78, 0.2);
-    font-style: italic;
-    padding-left: 2rem;
-    
-    &::before {
-      content: '"';
-      position: absolute;
-      left: 0.5rem;
-      top: 0;
-      font-size: 3rem;
-      color: var(--text-muted);
-      opacity: 0.5;
-      line-height: 1;
-    }
-  }
+  background: rgba(255,255,255,0.05);
+  padding: var(--callout-padding);
+  margin: 1rem 0;
+  border-radius: var(--callout-radius);
+  position: relative;
+  z-index: 2;
 }
-
-// Enhanced tables (continued)
 table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  margin: 2rem 0;
-  overflow: hidden;
-  border-radius: var(--border-radius);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  background: rgba(30, 37, 78, 0.3);
-  backdrop-filter: blur(8px);
-  
-  thead {
-    background: rgba(108, 120, 156, 0.3);
-    
-    th {
-      padding: 1rem;
-      text-align: left;
-      font-weight: 600;
-      color: var(--text-accent);
-      border-bottom: 2px solid rgba(255, 215, 122, 0.2);
-      position: relative;
-      
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background: var(--text-accent);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform var(--transition-normal);
-      }
-      
-      &:hover::after {
-        transform: scaleX(1);
-      }
-    }
-  }
-  
-  tbody {
-    tr {
-      transition: background-color var(--transition-fast);
-      
-      &:nth-child(odd) {
-        background-color: rgba(0, 0, 0, 0.1);
-      }
-      
-      &:hover {
-        background-color: rgba(191, 166, 224, 0.1);
-      }
-    }
-    
-    td {
-      padding: 0.75rem 1rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      vertical-align: top;
-    }
+  width: 100%; border-collapse: collapse; margin: 2rem 0;
+  thead { background: var(--surface-1); }
+  th, td {
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255,255,255,0.1);
   }
 }
 
-// 13. ENHANCED DARK/LIGHT MODE SWITCH with smooth transition
+// 13. DARK/LIGHT MODE SWITCH
 // ------------------------------------------------------------------
-:root {
-  --theme-transition: background 0.5s ease, color 0.5s ease;
-}
-
 .theme-light {
   --bg-gradient-start: #f5f5f5;
-  --bg-gradient-end: #ffffff;
-  --text-primary: #12142A;
-  --text-accent: #5C4694;
-  --highlight: #7B67AE;
-  --link-color: #1E8FCE;
-  --surface-1: #D4DAE4;
-  --surface-2: #E9EDF2;
-  --text-muted: #6B7280;
-  --accent-red: #E5526F;
-  --accent-green: #3AAD7E;
-  --accent-blue: #2C7EC9;
-  --accent-orange: #E97C2D;
-  --accent-purple: #7F58D3;
-  --widget-bg: rgba(245, 245, 245, 0.85);
-  --widget-border: var(--text-accent);
-  --background-primary-alt: rgba(245, 245, 245, 0.85);
-  --background-secondary-alt: rgba(235, 235, 235, 0.85);
-  color-scheme: light;
+  --bg-gradient-end:   #ffffff;
+  --text-primary:      #12142A;
 }
-
 .theme-dark {
   --bg-gradient-start: #000000;
-  --bg-gradient-end: #4A4E8A;
-  --text-primary: #E0B2FF;
-  --widget-bg: rgba(30, 37, 78, 0.85);
-  color-scheme: dark;
+  --bg-gradient-end:   #4A4E8A;
+  --text-primary:      #E0B2FF;
 }
+// Add this to your custom-style.scss file
 
-.theme-toggle {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: var(--z-header);
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  background: var(--background-secondary);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  transition: var(--transition-normal);
-  
-  &:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  }
-  
-  &::before {
-    content: '☀️';
-    font-size: 1.2rem;
-  }
-  
-  .theme-light & {
-    background: var(--background-secondary);
-    &::before {
-      content: '🌙';
-    }
-  }
-}
-
-// 14. ENHANCED SIDEBAR STYLING
-// ------------------------------------------------------------------
-// Variables for sidebar
+// Define the title header GIF variable
 :root {
-  --sidebar-opacity: 0.9; // Increased opacity for better readability
-  --sidebar-hover-opacity: 0.98;
-  --sidebar-transition: all 0.3s ease;
-  --sidebar-background: rgba(18, 20, 42, 0.85);
-  --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-item-hover: rgba(191, 166, 224, 0.15);
-  --sidebar-width-collapsed: 3rem;
+  --title-header-gif: url('/img/fractal-title.gif');
+  --title-header-gif-height: 120px;
+  --title-header-gif-width: 100%;
+  --title-header-gif-margin-bottom: 10px;
 }
 
-// Filetree sidebar enhancements
+// Add the GIF above the sidebar title
 .filetree-sidebar {
-  background: var(--sidebar-background);
-  backdrop-filter: blur(10px);
-  border-right: 1px solid var(--sidebar-border);
-  transition: var(--sidebar-transition);
-  position: relative;
-  max-width: var(--sidebar-width);
-  overflow-y: auto;
-  scrollbar-width: thin;
-  z-index: var(--z-above);
-  
   h1 {
-    font-size: 1.8rem;
-    padding: 1.5rem 1rem 1rem;
+    // Add spacing for the GIF above
     margin-top: var(--title-header-gif-height);
     position: relative;
     
+    // Create the GIF element using pseudo-element
     &::before {
       content: '';
       position: absolute;
@@ -1031,162 +325,34 @@ table {
       background-position: center;
       background-repeat: no-repeat;
       z-index: 1;
-      animation: pulse-glow 8s infinite ease-in-out;
-    }
-  }
-  
-  // Enhanced filetree navigation
-  .tree-item {
-    border-radius: var(--border-radius-sm);
-    margin: 2px 0;
-    transition: var(--transition-fast);
-    
-    &:hover {
-      background: var(--sidebar-item-hover);
-    }
-    
-    &.is-active {
-      background: rgba(191, 166, 224, 0.2);
-      border-left: 3px solid var(--highlight);
-      
-      a {
-        font-weight: 500;
-        color: var(--text-accent);
-      }
-    }
-    
-    &.is-collapsed .tree-item-children {
-      max-height: 0;
-      opacity: 0;
-    }
-    
-    // Folder icons with animation
-    &.is-folder > .tree-item-self {
-      &::before {
-        content: '📁';
-        font-size: 0.9rem;
-        margin-right: 0.5rem;
-        transition: var(--transition-fast);
-      }
-      
-      &:hover::before {
-        content: '📂';
-      }
-    }
-    
-    &.is-folder.is-active > .tree-item-self::before {
-      content: '📂';
-    }
-    
-    // File icons based on extension
-    &:not(.is-folder) > .tree-item-self {
-      &::before {
-        content: '📄';
-        font-size: 0.9rem;
-        margin-right: 0.5rem;
-        opacity: 0.7;
-      }
-      
-      &[href$=".md"]::before { content: '📝'; }
-      &[href$=".jpg"]::before, 
-      &[href$=".png"]::before,
-      &[href$=".gif"]::before { content: '🖼️'; }
-      &[href$=".pdf"]::before { content: '📑'; }
-      &[href$=".csv"]::before,
-      &[href$=".xlsx"]::before { content: '📊'; }
-      &[href*="readme"]::before,
-      &[href*="README"]::before { content: '📌'; }
-    }
-  }
-  
-  // Tree expand/collapse transitions
-  .tree-item-children {
-    max-height: 2000px; // Large enough value to contain content
-    opacity: 1;
-    overflow: hidden;
-    transition: max-height 0.5s ease, opacity 0.5s ease;
-    padding-left: 1rem;
-  }
-  
-  // Collapsible toggle button
-  .sidebar-collapse-btn {
-    position: absolute;
-    top: 1rem;
-    right: -15px;
-    width: 30px;
-    height: 30px;
-    background: var(--background-secondary);
-    border: 1px solid var(--sidebar-border);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 2;
-    transition: var(--transition-normal);
-    
-    &::before {
-      content: '◀';
-      font-size: 0.8rem;
-      transition: transform 0.3s ease;
-    }
-    
-    &:hover {
-      transform: scale(1.1);
-      background: var(--background-secondary-alt);
-    }
-  }
-  
-  // Collapsed state
-  &.is-collapsed {
-    width: var(--sidebar-width-collapsed);
-    min-width: var(--sidebar-width-collapsed);
-    
-    .tree-item-children, .sidebar-title-text {
-      display: none;
-    }
-    
-    h1 {
-      height: 2rem;
-      overflow: hidden;
-      padding: 1rem 0;
-      text-align: center;
-      
-      &::before {
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 40px;
-        height: 40px;
-      }
-    }
-    
-    .sidebar-collapse-btn::before {
-      content: '▶';
-    }
-    
-    .tree-item > .tree-item-self {
-      padding: 0.5rem;
-      text-align: center;
-      
-      &::before {
-        margin-right: 0;
-      }
-      
-      .tree-item-text {
-        display: none;
-      }
     }
   }
 }
 
-// Graph & backlinks sidebar
+// For mobile responsiveness
+@media (max-width: 800px) {
+  .filetree-sidebar {
+    h1::before {
+      // Show the GIF even when the h1 is hidden on mobile
+      position: relative;
+      display: block;
+      top: 0;
+      margin-bottom: var(--title-header-gif-margin-bottom);
+    }
+  }
+}
+// Add opacity to right sidebar elements (graph, backlinks)
+// Adjust the opacity value to your preference (0.0 - 1.0)
+:root {
+  --sidebar-opacity: 0.85; // 85% opacity - change as needed
+  --sidebar-hover-opacity: 0.95; // Opacity when hovering
+  --sidebar-transition: opacity 0.3s ease; // Smooth transition effect
+}
+
+// Target the sidebar container and its components
 .sidebar {
   opacity: var(--sidebar-opacity);
   transition: var(--sidebar-transition);
-  background: var(--sidebar-background);
-  backdrop-filter: blur(10px);
-  border-left: 1px solid var(--sidebar-border);
   
   // Apply opacity to all main components
   .graph, 
@@ -1210,99 +376,6 @@ table {
       opacity: var(--sidebar-hover-opacity);
     }
   }
-  
-  // Section headers
-  .sidebar-section-header {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-accent);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-    
-    &::before {
-      content: '';
-      display: block;
-      width: 3px;
-      height: 1rem;
-      background: var(--accent-purple);
-      border-radius: 2px;
-    }
-  }
-  
-  // TOC enhancements
-  .toc {
-    ul {
-      list-style: none;
-      padding-left: 1rem;
-      
-      li {
-        margin: 0.5rem 0;
-        position: relative;
-        
-        &::before {
-          content: '';
-          position: absolute;
-          left: -1rem;
-          top: 0.6rem;
-          width: 4px;
-          height: 4px;
-          border-radius: 50%;
-          background: var(--text-muted);
-        }
-        
-        &:hover::before {
-          background: var(--text-accent);
-          transform: scale(1.5);
-        }
-        
-        a {
-          text-decoration: none;
-          color: var(--text-muted);
-          transition: var(--transition-fast);
-          
-          &:hover {
-            color: var(--text-accent);
-          }
-          
-          &.active {
-            color: var(--text-accent);
-            font-weight: 500;
-          }
-        }
-      }
-    }
-  }
-  
-  // Backlinks enhancements
-  .backlinks {
-    .backlink {
-      padding: 0.5rem;
-      border-radius: var(--border-radius-sm);
-      margin-bottom: 0.5rem;
-      transition: var(--transition-fast);
-      background: rgba(255, 255, 255, 0.03);
-      
-      &:hover {
-        background: rgba(255, 255, 255, 0.08);
-      }
-      
-      .backlink-title {
-        font-weight: 500;
-        margin-bottom: 0.25rem;
-      }
-      
-      .backlink-preview {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-      }
-    }
-  }
 }
 
 // Also apply to fullscreen graph mode
@@ -1314,562 +387,3 @@ table {
     opacity: var(--sidebar-hover-opacity);
   }
 }
-
-// 15. CODE BLOCK ENHANCEMENTS
-// ------------------------------------------------------------------
-code {
-  font-family: var(--font-family-code);
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-  padding: 0.15em 0.4em;
-  color: var(--accent-green);
-  font-size: 0.9em;
-}
-
-pre {
-  background: rgba(18, 20, 42, 0.85);
-  border-radius: var(--border-radius);
-  padding: 1.25rem;
-  margin: 1.5rem 0;
-  overflow-x: auto;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  position: relative;
-  
-  code {
-    background: transparent;
-    padding: 0;
-    font-family: var(--font-family-code);
-    color: var(--text-normal);
-    line-height: var(--line-height-code);
-    font-size: 0.9em;
-  }
-  
-  // Copy code button
-  &::after {
-    content: 'Copy';
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    padding: 0.25rem 0.5rem;
-    font-size: 0.75rem;
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-muted);
-    border-radius: 4px;
-    opacity: 0;
-    transition: var(--transition-fast);
-    cursor: pointer;
-  }
-  
-  &:hover::after {
-    opacity: 1;
-  }
-}
-
-// Syntax highlighting
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata { 
-  color: #6c7998; 
-}
-
-.token.punctuation { 
-  color: #cfd9cb; 
-}
-
-.token.property,
-.token.tag,
-.token.boolean,
-.token.number,
-.token.constant,
-.token.symbol,
-.token.deleted { 
-  color: #ff6b8a; 
-}
-
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.char,
-.token.builtin,
-.token.inserted { 
-  color: #7affb6; 
-}
-
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string { 
-  color: #ffaf60; 
-}
-
-.token.atrule,
-.token.attr-value,
-.token.keyword { 
-  color: #60a4ff; 
-}
-
-.token.function,
-.token.class-name { 
-  color: #e0b2ff; 
-}
-
-.token.regex,
-.token.important,
-.token.variable { 
-  color: #ffaf60; 
-}
-
-// 16. INTERACTIVE COMPONENTS
-// ------------------------------------------------------------------
-// Tooltip system
-[data-tooltip] {
-  position: relative;
-  cursor: help;
-  
-  &::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: 125%;
-    left: 50%;
-    transform: translateX(-50%) scale(0.8);
-    background: var(--background-secondary);
-    color: var(--text-primary);
-    padding: 0.5rem 0.75rem;
-    border-radius: var(--border-radius-sm);
-    font-size: 0.8rem;
-    white-space: nowrap;
-    pointer-events: none;
-    opacity: 0;
-    transition: all 0.2s ease;
-    z-index: 10;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  &:hover::after {
-    opacity: 1;
-    transform: translateX(-50%) scale(1);
-    bottom: 130%;
-  }
-}
-
-// Tag styling
-.tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.2em 0.6em;
-  margin: 0 0.3rem 0.3rem 0;
-  border-radius: 1rem;
-  background: rgba(191, 166, 224, 0.15);
-  color: var(--highlight);
-  font-size: 0.8rem;
-  transition: var(--transition-fast);
-  text-decoration: none;
-  
-  &:hover {
-    background: rgba(191, 166, 224, 0.25);
-    transform: translateY(-1px);
-  }
-  
-  // Tag icon
-  &::before {
-    content: '#';
-    opacity: 0.7;
-    margin-right: 0.2em;
-  }
-}
-
-// Progress bars
-.progress-bar {
-  height: 0.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 0.25rem;
-  overflow: hidden;
-  margin: 1rem 0;
-  
-  .progress-value {
-    height: 100%;
-    background: linear-gradient(90deg, var(--highlight), var(--accent-purple));
-    border-radius: 0.25rem;
-    transition: width 1s ease;
-  }
-}
-
-// Accordion
-.accordion {
-  margin: 1rem 0;
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  background: rgba(30, 37, 78, 0.3);
-  
-  .accordion-header {
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    font-weight: 500;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
-    &::after {
-      content: '▼';
-      font-size: 0.8rem;
-      transition: transform 0.3s ease;
-    }
-    
-    &.collapsed::after {
-      transform: rotate(-90deg);
-    }
-  }
-  
-  .accordion-content {
-    padding: 0 1rem;
-    max-height: 1000px;
-    overflow: hidden;
-    transition: max-height 0.5s ease, padding 0.5s ease;
-    
-    &.collapsed {
-      max-height: 0;
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-  }
-}
-
-// 17. ANIMATIONS & MICROINTERACTIONS
-// ------------------------------------------------------------------
-// Page transitions
-.page-transition-enter {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-.page-transition-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-// Link hover effect
-.hover-glow {
-  display: inline-block;
-  position: relative;
-  transition: text-shadow 0.3s ease;
-  
-  &:hover {
-    text-shadow: 0 0 8px currentColor;
-  }
-}
-
-// Ambient pulse animation
-.ambient-pulse {
-  animation: pulse-slow 10s infinite ease-in-out alternate;
-}
-
-// Floating effect
-.float {
-  animation: float 4s infinite ease-in-out;
-}
-
-// 18. MOBILE RESPONSIVENESS
-// ------------------------------------------------------------------
-@media (max-width: 1200px) {
-  :root {
-    --sidebar-width: 280px;
-    --content-width: 650px;
-  }
-}
-
-@media (max-width: 992px) {
-  :root {
-    --content-width: 100%;
-    --gutter: 1.5rem;
-  }
-  
-  .main-content {
-    padding: 1.5rem var(--gutter);
-  }
-}
-
-@media (max-width: 768px) {
-  :root {
-    --font-size-base: 15px;
-  }
-  
-  h1 {
-    font-size: 2.2rem;
-  }
-  
-  h2 {
-    font-size: 1.8rem;
-  }
-  
-  .filetree-sidebar {
-    h1::before {
-      // Show the GIF even when the h1 is hidden on mobile
-      position: relative;
-      display: block;
-      top: 0;
-      margin-bottom: var(--title-header-gif-margin-bottom);
-    }
-  }
-  
-  .card {
-    padding: 1.25rem;
-  }
-  
-  .callout {
-    padding: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  :root {
-    --gutter: 1rem;
-    --font-size-base: 14px;
-  }
-  
-  h1 {
-    font-size: 1.8rem;
-  }
-  
-  pre {
-    padding: 1rem;
-  }
-  
-  .card {
-    padding: 1rem;
-  }
-}
-
-// 19. THEME TRANSITION
-// ------------------------------------------------------------------
-body, html, .filetree-sidebar, .sidebar, .main-content, .card,
-.callout, table, pre, code, a, h1, h2, h3, h4, h5, h6,
-.btn, .widget, .tag, .accordion, .tooltip, .progress-bar {
-  transition: 
-    background-color var(--theme-transition),
-    color var(--theme-transition), 
-    border-color var(--theme-transition),
-    box-shadow var(--theme-transition);
-}
-
-// 20. EXPERIMENTAL FEATURES (Uncomment to enable)
-// ------------------------------------------------------------------
-/*
-// 3D transforms for cards
-.card-3d {
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  
-  &:hover {
-    transform: rotateX(5deg) rotateY(5deg);
-  }
-}
-
-// Parallax scrolling for background elements
-.parallax-wrapper {
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  perspective: 10px;
-  
-  .parallax-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: translateZ(-10px) scale(2);
-  }
-  
-  .parallax-content {
-    transform: translateZ(0);
-    position: relative;
-  }
-}
-
-// Text animation reveal
-.text-reveal {
-  overflow: hidden;
-  
-  span {
-    display: inline-block;
-    transform: translateY(100%);
-    animation: text-reveal 0.5s forwards;
-  }
-  
-  @for $i from 1 through 20 {
-    span:nth-child(#{$i}) {
-      animation-delay: $i * 0.05s;
-    }
-  }
-}
-
-@keyframes text-reveal {
-  to {
-    transform: translateY(0);
-  }
-}
-*/
-
-// 21. CUSTOM HEADER DECORATION
-// ------------------------------------------------------------------
-// Define the title header GIF variable
-:root {
-  --title-header-gif: url('/img/fractal-title.gif');
-  --title-header-gif-height: 140px; // Increased size
-  --title-header-gif-width: 100%;
-  --title-header-gif-margin-bottom: 15px;
-}
-
-// Enhance header styling
-.site-header {
-  position: relative;
-  padding: 2rem 0;
-  margin-bottom: 2rem;
-  text-align: center;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(var(--title-header-gif-width) * 0.8);
-    max-width: 500px;
-    height: var(--title-header-gif-height);
-    background-image: var(--title-header-gif);
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    animation: pulse-glow 8s infinite ease-in-out;
-    z-index: -1;
-  }
-  
-  .site-title {
-    margin-top: var(--title-header-gif-height);
-    font-size: 3rem;
-    font-weight: 700;
-    text-shadow: 0 0 10px rgba(224, 178, 255, 0.7);
-    animation: fade-in 1s ease-out;
-    
-    background: linear-gradient(90deg, var(--text-primary), var(--highlight), var(--text-accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  .site-description {
-    font-size: 1.2rem;
-    color: var(--text-muted);
-    max-width: 600px;
-    margin: 1rem auto 0;
-    animation: fade-in 1.2s ease-out;
-  }
-}
-
-// 22. RIGHT SIDEBAR OPACITY & INTERACTION ENHANCEMENTS
-// ------------------------------------------------------------------
-:root {
-  --sidebar-opacity: 0.85; // 85% opacity
-  --sidebar-hover-opacity: 0.98; // Higher opacity when hovering
-  --sidebar-transition: all 0.3s ease; // Smooth transition effect
-}
-
-// Target the sidebar container and enhance interactive elements
-.sidebar {
-  opacity: var(--sidebar-opacity);
-  transition: var(--sidebar-transition);
-  
-  // Enhanced graph visualization
-  .graph {
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    margin-bottom: 1.5rem;
-    
-    svg {
-      .node {
-        transition: all 0.2s ease;
-        
-        &:hover {
-          r: 6; // Increase node size on hover
-        }
-      }
-      
-      .link {
-        transition: stroke-opacity 0.2s ease;
-      }
-    }
-    
-    // Graph controls
-    .graph-controls {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-      justify-content: center;
-      
-      button {
-        background: rgba(255, 255, 255, 0.1);
-        border: none;
-        border-radius: var(--border-radius-sm);
-        padding: 0.25rem 0.5rem;
-        color: var(--text-muted);
-        font-size: 0.8rem;
-        cursor: pointer;
-        transition: var(--transition-fast);
-        
-        &:hover {
-          background: rgba(255, 255, 255, 0.2);
-          color: var(--text-primary);
-        }
-      }
-    }
-  }
-  
-  // Hover effects
-  &:hover {
-    opacity: var(--sidebar-hover-opacity);
-    
-    .graph, 
-    .toc, 
-    .backlinks,
-    #link-graph,
-    .sidebar-container {
-      opacity: var(--sidebar-hover-opacity);
-    }
-  }
-}
-
-// Apply to fullscreen graph with enhanced interaction
-#full-graph {
-  opacity: var(--sidebar-opacity);
-  transition: var(--sidebar-transition);
-  background: rgba(18, 20, 42, 0.9);
-  backdrop-filter: blur(10px);
-  
-  &:hover {
-    opacity: var(--sidebar-hover-opacity);
-  }
-  
-  svg {
-    .node {
-      cursor: pointer;
-      transition: all 0.2s ease;
-      
-      &:hover {
-        r: 8;
-        stroke: var(--text-accent);
-        stroke-width: 2;
-      }
-    }
-    
-    .link {
-      &:hover {
-        stroke-opacity: 0.8;
-        stroke-width: 2;
-      }
-    }
-  }
-  
