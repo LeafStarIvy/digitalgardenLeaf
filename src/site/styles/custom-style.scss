@@ -4,64 +4,64 @@
  * glass effects, and maintains 4 fractal GIF overlays.
  */
 
-// 1. CORE VARIABLES & FOREST PALETTE
+// 1. CORE VARIABLES & MINIMALIST PALETTE
 // ------------------------------------------------------------------
 body {
-  /* Forest theme variables */
-  --background-primary: #1A2421;   /* Deep Forest */
-  --background-secondary: #2C3B37; /* Forest Shade */
-  --surface-1: #4E6E63;            /* Pine Green */
-  --surface-2: #8CA99E;            /* Sage */
-  --text-primary: #D3E4CD;         /* Muted Leaf */
-  --text-accent: #E3BC9A;          /* Amber Sunlight */
-  --link-color: #B7D3A8;           /* New Growth */
-  --highlight: #A9C27F;            /* Moss */
-  --text-muted: #BDCDC1;           /* Foggy Glen */
-  --text-normal: #EFF4ED;          /* Birch */
-  --font-family-main: 'Newsreader', 'Merriweather', serif;
-  --font-family-code: 'Fira Code', monospace;
+  /* Modern Minimalist variables */
+  --background-primary: #F7F7F7;   /* Light Gray */
+  --background-secondary: #EFEFEF; /* Soft Gray */
+  --surface-1: #E0E0E0;            /* Medium Gray */
+  --surface-2: #C7C7C7;            /* Darker Gray */
+  --text-primary: #333333;         /* Dark Gray */
+  --text-accent: #5D5FEF;          /* Bright Indigo */
+  --link-color: #6D28D9;           /* Purple */
+  --highlight: #8B5CF6;            /* Violet */
+  --text-muted: #666666;           /* Medium Gray Text */
+  --text-normal: #333333;          /* Standard Text */
+  --font-family-main: 'Plus Jakarta Sans', 'SF Pro Text', sans-serif;
+  --font-family-code: 'IBM Plex Mono', monospace;
   --content-width: 700px;
   --sidebar-width: 300px;
-  --border-radius: 4px;
-  --box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-  --callout-border-width: 2px;
-  --callout-padding: 18px;
-  --callout-radius: 4px;
-  --widget-bg: rgba(44, 59, 55, 0.85);
-  --widget-border: rgba(169, 194, 127, 0.3);
-  --widget-shadow: 0 8px 24px rgba(0,0,0,0.25);
-  --background-primary-alt: rgba(26, 36, 33, 0.9);
-  --background-secondary-alt: rgba(44, 59, 55, 0.9);
-  --bg-gradient-start: #131C19;
-  --bg-gradient-end: #243330;
-  --bg-gradient-dir: to bottom;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --callout-border-width: 1px;
+  --callout-padding: 16px;
+  --callout-radius: 8px;
+  --widget-bg: rgba(255, 255, 255, 0.85);
+  --widget-border: rgba(93, 95, 239, 0.2);
+  --widget-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  --background-primary-alt: rgba(255, 255, 255, 0.95);
+  --background-secondary-alt: rgba(239, 239, 239, 0.85);
+  --bg-gradient-start: #F7F7F7;
+  --bg-gradient-end: #FFFFFF;
+  --bg-gradient-dir: to bottom right;
   position: relative;
   z-index: 0;
 }
 
-// 2. BACKGROUND: Natural texture and gradient
+// 2. BACKGROUND: Subtle gradient and pattern
 // ------------------------------------------------------------------
 html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   background-image:
-    url('/img/forest-texture.png'),
+    radial-gradient(circle at 30% 40%, rgba(93, 95, 239, 0.03) 0%, transparent 70%),
+    radial-gradient(circle at 70% 60%, rgba(139, 92, 246, 0.03) 0%, transparent 70%),
     linear-gradient(var(--bg-gradient-dir), var(--bg-gradient-start), var(--bg-gradient-end));
-  background-size: 200px, cover;
-  background-position: center, center;
-  background-repeat: repeat, no-repeat;
-  background-attachment: fixed, fixed;
+  background-size: 100% 100%, 100% 100%, cover;
+  background-position: center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-attachment: fixed, fixed, fixed;
   color: var(--text-primary);
 }
 
-// 3. ORGANIC OVERLAY (Wood grain texture)
+// 3. SUBTLE DOT GRID OVERLAY
 // ------------------------------------------------------------------
 .patterned {
-  background-image: url('/img/wood-grain.svg');
-  background-repeat: repeat;
-  background-size: 300px;
-  opacity: 0.03;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.2;
   position: fixed;
   inset: 0;
   pointer-events: none;
