@@ -4,117 +4,144 @@
  * glass effects, and maintains 4 fractal GIF overlays.
  */
 
-// 1. CORE VARIABLES & AURORA NEBULA PALETTE
+// 1. CORE VARIABLES & AURORA CELESTIAL PALETTE
 // ------------------------------------------------------------------
-:root {
-  /* Color palette variables */
-  --color-deep-space: #0B1026;       /* Background base */
-  --color-nebula-dark: #1A103F;      /* Secondary background */
-  --color-nebula-haze: #2D1B5A;      /* Surface tones */
-  --color-aurora-teal: #05D9E8;      /* Primary accent */
-  --color-aurora-blue: #01B6ED;      /* Secondary accent */
-  --color-aurora-purple: #9D4EDD;    /* Tertiary accent */
-  --color-ice-glow: #D1FEFF;         /* Bright text */
-  --color-starlight: #FFFAFA;        /* Pure white text */
-  --color-cosmic-dust: #BDB8DF;      /* Muted text */
-  --color-nova: #FF18B9;             /* Highlight */
-  --color-plasma: #FF5F15;           /* Warning/special */
+body {
+  /* Aurora Celestial theme - Enhanced color system */
+  /* Primary colors */
+  --primary-900: #020B19;   /* Deepest Space */
+  --primary-800: #0A192F;   /* Deep Space */
+  --primary-700: #112240;   /* Space */
+  --primary-600: #1E3A5F;   /* Twilight */
+  --primary-500: #2A4A73;   /* Dusk */
+  --primary-400: #3B5F8F;   /* Evening Sky */
+  --primary-300: #5478AD;   /* Night Sky */
+  --primary-200: #7599CB;   /* Dawn */
+  --primary-100: #A3BFEF;   /* Morning Sky */
+  --primary-50: #D4E5FF;    /* Light Sky */
   
-  /* Core theme variables mapping */
-  --background-primary: var(--color-deep-space);
-  --background-secondary: var(--color-nebula-dark);
-  --surface-1: var(--color-nebula-haze);
-  --surface-2: rgba(45, 27, 90, 0.7);  /* Transparent variant */
-  --text-primary: var(--color-ice-glow);
-  --text-accent: var(--color-aurora-teal);
-  --link-color: var(--color-aurora-blue);
-  --highlight: var(--color-aurora-purple);
-  --text-muted: var(--color-cosmic-dust);
-  --text-normal: var(--color-starlight);
+  /* Accent colors - Aurora spectrum */
+  --aurora-teal-500: #0EA5E9;    /* Electric Teal */
+  --aurora-teal-300: #38BDF8;    /* Bright Teal */
+  --aurora-teal-100: #7DD3FC;    /* Light Teal */
+  --aurora-teal-50: #BAE6FD;     /* Ice Teal */
   
-  /* Typography */
-  --font-family-main: 'Space Grotesk', 'Inter', system-ui, sans-serif;
-  --font-family-heading: 'Exo 2', 'SF Pro Display', sans-serif;
+  --aurora-cyan-500: #06B6D4;    /* Cyan */
+  --aurora-cyan-300: #22D3EE;    /* Bright Cyan */
+  --aurora-cyan-100: #A5F3FC;    /* Light Cyan */
+  --aurora-cyan-50: #CFFAFE;     /* Ice Cyan */
+  
+  --aurora-purple-500: #7C3AED;   /* Deep Purple */
+  --aurora-purple-300: #A78BFA;   /* Medium Purple */
+  --aurora-purple-100: #C4B5FD;   /* Light Purple */
+  --aurora-purple-50: #EDE9FE;    /* Ice Purple */
+  
+  --aurora-pink-500: #D946EF;     /* Deep Pink */
+  --aurora-pink-300: #F0ABFC;     /* Medium Pink */
+  --aurora-pink-100: #F5D0FE;     /* Light Pink */
+  --aurora-pink-50: #FAE8FF;      /* Ice Pink */
+  
+  /* Background system */
+  --background-primary: var(--primary-800);
+  --background-secondary: var(--primary-700);
+  --background-tertiary: var(--primary-600);
+  --surface-1: var(--primary-500);
+  --surface-2: var(--primary-400);
+  --glass-bg: rgba(10, 25, 47, 0.75);
+  --glass-bg-lighter: rgba(16, 36, 64, 0.65);
+  
+  /* Text system */
+  --text-primary: var(--aurora-cyan-50);
+  --text-secondary: var(--aurora-teal-100);
+  --text-accent: var(--aurora-purple-100);
+  --text-muted: var(--primary-200);
+  --text-dim: var(--primary-300);
+  --text-normal: var(--primary-50);
+  
+  /* Interactive system */
+  --link-color: var(--aurora-teal-300);
+  --link-hover: var(--aurora-cyan-100);
+  --highlight: var(--aurora-purple-300);
+  --highlight-bg: rgba(124, 58, 237, 0.12);
+  --selection-bg: rgba(10, 147, 150, 0.25);
+  --selection-text: var(--aurora-cyan-50);
+  
+  /* Typography system */
+  --font-family-main: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+  --font-family-heading: 'Montserrat', 'Segoe UI', sans-serif;
   --font-family-code: 'JetBrains Mono', 'Fira Code', monospace;
-  --line-height-content: 1.7;
-  --line-height-heading: 1.3;
+  --font-size-base: 16px;
+  --line-height-base: 1.6;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-bold: 700;
-  --letter-spacing-tight: -0.015em;
-  --letter-spacing-wide: 0.03em;
   
-  /* Layout and spacing */
-  --content-width: 720px;
-  --sidebar-width: 320px;
-  --content-padding: 2rem;
-  --grid-gap: 2rem;
-  --section-spacing: 3rem;
+  /* Layout system */
+  --content-width: 700px;
+  --sidebar-width: 300px;
+  --site-padding: 24px;
+  --element-spacing: 24px;
+  --header-height: 60px;
   
-  /* UI elements */
-  --border-radius-sm: 6px;
-  --border-radius-md: 12px;
-  --border-radius-lg: 20px;
-  --border-radius-pill: 9999px;
-  --border-width-thin: 1px;
-  --border-width-normal: 2px;
-  --border-width-thick: 3px;
-  --box-shadow-subtle: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --box-shadow-normal: 0 12px 28px rgba(0, 0, 0, 0.15);
-  --box-shadow-elevated: 0 20px 40px rgba(0, 0, 0, 0.2);
-  --box-shadow-glow: 0 0 15px rgba(5, 217, 232, 0.3);
+  /* Border system */
+  --border-radius-xs: 4px;
+  --border-radius-sm: 8px;
+  --border-radius: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 24px;
+  --border-radius-full: 9999px;
+  --border-width: 1px;
+  --border-style: solid;
+  --border-color: rgba(255, 255, 255, 0.1);
   
-  /* Components */
-  --callout-border-width: var(--border-width-normal);
-  --callout-padding: 1.25rem;
-  --callout-radius: var(--border-radius-md);
-  --widget-bg: rgba(11, 16, 38, 0.8);
-  --widget-border: 1px solid rgba(5, 217, 232, 0.2);
-  --widget-shadow: var(--box-shadow-normal), 0 0 20px rgba(5, 217, 232, 0.15);
-  --background-primary-alt: rgba(11, 16, 38, 0.92);
-  --background-secondary-alt: rgba(26, 16, 63, 0.92);
+  /* Shadow system */
+  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.25), 0 15px 12px rgba(0, 0, 0, 0.15);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --shadow-outline: 0 0 0 3px rgba(37, 99, 235, 0.25);
   
-  /* Animation */
-  --transition-fast: 150ms ease;
-  --transition-normal: 250ms ease;
-  --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
-  --animation-subtle: 0.97;
-  --animation-normal: 0.95;
-  --animation-dramatic: 0.9;
+  /* Component-specific */
+  --callout-border-width: 2px;
+  --callout-padding: 18px;
+  --callout-radius: var(--border-radius-sm);
+  --widget-bg: var(--glass-bg);
+  --widget-border: var(--border-color);
+  --widget-shadow: var(--shadow-md);
+  --card-border: var(--border-color);
+  --background-primary-alt: var(--glass-bg);
+  --background-secondary-alt: var(--glass-bg-lighter);
   
-  /* Background */
-  --bg-gradient-start: #050517;
-  --bg-gradient-mid: #0F0A2A;
-  --bg-gradient-end: #1A124D;
+  /* Background gradient */
+  --bg-gradient-start: var(--primary-900);
+  --bg-gradient-mid: var(--primary-800);
+  --bg-gradient-end: var(--primary-700);
   --bg-gradient-dir: 135deg;
   
-  /* Z-index layers */
-  --z-background: 0;
-  --z-base: 1;
-  --z-elevated: 10;
-  --z-overlay: 100;
-  --z-modal: 1000;
+  /* Effects */
+  --blur-amount: 10px;
+  --grain-opacity: 0.04;
+  --aurora-opacity: 0.2;
+  --starfield-opacity: 0.5;
+  --transition-speed: 0.3s;
+  --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
   
-  /* Special effects */
-  --glow-strength-weak: 3px;
-  --glow-strength-medium: 6px;
-  --glow-strength-strong: 12px;
-  --glass-opacity: 0.85;
-  --glass-blur: 12px;
-  --fx-wave-speed: 20s;
-  --fx-drift-speed: 90s;
-  --fx-pulse-speed: 15s;
-}
-
-body {
-  background-color: var(--color-deep-space);
-  color: var(--text-primary);
+  /* Global setup */
   position: relative;
-  z-index: var(--z-base);
+  z-index: 0;
   font-family: var(--font-family-main);
-  line-height: var(--line-height-content);
-  font-weight: var(--font-weight-normal);
-  overflow-x: hidden;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--text-primary);
+  background-color: var(--primary-900);
+  
+  /* Set up selection styling */
+  ::selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-text);
+  }
 }
 
 // 2. BACKGROUND: Subtle gradient and pattern
