@@ -6,35 +6,37 @@
 
 // 1. CORE VARIABLES & ETHEREAL GRADIENT PALETTE
 // ------------------------------------------------------------------
+// 1. CORE VARIABLES & DARK MECHANICAL PALETTE
+// ------------------------------------------------------------------
 body {
-  /* Ethereal Gradient theme - Enhanced color system */
+  /* Dark Mechanical theme - Enhanced color system */
   /* Primary colors */
-  --primary-900: #0C0B1D;   /* Deep Midnight */
-  --primary-800: #161339;   /* Royal Depth */
-  --primary-700: #241E58;   /* Twilight Vision */
-  --primary-600: #392D76;   /* Amethyst Depth */
-  --primary-500: #473684;   /* Lavender Dusk */
-  --primary-400: #604A97;   /* Purple Haze */
-  --primary-300: #8169BB;   /* Soft Violet */
-  --primary-200: #A692D9;   /* Lilac Dream */
-  --primary-100: #C9BDF0;   /* Pastel Periwinkle */
-  --primary-50: #EDE7FF;    /* Morning Mist */
+  --primary-900: #0A0D10;   /* Carbon Black */
+  --primary-800: #14171C;   /* Onyx Steel */
+  --primary-700: #1E2229;   /* Dark Metal */
+  --primary-600: #292E38;   /* Forged Iron */
+  --primary-500: #363C4A;   /* Machined Steel */
+  --primary-400: #454D5D;   /* Graphite */
+  --primary-300: #596073;   /* Machine Blue */
+  --primary-200: #717A8F;   /* Industrial Gray */
+  --primary-100: #9AA2B4;   /* Blueprint Gray */
+  --primary-50: #DEE1E9;    /* Titanium White */
   
-  /* Accent colors - Gradient spectrum */
-  --gradient-teal-500: #38CFBD;    /* Verdigris */
-  --gradient-teal-300: #79EEE2;    /* Aqua Breeze */
-  --gradient-teal-100: #B5F7F1;    /* Crystal Water */
-  --gradient-teal-50: #DAFAF7;     /* Mint Frost */
+  /* Accent colors - Mechanical spectrum */
+  --mech-amber-500: #FF8A00;    /* Warning Amber */
+  --mech-amber-300: #FFAA40;    /* Caution Light */
+  --mech-amber-100: #FFD29E;    /* Soft Indicator */
+  --mech-amber-50: #FFE9D0;     /* Pale Signal */
   
-  --gradient-rose-500: #E469B3;    /* Rose Bloom */
-  --gradient-rose-300: #F290C7;    /* Pink Petal */
-  --gradient-rose-100: #F9C2E1;    /* Cherry Blossom */
-  --gradient-rose-50: #FDE4F0;     /* Petal Dew */
+  --mech-blue-500: #0091FF;     /* Electronic Blue */
+  --mech-blue-300: #52B0FF;     /* Circuit Blue */
+  --mech-blue-100: #A3D5FF;     /* Techno Light */
+  --mech-blue-50: #D9EEFF;      /* Signal Blue */
   
-  --gradient-gold-500: #E4B86B;    /* Amber Glow */
-  --gradient-gold-300: #F2D196;    /* Honey Light */
-  --gradient-gold-100: #F9E7C7;    /* Golden Hour */
-  --gradient-gold-50: #FCF4E4;     /* Champagne Mist */
+  --mech-red-500: #FF3A29;      /* Warning Red */
+  --mech-red-300: #FF6B5C;      /* Alarm Red */
+  --mech-red-100: #FFADA5;      /* Safety Red */
+  --mech-red-50: #FFDED9;       /* System Red */
   
   /* Background system */
   --background-primary: var(--primary-900);
@@ -42,23 +44,23 @@ body {
   --background-tertiary: var(--primary-700);
   --surface-1: var(--primary-600);
   --surface-2: var(--primary-500);
-  --glass-bg: rgba(12, 11, 29, 0.7);
-  --glass-bg-lighter: rgba(22, 19, 57, 0.6);
+  --glass-bg: rgba(10, 13, 16, 0.8);
+  --glass-bg-lighter: rgba(20, 23, 28, 0.7);
   
   /* Text system */
   --text-primary: var(--primary-50);
-  --text-secondary: var(--gradient-teal-100);
-  --text-accent: var(--gradient-rose-100);
+  --text-secondary: var(--mech-blue-100);
+  --text-accent: var(--mech-amber-100);
   --text-muted: var(--primary-200);
   --text-dim: var(--primary-300);
   --text-normal: var(--primary-100);
   
   /* Interactive system */
-  --link-color: var(--gradient-teal-300);
-  --link-hover: var(--gradient-rose-300);
-  --highlight: var(--gradient-gold-300);
-  --highlight-bg: rgba(228, 184, 107, 0.1);
-  --selection-bg: rgba(56, 207, 189, 0.2);
+  --link-color: var(--mech-blue-300);
+  --link-hover: var(--mech-amber-300);
+  --highlight: var(--mech-red-300);
+  --highlight-bg: rgba(255, 58, 41, 0.1);
+  --selection-bg: rgba(0, 145, 255, 0.25);
   --selection-text: var(--primary-50);
 }
 // 2. BACKGROUND: Dynamic gradient animation
@@ -83,25 +85,36 @@ html, body {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-// 3. CYBER GRID OVERLAY
+// 3. MECHANICAL OVERLAY PATTERNS
 // ------------------------------------------------------------------
 .patterned {
-  background: 
-    linear-gradient(90deg, rgba(12, 250, 126, 0.03) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(0, 216, 255, 0.03) 1px, transparent 1px);
+  background-image: 
+    repeating-linear-gradient(45deg, 
+      rgba(255, 255, 255, 0.012) 0px, rgba(255, 255, 255, 0.012) 1px,
+      transparent 1px, transparent 10px),
+    repeating-linear-gradient(-45deg, 
+      rgba(255, 255, 255, 0.012) 0px, rgba(255, 255, 255, 0.012) 1px,
+      transparent 1px, transparent 10px);
   background-size: 20px 20px;
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  animation: grid-pulse 8s infinite alternate;
 }
 
-@keyframes grid-pulse {
-  0% { opacity: 0.2; background-size: 20px 20px; }
-  50% { opacity: 0.3; background-size: 22px 22px; }
-  100% { opacity: 0.2; background-size: 20px 20px; }
+// Add this before the .patterned class
+.mechanical-overlay {
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 30% 25%, rgba(0, 145, 255, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 70% 85%, rgba(255, 138, 0, 0.03) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: -1;
 }
+
+// Add this element to your HTML
+// <div class="mechanical-overlay"></div>
 
 // 4. GIF OVERLAYS (4 layers)
 // ------------------------------------------------------------------
@@ -560,6 +573,75 @@ h1 {
   10% { clip: rect(18px, 9999px, 44px, 0); }
   /* Add more steps if needed */
   100% { clip: rect(27px, 9999px, 11px, 0); }
+}
+// Add to section 12. DIGITAL GARDEN OVERRIDES
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Rajdhani', 'Segoe UI', sans-serif; /* Consider adding this font */
+}
+
+h1 {
+  font-size: 2.8rem;
+  padding-bottom: 0.5rem;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, 
+      var(--mech-blue-500), 
+      var(--mech-blue-300), 
+      var(--primary-500));
+  }
+  
+  // Add triangular notch to heading
+  &::before {
+    content: '▶';
+    color: var(--mech-amber-500);
+    margin-right: 12px;
+    font-size: 0.8em;
+    vertical-align: middle;
+  }
+}
+
+// Add industrial-inspired callouts
+.callout {
+  border-left: none;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-top: 4px solid var(--mech-blue-500);
+  background: rgba(10, 13, 16, 0.6);
+  padding: var(--callout-padding);
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 20px;
+    width: 40px;
+    height: 4px;
+    background: var(--mech-amber-500);
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 70px;
+    width: 20px;
+    height: 4px;
+    background: var(--mech-red-500);
+  }
+  
+  // Different colored tops for different callout types
+  &.note { border-top-color: var(--mech-blue-500); }
+  &.warning { border-top-color: var(--mech-amber-500); }
+  &.important { border-top-color: var(--mech-red-500); }
 }
 
 // 0 Define the title header GIF variable
