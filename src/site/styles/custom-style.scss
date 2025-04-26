@@ -10,151 +10,134 @@
 // ------------------------------------------------------------------
 // 1. CORE VARIABLES & HOLOGRAPHIC INTERFACE PALETTE
 // ------------------------------------------------------------------
+// 1. CORE VARIABLES & CYBERPUNK NEO-TOKYO PALETTE
+// ------------------------------------------------------------------
 body {
-  /* Holographic Interface theme - Enhanced color system */
+  /* Cyberpunk Neo-Tokyo theme - Enhanced color system */
   /* Primary colors */
-  --primary-900: #040B14;   /* Deep Space Black */
-  --primary-800: #0A1627;   /* Hologram Base */
-  --primary-700: #0F243A;   /* Projection Dark */
-  --primary-600: #183350;   /* Blueprint Dark */
-  --primary-500: #234467;   /* Hologram Medium */
-  --primary-400: #325A85;   /* Projection Medium */
-  --primary-300: #4474A2;   /* Blueprint Medium */
-  --primary-200: #6B9AC7;   /* Hologram Light */
-  --primary-100: #A2C2E2;   /* Projection Light */
-  --primary-50: #D8E7F5;    /* Blueprint Light */
+  --primary-900: #0D0B14;   /* Midnight */
+  --primary-800: #16121F;   /* Deep Night */
+  --primary-700: #1F1A2E;   /* Night City */
+  --primary-600: #2B2440;   /* Dark Metro */
+  --primary-500: #372F52;   /* Neon Shadow */
+  --primary-400: #453C64;   /* Shadow City */
+  --primary-300: #564B78;   /* Twilight District */
+  --primary-200: #6D5E99;   /* Electric Dusk */
+  --primary-100: #8B78C5;   /* Virtual Dawn */
+  --primary-50: #BBA8FF;    /* Digital Sky */
   
-  /* Accent colors - Hologram spectrum */
-  --holo-teal-500: #00E5FF;    /* Main Hologram */
-  --holo-teal-300: #6AEFFF;    /* Bright Hologram */
-  --holo-teal-100: #B3F8FF;    /* Light Hologram */
-  --holo-teal-50: #E0FCFF;     /* Pale Hologram */
+  /* Accent colors - Neon spectrum */
+  --neon-cyan-500: #00F0FF;    /* Electric Cyan */
+  --neon-cyan-300: #33F6FF;    /* Bright Cyan */
+  --neon-cyan-100: #99FBFF;    /* Light Cyan */
+  --neon-cyan-50: #CCFDFF;     /* Ice Cyan */
   
-  --holo-blue-500: #0088FF;    /* Electric Blue */
-  --holo-blue-300: #55B1FF;    /* Bright Interface */
-  --holo-blue-100: #A3D7FF;    /* Light Interface */
-  --holo-blue-50: #DEEFFF;     /* Pale Interface */
+  --neon-magenta-500: #FF00C8;  /* Deep Magenta */
+  --neon-magenta-300: #FF33D4;  /* Bright Magenta */
+  --neon-magenta-100: #FF99E9;  /* Light Magenta */
+  --neon-magenta-50: #FFCCF4;   /* Ice Magenta */
   
-  --holo-purple-500: #AB00FF;  /* Deep Hologram */
-  --holo-purple-300: #CD5EFF;  /* Bright Energy */
-  --holo-purple-100: #E7B3FF;  /* Light Energy */
-  --holo-purple-50: #F6E0FF;   /* Pale Energy */
+  --neon-yellow-500: #FFDF00;   /* Electric Yellow */
+  --neon-yellow-300: #FFE633;   /* Bright Yellow */
+  --neon-yellow-100: #FFF299;   /* Light Yellow */
+  --neon-yellow-50: #FFF9CC;    /* Ice Yellow */
+  
+  --neon-green-500: #00FF66;    /* Electric Green */
+  --neon-green-300: #33FF8C;    /* Bright Green */
+  --neon-green-100: #99FFC4;    /* Light Green */
+  --neon-green-50: #CCFFE2;     /* Ice Green */
   
   /* Background system */
-  --background-primary: var(--primary-900);
-  --background-secondary: var(--primary-800);
-  --background-tertiary: var(--primary-700);
-  --surface-1: var(--primary-600);
-  --surface-2: var(--primary-500);
-  --glass-bg: rgba(4, 11, 20, 0.7);
-  --glass-bg-lighter: rgba(10, 22, 39, 0.6);
+  --background-primary: var(--primary-800);
+  --background-secondary: var(--primary-700);
+  --background-tertiary: var(--primary-600);
+  --surface-1: var(--primary-500);
+  --surface-2: var(--primary-400);
+  --glass-bg: rgba(22, 18, 31, 0.75);
+  --glass-bg-lighter: rgba(31, 26, 46, 0.65);
   
   /* Text system */
-  --text-primary: var(--holo-teal-100);
-  --text-secondary: var(--holo-blue-100);
-  --text-accent: var(--holo-purple-100);
+  --text-primary: #FFFFFF;
+  --text-secondary: var(--neon-cyan-100);
+  --text-accent: var(--neon-magenta-100);
   --text-muted: var(--primary-200);
   --text-dim: var(--primary-300);
   --text-normal: var(--primary-50);
   
   /* Interactive system */
-  --link-color: var(--holo-teal-300);
-  --link-hover: var(--holo-purple-300);
-  --highlight: var(--holo-blue-300);
-  --highlight-bg: rgba(0, 136, 255, 0.15);
-  --selection-bg: rgba(0, 229, 255, 0.25);
-  --selection-text: var(--primary-900);
+  --link-color: var(--neon-cyan-500);
+  --link-hover: var(--neon-magenta-500);
+  --highlight: var(--neon-yellow-300);
+  --highlight-bg: rgba(255, 223, 0, 0.15);
+  --selection-bg: rgba(255, 0, 200, 0.25);
+  --selection-text: #FFFFFF;
+  
+  /* Component-specific */
+  --callout-border-width: 2px;
+  --callout-padding: 18px;
+  --callout-radius: var(--border-radius-sm);
+  --widget-bg: var(--glass-bg);
+  --widget-border: var(--border-color);
+  --widget-shadow: var(--shadow-md);
+  --card-border: var(--border-color);
+  --background-primary-alt: var(--glass-bg);
+  --background-secondary-alt: var(--glass-bg-lighter);
+  
+  /* Background gradient */
+  --bg-gradient-start: var(--primary-900);
+  --bg-gradient-mid: var(--primary-800);
+  --bg-gradient-end: var(--primary-700);
+  --bg-gradient-dir: 135deg;
+  
+  /* Effects */
+  --blur-amount: 10px;
+  --grain-opacity: 0.04;
+  --glitch-opacity: 0.2;
+  --neon-glow-opacity: 0.5;
+  --transition-speed: 0.3s;
+  --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Border system - enhanced with neon effects */
+  --border-color: rgba(255, 0, 200, 0.2);
+  --border-glow: 0 0 5px rgba(255, 0, 200, 0.5);
 }
-// 2. BACKGROUND: Dynamic gradient animation
+
+// 2. BACKGROUND: Digital city backdrop with scan lines
 // ------------------------------------------------------------------
 html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  background: linear-gradient(125deg, 
-    var(--primary-900) 0%, 
-    var(--primary-800) 25%,
-    rgba(36, 30, 88, 0.95) 50%, 
-    rgba(57, 45, 118, 0.9) 75%,
-    rgba(71, 54, 132, 0.85) 100%) fixed;
-  background-size: 400% 400%;
-  animation: gradient-shift 28s ease infinite;
+  background-image:
+    linear-gradient(0deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+    radial-gradient(circle at 30% 40%, rgba(255, 0, 200, 0.05) 0%, transparent 70%),
+    radial-gradient(circle at 70% 60%, rgba(255, 223, 0, 0.05) 0%, transparent 70%),
+    linear-gradient(var(--bg-gradient-dir), var(--bg-gradient-start), var(--bg-gradient-end));
+  background-size: 20px 20px, 20px 20px, 100% 100%, 100% 100%, cover;
+  background-position: center, center, center, center, center;
+  background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat;
+  background-attachment: fixed, fixed, fixed, fixed, fixed;
   color: var(--text-primary);
 }
 
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-// 3. HOLOGRAPHIC SCAN LINES & EFFECTS
+// 3. DIGITAL SCAN LINES OVERLAY
 // ------------------------------------------------------------------
 .patterned {
-  background: none;
+  background-image: 
+    linear-gradient(0deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 4px 4px;
+  opacity: 0.3;
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  overflow: hidden;
+  animation: scan-lines 10s linear infinite;
 }
 
-// Add scanlines effect
-.patterned::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(0, 229, 255, 0.03) 0px,
-    rgba(0, 229, 255, 0.03) 1px,
-    transparent 1px,
-    transparent 4px
-  );
-  pointer-events: none;
-  animation: scan-movement 8s linear infinite;
-}
-
-// Add flickering hologram noise
-.patterned::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.02;
-  pointer-events: none;
-  animation: flicker 6s ease infinite;
-}
-
-@keyframes scan-movement {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(100vh); }
-}
-
-@keyframes flicker {
-  0% { opacity: 0.01; }
-  5% { opacity: 0.03; }
-  10% { opacity: 0.01; }
-  15% { opacity: 0.05; }
-  20% { opacity: 0.01; }
-  /* Add more steps */
-  100% { opacity: 0.01; }
-}
-
-// Add holographic projection effect
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-  background: linear-gradient(180deg, 
-    rgba(0, 229, 255, 0.08) 0%,
-    rgba(0, 229, 255, 0) 15%,
-    rgba(171, 0, 255, 0) 85%,
-    rgba(171, 0, 255, 0.08) 100%);
-  pointer-events: none;
-  z-index: -1;
+@keyframes scan-lines {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100px; }
 }
 
 // 4. GIF OVERLAYS (4 layers)
@@ -990,3 +973,339 @@ h1 {
     padding: 1rem;
   }
 }
+// Add new section: GLITCH EFFECTS
+// ------------------------------------------------------------------
+.glitch-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: var(--glitch-opacity);
+}
+
+.glitch-line {
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background-color: var(--neon-magenta-500);
+  opacity: 0;
+  transform: translateY(-50%);
+}
+
+/* Generate 5 glitch lines with different timings */
+@for $i from 1 through 5 {
+  .glitch-line:nth-child(#{$i}) {
+    top: #{random(100)}vh;
+    animation: glitch-horizontal #{(random(3) + 1)}s infinite;
+    animation-delay: #{random(10)}s;
+  }
+}
+
+@keyframes glitch-horizontal {
+  0% { opacity: 0; transform: translateY(-50%) scaleY(1); }
+  0.5% { opacity: 0.8; transform: translateY(-50%) scaleY(random(20) + 10); }
+  1.5% { opacity: 0; transform: translateY(-50%) scaleY(1); }
+  100% { opacity: 0; transform: translateY(-50%) scaleY(1); }
+}
+
+/* Add vertical glitches */
+.glitch-block {
+  position: absolute;
+  background-color: var(--neon-cyan-500);
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+
+/* Generate 5 glitch blocks with different sizes/timings */
+@for $i from 1 through 5 {
+  .glitch-block:nth-child(#{$i + 5}) {
+    height: #{random(50) + 10}px;
+    width: #{random(200) + 100}px;
+    top: #{random(100)}vh;
+    left: #{random(100)}vw;
+    animation: glitch-block #{(random(8) + 5)}s infinite;
+    animation-delay: #{random(10)}s;
+  }
+}
+
+@keyframes glitch-block {
+  0% { opacity: 0; transform: translateX(0); }
+  0.1% { opacity: 0.5; transform: translateX(-10px); }
+  0.2% { opacity: 0.1; transform: translateX(10px); }
+  0.3% { opacity: 0.5; transform: translateX(0); }
+  0.4% { opacity: 0; }
+  100% { opacity: 0; }
+}
+// Replace button styles with cyberpunk neon buttons
+.btn {
+  display: inline-block;
+  padding: 0.7em 1.5em;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius);
+  font-family: var(--font-family-main);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &--primary { 
+    background: transparent; 
+    border-color: var(--neon-cyan-500); 
+    color: var(--neon-cyan-500);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.2), transparent);
+      transition: left 0.3s ease;
+    }
+    
+    &:hover {
+      background: rgba(0, 240, 255, 0.1);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+      
+      &::before {
+        left: 100%;
+      }
+    }
+  }
+  
+  &--accent { 
+    background: var(--neon-magenta-500); 
+    color: #000; 
+    box-shadow: 
+      0 0 10px var(--neon-magenta-500),
+      0 0 20px rgba(255, 0, 200, 0.3);
+    
+    &:hover {
+      background: var(--neon-magenta-300);
+      box-shadow: 
+        0 0 15px var(--neon-magenta-500),
+        0 0 30px rgba(255, 0, 200, 0.5);
+    }
+  }
+  
+  &--link { 
+    background: transparent; 
+    color: var(--neon-yellow-500); 
+    text-decoration: none;
+    
+    &:hover {
+      text-shadow: 0 0 5px var(--neon-yellow-500);
+    }
+  }
+  
+  &:hover { 
+    transform: translateY(-2px); 
+  }
+}
+// Replace code block styles with cyberpunk terminal look
+pre, code {
+  font-family: var(--font-family-code);
+  font-size: 0.9em;
+}
+
+pre {
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  background: rgba(13, 11, 20, 0.7);
+  border: 1px solid var(--neon-green-500);
+  border-radius: var(--border-radius);
+  box-shadow: 
+    0 0 10px rgba(0, 255, 102, 0.2),
+    inset 0 0 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+  
+  &::before {
+    content: '> TERMINAL ACCESS';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem 1rem;
+    background: var(--neon-green-500);
+    color: var(--primary-900);
+    font-family: var(--font-family-code);
+    font-size: 0.8em;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  code {
+    display: block;
+    background: transparent;
+    padding: 0;
+    color: var(--neon-green-100);
+    padding-top: 1.5rem;
+    line-height: 1.5;
+    text-shadow: 0 0 2px rgba(0, 255, 102, 0.5);
+    animation: terminal-cursor 1s infinite step-end;
+  }
+}
+
+code:not(pre code) {
+  background: rgba(0, 255, 102, 0.1);
+  color: var(--neon-green-300);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  text-shadow: 0 0 2px rgba(0, 255, 102, 0.3);
+}
+
+@keyframes terminal-cursor {
+  0%, 100% { border-right: 2px solid transparent; }
+  50% { border-right: 2px solid var(--neon-green-500); }
+}
+// Add digital rain effect (Matrix-style)
+// ------------------------------------------------------------------
+.digital-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.15;
+}
+
+.rain-column {
+  position: absolute;
+  top: -100px;
+  width: 1px;
+  height: 100px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--neon-green-500),
+    var(--neon-green-300),
+    transparent
+  );
+}
+
+/* Generate 50 rain columns */
+@for $i from 1 through 50 {
+  .rain-column:nth-child(#{$i}) {
+    left: #{random(100)}vw;
+    height: #{random(150) + 50}px;
+    opacity: #{(random(5) + 5) / 10};
+    animation: digital-rain #{(random(8) + 6)}s infinite linear;
+    animation-delay: #{random(5)}s;
+  }
+}
+
+@keyframes digital-rain {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+// Add custom cursor trail effect
+// ------------------------------------------------------------------
+.cursor-fx {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--neon-magenta-500);
+  box-shadow: 0 0 10px var(--neon-magenta-500);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s;
+  z-index: 9999;
+  backdrop-filter: invert(1);
+  mix-blend-mode: difference;
+}
+
+.cursor-fx-trail {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--neon-cyan-500);
+  box-shadow: 0 0 5px var(--neon-cyan-500);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.5s;
+  z-index: 9998;
+  opacity: 0.7;
+}
+// Add to end of your file - JavaScript for effects
+// ------------------------------------------------------------------
+
+// JavaScript for cursor effect
+document.addEventListener('DOMContentLoaded', function() {
+  let cursor = document.createElement('div');
+  cursor.className = 'cursor-fx';
+  document.body.appendChild(cursor);
+  
+  let trails = [];
+  for (let i = 0; i < 5; i++) {
+    let trail = document.createElement('div');
+    trail.className = 'cursor-fx-trail';
+    document.body.appendChild(trail);
+    trails.push(trail);
+  }
+  
+  let trailIndex = 0;
+  
+  document.addEventListener('mousemove', function(e) {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    
+    setTimeout(() => {
+      trails[trailIndex].style.left = e.clientX + 'px';
+      trails[trailIndex].style.top = e.clientY + 'px';
+      
+      trailIndex = (trailIndex + 1) % trails.length;
+    }, 50);
+  });
+  
+  document.addEventListener('mousedown', function() {
+    cursor.style.width = '10px';
+    cursor.style.height = '10px';
+  });
+  
+  document.addEventListener('mouseup', function() {
+    cursor.style.width = '20px';
+    cursor.style.height = '20px';
+  });
+  
+  // Create digital rain
+  const rainContainer = document.createElement('div');
+  rainContainer.className = 'digital-rain';
+  document.body.appendChild(rainContainer);
+  
+  for (let i = 0; i < 50; i++) {
+    const rainColumn = document.createElement('div');
+    rainColumn.className = 'rain-column';
+    rainContainer.appendChild(rainColumn);
+  }
+  
+  // Create glitch effects
+  const glitchContainer = document.createElement('div');
+  glitchContainer.className = 'glitch-container';
+  document.body.appendChild(glitchContainer);
+  
+  for (let i = 0; i < 5; i++) {
+    const glitchLine = document.createElement('div');
+    glitchLine.className = 'glitch-line';
+    glitchContainer.appendChild(glitchLine);
+  }
+  
+  for (let i = 0; i < 5; i++) {
+    const glitchBlock = document.createElement('div');
+    glitchBlock.className = 'glitch-block';
+    glitchContainer.appendChild(glitchBlock);
+  }
+});
