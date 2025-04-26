@@ -4,144 +4,52 @@
  * glass effects, and maintains 4 fractal GIF overlays.
  */
 
-// 1. CORE VARIABLES & AURORA CELESTIAL PALETTE
+// 1. CORE VARIABLES - MIDNIGHT OCEAN PALETTE
 // ------------------------------------------------------------------
 body {
-  /* Aurora Celestial theme - Enhanced color system */
+  /* Midnight Ocean theme - Deep seas color system */
   /* Primary colors */
-  --primary-900: #020B19;   /* Deepest Space */
-  --primary-800: #0A192F;   /* Deep Space */
-  --primary-700: #112240;   /* Space */
-  --primary-600: #1E3A5F;   /* Twilight */
-  --primary-500: #2A4A73;   /* Dusk */
-  --primary-400: #3B5F8F;   /* Evening Sky */
-  --primary-300: #5478AD;   /* Night Sky */
-  --primary-200: #7599CB;   /* Dawn */
-  --primary-100: #A3BFEF;   /* Morning Sky */
-  --primary-50: #D4E5FF;    /* Light Sky */
+  --primary-900: #020B16;   /* Ocean Abyss */
+  --primary-800: #04152D;   /* Deep Sea */
+  --primary-700: #072140;   /* Midnight Water */
+  --primary-600: #0C2E55;   /* Twilight Ocean */
+  --primary-500: #16395F;   /* Deep Blue */
+  --primary-400: #254B78;   /* Ocean Blue */
+  --primary-300: #3B6797;   /* Sea Blue */
+  --primary-200: #6089B6;   /* Wave Blue */
+  --primary-100: #84ACD7;   /* Surface Blue */
+  --primary-50: #B6D3F7;    /* Sky Reflection */
   
-  /* Accent colors - Aurora spectrum */
-  --aurora-teal-500: #0EA5E9;    /* Electric Teal */
-  --aurora-teal-300: #38BDF8;    /* Bright Teal */
-  --aurora-teal-100: #7DD3FC;    /* Light Teal */
-  --aurora-teal-50: #BAE6FD;     /* Ice Teal */
+  /* Accent colors - Bioluminescent spectrum */
+  --aurora-teal-500: #00B7C2;    /* Bioluminescent Teal */
+  --aurora-teal-300: #21E6D9;    /* Glowing Teal */
+  --aurora-teal-100: #80FFF7;    /* Light Teal */
+  --aurora-teal-50: #C4FFFC;     /* Ice Teal */
   
-  --aurora-cyan-500: #06B6D4;    /* Cyan */
-  --aurora-cyan-300: #22D3EE;    /* Bright Cyan */
-  --aurora-cyan-100: #A5F3FC;    /* Light Cyan */
-  --aurora-cyan-50: #CFFAFE;     /* Ice Cyan */
+  --aurora-cyan-500: #0185A9;    /* Deep Cyan */
+  --aurora-cyan-300: #05C3D1;    /* Algae Glow */
+  --aurora-cyan-100: #84E8F7;    /* Foam Cyan */
+  --aurora-cyan-50: #C1F5FF;     /* Surface Cyan */
   
-  --aurora-purple-500: #7C3AED;   /* Deep Purple */
-  --aurora-purple-300: #A78BFA;   /* Medium Purple */
-  --aurora-purple-100: #C4B5FD;   /* Light Purple */
-  --aurora-purple-50: #EDE9FE;    /* Ice Purple */
+  --aurora-purple-500: #6236AC;   /* Jellyfish Purple */
+  --aurora-purple-300: #9969E7;   /* Soft Bioluminescence */
+  --aurora-purple-100: #C6AFF9;   /* Light Purple */
+  --aurora-purple-50: #E9E0FF;    /* Misty Purple */
   
-  --aurora-pink-500: #D946EF;     /* Deep Pink */
-  --aurora-pink-300: #F0ABFC;     /* Medium Pink */
-  --aurora-pink-100: #F5D0FE;     /* Light Pink */
-  --aurora-pink-50: #FAE8FF;      /* Ice Pink */
+  --aurora-pink-500: #B742C7;     /* Coral Pink */
+  --aurora-pink-300: #E479E9;     /* Anemone Pink */
+  --aurora-pink-100: #F5B5FE;     /* Light Pink */
+  --aurora-pink-50: #FDDEFF;      /* Soft Pink */
   
-  /* Background system */
-  --background-primary: var(--primary-800);
-  --background-secondary: var(--primary-700);
-  --background-tertiary: var(--primary-600);
-  --surface-1: var(--primary-500);
-  --surface-2: var(--primary-400);
-  --glass-bg: rgba(10, 25, 47, 0.75);
-  --glass-bg-lighter: rgba(16, 36, 64, 0.65);
+  /* Glass effect enhancements */
+  --glass-bg: rgba(4, 21, 45, 0.75);
+  --glass-bg-lighter: rgba(12, 46, 85, 0.65);
   
-  /* Text system */
-  --text-primary: var(--aurora-cyan-50);
-  --text-secondary: var(--aurora-teal-100);
-  --text-accent: var(--aurora-purple-100);
-  --text-muted: var(--primary-200);
-  --text-dim: var(--primary-300);
-  --text-normal: var(--primary-50);
-  
-  /* Interactive system */
-  --link-color: var(--aurora-teal-300);
-  --link-hover: var(--aurora-cyan-100);
-  --highlight: var(--aurora-purple-300);
-  --highlight-bg: rgba(124, 58, 237, 0.12);
-  --selection-bg: rgba(10, 147, 150, 0.25);
-  --selection-text: var(--aurora-cyan-50);
-  
-  /* Typography system */
-  --font-family-main: 'Inter', 'SF Pro Display', system-ui, sans-serif;
-  --font-family-heading: 'Montserrat', 'Segoe UI', sans-serif;
-  --font-family-code: 'JetBrains Mono', 'Fira Code', monospace;
-  --font-size-base: 16px;
-  --line-height-base: 1.6;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-bold: 700;
-  
-  /* Layout system */
-  --content-width: 700px;
-  --sidebar-width: 300px;
-  --site-padding: 24px;
-  --element-spacing: 24px;
-  --header-height: 60px;
-  
-  /* Border system */
-  --border-radius-xs: 4px;
-  --border-radius-sm: 8px;
-  --border-radius: 12px;
-  --border-radius-lg: 16px;
-  --border-radius-xl: 24px;
-  --border-radius-full: 9999px;
-  --border-width: 1px;
-  --border-style: solid;
-  --border-color: rgba(255, 255, 255, 0.1);
-  
-  /* Shadow system */
-  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-  --shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.25), 0 15px 12px rgba(0, 0, 0, 0.15);
-  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
-  --shadow-outline: 0 0 0 3px rgba(37, 99, 235, 0.25);
-  
-  /* Component-specific */
-  --callout-border-width: 2px;
-  --callout-padding: 18px;
-  --callout-radius: var(--border-radius-sm);
-  --widget-bg: var(--glass-bg);
-  --widget-border: var(--border-color);
-  --widget-shadow: var(--shadow-md);
-  --card-border: var(--border-color);
-  --background-primary-alt: var(--glass-bg);
-  --background-secondary-alt: var(--glass-bg-lighter);
-  
-  /* Background gradient */
+  /* Enhanced background gradient */
   --bg-gradient-start: var(--primary-900);
   --bg-gradient-mid: var(--primary-800);
   --bg-gradient-end: var(--primary-700);
-  --bg-gradient-dir: 135deg;
-  
-  /* Effects */
-  --blur-amount: 10px;
-  --grain-opacity: 0.04;
-  --aurora-opacity: 0.2;
-  --starfield-opacity: 0.5;
-  --transition-speed: 0.3s;
-  --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
-  
-  /* Global setup */
-  position: relative;
-  z-index: 0;
-  font-family: var(--font-family-main);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
-  color: var(--text-primary);
-  background-color: var(--primary-900);
-  
-  /* Set up selection styling */
-  ::selection {
-    background-color: var(--selection-bg);
-    color: var(--selection-text);
-  }
+  --bg-gradient-dir: 145deg;
 }
 
 // 2. BACKGROUND: Subtle gradient and pattern
