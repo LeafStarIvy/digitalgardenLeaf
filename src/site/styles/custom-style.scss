@@ -4,48 +4,42 @@
  * glass effects, and maintains 4 fractal GIF overlays.
  */
 
-// 1. CORE VARIABLES & ETHEREAL GRADIENT PALETTE
-// ------------------------------------------------------------------
-// 1. CORE VARIABLES & DARK MECHANICAL PALETTE
-// ------------------------------------------------------------------
-// 1. CORE VARIABLES & HOLOGRAPHIC INTERFACE PALETTE
-// ------------------------------------------------------------------
-// 1. CORE VARIABLES & CYBERPUNK NEO-TOKYO PALETTE
+// 1. CORE VARIABLES & CYBER NEON PALETTE
 // ------------------------------------------------------------------
 body {
-  /* Cyberpunk Neo-Tokyo theme - Enhanced color system */
+  /* Cyber Neon theme - Enhanced color system */
   /* Primary colors */
-  --primary-900: #0D0B14;   /* Midnight */
-  --primary-800: #16121F;   /* Deep Night */
-  --primary-700: #1F1A2E;   /* Night City */
-  --primary-600: #2B2440;   /* Dark Metro */
-  --primary-500: #372F52;   /* Neon Shadow */
-  --primary-400: #453C64;   /* Shadow City */
-  --primary-300: #564B78;   /* Twilight District */
-  --primary-200: #6D5E99;   /* Electric Dusk */
-  --primary-100: #8B78C5;   /* Virtual Dawn */
-  --primary-50: #BBA8FF;    /* Digital Sky */
+  --primary-900: #080C12;   /* Deep Night */
+  --primary-800: #0F1923;   /* Night */
+  --primary-700: #152532;   /* Dark Tech */
+  --primary-600: #1C3040;   /* Tech Base */
+  --primary-500: #253C4D;   /* Base */
+  --primary-400: #2E4959;   /* Light Tech */
+  --primary-300: #3B5C6F;   /* Highlight Base */
+  --primary-200: #5D7D8F;   /* Tint */
+  --primary-100: #8AAABB;   /* Light Tint */
+  --primary-50: #C0D8E5;    /* Pale Tint */
   
   /* Accent colors - Neon spectrum */
-  --neon-cyan-500: #00F0FF;    /* Electric Cyan */
-  --neon-cyan-300: #33F6FF;    /* Bright Cyan */
-  --neon-cyan-100: #99FBFF;    /* Light Cyan */
-  --neon-cyan-50: #CCFDFF;     /* Ice Cyan */
+  --neon-green-500: #00FF41;    /* Electric Green */
+  --neon-green-300: #33FF66;    /* Bright Green */
+  --neon-green-100: #88FFAA;    /* Light Green */
+  --neon-green-50: #C4FFDC;     /* Ice Green */
   
-  --neon-magenta-500: #FF00C8;  /* Deep Magenta */
-  --neon-magenta-300: #FF33D4;  /* Bright Magenta */
-  --neon-magenta-100: #FF99E9;  /* Light Magenta */
-  --neon-magenta-50: #FFCCF4;   /* Ice Magenta */
+  --neon-blue-500: #00C3FF;     /* Electric Blue */
+  --neon-blue-300: #45D6FF;     /* Bright Blue */
+  --neon-blue-100: #A0E7FF;     /* Light Blue */
+  --neon-blue-50: #D5F5FF;      /* Ice Blue */
   
-  --neon-yellow-500: #FFDF00;   /* Electric Yellow */
-  --neon-yellow-300: #FFE633;   /* Bright Yellow */
-  --neon-yellow-100: #FFF299;   /* Light Yellow */
-  --neon-yellow-50: #FFF9CC;    /* Ice Yellow */
+  --neon-pink-500: #FF00A2;     /* Deep Pink */
+  --neon-pink-300: #FF45BE;     /* Medium Pink */
+  --neon-pink-100: #FFA0DC;     /* Light Pink */
+  --neon-pink-50: #FFD5F0;      /* Ice Pink */
   
-  --neon-green-500: #00FF66;    /* Electric Green */
-  --neon-green-300: #33FF8C;    /* Bright Green */
-  --neon-green-100: #99FFC4;    /* Light Green */
-  --neon-green-50: #CCFFE2;     /* Ice Green */
+  --neon-yellow-500: #FFCC00;   /* Electric Yellow */
+  --neon-yellow-300: #FFDB45;   /* Bright Yellow */
+  --neon-yellow-100: #FFED96;   /* Light Yellow */
+  --neon-yellow-50: #FFF6D5;    /* Ice Yellow */
   
   /* Background system */
   --background-primary: var(--primary-800);
@@ -53,66 +47,51 @@ body {
   --background-tertiary: var(--primary-600);
   --surface-1: var(--primary-500);
   --surface-2: var(--primary-400);
-  --glass-bg: rgba(22, 18, 31, 0.75);
-  --glass-bg-lighter: rgba(31, 26, 46, 0.65);
+  --glass-bg: rgba(15, 25, 35, 0.75);
+  --glass-bg-lighter: rgba(21, 37, 50, 0.65);
   
   /* Text system */
-  --text-primary: #FFFFFF;
-  --text-secondary: var(--neon-cyan-100);
-  --text-accent: var(--neon-magenta-100);
+  --text-primary: var(--neon-green-100);
+  --text-secondary: var(--neon-blue-300);
+  --text-accent: var(--neon-pink-300);
   --text-muted: var(--primary-200);
   --text-dim: var(--primary-300);
   --text-normal: var(--primary-50);
   
   /* Interactive system */
-  --link-color: var(--neon-cyan-500);
-  --link-hover: var(--neon-magenta-500);
-  --highlight: var(--neon-yellow-300);
-  --highlight-bg: rgba(255, 223, 0, 0.15);
-  --selection-bg: rgba(255, 0, 200, 0.25);
-  --selection-text: #FFFFFF;
+  --link-color: var(--neon-green-500);
+  --link-hover: var(--neon-blue-100);
+  --highlight: var(--neon-pink-500);
+  --highlight-bg: rgba(255, 0, 162, 0.12);
+  --selection-bg: rgba(0, 255, 65, 0.25);
+  --selection-text: #000000;
   
-  /* Component-specific */
-  --callout-border-width: 2px;
-  --callout-padding: 18px;
-  --callout-radius: var(--border-radius-sm);
-  --widget-bg: var(--glass-bg);
-  --widget-border: var(--border-color);
-  --widget-shadow: var(--shadow-md);
-  --card-border: var(--border-color);
-  --background-primary-alt: var(--glass-bg);
-  --background-secondary-alt: var(--glass-bg-lighter);
+  /* Shadow system with neon glow */
+  --shadow-xs: 0 1px 3px rgba(0, 255, 65, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-sm: 0 4px 6px rgba(0, 255, 65, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow: 0 10px 15px rgba(0, 255, 65, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 20px 25px rgba(0, 255, 65, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 25px 50px rgba(0, 255, 65, 0.15), 0 15px 12px rgba(0, 0, 0, 0.15);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 255, 65, 0.06);
+  --shadow-outline: 0 0 0 3px rgba(0, 255, 65, 0.25);
   
   /* Background gradient */
   --bg-gradient-start: var(--primary-900);
   --bg-gradient-mid: var(--primary-800);
   --bg-gradient-end: var(--primary-700);
   --bg-gradient-dir: 135deg;
-  
-  /* Effects */
-  --blur-amount: 10px;
-  --grain-opacity: 0.04;
-  --glitch-opacity: 0.2;
-  --neon-glow-opacity: 0.5;
-  --transition-speed: 0.3s;
-  --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
-  
-  /* Border system - enhanced with neon effects */
-  --border-color: rgba(255, 0, 200, 0.2);
-  --border-glow: 0 0 5px rgba(255, 0, 200, 0.5);
 }
-
-// 2. BACKGROUND: Digital city backdrop with scan lines
+// 2. BACKGROUND: Cyber Grid Pattern
 // ------------------------------------------------------------------
 html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   background-image:
-    linear-gradient(0deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
-    radial-gradient(circle at 30% 40%, rgba(255, 0, 200, 0.05) 0%, transparent 70%),
-    radial-gradient(circle at 70% 60%, rgba(255, 223, 0, 0.05) 0%, transparent 70%),
+    linear-gradient(0deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 20% 30%, rgba(0, 195, 255, 0.05) 0%, transparent 60%),
+    radial-gradient(circle at 80% 70%, rgba(255, 0, 162, 0.05) 0%, transparent 60%),
     linear-gradient(var(--bg-gradient-dir), var(--bg-gradient-start), var(--bg-gradient-end));
   background-size: 20px 20px, 20px 20px, 100% 100%, 100% 100%, cover;
   background-position: center, center, center, center, center;
@@ -121,129 +100,124 @@ html, body {
   color: var(--text-primary);
 }
 
-// 3. DIGITAL SCAN LINES OVERLAY
+// 3. CIRCUIT BOARD OVERLAY
 // ------------------------------------------------------------------
 .patterned {
-  background-image: 
-    linear-gradient(0deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 4px 4px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%2300FF41' fill-opacity='0.06'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 300px 300px;
   opacity: 0.3;
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  animation: scan-lines 10s linear infinite;
+}
+// 3.1 DIGITAL RAIN EFFECT
+// ------------------------------------------------------------------
+.digital-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.15;
 }
 
-@keyframes scan-lines {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 100px; }
+.rain-column {
+  position: absolute;
+  top: -100px;
+  color: var(--neon-green-500);
+  font-family: monospace;
+  font-size: 1.2rem;
+  line-height: 1;
+  text-shadow: 0 0 5px var(--neon-green-500);
+  white-space: nowrap;
+  opacity: 0;
+  animation: rain-fall linear infinite;
 }
 
-// 4. GIF OVERLAYS (4 layers)
+@for $i from 1 through 20 {
+  .rain-column:nth-child(#{$i}) {
+    left: #{random(100)}vw;
+    animation-duration: #{random(10) + 8}s;
+    animation-delay: #{random(5)}s;
+  }
+}
+
+@keyframes rain-fall {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+// 4. NEON GLOW EFFECTS
 // ------------------------------------------------------------------
 :root {
-  --gif1-url: url('/img/fractal-1.gif');
-  --gif1-top:    10%;
-  --gif1-left:   50%;
-  --gif1-width:  80%;
-  --gif1-height: 80%;
-  --gif1-opacity: 0.01;
-  --gif1-rotate: 190deg;
-  --gif2-url: url('/img/fractal-2.gif');
-  --gif2-top:    90%;
-  --gif2-left:   22%;
-  --gif2-width:  30%;
-  --gif2-height: 30%;
-  --gif2-opacity: 0.00;
-  --gif2-rotate: 65deg;
-  --gif3-url: url('/img/fractal-3.gif');
-  --gif3-bottom: 20%;
-  --gif3-right:  14%;
-  --gif3-width:  40%;
-  --gif3-height: 40%;
-  --gif3-opacity: 0.00;
-  --gif3-rotate: 0deg;
-  --gif4-url: url('/img/fractal-4.gif');
-  --gif4-top:    50%;
-  --gif4-right:  20%;
-  --gif4-width:  40%;
-  --gif4-height: 40%;
-  --gif4-opacity: 0.02;
-  --gif4-rotate: 0deg;
+  --neon-glow-1: 0 0 5px rgba(0, 255, 65, 0.5), 0 0 10px rgba(0, 255, 65, 0.3), 0 0 15px rgba(0, 255, 65, 0.1);
+  --neon-glow-2: 0 0 5px rgba(0, 195, 255, 0.5), 0 0 10px rgba(0, 195, 255, 0.3), 0 0 15px rgba(0, 195, 255, 0.1);
+  --neon-glow-3: 0 0 5px rgba(255, 0, 162, 0.5), 0 0 10px rgba(255, 0, 162, 0.3), 0 0 15px rgba(255, 0, 162, 0.1);
 }
 
-// Shared pseudos for GIFs at -1 index, below patterned and content
-body::before, body::after, html::before, html::after {
-  content: '';
-  position: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  pointer-events: none;
-  z-index: -1;
+// Neon heading glow
+h1 {
+  color: var(--neon-green-300);
+  text-shadow: var(--neon-glow-1);
 }
 
-// GIF #1 (body::before)
-body::before {
-  top:     var(--gif1-top);
-  left:    var(--gif1-left);
-  width:   var(--gif1-width);
-  height:  var(--gif1-height);
-  opacity: var(--gif1-opacity);
-  background-image: var(--gif1-url);
-  transform: translate(-50%, -50%) rotate(var(--gif1-rotate));
+h2 {
+  color: var(--neon-blue-300);
+  text-shadow: var(--neon-glow-2);
 }
 
-// GIF #2 (body::after)
-body::after {
-  top:     var(--gif2-top);
-  left:    var(--gif2-left);
-  width:   var(--gif2-width);
-  height:  var(--gif2-height);
-  opacity: var(--gif2-opacity);
-  background-image: var(--gif2-url);
-  transform: translate(-50%, -50%) rotate(var(--gif2-rotate));
-  animation: pulse 30s ease-in-out infinite;
+h3 {
+  color: var(--neon-pink-300);
+  text-shadow: var(--neon-glow-3);
 }
 
-// GIF #3 (html::before)
-html::before {
-  bottom:  var(--gif3-bottom);
-  right:   var(--gif3-right);
-  width:   var(--gif3-width);
-  height:  var(--gif3-height);
-  opacity: var(--gif3-opacity);
-  background-image: var(--gif3-url);
-  transform: translate(50%, 50%) rotate(var(--gif3-rotate));
+// Neon borders for cards
+.card {
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  
+  &:hover {
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.4), 0 0 30px rgba(0, 255, 65, 0.2);
+  }
 }
 
-// GIF #4 (html::after)
-html::after {
-  top:     var(--gif4-top);
-  right:   var(--gif4-right);
-  width:   var(--gif4-width);
-  height:  var(--gif4-height);
-  opacity: var(--gif4-opacity);
-  background-image: var(--gif4-url);
-  transform: translate(50%, -50%) rotate(var(--gif4-rotate));
+// 5. ANIMATIONS
+// ------------------------------------------------------------------
+@keyframes neon-pulse {
+  0% { opacity: 0.7; text-shadow: var(--neon-glow-1); }
+  50% { opacity: 1; text-shadow: 0 0 10px rgba(0, 255, 65, 0.7), 0 0 20px rgba(0, 255, 65, 0.5), 0 0 30px rgba(0, 255, 65, 0.3); }
+  100% { opacity: 0.7; text-shadow: var(--neon-glow-1); }
 }
 
-// Add this to section 5. ANIMATIONS
-@keyframes shimmer {
-  0% { background-position: -100% 0; }
-  100% { background-position: 200% 0; }
+@keyframes border-pulse {
+  0% { border-color: rgba(0, 255, 65, 0.3); }
+  50% { border-color: rgba(0, 255, 65, 0.7); }
+  100% { border-color: rgba(0, 255, 65, 0.3); }
 }
 
-@keyframes fade-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
 }
 
-// Make content fade in when page loads
-.content-container {
-  animation: fade-in 0.8s ease-out forwards;
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--neon-green-500); }
 }
 
+// Add terminal typing effect to first paragraph in main content
+.content-container > p:first-of-type {
+  overflow: hidden;
+  border-right: .15em solid var(--neon-green-500);
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .1em;
+  animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
 // 6. MIXINS & UTILITIES
 // ------------------------------------------------------------------
 @mixin gradient-bg($dir, $start, $end) {
@@ -257,82 +231,65 @@ html::after {
   box-shadow: var(--box-shadow);
 }
 
-// Replace in section 7. GLASS CARDS & PANELS
+// 7. GLASS CARDS & PANELS
+// ------------------------------------------------------------------
 .card {
-  background: linear-gradient(135deg, 
-    rgba(0, 229, 255, 0.05) 0%, 
-    rgba(10, 22, 39, 0.6) 100%);
-  backdrop-filter: blur(8px);
-  padding: 1.8rem;
-  margin: 1.5rem 0;
-  border-radius: 8px;
-  border: 1px solid rgba(0, 229, 255, 0.15);
-  box-shadow: 
-    0 4px 20px rgba(0, 136, 255, 0.15),
-    inset 0 0 0 1px rgba(0, 229, 255, 0.05);
+  background: rgba(15, 25, 35, 0.7);
+  backdrop-filter: blur(12px);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  border-radius: var(--border-radius);
   position: relative;
   z-index: 2;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   overflow: hidden;
-  transition: all 0.3s ease;
-  
-  // Holographic edge
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border: 2px solid transparent;
-    border-radius: 7px;
-    background: linear-gradient(135deg, 
-      rgba(0, 229, 255, 0.5),
-      rgba(0, 136, 255, 0.2),
-      rgba(171, 0, 255, 0.5)) border-box;
-    -webkit-mask: 
-      linear-gradient(#fff 0 0) padding-box, 
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
-    mask-composite: exclude;
-    opacity: 0.3;
-    transition: opacity 0.3s ease;
-  }
-  
-  // Scan effect
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, 
-      transparent,
-      var(--holo-teal-500),
-      transparent);
-    animation: scan-line 3s linear infinite;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
+  animation: border-pulse 4s infinite;
   
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 
-      0 15px 30px rgba(0, 136, 255, 0.2),
-      inset 0 0 0 1px rgba(0, 229, 255, 0.1);
-    
-    &::before {
-      opacity: 0.7;
-    }
+    border-color: rgba(0, 255, 65, 0.7);
     
     &::after {
       opacity: 1;
     }
   }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-green-500), transparent);
+    animation: neon-line-slide 4s infinite;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background: var(--neon-green-500);
+    border-radius: 50%;
+    box-shadow: 0 0 10px 2px var(--neon-green-500);
+    opacity: 0.7;
+    animation: neon-blink 1.5s infinite alternate;
+  }
 }
 
-@keyframes scan-line {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(800%); }
+@keyframes neon-line-slide {
+  0% { transform: translateX(-100%); }
+  50%, 100% { transform: translateX(100%); }
 }
 
+@keyframes neon-blink {
+  from { opacity: 0.4; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1.2); }
+}
 // 8. ENHANCED BUTTONS
 // ------------------------------------------------------------------
 .btn {
@@ -582,119 +539,8 @@ pre code {
   border: 1px solid rgba(255,255,255,0.1);
   border-bottom: none;
 }
-// Add to section 12. DIGITAL GARDEN OVERRIDES
-h1 {
-  font-size: 2.8rem;
-  position: relative;
-  color: var(--text-primary);
-  text-shadow: 0 0 8px var(--neon-green-500);
-  animation: text-flicker 5s infinite;
-  
-  &::before {
-    content: attr(data-text);
-    position: absolute;
-    left: -2px;
-    text-shadow: 2px 0 var(--neon-pink-500);
-    top: 0;
-    color: var(--text-primary);
-    background: var(--background-primary);
-    overflow: hidden;
-    clip: rect(0, 900px, 0, 0);
-    animation: noise-anim-2 3s infinite linear alternate-reverse;
-    opacity: 0.3;
-    z-index: -1;
-  }
-}
 
-@keyframes text-flicker {
-  0% { text-shadow: 0 0 4px var(--neon-green-500); }
-  5% { text-shadow: 0 0 8px var(--neon-green-500); }
-  10% { text-shadow: 0 0 4px var(--neon-green-500); }
-  15% { text-shadow: 0 0 12px var(--neon-green-500); }
-  16% { text-shadow: 0 0 4px var(--neon-green-500); }
-  95% { text-shadow: 0 0 4px var(--neon-green-500); }
-  98% { text-shadow: 0 0 20px var(--neon-green-500); }
-  100% { text-shadow: 0 0 4px var(--neon-green-500); }
-}
-
-@keyframes noise-anim-2 {
-  0% { clip: rect(21px, 9999px, 17px, 0); }
-  5% { clip: rect(22px, 9999px, 29px, 0); }
-  10% { clip: rect(18px, 9999px, 44px, 0); }
-  /* Add more steps if needed */
-  100% { clip: rect(27px, 9999px, 11px, 0); }
-}
-// Add to section 12. DIGITAL GARDEN OVERRIDES
-h1, h2, h3, h4, h5, h6 {
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-family: 'Rajdhani', 'Segoe UI', sans-serif; /* Consider adding this font */
-}
-
-h1 {
-  font-size: 2.8rem;
-  padding-bottom: 0.5rem;
-  position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 120px;
-    height: 3px;
-    background: linear-gradient(90deg, 
-      var(--mech-blue-500), 
-      var(--mech-blue-300), 
-      var(--primary-500));
-  }
-  
-  // Add triangular notch to heading
-  &::before {
-    content: '▶';
-    color: var(--mech-amber-500);
-    margin-right: 12px;
-    font-size: 0.8em;
-    vertical-align: middle;
-  }
-}
-
-// Add industrial-inspired callouts
-.callout {
-  border-left: none;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-top: 4px solid var(--mech-blue-500);
-  background: rgba(10, 13, 16, 0.6);
-  padding: var(--callout-padding);
-  position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: 20px;
-    width: 40px;
-    height: 4px;
-    background: var(--mech-amber-500);
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: 70px;
-    width: 20px;
-    height: 4px;
-    background: var(--mech-red-500);
-  }
-  
-  // Different colored tops for different callout types
-  &.note { border-top-color: var(--mech-blue-500); }
-  &.warning { border-top-color: var(--mech-amber-500); }
-  &.important { border-top-color: var(--mech-red-500); }
-}
-
-// 0 Define the title header GIF variable
+// Define the title header GIF variable
 :root {
   --title-header-gif: url('/img/fractal-title.gif');
   --title-header-gif-height: 120px;
@@ -973,271 +819,3 @@ h1 {
     padding: 1rem;
   }
 }
-// Add new section: GLITCH EFFECTS
-// ------------------------------------------------------------------
-.glitch-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  opacity: var(--glitch-opacity);
-}
-
-.glitch-line {
-  position: absolute;
-  height: 2px;
-  width: 100%;
-  background-color: var(--neon-magenta-500);
-  opacity: 0;
-  transform: translateY(-50%);
-}
-
-/* Generate 5 glitch lines with different timings */
-@for $i from 1 through 5 {
-  .glitch-line:nth-child(#{$i}) {
-    top: #{random(100)}vh;
-    animation: glitch-horizontal #{(random(3) + 1)}s infinite;
-    animation-delay: #{random(10)}s;
-  }
-}
-
-@keyframes glitch-horizontal {
-  0% { opacity: 0; transform: translateY(-50%) scaleY(1); }
-  0.5% { opacity: 0.8; transform: translateY(-50%) scaleY(random(20) + 10); }
-  1.5% { opacity: 0; transform: translateY(-50%) scaleY(1); }
-  100% { opacity: 0; transform: translateY(-50%) scaleY(1); }
-}
-
-/* Add vertical glitches */
-.glitch-block {
-  position: absolute;
-  background-color: var(--neon-cyan-500);
-  mix-blend-mode: screen;
-  opacity: 0;
-}
-
-/* Generate 5 glitch blocks with different sizes/timings */
-@for $i from 1 through 5 {
-  .glitch-block:nth-child(#{$i + 5}) {
-    height: #{random(50) + 10}px;
-    width: #{random(200) + 100}px;
-    top: #{random(100)}vh;
-    left: #{random(100)}vw;
-    animation: glitch-block #{(random(8) + 5)}s infinite;
-    animation-delay: #{random(10)}s;
-  }
-}
-
-@keyframes glitch-block {
-  0% { opacity: 0; transform: translateX(0); }
-  0.1% { opacity: 0.5; transform: translateX(-10px); }
-  0.2% { opacity: 0.1; transform: translateX(10px); }
-  0.3% { opacity: 0.5; transform: translateX(0); }
-  0.4% { opacity: 0; }
-  100% { opacity: 0; }
-}
-// Replace button styles with cyberpunk neon buttons
-.btn {
-  display: inline-block;
-  padding: 0.7em 1.5em;
-  border: 2px solid transparent;
-  border-radius: var(--border-radius);
-  font-family: var(--font-family-main);
-  font-weight: var(--font-weight-medium);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  
-  &--primary { 
-    background: transparent; 
-    border-color: var(--neon-cyan-500); 
-    color: var(--neon-cyan-500);
-    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.2), transparent);
-      transition: left 0.3s ease;
-    }
-    
-    &:hover {
-      background: rgba(0, 240, 255, 0.1);
-      box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
-      
-      &::before {
-        left: 100%;
-      }
-    }
-  }
-  
-  &--accent { 
-    background: var(--neon-magenta-500); 
-    color: #000; 
-    box-shadow: 
-      0 0 10px var(--neon-magenta-500),
-      0 0 20px rgba(255, 0, 200, 0.3);
-    
-    &:hover {
-      background: var(--neon-magenta-300);
-      box-shadow: 
-        0 0 15px var(--neon-magenta-500),
-        0 0 30px rgba(255, 0, 200, 0.5);
-    }
-  }
-  
-  &--link { 
-    background: transparent; 
-    color: var(--neon-yellow-500); 
-    text-decoration: none;
-    
-    &:hover {
-      text-shadow: 0 0 5px var(--neon-yellow-500);
-    }
-  }
-  
-  &:hover { 
-    transform: translateY(-2px); 
-  }
-}
-// Replace code block styles with cyberpunk terminal look
-pre, code {
-  font-family: var(--font-family-code);
-  font-size: 0.9em;
-}
-
-pre {
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  overflow-x: auto;
-  background: rgba(13, 11, 20, 0.7);
-  border: 1px solid var(--neon-green-500);
-  border-radius: var(--border-radius);
-  box-shadow: 
-    0 0 10px rgba(0, 255, 102, 0.2),
-    inset 0 0 20px rgba(0, 0, 0, 0.5);
-  position: relative;
-  
-  &::before {
-    content: '> TERMINAL ACCESS';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 0.5rem 1rem;
-    background: var(--neon-green-500);
-    color: var(--primary-900);
-    font-family: var(--font-family-code);
-    font-size: 0.8em;
-    font-weight: var(--font-weight-bold);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  
-  code {
-    display: block;
-    background: transparent;
-    padding: 0;
-    color: var(--neon-green-100);
-    padding-top: 1.5rem;
-    line-height: 1.5;
-    text-shadow: 0 0 2px rgba(0, 255, 102, 0.5);
-    animation: terminal-cursor 1s infinite step-end;
-  }
-}
-
-code:not(pre code) {
-  background: rgba(0, 255, 102, 0.1);
-  color: var(--neon-green-300);
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-  text-shadow: 0 0 2px rgba(0, 255, 102, 0.3);
-}
-
-@keyframes terminal-cursor {
-  0%, 100% { border-right: 2px solid transparent; }
-  50% { border-right: 2px solid var(--neon-green-500); }
-}
-// Add digital rain effect (Matrix-style)
-// ------------------------------------------------------------------
-.digital-rain {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.15;
-}
-
-.rain-column {
-  position: absolute;
-  top: -100px;
-  width: 1px;
-  height: 100px;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    var(--neon-green-500),
-    var(--neon-green-300),
-    transparent
-  );
-}
-
-/* Generate 50 rain columns */
-@for $i from 1 through 50 {
-  .rain-column:nth-child(#{$i}) {
-    left: #{random(100)}vw;
-    height: #{random(150) + 50}px;
-    opacity: #{(random(5) + 5) / 10};
-    animation: digital-rain #{(random(8) + 6)}s infinite linear;
-    animation-delay: #{random(5)}s;
-  }
-}
-
-@keyframes digital-rain {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
-}
-// Add custom cursor trail effect
-// ------------------------------------------------------------------
-.cursor-fx {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid var(--neon-magenta-500);
-  box-shadow: 0 0 10px var(--neon-magenta-500);
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s;
-  z-index: 9999;
-  backdrop-filter: invert(1);
-  mix-blend-mode: difference;
-}
-
-.cursor-fx-trail {
-  position: fixed;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: var(--neon-cyan-500);
-  box-shadow: 0 0 5px var(--neon-cyan-500);
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.5s;
-  z-index: 9998;
-  opacity: 0.7;
-}
-
