@@ -1242,44 +1242,6 @@ code:not(pre code) {
 }
 // Add to end of your file - JavaScript for effects
 // ------------------------------------------------------------------
-
-// JavaScript for cursor effect
-document.addEventListener('DOMContentLoaded', function() {
-  let cursor = document.createElement('div');
-  cursor.className = 'cursor-fx';
-  document.body.appendChild(cursor);
-  
-  let trails = [];
-  for (let i = 0; i < 5; i++) {
-    let trail = document.createElement('div');
-    trail.className = 'cursor-fx-trail';
-    document.body.appendChild(trail);
-    trails.push(trail);
-  }
-  
-  let trailIndex = 0;
-  
-  document.addEventListener('mousemove', function(e) {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    
-    setTimeout(() => {
-      trails[trailIndex].style.left = e.clientX + 'px';
-      trails[trailIndex].style.top = e.clientY + 'px';
-      
-      trailIndex = (trailIndex + 1) % trails.length;
-    }, 50);
-  });
-  
-  document.addEventListener('mousedown', function() {
-    cursor.style.width = '10px';
-    cursor.style.height = '10px';
-  });
-  
-  document.addEventListener('mouseup', function() {
-    cursor.style.width = '20px';
-    cursor.style.height = '20px';
-  });
   
   // Create digital rain
   const rainContainer = document.createElement('div');
