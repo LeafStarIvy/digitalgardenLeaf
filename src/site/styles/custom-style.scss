@@ -4,114 +4,109 @@
  * interactive elements, and pure CSS animations
  */
 
-/*
- * 1. CORE VARIABLES & EXPANDED AURORA CELESTIAL PALETTE (NEXT‑LEVEL SCSS)
- * ------------------------------------------------------------------
- *  • Fully internal SCSS maps, loops & functions
- *  • Dynamically generate CSS variables
- *  • Support multiple themes, dark/light mode toggling
- *  • Color math with HSL lighten/darken
- */
+///////////////////////////////////////////////////////////////
+// 1. CORE VARIABLES & EXPANDED AURORA CELESTIAL PALETTE
+///////////////////////////////////////////////////////////////
 
-// 1.1. HELPER FUNCTIONS
-// ------------------------------------------------------------------
-@function hex-to-hsl($hex) {
-  $rgb: red($hex), green($hex), blue($hex);
-  @return hsl(
-    hue($hex),
-    saturation($hex),
-    lightness($hex)
-  );
-}
-
-@function adjust-color($color, $amount) {
-  @return mix(white, $color, $amount);
-}
-
-// 1.2. COLOR PALETTE MAPS
-// ------------------------------------------------------------------
-$cosmic-base: (
-  void : #010508,
-  abyss: #01080F
+// ---------------------------------------------------------
+// Sass Maps for All Color Scales 🪐
+// ---------------------------------------------------------
+$cosmic-scale: (
+  void:   #010508,
+  abyss:  #01080F,
+  900:    #020B19,
+  800:    #0A192F,
+  700:    #112240,
+  600:    #1E3A5F,
+  500:    #2A4A73,
+  400:    #3B5F8F,
+  300:    #5478AD,
+  200:    #7599CB,
+  100:    #A3BFEF,
+  50:     #D4E5FF
 );
 
-$primary-scale: (
-  900: #020B19, 850: #051425, 800: #0A192F, 750: #0E2038,
-  700: #112240, 650: #172C4C, 600: #1E3A5F, 550: #244467,
-  500: #2A4A73, 450: #31547F, 400: #3B5F8F, 350: #466B9E,
-  300: #5478AD, 250: #658ABE, 200: #7599CB, 150: #8AADED,
-  100: #A3BFEF, 75:  #BECCEA, 50:  #D4E5FF, 25:  #E9F2FF
+$aurora-palettes: (
+  teal:   (900: #035D87, 700: #0679B3, 500: #0EA5E9, 300: #38BDF8, 100: #7DD3FC),
+  cyan:   (900: #03565F, 700: #047481, 500: #06B6D4, 300: #22D3EE, 100: #A5F3FC),
+  purple: (900: #4B1E99, 700: #5F25C0, 500: #7C3AED, 300: #A78BFA, 100: #C4B5FD),
+  pink:   (900: #8F1DAA, 700: #B324D3, 500: #D946EF, 300: #F0ABFC, 100: #F5D0FE)
 );
 
-$aurora-spectra: (
-  teal : (900: #035D87, 700: #0679B3, 500: #0EA5E9, 300: #38BDF8, 100: #7DD3FC, 25: #E0F5FF),
-  cyan : (900: #03565F, 700: #047481, 500: #06B6D4, 300: #22D3EE, 100: #A5F3FC, 25: #ECFDFF),
-  purple : (900: #4B1E99, 700: #5F25C0, 500: #7C3AED, 300: #A78BFA, 100: #C4B5FD, 25: #F6F4FF),
-  pink   : (900: #8F1DAA, 700: #B324D3, 500: #D946EF, 300: #F0ABFC, 100: #F5D0FE, 25: #FDF4FF)
-);
-
-$aurora-accents: (
-  emerald: #10B981,
-  amber  : #F59E0B,
-  rose   : #F43F5E
-);
-
-// 1.3. GENERATE CSS VARIABLES
-// ------------------------------------------------------------------
-:root {
-  // Cosmic base
-  @each $name, $hex in $cosmic-base {
-    --cosmic-#{$name}: #{$hex};
-  }
-
-  // Primary scale
-  @each $shade, $hex in $primary-scale {
-    --primary-#{$shade}: #{$hex};
-  }
-
-  // Aurora spectra
-  @each $hue, $shades in $aurora-spectra {
-    @each $shade, $hex in $shades {
-      --aurora-#{$hue}-#{$shade}: #{$hex};
+// ---------------------------------------------------------
+// Root-Level CSS Custom Properties 🌌
+// ---------------------------------------------------------
+@layer variables {
+  :root {
+    // Generate cosmic and primary scales
+    @each $key, $color in $cosmic-scale {
+      --cosmic-#{$key}: #{$color};
+      --primary-#{$key}: #{$color};
     }
-  }
 
-  // Aurora accents
-  @each $name, $hex in $aurora-accents {
-    --aurora-#{$name}: #{$hex};
-  }
+    // Generate aurora hues with light/dark variants
+    @each $hue, $map in $aurora-palettes {
+      @each $level, $color in map-get($aurora-palettes, $hue) {
+        --aurora-#{$hue}-#{$level}: #{$color};
+        --aurora-#{$hue}-#{$level}-light: #{mix($color, #fff, 15%)};
+        --aurora-#{$hue}-#{$level}-dark: #{mix($color, #000, 15%)};
+      }
+    }
 
-  // Derived hues (lighten/darken)
-  @each $shade, $hex in $primary-scale {
-    --primary-#{$shade}-light: #{adjust-color($hex, 20%)};
-    --primary-#{$shade}-dark : #{adjust-color($hex, -10%)};
-  }
+    // Advanced Dynamic Gradients using color-mix
+    --gradient-cosmic-horizon: 
+      linear-gradient(
+        135deg,
+        var(--primary-900),
+        color-mix(in sRGB, var(--primary-900) 75%, var(--primary-700) 25%),
+        var(--primary-500)
+      );
 
-  // Gradient presets
-  --gradient-cosmic-horizon: #{map-get($primary-scale, 900)};
-  --gradient-aurora-sweep: linear-gradient(90deg,
-    map-get(map-get($aurora-spectra, purple), 500),
-    map-get(map-get($aurora-spectra, pink), 500),
-    map-get(map-get($aurora-spectra, teal), 500)
-  );
+    --gradient-aurora-sweep: 
+      linear-gradient(
+        90deg,
+        var(--aurora-purple-500),
+        var(--aurora-pink-500),
+        var(--aurora-teal-500)
+      );
 
-  // Theme toggles
-  --bg-light: var(--primary-100);
-  --bg-dark : var(--primary-900);
-  --text-light: var(--primary-900);
-  --text-dark : var(--primary-25);
+    // Semantic System Colors
+    --color-bg: var(--primary-800);
+    --color-surface: var(--primary-700);
+    --color-text: var(--aurora-cyan-50);
+    --color-accent: var(--aurora-purple-500);
+    --color-accent-hover: var(--aurora-purple-700);
 
-  // Dynamic mode switch
-  body {
-    background-color: var(--bg-dark);
-    color: var(--text-dark);
+    // Fluid Typography 🔠
+    --font-size-xs: clamp(0.65rem, 0.8vw + 0.3rem, 0.8rem);
+    --font-size-base: clamp(1rem, 1.2vw + 0.4rem, 1.1rem);
+    --font-size-lg: clamp(1.25rem, 1.5vw + 0.5rem, 1.5rem);
+    --line-height-base: 1.6;
+
+    // Transition & Ease System 🚀
+    --transition-speed: 0.3s;
+    --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-default: var(--transition-speed) var(--transition-ease);
+
+    // Dark/Light Mode Overrides
     @media (prefers-color-scheme: light) {
-      background-color: var(--bg-light);
-      color: var(--text-light);
+      --color-bg: var(--primary-50);
+      --color-text: var(--primary-900);
+      --gradient-cosmic-horizon: 
+        linear-gradient(
+          135deg,
+          var(--primary-100),
+          var(--primary-300),
+          var(--primary-500)
+        );
+    }
+
+    // CSS Color-Contrast Utility (Color Module Level 5)
+    @supports (color: color-contrast(var(--color-bg) vs white, black)) {
+      --text-on-bg: color-contrast(var(--color-bg) vs white, black);
     }
   }
-}  
-
+}
 
 // 2. ENHANCED BACKGROUND: Multi-layered cosmic environment
 // ------------------------------------------------------------------
