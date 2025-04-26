@@ -4,44 +4,37 @@
  * glass effects, and maintains 4 fractal GIF overlays.
  */
 
-// 1. CORE VARIABLES - MIDNIGHT OCEAN PALETTE
-// ------------------------------------------------------------------
-// 1. CORE VARIABLES & CYBER NEON PALETTE
+// 1. CORE VARIABLES & ETHEREAL GRADIENT PALETTE
 // ------------------------------------------------------------------
 body {
-  /* Cyber Neon theme - Enhanced color system */
+  /* Ethereal Gradient theme - Enhanced color system */
   /* Primary colors */
-  --primary-900: #050718;   /* Deep Digital Space */
-  --primary-800: #0C0E23;   /* Digital Midnight */
-  --primary-700: #171A3A;   /* Digital Twilight */
-  --primary-600: #1F2550;   /* Circuit Paths */
-  --primary-500: #282E5C;   /* Mainframe */
-  --primary-400: #343B71;   /* Digital Dusk */
-  --primary-300: #4C598D;   /* Electron Blue */
-  --primary-200: #6278B0;   /* Grid Lines */
-  --primary-100: #8BA5DF;   /* Data Stream */
-  --primary-50: #C2D4FF;    /* Soft Glow */
+  --primary-900: #0C0B1D;   /* Deep Midnight */
+  --primary-800: #161339;   /* Royal Depth */
+  --primary-700: #241E58;   /* Twilight Vision */
+  --primary-600: #392D76;   /* Amethyst Depth */
+  --primary-500: #473684;   /* Lavender Dusk */
+  --primary-400: #604A97;   /* Purple Haze */
+  --primary-300: #8169BB;   /* Soft Violet */
+  --primary-200: #A692D9;   /* Lilac Dream */
+  --primary-100: #C9BDF0;   /* Pastel Periwinkle */
+  --primary-50: #EDE7FF;    /* Morning Mist */
   
-  /* Accent colors - Neon spectrum */
-  --neon-green-500: #0CFA7E;    /* Electric Green */
-  --neon-green-300: #4EFFB2;    /* Bright Terminal Green */
-  --neon-green-100: #86FFD1;    /* Light Scanline */
-  --neon-green-50: #C4FFF0;     /* Digital Haze */
+  /* Accent colors - Gradient spectrum */
+  --gradient-teal-500: #38CFBD;    /* Verdigris */
+  --gradient-teal-300: #79EEE2;    /* Aqua Breeze */
+  --gradient-teal-100: #B5F7F1;    /* Crystal Water */
+  --gradient-teal-50: #DAFAF7;     /* Mint Frost */
   
-  --neon-blue-500: #00D8FF;     /* Electric Blue */
-  --neon-blue-300: #44F0FF;     /* Bright Terminal Blue */
-  --neon-blue-100: #A0F9FF;     /* Light Circuit */
-  --neon-blue-50: #D5FDFF;      /* Digital Frost */
+  --gradient-rose-500: #E469B3;    /* Rose Bloom */
+  --gradient-rose-300: #F290C7;    /* Pink Petal */
+  --gradient-rose-100: #F9C2E1;    /* Cherry Blossom */
+  --gradient-rose-50: #FDE4F0;     /* Petal Dew */
   
-  --neon-pink-500: #FF0FBA;     /* Hot Neon Pink */
-  --neon-pink-300: #FF50DF;     /* Bright Terminal Pink */
-  --neon-pink-100: #FF9DF1;     /* Light Node */
-  --neon-pink-50: #FFD2F8;      /* Digital Blush */
-  
-  --neon-yellow-500: #FFDF00;   /* Electric Yellow */
-  --neon-yellow-300: #FFE945;   /* Warning Signal */
-  --neon-yellow-100: #FFF599;   /* Light Execute */
-  --neon-yellow-50: #FFFBD6;    /* Digital Glow */
+  --gradient-gold-500: #E4B86B;    /* Amber Glow */
+  --gradient-gold-300: #F2D196;    /* Honey Light */
+  --gradient-gold-100: #F9E7C7;    /* Golden Hour */
+  --gradient-gold-50: #FCF4E4;     /* Champagne Mist */
   
   /* Background system */
   --background-primary: var(--primary-900);
@@ -49,43 +42,47 @@ body {
   --background-tertiary: var(--primary-700);
   --surface-1: var(--primary-600);
   --surface-2: var(--primary-500);
-  --glass-bg: rgba(5, 7, 24, 0.85);
-  --glass-bg-lighter: rgba(12, 14, 35, 0.75);
+  --glass-bg: rgba(12, 11, 29, 0.7);
+  --glass-bg-lighter: rgba(22, 19, 57, 0.6);
   
   /* Text system */
-  --text-primary: var(--neon-green-50);
-  --text-secondary: var(--neon-blue-100);
-  --text-accent: var(--neon-pink-100);
+  --text-primary: var(--primary-50);
+  --text-secondary: var(--gradient-teal-100);
+  --text-accent: var(--gradient-rose-100);
   --text-muted: var(--primary-200);
   --text-dim: var(--primary-300);
-  --text-normal: var(--neon-green-100);
+  --text-normal: var(--primary-100);
   
   /* Interactive system */
-  --link-color: var(--neon-green-300);
-  --link-hover: var(--neon-blue-300);
-  --highlight: var(--neon-pink-300);
-  --highlight-bg: rgba(255, 15, 186, 0.15);
-  --selection-bg: rgba(0, 216, 255, 0.3);
-  --selection-text: var(--neon-green-50);
+  --link-color: var(--gradient-teal-300);
+  --link-hover: var(--gradient-rose-300);
+  --highlight: var(--gradient-gold-300);
+  --highlight-bg: rgba(228, 184, 107, 0.1);
+  --selection-bg: rgba(56, 207, 189, 0.2);
+  --selection-text: var(--primary-50);
 }
-
-// 2. BACKGROUND: Subtle gradient and pattern
+// 2. BACKGROUND: Dynamic gradient animation
 // ------------------------------------------------------------------
 html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  background-image:
-    radial-gradient(circle at 30% 40%, rgba(93, 95, 239, 0.03) 0%, transparent 70%),
-    radial-gradient(circle at 70% 60%, rgba(139, 92, 246, 0.03) 0%, transparent 70%),
-    linear-gradient(var(--bg-gradient-dir), var(--bg-gradient-start), var(--bg-gradient-end));
-  background-size: 100% 100%, 100% 100%, cover;
-  background-position: center, center, center;
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-attachment: fixed, fixed, fixed;
+  background: linear-gradient(125deg, 
+    var(--primary-900) 0%, 
+    var(--primary-800) 25%,
+    rgba(36, 30, 88, 0.95) 50%, 
+    rgba(57, 45, 118, 0.9) 75%,
+    rgba(71, 54, 132, 0.85) 100%) fixed;
+  background-size: 400% 400%;
+  animation: gradient-shift 28s ease infinite;
   color: var(--text-primary);
 }
 
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 // 3. CYBER GRID OVERLAY
 // ------------------------------------------------------------------
 .patterned {
@@ -225,39 +222,51 @@ html::after {
 
 // Replace in section 7. GLASS CARDS & PANELS
 .card {
-  @include glass-card(12px, 0.12);
-  padding: 1.5rem;
-  margin: 1rem 0;
-  border: 1px solid rgba(255,255,255,0.1);
+  background: linear-gradient(135deg, 
+    rgba(255,255,255,0.05) 0%, 
+    rgba(255,255,255,0.1) 100%);
+  backdrop-filter: blur(12px);
+  padding: 1.8rem;
+  margin: 1.5rem 0;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 
+    0 4px 24px rgba(0,0,0,0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.04);
   position: relative;
   z-index: 2;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   overflow: hidden;
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    border-color: rgba(255,255,255,0.2);
-    
-    &::after {
-      opacity: 1;
-    }
-  }
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
   
-  &::after {
+  &::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255,255,255,0.1), 
-                transparent);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    animation: shimmer 2s infinite;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background: linear-gradient(
+      45deg,
+      transparent 20%,
+      rgba(255,255,255,0.1) 25%,
+      transparent 30%
+    );
+    transform: rotate(45deg);
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  
+  &:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 
+      0 20px 30px rgba(0,0,0,0.25),
+      inset 0 0 0 1px rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.15);
+    
+    &::before {
+      top: -30%;
+      left: -30%;
+      transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
   }
 }
 
