@@ -4,109 +4,170 @@
  * interactive elements, and pure CSS animations
  */
 
-///////////////////////////////////////////////////////////////
-// 1. CORE VARIABLES & EXPANDED AURORA CELESTIAL PALETTE
-///////////////////////////////////////////////////////////////
+/*
+ * INFINITE COSMIC DIGITAL GARDEN SCSS
+ * Section 1: CORE VARIABLES & EXPANDED AURORA CELESTIAL PALETTE (ULTRA EDITION)
+ * Massive extension with fluid typographic scales, semantic tokens, breakpoint maps,
+ * CSS-only theme toggles, and advanced color functions—all pure CSS/SCSS.
+ */
 
-// ---------------------------------------------------------
-// Sass Maps for All Color Scales 🪐
-// ---------------------------------------------------------
-$cosmic-scale: (
-  void:   #010508,
-  abyss:  #01080F,
-  900:    #020B19,
-  800:    #0A192F,
-  700:    #112240,
-  600:    #1E3A5F,
-  500:    #2A4A73,
-  400:    #3B5F8F,
-  300:    #5478AD,
-  200:    #7599CB,
-  100:    #A3BFEF,
-  50:     #D4E5FF
+// 1.1 BREAKPOINTS & CONTROL MAPS
+// ------------------------------------------------------------------
+$breakpoints: (
+  xs: 480px,
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  '2xl': 1536px
 );
 
-$aurora-palettes: (
-  teal:   (900: #035D87, 700: #0679B3, 500: #0EA5E9, 300: #38BDF8, 100: #7DD3FC),
-  cyan:   (900: #03565F, 700: #047481, 500: #06B6D4, 300: #22D3EE, 100: #A5F3FC),
-  purple: (900: #4B1E99, 700: #5F25C0, 500: #7C3AED, 300: #A78BFA, 100: #C4B5FD),
-  pink:   (900: #8F1DAA, 700: #B324D3, 500: #D946EF, 300: #F0ABFC, 100: #F5D0FE)
+@function bp($key) {
+  @return map-get($breakpoints, $key) !default;
+}
+
+// 1.2 FLUID TYPOGRAPHY SCALE
+// ------------------------------------------------------------------
+// clamp(min, vw-based, max)
+$fluid-sizes: (
+  xs: clamp(0.75rem, 1vw + 0.5rem, 0.875rem),
+  sm: clamp(0.875rem, 1.2vw + 0.6rem, 1rem),
+  base: clamp(1rem, 1.4vw + 0.8rem, 1.125rem),
+  md: clamp(1.125rem, 1.6vw + 0.9rem, 1.25rem),
+  lg: clamp(1.25rem, 1.8vw + 1rem, 1.5rem),
+  xl: clamp(1.5rem, 2vw + 1.1rem, 2rem),
+  '2xl': clamp(1.75rem, 2.4vw + 1.2rem, 2.5rem),
+  '3xl': clamp(2.25rem, 3vw + 1.3rem, 3rem),
+  '4xl': clamp(3rem, 4vw + 1.5rem, 4rem)
 );
 
-// ---------------------------------------------------------
-// Root-Level CSS Custom Properties 🌌
-// ---------------------------------------------------------
-@layer variables {
-  :root {
-    // Generate cosmic and primary scales
-    @each $key, $color in $cosmic-scale {
-      --cosmic-#{$key}: #{$color};
-      --primary-#{$key}: #{$color};
-    }
+@function fs($key) {
+  @return map-get($fluid-sizes, $key) !default;
+}
 
-    // Generate aurora hues with light/dark variants
-    @each $hue, $map in $aurora-palettes {
-      @each $level, $color in map-get($aurora-palettes, $hue) {
-        --aurora-#{$hue}-#{$level}: #{$color};
-        --aurora-#{$hue}-#{$level}-light: #{mix($color, #fff, 15%)};
-        --aurora-#{$hue}-#{$level}-dark: #{mix($color, #000, 15%)};
-      }
-    }
+// 1.3 SEMANTIC COLOR TOKEN MAP
+// ------------------------------------------------------------------
+$cosmic-palette: (
+  cosmic-void: #010508,
+  cosmic-abyss: #01080F,
+  space-900: #020B19,
+  space-800: #0A192F,
+  twilight: #1E3A5F,
+  aurora-teal: #0EA5E9,
+  aurora-cyan: #06B6D4,
+  aurora-purple: #7C3AED,
+  aurora-pink: #D946EF,
+  emerald: #10B981,
+  amber: #F59E0B,
+  rose: #F43F5E
+);
 
-    // Advanced Dynamic Gradients using color-mix
-    --gradient-cosmic-horizon: 
-      linear-gradient(
-        135deg,
-        var(--primary-900),
-        color-mix(in sRGB, var(--primary-900) 75%, var(--primary-700) 25%),
-        var(--primary-500)
-      );
+@function col($key) {
+  @return map-get($cosmic-palette, $key) !default;
+}
 
-    --gradient-aurora-sweep: 
-      linear-gradient(
-        90deg,
-        var(--aurora-purple-500),
-        var(--aurora-pink-500),
-        var(--aurora-teal-500)
-      );
-
-    // Semantic System Colors
-    --color-bg: var(--primary-800);
-    --color-surface: var(--primary-700);
-    --color-text: var(--aurora-cyan-50);
-    --color-accent: var(--aurora-purple-500);
-    --color-accent-hover: var(--aurora-purple-700);
-
-    // Fluid Typography 🔠
-    --font-size-xs: clamp(0.65rem, 0.8vw + 0.3rem, 0.8rem);
-    --font-size-base: clamp(1rem, 1.2vw + 0.4rem, 1.1rem);
-    --font-size-lg: clamp(1.25rem, 1.5vw + 0.5rem, 1.5rem);
-    --line-height-base: 1.6;
-
-    // Transition & Ease System 🚀
-    --transition-speed: 0.3s;
-    --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-default: var(--transition-speed) var(--transition-ease);
-
-    // Dark/Light Mode Overrides
-    @media (prefers-color-scheme: light) {
-      --color-bg: var(--primary-50);
-      --color-text: var(--primary-900);
-      --gradient-cosmic-horizon: 
-        linear-gradient(
-          135deg,
-          var(--primary-100),
-          var(--primary-300),
-          var(--primary-500)
-        );
-    }
-
-    // CSS Color-Contrast Utility (Color Module Level 5)
-    @supports (color: color-contrast(var(--color-bg) vs white, black)) {
-      --text-on-bg: color-contrast(var(--color-bg) vs white, black);
-    }
+// Generate hues with lighten/darken on the fly
+@function cosmic-step($color, $pct) {
+  @if $pct > 0 {
+    @return lighten($color, $pct);
+  } @else {
+    @return darken($color, abs($pct));
   }
 }
+
+// 1.4 CSS-ONLY THEME TOGGLE
+// ------------------------------------------------------------------
+// Uses checkbox hack: <input type="checkbox" id="theme-toggle" hidden>
+// <label for="theme-toggle">🌗</label>
+:root {
+  --theme-switch: unchecked;
+}
+#theme-toggle:checked ~ :root {
+  --theme-switch: checked;
+}
+
+@function theme-var($prop) {
+  @return var(--#{$prop}-#{$theme-switch});
+}
+
+// 1.5 CORE CUSTOM PROPERTIES
+// ------------------------------------------------------------------
+:root {
+  // Semantic backgrounds
+  --bg-primary: #{cosmic-step(col(space-900), 0)};
+  --bg-secondary: #{cosmic-step(col(space-800), 5)};
+  --bg-tertiary: #{cosmic-step(col(twilight), 10)};
+
+  // Semantic text
+  --text-primary: #{cosmic-step(col(aurora-cyan), 20)};
+  --text-secondary: #{cosmic-step(col(aurora-teal), 15)};
+  --text-accent: #{cosmic-step(col(aurora-purple), -10)};
+
+  // Semantic accents
+  --accent-success: #{cosmic-step(col(emerald), 10)};
+  --accent-warning: #{cosmic-step(col(amber), 0)};
+  --accent-danger: #{cosmic-step(col(rose), -5)};
+
+  // Fluid typography
+  --font-xs: #{fs(xs)};
+  --font-sm: #{fs(sm)};
+  --font-base: #{fs(base)};
+  --font-md: #{fs(md)};
+  --font-lg: #{fs(lg)};
+  --font-xl: #{fs(xl)};
+  --font-2xl: #{fs(2xl)};
+  --font-3xl: #{fs(3xl)};
+  --font-4xl: #{fs(4xl)};
+
+  // Spacing scale
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+
+  // Border radius semantic
+  --radius-sm: 4px;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+
+  // Z-index layers
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-modal: 900;
+  --z-tooltip: 1100;
+
+  // Transitions
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-default: 0.3s;
+}
+
+// 1.6 DARK / LIGHT VARIANTS
+// ------------------------------------------------------------------
+// Generate light theme overrides automatically
+@each $key, $val in $cosmic-palette {
+  :root[data-theme="light"] {
+    --#{$key}-light: #{lighten($val, 30%)};
+  }
+  :root[data-theme="dark"] {
+    --#{$key}-dark: #{darken($val, 20%)};
+  }
+}
+
+// 1.7 UTILITIES FOR BREAKPOINT USAGE
+// ------------------------------------------------------------------
+@mixin respond-to($bp) {
+  @media (min-width: bp($bp)) {
+    @content;
+  }
+}
+
+// Example usage for section 2+:
+// @include respond-to(md) { .container { max-width: 720px; }}
+
+/* End of Section 1 - Ready for Ultra Cosmic Immersion */
+
 
 // 2. ENHANCED BACKGROUND: Multi-layered cosmic environment
 // ------------------------------------------------------------------
