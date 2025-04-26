@@ -1,119 +1,388 @@
 /*
- * CUSTOM STYLE SCSS - FIXED
- * Restores original cosmic theme, static PNG fractal, patterned watermark,
- * glass effects, and maintains 4 fractal GIF overlays.
+ * ENHANCED COSMIC DIGITAL GARDEN SCSS
+ * Advanced immersive cosmic theme with expanded color system,
+ * interactive elements, and pure CSS animations
  */
 
-// 1. CORE VARIABLES & CYBER NEON PALETTE
+// 1. CORE VARIABLES & EXPANDED AURORA CELESTIAL PALETTE
 // ------------------------------------------------------------------
 body {
-  /* Cyber Neon theme - Enhanced color system */
-  /* Primary colors */
-  --primary-900: #080C12;   /* Deep Night */
-  --primary-800: #0F1923;   /* Night */
-  --primary-700: #152532;   /* Dark Tech */
-  --primary-600: #1C3040;   /* Tech Base */
-  --primary-500: #253C4D;   /* Base */
-  --primary-400: #2E4959;   /* Light Tech */
-  --primary-300: #3B5C6F;   /* Highlight Base */
-  --primary-200: #5D7D8F;   /* Tint */
-  --primary-100: #8AAABB;   /* Light Tint */
-  --primary-50: #C0D8E5;    /* Pale Tint */
+  /* Aurora Celestial theme - Massively enhanced color system */
   
-  /* Accent colors - Neon spectrum */
-  --neon-green-500: #00FF41;    /* Electric Green */
-  --neon-green-300: #33FF66;    /* Bright Green */
-  --neon-green-100: #88FFAA;    /* Light Green */
-  --neon-green-50: #C4FFDC;     /* Ice Green */
+  /* Primary Cosmic Scale - Expanded depth range */
+  --cosmic-void: #010508;        /* Absolute void */
+  --cosmic-abyss: #01080F;       /* Deep abyss */
+  --primary-900: #020B19;        /* Deepest Space */
+  --primary-850: #051425;        /* Deeper Space */
+  --primary-800: #0A192F;        /* Deep Space */
+  --primary-750: #0E2038;        /* Between Deep Space and Space */
+  --primary-700: #112240;        /* Space */
+  --primary-650: #172C4C;        /* Upper Space */
+  --primary-600: #1E3A5F;        /* Twilight */
+  --primary-550: #244467;        /* Lower Dusk */
+  --primary-500: #2A4A73;        /* Dusk */
+  --primary-450: #31547F;        /* Upper Dusk */
+  --primary-400: #3B5F8F;        /* Evening Sky */
+  --primary-350: #466B9E;        /* Lower Night Sky */
+  --primary-300: #5478AD;        /* Night Sky */
+  --primary-250: #658ABE;        /* Upper Night Sky */
+  --primary-200: #7599CB;        /* Dawn */
+  --primary-150: #8AADED;        /* Lower Morning Sky */
+  --primary-100: #A3BFEF;        /* Morning Sky */
+  --primary-75: #BECCEA;         /* Light Morning */
+  --primary-50: #D4E5FF;         /* Light Sky */
+  --primary-25: #E9F2FF;         /* Whisper Sky */
   
-  --neon-blue-500: #00C3FF;     /* Electric Blue */
-  --neon-blue-300: #45D6FF;     /* Bright Blue */
-  --neon-blue-100: #A0E7FF;     /* Light Blue */
-  --neon-blue-50: #D5F5FF;      /* Ice Blue */
+  /* Aurora Spectrum - Expanded with intensity levels */
   
-  --neon-pink-500: #FF00A2;     /* Deep Pink */
-  --neon-pink-300: #FF45BE;     /* Medium Pink */
-  --neon-pink-100: #FFA0DC;     /* Light Pink */
-  --neon-pink-50: #FFD5F0;      /* Ice Pink */
+  /* Teal/Blue spectrum */
+  --aurora-teal-900: #035D87;    /* Deep Ocean Teal */
+  --aurora-teal-700: #0679B3;    /* Ocean Teal */
+  --aurora-teal-500: #0EA5E9;    /* Electric Teal */
+  --aurora-teal-300: #38BDF8;    /* Bright Teal */
+  --aurora-teal-200: #55C6FA;    /* Light Electric Teal */
+  --aurora-teal-100: #7DD3FC;    /* Light Teal */
+  --aurora-teal-50: #BAE6FD;     /* Ice Teal */
+  --aurora-teal-25: #E0F5FF;     /* Faint Teal */
   
-  --neon-yellow-500: #FFCC00;   /* Electric Yellow */
-  --neon-yellow-300: #FFDB45;   /* Bright Yellow */
-  --neon-yellow-100: #FFED96;   /* Light Yellow */
-  --neon-yellow-50: #FFF6D5;    /* Ice Yellow */
+  /* Cyan spectrum */
+  --aurora-cyan-900: #03565F;    /* Deep Cyan */
+  --aurora-cyan-700: #047481;    /* Ocean Cyan */
+  --aurora-cyan-500: #06B6D4;    /* Cyan */
+  --aurora-cyan-300: #22D3EE;    /* Bright Cyan */
+  --aurora-cyan-200: #4DDBF1;    /* Light Electric Cyan */
+  --aurora-cyan-100: #A5F3FC;    /* Light Cyan */
+  --aurora-cyan-50: #CFFAFE;     /* Ice Cyan */
+  --aurora-cyan-25: #ECFDFF;     /* Faint Cyan */
   
-  /* Background system */
+  /* Purple spectrum */
+  --aurora-purple-900: #4B1E99;  /* Deep Dark Purple */
+  --aurora-purple-700: #5F25C0;  /* Dark Purple */
+  --aurora-purple-500: #7C3AED;  /* Deep Purple */
+  --aurora-purple-400: #8B51F5;  /* Rich Purple */
+  --aurora-purple-300: #A78BFA;  /* Medium Purple */
+  --aurora-purple-200: #BFA8FC;  /* Light Medium Purple */
+  --aurora-purple-100: #C4B5FD;  /* Light Purple */
+  --aurora-purple-50: #EDE9FE;   /* Ice Purple */
+  --aurora-purple-25: #F6F4FF;   /* Faint Purple */
+  
+  /* Pink spectrum */
+  --aurora-pink-900: #8F1DAA;    /* Deep Dark Pink */
+  --aurora-pink-700: #B324D3;    /* Dark Pink */
+  --aurora-pink-500: #D946EF;    /* Deep Pink */
+  --aurora-pink-400: #E26BF2;    /* Rich Pink */
+  --aurora-pink-300: #F0ABFC;    /* Medium Pink */
+  --aurora-pink-200: #F2BDFD;    /* Light Medium Pink */
+  --aurora-pink-100: #F5D0FE;    /* Light Pink */
+  --aurora-pink-50: #FAE8FF;     /* Ice Pink */
+  --aurora-pink-25: #FDF4FF;     /* Faint Pink */
+  
+  /* Additional aurora hues */
+  --aurora-emerald-500: #10B981; /* Emerald */
+  --aurora-emerald-300: #34D399; /* Bright Emerald */
+  --aurora-emerald-100: #A7F3D0; /* Light Emerald */
+  
+  --aurora-amber-500: #F59E0B;   /* Amber */
+  --aurora-amber-300: #FBBF24;   /* Bright Amber */
+  --aurora-amber-100: #FDE68A;   /* Light Amber */
+  
+  --aurora-rose-500: #F43F5E;    /* Rose */
+  --aurora-rose-300: #FB7185;    /* Bright Rose */
+  --aurora-rose-100: #FCA5B3;    /* Light Rose */
+  
+  /* Advanced Gradient Palettes */
+  --gradient-cosmic-horizon: linear-gradient(135deg, var(--primary-900), var(--primary-700) 50%, var(--primary-600));
+  --gradient-aurora-sweep: linear-gradient(90deg, var(--aurora-purple-500), var(--aurora-pink-500), var(--aurora-teal-500));
+  --gradient-northern-lights: linear-gradient(135deg, var(--aurora-cyan-500), var(--aurora-teal-300), var(--aurora-purple-400));
+  --gradient-nebula-dust: linear-gradient(to bottom, var(--primary-800), var(--primary-700), var(--aurora-purple-900) 80%);
+  --gradient-star-trail: linear-gradient(60deg, var(--primary-900), var(--primary-800) 30%, var(--primary-700) 70%, var(--primary-600));
+  --gradient-text-cosmic: linear-gradient(90deg, var(--aurora-teal-300), var(--aurora-cyan-200), var(--aurora-purple-300));
+  --gradient-button-glow: linear-gradient(45deg, var(--aurora-purple-500), var(--aurora-teal-500));
+  --gradient-card-highlight: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
+  
+  /* Background system - Enhanced with variable opacity levels */
   --background-primary: var(--primary-800);
   --background-secondary: var(--primary-700);
   --background-tertiary: var(--primary-600);
+  --background-quaternary: var(--primary-500);
   --surface-1: var(--primary-500);
   --surface-2: var(--primary-400);
-  --glass-bg: rgba(15, 25, 35, 0.75);
-  --glass-bg-lighter: rgba(21, 37, 50, 0.65);
+  --surface-3: var(--primary-450);
   
-  /* Text system */
-  --text-primary: var(--neon-green-100);
-  --text-secondary: var(--neon-blue-300);
-  --text-accent: var(--neon-pink-300);
+  /* Glass effect presets with variable intensity */
+  --glass-bg: rgba(10, 25, 47, 0.75);
+  --glass-bg-lighter: rgba(16, 36, 64, 0.65);
+  --glass-bg-lightest: rgba(22, 42, 75, 0.55);
+  --glass-bg-dark: rgba(1, 8, 15, 0.85);
+  --glass-bg-darkest: rgba(1, 5, 10, 0.95);
+  --glass-blur-strong: blur(12px);
+  --glass-blur-medium: blur(8px);
+  --glass-blur-light: blur(4px);
+  
+  /* Text system - Enhanced with varied intensity and purpose */
+  --text-primary: var(--aurora-cyan-50);
+  --text-secondary: var(--aurora-teal-100);
+  --text-tertiary: var(--aurora-teal-200);
+  --text-accent: var(--aurora-purple-100);
+  --text-accent-strong: var(--aurora-purple-300);
   --text-muted: var(--primary-200);
   --text-dim: var(--primary-300);
   --text-normal: var(--primary-50);
+  --text-bright: var(--primary-25);
+  --text-highlight: var(--aurora-amber-100);
+  --text-danger: var(--aurora-rose-300);
+  --text-success: var(--aurora-emerald-300);
+  --text-warning: var(--aurora-amber-300);
+  --text-info: var(--aurora-teal-300);
   
-  /* Interactive system */
-  --link-color: var(--neon-green-500);
-  --link-hover: var(--neon-blue-100);
-  --highlight: var(--neon-pink-500);
-  --highlight-bg: rgba(255, 0, 162, 0.12);
-  --selection-bg: rgba(0, 255, 65, 0.25);
-  --selection-text: #000000;
+  /* Interactive system - Expanded states */
+  --link-color: var(--aurora-teal-300);
+  --link-hover: var(--aurora-cyan-100);
+  --link-active: var(--aurora-cyan-200);
+  --link-visited: var(--aurora-teal-700);
+  --highlight: var(--aurora-purple-300);
+  --highlight-dim: var(--aurora-purple-700);
+  --highlight-bright: var(--aurora-purple-200);
+  --highlight-bg: rgba(124, 58, 237, 0.12);
+  --highlight-bg-strong: rgba(124, 58, 237, 0.25);
+  --selection-bg: rgba(10, 147, 150, 0.25);
+  --selection-text: var(--aurora-cyan-50);
   
-  /* Shadow system with neon glow */
-  --shadow-xs: 0 1px 3px rgba(0, 255, 65, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-sm: 0 4px 6px rgba(0, 255, 65, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-  --shadow: 0 10px 15px rgba(0, 255, 65, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 20px 25px rgba(0, 255, 65, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 25px 50px rgba(0, 255, 65, 0.15), 0 15px 12px rgba(0, 0, 0, 0.15);
-  --shadow-inner: inset 0 2px 4px 0 rgba(0, 255, 65, 0.06);
-  --shadow-outline: 0 0 0 3px rgba(0, 255, 65, 0.25);
+  /* Typography system - Enhanced with spacing and rhythm */
+  --font-family-main: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+  --font-family-heading: 'Space Grotesk', 'Montserrat', 'Segoe UI', sans-serif;
+  --font-family-code: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-md: 1.125rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 1.75rem;
+  --font-size-3xl: 2.25rem;
+  --font-size-4xl: 3rem;
+  --font-size-5xl: 3.75rem;
+  --font-size-6xl: 4.5rem;
+  
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.375;
+  --line-height-base: 1.6;
+  --line-height-loose: 1.75;
+  --line-height-relaxed: 1.9;
+  
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+  
+  --heading-letter-spacing: -0.025em;
+  --body-letter-spacing: 0.01em;
+  --code-letter-spacing: -0.01em;
+  
+  /* Layout system - Fine-tuned responsive controls */
+  --content-width: 700px;
+  --content-width-wide: 900px;
+  --content-width-narrow: 600px;
+  --sidebar-width: 300px;
+  --sidebar-width-collapsed: 60px;
+  --site-padding: 24px;
+  --site-padding-sm: 16px;
+  --site-padding-lg: 32px;
+  --element-spacing: 24px;
+  --element-spacing-sm: 16px;
+  --element-spacing-lg: 32px;
+  --element-spacing-xl: 48px;
+  --header-height: 60px;
+  --header-height-mobile: 50px;
+  --section-spacing: 64px;
+  --grid-gap: 24px;
+  
+  /* Border system - Expanded with variants */
+  --border-radius-2xs: 2px;
+  --border-radius-xs: 4px;
+  --border-radius-sm: 8px;
+  --border-radius: 12px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 24px;
+  --border-radius-2xl: 32px;
+  --border-radius-3xl: 48px;
+  --border-radius-full: 9999px;
+  
+  --border-width-thin: 0.5px;
+  --border-width: 1px;
+  --border-width-2: 2px;
+  --border-width-4: 4px;
+  --border-width-8: 8px;
+  
+  --border-style: solid;
+  --border-style-dashed: dashed;
+  --border-style-dotted: dotted;
+  
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-color-strong: rgba(255, 255, 255, 0.15);
+  --border-color-subtle: rgba(255, 255, 255, 0.05);
+  --border-color-accent: rgba(10, 147, 150, 0.4);
+  --border-color-highlight: rgba(124, 58, 237, 0.4);
+  
+  /* Shadow system - Enhanced depth perception */
+  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.25), 0 15px 12px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 25px 60px rgba(0, 0, 0, 0.3), 0 20px 25px rgba(0, 0, 0, 0.25);
+  --shadow-2xl: 0 35px 75px rgba(0, 0, 0, 0.35), 0 30px 40px rgba(0, 0, 0, 0.3);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --shadow-inner-md: inset 0 4px 8px 0 rgba(0, 0, 0, 0.12);
+  --shadow-inner-lg: inset 0 8px 16px 0 rgba(0, 0, 0, 0.18);
+  --shadow-outline: 0 0 0 3px rgba(37, 99, 235, 0.25);
+  --shadow-outline-purple: 0 0 0 3px rgba(124, 58, 237, 0.25);
+  --shadow-outline-teal: 0 0 0 3px rgba(14, 165, 233, 0.25);
+  
+  /* Glow effects - New effect system */
+  --glow-subtle: 0 0 15px rgba(14, 165, 233, 0.15);
+  --glow-medium: 0 0 25px rgba(14, 165, 233, 0.25);
+  --glow-strong: 0 0 35px rgba(14, 165, 233, 0.35);
+  --glow-purple-subtle: 0 0 15px rgba(124, 58, 237, 0.15);
+  --glow-purple-medium: 0 0 25px rgba(124, 58, 237, 0.25);
+  --glow-purple-strong: 0 0 35px rgba(124, 58, 237, 0.35);
+  --glow-cyan-subtle: 0 0 15px rgba(6, 182, 212, 0.15);
+  --glow-cyan-medium: 0 0 25px rgba(6, 182, 212, 0.25);
+  --glow-cyan-strong: 0 0 35px rgba(6, 182, 212, 0.35);
+  
+  /* Component-specific variables */
+  --callout-border-width: 2px;
+  --callout-padding: 18px;
+  --callout-radius: var(--border-radius-sm);
+  --callout-shadow: var(--shadow-sm);
+  
+  --widget-bg: var(--glass-bg);
+  --widget-border: var(--border-color);
+  --widget-shadow: var(--shadow-md);
+  --widget-radius: var(--border-radius);
+  
+  --card-bg: var(--glass-bg-lighter);
+  --card-border: var(--border-color);
+  --card-shadow: var(--shadow-md);
+  --card-radius: var(--border-radius-md);
+  --card-padding: 1.5rem;
+  
+  --button-radius: var(--border-radius);
+  --button-padding-y: 0.6em;
+  --button-padding-x: 1.2em;
+  --button-shadow: var(--shadow-sm);
+  --button-shadow-hover: var(--shadow-md);
+  
+  --background-primary-alt: var(--glass-bg);
+  --background-secondary-alt: var(--glass-bg-lighter);
   
   /* Background gradient */
   --bg-gradient-start: var(--primary-900);
   --bg-gradient-mid: var(--primary-800);
   --bg-gradient-end: var(--primary-700);
   --bg-gradient-dir: 135deg;
+  
+  /* Effects */
+  --blur-amount: 10px;
+  --blur-amount-strong: 20px;
+  --blur-amount-subtle: 5px;
+  --grain-opacity: 0.04;
+  --grain-size: 150px;
+  --aurora-opacity: 0.2;
+  --starfield-opacity: 0.5;
+  --transition-speed: 0.3s;
+  --transition-speed-fast: 0.15s;
+  --transition-speed-slow: 0.5s;
+  --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --transition-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --transition-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Animation timings */
+  --animation-slower: 1500ms;
+  --animation-slow: 1000ms;
+  --animation-normal: 500ms;
+  --animation-fast: 300ms;
+  --animation-faster: 150ms;
+  
+  /* Parallax depths */
+  --parallax-depth-1: 10px;
+  --parallax-depth-2: 20px;
+  --parallax-depth-3: 30px;
+  --parallax-depth-4: 40px;
+  
+  /* Custom masks for clipping effects */
+  --mask-fade-horizontal: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  --mask-fade-vertical: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  --mask-radial: radial-gradient(circle at center, black 30%, transparent 70%);
+  
+  /* Global setup */
+  position: relative;
+  z-index: 0;
+  font-family: var(--font-family-main);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  letter-spacing: var(--body-letter-spacing);
+  color: var(--text-primary);
+  background-color: var(--primary-900);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Set up selection styling */
+  ::selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-text);
+  }
 }
-// 2. BACKGROUND: Cyber Grid Pattern
+
+// 2. ENHANCED BACKGROUND: Multi-layered cosmic environment
 // ------------------------------------------------------------------
 html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  min-height: 100vh;
   background-image:
-    linear-gradient(0deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px),
-    radial-gradient(circle at 20% 30%, rgba(0, 195, 255, 0.05) 0%, transparent 60%),
-    radial-gradient(circle at 80% 70%, rgba(255, 0, 162, 0.05) 0%, transparent 60%),
-    linear-gradient(var(--bg-gradient-dir), var(--bg-gradient-start), var(--bg-gradient-end));
-  background-size: 20px 20px, 20px 20px, 100% 100%, 100% 100%, cover;
-  background-position: center, center, center, center, center;
-  background-repeat: repeat, repeat, no-repeat, no-repeat, no-repeat;
-  background-attachment: fixed, fixed, fixed, fixed, fixed;
+    /* First layer: deep star field glow */
+    radial-gradient(circle at 20% 30%, rgba(93, 95, 239, 0.05) 0%, transparent 70%),
+    /* Second layer: aurora glow */
+    radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 70%),
+    /* Third layer: subtle cyan glow */
+    radial-gradient(circle at 50% 80%, rgba(6, 182, 212, 0.04) 0%, transparent 80%),
+    /* Base gradient */
+    linear-gradient(var(--bg-gradient-dir), var(--bg-gradient-start), var(--bg-gradient-mid) 50%, var(--bg-gradient-end));
+  background-size: 100% 100%, 100% 100%, 100% 100%, cover;
+  background-position: center, center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-attachment: fixed, fixed, fixed, fixed;
   color: var(--text-primary);
 }
 
-// 3. CIRCUIT BOARD OVERLAY
+// 3. ENHANCED TEXTURES & OVERLAYS
 // ------------------------------------------------------------------
+// 3.1 SUBTLE DOT GRID OVERLAY - Improved with variable size
 .patterned {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%2300FF41' fill-opacity='0.06'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  background-size: 300px 300px;
-  opacity: 0.3;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.15;
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
 }
-// 3.1 DIGITAL RAIN EFFECT
-// ------------------------------------------------------------------
-.digital-rain {
+
+// 3.2 STAR FIELD EFFECT - Enhanced with more stars and improved animation
+.star-field {
   position: fixed;
   top: 0;
   left: 0;
@@ -121,103 +390,224 @@ html, body {
   height: 100%;
   z-index: -2;
   pointer-events: none;
-  opacity: 0.15;
+  overflow: hidden;
 }
 
-.rain-column {
+.star {
   position: absolute;
-  top: -100px;
-  color: var(--neon-green-500);
-  font-family: monospace;
-  font-size: 1.2rem;
-  line-height: 1;
-  text-shadow: 0 0 5px var(--neon-green-500);
-  white-space: nowrap;
-  opacity: 0;
-  animation: rain-fall linear infinite;
+  background: white;
+  border-radius: 50%;
 }
 
-@for $i from 1 through 20 {
-  .rain-column:nth-child(#{$i}) {
+/* Generate 100 stars with different sizes, positions and animations */
+@for $i from 1 through 100 {
+  .star:nth-child(#{$i}) {
+    width: #{random(3) + 1}px;
+    height: #{random(3) + 1}px;
+    top: #{random(100)}vh;
     left: #{random(100)}vw;
-    animation-duration: #{random(10) + 8}s;
+    opacity: #{(random(7) + 3) / 10};
+    animation: star-twinkle #{(random(6) + 3)}s infinite ease-in-out alternate;
     animation-delay: #{random(5)}s;
+    
+    /* Add occasional shooting star */
+    @if $i % 20 == 0 {
+      &::after {
+        content: '';
+        position: absolute;
+        width: 50px;
+        height: 1px;
+        background: linear-gradient(to right, transparent, white, transparent);
+        transform: translateX(-100%) rotate(#{random(360)}deg);
+        opacity: 0;
+        animation: shooting-star #{random(10) + 10}s infinite ease-out;
+        animation-delay: #{random(30)}s;
+      }
+    }
   }
 }
 
-@keyframes rain-fall {
-  0% { transform: translateY(-100%); opacity: 0; }
-  10% { opacity: 0.8; }
-  90% { opacity: 0.8; }
-  100% { transform: translateY(100vh); opacity: 0; }
+@keyframes star-twinkle {
+  0% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.2); opacity: 0.5; }
+  100% { transform: scale(1.5); opacity: 0.7; }
 }
-// 4. NEON GLOW EFFECTS
+
+@keyframes shooting-star {
+  0% { transform: translateX(-100%) rotate(45deg); opacity: 0; }
+  1% { opacity: 0.8; }
+  2% { transform: translateX(200%) rotate(45deg); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+// 3.3 COSMIC DUST PARTICLES
+.cosmic-dust {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.dust-particle {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.2;
+  filter: blur(1px);
+}
+
+/* Generate 50 dust particles */
+@for $i from 1 through 50 {
+  .dust-particle:nth-child(#{$i}) {
+    width: #{random(4) + 1}px;
+    height: #{random(4) + 1}px;
+    top: #{random(100)}vh;
+    left: #{random(100)}vw;
+    animation: dust-float #{random(100) + 50}s infinite linear;
+    animation-delay: -#{random(100)}s;
+  }
+}
+
+@keyframes dust-float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.2;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate(#{random(100) - 50}px, #{random(100) - 50}px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+// 3.4 NOISE TEXTURE OVERLAY
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 150px 150px;
+  mix-blend-mode: soft-light;
+}
+// 4. GIF OVERLAYS (4 layers)
 // ------------------------------------------------------------------
 :root {
-  --neon-glow-1: 0 0 5px rgba(0, 255, 65, 0.5), 0 0 10px rgba(0, 255, 65, 0.3), 0 0 15px rgba(0, 255, 65, 0.1);
-  --neon-glow-2: 0 0 5px rgba(0, 195, 255, 0.5), 0 0 10px rgba(0, 195, 255, 0.3), 0 0 15px rgba(0, 195, 255, 0.1);
-  --neon-glow-3: 0 0 5px rgba(255, 0, 162, 0.5), 0 0 10px rgba(255, 0, 162, 0.3), 0 0 15px rgba(255, 0, 162, 0.1);
+  --gif1-url: url('/img/fractal-1.gif');
+  --gif1-top:    10%;
+  --gif1-left:   50%;
+  --gif1-width:  80%;
+  --gif1-height: 80%;
+  --gif1-opacity: 0.01;
+  --gif1-rotate: 190deg;
+  --gif2-url: url('/img/fractal-2.gif');
+  --gif2-top:    90%;
+  --gif2-left:   22%;
+  --gif2-width:  30%;
+  --gif2-height: 30%;
+  --gif2-opacity: 0.00;
+  --gif2-rotate: 65deg;
+  --gif3-url: url('/img/fractal-3.gif');
+  --gif3-bottom: 20%;
+  --gif3-right:  14%;
+  --gif3-width:  40%;
+  --gif3-height: 40%;
+  --gif3-opacity: 0.00;
+  --gif3-rotate: 0deg;
+  --gif4-url: url('/img/fractal-4.gif');
+  --gif4-top:    50%;
+  --gif4-right:  20%;
+  --gif4-width:  40%;
+  --gif4-height: 40%;
+  --gif4-opacity: 0.02;
+  --gif4-rotate: 0deg;
 }
 
-// Neon heading glow
-h1 {
-  color: var(--neon-green-300);
-  text-shadow: var(--neon-glow-1);
+// Shared pseudos for GIFs at -1 index, below patterned and content
+body::before, body::after, html::before, html::after {
+  content: '';
+  position: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  pointer-events: none;
+  z-index: -1;
 }
 
-h2 {
-  color: var(--neon-blue-300);
-  text-shadow: var(--neon-glow-2);
+// GIF #1 (body::before)
+body::before {
+  top:     var(--gif1-top);
+  left:    var(--gif1-left);
+  width:   var(--gif1-width);
+  height:  var(--gif1-height);
+  opacity: var(--gif1-opacity);
+  background-image: var(--gif1-url);
+  transform: translate(-50%, -50%) rotate(var(--gif1-rotate));
 }
 
-h3 {
-  color: var(--neon-pink-300);
-  text-shadow: var(--neon-glow-3);
+// GIF #2 (body::after)
+body::after {
+  top:     var(--gif2-top);
+  left:    var(--gif2-left);
+  width:   var(--gif2-width);
+  height:  var(--gif2-height);
+  opacity: var(--gif2-opacity);
+  background-image: var(--gif2-url);
+  transform: translate(-50%, -50%) rotate(var(--gif2-rotate));
+  animation: pulse 30s ease-in-out infinite;
 }
 
-// Neon borders for cards
-.card {
-  box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
-  border: 1px solid rgba(0, 255, 65, 0.3);
-  
-  &:hover {
-    box-shadow: 0 0 15px rgba(0, 255, 65, 0.4), 0 0 30px rgba(0, 255, 65, 0.2);
-  }
+// GIF #3 (html::before)
+html::before {
+  bottom:  var(--gif3-bottom);
+  right:   var(--gif3-right);
+  width:   var(--gif3-width);
+  height:  var(--gif3-height);
+  opacity: var(--gif3-opacity);
+  background-image: var(--gif3-url);
+  transform: translate(50%, 50%) rotate(var(--gif3-rotate));
 }
 
-// 5. ANIMATIONS
-// ------------------------------------------------------------------
-@keyframes neon-pulse {
-  0% { opacity: 0.7; text-shadow: var(--neon-glow-1); }
-  50% { opacity: 1; text-shadow: 0 0 10px rgba(0, 255, 65, 0.7), 0 0 20px rgba(0, 255, 65, 0.5), 0 0 30px rgba(0, 255, 65, 0.3); }
-  100% { opacity: 0.7; text-shadow: var(--neon-glow-1); }
+// GIF #4 (html::after)
+html::after {
+  top:     var(--gif4-top);
+  right:   var(--gif4-right);
+  width:   var(--gif4-width);
+  height:  var(--gif4-height);
+  opacity: var(--gif4-opacity);
+  background-image: var(--gif4-url);
+  transform: translate(50%, -50%) rotate(var(--gif4-rotate));
 }
 
-@keyframes border-pulse {
-  0% { border-color: rgba(0, 255, 65, 0.3); }
-  50% { border-color: rgba(0, 255, 65, 0.7); }
-  100% { border-color: rgba(0, 255, 65, 0.3); }
+// Add this to section 5. ANIMATIONS
+@keyframes shimmer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
 }
 
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: var(--neon-green-500); }
+// Make content fade in when page loads
+.content-container {
+  animation: fade-in 0.8s ease-out forwards;
 }
 
-// Add terminal typing effect to first paragraph in main content
-.content-container > p:first-of-type {
-  overflow: hidden;
-  border-right: .15em solid var(--neon-green-500);
-  white-space: nowrap;
-  margin: 0 auto;
-  letter-spacing: .1em;
-  animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-}
 // 6. MIXINS & UTILITIES
 // ------------------------------------------------------------------
 @mixin gradient-bg($dir, $start, $end) {
@@ -231,65 +621,44 @@ h3 {
   box-shadow: var(--box-shadow);
 }
 
-// 7. GLASS CARDS & PANELS
-// ------------------------------------------------------------------
+// Replace in section 7. GLASS CARDS & PANELS
 .card {
-  background: rgba(15, 25, 35, 0.7);
-  backdrop-filter: blur(12px);
+  @include glass-card(12px, 0.12);
   padding: 1.5rem;
   margin: 1rem 0;
-  border: 1px solid rgba(0, 255, 65, 0.3);
-  border-radius: var(--border-radius);
+  border: 1px solid rgba(255,255,255,0.1);
   position: relative;
   z-index: 2;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   overflow: hidden;
-  animation: border-pulse 4s infinite;
-  
   &:hover {
     transform: translateY(-5px);
-    border-color: rgba(0, 255, 65, 0.7);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    border-color: rgba(255,255,255,0.2);
     
     &::after {
       opacity: 1;
     }
   }
   
-  &::before {
+  &::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--neon-green-500), transparent);
-    animation: neon-line-slide 4s infinite;
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 10px;
-    height: 10px;
-    background: var(--neon-green-500);
-    border-radius: 50%;
-    box-shadow: 0 0 10px 2px var(--neon-green-500);
-    opacity: 0.7;
-    animation: neon-blink 1.5s infinite alternate;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255,255,255,0.1), 
+                transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    animation: shimmer 2s infinite;
   }
 }
 
-@keyframes neon-line-slide {
-  0% { transform: translateX(-100%); }
-  50%, 100% { transform: translateX(100%); }
-}
-
-@keyframes neon-blink {
-  from { opacity: 0.4; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1.2); }
-}
 // 8. ENHANCED BUTTONS
 // ------------------------------------------------------------------
 .btn {
