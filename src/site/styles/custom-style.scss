@@ -8,35 +8,37 @@
 // ------------------------------------------------------------------
 // 1. CORE VARIABLES & DARK MECHANICAL PALETTE
 // ------------------------------------------------------------------
+// 1. CORE VARIABLES & HOLOGRAPHIC INTERFACE PALETTE
+// ------------------------------------------------------------------
 body {
-  /* Dark Mechanical theme - Enhanced color system */
+  /* Holographic Interface theme - Enhanced color system */
   /* Primary colors */
-  --primary-900: #0A0D10;   /* Carbon Black */
-  --primary-800: #14171C;   /* Onyx Steel */
-  --primary-700: #1E2229;   /* Dark Metal */
-  --primary-600: #292E38;   /* Forged Iron */
-  --primary-500: #363C4A;   /* Machined Steel */
-  --primary-400: #454D5D;   /* Graphite */
-  --primary-300: #596073;   /* Machine Blue */
-  --primary-200: #717A8F;   /* Industrial Gray */
-  --primary-100: #9AA2B4;   /* Blueprint Gray */
-  --primary-50: #DEE1E9;    /* Titanium White */
+  --primary-900: #040B14;   /* Deep Space Black */
+  --primary-800: #0A1627;   /* Hologram Base */
+  --primary-700: #0F243A;   /* Projection Dark */
+  --primary-600: #183350;   /* Blueprint Dark */
+  --primary-500: #234467;   /* Hologram Medium */
+  --primary-400: #325A85;   /* Projection Medium */
+  --primary-300: #4474A2;   /* Blueprint Medium */
+  --primary-200: #6B9AC7;   /* Hologram Light */
+  --primary-100: #A2C2E2;   /* Projection Light */
+  --primary-50: #D8E7F5;    /* Blueprint Light */
   
-  /* Accent colors - Mechanical spectrum */
-  --mech-amber-500: #FF8A00;    /* Warning Amber */
-  --mech-amber-300: #FFAA40;    /* Caution Light */
-  --mech-amber-100: #FFD29E;    /* Soft Indicator */
-  --mech-amber-50: #FFE9D0;     /* Pale Signal */
+  /* Accent colors - Hologram spectrum */
+  --holo-teal-500: #00E5FF;    /* Main Hologram */
+  --holo-teal-300: #6AEFFF;    /* Bright Hologram */
+  --holo-teal-100: #B3F8FF;    /* Light Hologram */
+  --holo-teal-50: #E0FCFF;     /* Pale Hologram */
   
-  --mech-blue-500: #0091FF;     /* Electronic Blue */
-  --mech-blue-300: #52B0FF;     /* Circuit Blue */
-  --mech-blue-100: #A3D5FF;     /* Techno Light */
-  --mech-blue-50: #D9EEFF;      /* Signal Blue */
+  --holo-blue-500: #0088FF;    /* Electric Blue */
+  --holo-blue-300: #55B1FF;    /* Bright Interface */
+  --holo-blue-100: #A3D7FF;    /* Light Interface */
+  --holo-blue-50: #DEEFFF;     /* Pale Interface */
   
-  --mech-red-500: #FF3A29;      /* Warning Red */
-  --mech-red-300: #FF6B5C;      /* Alarm Red */
-  --mech-red-100: #FFADA5;      /* Safety Red */
-  --mech-red-50: #FFDED9;       /* System Red */
+  --holo-purple-500: #AB00FF;  /* Deep Hologram */
+  --holo-purple-300: #CD5EFF;  /* Bright Energy */
+  --holo-purple-100: #E7B3FF;  /* Light Energy */
+  --holo-purple-50: #F6E0FF;   /* Pale Energy */
   
   /* Background system */
   --background-primary: var(--primary-900);
@@ -44,24 +46,24 @@ body {
   --background-tertiary: var(--primary-700);
   --surface-1: var(--primary-600);
   --surface-2: var(--primary-500);
-  --glass-bg: rgba(10, 13, 16, 0.8);
-  --glass-bg-lighter: rgba(20, 23, 28, 0.7);
+  --glass-bg: rgba(4, 11, 20, 0.7);
+  --glass-bg-lighter: rgba(10, 22, 39, 0.6);
   
   /* Text system */
-  --text-primary: var(--primary-50);
-  --text-secondary: var(--mech-blue-100);
-  --text-accent: var(--mech-amber-100);
+  --text-primary: var(--holo-teal-100);
+  --text-secondary: var(--holo-blue-100);
+  --text-accent: var(--holo-purple-100);
   --text-muted: var(--primary-200);
   --text-dim: var(--primary-300);
-  --text-normal: var(--primary-100);
+  --text-normal: var(--primary-50);
   
   /* Interactive system */
-  --link-color: var(--mech-blue-300);
-  --link-hover: var(--mech-amber-300);
-  --highlight: var(--mech-red-300);
-  --highlight-bg: rgba(255, 58, 41, 0.1);
-  --selection-bg: rgba(0, 145, 255, 0.25);
-  --selection-text: var(--primary-50);
+  --link-color: var(--holo-teal-300);
+  --link-hover: var(--holo-purple-300);
+  --highlight: var(--holo-blue-300);
+  --highlight-bg: rgba(0, 136, 255, 0.15);
+  --selection-bg: rgba(0, 229, 255, 0.25);
+  --selection-text: var(--primary-900);
 }
 // 2. BACKGROUND: Dynamic gradient animation
 // ------------------------------------------------------------------
@@ -85,36 +87,75 @@ html, body {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-// 3. MECHANICAL OVERLAY PATTERNS
+// 3. HOLOGRAPHIC SCAN LINES & EFFECTS
 // ------------------------------------------------------------------
 .patterned {
-  background-image: 
-    repeating-linear-gradient(45deg, 
-      rgba(255, 255, 255, 0.012) 0px, rgba(255, 255, 255, 0.012) 1px,
-      transparent 1px, transparent 10px),
-    repeating-linear-gradient(-45deg, 
-      rgba(255, 255, 255, 0.012) 0px, rgba(255, 255, 255, 0.012) 1px,
-      transparent 1px, transparent 10px);
-  background-size: 20px 20px;
+  background: none;
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
+  overflow: hidden;
 }
 
-// Add this before the .patterned class
-.mechanical-overlay {
-  position: fixed;
+// Add scanlines effect
+.patterned::before {
+  content: '';
+  position: absolute;
   inset: 0;
-  background-image: 
-    radial-gradient(circle at 30% 25%, rgba(0, 145, 255, 0.03) 0%, transparent 40%),
-    radial-gradient(circle at 70% 85%, rgba(255, 138, 0, 0.03) 0%, transparent 40%);
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 229, 255, 0.03) 0px,
+    rgba(0, 229, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  pointer-events: none;
+  animation: scan-movement 8s linear infinite;
+}
+
+// Add flickering hologram noise
+.patterned::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  pointer-events: none;
+  animation: flicker 6s ease infinite;
+}
+
+@keyframes scan-movement {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes flicker {
+  0% { opacity: 0.01; }
+  5% { opacity: 0.03; }
+  10% { opacity: 0.01; }
+  15% { opacity: 0.05; }
+  20% { opacity: 0.01; }
+  /* Add more steps */
+  100% { opacity: 0.01; }
+}
+
+// Add holographic projection effect
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background: linear-gradient(180deg, 
+    rgba(0, 229, 255, 0.08) 0%,
+    rgba(0, 229, 255, 0) 15%,
+    rgba(171, 0, 255, 0) 85%,
+    rgba(171, 0, 255, 0.08) 100%);
   pointer-events: none;
   z-index: -1;
 }
-
-// Add this element to your HTML
-// <div class="mechanical-overlay"></div>
 
 // 4. GIF OVERLAYS (4 layers)
 // ------------------------------------------------------------------
@@ -236,51 +277,77 @@ html::after {
 // Replace in section 7. GLASS CARDS & PANELS
 .card {
   background: linear-gradient(135deg, 
-    rgba(255,255,255,0.05) 0%, 
-    rgba(255,255,255,0.1) 100%);
-  backdrop-filter: blur(12px);
+    rgba(0, 229, 255, 0.05) 0%, 
+    rgba(10, 22, 39, 0.6) 100%);
+  backdrop-filter: blur(8px);
   padding: 1.8rem;
   margin: 1.5rem 0;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 229, 255, 0.15);
   box-shadow: 
-    0 4px 24px rgba(0,0,0,0.18),
-    inset 0 0 0 1px rgba(255,255,255,0.04);
+    0 4px 20px rgba(0, 136, 255, 0.15),
+    inset 0 0 0 1px rgba(0, 229, 255, 0.05);
   position: relative;
   z-index: 2;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: all 0.3s ease;
   
+  // Holographic edge
   &::before {
     content: '';
     position: absolute;
-    top: -100%;
-    left: -100%;
-    width: 300%;
-    height: 300%;
-    background: linear-gradient(
-      45deg,
-      transparent 20%,
-      rgba(255,255,255,0.1) 25%,
-      transparent 30%
-    );
-    transform: rotate(45deg);
-    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    inset: 0;
+    border: 2px solid transparent;
+    border-radius: 7px;
+    background: linear-gradient(135deg, 
+      rgba(0, 229, 255, 0.5),
+      rgba(0, 136, 255, 0.2),
+      rgba(171, 0, 255, 0.5)) border-box;
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) padding-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+  }
+  
+  // Scan effect
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, 
+      transparent,
+      var(--holo-teal-500),
+      transparent);
+    animation: scan-line 3s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
   
   &:hover {
-    transform: translateY(-6px) scale(1.02);
+    transform: translateY(-5px);
     box-shadow: 
-      0 20px 30px rgba(0,0,0,0.25),
-      inset 0 0 0 1px rgba(255,255,255,0.1);
-    border-color: rgba(255,255,255,0.15);
+      0 15px 30px rgba(0, 136, 255, 0.2),
+      inset 0 0 0 1px rgba(0, 229, 255, 0.1);
     
     &::before {
-      top: -30%;
-      left: -30%;
-      transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+      opacity: 0.7;
+    }
+    
+    &::after {
+      opacity: 1;
     }
   }
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(800%); }
 }
 
 // 8. ENHANCED BUTTONS
