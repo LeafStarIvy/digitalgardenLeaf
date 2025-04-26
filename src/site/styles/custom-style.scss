@@ -6,50 +6,67 @@
 
 // 1. CORE VARIABLES - MIDNIGHT OCEAN PALETTE
 // ------------------------------------------------------------------
+// 1. CORE VARIABLES & CYBER NEON PALETTE
+// ------------------------------------------------------------------
 body {
-  /* Midnight Ocean theme - Deep seas color system */
+  /* Cyber Neon theme - Enhanced color system */
   /* Primary colors */
-  --primary-900: #020B16;   /* Ocean Abyss */
-  --primary-800: #04152D;   /* Deep Sea */
-  --primary-700: #072140;   /* Midnight Water */
-  --primary-600: #0C2E55;   /* Twilight Ocean */
-  --primary-500: #16395F;   /* Deep Blue */
-  --primary-400: #254B78;   /* Ocean Blue */
-  --primary-300: #3B6797;   /* Sea Blue */
-  --primary-200: #6089B6;   /* Wave Blue */
-  --primary-100: #84ACD7;   /* Surface Blue */
-  --primary-50: #B6D3F7;    /* Sky Reflection */
+  --primary-900: #050718;   /* Deep Digital Space */
+  --primary-800: #0C0E23;   /* Digital Midnight */
+  --primary-700: #171A3A;   /* Digital Twilight */
+  --primary-600: #1F2550;   /* Circuit Paths */
+  --primary-500: #282E5C;   /* Mainframe */
+  --primary-400: #343B71;   /* Digital Dusk */
+  --primary-300: #4C598D;   /* Electron Blue */
+  --primary-200: #6278B0;   /* Grid Lines */
+  --primary-100: #8BA5DF;   /* Data Stream */
+  --primary-50: #C2D4FF;    /* Soft Glow */
   
-  /* Accent colors - Bioluminescent spectrum */
-  --aurora-teal-500: #00B7C2;    /* Bioluminescent Teal */
-  --aurora-teal-300: #21E6D9;    /* Glowing Teal */
-  --aurora-teal-100: #80FFF7;    /* Light Teal */
-  --aurora-teal-50: #C4FFFC;     /* Ice Teal */
+  /* Accent colors - Neon spectrum */
+  --neon-green-500: #0CFA7E;    /* Electric Green */
+  --neon-green-300: #4EFFB2;    /* Bright Terminal Green */
+  --neon-green-100: #86FFD1;    /* Light Scanline */
+  --neon-green-50: #C4FFF0;     /* Digital Haze */
   
-  --aurora-cyan-500: #0185A9;    /* Deep Cyan */
-  --aurora-cyan-300: #05C3D1;    /* Algae Glow */
-  --aurora-cyan-100: #84E8F7;    /* Foam Cyan */
-  --aurora-cyan-50: #C1F5FF;     /* Surface Cyan */
+  --neon-blue-500: #00D8FF;     /* Electric Blue */
+  --neon-blue-300: #44F0FF;     /* Bright Terminal Blue */
+  --neon-blue-100: #A0F9FF;     /* Light Circuit */
+  --neon-blue-50: #D5FDFF;      /* Digital Frost */
   
-  --aurora-purple-500: #6236AC;   /* Jellyfish Purple */
-  --aurora-purple-300: #9969E7;   /* Soft Bioluminescence */
-  --aurora-purple-100: #C6AFF9;   /* Light Purple */
-  --aurora-purple-50: #E9E0FF;    /* Misty Purple */
+  --neon-pink-500: #FF0FBA;     /* Hot Neon Pink */
+  --neon-pink-300: #FF50DF;     /* Bright Terminal Pink */
+  --neon-pink-100: #FF9DF1;     /* Light Node */
+  --neon-pink-50: #FFD2F8;      /* Digital Blush */
   
-  --aurora-pink-500: #B742C7;     /* Coral Pink */
-  --aurora-pink-300: #E479E9;     /* Anemone Pink */
-  --aurora-pink-100: #F5B5FE;     /* Light Pink */
-  --aurora-pink-50: #FDDEFF;      /* Soft Pink */
+  --neon-yellow-500: #FFDF00;   /* Electric Yellow */
+  --neon-yellow-300: #FFE945;   /* Warning Signal */
+  --neon-yellow-100: #FFF599;   /* Light Execute */
+  --neon-yellow-50: #FFFBD6;    /* Digital Glow */
   
-  /* Glass effect enhancements */
-  --glass-bg: rgba(4, 21, 45, 0.75);
-  --glass-bg-lighter: rgba(12, 46, 85, 0.65);
+  /* Background system */
+  --background-primary: var(--primary-900);
+  --background-secondary: var(--primary-800);
+  --background-tertiary: var(--primary-700);
+  --surface-1: var(--primary-600);
+  --surface-2: var(--primary-500);
+  --glass-bg: rgba(5, 7, 24, 0.85);
+  --glass-bg-lighter: rgba(12, 14, 35, 0.75);
   
-  /* Enhanced background gradient */
-  --bg-gradient-start: var(--primary-900);
-  --bg-gradient-mid: var(--primary-800);
-  --bg-gradient-end: var(--primary-700);
-  --bg-gradient-dir: 145deg;
+  /* Text system */
+  --text-primary: var(--neon-green-50);
+  --text-secondary: var(--neon-blue-100);
+  --text-accent: var(--neon-pink-100);
+  --text-muted: var(--primary-200);
+  --text-dim: var(--primary-300);
+  --text-normal: var(--neon-green-100);
+  
+  /* Interactive system */
+  --link-color: var(--neon-green-300);
+  --link-hover: var(--neon-blue-300);
+  --highlight: var(--neon-pink-300);
+  --highlight-bg: rgba(255, 15, 186, 0.15);
+  --selection-bg: rgba(0, 216, 255, 0.3);
+  --selection-text: var(--neon-green-50);
 }
 
 // 2. BACKGROUND: Subtle gradient and pattern
@@ -69,51 +86,24 @@ html, body {
   color: var(--text-primary);
 }
 
-// 3. SUBTLE DOT GRID OVERLAY
+// 3. CYBER GRID OVERLAY
 // ------------------------------------------------------------------
 .patterned {
-  background-image: radial-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  background: 
+    linear-gradient(90deg, rgba(12, 250, 126, 0.03) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(0, 216, 255, 0.03) 1px, transparent 1px);
   background-size: 20px 20px;
-  opacity: 0.2;
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-}
-// 3.1 STAR FIELD EFFECT
-// ------------------------------------------------------------------
-.star-field {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-  pointer-events: none;
+  animation: grid-pulse 8s infinite alternate;
 }
 
-.star {
-  position: absolute;
-  background: white;
-  border-radius: 50%;
-}
-
-/* Generate 50 stars with different sizes and positions */
-@for $i from 1 through 50 {
-  .star:nth-child(#{$i}) {
-    width: #{random(3)}px;
-    height: #{random(3)}px;
-    top: #{random(100)}vh;
-    left: #{random(100)}vw;
-    opacity: #{(random(7) + 3) / 10};
-    animation: star-twinkle #{(random(4) + 2)}s infinite ease-in-out alternate;
-    animation-delay: #{random(4)}s;
-  }
-}
-
-@keyframes star-twinkle {
-  0% { transform: scale(1); opacity: 0.3; }
-  100% { transform: scale(1.5); opacity: 0.7; }
+@keyframes grid-pulse {
+  0% { opacity: 0.2; background-size: 20px 20px; }
+  50% { opacity: 0.3; background-size: 22px 22px; }
+  100% { opacity: 0.2; background-size: 20px 20px; }
 }
 
 // 4. GIF OVERLAYS (4 layers)
@@ -520,8 +510,50 @@ pre code {
   border: 1px solid rgba(255,255,255,0.1);
   border-bottom: none;
 }
+// Add to section 12. DIGITAL GARDEN OVERRIDES
+h1 {
+  font-size: 2.8rem;
+  position: relative;
+  color: var(--text-primary);
+  text-shadow: 0 0 8px var(--neon-green-500);
+  animation: text-flicker 5s infinite;
+  
+  &::before {
+    content: attr(data-text);
+    position: absolute;
+    left: -2px;
+    text-shadow: 2px 0 var(--neon-pink-500);
+    top: 0;
+    color: var(--text-primary);
+    background: var(--background-primary);
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: noise-anim-2 3s infinite linear alternate-reverse;
+    opacity: 0.3;
+    z-index: -1;
+  }
+}
 
-// Define the title header GIF variable
+@keyframes text-flicker {
+  0% { text-shadow: 0 0 4px var(--neon-green-500); }
+  5% { text-shadow: 0 0 8px var(--neon-green-500); }
+  10% { text-shadow: 0 0 4px var(--neon-green-500); }
+  15% { text-shadow: 0 0 12px var(--neon-green-500); }
+  16% { text-shadow: 0 0 4px var(--neon-green-500); }
+  95% { text-shadow: 0 0 4px var(--neon-green-500); }
+  98% { text-shadow: 0 0 20px var(--neon-green-500); }
+  100% { text-shadow: 0 0 4px var(--neon-green-500); }
+}
+
+@keyframes noise-anim-2 {
+  0% { clip: rect(21px, 9999px, 17px, 0); }
+  5% { clip: rect(22px, 9999px, 29px, 0); }
+  10% { clip: rect(18px, 9999px, 44px, 0); }
+  /* Add more steps if needed */
+  100% { clip: rect(27px, 9999px, 11px, 0); }
+}
+
+// 0 Define the title header GIF variable
 :root {
   --title-header-gif: url('/img/fractal-title.gif');
   --title-header-gif-height: 120px;
