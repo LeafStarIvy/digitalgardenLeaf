@@ -1240,34 +1240,4 @@ code:not(pre code) {
   z-index: 9998;
   opacity: 0.7;
 }
-// Add to end of your file - JavaScript for effects
-// ------------------------------------------------------------------
-  
-  // Create digital rain
-  const rainContainer = document.createElement('div');
-  rainContainer.className = 'digital-rain';
-  document.body.appendChild(rainContainer);
-  
-  for (let i = 0; i < 50; i++) {
-    const rainColumn = document.createElement('div');
-    rainColumn.className = 'rain-column';
-    rainContainer.appendChild(rainColumn);
-  }
-  
-  // Create glitch effects
-  const glitchContainer = document.createElement('div');
-  glitchContainer.className = 'glitch-container';
-  document.body.appendChild(glitchContainer);
-  
-  for (let i = 0; i < 5; i++) {
-    const glitchLine = document.createElement('div');
-    glitchLine.className = 'glitch-line';
-    glitchContainer.appendChild(glitchLine);
-  }
-  
-  for (let i = 0; i < 5; i++) {
-    const glitchBlock = document.createElement('div');
-    glitchBlock.className = 'glitch-block';
-    glitchContainer.appendChild(glitchBlock);
-  }
-});
+
