@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/music-dashboard/","noteIcon":"","created":"2025-04-23T07:19:07.644+02:00","updated":"2025-04-27T12:04:17.429+02:00"}
+{"dg-publish":true,"permalink":"/music-dashboard/","noteIcon":"","created":"2025-04-23T07:19:07.644+02:00","updated":"2025-04-27T12:32:04.007+02:00"}
 ---
 
 <div class="flashcard-grid grid-4">
@@ -31,7 +31,7 @@
 
   <!-- Card 3 - Shorter Image Area -->
   <div class="flashcard">
-    <a href="Resources">
+    <a href="/Image to SVG Converter">
       <div class="flashcard-image" style="height: 120px;">
         <img src="/img/resources.png" alt="Resources">
       </div>
