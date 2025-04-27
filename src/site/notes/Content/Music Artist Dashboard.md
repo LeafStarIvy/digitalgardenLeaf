@@ -1,12 +1,12 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artist-dashboard/","tags":["#dashboard"],"noteIcon":"","created":"2025-04-23T07:19:07.644+02:00","updated":"2025-04-27T12:59:38.389+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artist-dashboard/","tags":["#dashboard"],"noteIcon":"","created":"2025-04-23T07:19:07.644+02:00","updated":"2025-04-27T14:01:45.279+02:00"}
 ---
 
 
 <div class="flashcard-grid grid-4">
   <!-- Card 1 - Standard Height -->
   <div class="flashcard">
-    <a href="/Image-to-SVG-Converter">
+    <a href="/Content/Music-Artist-Dashboard">
       <div class="flashcard-image" style="height: 160px;">
         <img src="/img/ivycomblogo.jpg" alt="Journal">
       </div>

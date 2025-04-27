@@ -1,6 +1,7 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artists/ivycomb/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-27T13:41:36.625+02:00","updated":"2025-04-27T13:56:18.269+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artists/ivycomb/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-27T13:41:36.625+02:00","updated":"2025-04-27T13:59:30.046+02:00"}
 ---
+
 
 <img src="/img/ivycomblogo.jpg" alt="logo" class="round-img round-img-100">
 
