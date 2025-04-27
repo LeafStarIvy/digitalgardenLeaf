@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/music-dashboard/","noteIcon":"","created":"2025-04-23T07:19:07.644+02:00","updated":"2025-04-27T12:32:04.007+02:00"}
+{"dg-publish":true,"permalink":"/music-dashboard/","noteIcon":"","created":"2025-04-23T07:19:07.644+02:00","updated":"2025-04-27T12:34:54.601+02:00"}
 ---
 
 <div class="flashcard-grid grid-4">
@@ -7,7 +7,7 @@
   <div class="flashcard">
     <a href="Journal">
       <div class="flashcard-image" style="height: 160px;">
-        <img src="/img/journal.png" alt="Journal">
+        <img src="/_file/Pasted image 20250419132501.png" alt="Journal">
       </div>
       <div class="flashcard-content">
         <h3>Journal</h3>
