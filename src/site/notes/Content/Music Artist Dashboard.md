@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artist-dashboard/","tags":["#dashboard"],"noteIcon":"","created":"2025-04-23T07:19:07.644+02:00","updated":"2025-04-28T17:07:16.954+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artist-dashboard/","tags":["#dashboard"],"noteIcon":"","created":"2025-04-23T07:19:07.644+02:00","updated":"2025-04-28T17:09:59.440+02:00"}
 ---
 
 
@@ -19,7 +19,7 @@
 
   <!-- Card 2 - Taller Image Area -->
   <div class="flashcard">
-    <a href="/Content/Music-Artists/BBno$">
+    <a href="/Content/Music-Artists/b-bno">
       <div class="flashcard-image" style="height: 160px;">
         <img src="/img/MALOGO/BBnos.png" alt="Projects">
       </div>
@@ -111,3 +111,17 @@
     </a>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
