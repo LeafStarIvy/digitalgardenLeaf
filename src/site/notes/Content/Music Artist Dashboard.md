@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artist-dashboard/","tags":["#dashboard"],"noteIcon":"","created":"2025-04-23T07:19:07.644+02:00","updated":"2025-04-28T16:59:58.305+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artist-dashboard/","tags":["#dashboard"],"noteIcon":"","created":"2025-04-23T07:19:07.644+02:00","updated":"2025-04-28T17:05:53.439+02:00"}
 ---
 
 
@@ -45,7 +45,7 @@
 
   <!-- Card 4 - Custom Height with Taller Content Area -->
   <div class="flashcard">
-    <a href="/Content/Music-Artists/DaftPunk">
+    <a href="/Content/Music-Artists/Daft-Punk">
       <div class="flashcard-image" style="height: 160px;">
         <img src="/img/MALOGO/DaftPunk.png" alt="Library">
       </div>
