@@ -1,9 +1,9 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artists/twrp/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.425+02:00","updated":"2025-04-28T17:01:09.966+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artists/twrp/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.425+02:00","updated":"2025-04-28T17:18:53.325+02:00"}
 ---
 
 
-<img src="/img/MALOGO/TWRP.png" alt="logo" class="round-img round-img-100">
+<img src="/img/MALOGO/TWRP.png" alt="logo" class="round-img round-img-200">
 
 ## About
 

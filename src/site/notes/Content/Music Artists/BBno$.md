@@ -1,9 +1,9 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artists/b-bno/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.441+02:00","updated":"2025-04-28T17:00:15.781+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artists/b-bno/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.441+02:00","updated":"2025-04-28T17:20:53.779+02:00"}
 ---
 
 
-<img src="/img/MALOGO/BBnos.png" alt="logo" class="round-img round-img-100">
+<img src="/img/MALOGO/BBnos.png" alt="logo" class="round-img round-img-200">
 
 ## About
 

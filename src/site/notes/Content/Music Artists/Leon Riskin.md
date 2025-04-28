@@ -1,9 +1,9 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artists/leon-riskin/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.502+02:00","updated":"2025-04-28T17:00:39.819+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artists/leon-riskin/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.502+02:00","updated":"2025-04-28T17:20:01.851+02:00"}
 ---
 
 
-<img src="/img/MALOGO/LeonRiskin.png" alt="logo" class="round-img round-img-100">
+<img src="/img/MALOGO/LeonRiskin.png" alt="logo" class="round-img round-img-200">
 
 ## About
 

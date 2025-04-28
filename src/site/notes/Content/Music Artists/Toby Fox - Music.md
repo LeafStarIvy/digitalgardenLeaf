@@ -1,9 +1,9 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artists/toby-fox-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.423+02:00","updated":"2025-04-28T17:01:07.673+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artists/toby-fox-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.423+02:00","updated":"2025-04-28T17:19:04.028+02:00"}
 ---
 
 
-<img src="/img/MALOGO/TobyFox.png" alt="logo" class="round-img round-img-100">
+<img src="/img/MALOGO/TobyFox.png" alt="logo" class="round-img round-img-200">
 
 ## About
 

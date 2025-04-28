@@ -1,9 +1,9 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artists/the-living-tombstone/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.407+02:00","updated":"2025-04-28T17:01:05.135+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artists/the-living-tombstone/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.407+02:00","updated":"2025-04-28T17:19:08.365+02:00"}
 ---
 
 
-<img src="/img/MALOGO/TLT.png" alt="logo" class="round-img round-img-100">
+<img src="/img/MALOGO/TLT.png" alt="logo" class="round-img round-img-200">
 
 ## About
 

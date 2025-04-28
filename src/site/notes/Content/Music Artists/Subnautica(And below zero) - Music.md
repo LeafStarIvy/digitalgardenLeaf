@@ -1,9 +1,9 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artists/subnautica-and-below-zero-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.341+02:00","updated":"2025-04-28T17:00:54.376+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artists/subnautica-and-below-zero-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.341+02:00","updated":"2025-04-28T17:19:26.718+02:00"}
 ---
 
 
-<img src="/img/MALOGO/Subnautica.png" alt="logo" class="round-img round-img-100">
+<img src="/img/MALOGO/Subnautica.png" alt="logo" class="round-img round-img-200">
 
 # Subnautica
 ## About

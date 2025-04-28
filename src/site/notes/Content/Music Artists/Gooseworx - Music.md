@@ -1,9 +1,9 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artists/gooseworx-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.485+02:00","updated":"2025-04-28T17:00:31.815+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artists/gooseworx-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.485+02:00","updated":"2025-04-28T17:20:23.000+02:00"}
 ---
 
 
-<img src="/img/MALOGO/Gooseworx.png" alt="logo" class="round-img round-img-100">
+<img src="/img/MALOGO/Gooseworx.png" alt="logo" class="round-img round-img-200">
 
 ## About
 
