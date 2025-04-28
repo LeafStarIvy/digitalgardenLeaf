@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artist-dashboard/","tags":["#dashboard"],"noteIcon":"","created":"2025-04-23T07:19:07.644+02:00","updated":"2025-04-28T17:31:00.344+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artist-dashboard/","tags":["#dashboard"],"noteIcon":"","created":"2025-04-23T07:19:07.644+02:00","updated":"2025-04-28T17:37:02.411+02:00"}
 ---
 
 
@@ -224,12 +224,12 @@
 <div class="flashcard-grid grid-4">
   <!-- Card 1 - Standard Height -->
   <div class="flashcard">
-    <a href="/Content/Music-Artists/Satisfactory-Music">
+    <a href="/Content/Music-Artists/subnautica">
       <div class="flashcard-image" style="height: 160px;">
-        <img src="/img/MALOGO/Satisfactory.png" alt="Journal">
+        <img src="/img/MALOGO/Subnautica.png" alt="Journal">
       </div>
       <div class="flashcard-content">
-        <h3>Satisfactory</h3>
+        <h3>Subnautica</h3>
         <p></p>
       </div>
     </a>
@@ -237,12 +237,12 @@
 
   <!-- Card 2 - Taller Image Area -->
   <div class="flashcard">
-    <a href="/Content/Music-Artists/Terraria-Music">
-      <div class="flashcard-image" style="height: 160px;">
-        <img src="/img/MALOGO/Terraria.png" alt="Projects">
+    <a href="/Content/Music-Artists/Subnautica-Below-Zero">
+      <div class="flashcard-image" style="height: 180px;">
+        <img src="/img/MALOGO/SubnauticaBZ.png" alt="Projects">
       </div>
       <div class="flashcard-content">
-        <h3>Terraria</h3>
+        <h3>Subnautica Below Zero</h3>
         <p></p>
       </div>
     </a>
