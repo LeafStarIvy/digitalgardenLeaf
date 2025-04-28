@@ -1160,3 +1160,43 @@ pre code {
 .round-img-150 { width: 150px; height: 150px; }
 .round-img-200 { width: 200px; height: 200px; }
 /* Add more size classes as needed */
+
+.datetime-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+  font-size: 0.875rem;
+  color: var(--text-muted, #6e6e6e);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+  z-index: 100;
+}
+
+.datetime-container:hover {
+  opacity: 1;
+}
+
+.datetime-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  color: var(--text-muted, #6e6e6e);
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.datetime-toggle:hover {
+  opacity: 1;
+}
+
+.datetime-hidden {
+  display: none;
+}
