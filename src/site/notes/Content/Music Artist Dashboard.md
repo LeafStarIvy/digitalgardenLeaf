@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artist-dashboard/","tags":["#dashboard"],"noteIcon":"","created":"2025-04-23T07:19:07.644+02:00","updated":"2025-04-29T07:34:00.265+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artist-dashboard/","tags":["#dashboard"],"noteIcon":"","created":"2025-04-23T07:19:07.644+02:00","updated":"2025-04-29T07:45:30.244+02:00"}
 ---
 
 
@@ -165,12 +165,12 @@
 <div class="flashcard-grid grid-4">
   <!-- Card 1 - Standard Height -->
   <div class="flashcard">
-    <a href="/Content/Music-Artists/Manamis">
+    <a href="/Content/Music-Artists/ぱらどっと">
       <div class="flashcard-image" style="height: 160px;">
-        <img src="/img/MALOGO/Manamis.png" alt="Journal">
+        <img src="/img/MALOGO/FullFlavor.png" alt="Journal">
       </div>
       <div class="flashcard-content">
-        <h3>Manamis</h3>
+        <h3>ぱらどっと</h3>
         <p></p>
       </div>
     </a>
@@ -178,12 +178,12 @@
 
   <!-- Card 2 - Taller Image Area -->
   <div class="flashcard">
-    <a href="/Content/Music-Artists/Home-Music">
+    <a href="/Content/Music-Artists/Gooseworx-Music">
       <div class="flashcard-image" style="height: 160px;">
-        <img src="/img/MALOGO/Home.png" alt="Projects">
+        <img src="/img/MALOGO/Gooseworx.png" alt="Projects">
       </div>
       <div class="flashcard-content">
-        <h3>Home</h3>
+        <h3>Gooseworx</h3>
         <p></p>
       </div>
     </a>
@@ -191,12 +191,12 @@
 
   <!-- Card 3 - Shorter Image Area -->
   <div class="flashcard">
-    <a href="/Content/Music-Artists/Leon-Riskin">
+    <a href="/Content/Music-Artists/The-Living-Tombstone">
       <div class="flashcard-image" style="height: 160px;">
-        <img src="/img/MALOGO/LeonRiskin.png" alt="Resources">
+        <img src="/img/MALOGO/TLT.png" alt="Resources">
       </div>
       <div class="flashcard-content">
-        <h3>Leon-Riskin</h3>
+        <h3>The Living Tombstone</h3>
         <p></p>
       </div>
     </a>
@@ -204,12 +204,12 @@
 
   <!-- Card 4 - Custom Height with Taller Content Area -->
   <div class="flashcard">
-    <a href="/Content/Music-Artists/TWRP">
+    <a href="/Content/Music-Artists/VivziePop-Music">
       <div class="flashcard-image" style="height: 160px;">
-        <img src="/img/MALOGO/TWRP.png" alt="Library">
+        <img src="/img/MALOGO/VivziePop.png" alt="Library">
       </div>
       <div class="flashcard-content" style="padding-bottom: 2.5rem;">
-        <h3>TWRP</h3>
+        <h3>VivziePop</h3>
         <p></p>
       </div>
     </a>
