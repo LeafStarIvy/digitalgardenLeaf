@@ -1,96 +1,44 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const body = document.body;
-  body.classList.add('galaxy-body');
-  
-  const planetSystem = document.createElement('div');
-  planetSystem.className = 'planet-system';
-  
-  // Create planets
-  const planetData = [
-    { 
-      type: 'gas-giant ringed',
-      size: 120,
-      top: '15%', 
-      left: '75%', 
-      depth: -800,
-      orbitAnimation: 'orbit-1', 
-      orbitDuration: 120,
-      orbitDistance: 50,
-      spinAmount: 180,
-      hasMoon: true
-    },
-    { 
-      type: 'rocky', 
-      size: 60, 
-      top: '60%', 
-      left: '20%', 
-      depth: -500, 
-      orbitAnimation: 'orbit-2',
-      orbitDuration: 90,
-      orbitDistance: 30,
-      spinAmount: 90,
-      hasMoon: false
-    },
-    { 
-      type: 'earth-like', 
-      size: 80, 
-      top: '70%', 
-      left: '65%', 
-      depth: -600,
-      orbitAnimation: 'orbit-3', 
-      orbitDuration: 100,
-      orbitDistance: 40,
-      spinAmount: 120,
-      hasMoon: true
-    },
-    { 
-      type: 'ice', 
-      size: 45, 
-      top: '35%', 
-      left: '30%', 
-      depth: -400,
-      orbitAnimation: 'orbit-2', 
-      orbitDuration: 80,
-      orbitDistance: 20,
-      spinAmount: 60,
-      hasMoon: false
-    }
-  ];
-  
-  planetData.forEach(data => {
-    const planet = document.createElement('div');
-    planet.className = `planet ${data.type}`;
-    planet.style.width = `${data.size}px`;
-    planet.style.height = `${data.size}px`;
-    planet.style.top = data.top;
-    planet.style.left = data.left;
-    planet.style.transform = `translateZ(${data.depth}px)`;
-    planet.style.setProperty('--planet-size', `${data.size}px`);
-    planet.style.setProperty('--spin-amount', `${data.spinAmount}deg`);
-    planet.style.setProperty('--orbit-distance', `${data.orbitDistance}px`);
-    planet.style.animation = `${data.orbitAnimation} ${data.orbitDuration}s linear infinite`;
+.galaxy-spiral-js {
+    Add this JavaScript to generate the spiral:
     
-    if (data.hasMoon) {
-      const moon = document.createElement('div');
-      moon.className = 'moon';
-      planet.appendChild(moon);
-    }
-    
-    planetSystem.appendChild(planet);
-  });
-  
-  body.appendChild(planetSystem);
-  
-  // Simple parallax effect on mouse move
-  document.addEventListener('mousemove', function(e) {
-    const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-    const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-    
-    planetSystem.querySelectorAll('.planet').forEach(planet => {
-      const depth = parseFloat(planet.style.transform.match(/translateZ\(([^)]+)\)/)[1]);
-      const moveAmount = -depth / 100;
+    document.addEventListener('DOMContentLoaded', function() {
+      const spiral = document.querySelector('.galaxy-spiral');
+      if (!spiral) return;
       
-      planet.style.transform = `translateZ(${depth}px) translate(${moveX * moveAmount}px, ${moveY * moveAmount}px)`;
+      const totalStars = 600;
+      const armCount = 5;
+      const armAngle = (2 * Math.PI) / armCount;
+      
+      for (let i = 0; i < totalStars; i++) {
+        const star = document.createElement('div');
+        star.className = 'spiral-star';
+        
+        // Calculate spiral position
+        const armIndex = i % armCount;
+        const distanceFromCenter = 10 + (i / totalStars) * 180;
+        const rotationAngle = (i / totalStars) * 15 * Math.PI + armIndex * armAngle;
+        
+        // Set star size (larger toward center)
+        const starSize = Math.max(1, 4 * (1 - i / totalStars));
+        star.style.width = starSize + 'px';
+        star.style.height = starSize + 'px';
+        
+        // Set position
+        const x = Math.cos(rotationAngle) * distanceFromCenter;
+        const y = Math.sin(rotationAngle) * distanceFromCenter;
+        const z = (Math.random() - 0.5) * 20;
+        
+        star.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
+        
+        // Set color (blue to purple to pink)
+        const hue = 240 + (armIndex * 30);
+        const color = `hsl(${hue}, 80%, 70%)`;
+        star.style.backgroundColor = color;
+        star.style.boxShadow = `0 0 4px 1px ${color}`;
+        
+        // Vary opacity
+        star.style.opacity = 0.1 + Math.random() * 0.9;
+        
+        spiral.appendChild(star);
+      }
     });
-  });
-});
