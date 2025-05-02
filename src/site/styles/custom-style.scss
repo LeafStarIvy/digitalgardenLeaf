@@ -1,125 +1,169 @@
 /*
- * ENHANCED COSMIC DIGITAL GARDEN SCSS
- * Advanced immersive cosmic theme with expanded color system,
- * interactive elements, and pure CSS animations
+ * ULTRA COSMIC DIGITAL GARDEN SCSS v2.0
+ * Hyper-immersive cosmic theme with expanded color systems,
+ * dynamic interactive elements, advanced animations, and
+ * next-generation visual effects
  */
 
-// 1. CORE VARIABLES & EXPANDED AURORA CELESTIAL PALETTE
+// 1. CORE VARIABLES & EXPANDED AURORA CELESTIAL PALETTE WITH HDR COLORS
 // ------------------------------------------------------------------
 body {
-  /* Aurora Celestial theme - Massively enhanced color system */
+  /* Aurora Celestial theme - Ultra-enhanced HDR color system */
   
-  /* Primary Cosmic Scale - Expanded depth range */
-  --cosmic-void: #010508;        /* Absolute void */
-  --cosmic-abyss: #01080F;       /* Deep abyss */
-  --primary-900: #020B19;        /* Deepest Space */
-  --primary-850: #051425;        /* Deeper Space */
-  --primary-800: #0A192F;        /* Deep Space */
-  --primary-750: #0E2038;        /* Between Deep Space and Space */
-  --primary-700: #112240;        /* Space */
-  --primary-650: #172C4C;        /* Upper Space */
-  --primary-600: #1E3A5F;        /* Twilight */
-  --primary-550: #244467;        /* Lower Dusk */
-  --primary-500: #2A4A73;        /* Dusk */
-  --primary-450: #31547F;        /* Upper Dusk */
-  --primary-400: #3B5F8F;        /* Evening Sky */
-  --primary-350: #466B9E;        /* Lower Night Sky */
-  --primary-300: #5478AD;        /* Night Sky */
-  --primary-250: #658ABE;        /* Upper Night Sky */
-  --primary-200: #7599CB;        /* Dawn */
-  --primary-150: #8AADED;        /* Lower Morning Sky */
-  --primary-100: #A3BFEF;        /* Morning Sky */
-  --primary-75: #BECCEA;         /* Light Morning */
-  --primary-50: #D4E5FF;         /* Light Sky */
-  --primary-25: #E9F2FF;         /* Whisper Sky */
+  /* Primary Cosmic Scale - Expanded HDR depth range with rich saturation */
+  --cosmic-void: #000204;        /* Absolute void - deeper */
+  --cosmic-abyss: #00050B;       /* Deep abyss - more vibrant */
+  --primary-950: #010914;        /* Deeper than deepest space */
+  --primary-900: #021021;        /* Deepest Space - richer */
+  --primary-850: #051A30;        /* Deeper Space - more saturated */
+  --primary-800: #0B2440;        /* Deep Space - richer blue undertones */
+  --primary-750: #102D4F;        /* Between Deep Space and Space */
+  --primary-700: #153A62;        /* Space - more vibrant */
+  --primary-650: #1D4674;        /* Upper Space - more dynamic */
+  --primary-600: #244E84;        /* Twilight - richer blue */
+  --primary-550: #2B5994;        /* Lower Dusk - enhanced saturation */
+  --primary-500: #3165A4;        /* Dusk - improved richness */
+  --primary-450: #3A72B5;        /* Upper Dusk - vivid blue */
+  --primary-400: #487EC1;        /* Evening Sky - more dimensional */
+  --primary-350: #5789CB;        /* Lower Night Sky - increased vibrancy */
+  --primary-300: #6896D8;        /* Night Sky - brighter feel */
+  --primary-250: #79A3E2;        /* Upper Night Sky - clearer blue */
+  --primary-200: #8AB0EB;        /* Dawn - softer transition */
+  --primary-150: #9DBEEF;        /* Lower Morning Sky - improved contrast */
+  --primary-100: #B6CFF6;        /* Morning Sky - brighter blue */
+  --primary-75: #CEDAEF;         /* Light Morning - softer */
+  --primary-50: #E4EFFF;         /* Light Sky - crisper blue */
+  --primary-25: #F0F8FF;         /* Whisper Sky - purer blue tint */
   
-  /* Aurora Spectrum - Expanded with intensity levels */
+  /* Aurora Spectrum - Ultra-expanded with 3D HDR intensity levels */
   
-  /* Teal/Blue spectrum */
-  --aurora-teal-900: #035D87;    /* Deep Ocean Teal */
-  --aurora-teal-700: #0679B3;    /* Ocean Teal */
-  --aurora-teal-500: #0EA5E9;    /* Electric Teal */
-  --aurora-teal-300: #38BDF8;    /* Bright Teal */
-  --aurora-teal-200: #55C6FA;    /* Light Electric Teal */
-  --aurora-teal-100: #7DD3FC;    /* Light Teal */
-  --aurora-teal-50: #BAE6FD;     /* Ice Teal */
-  --aurora-teal-25: #E0F5FF;     /* Faint Teal */
+  /* Teal/Blue spectrum - Volumetric depth */
+  --aurora-teal-950: #023A56;    /* Abyssal Teal */
+  --aurora-teal-900: #034E73;    /* Deep Ocean Teal - richer */
+  --aurora-teal-800: #046B9C;    /* Deep Teal - more vibrant */
+  --aurora-teal-700: #0588C3;    /* Ocean Teal - brighter */
+  --aurora-teal-600: #07A1DC;    /* Rich Teal - more saturated */
+  --aurora-teal-500: #0BBAFF;    /* Electric Teal - pure electric shine */
+  --aurora-teal-400: #36C7FF;    /* Vibrant Teal - radiant */
+  --aurora-teal-300: #55D1FF;    /* Bright Teal - glowing feel */
+  --aurora-teal-200: #84DDFF;    /* Light Electric Teal - luminescent */
+  --aurora-teal-100: #ADE9FF;    /* Light Teal - softer glow */
+  --aurora-teal-50: #D6F5FF;     /* Ice Teal - crystalline */
+  --aurora-teal-25: #F0FCFF;     /* Faint Teal - ethereal */
   
-  /* Cyan spectrum */
-  --aurora-cyan-900: #03565F;    /* Deep Cyan */
-  --aurora-cyan-700: #047481;    /* Ocean Cyan */
-  --aurora-cyan-500: #06B6D4;    /* Cyan */
-  --aurora-cyan-300: #22D3EE;    /* Bright Cyan */
-  --aurora-cyan-200: #4DDBF1;    /* Light Electric Cyan */
-  --aurora-cyan-100: #A5F3FC;    /* Light Cyan */
-  --aurora-cyan-50: #CFFAFE;     /* Ice Cyan */
-  --aurora-cyan-25: #ECFDFF;     /* Faint Cyan */
+  /* Cyan spectrum - Enhanced luminosity */
+  --aurora-cyan-950: #023A3F;    /* Abyssal Cyan */
+  --aurora-cyan-900: #035A63;    /* Deep Cyan - deeper rich base */
+  --aurora-cyan-800: #04818C;    /* Deep Ocean Cyan - rich vibrance */
+  --aurora-cyan-700: #059CA9;    /* Ocean Cyan - dimensional */
+  --aurora-cyan-600: #06B8C6;    /* Rich Cyan - vibrant pop */
+  --aurora-cyan-500: #08D5E6;    /* Electric Cyan - clean bright */
+  --aurora-cyan-400: #2CDFE9;    /* Vibrant Cyan - pure vibrance */
+  --aurora-cyan-300: #54E9F0;    /* Bright Cyan - glowing */
+  --aurora-cyan-200: #8BF3F7;    /* Light Electric Cyan - luminescent */
+  --aurora-cyan-100: #B9F8FC;    /* Light Cyan - soft glow */
+  --aurora-cyan-50: #DCFDFF;     /* Ice Cyan - crystalline */
+  --aurora-cyan-25: #F0FEFF;     /* Faint Cyan - ethereal */
   
-  /* Purple spectrum */
-  --aurora-purple-900: #4B1E99;  /* Deep Dark Purple */
-  --aurora-purple-700: #5F25C0;  /* Dark Purple */
-  --aurora-purple-500: #7C3AED;  /* Deep Purple */
-  --aurora-purple-400: #8B51F5;  /* Rich Purple */
-  --aurora-purple-300: #A78BFA;  /* Medium Purple */
-  --aurora-purple-200: #BFA8FC;  /* Light Medium Purple */
-  --aurora-purple-100: #C4B5FD;  /* Light Purple */
-  --aurora-purple-50: #EDE9FE;   /* Ice Purple */
-  --aurora-purple-25: #F6F4FF;   /* Faint Purple */
+  /* Purple spectrum - Dimensional richness */
+  --aurora-purple-950: #2F1569;  /* Abyssal Purple */
+  --aurora-purple-900: #3F1B8D;  /* Deep Dark Purple - richer depth */
+  --aurora-purple-800: #5021B0;  /* Deep Purple - rich vibrance */
+  --aurora-purple-700: #662BD8;  /* Dark Purple - dimensional */
+  --aurora-purple-600: #7939EF;  /* Rich Purple - vibrant pop */
+  --aurora-purple-500: #8C4DFF;  /* Electric Purple - clean bright */
+  --aurora-purple-400: #9E6AFF;  /* Vibrant Purple - pure vibrance */
+  --aurora-purple-300: #B388FF;  /* Bright Purple - glowing */
+  --aurora-purple-200: #C7A7FF;  /* Light Electric Purple - luminescent */
+  --aurora-purple-100: #DBC4FF;  /* Light Purple - soft glow */
+  --aurora-purple-50: #F0E7FF;   /* Ice Purple - crystalline */
+  --aurora-purple-25: #F9F5FF;   /* Faint Purple - ethereal */
   
-  /* Pink spectrum */
-  --aurora-pink-900: #8F1DAA;    /* Deep Dark Pink */
-  --aurora-pink-700: #B324D3;    /* Dark Pink */
-  --aurora-pink-500: #D946EF;    /* Deep Pink */
-  --aurora-pink-400: #E26BF2;    /* Rich Pink */
-  --aurora-pink-300: #F0ABFC;    /* Medium Pink */
-  --aurora-pink-200: #F2BDFD;    /* Light Medium Pink */
-  --aurora-pink-100: #F5D0FE;    /* Light Pink */
-  --aurora-pink-50: #FAE8FF;     /* Ice Pink */
-  --aurora-pink-25: #FDF4FF;     /* Faint Pink */
+  /* Pink spectrum - Volumetric glow */
+  --aurora-pink-950: #5F1573;    /* Abyssal Pink */
+  --aurora-pink-900: #7F1B9D;    /* Deep Dark Pink - richer depth */
+  --aurora-pink-800: #A722C4;    /* Deep Pink - rich vibrance */
+  --aurora-pink-700: #C32AE4;    /* Dark Pink - dimensional */
+  --aurora-pink-600: #DD38F5;    /* Rich Pink - vibrant pop */
+  --aurora-pink-500: #EE52FF;    /* Electric Pink - clean bright */
+  --aurora-pink-400: #F17AFF;    /* Vibrant Pink - pure vibrance */
+  --aurora-pink-300: #F59EFF;    /* Bright Pink - glowing */
+  --aurora-pink-200: #F9BDFF;    /* Light Electric Pink - luminescent */
+  --aurora-pink-100: #FBDAFF;    /* Light Pink - soft glow */
+  --aurora-pink-50: #FDF0FF;     /* Ice Pink - crystalline */
+  --aurora-pink-25: #FEF8FF;     /* Faint Pink - ethereal */
   
-  /* Additional aurora hues */
-  --aurora-emerald-500: #10B981; /* Emerald */
-  --aurora-emerald-300: #34D399; /* Bright Emerald */
-  --aurora-emerald-100: #A7F3D0; /* Light Emerald */
+  /* Additional aurora hues - Enhanced for new dimension */
+  --aurora-emerald-950: #064F38; /* Abyssal Emerald */
+  --aurora-emerald-900: #086D4D; /* Deep Emerald */
+  --aurora-emerald-700: #0A9263; /* Dark Emerald */
+  --aurora-emerald-500: #10CF94; /* Emerald - vibrant neon quality */
+  --aurora-emerald-300: #47EEAE; /* Bright Emerald - luminous */
+  --aurora-emerald-100: #B0FCDC; /* Light Emerald - soft glow */
+  --aurora-emerald-50: #DFFFEF; /* Ice Emerald */
   
-  --aurora-amber-500: #F59E0B;   /* Amber */
-  --aurora-amber-300: #FBBF24;   /* Bright Amber */
-  --aurora-amber-100: #FDE68A;   /* Light Amber */
+  --aurora-amber-950: #744107;   /* Abyssal Amber */
+  --aurora-amber-900: #9E5A09;   /* Deep Amber */
+  --aurora-amber-700: #D17A0C;   /* Dark Amber */
+  --aurora-amber-500: #F7B00C;   /* Amber - better visibility */
+  --aurora-amber-300: #FFCF3A;   /* Bright Amber - increased glow */
+  --aurora-amber-100: #FFE897;   /* Light Amber - softer feel */
+  --aurora-amber-50: #FFF7D6;    /* Ice Amber */
   
-  --aurora-rose-500: #F43F5E;    /* Rose */
-  --aurora-rose-300: #FB7185;    /* Bright Rose */
-  --aurora-rose-100: #FCA5B3;    /* Light Rose */
+  --aurora-rose-950: #7D0521;    /* Abyssal Rose */
+  --aurora-rose-900: #A5092C;    /* Deep Rose */
+  --aurora-rose-700: #D20E3B;    /* Dark Rose */
+  --aurora-rose-500: #F62D51;    /* Rose - improved red tone */
+  --aurora-rose-300: #FF647D;    /* Bright Rose - increased vibrancy */
+  --aurora-rose-100: #FFB7C4;    /* Light Rose - softer tone */
+  --aurora-rose-50: #FFE5EA;     /* Ice Rose */
   
-  /* Advanced Gradient Palettes */
-  --gradient-cosmic-horizon: linear-gradient(135deg, var(--primary-900), var(--primary-700) 50%, var(--primary-600));
-  --gradient-aurora-sweep: linear-gradient(90deg, var(--aurora-purple-500), var(--aurora-pink-500), var(--aurora-teal-500));
-  --gradient-northern-lights: linear-gradient(135deg, var(--aurora-cyan-500), var(--aurora-teal-300), var(--aurora-purple-400));
-  --gradient-nebula-dust: linear-gradient(to bottom, var(--primary-800), var(--primary-700), var(--aurora-purple-900) 80%);
-  --gradient-star-trail: linear-gradient(60deg, var(--primary-900), var(--primary-800) 30%, var(--primary-700) 70%, var(--primary-600));
-  --gradient-text-cosmic: linear-gradient(90deg, var(--aurora-teal-300), var(--aurora-cyan-200), var(--aurora-purple-300));
-  --gradient-button-glow: linear-gradient(45deg, var(--aurora-purple-500), var(--aurora-teal-500));
-  --gradient-card-highlight: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
+  /* Ultra-Advanced Gradient Palettes with dimensional transitions */
+  --gradient-cosmic-horizon: linear-gradient(135deg, var(--primary-950), var(--primary-800) 40%, var(--primary-600) 90%);
+  --gradient-aurora-sweep: linear-gradient(90deg, var(--aurora-purple-600), var(--aurora-pink-500) 50%, var(--aurora-teal-500) 100%);
+  --gradient-northern-lights: linear-gradient(135deg, var(--aurora-cyan-600), var(--aurora-teal-400) 40%, var(--aurora-purple-400) 80%);
+  --gradient-nebula-dust: linear-gradient(to bottom, var(--primary-900), var(--primary-750) 35%, var(--aurora-purple-900) 85%);
+  --gradient-star-trail: linear-gradient(60deg, var(--primary-950), var(--primary-800) 30%, var(--primary-700) 70%, var(--primary-600) 90%);
+  --gradient-text-cosmic: linear-gradient(90deg, var(--aurora-teal-300), var(--aurora-cyan-200) 50%, var(--aurora-purple-300) 100%);
+  --gradient-button-glow: linear-gradient(45deg, var(--aurora-purple-600), var(--aurora-teal-500) 100%);
+  --gradient-card-highlight: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
+  --gradient-depth-illusion: linear-gradient(to bottom, var(--primary-800), var(--primary-750) 30%, var(--primary-850) 70%, var(--primary-900));
+  --gradient-aurora-pulse: linear-gradient(90deg, var(--aurora-cyan-500), var(--aurora-teal-400) 20%, var(--aurora-purple-500) 40%, var(--aurora-pink-500) 60%, var(--aurora-purple-400) 80%, var(--aurora-cyan-500));
+  --gradient-cosmic-glow: radial-gradient(circle at center, var(--primary-600) 0%, var(--primary-700) 30%, var(--primary-800) 70%);
+  --gradient-holographic: linear-gradient(135deg, rgba(206, 255, 251, 0.15), rgba(169, 151, 255, 0.1), rgba(245, 192, 255, 0.15), rgba(204, 255, 250, 0.1));
   
-  /* Background system - Enhanced with variable opacity levels */
-  --background-primary: var(--primary-800);
-  --background-secondary: var(--primary-700);
-  --background-tertiary: var(--primary-600);
-  --background-quaternary: var(--primary-500);
-  --surface-1: var(--primary-500);
-  --surface-2: var(--primary-400);
-  --surface-3: var(--primary-450);
+  /* Background system - Enhanced with variable opacity levels and dimensional quality */
+  --background-primary: var(--primary-850);
+  --background-secondary: var(--primary-800);
+  --background-tertiary: var(--primary-750);
+  --background-quaternary: var(--primary-700);
+  --surface-1: var(--primary-700);
+  --surface-2: var(--primary-650);
+  --surface-3: var(--primary-600);
   
-  /* Glass effect presets with variable intensity */
-  --glass-bg: rgba(10, 25, 47, 0.75);
-  --glass-bg-lighter: rgba(16, 36, 64, 0.65);
-  --glass-bg-lightest: rgba(22, 42, 75, 0.55);
-  --glass-bg-dark: rgba(1, 8, 15, 0.85);
-  --glass-bg-darkest: rgba(1, 5, 10, 0.95);
-  --glass-blur-strong: blur(12px);
-  --glass-blur-medium: blur(8px);
-  --glass-blur-light: blur(4px);
+  /* Advanced Glass effect presets with variable intensity and luminosity */
+  --glass-bg: rgba(10, 25, 47, 0.65);
+  --glass-bg-lighter: rgba(16, 36, 64, 0.55);
+  --glass-bg-lightest: rgba(22, 42, 75, 0.45);
+  --glass-bg-dark: rgba(1, 8, 15, 0.8);
+  --glass-bg-darkest: rgba(1, 5, 10, 0.9);
+  --glass-blur-strong: blur(16px);
+  --glass-blur-medium: blur(10px);
+  --glass-blur-light: blur(6px);
+  --glass-saturation: saturate(1.1);
+  --glass-darken: brightness(0.95);
+  --glass-highlight: contrast(1.05);
   
-  /* Text system - Enhanced with varied intensity and purpose */
+  /* Advanced Glass with dynamic light effects */
+  --glass-frost: rgba(15, 30, 52, 0.5);
+  --glass-frost-dark: rgba(8, 16, 32, 0.7);
+  --glass-frost-light: rgba(21, 41, 70, 0.4);
+  --glass-border-light: rgba(255, 255, 255, 0.1);
+  --glass-shadow-inner: inset 0 0 15px rgba(255, 255, 255, 0.07);
+  --glass-highlight-top: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --glass-highlight-left: inset 1px 0 0 rgba(255, 255, 255, 0.05);
+  
+  /* Text system - Enhanced with varied intensity, purpose and improved readability */
   --text-primary: var(--aurora-cyan-50);
   --text-secondary: var(--aurora-teal-100);
   --text-tertiary: var(--aurora-teal-200);
@@ -135,18 +179,33 @@ body {
   --text-warning: var(--aurora-amber-300);
   --text-info: var(--aurora-teal-300);
   
-  /* Interactive system - Expanded states */
+  /* Text contrast enhancement */
+  --text-shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --text-shadow-strong: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --text-glow-subtle: 0 0 8px rgba(255, 255, 255, 0.1);
+  --text-glow-accent: 0 0 8px rgba(56, 189, 248, 0.2);
+  --text-glow-purple: 0 0 8px rgba(140, 77, 255, 0.2);
+  
+  /* Interactive system - Expanded states with enhanced feedback */
   --link-color: var(--aurora-teal-300);
   --link-hover: var(--aurora-cyan-100);
   --link-active: var(--aurora-cyan-200);
-  --link-visited: var(--aurora-teal-700);
+  --link-visited: var(--aurora-teal-600);
   --highlight: var(--aurora-purple-300);
   --highlight-dim: var(--aurora-purple-700);
   --highlight-bright: var(--aurora-purple-200);
-  --highlight-bg: rgba(124, 58, 237, 0.12);
-  --highlight-bg-strong: rgba(124, 58, 237, 0.25);
-  --selection-bg: rgba(10, 147, 150, 0.25);
+  --highlight-bg: rgba(124, 58, 237, 0.15);
+  --highlight-bg-strong: rgba(124, 58, 237, 0.3);
+  --selection-bg: rgba(8, 213, 230, 0.25);
   --selection-text: var(--aurora-cyan-50);
+  
+  /* Interactive feedback system */
+  --hover-brightness: brightness(1.1);
+  --hover-saturation: saturate(1.1);
+  --hover-filter: brightness(1.1) saturate(1.1);
+  --active-filter: brightness(0.9) saturate(1.2);
+  --focus-outline-glow: 0 0 0 2px rgba(8, 213, 230, 0.3);
+  --hover-transition: all 0.2s ease;
   
   /* Typography system - Enhanced with spacing and rhythm */
   --font-family-main: 'Inter', 'SF Pro Display', system-ui, sans-serif;
@@ -188,33 +247,33 @@ body {
   --code-letter-spacing: -0.01em;
   
   /* Layout system - Fine-tuned responsive controls */
-  --content-width: 700px;
-  --content-width-wide: 900px;
-  --content-width-narrow: 600px;
-  --sidebar-width: 300px;
-  --sidebar-width-collapsed: 60px;
-  --site-padding: 24px;
-  --site-padding-sm: 16px;
-  --site-padding-lg: 32px;
-  --element-spacing: 24px;
-  --element-spacing-sm: 16px;
-  --element-spacing-lg: 32px;
-  --element-spacing-xl: 48px;
-  --header-height: 60px;
-  --header-height-mobile: 50px;
-  --section-spacing: 64px;
-  --grid-gap: 24px;
+  --content-width: 720px;
+  --content-width-wide: 960px;
+  --content-width-narrow: 640px;
+  --sidebar-width: 320px;
+  --sidebar-width-collapsed: 64px;
+  --site-padding: 28px;
+  --site-padding-sm: 18px;
+  --site-padding-lg: 36px;
+  --element-spacing: 28px;
+  --element-spacing-sm: 18px;
+  --element-spacing-lg: 36px;
+  --element-spacing-xl: 56px;
+  --header-height: 64px;
+  --header-height-mobile: 52px;
+  --section-spacing: 72px;
+  --grid-gap: 28px;
   
   /* Border system - Expanded with variants */
-  --border-radius-2xs: 2px;
-  --border-radius-xs: 4px;
-  --border-radius-sm: 8px;
-  --border-radius: 12px;
-  --border-radius-md: 12px;
-  --border-radius-lg: 16px;
-  --border-radius-xl: 24px;
-  --border-radius-2xl: 32px;
-  --border-radius-3xl: 48px;
+  --border-radius-2xs: 3px;
+  --border-radius-xs: 5px;
+  --border-radius-sm: 9px;
+  --border-radius: 13px;
+  --border-radius-md: 13px;
+  --border-radius-lg: 18px;
+  --border-radius-xl: 26px;
+  --border-radius-2xl: 34px;
+  --border-radius-3xl: 52px;
   --border-radius-full: 9999px;
   
   --border-width-thin: 0.5px;
@@ -227,78 +286,97 @@ body {
   --border-style-dashed: dashed;
   --border-style-dotted: dotted;
   
-  --border-color: rgba(255, 255, 255, 0.1);
-  --border-color-strong: rgba(255, 255, 255, 0.15);
-  --border-color-subtle: rgba(255, 255, 255, 0.05);
-  --border-color-accent: rgba(10, 147, 150, 0.4);
-  --border-color-highlight: rgba(124, 58, 237, 0.4);
+  --border-color: rgba(255, 255, 255, 0.12);
+  --border-color-strong: rgba(255, 255, 255, 0.18);
+  --border-color-subtle: rgba(255, 255, 255, 0.06);
+  --border-color-accent: rgba(8, 213, 230, 0.45);
+  --border-color-highlight: rgba(140, 77, 255, 0.45);
   
-  /* Shadow system - Enhanced depth perception */
-  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-  --shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.25), 0 15px 12px rgba(0, 0, 0, 0.15);
-  --shadow-xl: 0 25px 60px rgba(0, 0, 0, 0.3), 0 20px 25px rgba(0, 0, 0, 0.25);
-  --shadow-2xl: 0 35px 75px rgba(0, 0, 0, 0.35), 0 30px 40px rgba(0, 0, 0, 0.3);
-  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
-  --shadow-inner-md: inset 0 4px 8px 0 rgba(0, 0, 0, 0.12);
-  --shadow-inner-lg: inset 0 8px 16px 0 rgba(0, 0, 0, 0.18);
-  --shadow-outline: 0 0 0 3px rgba(37, 99, 235, 0.25);
-  --shadow-outline-purple: 0 0 0 3px rgba(124, 58, 237, 0.25);
-  --shadow-outline-teal: 0 0 0 3px rgba(14, 165, 233, 0.25);
+  /* Light effect borders */
+  --border-glow-subtle: 0 0 8px rgba(255, 255, 255, 0.06);
+  --border-glow-accent: 0 0 8px rgba(8, 213, 230, 0.25);
+  --border-glow-purple: 0 0 8px rgba(140, 77, 255, 0.25);
   
-  /* Glow effects - New effect system */
-  --glow-subtle: 0 0 15px rgba(14, 165, 233, 0.15);
-  --glow-medium: 0 0 25px rgba(14, 165, 233, 0.25);
-  --glow-strong: 0 0 35px rgba(14, 165, 233, 0.35);
-  --glow-purple-subtle: 0 0 15px rgba(124, 58, 237, 0.15);
-  --glow-purple-medium: 0 0 25px rgba(124, 58, 237, 0.25);
-  --glow-purple-strong: 0 0 35px rgba(124, 58, 237, 0.35);
-  --glow-cyan-subtle: 0 0 15px rgba(6, 182, 212, 0.15);
-  --glow-cyan-medium: 0 0 25px rgba(6, 182, 212, 0.25);
-  --glow-cyan-strong: 0 0 35px rgba(6, 182, 212, 0.35);
+  /* Shadow system - Enhanced depth perception with enhanced realism */
+  --shadow-xs: 0 2px 4px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-sm: 0 5px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow: 0 12px 18px rgba(0, 0, 0, 0.12), 0 4px 7px rgba(0, 0, 0, 0.07);
+  --shadow-md: 0 22px 28px rgba(0, 0, 0, 0.12), 0 10px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 28px 56px rgba(0, 0, 0, 0.3), 0 15px 15px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 30px 65px rgba(0, 0, 0, 0.35), 0 20px 30px rgba(0, 0, 0, 0.3);
+  --shadow-2xl: 0 40px 85px rgba(0, 0, 0, 0.4), 0 30px 45px rgba(0, 0, 0, 0.35);
+  --shadow-inner: inset 0 2px 6px 0 rgba(0, 0, 0, 0.08);
+  --shadow-inner-md: inset 0 4px 10px 0 rgba(0, 0, 0, 0.15);
+  --shadow-inner-lg: inset 0 8px 20px 0 rgba(0, 0, 0, 0.22);
+  --shadow-outline: 0 0 0 3px rgba(37, 99, 235, 0.3);
+  --shadow-outline-purple: 0 0 0 3px rgba(140, 77, 255, 0.3);
+  --shadow-outline-teal: 0 0 0 3px rgba(8, 213, 230, 0.3);
   
-  /* Component-specific variables */
+  /* Colored shadow variations for dimensional effects */
+  --shadow-teal: 0 10px 30px rgba(8, 213, 230, 0.25);
+  --shadow-purple: 0 10px 30px rgba(140, 77, 255, 0.25);
+  --shadow-pink: 0 10px 30px rgba(238, 82, 255, 0.25);
+  
+  /* Glow effects - Enhanced effect system with HDR qualities */
+  --glow-subtle: 0 0 20px rgba(8, 213, 230, 0.2);
+  --glow-medium: 0 0 30px rgba(8, 213, 230, 0.3);
+  --glow-strong: 0 0 40px rgba(8, 213, 230, 0.4);
+  --glow-purple-subtle: 0 0 20px rgba(140, 77, 255, 0.2);
+  --glow-purple-medium: 0 0 30px rgba(140, 77, 255, 0.3);
+  --glow-purple-strong: 0 0 40px rgba(140, 77, 255, 0.4);
+  --glow-cyan-subtle: 0 0 20px rgba(54, 199, 255, 0.2);
+  --glow-cyan-medium: 0 0 30px rgba(54, 199, 255, 0.3);
+  --glow-cyan-strong: 0 0 40px rgba(54, 199, 255, 0.4);
+  --glow-pink-medium: 0 0 30px rgba(238, 82, 255, 0.3);
+  --glow-emerald-medium: 0 0 30px rgba(16, 207, 148, 0.3);
+  
+  /* Component-specific variables with enhanced visual treatment */
   --callout-border-width: 2px;
-  --callout-padding: 18px;
-  --callout-radius: var(--border-radius-sm);
+  --callout-padding: 20px;
+  --callout-radius: var(--border-radius);
   --callout-shadow: var(--shadow-sm);
+  --callout-bg: var(--glass-frost);
+  --callout-border-left-width: 4px;
   
-  --widget-bg: var(--glass-bg);
+  --widget-bg: var(--glass-frost);
   --widget-border: var(--border-color);
   --widget-shadow: var(--shadow-md);
   --widget-radius: var(--border-radius);
+  --widget-highlight: var(--glass-highlight-top);
   
-  --card-bg: var(--glass-bg-lighter);
+  --card-bg: var(--glass-frost-light);
   --card-border: var(--border-color);
   --card-shadow: var(--shadow-md);
-  --card-radius: var(--border-radius-md);
-  --card-padding: 1.5rem;
+  --card-radius: var(--border-radius-lg);
+  --card-padding: 1.75rem;
+  --card-highlight: var(--glass-highlight-top);
+  --card-hover-transform: translateY(-3px);
+  --card-hover-shadow: var(--shadow-lg), var(--shadow-teal);
   
   --button-radius: var(--border-radius);
-  --button-padding-y: 0.6em;
-  --button-padding-x: 1.2em;
+  --button-padding-y: 0.7em;
+  --button-padding-x: 1.4em;
   --button-shadow: var(--shadow-sm);
-  --button-shadow-hover: var(--shadow-md);
+  --button-shadow-hover: var(--shadow-md), var(--glow-subtle);
+  --button-hover-transform: translateY(-2px);
   
-  --background-primary-alt: var(--glass-bg);
-  --background-secondary-alt: var(--glass-bg-lighter);
+  --background-primary-alt: var(--glass-frost);
+  --background-secondary-alt: var(--glass-frost-light);
   
-  /* Background gradient */
-  --bg-gradient-start: var(--primary-900);
-  --bg-gradient-mid: var(--primary-800);
-  --bg-gradient-end: var(--primary-700);
+  /* Background gradient - more vibrant */
+  --bg-gradient-start: var(--primary-950);
+  --bg-gradient-mid: var(--primary-850);
+  --bg-gradient-end: var(--primary-750);
   --bg-gradient-dir: 135deg;
   
-  /* Effects */
-  --blur-amount: 10px;
-  --blur-amount-strong: 20px;
-  --blur-amount-subtle: 5px;
-  --grain-opacity: 0.04;
-  --grain-size: 150px;
-  --aurora-opacity: 0.2;
-  --starfield-opacity: 0.5;
+  /* Effects - enhanced dimensional quality */
+  --blur-amount: 12px;
+  --blur-amount-strong: 24px;
+  --blur-amount-subtle: 6px;
+  --grain-opacity: 0.05;
+  --grain-size: 120px;
+  --aurora-opacity: 0.25;
+  --starfield-opacity: 0.6;
   --transition-speed: 0.3s;
   --transition-speed-fast: 0.15s;
   --transition-speed-slow: 0.5s;
@@ -307,24 +385,27 @@ body {
   --transition-ease-out: cubic-bezier(0, 0, 0.2, 1);
   --transition-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-spring: cubic-bezier(0.43, 0.195, 0.02, 1.01);
   
-  /* Animation timings */
+  /* Animation timings - refined */
   --animation-slower: 1500ms;
   --animation-slow: 1000ms;
   --animation-normal: 500ms;
   --animation-fast: 300ms;
   --animation-faster: 150ms;
   
-  /* Parallax depths */
-  --parallax-depth-1: 10px;
-  --parallax-depth-2: 20px;
-  --parallax-depth-3: 30px;
-  --parallax-depth-4: 40px;
+  /* Parallax depths - enhanced dimension */
+  --parallax-depth-1: 12px;
+  --parallax-depth-2: 24px;
+  --parallax-depth-3: 36px;
+  --parallax-depth-4: 48px;
+  --parallax-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   
-  /* Custom masks for clipping effects */
-  --mask-fade-horizontal: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-  --mask-fade-vertical: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-  --mask-radial: radial-gradient(circle at center, black 30%, transparent 70%);
+  /* Custom masks for clipping effects - refined shapes */
+  --mask-fade-horizontal: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  --mask-fade-vertical: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+  --mask-radial: radial-gradient(circle at center, black 25%, transparent 75%);
+  --mask-cosmic: radial-gradient(ellipse at center, black 40%, transparent 80%);
   
   /* Global setup */
   position: relative;
@@ -334,10 +415,11 @@ body {
   line-height: var(--line-height-base);
   letter-spacing: var(--body-letter-spacing);
   color: var(--text-primary);
-  background-color: var(--primary-900);
+  background-color: var(--primary-950);
+  background-image: var(--gradient-cosmic-horizon);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+
   /* Set up selection styling */
   ::selection {
     background-color: var(--selection-bg);
