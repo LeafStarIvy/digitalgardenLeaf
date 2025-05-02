@@ -1,13 +1,14 @@
 /*
- * STELLAR GARDEN - REFINED ADVANCED SCSS THEME
- * Merges original funky interstellar palette with enhanced mixins & utilities
+ * COSMIC STELLAR GARDEN - ENHANCED SCSS THEME
+ * A sophisticated, immersive knowledge garden theme combining 
+ * the best of Stellar Garden with Enhanced Cosmic Digital Garden
+ * Features dynamic visual elements and responsive design with advanced styling
  */
 
-@charset "UTF-8";
-
-// 1. ROOT VARIABLES & PALETTE
 :root {
-  /* ===== Original Interstellar Palette ===== */
+  /* ======= FOUNDATION ======= */
+  
+  /* COLOR SYSTEM - Interstellar Palette */
   --void: #080510;
   --deep-space: #0F0A20;
   --nebula-dark: #1A1335;
@@ -21,58 +22,336 @@
   --cosmic-mist: #D0B7FF;
   --nebula-glow: #E2D4FF;
   --distant-star: #F0ECFF;
-
+  
+  /* ACCENT COLORS - Celestial Bodies */
   --solar-core: #FF7B29;
   --solar-surface: #FF9D54;
   --solar-flare: #FFCA86;
-  /* ... (retained funky accent colors) */
-
-  /* ===== Enhanced Aurora Palette ===== */
-  --aurora-teal-500: #0EA5E9;
-  --aurora-purple-500: #7C3AED;
-  --aurora-pink-500: #D946EF;
-  /* add more enhanced hues as needed */
-
-  /* ===== Gradients ===== */
+  
+  --terra-deep: #1EBEA5;
+  --terra: #29E3C5;
+  --terra-glow: #85F0E0;
+  
+  --plasma-hot: #F945CF;
+  --plasma: #FE71E8;
+  --plasma-cool: #FFA2F3;
+  
+  --neutron-dense: #3965FF;
+  --neutron: #6B8FFF;
+  --neutron-light: #9EB9FF;
+  
+  --gravity-well: #7E21F3;
+  --gravity: #9F56F7;
+  --gravity-field: #BF8BFC;
+  
+  /* AURORA PALETTE - From Enhanced Cosmic */
+  --aurora-purple-900: #2e1065;
+  --aurora-purple-700: #6d28d9;
+  --aurora-purple-500: #8b5cf6;
+  --aurora-purple-400: #a78bfa;
+  --aurora-purple-300: #c4b5fd;
+  --aurora-purple-200: #ddd6fe;
+  --aurora-purple-100: #ede9fe;
+  
+  --aurora-teal-700: #0f766e;
+  --aurora-teal-500: #14b8a6;
+  --aurora-teal-300: #5eead4;
+  --aurora-teal-200: #99f6e4;
+  --aurora-teal-100: #ccfbf1;
+  
+  --aurora-cyan-200: #a5f3fc;
+  --aurora-cyan-100: #cffafe;
+  --aurora-cyan-50: #ecfeff;
+  
+  --aurora-amber-300: #fcd34d;
+  --aurora-amber-100: #fef3c7;
+  
+  --aurora-pink-500: #ec4899;
+  
+  --aurora-rose-300: #fda4af;
+  
+  --aurora-emerald-300: #6ee7b7;
+  
+  /* GRADIENTS - Cosmic Phenomena */
   --gradient-event-horizon: linear-gradient(135deg, var(--void), var(--deep-space));
-  --gradient-aurora-sweep: linear-gradient(90deg, var(--aurora-purple-500), var(--aurora-teal-500));
-
-  /* ===== Text & Typography ===== */
-  --font-main: 'Inter', system-ui, sans-serif;
-  --font-headings: 'Outfit', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-
-  --font-size-base: clamp(1rem, 1rem + 0.15vw, 1.15rem);
-  --line-height-normal: 1.5;
-
+  --gradient-nebula-birth: linear-gradient(to right, var(--nebula-dark), var(--cosmos));
+  --gradient-neutron-star: linear-gradient(to bottom right, var(--neutron-dense), var(--gravity-well));
+  --gradient-stellar-fusion: linear-gradient(90deg, var(--gravity-field), var(--plasma), var(--solar-flare));
+  --gradient-cosmic-dawn: linear-gradient(to top, var(--nebula-dark), var(--cosmic-mist));
+  --gradient-aurora-borealis: linear-gradient(110deg, var(--terra-deep), var(--neutron), var(--plasma-hot));
+  --gradient-galaxy-spiral: conic-gradient(
+    from 215deg at 50% 50%,
+    var(--deep-space),
+    var(--nebula-dark),
+    var(--cosmos),
+    var(--stardust),
+    var(--gravity-well),
+    var(--deep-space)
+  );
+  
+  /* ADVANCED GRADIENTS - From Enhanced Cosmic */
+  --gradient-cosmic-horizon: linear-gradient(135deg, var(--deep-space), var(--nebula) 50%, var(--cosmos));
+  --gradient-aurora-sweep: linear-gradient(90deg, var(--aurora-purple-500), var(--aurora-pink-500), var(--aurora-teal-500));
+  --gradient-northern-lights: linear-gradient(135deg, var(--aurora-cyan-200), var(--aurora-teal-300), var(--aurora-purple-400));
+  --gradient-nebula-dust: linear-gradient(to bottom, var(--nebula-dark), var(--nebula), var(--aurora-purple-900) 80%);
+  --gradient-star-trail: linear-gradient(60deg, var(--void), var(--deep-space) 30%, var(--nebula) 70%, var(--cosmos));
+  --gradient-text-cosmic: linear-gradient(90deg, var(--aurora-teal-300), var(--aurora-cyan-200), var(--aurora-purple-300));
+  --gradient-button-glow: linear-gradient(45deg, var(--aurora-purple-500), var(--aurora-teal-500));
+  --gradient-card-highlight: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
+  
+  /* TEXT SYSTEM - Clarity Across the Cosmos */
   --text-primary: var(--distant-star);
   --text-secondary: var(--cosmic-mist);
-  --text-link: var(--aurora-teal-500);
-  --text-link-hover: var(--aurora-teal-700);
-
-  /* ===== Layout ===== */
+  --text-tertiary: var(--nebula-glow);
+  --text-accent: var(--gravity-field);
+  --text-accent-alt: var(--terra-glow);
+  --text-subtle: rgba(208, 183, 255, 0.7);
+  --text-muted: rgba(208, 183, 255, 0.5);
+  --text-dim: rgba(208, 183, 255, 0.35);
+  --text-faint: rgba(208, 183, 255, 0.2);
+  --text-link: var(--neutron);
+  --text-link-hover: var(--neutron-light);
+  --text-highlight: var(--solar-surface);
+  --text-warning: var(--solar-core);
+  --text-danger: var(--plasma-hot);
+  --text-success: var(--terra);
+  --text-normal: var(--distant-star);
+  --text-bright: var(--distant-star);
+  --text-info: var(--aurora-teal-300);
+  
+  /* TYPOGRAPHY - Intelligible Transmission */
+  --font-main: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-headings: 'Space Grotesk', 'Outfit', 'Satoshi', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --font-special: 'Space Grotesk', 'Manrope', sans-serif;
+  
+  --font-size-xs: clamp(0.7rem, 0.7rem + 0.1vw, 0.8rem);
+  --font-size-sm: clamp(0.85rem, 0.85rem + 0.1vw, 0.95rem);
+  --font-size-base: clamp(1rem, 1rem + 0.15vw, 1.15rem);
+  --font-size-md: clamp(1.1rem, 1.1rem + 0.2vw, 1.3rem);
+  --font-size-lg: clamp(1.25rem, 1.25rem + 0.3vw, 1.55rem);
+  --font-size-xl: clamp(1.5rem, 1.5rem + 0.5vw, 2rem);
+  --font-size-2xl: clamp(1.75rem, 1.75rem + 0.75vw, 2.5rem);
+  --font-size-3xl: clamp(2.25rem, 2.25rem + 1vw, 3.25rem);
+  --font-size-4xl: clamp(3rem, 3rem + 1.5vw, 4.5rem);
+  --font-size-5xl: clamp(3.75rem, 3.75rem + 2vw, 5.75rem);
+  --font-size-6xl: clamp(4.5rem, 4.5rem + 2.5vw, 7rem);
+  
+  --line-height-tight: 1.15;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  --line-height-loose: 2;
+  
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  --tracking-tighter: -0.04em;
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.02em;
+  --tracking-wider: 0.04em;
+  --tracking-widest: 0.1em;
+  --heading-letter-spacing: -0.025em;
+  --body-letter-spacing: 0.01em;
+  --code-letter-spacing: -0.01em;
+  
+  /* LAYOUT - Cosmic Architecture */
   --max-width: 1400px;
+  --content-width: 800px;
+  --content-width-wide: 900px;
+  --content-width-narrow: 600px;
   --main-padding: clamp(20px, 4vw, 40px);
   --grid-gap: clamp(24px, 3vw, 40px);
-
-  /* ===== Effects ===== */
-  --shadow-md: 0 4px 20px rgba(8,5,16,0.2);
-  --glow-subtle: 0 0 20px rgba(126,33,243,0.1);
+  --section-spacing: clamp(48px, 8vh, 120px);
+  --block-spacing: clamp(24px, 4vh, 60px);
+  --element-spacing: clamp(16px, 2vh, 32px);
+  --element-spacing-sm: 16px;
+  --element-spacing-lg: 32px;
+  --element-spacing-xl: 48px;
+  
+  --header-height: clamp(60px, 8vh, 90px);
+  --header-height-mobile: 50px;
+  --footer-height: clamp(100px, 15vh, 200px);
+  --sidebar-width: clamp(280px, 25vw, 360px);
+  --sidebar-width-collapsed: 60px;
+  --site-padding: 24px;
+  --site-padding-sm: 16px;
+  --site-padding-lg: 32px;
+  
+  /* SURFACES - Astral Planes */
+  --surface-transparent: rgba(26, 19, 53, 0.2);
+  --surface-subtle: rgba(38, 26, 69, 0.4);
+  --surface-mild: rgba(49, 33, 84, 0.65);
+  --surface-moderate: rgba(59, 40, 104, 0.75);
+  --surface-strong: rgba(78, 59, 122, 0.85);
+  --surface-intense: rgba(107, 72, 160, 0.9);
+  
+  /* GLASS EFFECTS - From Enhanced Cosmic */
+  --glass-bg: rgba(15, 10, 32, 0.75);
+  --glass-bg-lighter: rgba(26, 19, 53, 0.65);
+  --glass-bg-lightest: rgba(38, 26, 69, 0.55);
+  --glass-bg-dark: rgba(8, 5, 16, 0.85);
+  --glass-bg-darkest: rgba(8, 5, 16, 0.95);
+  
+  /* EFFECTS - Cosmic Phenomena */
+  --blur-subtle: blur(3px);
+  --blur-moderate: blur(8px);
+  --blur-strong: blur(15px);
+  --blur-intense: blur(25px);
+  --glass-blur-strong: var(--blur-strong);
+  --glass-blur-medium: var(--blur-moderate);
+  --glass-blur-light: var(--blur-subtle);
+  
+  --glow-subtle: 0 0 20px rgba(126, 33, 243, 0.1);
+  --glow-moderate: 0 0 25px rgba(126, 33, 243, 0.2);
+  --glow-strong: 0 0 30px rgba(126, 33, 243, 0.3);
+  --glow-intense: 0 0 40px rgba(126, 33, 243, 0.4);
+  
+  --glow-neutron: 0 0 25px rgba(57, 101, 255, 0.3);
+  --glow-terra: 0 0 25px rgba(30, 190, 165, 0.3);
+  --glow-plasma: 0 0 25px rgba(249, 69, 207, 0.3);
+  --glow-solar: 0 0 25px rgba(255, 123, 41, 0.3);
+  
+  /* ENHANCED GLOW EFFECTS - From Enhanced Cosmic */
+  --glow-purple-subtle: 0 0 15px rgba(124, 58, 237, 0.15);
+  --glow-purple-medium: 0 0 25px rgba(124, 58, 237, 0.25);
+  --glow-purple-strong: 0 0 35px rgba(124, 58, 237, 0.35);
+  --glow-cyan-subtle: 0 0 15px rgba(6, 182, 212, 0.15);
+  --glow-cyan-medium: 0 0 25px rgba(6, 182, 212, 0.25);
+  --glow-cyan-strong: 0 0 35px rgba(6, 182, 212, 0.35);
+  
+  /* BORDERS & SHAPES - Cosmic Geometry */
+  --radius-2xs: 2px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-3xl: 48px;
+  --radius-full: 9999px;
+  
+  --border-width-thin: 0.5px;
+  --border-thin: 1px;
+  --border-regular: 2px;
+  --border-thick: 3px;
+  --border-width-4: 4px;
+  --border-width-8: 8px;
+  
+  --border-style: solid;
+  --border-style-dashed: dashed;
+  --border-style-dotted: dotted;
+  
+  --border-subtle: rgba(140, 107, 200, 0.15);
+  --border-soft: rgba(140, 107, 200, 0.25);
+  --border-medium: rgba(140, 107, 200, 0.4);
+  --border-strong: rgba(140, 107, 200, 0.6);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-color-strong: rgba(255, 255, 255, 0.15);
+  --border-color-subtle: rgba(255, 255, 255, 0.05);
+  --border-color-accent: rgba(30, 190, 165, 0.4);
+  --border-color-highlight: rgba(126, 33, 243, 0.4);
+  
+  /* SHADOWS - Gravitational Fields */
+  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-sm: 0 2px 10px rgba(8, 5, 16, 0.15);
+  --shadow-md: 0 4px 20px rgba(8, 5, 16, 0.2);
+  --shadow-lg: 0 8px 30px rgba(8, 5, 16, 0.25);
+  --shadow-xl: 0 12px 40px rgba(8, 5, 16, 0.3);
+  --shadow-2xl: 0 35px 75px rgba(0, 0, 0, 0.35), 0 30px 40px rgba(0, 0, 0, 0.3);
+  --shadow-inner: inset 0 2px 10px rgba(8, 5, 16, 0.2);
+  --shadow-inner-md: inset 0 4px 8px 0 rgba(0, 0, 0, 0.12);
+  --shadow-inner-lg: inset 0 8px 16px 0 rgba(0, 0, 0, 0.18);
+  --shadow-outline: 0 0 0 3px rgba(57, 101, 255, 0.25);
+  --shadow-outline-purple: 0 0 0 3px rgba(126, 33, 243, 0.25);
+  --shadow-outline-teal: 0 0 0 3px rgba(30, 190, 165, 0.25);
+  
+  /* ANIMATIONS - Cosmic Time */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  --transition-speed: 0.3s;
+  --transition-speed-fast: 0.15s;
+  --transition-speed-slow: 0.5s;
+  --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --transition-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --transition-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* ANIMATION TIMINGS */
+  --animation-slower: 1500ms;
+  --animation-slow: 1000ms;
+  --animation-normal: 500ms;
+  --animation-fast: 300ms;
+  --animation-faster: 150ms;
+  
+  /* Z-INDEX - Dimensional Planes */
+  --z-base: 1;
+  --z-above: 10;
+  --z-elevated: 20;
+  --z-floating: 30;
+  --z-overlay: 40;
+  --z-modal: 50;
+  --z-cosmic: 100;
+  
+  /* ADVANCED EFFECTS - From Enhanced Cosmic */
+  --parallax-depth-1: 10px;
+  --parallax-depth-2: 20px;
+  --parallax-depth-3: 30px;
+  --parallax-depth-4: 40px;
+  
+  --mask-fade-horizontal: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  --mask-fade-vertical: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  --mask-radial: radial-gradient(circle at center, black 30%, transparent 70%);
+  
+  --blur-amount: 10px;
+  --blur-amount-strong: 20px;
+  --blur-amount-subtle: 5px;
+  --grain-opacity: 0.04;
+  --grain-size: 150px;
+  --aurora-opacity: 0.2;
+  --starfield-opacity: 0.5;
+  
+  /* COMPONENT VARIABLES */
+  --callout-border-width: 2px;
+  --callout-padding: 18px;
+  --callout-radius: var(--radius-sm);
+  --callout-shadow: var(--shadow-sm);
+  
+  --card-bg: var(--glass-bg-lighter);
+  --card-border: var(--border-color);
+  --card-shadow: var(--shadow-md);
+  --card-radius: var(--radius-md);
+  --card-padding: 1.5rem;
+  
+  --button-radius: var(--radius-md);
+  --button-padding-y: 0.6em;
+  --button-padding-x: 1.2em;
+  --button-shadow: var(--shadow-sm);
+  --button-shadow-hover: var(--shadow-md);
+  
+  --widget-bg: var(--glass-bg);
+  --widget-border: var(--border-color);
+  --widget-shadow: var(--shadow-md);
+  --widget-radius: var(--radius-md);
+  
+  --bg-gradient-start: var(--void);
+  --bg-gradient-mid: var(--deep-space);
+  --bg-gradient-end: var(--nebula-dark);
+  --bg-gradient-dir: 135deg;
 }
 
-// 2. MIXINS & UTILITIES
-@mixin gradient-bg($direction, $start, $end) {
-  background: linear-gradient($direction, $start, $end);
-}
+/* ======= GLOBAL STYLES ======= */
 
-@mixin glass-card($blur: 8px, $alpha: 0.1) {
-  background: rgba(255,255,255,$alpha);
-  backdrop-filter: blur($blur);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-}
-
-// 3. RESET & BASE
+/* Base reset */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -80,62 +359,1672 @@
 }
 
 html {
-  font-family: var(--font-main);
+  font-size: 100%;
   scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
 }
 
 body {
-  background: var(--gradient-event-horizon);
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
   color: var(--text-primary);
+  background: var(--gradient-event-horizon);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  
+  /* Text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  letter-spacing: var(--body-letter-spacing);
+  
+  /* Noise texture */
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: var(--grain-opacity);
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  /* Aurora background */
+  &::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 15% 35%, rgba(126, 33, 243, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 85% 25%, rgba(30, 190, 165, 0.1) 0%, transparent 35%),
+                radial-gradient(circle at 75% 85%, rgba(249, 69, 207, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 25% 75%, rgba(57, 101, 255, 0.08) 0%, transparent 35%);
+    z-index: -1;
+    pointer-events: none;
+    opacity: var(--aurora-opacity);
+  }
 }
 
-// 4. TYPOGRAPHY
-h1 {
+/* Selection styling */
+::selection {
+  background: rgba(126, 33, 243, 0.3);
+  color: var(--distant-star);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--deep-space);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--stardust);
+  border-radius: var(--radius-full);
+  transition: background var(--transition-normal);
+  
+  &:hover {
+    background: var(--twilight);
+  }
+}
+
+/* ======= TYPOGRAPHY ======= */
+
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-headings);
-  font-size: clamp(2.25rem, 2.25rem + 1vw, 3.25rem);
-  background: var(--gradient-aurora-sweep);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--heading-letter-spacing);
+  color: var(--text-primary);
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+  background: var(--gradient-stellar-fusion);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  margin-bottom: 0.7em;
 }
 
+h2 {
+  font-size: var(--font-size-2xl);
+  color: var(--cosmic-mist);
+  position: relative;
+  
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.3em;
+    height: 3px;
+    width: 3em;
+    background: var(--gradient-aurora-borealis);
+    border-radius: var(--radius-full);
+  }
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+  color: var(--starlight);
+}
+
+h4 {
+  font-size: var(--font-size-lg);
+  color: var(--dawn);
+}
+
+h5 {
+  font-size: var(--font-size-md);
+  color: var(--dawn);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+h6 {
+  font-size: var(--font-size-base);
+  color: var(--twilight);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+p {
+  margin-bottom: 1.5em;
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+}
+
+.large-text {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+}
+
+.small-text {
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+}
+
+.tiny-text {
+  font-size: var(--font-size-xs);
+  color: var(--text-dim);
+  letter-spacing: var(--tracking-wide);
+}
+
+/* Links */
 a {
   color: var(--text-link);
   text-decoration: none;
+  transition: all var(--transition-normal);
   position: relative;
+  
+  &:hover, &:focus {
+    color: var(--text-link-hover);
+    text-decoration: none;
+    
+    &::after {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  }
+  
   &::after {
     content: '';
     position: absolute;
     bottom: -2px;
     left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--text-link-hover);
-    transition: width 0.3s;
+    width: 100%;
+    height: 1px;
+    background: var(--gradient-aurora-borealis);
+    transform: scaleX(0.2);
+    opacity: 0;
+    transform-origin: left;
+    transition: transform var(--transition-normal), opacity var(--transition-normal);
   }
-  &:hover::after { width: 100%; }
+  
+  &.btn {
+    &::after {
+      display: none;
+    }
+  }
 }
 
-// 5. COMPONENTS
+/* Lists */
+ul, ol {
+  margin: 0 0 1.5em 1.2em;
+  
+  li {
+    margin-bottom: 0.5em;
+    color: var(--text-secondary);
+    
+    &::marker {
+      color: var(--gravity-field);
+    }
+  }
+}
+
+ul {
+  list-style-type: none;
+  
+  li {
+    position: relative;
+    padding-left: 1.5em;
+    
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.5em;
+      width: 0.5em;
+      height: 0.5em;
+      background: var(--gravity-field);
+      border-radius: var(--radius-sm);
+      transform: rotate(45deg);
+      opacity: 0.8;
+    }
+  }
+}
+
+/* Code */
+pre, code {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  letter-spacing: var(--code-letter-spacing);
+}
+
+code {
+  background: var(--surface-subtle);
+  color: var(--terra-glow);
+  padding: 0.2em 0.4em;
+  border-radius: var(--radius-sm);
+  font-size: 0.9em;
+}
+
+pre {
+  background: var(--surface-moderate);
+  padding: 1.5em;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  margin: 2em 0;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-subtle);
+  
+  code {
+    background: transparent;
+    color: var(--text-primary);
+    padding: 0;
+    font-size: var(--font-size-sm);
+  }
+}
+
+
+
+// 2. ENHANCED BACKGROUND: Multi-layered cosmic environment
+// ------------------------------------------------------------------
+/* Replace the existing background-image in the html, body selector with this enhanced version */
+html, body {
+  background-image:
+    /* Galaxy spiral arm glow effects */
+    radial-gradient(ellipse at 10% 40%, rgba(88, 28, 135, 0.15) 0%, transparent 70%),
+    radial-gradient(ellipse at 90% 25%, rgba(139, 92, 246, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse at 50% 90%, rgba(14, 165, 233, 0.1) 0%, transparent 75%),
+    /* Additional galaxy core glow */
+    radial-gradient(circle at 50% 50%, rgba(167, 139, 250, 0.1) 0%, transparent 50%),
+    /* Subtle nebula clouds */
+    radial-gradient(ellipse at 80% 60%, rgba(224, 231, 255, 0.05) 0%, transparent 65%),
+    /* Base gradient - keep this */
+    linear-gradient(var(--bg-gradient-dir), var(--bg-gradient-start), var(--bg-gradient-mid) 50%, var(--bg-gradient-end));
+}
+
+
+// 3. ENHANCED TEXTURES & OVERLAYS
+// ------------------------------------------------------------------
+// 3.1 SUBTLE DOT GRID OVERLAY - Improved with variable size
+.patterned {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.15;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+// 3.2 STAR FIELD EFFECT - Enhanced with more stars and improved animation
+/* Enhanced star field with depth effect and improved animation */
+.star-field {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+  perspective: 500px;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 4px 1px rgba(255, 255, 255, 0.4);
+}
+
+/* Generate stars with 3D depth effect */
+@for $i from 1 through 150 {
+  .star:nth-child(#{$i}) {
+    $size: #{random(3) + 1}px;
+    width: $size;
+    height: $size;
+    top: #{random(100)}vh;
+    left: #{random(100)}vw;
+    opacity: #{(random(8) + 2) / 10};
+    transform: translateZ(#{random(200) - 100}px);
+    animation: 
+      star-twinkle #{(random(5) + 3)}s infinite ease-in-out alternate,
+      star-drift #{(random(180) + 120)}s infinite linear;
+    animation-delay: #{random(5)}s, 0s;
+    
+    /* Add occasional shooting star */
+    @if $i % 15 == 0 {
+      &::after {
+        content: '';
+        position: absolute;
+        width: 80px;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.8), transparent);
+        transform: translateX(-100%) rotate(#{random(360)}deg);
+        opacity: 0;
+        animation: shooting-star #{random(10) + 15}s infinite ease-out;
+        animation-delay: #{random(30)}s;
+      }
+    }
+  }
+}
+
+@keyframes star-twinkle {
+  0% { transform: scale(1) translateZ(0); filter: blur(0px); }
+  50% { transform: scale(1.4) translateZ(0); filter: blur(0.2px); }
+  100% { transform: scale(0.8) translateZ(0); filter: blur(0px); }
+}
+
+@keyframes star-drift {
+  0% { transform: translateZ(0) rotateY(0deg); }
+  100% { transform: translateZ(0) rotateY(360deg); }
+}
+
+@keyframes shooting-star {
+  0% { transform: translateX(-100%) rotate(45deg); opacity: 0; }
+  1% { opacity: 1; }
+  3% { transform: translateX(300%) rotate(45deg); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+// 3.3 COSMIC DUST PARTICLES
+.cosmic-dust {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.dust-particle {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.2;
+  filter: blur(1px);
+}
+
+/* Generate 50 dust particles */
+@for $i from 1 through 50 {
+  .dust-particle:nth-child(#{$i}) {
+    width: #{random(4) + 1}px;
+    height: #{random(4) + 1}px;
+    top: #{random(100)}vh;
+    left: #{random(100)}vw;
+    animation: dust-float #{random(100) + 50}s infinite linear;
+    animation-delay: -#{random(100)}s;
+  }
+}
+
+@keyframes dust-float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.2;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate(#{random(100) - 50}px, #{random(100) - 50}px) rotate(360deg);
+    opacity: 0;
+  }
+}
+/* 3.5 GALAXY NEBULA OVERLAY */
+.galaxy-nebula {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.4;
+  mix-blend-mode: screen;
+}
+
+.nebula-cloud {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.1;
+  background: radial-gradient(circle at center, currentColor 0%, transparent 70%);
+  animation: nebula-float 120s infinite linear;
+}
+
+/* Generate 8 nebula clouds with different colors and positions */
+@for $i from 1 through 8 {
+  .nebula-cloud:nth-child(#{$i}) {
+    $size: #{random(60) + 40}vmin;
+    width: $size;
+    height: $size;
+    top: #{random(100)}vh;
+    left: #{random(100)}vw;
+    
+    @if $i % 4 == 0 {
+      color: var(--aurora-purple-400);
+    } @else if $i % 4 == 1 {
+      color: var(--aurora-teal-500);
+    } @else if $i % 4 == 2 {
+      color: var(--aurora-cyan-500);
+    } @else {
+      color: var(--aurora-pink-400);
+    }
+    
+    animation-duration: #{random(40) + 80}s;
+    animation-delay: -#{random(40)}s;
+  }
+}
+
+@keyframes nebula-float {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.1;
+  }
+  80% {
+    opacity: 0.1;
+  }
+  100% {
+    transform: translate(#{random(20) - 10}vw, #{random(20) - 10}vh) rotate(360deg) scale(1.2);
+    opacity: 0;
+  }
+}
+
+// 3.4 NOISE TEXTURE OVERLAY
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 150px 150px;
+  mix-blend-mode: soft-light;
+}
+
+// 6. MIXINS & UTILITIES
+// ------------------------------------------------------------------
+@mixin gradient-bg($dir, $start, $end) {
+  background: linear-gradient($dir, $start, $end);
+}
+
+@mixin glass-card($blur: 8px, $alpha: 0.1) {
+  background: rgba(255,255,255,$alpha);
+  backdrop-filter: blur($blur);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+// Replace in section 7. GLASS CARDS & PANELS
 .card {
   @include glass-card(12px, 0.12);
   padding: 1.5rem;
+  margin: 1rem 0;
   border: 1px solid rgba(255,255,255,0.1);
-  transition: transform 0.3s;
-  &:hover { transform: translateY(-4px); }
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    border-color: rgba(255,255,255,0.2);
+    
+    &::after {
+      opacity: 1;
+    }
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255,255,255,0.1), 
+                transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    animation: shimmer 2s infinite;
+  }
 }
 
+// 8. ENHANCED BUTTONS
+/* Enhanced cosmic buttons with glow effects */
 .btn {
-  @include gradient-bg(135deg, var(--aurora-purple-500), var(--aurora-teal-500));
-  color: var(--distant-star);
-  padding: 0.75em 1.5em;
-  border-radius: var(--radius-full);
-  transition: transform 0.3s;
-  &:hover { transform: translateY(-2px); }
+  display: inline-block;
+  padding: 0.6em 1.2em;
+  border-radius: var(--border-radius);
+  font-family: var(--font-family-main);
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  &--primary { 
+    background: linear-gradient(135deg, var(--primary-700), var(--primary-800));
+    color: var(--text-primary);
+  }
+  
+  &--accent { 
+    background: linear-gradient(135deg, var(--aurora-purple-500), var(--aurora-teal-500));
+    color: white;
+  }
+  
+  &--link { 
+    background: transparent;
+    color: var(--link-color);
+    text-decoration: underline;
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+    z-index: -1;
+    transition: left 0.7s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 10px var(--glow-cyan-subtle);
+    border-color: rgba(255, 255, 255, 0.2);
+    
+    &::before {
+      left: 100%;
+    }
+  }
+  
+  &:active {
+    transform: translateY(1px);
+  }
 }
 
-// 6. UTILITIES
-.text-center { text-align: center; }
-.mx-auto { margin-left: auto; margin-right: auto; }
+// Replace section 9. LINK STYLES
+// Restore original link style with improvements
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 0; height: 2px;
+    background: var(--link-color);
+    transition: width 0.3s ease;
+  }
+  
+  &:hover { color: var(--highlight); }
+  &:hover::after { width: 100%; }
+  
+  // Optional enhancement for internal links while keeping original animation
+  &.internal-link {
+    border-bottom: 1px dashed rgba(138, 214, 238, 0.4);
+    
+    &:hover {
+      border-bottom: 1px dashed rgba(191, 166, 224, 0.6);
+    }
+  }
+}
 
-/* End of merged theme */
+// 10. WIDGET STYLE
+// ------------------------------------------------------------------
+.widget {
+  background: var(--widget-bg);
+  border: 1px solid var(--widget-border);
+  box-shadow: var(--widget-shadow);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  margin: 1rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+// Replace section 11. CUSTOM SCROLLBAR
+// ------------------------------------------------------------------
+::-webkit-scrollbar { 
+  width: 8px; 
+  height: 8px;
+}
+
+::-webkit-scrollbar-track { 
+  background: rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--highlight), var(--text-accent));
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  
+  &:hover {
+    background: linear-gradient(var(--text-accent), var(--highlight));
+    border-width: 1px;
+  }
+}
+
+// For Firefox
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--highlight) transparent;
+}
+
+// 12. DIGITAL GARDEN OVERRIDES
+// ------------------------------------------------------------------
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+// Replace in section 12. DIGITAL GARDEN OVERRIDES
+.callout {
+  border-left: var(--callout-border-width) solid var(--highlight);
+  background: rgba(0,0,0,0.2);
+  padding: var(--callout-padding);
+  margin: 1.5rem 0;
+  border-radius: var(--callout-radius);
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+                rgba(255,255,255,0.05), 
+                transparent 50%);
+    pointer-events: none;
+  }
+  
+  // Add different colors for different callout types
+  &.note { border-left-color: var(--link-color); }
+  &.warning { border-left-color: #FFD77A; }
+  &.important { border-left-color: #FF7A7A; }
+  &.tip { border-left-color: #7AFF9C; }
+  
+  .callout-title {
+    font-weight: var(--font-weight-medium);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    
+    svg {
+      margin-right: 0.5rem;
+    }
+  }
+}
+// Replace in section 12. DIGITAL GARDEN OVERRIDES
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 2rem 0;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  
+  thead {
+    background: var(--background-secondary);
+    color: var(--text-primary);
+    th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: var(--font-weight-medium);
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+    }
+  }
+  
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background: rgba(0,0,0,0.1);
+      }
+      
+      &:hover {
+        background: rgba(255,255,255,0.05);
+      }
+    }
+  }
+  
+  th, td {
+    padding: 0.85rem 1rem;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+}
+// Add to section 12. DIGITAL GARDEN OVERRIDES
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: var(--heading-letter-spacing);
+  line-height: var(--line-height-tight);
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  font-weight: var(--font-weight-bold);
+}
+
+h1 {
+  font-size: 2.8rem;
+  background: linear-gradient(90deg, var(--text-primary), var(--highlight));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--text-accent);
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+p, li, td {
+  line-height: var(--line-height-loose);
+  letter-spacing: var(--body-letter-spacing);
+}
+
+blockquote {
+  border-left: 4px solid var(--highlight);
+  padding-left: 1rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+// Add to section 12. DIGITAL GARDEN OVERRIDES
+pre, code {
+  font-family: var(--font-family-code);
+  font-size: 0.9em;
+  border-radius: var(--border-radius);
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+code {
+  background: rgba(0,0,0,0.2);
+  padding: 0.2em 0.4em;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.code-header {
+  background: rgba(0,0,0,0.4);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-family-code);
+  font-size: 0.8em;
+  color: var(--text-muted);
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-bottom: none;
+}
+
+// Define the title header GIF variable
+:root {
+  --title-header-gif: url('/img/fractal-title.gif');
+  --title-header-gif-height: 120px;
+  --title-header-gif-width: 100%;
+  --title-header-gif-margin-bottom: 10px;
+}
+
+// Add the GIF above the sidebar title
+.filetree-sidebar {
+  h1 {
+    // Add spacing for the GIF above
+    margin-top: var(--title-header-gif-height);
+    position: relative;
+    
+    // Create the GIF element using pseudo-element
+    &::before {
+      content: '';
+      position: absolute;
+      top: calc(-1 * var(--title-header-gif-height) - var(--title-header-gif-margin-bottom));
+      left: 0;
+      width: var(--title-header-gif-width);
+      height: var(--title-header-gif-height);
+      background-image: var(--title-header-gif);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 1;
+    }
+  }
+}
+
+// For mobile responsiveness
+@media (max-width: 800px) {
+  .filetree-sidebar {
+    h1::before {
+      // Show the GIF even when the h1 is hidden on mobile
+      position: relative;
+      display: block;
+      top: 0;
+      margin-bottom: var(--title-header-gif-margin-bottom);
+    }
+  }
+}
+// Add opacity to right sidebar elements (graph, backlinks)
+// Adjust the opacity value to your preference (0.0 - 1.0)
+:root {
+  --sidebar-opacity: 0.85; // 85% opacity - change as needed
+  --sidebar-hover-opacity: 0.95; // Opacity when hovering
+  --sidebar-transition: opacity 0.3s ease; // Smooth transition effect
+}
+
+// Target the sidebar container and its components
+.sidebar {
+  opacity: var(--sidebar-opacity);
+  transition: var(--sidebar-transition);
+  
+  // Apply opacity to all main components
+  .graph, 
+  .toc, 
+  .backlinks,
+  #link-graph,
+  .sidebar-container {
+    opacity: var(--sidebar-opacity);
+    transition: var(--sidebar-transition);
+  }
+  
+  // Optional: Increase opacity when hovering
+  &:hover {
+    opacity: var(--sidebar-hover-opacity);
+    
+    .graph, 
+    .toc, 
+    .backlinks,
+    #link-graph,
+    .sidebar-container {
+      opacity: var(--sidebar-hover-opacity);
+    }
+  }
+}
+
+// Also apply to fullscreen graph mode
+.graph-fs, #full-graph {
+  opacity: var(--sidebar-opacity);
+  transition: var(--sidebar-transition);
+  
+  &:hover {
+    opacity: var(--sidebar-hover-opacity);
+  }
+}
+// Add as a new section: 14. FLOATING ACTION BUTTON
+// ------------------------------------------------------------------
+.floating-action-button {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--highlight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  
+  &:hover {
+    transform: translateY(-5px);
+    background: var(--text-accent);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+  }
+  
+  svg {
+    width: 24px;
+    height: 24px;
+    color: var(--background-primary);
+  }
+}
+
+.fab-menu {
+  position: fixed;
+  bottom: 5rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+  z-index: 99;
+  transform: translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  
+  &.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+  
+  .fab-item {
+    background: var(--background-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    color: var(--text-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      transform: translateX(-5px);
+      background: var(--background-secondary-alt);
+    }
+    
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+// Add as new section: 15. ENHANCED NAVIGATION
+// ------------------------------------------------------------------
+.nav-container {
+  backdrop-filter: blur(10px);
+  background: rgba(18, 20, 42, 0.6);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  .nav-content {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-logo {
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    
+    a {
+      color: var(--text-muted);
+      font-weight: var(--font-weight-medium);
+      transition: color 0.2s ease;
+      
+      &:hover, &.active {
+        color: var(--text-primary);
+      }
+      
+      &::before {
+        content: none;
+      }
+    }
+  }
+}
+/* Particles enhancement for cosmic theme */
+.particles-js-canvas-el {
+  opacity: 0.65; /* Adjust opacity to match your cosmic theme */
+  mix-blend-mode: screen; /* Makes particles blend nicely with background */
+  filter: blur(0.5px); /* Subtle blur for cosmic effect */
+}
+
+/* Adding subtle animation to make particles even more cosmic */
+@keyframes cosmic-pulse {
+  0% { opacity: 0.65; filter: blur(0.5px); }
+  50% { opacity: 0.75; filter: blur(1px); }
+  100% { opacity: 0.65; filter: blur(0.5px); }
+}
+
+/* Apply animation to particles canvas */
+.particles-js-canvas-el {
+  animation: cosmic-pulse 10s infinite ease-in-out;
+}
+
+/* Minimal flashcard base system - dimension-neutral */
+.flashcard-grid {
+  display: grid;
+  gap: 1rem; /* Smaller default gap */
+  margin: 1.5rem 0;
+}
+
+/* Grid column variations - default setup */
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* Responsive breakpoints */
+@media (max-width: 1400px) {
+  .grid-4 { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 1000px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 650px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+
+/* Flashcard container - minimal styling */
+.flashcard {
+  background: rgba(30, 37, 78, 0.75);
+  backdrop-filter: blur(8px);
+  border-radius: 10px; /* Slightly smaller radius */
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* Smaller shadow */
+  border: 1px solid rgba(224, 178, 255, 0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make the anchor fill the entire card */
+.flashcard a {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+/* Remove underline effect from links */
+.flashcard a::after {
+  display: none;
+}
+
+/* Hover effects - more subtle */
+.flashcard:hover {
+  transform: translateY(-4px); /* Less dramatic lift */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  border-color: var(--link-color);
+}
+
+/* Image container - Base styling without dimensions */
+.flashcard-image {
+  background: rgba(18, 20, 42, 0.6);
+  padding: 0.8rem; /* Smaller default padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  overflow: hidden;
+}
+
+/* Image styling */
+.flashcard-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4)); /* Smaller shadow */
+  transition: transform 0.3s ease;
+}
+
+.flashcard:hover .flashcard-image img {
+  transform: scale(1.05);
+}
+
+/* Content area - minimal default padding */
+.flashcard-content {
+  padding: 0.8rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Typography defaults - smaller */
+.flashcard-content h3 {
+  margin: 0 0 0.5rem;
+  color: var(--text-accent);
+  font-size: 1.1rem; /* Smaller default */
+  font-weight: 600;
+}
+
+.flashcard-content p {
+  margin: 0;
+  color: var(--text-normal);
+  font-size: 0.85rem; /* Smaller default */
+  line-height: 1.3;
+  opacity: 0.9;
+}
+.round-img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.round-img-50 { width: 50px; height: 50px; }
+.round-img-100 { width: 100px; height: 100px; }
+.round-img-150 { width: 150px; height: 150px; }
+.round-img-200 { width: 200px; height: 200px; }
+/* Add more size classes as needed */
+
+.datetime-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+  font-size: 1rem; /* Increased from 0.875rem */
+  color: var(--text-muted, #6e6e6e);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Increased spacing */
+  opacity: 0.9;
+  transition: opacity 0.2s ease, transform 0.3s ease;
+  z-index: 100;
+}
+
+.datetime-container:hover {
+  opacity: 1;
+}
+
+.datetime-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  color: var(--text-muted, #6e6e6e);
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.datetime-toggle:hover {
+  opacity: 1;
+}
+
+.datetime-hidden {
+  display: none;
+}
+
+/* Reset button that appears when datetime is hidden */
+.datetime-reset {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: var(--text-muted, #6e6e6e);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  z-index: 100;
+}
+
+.datetime-reset:hover {
+  opacity: 1;
+}
+
+.datetime-reset svg {
+  width: 16px;
+  height: 16px;
+}
+
+.datetime-reset-hidden {
+  display: none;
+}
+/* 16. STELLAR FLARE EFFECTS
+   ------------------------------------------------------------------
+   These animations create cosmic flare effects that occasionally appear
+   around the edges of the viewport or around interactive elements
+*/
+
+.stellar-flare-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.stellar-flare {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0;
+  background: radial-gradient(circle at center, 
+                var(--aurora-teal-300) 0%, 
+                var(--aurora-purple-400) 50%, 
+                transparent 80%);
+  animation: flare-pulse 8s infinite ease-out;
+}
+
+/* Create flares at different positions */
+.stellar-flare:nth-child(1) {
+  top: 20%;
+  left: -50px;
+  animation-delay: 0s;
+}
+
+.stellar-flare:nth-child(2) {
+  top: 70%;
+  right: -50px;
+  animation-delay: 3s;
+  background: radial-gradient(circle at center, 
+                var(--aurora-pink-400) 0%, 
+                var(--aurora-purple-400) 50%, 
+                transparent 80%);
+}
+
+.stellar-flare:nth-child(3) {
+  bottom: -50px;
+  left: 30%;
+  animation-delay: 6s;
+  background: radial-gradient(circle at center, 
+                var(--aurora-cyan-300) 0%, 
+                var(--aurora-teal-500) 50%, 
+                transparent 80%);
+}
+
+.stellar-flare:nth-child(4) {
+  top: -50px;
+  right: 25%;
+  animation-delay: 9s;
+  background: radial-gradient(circle at center, 
+                var(--aurora-purple-300) 0%, 
+                var(--aurora-pink-500) 50%, 
+                transparent 80%);
+}
+
+/* Element interaction flares */
+.interactive-flare {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  filter: blur(15px);
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, 
+                var(--aurora-teal-300) 0%, 
+                transparent 80%);
+  z-index: -1;
+  transition: opacity 0.5s ease;
+}
+
+/* Add this class using JavaScript when elements are interacted with */
+.show-flare {
+  opacity: 0.4;
+  animation: flare-fade 1.5s ease-out forwards;
+}
+
+@keyframes flare-pulse {
+  0% { transform: scale(0.8); opacity: 0; }
+  30% { transform: scale(1.2); opacity: 0.3; }
+  70% { transform: scale(1); opacity: 0.2; }
+  100% { transform: scale(0.8); opacity: 0; }
+}
+
+@keyframes flare-fade {
+  0% { transform: scale(0.8); opacity: 0.4; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+/* 17. PARALLAX STARFIELD EFFECT
+   ------------------------------------------------------------------
+   Creates a parallax effect where stars move at different speeds
+   as the user scrolls, creating a sense of depth
+*/
+
+.parallax-stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  pointer-events: none;
+}
+
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat;
+  will-change: transform;
+}
+
+.layer-1 {
+  background-image: radial-gradient(1px 1px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.8), transparent),
+                    radial-gradient(1px 1px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.8), transparent),
+                    radial-gradient(1px 1px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.8), transparent),
+                    radial-gradient(1px 1px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.8), transparent),
+                    radial-gradient(1px 1px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.8), transparent),
+                    radial-gradient(1px 1px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.8), transparent);
+  background-size: 400px 400px;
+  transform: translateZ(-300px) scale(4);
+}
+
+.layer-2 {
+  background-image: radial-gradient(1.5px 1.5px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.6), transparent),
+                    radial-gradient(1.5px 1.5px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.6), transparent),
+                    radial-gradient(1.5px 1.5px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.6), transparent),
+                    radial-gradient(1.5px 1.5px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.6), transparent);
+  background-size: 250px 250px;
+  transform: translateZ(-200px) scale(3);
+}
+
+.layer-3 {
+  background-image: radial-gradient(2px 2px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.4), transparent),
+                    radial-gradient(2px 2px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.4), transparent),
+                    radial-gradient(2px 2px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.4), transparent);
+  background-size: 150px 150px;
+  transform: translateZ(-100px) scale(2);
+}
+
+/* 18. GALAXY SPIRAL ANIMATION
+   ------------------------------------------------------------------
+   Creates an animated spiral effect that resembles a galaxy
+   Use this on special sections or the homepage for impact
+*/
+
+.galaxy-spiral-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+.galaxy-spiral {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  transform-style: preserve-3d;
+  animation: galaxy-rotate 60s linear infinite;
+}
+
+.spiral-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 0 4px 2px rgba(255, 255, 255, 0.3);
+  transform-style: preserve-3d;
+}
+
+/* Generate spiral pattern with JavaScript instead of SCSS loops */
+.galaxy-spiral-js {
+  /*
+    Add this JavaScript to generate the spiral:
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const spiral = document.querySelector('.galaxy-spiral');
+      if (!spiral) return;
+      
+      const totalStars = 600;
+      const armCount = 5;
+      const armAngle = (2 * Math.PI) / armCount;
+      
+      for (let i = 0; i < totalStars; i++) {
+        const star = document.createElement('div');
+        star.className = 'spiral-star';
+        
+        // Calculate spiral position
+        const armIndex = i % armCount;
+        const distanceFromCenter = 10 + (i / totalStars) * 180;
+        const rotationAngle = (i / totalStars) * 15 * Math.PI + armIndex * armAngle;
+        
+        // Set star size (larger toward center)
+        const starSize = Math.max(1, 4 * (1 - i / totalStars));
+        star.style.width = starSize + 'px';
+        star.style.height = starSize + 'px';
+        
+        // Set position
+        const x = Math.cos(rotationAngle) * distanceFromCenter;
+        const y = Math.sin(rotationAngle) * distanceFromCenter;
+        const z = (Math.random() - 0.5) * 20;
+        
+        star.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
+        
+        // Set color (blue to purple to pink)
+        const hue = 240 + (armIndex * 30);
+        const color = `hsl(${hue}, 80%, 70%)`;
+        star.style.backgroundColor = color;
+        star.style.boxShadow = `0 0 4px 1px ${color}`;
+        
+        // Vary opacity
+        star.style.opacity = 0.1 + Math.random() * 0.9;
+        
+        spiral.appendChild(star);
+      }
+    });
+  */
+}
+
+@keyframes galaxy-rotate {
+  0% { transform: rotateZ(0deg); }
+  100% { transform: rotateZ(360deg); }
+}
+
+/* Core glow effect for galaxy center */
+.galaxy-core {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, 
+                rgba(255, 255, 255, 0.7) 0%, 
+                rgba(186, 230, 253, 0.5) 20%, 
+                rgba(139, 92, 246, 0.4) 40%, 
+                transparent 80%);
+  filter: blur(10px);
+  animation: core-pulse 8s infinite ease-in-out;
+}
+
+@keyframes core-pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 0.6; }
+}
+
+// 16. FLOATING PLANETS SYSTEM
+// ------------------------------------------------------------------
+.galaxy-body {
+  perspective: 1000px;
+  overflow-x: hidden;
+}
+
+.planet-system {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.planet {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.65;
+  background-size: 100% 100%;
+  box-shadow: inset 3px -3px 15px rgba(0,0,0,0.4),
+              0 0 10px rgba(255,255,255,0.2);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Planet types */
+.planet.gas-giant {
+  background: linear-gradient(to right, 
+    var(--aurora-teal-700), 
+    var(--aurora-purple-700), 
+    var(--aurora-teal-500)
+  );
+  box-shadow: 0 0 30px rgba(105, 194, 236, 0.3);
+}
+
+.planet.rocky {
+  background: radial-gradient(circle at 30% 30%, 
+    var(--aurora-amber-300), 
+    var(--aurora-amber-500) 40%, 
+    var(--aurora-rose-500) 70%
+  );
+  box-shadow: 0 0 20px rgba(239, 146, 96, 0.2);
+}
+
+.planet.ice {
+  background: linear-gradient(to bottom,
+    var(--aurora-teal-300), 
+    var(--aurora-cyan-100), 
+    var(--aurora-purple-100)
+  );
+  box-shadow: 0 0 25px rgba(175, 211, 255, 0.35);
+}
+
+.planet.earth-like {
+  background: radial-gradient(circle at 40% 40%,
+    var(--aurora-cyan-300),
+    var(--aurora-emerald-500) 30%, 
+    var(--aurora-teal-700) 70%
+  );
+  box-shadow: 0 0 25px rgba(100, 214, 189, 0.25);
+}
+
+.planet.ringed {
+  position: relative;
+}
+
+.planet.ringed::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateX(75deg);
+  width: 200%;
+  height: 40%;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  z-index: -1;
+}
+
+/* Planet animations */
+@keyframes planet-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(10px) rotate(var(--spin-amount, 180deg));
+  }
+}
+
+/* Different orbit animations */
+@keyframes orbit-1 {
+  0% { transform: rotate3d(1, 0.5, 0.2, 0deg) translateX(var(--orbit-distance)) rotate3d(0, 1, 0.5, 0deg); }
+  100% { transform: rotate3d(1, 0.5, 0.2, 360deg) translateX(var(--orbit-distance)) rotate3d(0, 1, 0.5, 360deg); }
+}
+
+@keyframes orbit-2 {
+  0% { transform: rotate3d(0.5, 1, 0.1, 0deg) translateX(var(--orbit-distance)) rotate3d(0.2, 0, 1, 0deg); }
+  100% { transform: rotate3d(0.5, 1, 0.1, 360deg) translateX(var(--orbit-distance)) rotate3d(0.2, 0, 1, 360deg); }
+}
+
+@keyframes orbit-3 {
+  0% { transform: rotate3d(0.3, 0.6, 1, 0deg) translateX(var(--orbit-distance)) rotate3d(1, 0.1, 0.2, 0deg); }
+  100% { transform: rotate3d(0.3, 0.6, 1, 360deg) translateX(var(--orbit-distance)) rotate3d(1, 0.1, 0.2, 360deg); }
+}
+
+/* Moon orbiting planet */
+.moon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--planet-size) * 0.2);
+  height: calc(var(--planet-size) * 0.2);
+  border-radius: 50%;
+  background: linear-gradient(145deg, #d4d4d4, #9e9e9e);
+  transform: translate(-50%, -50%);
+  animation: moon-orbit 15s linear infinite;
+  box-shadow: inset 3px -3px 5px rgba(0,0,0,0.4),
+              0 0 5px rgba(255,255,255,0.2);
+}
+
+@keyframes moon-orbit {
+  0% { transform: rotate(0deg) translateX(calc(var(--planet-size) * 0.8)) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(calc(var(--planet-size) * 0.8)) rotate(-360deg); }
+}
