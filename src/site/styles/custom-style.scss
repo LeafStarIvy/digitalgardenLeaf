@@ -1,154 +1,171 @@
 /*
- * COSMIC NEBULA DIGITAL GARDEN
- * A refined cosmic theme with vibrant nebula-inspired color system,
- * improved readability, and subtle animations
+ * AURORA BOREALIS DIGITAL GARDEN
+ * Ethereal northern lights theme with dynamic color shifts,
+ * frosted glass surfaces, and polar night aesthetics
  */
 
 body {
-  /* Primary Nebula Scale - Rich, deep space with vibrant gas clouds */
-  --void-black: #050510;         /* Absolute void */
-  --space-deep: #0A0A20;         /* Deep space background */
-  --space-medium: #12123A;       /* Medium space */
-  --space-light: #1A1A4A;        /* Upper space */
-  --nebula-dark: #251A50;        /* Dark nebula */
-  --nebula-medium: #2D2060;      /* Medium nebula */
-  --nebula-rich: #3A2980;        /* Rich nebula */
-  --nebula-bright: #4830A0;      /* Bright nebula */
-  --nebula-glow: #5B3CC0;        /* Glowing nebula */
-  --nebula-light: #7050DF;       /* Light nebula */
-  --star-dim: #8A7AE0;           /* Dim starlight */
-  --star-bright: #B0A0FF;        /* Bright starlight */
-  --star-brilliant: #D5CAFF;     /* Brilliant starlight */
-  --cosmic-mist: #E8E2FF;        /* Cosmic mist */
+  /* Aurora color system - Northern lights in polar night */
+  --polar-night-1: #0F111A;      /* Darkest polar night */
+  --polar-night-2: #141824;      /* Deep polar night */
+  --polar-night-3: #1A1F30;      /* Medium polar night */
+  --polar-night-4: #252D45;      /* Light polar night */
+  --snow-storm-1: #383F5E;       /* Dark snow storm */
+  --snow-storm-2: #4C566A;       /* Medium snow storm */
+  --snow-storm-3: #606B85;       /* Light snow storm */
+  --frost-1: #8FBCBB;            /* Green frost */
+  --frost-2: #88C0D0;            /* Cyan frost */
+  --frost-3: #81A1C1;            /* Blue frost */
+  --frost-4: #5E81AC;            /* Deep blue frost */
+  --aurora-1: #6CE4B1;           /* Green aurora */
+  --aurora-2: #0CDCF2;           /* Blue aurora */
+  --aurora-3: #93DDFD;           /* Light blue aurora */
+  --aurora-4: #8B7FFF;           /* Purple aurora */
+  --aurora-5: #CF73D2;           /* Pink aurora */
+  --ice-1: #D8DEE9;              /* Light ice */
+  --ice-2: #E5E9F0;              /* Medium ice */
+  --ice-3: #ECEFF4;              /* Bright ice */
   
-  /* Accent colors - Cosmic phenomena */
-  --pulsar-blue: #0EDCF0;        /* Pulsar blue */
-  --neutron-cyan: #00F5E9;       /* Neutron star cyan */
-  --supernova-purple: #AD00FF;   /* Supernova purple */
-  --cosmic-ray-pink: #FF00E4;    /* Cosmic ray pink */
-  --solar-flare: #FFC400;        /* Solar flare yellow */
-  --red-giant: #FF5E3A;          /* Red giant */
-  --black-hole: #090426;         /* Black hole */
-  --wormhole-blue: #4A3AFF;      /* Wormhole blue */
+  /* Aurora gradients */
+  --gradient-aurora: linear-gradient(135deg, var(--aurora-1), var(--aurora-2), var(--aurora-4), var(--aurora-5));
+  --gradient-night-sky: linear-gradient(to bottom, var(--polar-night-1), var(--polar-night-2) 40%, var(--polar-night-3));
+  --gradient-ice-cave: linear-gradient(60deg, var(--polar-night-3), var(--snow-storm-1), var(--snow-storm-2));
+  --gradient-frost: linear-gradient(90deg, var(--frost-1), var(--frost-2), var(--frost-3));
   
-  /* Enhanced Gradients */
-  --gradient-nebula-core: linear-gradient(135deg, var(--nebula-dark), var(--nebula-rich) 50%, var(--nebula-bright));
-  --gradient-starfield: linear-gradient(90deg, var(--wormhole-blue), var(--supernova-purple), var(--pulsar-blue));
-  --gradient-cosmic-horizon: linear-gradient(to bottom, var(--void-black), var(--space-deep) 40%, var(--space-medium));
-  --gradient-nebula-glow: linear-gradient(60deg, var(--nebula-glow), var(--nebula-light), var(--cosmic-ray-pink));
-  --gradient-text-cosmic: linear-gradient(90deg, var(--pulsar-blue), var(--neutron-cyan), var(--star-bright));
-  
-  /* Glass effects */
-  --glass-nebula: rgba(42, 32, 96, 0.6);
-  --glass-space: rgba(10, 10, 32, 0.75);
-  --glass-blur: blur(8px);
+  /* Frost glass effect */
+  --frost-glass: rgba(20, 24, 36, 0.7);
+  --frost-glass-light: rgba(26, 31, 48, 0.6);
+  --frost-blur: blur(10px);
+  --frost-border: 1px solid rgba(236, 239, 244, 0.1);
   
   /* Text system */
-  --text-primary: var(--star-brilliant);
-  --text-secondary: var(--star-bright);
-  --text-tertiary: var(--star-dim);
-  --text-accent: var(--pulsar-blue);
-  --text-glow: 0 0 10px rgba(208, 202, 255, 0.3);
-  
-  /* Shadows and glows */
-  --shadow-cosmic: 0 4px 20px rgba(0, 0, 0, 0.4);
-  --glow-pulsar: 0 0 20px rgba(14, 220, 240, 0.4);
-  --glow-nebula: 0 0 30px rgba(91, 60, 192, 0.3);
+  --text-primary: var(--ice-3);
+  --text-secondary: var(--ice-1);
+  --text-tertiary: var(--snow-storm-3);
+  --text-accent: var(--aurora-2);
   
   /* Interactive elements */
-  --link-color: var(--neutron-cyan);
-  --link-hover: var(--pulsar-blue);
-  --link-glow: 0 0 8px rgba(14, 220, 240, 0.5);
+  --link-normal: var(--aurora-3);
+  --link-hover: var(--aurora-2);
+  --link-active: var(--aurora-1);
   
-  /* Component-specific */
-  --card-bg: var(--glass-nebula);
-  --card-border: 1px solid rgba(208, 202, 255, 0.15);
-  --card-radius: 16px;
-  --card-shadow: var(--shadow-cosmic);
-  --card-glow: var(--glow-nebula);
+  /* Shadows and glows */
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.2);
+  --glow-aurora: 0 0 20px rgba(108, 228, 177, 0.3);
+  --glow-frost: 0 0 15px rgba(129, 161, 193, 0.3);
   
-  /* Global styling */
-  background: var(--gradient-cosmic-horizon);
+  /* Component styling */
+  --card-bg: var(--frost-glass);
+  --card-border: var(--frost-border);
+  --card-radius: 12px;
+  --card-shadow: var(--shadow-soft);
+  
+  /* Global setup */
+  background: var(--gradient-night-sky);
   color: var(--text-primary);
-  font-family: 'Space Grotesk', system-ui, sans-serif;
-  line-height: 1.6;
-  
-  /* Add subtle star field effect */
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.7;
   position: relative;
-  overflow-x: hidden;
 }
 
-/* Star field background effect */
+/* Aurora effect on top of the page */
 body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12vh;
+  background: var(--gradient-aurora);
+  opacity: 0.4;
+  filter: blur(40px);
+  z-index: -1;
+  transform: translateY(-40%) scaleX(1.2);
+}
+
+/* Stars background */
+body::after {
   content: '';
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
-                    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 100px 100px, 150px 150px, 200px 200px;
-  z-index: -1;
-  opacity: 0.6;
-  pointer-events: none;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(236, 239, 244, 0.15) 1px, transparent 1px),
+    radial-gradient(circle at 20% 20%, rgba(236, 239, 244, 0.1) 1px, transparent 1px);
+  background-size: 100px 100px, 60px 60px;
+  z-index: -2;
+  opacity: 0.4;
 }
 
-/* Enhanced card styling */
+/* Card styling with frost glass effect */
 .card, .note-container, .content-container {
   background: var(--card-bg);
   border: var(--card-border);
   border-radius: var(--card-radius);
+  backdrop-filter: var(--frost-blur);
   box-shadow: var(--card-shadow);
-  transition: all 0.3s ease;
-  backdrop-filter: var(--glass-blur);
+  transition: all 0.3s ease-out;
 }
 
 .card:hover, .note-container:hover {
-  box-shadow: var(--card-shadow), var(--card-glow);
+  box-shadow: var(--card-shadow), var(--glow-frost);
   transform: translateY(-2px);
 }
 
-/* Link styling with glow effect */
+/* Link styling */
 a {
-  color: var(--link-color);
+  color: var(--link-normal);
   text-decoration: none;
   transition: all 0.2s ease;
-  position: relative;
+  border-bottom: 1px dotted rgba(147, 221, 253, 0.3);
+  padding-bottom: 1px;
 }
 
 a:hover {
   color: var(--link-hover);
-  text-shadow: var(--link-glow);
+  border-bottom: 1px solid rgba(12, 220, 242, 0.5);
+  text-shadow: var(--glow-aurora);
 }
 
-/* Headings with gradient */
+/* Headings */
 h1, h2, h3 {
-  background: var(--gradient-text-cosmic);
+  color: var(--frost-2);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  background: var(--gradient-frost);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  font-weight: 700;
-  letter-spacing: -0.02em;
 }
 
-/* Button styling */
+/* Interactive elements */
 button, .button {
-  background: var(--glass-nebula);
-  border: 1px solid rgba(208, 202, 255, 0.2);
-  color: var(--text-primary);
-  padding: 0.6em 1.2em;
+  background: var(--frost-glass-light);
+  color: var(--ice-2);
+  border: var(--frost-border);
   border-radius: 8px;
+  padding: 0.5em 1.2em;
   font-weight: 500;
-  transition: all 0.2s ease;
-  cursor: pointer;
+  transition: all 0.2s ease-out;
 }
 
 button:hover, .button:hover {
-  background: var(--nebula-rich);
-  box-shadow: var(--glow-pulsar);
+  background: var(--snow-storm-1);
+  box-shadow: var(--glow-frost);
   transform: translateY(-1px);
+}
+
+/* Code blocks */
+code, pre {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--polar-night-2);
+  border: 1px solid var(--polar-night-4);
+  border-radius: 6px;
 }
 
 // 2. ENHANCED BACKGROUND: Multi-layered cosmic environment
