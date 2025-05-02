@@ -528,7 +528,7 @@ blockquote {
   position: relative;
   
   &::before {
-    content: """;
+    content: "star";
     position: absolute;
     top: -0.5em;
     left: var(--space-2);
