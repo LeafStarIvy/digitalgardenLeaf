@@ -1449,4 +1449,297 @@ pre code {
   0% { transform: scale(0.8); opacity: 0.4; }
   100% { transform: scale(1.5); opacity: 0; }
 }
+/* 17. PARALLAX STARFIELD EFFECT
+   ------------------------------------------------------------------
+   Creates a parallax effect where stars move at different speeds
+   as the user scrolls, creating a sense of depth
+*/
 
+.parallax-stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  pointer-events: none;
+}
+
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat;
+  will-change: transform;
+}
+
+.layer-1 {
+  background-image: radial-gradient(1px 1px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.8), transparent),
+                    radial-gradient(1px 1px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.8), transparent),
+                    radial-gradient(1px 1px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.8), transparent),
+                    radial-gradient(1px 1px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.8), transparent),
+                    radial-gradient(1px 1px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.8), transparent),
+                    radial-gradient(1px 1px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.8), transparent);
+  background-size: 400px 400px;
+  transform: translateZ(-300px) scale(4);
+}
+
+.layer-2 {
+  background-image: radial-gradient(1.5px 1.5px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.6), transparent),
+                    radial-gradient(1.5px 1.5px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.6), transparent),
+                    radial-gradient(1.5px 1.5px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.6), transparent),
+                    radial-gradient(1.5px 1.5px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.6), transparent);
+  background-size: 250px 250px;
+  transform: translateZ(-200px) scale(3);
+}
+
+.layer-3 {
+  background-image: radial-gradient(2px 2px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.4), transparent),
+                    radial-gradient(2px 2px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.4), transparent),
+                    radial-gradient(2px 2px at calc(random(100) * 1%) calc(random(100) * 1%), rgba(255, 255, 255, 0.4), transparent);
+  background-size: 150px 150px;
+  transform: translateZ(-100px) scale(2);
+}
+
+/* 18. GALAXY SPIRAL ANIMATION
+   ------------------------------------------------------------------
+   Creates an animated spiral effect that resembles a galaxy
+   Use this on special sections or the homepage for impact
+*/
+
+.galaxy-spiral-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+.galaxy-spiral {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  transform-style: preserve-3d;
+  animation: galaxy-rotate 60s linear infinite;
+}
+
+.spiral-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 0 4px 2px rgba(255, 255, 255, 0.3);
+  transform-style: preserve-3d;
+}
+
+/* Generate spiral pattern with JavaScript instead of SCSS loops */
+.galaxy-spiral-js {
+  /*
+    Add this JavaScript to generate the spiral:
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const spiral = document.querySelector('.galaxy-spiral');
+      if (!spiral) return;
+      
+      const totalStars = 600;
+      const armCount = 5;
+      const armAngle = (2 * Math.PI) / armCount;
+      
+      for (let i = 0; i < totalStars; i++) {
+        const star = document.createElement('div');
+        star.className = 'spiral-star';
+        
+        // Calculate spiral position
+        const armIndex = i % armCount;
+        const distanceFromCenter = 10 + (i / totalStars) * 180;
+        const rotationAngle = (i / totalStars) * 15 * Math.PI + armIndex * armAngle;
+        
+        // Set star size (larger toward center)
+        const starSize = Math.max(1, 4 * (1 - i / totalStars));
+        star.style.width = starSize + 'px';
+        star.style.height = starSize + 'px';
+        
+        // Set position
+        const x = Math.cos(rotationAngle) * distanceFromCenter;
+        const y = Math.sin(rotationAngle) * distanceFromCenter;
+        const z = (Math.random() - 0.5) * 20;
+        
+        star.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
+        
+        // Set color (blue to purple to pink)
+        const hue = 240 + (armIndex * 30);
+        const color = `hsl(${hue}, 80%, 70%)`;
+        star.style.backgroundColor = color;
+        star.style.boxShadow = `0 0 4px 1px ${color}`;
+        
+        // Vary opacity
+        star.style.opacity = 0.1 + Math.random() * 0.9;
+        
+        spiral.appendChild(star);
+      }
+    });
+  */
+}
+
+@keyframes galaxy-rotate {
+  0% { transform: rotateZ(0deg); }
+  100% { transform: rotateZ(360deg); }
+}
+
+/* Core glow effect for galaxy center */
+.galaxy-core {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, 
+                rgba(255, 255, 255, 0.7) 0%, 
+                rgba(186, 230, 253, 0.5) 20%, 
+                rgba(139, 92, 246, 0.4) 40%, 
+                transparent 80%);
+  filter: blur(10px);
+  animation: core-pulse 8s infinite ease-in-out;
+}
+
+@keyframes core-pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 0.6; }
+}
+
+// 16. FLOATING PLANETS SYSTEM
+// ------------------------------------------------------------------
+.galaxy-body {
+  perspective: 1000px;
+  overflow-x: hidden;
+}
+
+.planet-system {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.planet {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.65;
+  background-size: 100% 100%;
+  box-shadow: inset 3px -3px 15px rgba(0,0,0,0.4),
+              0 0 10px rgba(255,255,255,0.2);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Planet types */
+.planet.gas-giant {
+  background: linear-gradient(to right, 
+    var(--aurora-teal-700), 
+    var(--aurora-purple-700), 
+    var(--aurora-teal-500)
+  );
+  box-shadow: 0 0 30px rgba(105, 194, 236, 0.3);
+}
+
+.planet.rocky {
+  background: radial-gradient(circle at 30% 30%, 
+    var(--aurora-amber-300), 
+    var(--aurora-amber-500) 40%, 
+    var(--aurora-rose-500) 70%
+  );
+  box-shadow: 0 0 20px rgba(239, 146, 96, 0.2);
+}
+
+.planet.ice {
+  background: linear-gradient(to bottom,
+    var(--aurora-teal-300), 
+    var(--aurora-cyan-100), 
+    var(--aurora-purple-100)
+  );
+  box-shadow: 0 0 25px rgba(175, 211, 255, 0.35);
+}
+
+.planet.earth-like {
+  background: radial-gradient(circle at 40% 40%,
+    var(--aurora-cyan-300),
+    var(--aurora-emerald-500) 30%, 
+    var(--aurora-teal-700) 70%
+  );
+  box-shadow: 0 0 25px rgba(100, 214, 189, 0.25);
+}
+
+.planet.ringed {
+  position: relative;
+}
+
+.planet.ringed::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateX(75deg);
+  width: 200%;
+  height: 40%;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  z-index: -1;
+}
+
+/* Planet animations */
+@keyframes planet-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(10px) rotate(var(--spin-amount, 180deg));
+  }
+}
+
+/* Different orbit animations */
+@keyframes orbit-1 {
+  0% { transform: rotate3d(1, 0.5, 0.2, 0deg) translateX(var(--orbit-distance)) rotate3d(0, 1, 0.5, 0deg); }
+  100% { transform: rotate3d(1, 0.5, 0.2, 360deg) translateX(var(--orbit-distance)) rotate3d(0, 1, 0.5, 360deg); }
+}
+
+@keyframes orbit-2 {
+  0% { transform: rotate3d(0.5, 1, 0.1, 0deg) translateX(var(--orbit-distance)) rotate3d(0.2, 0, 1, 0deg); }
+  100% { transform: rotate3d(0.5, 1, 0.1, 360deg) translateX(var(--orbit-distance)) rotate3d(0.2, 0, 1, 360deg); }
+}
+
+@keyframes orbit-3 {
+  0% { transform: rotate3d(0.3, 0.6, 1, 0deg) translateX(var(--orbit-distance)) rotate3d(1, 0.1, 0.2, 0deg); }
+  100% { transform: rotate3d(0.3, 0.6, 1, 360deg) translateX(var(--orbit-distance)) rotate3d(1, 0.1, 0.2, 360deg); }
+}
+
+/* Moon orbiting planet */
+.moon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--planet-size) * 0.2);
+  height: calc(var(--planet-size) * 0.2);
+  border-radius: 50%;
+  background: linear-gradient(145deg, #d4d4d4, #9e9e9e);
+  transform: translate(-50%, -50%);
+  animation: moon-orbit 15s linear infinite;
+  box-shadow: inset 3px -3px 5px rgba(0,0,0,0.4),
+              0 0 5px rgba(255,255,255,0.2);
+}
+
+@keyframes moon-orbit {
+  0% { transform: rotate(0deg) translateX(calc(var(--planet-size) * 0.8)) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(calc(var(--planet-size) * 0.8)) rotate(-360deg); }
+}
