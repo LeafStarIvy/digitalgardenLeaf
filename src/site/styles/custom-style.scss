@@ -1540,3 +1540,110 @@ pre code {
   0% { transform: rotate(0deg) translateX(calc(var(--planet-size) * 0.8)) rotate(0deg); }
   100% { transform: rotate(360deg) translateX(calc(var(--planet-size) * 0.8)) rotate(-360deg); }
 }
+
+// 00 Interactive Constellation Background
+// ------------------------------------------------------------------
+
+// Container for the canvas
+.constellation-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; // Position behind content
+  pointer-events: none; // Allow click-through
+  overflow: hidden;
+}
+
+// Canvas styling
+#constellation-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  mix-blend-mode: screen; // Creates light blend effect with background
+  opacity: 0.8; // Adjust this to taste
+}
+
+// Additional animation for special elements
+// This adds subtle highlight to links and headings when they're near stars
+@keyframes constellation-highlight {
+  0% { text-shadow: 0 0 10px rgba(56, 189, 248, 0.3); }
+  50% { text-shadow: 0 0 15px rgba(167, 139, 250, 0.5); }
+  100% { text-shadow: 0 0 10px rgba(56, 189, 248, 0.3); }
+}
+
+// Add this class to any element you want to specially highlight
+.constellation-enhanced {
+  position: relative;
+  animation: constellation-highlight 4s infinite ease-in-out;
+  transition: transform 0.3s var(--transition-ease);
+  
+  &:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+}
+
+// Automatic constellation highlighting for main UI elements (optional)
+h1, h2, a.internal-link {
+  &:hover {
+    @extend .constellation-enhanced;
+  }
+}
+
+// Settings for responsive behavior
+@media (max-width: 768px) {
+  #constellation-canvas {
+    opacity: 0.5; // Reduce opacity on mobile for better readability
+  }
+}
+
+// Dark mode / light mode adjustments
+@media (prefers-color-scheme: light) {
+  #constellation-canvas {
+    mix-blend-mode: multiply;
+    opacity: 0.3;
+  }
+}
+
+// Add a fade-in animation on page load
+@keyframes constellation-fade-in {
+  from { opacity: 0; }
+  to { opacity: 0.8; }
+}
+
+#constellation-canvas {
+  animation: constellation-fade-in 2s ease forwards;
+}
+
+// Optional toggle button to enable/disable the effect
+.constellation-toggle {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--background-secondary);
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  
+  &:hover {
+    opacity: 1;
+    transform: rotate(45deg);
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    color: var(--text-primary);
+  }
+}
