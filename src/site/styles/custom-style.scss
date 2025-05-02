@@ -840,19 +840,3 @@ hr {
   }
 }
 
-// Sidebar component
-.sidebar {
-  width: var(--sidebar-width);
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: var(--glass-regular);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border-right: var(--border-thin) solid var(--surface-subtle);
-  padding: var(--space-6) var(--space-4);
-  overflow-y: auto;
-  transition: transform var(--transition-normal) var(--ease-out);
-  z-index: 20;
-  
