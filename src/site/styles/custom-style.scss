@@ -1612,3 +1612,134 @@ pre code {
   50% { transform: scale(1.2); opacity: 0.8; }
   100% { transform: scale(1); opacity: 0.6; }
 }
+
+// 16. FLOATING PLANETS SYSTEM
+// ------------------------------------------------------------------
+.galaxy-body {
+  perspective: 1000px;
+  overflow-x: hidden;
+}
+
+.planet-system {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.planet {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.65;
+  background-size: 100% 100%;
+  box-shadow: inset 3px -3px 15px rgba(0,0,0,0.4),
+              0 0 10px rgba(255,255,255,0.2);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Planet types */
+.planet.gas-giant {
+  background: linear-gradient(to right, 
+    var(--aurora-teal-700), 
+    var(--aurora-purple-700), 
+    var(--aurora-teal-500)
+  );
+  box-shadow: 0 0 30px rgba(105, 194, 236, 0.3);
+}
+
+.planet.rocky {
+  background: radial-gradient(circle at 30% 30%, 
+    var(--aurora-amber-300), 
+    var(--aurora-amber-500) 40%, 
+    var(--aurora-rose-500) 70%
+  );
+  box-shadow: 0 0 20px rgba(239, 146, 96, 0.2);
+}
+
+.planet.ice {
+  background: linear-gradient(to bottom,
+    var(--aurora-teal-300), 
+    var(--aurora-cyan-100), 
+    var(--aurora-purple-100)
+  );
+  box-shadow: 0 0 25px rgba(175, 211, 255, 0.35);
+}
+
+.planet.earth-like {
+  background: radial-gradient(circle at 40% 40%,
+    var(--aurora-cyan-300),
+    var(--aurora-emerald-500) 30%, 
+    var(--aurora-teal-700) 70%
+  );
+  box-shadow: 0 0 25px rgba(100, 214, 189, 0.25);
+}
+
+.planet.ringed {
+  position: relative;
+}
+
+.planet.ringed::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateX(75deg);
+  width: 200%;
+  height: 40%;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  z-index: -1;
+}
+
+/* Planet animations */
+@keyframes planet-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(10px) rotate(var(--spin-amount, 180deg));
+  }
+}
+
+/* Different orbit animations */
+@keyframes orbit-1 {
+  0% { transform: rotate3d(1, 0.5, 0.2, 0deg) translateX(var(--orbit-distance)) rotate3d(0, 1, 0.5, 0deg); }
+  100% { transform: rotate3d(1, 0.5, 0.2, 360deg) translateX(var(--orbit-distance)) rotate3d(0, 1, 0.5, 360deg); }
+}
+
+@keyframes orbit-2 {
+  0% { transform: rotate3d(0.5, 1, 0.1, 0deg) translateX(var(--orbit-distance)) rotate3d(0.2, 0, 1, 0deg); }
+  100% { transform: rotate3d(0.5, 1, 0.1, 360deg) translateX(var(--orbit-distance)) rotate3d(0.2, 0, 1, 360deg); }
+}
+
+@keyframes orbit-3 {
+  0% { transform: rotate3d(0.3, 0.6, 1, 0deg) translateX(var(--orbit-distance)) rotate3d(1, 0.1, 0.2, 0deg); }
+  100% { transform: rotate3d(0.3, 0.6, 1, 360deg) translateX(var(--orbit-distance)) rotate3d(1, 0.1, 0.2, 360deg); }
+}
+
+/* Moon orbiting planet */
+.moon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--planet-size) * 0.2);
+  height: calc(var(--planet-size) * 0.2);
+  border-radius: 50%;
+  background: linear-gradient(145deg, #d4d4d4, #9e9e9e);
+  transform: translate(-50%, -50%);
+  animation: moon-orbit 15s linear infinite;
+  box-shadow: inset 3px -3px 5px rgba(0,0,0,0.4),
+              0 0 5px rgba(255,255,255,0.2);
+}
+
+@keyframes moon-orbit {
+  0% { transform: rotate(0deg) translateX(calc(var(--planet-size) * 0.8)) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(calc(var(--planet-size) * 0.8)) rotate(-360deg); }
+}
