@@ -1,89 +1,96 @@
 /*
- * AURORA BOREALIS DIGITAL GARDEN
- * Ethereal northern lights theme with dynamic color shifts,
- * frosted glass surfaces, and polar night aesthetics
+ * QUANTUM FLUX DIGITAL GARDEN
+ * High-contrast futuristic quantum computing inspired theme
+ * with electric accents and crystalline structures
  */
 
 body {
-  /* Aurora color system - Northern lights in polar night */
-  --polar-night-1: #0F111A;      /* Darkest polar night */
-  --polar-night-2: #141824;      /* Deep polar night */
-  --polar-night-3: #1A1F30;      /* Medium polar night */
-  --polar-night-4: #252D45;      /* Light polar night */
-  --snow-storm-1: #383F5E;       /* Dark snow storm */
-  --snow-storm-2: #4C566A;       /* Medium snow storm */
-  --snow-storm-3: #606B85;       /* Light snow storm */
-  --frost-1: #8FBCBB;            /* Green frost */
-  --frost-2: #88C0D0;            /* Cyan frost */
-  --frost-3: #81A1C1;            /* Blue frost */
-  --frost-4: #5E81AC;            /* Deep blue frost */
-  --aurora-1: #6CE4B1;           /* Green aurora */
-  --aurora-2: #0CDCF2;           /* Blue aurora */
-  --aurora-3: #93DDFD;           /* Light blue aurora */
-  --aurora-4: #8B7FFF;           /* Purple aurora */
-  --aurora-5: #CF73D2;           /* Pink aurora */
-  --ice-1: #D8DEE9;              /* Light ice */
-  --ice-2: #E5E9F0;              /* Medium ice */
-  --ice-3: #ECEFF4;              /* Bright ice */
+  /* Quantum state color system */
+  --quantum-void: #050510;       /* Quantum void */
+  --quantum-deep: #0B0B20;       /* Deep quantum field */
+  --quantum-field: #101035;      /* Quantum field */
+  --quantum-space: #16164A;      /* Quantum space */
+  --dark-matter: #1D1D60;        /* Dark matter */
+  --event-horizon: #282880;      /* Event horizon */
+  --quantum-foam: #3232AA;       /* Quantum foam */
+  --entanglement: #4040CF;       /* Entanglement */
+  --wave-function: #6060EF;      /* Wave function */
+  --probability: #8080FF;        /* Probability cloud */
   
-  /* Aurora gradients */
-  --gradient-aurora: linear-gradient(135deg, var(--aurora-1), var(--aurora-2), var(--aurora-4), var(--aurora-5));
-  --gradient-night-sky: linear-gradient(to bottom, var(--polar-night-1), var(--polar-night-2) 40%, var(--polar-night-3));
-  --gradient-ice-cave: linear-gradient(60deg, var(--polar-night-3), var(--snow-storm-1), var(--snow-storm-2));
-  --gradient-frost: linear-gradient(90deg, var(--frost-1), var(--frost-2), var(--frost-3));
+  /* Electric accents */
+  --electric-blue: #00FFFF;      /* Electric blue */
+  --electric-cyan: #00E5FF;      /* Electric cyan */
+  --electric-indigo: #6A00FF;    /* Electric indigo */
+  --electric-violet: #CC00FF;    /* Electric violet */
+  --electric-magenta: #FF00DB;   /* Electric magenta */
+  --electric-yellow: #FFFC00;    /* Electric yellow */
+  --electric-white: #FFFFFF;     /* Electric white */
   
-  /* Frost glass effect */
-  --frost-glass: rgba(20, 24, 36, 0.7);
-  --frost-glass-light: rgba(26, 31, 48, 0.6);
-  --frost-blur: blur(10px);
-  --frost-border: 1px solid rgba(236, 239, 244, 0.1);
+  /* Quantum gradients */
+  --gradient-quantum-field: linear-gradient(135deg, var(--quantum-void), var(--quantum-deep) 40%, var(--quantum-field));
+  --gradient-superposition: linear-gradient(90deg, var(--electric-indigo), var(--electric-violet), var(--electric-magenta));
+  --gradient-probability: linear-gradient(45deg, var(--entanglement), var(--wave-function), var(--probability));
+  --gradient-electric: linear-gradient(90deg, var(--electric-cyan), var(--electric-blue), var(--electric-cyan));
+  --gradient-uncertainty: linear-gradient(to bottom, rgba(0,255,255,0.1), rgba(0,255,255,0), rgba(204,0,255,0.05));
+  
+  /* Glass quantum state */
+  --quantum-glass: rgba(16, 16, 53, 0.8);
+  --quantum-glass-light: rgba(24, 24, 74, 0.6);
+  --quantum-blur: blur(12px);
+  --quantum-border: 1px solid rgba(0, 255, 255, 0.2);
+  --quantum-border-active: 1px solid rgba(0, 255, 255, 0.5);
   
   /* Text system */
-  --text-primary: var(--ice-3);
-  --text-secondary: var(--ice-1);
-  --text-tertiary: var(--snow-storm-3);
-  --text-accent: var(--aurora-2);
+  --text-primary: var(--electric-white);
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  --text-tertiary: rgba(255, 255, 255, 0.7);
+  --text-accent: var(--electric-cyan);
   
-  /* Interactive elements */
-  --link-normal: var(--aurora-3);
-  --link-hover: var(--aurora-2);
-  --link-active: var(--aurora-1);
+  /* Electric shadows and glows */
+  --shadow-quantum: 0 5px 20px rgba(0, 0, 0, 0.3);
+  --glow-blue: 0 0 15px rgba(0, 255, 255, 0.5);
+  --glow-violet: 0 0 15px rgba(204, 0, 255, 0.5);
+  --glow-subtle: 0 0 10px rgba(0, 255, 255, 0.2);
   
-  /* Shadows and glows */
-  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.2);
-  --glow-aurora: 0 0 20px rgba(108, 228, 177, 0.3);
-  --glow-frost: 0 0 15px rgba(129, 161, 193, 0.3);
+  /* Interactive */
+  --link-color: var(--electric-cyan);
+  --link-hover: var(--electric-blue);
+  --selection-bg: var(--electric-indigo);
+  --selection-text: var(--electric-white);
   
   /* Component styling */
-  --card-bg: var(--frost-glass);
-  --card-border: var(--frost-border);
-  --card-radius: 12px;
-  --card-shadow: var(--shadow-soft);
+  --card-bg: var(--quantum-glass);
+  --card-border: var(--quantum-border);
+  --card-radius: 4px;
+  --card-shadow: var(--shadow-quantum);
   
   /* Global setup */
-  background: var(--gradient-night-sky);
+  background: var(--gradient-quantum-field);
   color: var(--text-primary);
-  font-family: 'Inter', system-ui, sans-serif;
-  line-height: 1.7;
+  font-family: 'JetBrains Mono', 'Inter', monospace;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  
+  /* Quantum grid effect */
   position: relative;
 }
 
-/* Aurora effect on top of the page */
+/* Grid overlay */
 body::before {
   content: '';
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 12vh;
-  background: var(--gradient-aurora);
-  opacity: 0.4;
-  filter: blur(40px);
+  bottom: 0;
+  background-image: 
+    linear-gradient(to right, rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
   z-index: -1;
-  transform: translateY(-40%) scaleX(1.2);
 }
 
-/* Stars background */
+/* Quantum uncertainty pattern */
 body::after {
   content: '';
   position: fixed;
@@ -91,79 +98,111 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    radial-gradient(circle at 50% 50%, rgba(236, 239, 244, 0.15) 1px, transparent 1px),
-    radial-gradient(circle at 20% 20%, rgba(236, 239, 244, 0.1) 1px, transparent 1px);
-  background-size: 100px 100px, 60px 60px;
+  background: var(--gradient-uncertainty);
   z-index: -2;
-  opacity: 0.4;
+  opacity: 0.7;
 }
 
-/* Card styling with frost glass effect */
+/* Card styling */
 .card, .note-container, .content-container {
-  background: var(--card-bg);
-  border: var(--card-border);
+  background: var(--quantum-glass);
+  border: var(--quantum-border);
   border-radius: var(--card-radius);
-  backdrop-filter: var(--frost-blur);
-  box-shadow: var(--card-shadow);
-  transition: all 0.3s ease-out;
+  box-shadow: var(--shadow-quantum);
+  backdrop-filter: var(--quantum-blur);
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  padding: 1.5rem;
 }
 
 .card:hover, .note-container:hover {
-  box-shadow: var(--card-shadow), var(--glow-frost);
-  transform: translateY(-2px);
+  border: var(--quantum-border-active);
+  box-shadow: var(--shadow-quantum), var(--glow-subtle);
+  transform: translateY(-2px) scale(1.01);
 }
 
 /* Link styling */
 a {
-  color: var(--link-normal);
+  color: var(--link-color);
   text-decoration: none;
-  transition: all 0.2s ease;
-  border-bottom: 1px dotted rgba(147, 221, 253, 0.3);
-  padding-bottom: 1px;
+  transition: all 0.15s ease;
+  padding: 0.1em 0.2em;
+  margin: -0.1em -0.2em;
+  border-radius: 3px;
+  position: relative;
 }
 
 a:hover {
   color: var(--link-hover);
-  border-bottom: 1px solid rgba(12, 220, 242, 0.5);
-  text-shadow: var(--glow-aurora);
+  text-shadow: var(--glow-blue);
+  background-color: rgba(0, 255, 255, 0.1);
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0.2em;
+  right: 0.2em;
+  height: 1px;
+  background-color: var(--electric-blue);
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+
+a:hover::after {
+  transform: scaleX(1);
 }
 
 /* Headings */
 h1, h2, h3 {
-  color: var(--frost-2);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  position: relative;
 }
 
 h1 {
-  background: var(--gradient-frost);
+  background: var(--gradient-electric);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  text-shadow: var(--glow-subtle);
 }
 
-/* Interactive elements */
+h2::before {
+  content: '//';
+  color: var(--electric-cyan);
+  margin-right: 0.5em;
+  opacity: 0.7;
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+/* Button styling */
 button, .button {
-  background: var(--frost-glass-light);
-  color: var(--ice-2);
-  border: var(--frost-border);
-  border-radius: 8px;
-  padding: 0.5em 1.2em;
+  background: rgba(0, 229, 255, 0.1);
+  color: var(--electric-white);
+  border: 1px solid var(--electric-cyan);
+  border-radius: 2px;
+  padding: 0.5em 1em;
+  font-family: inherit;
+  font-size: 0.9rem;
   font-weight: 500;
-  transition: all 0.2s ease-out;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 button:hover, .button:hover {
-  background: var(--snow-storm-1);
-  box-shadow: var(--glow-frost);
+  background: rgba(0, 229, 255, 0.2);
+  box-shadow: var(--glow-blue);
   transform: translateY(-1px);
-}
-
-/* Code blocks */
-code, pre {
-  font-family: 'JetBrains Mono', monospace;
-  background: var(--polar-night-2);
-  border: 1px solid var(--polar-night-4);
-  border-radius: 6px;
 }
