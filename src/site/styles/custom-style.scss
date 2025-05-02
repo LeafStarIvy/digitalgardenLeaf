@@ -5,212 +5,194 @@
  */
 
 /*
- * QUANTUM FLUX DIGITAL GARDEN
- * High-contrast futuristic quantum computing inspired theme
- * with electric accents and crystalline structures
+ * COSMIC CLARITY DIGITAL GARDEN
+ * Refined immersive cosmic theme with streamlined color system
+ * and organized visual hierarchy
  */
 
 body {
-  /* Quantum state color system */
-  --quantum-void: #050510;       /* Quantum void */
-  --quantum-deep: #0B0B20;       /* Deep quantum field */
-  --quantum-field: #101035;      /* Quantum field */
-  --quantum-space: #16164A;      /* Quantum space */
-  --dark-matter: #1D1D60;        /* Dark matter */
-  --event-horizon: #282880;      /* Event horizon */
-  --quantum-foam: #3232AA;       /* Quantum foam */
-  --entanglement: #4040CF;       /* Entanglement */
-  --wave-function: #6060EF;      /* Wave function */
-  --probability: #8080FF;        /* Probability cloud */
+  /* Core Color System - Streamlined Space Scale */
+  --cosmic-void: #010508;        /* Absolute void */
+  --cosmic-deep: #020B19;        /* Deep space */
+  --cosmic-space: #0A192F;       /* Space background */
+  --cosmic-nebula: #112240;      /* Nebula space */
+  --cosmic-twilight: #1E3A5F;    /* Cosmic twilight */
+  --cosmic-dusk: #2A4A73;        /* Cosmic dusk */
+  --cosmic-eve: #3B5F8F;         /* Evening atmosphere */
+  --cosmic-night: #5478AD;       /* Night sky */
+  --cosmic-dawn: #7599CB;        /* Dawn approaching */
+  --cosmic-morning: #A3BFEF;     /* Morning light */
+  --cosmic-sky: #D4E5FF;         /* Light sky */
   
-  /* Electric accents */
-  --electric-blue: #00FFFF;      /* Electric blue */
-  --electric-cyan: #00E5FF;      /* Electric cyan */
-  --electric-indigo: #6A00FF;    /* Electric indigo */
-  --electric-violet: #CC00FF;    /* Electric violet */
-  --electric-magenta: #FF00DB;   /* Electric magenta */
-  --electric-yellow: #FFFC00;    /* Electric yellow */
-  --electric-white: #FFFFFF;     /* Electric white */
+  /* Aurora Energy System - Vibrant Accents */
+  --energy-teal: #0EA5E9;        /* Teal energy */
+  --energy-teal-glow: #38BDF8;   /* Teal energy glow */
+  --energy-teal-soft: #7DD3FC;   /* Soft teal energy */
   
-  /* Quantum gradients */
-  --gradient-quantum-field: linear-gradient(135deg, var(--quantum-void), var(--quantum-deep) 40%, var(--quantum-field));
-  --gradient-superposition: linear-gradient(90deg, var(--electric-indigo), var(--electric-violet), var(--electric-magenta));
-  --gradient-probability: linear-gradient(45deg, var(--entanglement), var(--wave-function), var(--probability));
-  --gradient-electric: linear-gradient(90deg, var(--electric-cyan), var(--electric-blue), var(--electric-cyan));
-  --gradient-uncertainty: linear-gradient(to bottom, rgba(0,255,255,0.1), rgba(0,255,255,0), rgba(204,0,255,0.05));
+  --energy-cyan: #06B6D4;        /* Cyan energy */
+  --energy-cyan-glow: #22D3EE;   /* Cyan energy glow */
+  --energy-cyan-soft: #A5F3FC;   /* Soft cyan energy */
   
-  /* Glass quantum state */
-  --quantum-glass: rgba(16, 16, 53, 0.8);
-  --quantum-glass-light: rgba(24, 24, 74, 0.6);
-  --quantum-blur: blur(12px);
-  --quantum-border: 1px solid rgba(0, 255, 255, 0.2);
-  --quantum-border-active: 1px solid rgba(0, 255, 255, 0.5);
+  --energy-purple: #7C3AED;      /* Purple energy */
+  --energy-purple-glow: #A78BFA; /* Purple energy glow */
+  --energy-purple-soft: #C4B5FD; /* Soft purple energy */
   
-  /* Text system */
-  --text-primary: var(--electric-white);
-  --text-secondary: rgba(255, 255, 255, 0.85);
-  --text-tertiary: rgba(255, 255, 255, 0.7);
-  --text-accent: var(--electric-cyan);
+  --energy-pink: #D946EF;        /* Pink energy */
+  --energy-pink-glow: #F0ABFC;   /* Pink energy glow */
+  --energy-pink-soft: #F5D0FE;   /* Soft pink energy */
   
-  /* Electric shadows and glows */
-  --shadow-quantum: 0 5px 20px rgba(0, 0, 0, 0.3);
-  --glow-blue: 0 0 15px rgba(0, 255, 255, 0.5);
-  --glow-violet: 0 0 15px rgba(204, 0, 255, 0.5);
-  --glow-subtle: 0 0 10px rgba(0, 255, 255, 0.2);
+  /* Utility Energy */
+  --energy-emerald: #10B981;     /* Emerald energy */
+  --energy-amber: #F59E0B;       /* Amber energy */
+  --energy-rose: #F43F5E;        /* Rose energy */
   
-  /* Interactive */
-  --link-color: var(--electric-cyan);
-  --link-hover: var(--electric-blue);
-  --selection-bg: var(--electric-indigo);
-  --selection-text: var(--electric-white);
+  /* Advanced Gradient System */
+  --gradient-cosmic: linear-gradient(135deg, var(--cosmic-void), var(--cosmic-space) 50%, var(--cosmic-nebula));
+  --gradient-aurora: linear-gradient(90deg, var(--energy-purple), var(--energy-pink), var(--energy-teal));
+  --gradient-northern: linear-gradient(135deg, var(--energy-cyan), var(--energy-teal-glow), var(--energy-purple-glow));
+  --gradient-glow-button: linear-gradient(45deg, var(--energy-purple), var(--energy-teal));
   
-  /* Component styling */
-  --card-bg: var(--quantum-glass);
-  --card-border: var(--quantum-border);
-  --card-radius: 4px;
-  --card-shadow: var(--shadow-quantum);
+  /* Glass Effect System */
+  --glass-dark: rgba(10, 25, 47, 0.75);
+  --glass-medium: rgba(16, 36, 64, 0.65); 
+  --glass-light: rgba(22, 42, 75, 0.55);
+  --glass-blur: blur(8px);
   
-  /* Global setup */
-  background: var(--gradient-quantum-field);
-  color: var(--text-primary);
-  font-family: 'JetBrains Mono', 'Inter', monospace;
-  line-height: 1.6;
-  letter-spacing: 0.01em;
+  /* Typography System */
+  --font-main: 'Inter', system-ui, sans-serif;
+  --font-headings: 'Space Grotesk', 'Montserrat', sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
   
-  /* Quantum grid effect */
+  /* Text Colors */
+  --text-primary: var(--energy-cyan-soft);
+  --text-secondary: var(--energy-teal-soft);
+  --text-accent: var(--energy-purple-soft);
+  --text-muted: var(--cosmic-dawn);
+  --text-bright: var(--cosmic-sky);
+  --text-success: var(--energy-emerald);
+  --text-warning: var(--energy-amber);
+  --text-danger: var(--energy-rose);
+  
+  /* Interactive Elements */
+  --link-color: var(--energy-teal-glow);
+  --link-hover: var(--energy-cyan-soft);
+  --selection-bg: rgba(10, 147, 150, 0.25);
+  --highlight-bg: rgba(124, 58, 237, 0.12);
+  
+  /* Layout System */
+  --content-width: 700px;
+  --sidebar-width: 300px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  
+  /* Component Styles */
+  --card-bg: var(--glass-medium);
+  --card-radius: 12px;
+  --card-shadow: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+  --card-border: rgba(255, 255, 255, 0.1);
+  
+  --button-radius: 8px;
+  --button-glow: 0 0 15px rgba(14, 165, 233, 0.25);
+  
+  /* Effects */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Global Setup */
   position: relative;
+  font-family: var(--font-main);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--gradient-cosmic);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Grid overlay */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    linear-gradient(to right, rgba(0, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
-  z-index: -1;
-}
-
-/* Quantum uncertainty pattern */
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--gradient-uncertainty);
-  z-index: -2;
-  opacity: 0.7;
-}
-
-/* Card styling */
-.card, .note-container, .content-container {
-  background: var(--quantum-glass);
-  border: var(--quantum-border);
+/* Enhanced Card Component */
+.card {
+  background: var(--card-bg);
   border-radius: var(--card-radius);
-  box-shadow: var(--shadow-quantum);
-  backdrop-filter: var(--quantum-blur);
-  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-  padding: 1.5rem;
+  border: 1px solid var(--card-border);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--card-shadow);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
-.card:hover, .note-container:hover {
-  border: var(--quantum-border-active);
-  box-shadow: var(--shadow-quantum), var(--glow-subtle);
-  transform: translateY(-2px) scale(1.01);
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2), 0 15px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced Button Component */
+.button {
+  background: var(--energy-teal);
+  color: var(--cosmic-sky);
+  border-radius: var(--button-radius);
+  padding: 0.6em 1.2em;
+  font-weight: 500;
+  border: none;
+  transition: all var(--transition-fast);
+  box-shadow: var(--button-glow);
+}
+
+.button:hover {
+  background: var(--gradient-glow-button);
+  box-shadow: 0 0 25px rgba(14, 165, 233, 0.35);
+  transform: translateY(-2px);
 }
 
 /* Link styling */
 a {
   color: var(--link-color);
   text-decoration: none;
-  transition: all 0.15s ease;
-  padding: 0.1em 0.2em;
-  margin: -0.1em -0.2em;
-  border-radius: 3px;
-  position: relative;
+  transition: color var(--transition-fast);
+  border-bottom: 1px solid rgba(14, 165, 233, 0.3);
+  padding-bottom: 1px;
 }
 
 a:hover {
   color: var(--link-hover);
-  text-shadow: var(--glow-blue);
-  background-color: rgba(0, 255, 255, 0.1);
-}
-
-a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0.2em;
-  right: 0.2em;
-  height: 1px;
-  background-color: var(--electric-blue);
-  transform: scaleX(0);
-  transition: transform 0.2s ease;
-}
-
-a:hover::after {
-  transform: scaleX(1);
+  border-bottom-color: var(--link-hover);
 }
 
 /* Headings */
-h1, h2, h3 {
-  color: var(--text-primary);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-headings);
+  color: var(--text-bright);
   line-height: 1.2;
-  position: relative;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
 }
 
 h1 {
-  background: var(--gradient-electric);
+  font-size: 2.25rem;
+  background: var(--gradient-northern);
   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   background-clip: text;
-  color: transparent;
-  text-shadow: var(--glow-subtle);
+  text-fill-color: transparent;
 }
 
-h2::before {
-  content: '//';
-  color: var(--electric-cyan);
-  margin-right: 0.5em;
-  opacity: 0.7;
+/* Code blocks */
+code, pre {
+  font-family: var(--font-code);
+  background: rgba(1, 5, 10, 0.5);
+  border-radius: 6px;
+}
+
+pre {
+  padding: 1em;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Selection styling */
 ::selection {
   background-color: var(--selection-bg);
-  color: var(--selection-text);
-}
-
-/* Button styling */
-button, .button {
-  background: rgba(0, 229, 255, 0.1);
-  color: var(--electric-white);
-  border: 1px solid var(--electric-cyan);
-  border-radius: 2px;
-  padding: 0.5em 1em;
-  font-family: inherit;
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  transition: all 0.15s ease;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-button:hover, .button:hover {
-  background: rgba(0, 229, 255, 0.2);
-  box-shadow: var(--glow-blue);
-  transform: translateY(-1px);
+  color: var(--energy-cyan-soft);
 }
 
 // 2. ENHANCED BACKGROUND: Multi-layered cosmic environment
