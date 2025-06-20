@@ -1,0 +1,309 @@
+<!-- Fullscreen Note Button Component -->
+<!-- Add this CSS and JS inline or link to external files -->
+
+<style>
+/* ===== FULLSCREEN NOTE FEATURE ===== */
+
+/* Fullscreen Toggle Button */
+.fullscreen-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.fullscreen-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.fullscreen-toggle:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.fullscreen-toggle svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.fullscreen-toggle:hover svg {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Dark theme adjustments */
+.theme-dark .fullscreen-toggle {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e0e0e0;
+}
+
+.theme-dark .fullscreen-toggle:hover {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Fullscreen mode styles */
+.fullscreen-mode {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 9998;
+  background: var(--background-primary, #ffffff);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  animation: expandToFullscreen 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fullscreen-mode .content.cm-s-obsidian {
+  max-width: 1400px !important;
+  width: 85% !important;
+  margin: 0 auto;
+  padding: 4rem 5rem;
+  font-size: 1.2em;
+  line-height: 1.8;
+  min-height: calc(100vh - 8rem);
+  animation: fadeInContent 0.5s ease 0.2s both;
+}
+
+/* Hide other elements in fullscreen */
+.fullscreen-mode .navbar,
+.fullscreen-mode .filetree,
+.fullscreen-mode .searchContainer,
+.fullscreen-mode .sidebar,
+.fullscreen-mode .notegrowthhistory {
+  display: none !important;
+}
+
+.fullscreen-mode .fullscreen-toggle {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  top: 30px;
+  right: 30px;
+}
+
+.theme-dark.fullscreen-mode .fullscreen-toggle {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced typography in fullscreen */
+.fullscreen-mode .content h1 {
+  font-size: 3em;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  background: linear-gradient(135deg, var(--text-accent, #667eea), var(--text-accent-hover, #764ba2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: slideInFromTop 0.6s ease 0.3s both;
+}
+
+.fullscreen-mode .content h2 {
+  font-size: 2.2em;
+  margin: 2rem 0 1rem 0;
+  animation: slideInFromLeft 0.5s ease 0.4s both;
+}
+
+.fullscreen-mode .content h3 {
+  font-size: 1.8em;
+  margin: 1.5rem 0 0.8rem 0;
+  animation: slideInFromLeft 0.5s ease 0.5s both;
+}
+
+.fullscreen-mode .content p {
+  margin-bottom: 1.5em;
+  animation: fadeInUp 0.5s ease 0.6s both;
+}
+
+/* Reading focus enhancements */
+.fullscreen-mode .content::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.02) 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Animations */
+@keyframes expandToFullscreen {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeInContent {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInFromTop {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInFromLeft {
+  0% { opacity: 0; transform: translateX(-30px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fullscreen-mode .content.cm-s-obsidian {
+    width: 95% !important;
+    padding: 2rem 2.5rem;
+    font-size: 1.1em;
+  }
+  
+  .fullscreen-toggle {
+    width: 44px;
+    height: 44px;
+    top: 15px;
+    right: 15px;
+  }
+  
+  .fullscreen-toggle svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+</style>
+
+<script>
+// Fullscreen Note Feature
+class FullscreenNote {
+  constructor() {
+    this.isFullscreen = false;
+    this.button = null;
+    this.init();
+  }
+
+  init() {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => this.createButton());
+    } else {
+      this.createButton();
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.isFullscreen) {
+        this.exitFullscreen();
+      }
+    });
+  }
+
+  createButton() {
+    this.button = document.createElement('div');
+    this.button.className = 'fullscreen-toggle';
+    this.button.setAttribute('title', 'Toggle Fullscreen (Esc to exit)');
+    
+    const expandIcon = `
+      <svg class="expand-icon" fill="none" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 7V5a2 2 0 0 1 2-2h2M21 7V5a2 2 0 0 0-2-2h-2M7 21H5a2 2 0 0 1-2-2v-2M17 21h2a2 2 0 0 0 2-2v-2"/>
+      </svg>
+    `;
+    
+    const contractIcon = `
+      <svg class="contract-icon" fill="none" viewBox="0 0 24 24" style="display: none;">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 9V7a2 2 0 0 0-2-2H5M15 9V7a2 2 0 0 1 2-2h2M9 15v2a2 2 0 0 0 2 2h2M15 15v2a2 2 0 0 1-2 2h-2"/>
+      </svg>
+    `;
+
+    this.button.innerHTML = expandIcon + contractIcon;
+    this.button.addEventListener('click', () => this.toggleFullscreen());
+    document.body.appendChild(this.button);
+
+    setTimeout(() => {
+      this.button.style.opacity = '1';
+      this.button.style.transform = 'translateY(0)';
+    }, 100);
+  }
+
+  toggleFullscreen() {
+    if (this.isFullscreen) {
+      this.exitFullscreen();
+    } else {
+      this.enterFullscreen();
+    }
+  }
+
+  enterFullscreen() {
+    if (this.isFullscreen) return;
+    
+    document.body.classList.add('fullscreen-mode');
+    this.updateButtonState(true);
+    this.isFullscreen = true;
+    
+    setTimeout(() => {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }, 50);
+  }
+
+  exitFullscreen() {
+    if (!this.isFullscreen) return;
+
+    document.body.classList.add('fullscreen-exit');
+    
+    setTimeout(() => {
+      document.body.classList.remove('fullscreen-mode', 'fullscreen-exit');
+      this.updateButtonState(false);
+      this.isFullscreen = false;
+    }, 200);
+  }
+
+  updateButtonState(isFullscreen) {
+    const expandIcon = this.button.querySelector('.expand-icon');
+    const contractIcon = this.button.querySelector('.contract-icon');
+    
+    if (isFullscreen) {
+      expandIcon.style.display = 'none';
+      contractIcon.style.display = 'block';
+      this.button.setAttribute('title', 'Exit Fullscreen (Esc)');
+    } else {
+      expandIcon.style.display = 'block';
+      contractIcon.style.display = 'none';
+      this.button.setAttribute('title', 'Enter Fullscreen');
+    }
+  }
+}
+
+// Initialize only on note pages
+if (document.querySelector('.content.cm-s-obsidian')) {
+  new FullscreenNote();
+}
+</script>
