@@ -1344,3 +1344,85 @@ pre code {
   0% { transform: rotate(0deg) translateX(calc(var(--planet-size) * 0.8)) rotate(0deg); }
   100% { transform: rotate(360deg) translateX(calc(var(--planet-size) * 0.8)) rotate(-360deg); }
 }
+
+/* Make notes wider and bigger */
+.content.cm-s-obsidian {
+  max-width: 900px !important; /* Increase from default width */
+  width: 90% !important; /* Use more screen width */
+  margin: 0 auto; /* Keep centered */
+  padding: 2rem 3rem; /* Add more padding */
+  font-size: 1.1em; /* Make text slightly bigger */
+  line-height: 1.7; /* Better readability */
+}
+
+/* Make the overall body wider if needed */
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Adjust headings to be proportionally bigger */
+.content h1 { 
+  font-size: 2.4em; 
+  margin-bottom: 1rem;
+}
+.content h2 { 
+  font-size: 2em; 
+  margin-bottom: 0.8rem;
+}
+.content h3 { 
+  font-size: 1.6em; 
+  margin-bottom: 0.6rem;
+}
+.content h4 { 
+  font-size: 1.3em; 
+  margin-bottom: 0.5rem;
+}
+
+/* Make paragraphs more spacious */
+.content p {
+  margin-bottom: 1.2em;
+  font-size: inherit;
+}
+
+/* Adjust lists for better spacing */
+.content ul, .content ol {
+  margin-bottom: 1.2em;
+  padding-left: 2em;
+}
+
+.content li {
+  margin-bottom: 0.5em;
+  line-height: 1.6;
+}
+
+/* Make code blocks wider too */
+.content pre {
+  margin: 1.5em 0;
+  padding: 1.5em;
+  border-radius: 8px;
+}
+
+/* Adjust blockquotes */
+.content blockquote {
+  margin: 1.5em 0;
+  padding: 1em 2em;
+  border-left: 4px solid var(--accent-color, #666);
+}
+
+/* Responsive design - adjust for smaller screens */
+@media (max-width: 768px) {
+  .content.cm-s-obsidian {
+    width: 95% !important;
+    padding: 1rem 2rem;
+    font-size: 1.05em;
+  }
+}
+
+@media (max-width: 480px) {
+  .content.cm-s-obsidian {
+    width: 98% !important;
+    padding: 1rem 1.5rem;
+    font-size: 1em;
+  }
+}
