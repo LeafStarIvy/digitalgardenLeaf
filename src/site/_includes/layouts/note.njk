@@ -106,16 +106,16 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
     <div class="galaxy-core"></div>
     <script src="path/to/galaxy-background.js"></script>
 <script>
-// Fullscreen Note Feature
+// Fullscreen Note Feature (Focus Mode)
 (function() {
   let isFullscreen = false;
-  
+
   const fullscreenBtn = document.getElementById('fullscreenBtn');
   if (!fullscreenBtn) return;
-  
+
   function toggleFullscreen() {
     isFullscreen = !isFullscreen;
-    
+
     if (isFullscreen) {
       document.body.classList.add('fullscreen-mode');
       fullscreenBtn.innerHTML = `
@@ -133,39 +133,48 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
         <span>Focus Mode</span>
       `;
     }
+
+    // After toggling the class, give the browser a moment then dispatch resize
+    // so that embedded widgets (Excalidraw, flashcards, etc.) can recalc.
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+      // If needed: call specific re-render functions here, e.g.:
+      // if (window.Excalidraw && typeof window.Excalidraw.recalcSize === 'function') {
+      //   window.Excalidraw.recalcSize();
+      // }
+    }, 100);
   }
-  
+
   // Button click handler
   fullscreenBtn.addEventListener('click', toggleFullscreen);
-  
-  // F11 keyboard shortcut
+
+  // F11 keyboard shortcut: toggle focus mode (prevent default fullscreen)
   document.addEventListener('keydown', function(e) {
     if (e.key === 'F11') {
       e.preventDefault();
       toggleFullscreen();
     }
   });
-  
-  // Escape to exit fullscreen
+
+  // Escape to exit focus mode
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && isFullscreen) {
       toggleFullscreen();
     }
   });
-  
-  // Optional: Auto-hide cursor after inactivity in fullscreen
+
+  // Optional: Auto-hide cursor after inactivity in focus mode
   let cursorTimeout;
   function resetCursorTimeout() {
     clearTimeout(cursorTimeout);
     document.body.style.cursor = 'default';
-    
+
     if (isFullscreen) {
       cursorTimeout = setTimeout(() => {
         document.body.style.cursor = 'none';
       }, 4000);
     }
   }
-  
   document.addEventListener('mousemove', resetCursorTimeout);
   document.addEventListener('mousedown', resetCursorTimeout);
 })();
