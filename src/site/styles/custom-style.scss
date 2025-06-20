@@ -1435,9 +1435,9 @@ html {
   }
 }
 
-/* ===== FULLSCREEN NOTE FEATURE ===== */
+/* ===== FULLSCREEN NOTE FEATURE (REVISED) ===== */
 
-/* Fullscreen Button */
+/* Fullscreen Button (unchanged or tweak as desired) */
 .fullscreen-btn {
   position: fixed;
   top: 20px;
@@ -1469,7 +1469,7 @@ html {
   }
 }
 
-/* Smooth transitions for UI elements */
+/* Smooth transitions */
 .navbar,
 .filetree-sidebar,
 .sidebar,
@@ -1478,7 +1478,6 @@ html {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Fullscreen Mode Styles */
 body.fullscreen-mode {
   /* Hide UI elements */
   .navbar,
@@ -1491,7 +1490,7 @@ body.fullscreen-mode {
     pointer-events: none;
   }
 
-  /* Tweak fullscreen button appearance */
+  /* Tweak fullscreen button */
   .fullscreen-btn {
     background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
     top: 30px;
@@ -1500,23 +1499,30 @@ body.fullscreen-mode {
     z-index: 9999;
   }
 
-  /* Expand content to full viewport width */
+  /* Expand and center content */
   .content {
-    /* Remove any narrow cap: span whole viewport */
-    max-width: none;
-    width: 100vw;
-    margin: 0;
-    /* Horizontal padding so text isn’t flush on edges */
+    /* Use a soft max-width to nearly fill viewport but stay centered */
+    max-width: 95vw;
+    margin: 0 auto;
+    /* padding top/bottom to keep vertical centering feel */
     padding: 8vh 2vw;
     min-height: 100vh;
+    /* If you want vertical centering of child content: */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* Slightly larger base font for “zoomed-in” feel */
+    /* If you want direct children shrink-wrapped and centered: */
+    align-items: center;
+
+    /* Increase base font size slightly for a “zoomed-in” feel */
     font-size: 1.15rem;
 
     /* Header styling */
     header {
+      /* If header should stretch full width within .content: 
+         remove align-self override, but since .content uses align-items:center,
+         we can let header take full width via width:100% */
+      width: 100%;
       text-align: center;
       margin-bottom: 3rem;
 
@@ -1531,7 +1537,11 @@ body.fullscreen-mode {
       }
 
       .header-meta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         .header-tags {
+          display: flex;
           justify-content: center;
           margin-bottom: 1rem;
 
@@ -1543,9 +1553,7 @@ body.fullscreen-mode {
             margin: 0 8px;
           }
         }
-
         .timestamps {
-          justify-content: center;
           font-size: 1rem;
           opacity: 0.8;
         }
@@ -1597,37 +1605,58 @@ body.fullscreen-mode {
       margin: 2rem 0;
       overflow-x: auto;
     }
+
+    /* If you have a grid/flex “dashboard” inside content, ensure it’s centered:
+       Example: */
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      justify-content: center; /* centers the grid if it doesn’t fill full width */
+      width: 100%;
+      max-width: 1200px;      /* adjust or remove if you want wider */
+      margin: 0 auto;
+    }
+    /* Or if your item container uses flex: */
+    /* 
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin: 0 auto;
+      max-width: 95vw;
+    }
+    */
   }
 
-  /* Optional cap on extremely wide screens for readability */
+  /* Optional cap on extremely wide screens */
   @media (min-width: 3000px) {
     .content {
       max-width: 1600px;
       margin: 0 auto;
     }
-  }
-
-  /* Tablet optimizations */
-  @media (max-width: 1200px) {
-    .content {
-      padding: 6vh 3vw;
-      header {
-        h1 {
-          font-size: 2.5rem !important;
-        }
-      }
+    .cards-container {
+      max-width: 1600px;
     }
   }
 
-  /* Mobile optimizations */
+  /* Tablet */
+  @media (max-width: 1200px) {
+    .content {
+      padding: 6vh 3vw;
+      header h1 {
+        font-size: 2.5rem !important;
+      }
+    }
+  }
+  /* Mobile */
   @media (max-width: 768px) {
     .content {
       padding: 4vh 2vw;
       font-size: 1.1rem;
-      header {
-        h1 {
-          font-size: 2rem !important;
-        }
+      header h1 {
+        font-size: 2rem !important;
       }
       h2 {
         font-size: 1.8rem !important;
@@ -1645,24 +1674,18 @@ body.fullscreen-mode {
   }
 }
 
-/* Native Fullscreen API support: if you requestFullscreen() on .content */
+/* If you use the Fullscreen API on .content */
 .content:fullscreen {
-  max-width: none;
-  width: 100vw;
-  margin: 0;
+  max-width: 95vw;
+  margin: 0 auto;
   padding: 8vh 2vw;
-  /* keep font-size increase */
   font-size: 1.15rem;
+  align-items: center;
 }
-
-/* Fallback for exit/enter transitions */
 :fullscreen .content {
-  /* Some browsers put the element itself into fullscreen; ensure same styling */
-  max-width: none;
-  width: 100vw;
-  margin: 0;
+  max-width: 95vw;
+  margin: 0 auto;
   padding: 8vh 2vw;
   font-size: 1.15rem;
+  align-items: center;
 }
-
-
