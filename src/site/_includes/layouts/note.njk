@@ -14,6 +14,12 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
     {% endfor %}
   </head>
   <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
+<button class="fullscreen-btn" id="fullscreenBtn">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+  </svg>
+  <span>Focus Mode</span>
+</button>
     {%include "components/notegrowthhistory.njk"%}
     
     {% if settings.dgShowFileTree !== true %}
@@ -99,6 +105,71 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
     <div class="galaxy-spiral galaxy-spiral-js"></div>
     <div class="galaxy-core"></div>
     <script src="path/to/galaxy-background.js"></script>
+<script>
+// Fullscreen Note Feature
+(function() {
+  let isFullscreen = false;
+  
+  const fullscreenBtn = document.getElementById('fullscreenBtn');
+  if (!fullscreenBtn) return;
+  
+  function toggleFullscreen() {
+    isFullscreen = !isFullscreen;
+    
+    if (isFullscreen) {
+      document.body.classList.add('fullscreen-mode');
+      fullscreenBtn.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
+        </svg>
+        <span>Exit Focus</span>
+      `;
+    } else {
+      document.body.classList.remove('fullscreen-mode');
+      fullscreenBtn.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+        </svg>
+        <span>Focus Mode</span>
+      `;
+    }
+  }
+  
+  // Button click handler
+  fullscreenBtn.addEventListener('click', toggleFullscreen);
+  
+  // F11 keyboard shortcut
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'F11') {
+      e.preventDefault();
+      toggleFullscreen();
+    }
+  });
+  
+  // Escape to exit fullscreen
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && isFullscreen) {
+      toggleFullscreen();
+    }
+  });
+  
+  // Optional: Auto-hide cursor after inactivity in fullscreen
+  let cursorTimeout;
+  function resetCursorTimeout() {
+    clearTimeout(cursorTimeout);
+    document.body.style.cursor = 'default';
+    
+    if (isFullscreen) {
+      cursorTimeout = setTimeout(() => {
+        document.body.style.cursor = 'none';
+      }, 4000);
+    }
+  }
+  
+  document.addEventListener('mousemove', resetCursorTimeout);
+  document.addEventListener('mousedown', resetCursorTimeout);
+})();
+</script>
 </div>
   </body>
 </html>
