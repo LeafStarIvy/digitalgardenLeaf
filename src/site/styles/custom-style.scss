@@ -1435,9 +1435,9 @@ html {
   }
 }
 
-/* ===== FULLSCREEN (FOCUS) MODE STYLES ===== */
+/* ===== FOCUS MODE STYLES (no font/header overrides) ===== */
 
-/* Fullscreen Button */
+/* Fullscreen Button (unchanged) */
 .fullscreen-btn {
   position: fixed;
   top: 20px;
@@ -1469,7 +1469,7 @@ html {
   }
 }
 
-/* Smooth transitions for core elements */
+/* Smooth transitions */
 .navbar,
 .filetree-sidebar,
 .sidebar,
@@ -1478,9 +1478,9 @@ html {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Focus Mode Styles */
+/* Focus Mode */
 body.fullscreen-mode {
-  /* 1. Hide other UI elements */
+  /* 1. Hide UI elements */
   .navbar,
   .filetree-sidebar,
   .sidebar,
@@ -1500,7 +1500,7 @@ body.fullscreen-mode {
     z-index: 9999;
   }
 
-  /* 3. Widen and center .content WITHOUT transform scale */
+  /* 3. Widen & center .content, but keep existing fonts/colors */
   .content {
     max-width: 95vw !important;   /* fill ~95% of viewport width */
     margin: 0 auto;
@@ -1508,96 +1508,11 @@ body.fullscreen-mode {
     min-height: 100vh;
 
     display: block;               /* normal flow so embedded layouts remain intact */
-    /* If you previously used flex centering and it broke embeds, keep display:block. */
+    /* No font-size overrides here: original theme fonts/colors apply */
+  }
 
-    /* Bump base font-size slightly for a “zoomed-in” feel */
-    font-size: 1.2rem;
-
-    /* HEADER: span full width inside .content */
-    header {
-      width: 100%;
-      text-align: center;
-      margin-bottom: 3rem;
-
-      h1 {
-        font-size: 3rem !important;
-        margin-bottom: 2rem;
-        background: linear-gradient(135deg, var(--text-accent, #667eea) 0%, #764ba2 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        line-height: 1.2;
-      }
-      .header-meta {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        .header-tags {
-          display: flex;
-          justify-content: center;
-          margin-bottom: 1rem;
-          .tag {
-            font-size: 1rem;
-            padding: 8px 16px;
-            border-radius: 20px;
-            background: rgba(var(--text-accent-rgb, 102, 126, 234), 0.1);
-            margin: 0 8px;
-          }
-        }
-        .timestamps {
-          font-size: 1rem;
-          opacity: 0.8;
-        }
-      }
-    }
-
-    /* TYPOGRAPHY adjustments */
-    h2 {
-      font-size: 2.2rem !important;
-      margin: 3rem 0 1.5rem 0;
-      color: var(--text-accent, #8b9dc3);
-    }
-    h3 {
-      font-size: 1.8rem !important;
-      margin: 2.5rem 0 1rem 0;
-    }
-    p {
-      font-size: 1.25rem;
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-      opacity: 0.95;
-    }
-    ul, ol {
-      font-size: 1.25rem;
-      line-height: 1.8;
-      li {
-        margin-bottom: 0.5rem;
-      }
-    }
-    blockquote {
-      font-size: 1.3rem;
-      line-height: 1.7;
-      padding: 2rem;
-      margin: 2rem 0;
-      border-left: 4px solid var(--text-accent, #667eea);
-      background: rgba(var(--text-accent-rgb, 102, 126, 234), 0.05);
-      border-radius: 0 10px 10px 0;
-    }
-    code {
-      font-size: 1.1rem;
-      padding: 4px 8px;
-      background: rgba(var(--text-accent-rgb, 102, 126, 234), 0.1);
-      border-radius: 6px;
-    }
-    pre {
-      font-size: 1rem;
-      padding: 2rem;
-      border-radius: 12px;
-      margin: 2rem 0;
-      overflow-x: auto;
-    }
-
-    /* 4. Ensure images & embeds fill the width of .content */
+  /* 4. Ensure images & embeds fill the width of .content */
+  .content {
     img {
       max-width: 100% !important;
       height: auto !important;
@@ -1615,14 +1530,13 @@ body.fullscreen-mode {
       width: 100% !important;
       height: auto !important;
     }
-    /* 5. Excalidraw embed override: replace selector if needed */
+    /* Excalidraw override: replace selector if your embed wrapper differs */
     .excalidraw-embed,
     .excalidraw-container {
       width: 100% !important;
-      /* If Excalidraw needs a height: set a min-height to keep it visible */
-      min-height: 60vh;
+      min-height: 60vh; /* ensures visible; adjust if needed */
     }
-    /* 6. Flashcards/grid override: replace .flashcards-container with your actual wrapper */
+    /* Flashcards override: replace with your actual wrapper class */
     .flashcards-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -1631,32 +1545,20 @@ body.fullscreen-mode {
       max-width: none;
       margin: 0 auto;
     }
-    /* If your flashcards use flex, you can instead do:
-    .flashcards-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      width: 100%;
-      max-width: none;
-      margin: 0 auto;
-    }
-    */
-
-    /* 7. Other widget overrides: e.g., diagrams, charts */
+    /* Other widget overrides, if any: diagrams/charts etc. */
     .diagram-container,
     .chart-container {
       max-width: 100% !important;
     }
   }
 
-  /* 8. Optional cap on extremely wide screens */
+  /* 5. Optional cap on extremely wide screens */
   @media (min-width: 2000px) {
     .content {
       max-width: 1600px !important;
       margin: 0 auto;
-      /* Could bump font-size further if desired */
     }
+    /* If you have .cards-container or other wrappers: cap them similarly */
     .flashcards-container,
     .cards-container {
       max-width: 1600px;
@@ -1664,20 +1566,18 @@ body.fullscreen-mode {
     }
   }
 
-  /* 9. Tablet adjustments */
+  /* 6. Tablet adjustments */
   @media (max-width: 1200px) {
     .content {
       max-width: 90vw !important;
       padding: 6vh 3vw;
-      font-size: 1.15rem;
     }
   }
-  /* 10. Mobile adjustments */
+  /* 7. Mobile adjustments */
   @media (max-width: 768px) {
     .content {
       max-width: 90vw !important;
       padding: 4vh 2vw;
-      font-size: 1rem;
     }
     .fullscreen-btn {
       top: 15px;
@@ -1685,20 +1585,19 @@ body.fullscreen-mode {
       padding: 10px 16px;
       font-size: 12px;
     }
-    /* Single-column flashcards on mobile */
     .flashcards-container {
       grid-template-columns: 1fr;
     }
   }
 }
 
-/* Fullscreen API support: if you call requestFullscreen() on .content */
+/* Fullscreen API support: if you use requestFullscreen() on .content */
 .content:fullscreen {
   max-width: 95vw !important;
   margin: 0 auto;
   padding: 8vh 2vw;
-  font-size: 1.2rem;
   display: block;
+
   img, iframe, embed, video {
     max-width: 100% !important;
     width: 100% !important;
@@ -1721,9 +1620,5 @@ body.fullscreen-mode {
   max-width: 95vw !important;
   margin: 0 auto;
   padding: 8vh 2vw;
-  font-size: 1.2rem;
   display: block;
 }
-
-/* ===== End of Fullscreen Styles ===== */
-
