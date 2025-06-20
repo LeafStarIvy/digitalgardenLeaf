@@ -1435,9 +1435,9 @@ html {
   }
 }
 
-/* ===== FULLSCREEN NOTE FEATURE (REVISED) ===== */
+/* ===== FULLSCREEN NOTE FEATURE WITH ZOOM ===== */
 
-/* Fullscreen Button (unchanged or tweak as desired) */
+/* Fullscreen Button */
 .fullscreen-btn {
   position: fixed;
   top: 20px;
@@ -1478,6 +1478,11 @@ html {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Adjust these two variables to taste: */
+$scale-factor: 1.2 !default; /* 1.2 means 120% zoom. Increase to 1.3, 1.4 for more zoom. */
+$soft-vw: 95vw !default;     /* Target viewport width percent after scaling. */
+
+/* Fullscreen Mode Styles */
 body.fullscreen-mode {
   /* Hide UI elements */
   .navbar,
@@ -1499,29 +1504,33 @@ body.fullscreen-mode {
     z-index: 9999;
   }
 
-  /* Expand and center content */
+  /* Scale-based zoom on .content */
   .content {
-    /* Use a soft max-width to nearly fill viewport but stay centered */
-    max-width: 95vw;
+    /* Remove any default caps */
+    max-width: none !important;
+
+    /* Set width so that after scaling by $scale-factor, the effective width ≈ $soft-vw */
+    width: calc(#{$soft-vw} / #{$scale-factor});
     margin: 0 auto;
-    /* padding top/bottom to keep vertical centering feel */
+    /* Vertical padding for centering feel */
     padding: 8vh 2vw;
     min-height: 100vh;
-    /* If you want vertical centering of child content: */
+
+    /* Flex centering if desired */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* If you want direct children shrink-wrapped and centered: */
     align-items: center;
 
-    /* Increase base font size slightly for a “zoomed-in” feel */
+    /* Apply zoom */
+    transform: scale(#{$scale-factor});
+    transform-origin: top center;
+
+    /* Bump base font-size slightly for readability when zoomed */
     font-size: 1.15rem;
 
     /* Header styling */
     header {
-      /* If header should stretch full width within .content: 
-         remove align-self override, but since .content uses align-items:center,
-         we can let header take full width via width:100% */
       width: 100%;
       text-align: center;
       margin-bottom: 3rem;
@@ -1606,37 +1615,38 @@ body.fullscreen-mode {
       overflow-x: auto;
     }
 
-    /* If you have a grid/flex “dashboard” inside content, ensure it’s centered:
-       Example: */
+    /* Dashboard/grid overrides: replace .cards-container with your wrapper selector */
     .cards-container {
+      /* If you use CSS Grid: bump the minmax so items enlarge in fullscreen */
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1rem;
-      justify-content: center; /* centers the grid if it doesn’t fill full width */
+      justify-content: center;
       width: 100%;
-      max-width: 1200px;      /* adjust or remove if you want wider */
+      max-width: none;
       margin: 0 auto;
-    }
-    /* Or if your item container uses flex: */
-    /* 
-    .cards-container {
+
+      /* Or if you use flex:
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
+      width: 100%;
+      max-width: none;
       margin: 0 auto;
-      max-width: 95vw;
+      */
     }
-    */
   }
 
-  /* Optional cap on extremely wide screens */
-  @media (min-width: 3000px) {
+  /* Optional cap on extremely wide screens after scaling */
+  @media (min-width: #{3000px / $scale-factor}) {
     .content {
-      max-width: 1600px;
+      /* After scaling, this caps at ~1600px effective width: adjust as desired */
+      width: calc(1600px / #{$scale-factor});
       margin: 0 auto;
     }
     .cards-container {
+      /* If you want to cap inner grid width */
       max-width: 1600px;
     }
   }
@@ -1644,17 +1654,27 @@ body.fullscreen-mode {
   /* Tablet */
   @media (max-width: 1200px) {
     .content {
+      /* On smaller screens, you might reduce or disable scaling: */
+      /* Example: disable scale so that mobile still shows normally without overflow */
+      transform: none;
+      width: 90vw;
       padding: 6vh 3vw;
+      font-size: 1.1rem;
+
       header h1 {
         font-size: 2.5rem !important;
       }
     }
   }
+
   /* Mobile */
   @media (max-width: 768px) {
     .content {
+      transform: none;
+      width: 90vw;
       padding: 4vh 2vw;
-      font-size: 1.1rem;
+      font-size: 1rem;
+
       header h1 {
         font-size: 2rem !important;
       }
@@ -1674,18 +1694,45 @@ body.fullscreen-mode {
   }
 }
 
-/* If you use the Fullscreen API on .content */
+/* Fullscreen API support: if you requestFullscreen() on .content */
 .content:fullscreen {
-  max-width: 95vw;
+  max-width: none !important;
+  /* Same scale logic as above */
+  width: calc(95vw / 1.2);
   margin: 0 auto;
   padding: 8vh 2vw;
+  transform: scale(1.2);
+  transform-origin: top center;
   font-size: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+
+  /* Dashboard override */
+  .cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin: 0 auto;
+    max-width: none;
+  }
 }
 :fullscreen .content {
-  max-width: 95vw;
+  /* Some browsers use this selector */
+  max-width: none !important;
+  width: calc(95vw / 1.2);
   margin: 0 auto;
   padding: 8vh 2vw;
+  transform: scale(1.2);
+  transform-origin: top center;
   font-size: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+
+  .cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin: 0 auto;
+    max-width: none;
+  }
 }
