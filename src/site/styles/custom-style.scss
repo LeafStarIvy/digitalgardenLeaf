@@ -1435,9 +1435,9 @@ html {
   }
 }
 
-/* ===== FULLSCREEN NOTE FEATURE (WIDEN WITHOUT SCALE) ===== */
+/* ===== FULLSCREEN (FOCUS) MODE STYLES ===== */
 
-/* Fullscreen Button (unchanged or tweak as desired) */
+/* Fullscreen Button */
 .fullscreen-btn {
   position: fixed;
   top: 20px;
@@ -1469,7 +1469,7 @@ html {
   }
 }
 
-/* Smooth transitions */
+/* Smooth transitions for core elements */
 .navbar,
 .filetree-sidebar,
 .sidebar,
@@ -1478,7 +1478,7 @@ html {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Fullscreen Mode Styles */
+/* Focus Mode Styles */
 body.fullscreen-mode {
   /* 1. Hide other UI elements */
   .navbar,
@@ -1491,7 +1491,7 @@ body.fullscreen-mode {
     pointer-events: none;
   }
 
-  /* 2. Tweak fullscreen button look */
+  /* 2. Tweak fullscreen button */
   .fullscreen-btn {
     background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
     top: 30px;
@@ -1502,31 +1502,23 @@ body.fullscreen-mode {
 
   /* 3. Widen and center .content WITHOUT transform scale */
   .content {
-    /* Remove any narrow cap: allow wide, but centered */
-    max-width: 95vw !important;   /* fill 95% of viewport width */
+    max-width: 95vw !important;   /* fill ~95% of viewport width */
     margin: 0 auto;
-    padding: 8vh 2vw;             /* vertical padding for comfort */
+    padding: 8vh 2vw;             /* vertical/horizontal padding */
     min-height: 100vh;
 
-    /* Keep normal flow; remove flex centering if causing issues */
-    display: block;
-    /* If you previously used flex centering but it breaks inner layouts,
-       revert to normal block flow. If you want vertical centering of a
-       short note, you can experiment with flex but might break embeds. */
-    /* display: flex;
-       flex-direction: column;
-       justify-content: center;
-       align-items: center; */
+    display: block;               /* normal flow so embedded layouts remain intact */
+    /* If you previously used flex centering and it broke embeds, keep display:block. */
 
     /* Bump base font-size slightly for a “zoomed-in” feel */
-    font-size: 1.2rem; /* adjust as desired */
+    font-size: 1.2rem;
 
-    /* 4. Header styling: ensure header spans full width of .content */
+    /* HEADER: span full width inside .content */
     header {
       width: 100%;
       text-align: center;
       margin-bottom: 3rem;
-      /* ... keep your existing header styles ... */
+
       h1 {
         font-size: 3rem !important;
         margin-bottom: 2rem;
@@ -1559,7 +1551,7 @@ body.fullscreen-mode {
       }
     }
 
-    /* 5. Typography adjustments */
+    /* TYPOGRAPHY adjustments */
     h2 {
       font-size: 2.2rem !important;
       margin: 3rem 0 1.5rem 0;
@@ -1605,72 +1597,65 @@ body.fullscreen-mode {
       overflow-x: auto;
     }
 
-    /* 6. Ensure images & embeds fill the width of .content */
+    /* 4. Ensure images & embeds fill the width of .content */
     img {
-      max-width: 100%;
-      height: auto;
+      max-width: 100% !important;
+      height: auto !important;
       display: block;
-      margin: 1rem auto; /* center if narrower */
+      margin: 1rem auto;
     }
     figure img {
-      /* same for images in figure */
-      max-width: 100%;
-      height: auto;
+      max-width: 100% !important;
+      height: auto !important;
     }
-    iframe, embed, video {
-      max-width: 100%;
-      width: 100%;
-      height: auto; /* some embeds may need a fixed aspect ratio; adjust if needed */
+    iframe,
+    embed,
+    video {
+      max-width: 100% !important;
+      width: 100% !important;
+      height: auto !important;
     }
-    /* 7. Excalidraw embed override: replace selector with actual class/structure */
-    /* Suppose your Excalidraw embed is inside a div.excalidraw-embed or similar: */
+    /* 5. Excalidraw embed override: replace selector if needed */
     .excalidraw-embed,
     .excalidraw-container {
       width: 100% !important;
-      height: auto !important;
-      /* If Excalidraw needs a height to render: you might set a fixed aspect ratio or min-height, e.g.: */
-      /* min-height: 60vh; */
+      /* If Excalidraw needs a height: set a min-height to keep it visible */
+      min-height: 60vh;
     }
-    /* If Excalidraw is an <iframe>, the above iframe rule covers it. */
-
-    /* 8. Flashcards/grid override: identify your container class for flashcards.
-       Example: if your flashcards are in <div class="flashcards-container"> */
+    /* 6. Flashcards/grid override: replace .flashcards-container with your actual wrapper */
     .flashcards-container {
-      /* Use a responsive grid or flex that centers items */
       display: grid;
-      /* Adjust min width of each card so they appear larger when content is wide */
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1rem;
       width: 100%;
       max-width: none;
       margin: 0 auto;
     }
-    /* If your flashcards use another class, replace .flashcards-container accordingly.
-       If they use flex layout: e.g. 
-       .flashcards-container {
-         display: flex;
-         flex-wrap: wrap;
-         justify-content: center;
-         gap: 1rem;
-         width: 100%;
-         max-width: none;
-         margin: 0 auto;
-       }
+    /* If your flashcards use flex, you can instead do:
+    .flashcards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      width: 100%;
+      max-width: none;
+      margin: 0 auto;
+    }
     */
 
-    /* 9. Any other specific widget overrides: e.g., code blocks, diagrams, etc., ensure they have max-width:100% */
-    .diagram-container, /* hypothetical selector */
+    /* 7. Other widget overrides: e.g., diagrams, charts */
+    .diagram-container,
     .chart-container {
-      max-width: 100%;
+      max-width: 100% !important;
     }
   }
 
-  /* 10. Optional cap on extremely wide screens */
+  /* 8. Optional cap on extremely wide screens */
   @media (min-width: 2000px) {
     .content {
-      max-width: 1600px; /* so text lines don’t become too long */
+      max-width: 1600px !important;
       margin: 0 auto;
-      /* font-size could be increased further if desired */
+      /* Could bump font-size further if desired */
     }
     .flashcards-container,
     .cards-container {
@@ -1679,19 +1664,18 @@ body.fullscreen-mode {
     }
   }
 
-  /* 11. Tablet: maybe slightly less width or font-size */
+  /* 9. Tablet adjustments */
   @media (max-width: 1200px) {
     .content {
-      max-width: 90vw;
+      max-width: 90vw !important;
       padding: 6vh 3vw;
       font-size: 1.15rem;
-      /* If some widgets break at this width, you can disable certain overrides here */
     }
   }
-  /* 12. Mobile: revert to near-normal so no horizontal overflow */
+  /* 10. Mobile adjustments */
   @media (max-width: 768px) {
     .content {
-      max-width: 90vw;
+      max-width: 90vw !important;
       padding: 4vh 2vw;
       font-size: 1rem;
     }
@@ -1701,21 +1685,37 @@ body.fullscreen-mode {
       padding: 10px 16px;
       font-size: 12px;
     }
-    /* If flashcards/grid misbehave on narrow screens, you can change layout: */
+    /* Single-column flashcards on mobile */
     .flashcards-container {
-      grid-template-columns: 1fr; /* single column on mobile */
+      grid-template-columns: 1fr;
     }
   }
 }
 
-/* Fullscreen API support (if you use requestFullscreen on .content) */
+/* Fullscreen API support: if you call requestFullscreen() on .content */
 .content:fullscreen {
   max-width: 95vw !important;
   margin: 0 auto;
   padding: 8vh 2vw;
   font-size: 1.2rem;
-  display: block; /* or omit if default */
-  /* Ensure images/embeds fill: inherited from above rules */
+  display: block;
+  img, iframe, embed, video {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+  .excalidraw-embed,
+  .excalidraw-container {
+    width: 100% !important;
+    min-height: 60vh;
+  }
+  .flashcards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    width: 100%;
+    margin: 0 auto;
+  }
 }
 :fullscreen .content {
   max-width: 95vw !important;
@@ -1725,5 +1725,5 @@ body.fullscreen-mode {
   display: block;
 }
 
-/* End of fullscreen CSS */
+/* ===== End of Fullscreen Styles ===== */
 
