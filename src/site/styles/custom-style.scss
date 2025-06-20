@@ -1436,6 +1436,8 @@ html {
 }
 
 /* ===== FULLSCREEN NOTE FEATURE ===== */
+
+/* Fullscreen Button */
 .fullscreen-btn {
   position: fixed;
   top: 20px;
@@ -1459,19 +1461,26 @@ html {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
   }
-
   &:active {
     transform: translateY(0);
   }
-
   svg {
     flex-shrink: 0;
   }
 }
 
+/* Smooth transitions for UI elements */
+.navbar,
+.filetree-sidebar,
+.sidebar,
+.content,
+.fullscreen-btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* Fullscreen Mode Styles */
 body.fullscreen-mode {
-  /* Hide all navigation and UI elements */
+  /* Hide UI elements */
   .navbar,
   .filetree-sidebar,
   .sidebar,
@@ -1480,24 +1489,33 @@ body.fullscreen-mode {
   .galaxy-spiral-container {
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Expanded fullscreen content */
+  /* Tweak fullscreen button appearance */
+  .fullscreen-btn {
+    background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
+    top: 30px;
+    right: 30px;
+    transform: scale(1.1);
+    z-index: 9999;
+  }
+
+  /* Expand content to full viewport width */
   .content {
-    /* Allow full viewport width */
+    /* Remove any narrow cap: span whole viewport */
     max-width: none;
     width: 100vw;
     margin: 0;
-    /* Adjust horizontal padding to taste */
+    /* Horizontal padding so text isn’t flush on edges */
     padding: 8vh 2vw;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: 20px;
+    /* Slightly larger base font for “zoomed-in” feel */
+    font-size: 1.15rem;
 
+    /* Header styling */
     header {
       text-align: center;
       margin-bottom: 3rem;
@@ -1534,35 +1552,29 @@ body.fullscreen-mode {
       }
     }
 
-    /* Typography */
+    /* Typography adjustments */
     h2 {
       font-size: 2.2rem !important;
       margin: 3rem 0 1.5rem 0;
       color: var(--text-accent, #8b9dc3);
     }
-
     h3 {
       font-size: 1.8rem !important;
       margin: 2.5rem 0 1rem 0;
     }
-
     p {
       font-size: 1.25rem;
       line-height: 1.8;
       margin-bottom: 1.5rem;
       opacity: 0.95;
     }
-
-    ul,
-    ol {
+    ul, ol {
       font-size: 1.25rem;
       line-height: 1.8;
-
       li {
         margin-bottom: 0.5rem;
       }
     }
-
     blockquote {
       font-size: 1.3rem;
       line-height: 1.7;
@@ -1572,32 +1584,22 @@ body.fullscreen-mode {
       background: rgba(var(--text-accent-rgb, 102, 126, 234), 0.05);
       border-radius: 0 10px 10px 0;
     }
-
     code {
       font-size: 1.1rem;
       padding: 4px 8px;
       background: rgba(var(--text-accent-rgb, 102, 126, 234), 0.1);
       border-radius: 6px;
     }
-
     pre {
       font-size: 1rem;
       padding: 2rem;
       border-radius: 12px;
       margin: 2rem 0;
+      overflow-x: auto;
     }
   }
 
-  /* Fullscreen button adjustments */
-  .fullscreen-btn {
-    background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
-    top: 30px;
-    right: 30px;
-    transform: scale(1.1);
-    z-index: 9999;
-  }
-
-  /* Cap on extremely ultra-wide screens for readability */
+  /* Optional cap on extremely wide screens for readability */
   @media (min-width: 3000px) {
     .content {
       max-width: 1600px;
@@ -1609,10 +1611,10 @@ body.fullscreen-mode {
   @media (max-width: 1200px) {
     .content {
       padding: 6vh 3vw;
-    }
-    header {
-      h1 {
-        font-size: 2.5rem !important;
+      header {
+        h1 {
+          font-size: 2.5rem !important;
+        }
       }
     }
   }
@@ -1621,18 +1623,18 @@ body.fullscreen-mode {
   @media (max-width: 768px) {
     .content {
       padding: 4vh 2vw;
-      font-size: 18px;
-    }
-    header {
-      h1 {
-        font-size: 2rem !important;
-      }
-    }
-    h2 {
-      font-size: 1.8rem !important;
-    }
-    p {
       font-size: 1.1rem;
+      header {
+        h1 {
+          font-size: 2rem !important;
+        }
+      }
+      h2 {
+        font-size: 1.8rem !important;
+      }
+      p {
+        font-size: 1.1rem;
+      }
     }
     .fullscreen-btn {
       top: 15px;
@@ -1643,12 +1645,24 @@ body.fullscreen-mode {
   }
 }
 
-/* Smooth transitions for non-fullscreen UI as well */
-.navbar,
-.filetree-sidebar,
-.sidebar,
-.content,
-.fullscreen-btn {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* Native Fullscreen API support: if you requestFullscreen() on .content */
+.content:fullscreen {
+  max-width: none;
+  width: 100vw;
+  margin: 0;
+  padding: 8vh 2vw;
+  /* keep font-size increase */
+  font-size: 1.15rem;
 }
+
+/* Fallback for exit/enter transitions */
+:fullscreen .content {
+  /* Some browsers put the element itself into fullscreen; ensure same styling */
+  max-width: none;
+  width: 100vw;
+  margin: 0;
+  padding: 8vh 2vw;
+  font-size: 1.15rem;
+}
+
 
