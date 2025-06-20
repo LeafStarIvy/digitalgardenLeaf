@@ -1435,9 +1435,9 @@ html {
   }
 }
 
-/* ===== FULLSCREEN NOTE FEATURE WITH ZOOM ===== */
+/* ===== FOCUS / FULLSCREEN NOTE FEATURE WITHOUT TRANSFORM SCALE ===== */
 
-/* Fullscreen Button */
+/* Fullscreen Button (unchanged or tweak as needed) */
 .fullscreen-btn {
   position: fixed;
   top: 20px;
@@ -1464,9 +1464,6 @@ html {
   &:active {
     transform: translateY(0);
   }
-  svg {
-    flex-shrink: 0;
-  }
 }
 
 /* Smooth transitions */
@@ -1478,58 +1475,56 @@ html {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Adjust these two variables to taste: */
-$scale-factor: 1.2 !default; /* 1.2 means 120% zoom. Increase to 1.3, 1.4 for more zoom. */
-$soft-vw: 95vw !default;     /* Target viewport width percent after scaling. */
-
-/* Fullscreen Mode Styles */
+/* Generic responsive fixes for embedded media */
 body.fullscreen-mode {
-  /* Hide UI elements */
-  .navbar,
-  .filetree-sidebar,
-  .sidebar,
-  .search-container,
-  .fullpage-overlay,
-  .galaxy-spiral-container {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  /* Tweak fullscreen button */
-  .fullscreen-btn {
-    background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
-    top: 30px;
-    right: 30px;
-    transform: scale(1.1);
-    z-index: 9999;
-  }
-
-  /* Scale-based zoom on .content */
+  /* When in focus mode, make images/videos/iframes responsive */
   .content {
-    /* Remove any default caps */
-    max-width: none !important;
-
-    /* Set width so that after scaling by $scale-factor, the effective width ≈ $soft-vw */
-    width: calc(#{$soft-vw} / #{$scale-factor});
+    /* Expand content container to nearly full viewport width, but keep centered */
+    max-width: 95vw !important;
+    width: 100%;
     margin: 0 auto;
-    /* Vertical padding for centering feel */
     padding: 8vh 2vw;
     min-height: 100vh;
 
-    /* Flex centering if desired */
+    /* Increase base font-size slightly for a “zoomed-in” feel */
+    font-size: 1.2rem;
+
+    /* Flex layout if you want vertical centering of some elements */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* If you want main content vertically centered: */
+    /* justify-content: center; */
+    /* But often for notes, you scroll; so you may omit justify-content:center if you prefer normal scrolling. */
     align-items: center;
 
-    /* Apply zoom */
-    transform: scale(#{$scale-factor});
-    transform-origin: top center;
+    /* Ensure images and other media scale to container width */
+    img,
+    picture,
+    video {
+      max-width: 100%;
+      height: auto;
+    }
+    iframe {
+      /* Many embeds (e.g. Excalidraw) use iframes; make them responsive */
+      max-width: 100%;
+      width: 100%;
+      /* Height may need specific handling; for Excalidraw, you might set a min-height or aspect ratio */
+      height: auto !important;
+    }
+    /* If Excalidraw embed is a specific class or <div>, target it similarly:
+       Adjust the selector to your actual structure: */
+    .excalidraw-embed,
+    .excalidraw-container {
+      width: 100% !important;
+      max-width: 100% !important;
+      /* If Excalidraw uses a canvas inside, ensure canvas fills parent: */
+      canvas {
+        width: 100% !important;
+        height: auto !important;
+      }
+    }
 
-    /* Bump base font-size slightly for readability when zoomed */
-    font-size: 1.15rem;
-
-    /* Header styling */
+    /* Header styling (full width within .content) */
     header {
       width: 100%;
       text-align: center;
@@ -1615,75 +1610,95 @@ body.fullscreen-mode {
       overflow-x: auto;
     }
 
-    /* Dashboard/grid overrides: replace .cards-container with your wrapper selector */
-    .cards-container {
-      /* If you use CSS Grid: bump the minmax so items enlarge in fullscreen */
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      justify-content: center;
-      width: 100%;
-      max-width: none;
-      margin: 0 auto;
-
-      /* Or if you use flex:
+    /* Example: Flash cards container adjustments.
+       Replace `.flashcards-container` and `.flash-card` with your actual classes. */
+    .flashcards-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
       width: 100%;
-      max-width: none;
+      max-width: 90vw;
       margin: 0 auto;
-      */
+    }
+    .flashcards-container .flash-card {
+      /* Let cards be larger: e.g. take ~30% width on large screens, then wrap */
+      flex: 1 1 calc(30% - 1rem);
+      max-width: calc(30% - 1rem);
+      /* Ensure internal content is responsive */
+      img, svg {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+    /* Adjust breakpoints inside flashcards if needed: */
+    @media (max-width: 1200px) {
+      .flashcards-container .flash-card {
+        flex: 1 1 calc(45% - 1rem);
+        max-width: calc(45% - 1rem);
+      }
+    }
+    @media (max-width: 768px) {
+      .flashcards-container .flash-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+    }
+
+    /* If you have other components (tables, code blocks, etc.), ensure they are responsive: */
+    table {
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+    }
+    .some-specific-widget {
+      /* Example: if a widget uses fixed widths, override to be width:100% */
+      width: 100% !important;
+      max-width: 100% !important;
     }
   }
 
-  /* Optional cap on extremely wide screens after scaling */
-  @media (min-width: #{3000px / $scale-factor}) {
+  /* Tweak fullscreen button appearance */
+  .fullscreen-btn {
+    background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
+    top: 30px;
+    right: 30px;
+    transform: scale(1.1);
+    z-index: 9999;
+  }
+
+  /* Optional cap on extremely wide screens */
+  @media (min-width: 3000px) {
     .content {
-      /* After scaling, this caps at ~1600px effective width: adjust as desired */
-      width: calc(1600px / #{$scale-factor});
+      max-width: 1600px;
       margin: 0 auto;
     }
-    .cards-container {
-      /* If you want to cap inner grid width */
+    .flashcards-container {
       max-width: 1600px;
     }
   }
 
-  /* Tablet */
+  /* Tablet: reduce font-size bump or container width */
   @media (max-width: 1200px) {
     .content {
-      /* On smaller screens, you might reduce or disable scaling: */
-      /* Example: disable scale so that mobile still shows normally without overflow */
-      transform: none;
-      width: 90vw;
-      padding: 6vh 3vw;
+      max-width: 90vw !important;
       font-size: 1.1rem;
-
-      header h1 {
-        font-size: 2.5rem !important;
-      }
+      padding: 6vh 3vw;
+    }
+    .content header h1 {
+      font-size: 2.5rem !important;
     }
   }
 
-  /* Mobile */
+  /* Mobile: disable extra font bump if needed, ensure content fits */
   @media (max-width: 768px) {
     .content {
-      transform: none;
-      width: 90vw;
-      padding: 4vh 2vw;
+      max-width: 90vw !important;
       font-size: 1rem;
-
-      header h1 {
-        font-size: 2rem !important;
-      }
-      h2 {
-        font-size: 1.8rem !important;
-      }
-      p {
-        font-size: 1.1rem;
-      }
+      padding: 4vh 2vw;
+    }
+    .content header h1 {
+      font-size: 2rem !important;
     }
     .fullscreen-btn {
       top: 15px;
@@ -1694,45 +1709,70 @@ body.fullscreen-mode {
   }
 }
 
-/* Fullscreen API support: if you requestFullscreen() on .content */
+/* Fullscreen API support if you opt to use requestFullscreen() on .content */
 .content:fullscreen {
-  max-width: none !important;
-  /* Same scale logic as above */
-  width: calc(95vw / 1.2);
+  max-width: 95vw !important;
+  width: 100%;
   margin: 0 auto;
   padding: 8vh 2vw;
-  transform: scale(1.2);
-  transform-origin: top center;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-
-  /* Dashboard override */
-  .cards-container {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  /* Hide other UI via JS toggling body.fullscreen-mode as before */
+  img,
+  picture,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+  iframe {
+    max-width: 100%;
+    width: 100%;
+    height: auto !important;
+  }
+  /* Example Excalidraw */
+  .excalidraw-embed,
+  .excalidraw-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
+  }
+  /* Flashcards wrapper as above */
+  .flashcards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 90vw;
     margin: 0 auto;
-    max-width: none;
+  }
+  .flashcards-container .flash-card {
+    flex: 1 1 calc(30% - 1rem);
+    max-width: calc(30% - 1rem);
+    img, svg {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  @media (max-width: 1200px) {
+    .flashcards-container .flash-card {
+      flex: 1 1 calc(45% - 1rem);
+      max-width: calc(45% - 1rem);
+    }
+  }
+  @media (max-width: 768px) {
+    .flashcards-container .flash-card {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
   }
 }
-:fullscreen .content {
-  /* Some browsers use this selector */
-  max-width: none !important;
-  width: calc(95vw / 1.2);
-  margin: 0 auto;
-  padding: 8vh 2vw;
-  transform: scale(1.2);
-  transform-origin: top center;
-  font-size: 1.15rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 
-  .cards-container {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    margin: 0 auto;
-    max-width: none;
-  }
-}
+/* Hide UI elements when actually in native fullscreen, if desired */
+/* You may also continue relying on body.fullscreen-mode JS toggle for hiding nav etc. */
+
