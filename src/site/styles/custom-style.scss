@@ -417,6 +417,173 @@ a {
   scrollbar-color: var(--highlight) transparent;
 }
 
+// 12.1 Base Heading (h1) Overrides
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+// 12.2 Callout Component Styles
+.callout {
+  border-left: var(--callout-border-width) solid var(--highlight);
+  background: rgba(0,0,0,0.2);
+  padding: var(--callout-padding);
+  margin: 1.5rem 0;
+  border-radius: var(--callout-radius);
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+  /* 12.2.1 Callout Gradient Overlay */
+  .callout::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg,
+                rgba(255,255,255,0.05),
+                transparent 50%);
+    pointer-events: none;
+  }
+
+  /* 12.2.2 Callout Type Colors */
+  .callout.note    { border-left-color: var(--link-color); }
+  .callout.warning { border-left-color: #FFD77A; }
+  .callout.important { border-left-color: #FF7A7A; }
+  .callout.tip     { border-left-color: #7AFF9C; }
+
+  /* 12.2.3 Callout Title */
+  .callout .callout-title {
+    font-weight: var(--font-weight-medium);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+    .callout .callout-title svg {
+      margin-right: 0.5rem;
+    }
+
+// 12.3 Table Overrides
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 2rem 0;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+  /* 12.3.1 Table Header */
+  table thead {
+    background: var(--background-secondary);
+    color: var(--text-primary);
+  }
+    table thead th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: var(--font-weight-medium);
+      border-bottom: 2px solid rgba(255,255,255,0.1);
+    }
+
+  /* 12.3.2 Table Body Rows */
+  table tbody tr:nth-child(even) {
+    background: rgba(0,0,0,0.1);
+  }
+  table tbody tr:hover {
+    background: rgba(255,255,255,0.05);
+  }
+
+  /* 12.3.3 Table Cells */
+  table th,
+  table td {
+    padding: 0.85rem 1rem;
+    border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+// 12.4 Universal Heading Typography (h1–h6)
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: var(--heading-letter-spacing);
+  line-height: var(--line-height-tight);
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  font-weight: var(--font-weight-bold);
+}
+
+// 12.5 Specific Heading Styles
+h1 {
+  font-size: 2.8rem;
+  background: linear-gradient(90deg, var(--text-primary), var(--highlight));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--text-accent);
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+// 12.6 Body Text (p, li, td) Styles
+p, li, td {
+  line-height: var(--line-height-loose);
+  letter-spacing: var(--body-letter-spacing);
+}
+
+// 12.7 Blockquote Styles
+blockquote {
+  border-left: 4px solid var(--highlight);
+  padding-left: 1rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+// 12.8 Code Block & Inline Code Typography
+pre, code {
+  font-family: var(--font-family-code);
+  font-size: 0.9em;
+  border-radius: var(--border-radius);
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+code {
+  background: rgba(0,0,0,0.2);
+  padding: 0.2em 0.4em;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+}
+
+// 12.9 Code Header Bar
+.code-header {
+  background: rgba(0,0,0,0.4);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-family-code);
+  font-size: 0.8em;
+  color: var(--text-muted);
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-bottom: none;
+}
+
 
 // Define the title header GIF variable
 :root {
