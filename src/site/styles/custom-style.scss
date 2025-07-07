@@ -358,66 +358,6 @@ body {
   box-shadow: var(--box-shadow);
 }
 
-// 8. ENHANCED BUTTONS
-/* Enhanced cosmic buttons with glow effects */
-.btn {
-  display: inline-block;
-  padding: 0.6em 1.2em;
-  border-radius: var(--border-radius);
-  font-family: var(--font-family-main);
-  cursor: pointer;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  
-  &--primary { 
-    background: linear-gradient(135deg, var(--primary-700), var(--primary-800));
-    color: var(--text-primary);
-  }
-  
-  &--accent { 
-    background: linear-gradient(135deg, var(--aurora-purple-500), var(--aurora-teal-500));
-    color: white;
-  }
-  
-  &--link { 
-    background: transparent;
-    color: var(--link-color);
-    text-decoration: underline;
-  }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.2), 
-                transparent);
-    z-index: -1;
-    transition: left 0.7s ease;
-  }
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 10px var(--glow-cyan-subtle);
-    border-color: rgba(255, 255, 255, 0.2);
-    
-    &::before {
-      left: 100%;
-    }
-  }
-  
-  &:active {
-    transform: translateY(1px);
-  }
-}
-
 // Replace section 9. LINK STYLES
 // Restore original link style with improvements
 a {
