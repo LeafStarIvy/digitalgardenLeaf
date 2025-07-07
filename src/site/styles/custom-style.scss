@@ -345,42 +345,17 @@ body {
   }
 }
 
-// Replace in section 7. GLASS CARDS & PANELS
-.card {
-  @include glass-card(12px, 0.12);
-  padding: 1.5rem;
-  margin: 1rem 0;
-  border: 1px solid rgba(255,255,255,0.1);
-  position: relative;
-  z-index: 2;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  overflow: hidden;
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-    border-color: rgba(255,255,255,0.2);
-    
-    &::after {
-      opacity: 1;
-    }
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255,255,255,0.1), 
-                transparent);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    animation: shimmer 2s infinite;
-  }
+// 6. MIXINS & UTILITIES
+// ------------------------------------------------------------------
+@mixin gradient-bg($dir, $start, $end) {
+  background: linear-gradient($dir, $start, $end);
+}
+
+@mixin glass-card($blur: 8px, $alpha: 0.1) {
+  background: rgba(255,255,255,$alpha);
+  backdrop-filter: blur($blur);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
 }
 
 // 8. ENHANCED BUTTONS
