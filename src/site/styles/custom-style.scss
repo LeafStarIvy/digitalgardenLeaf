@@ -676,61 +676,6 @@ pre code {
   }
 }
 
-// Add as new section: 15. ENHANCED NAVIGATION
-// ------------------------------------------------------------------
-.nav-container {
-  backdrop-filter: blur(10px);
-  background: rgba(18, 20, 42, 0.6);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  padding: 1rem 0;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  
-  .nav-content {
-    max-width: var(--content-width);
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .nav-logo {
-    font-size: 1.25rem;
-    font-weight: var(--font-weight-bold);
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    
-    svg {
-      width: 24px;
-      height: 24px;
-    }
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-    
-    a {
-      color: var(--text-muted);
-      font-weight: var(--font-weight-medium);
-      transition: color 0.2s ease;
-      
-      &:hover, &.active {
-        color: var(--text-primary);
-      }
-      
-      &::before {
-        content: none;
-      }
-    }
-  }
-}
 /* Particles enhancement for cosmic theme */
 .particles-js-canvas-el {
   opacity: 0.65; /* Adjust opacity to match your cosmic theme */
