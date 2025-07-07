@@ -677,121 +677,27 @@ pre code {
 }
 
 
-/* Minimal flashcard base system - dimension-neutral */
-.flashcard-grid {
-  display: grid;
-  gap: 1rem; /* Smaller default gap */
-  margin: 1.5rem 0;
+/* 16. Particles enhancement for cosmic theme */
+.particles-js-canvas-el {
+  opacity: 0.65; /* Adjust opacity to match your cosmic theme */
+  mix-blend-mode: screen; /* Makes particles blend nicely with background */
+  filter: blur(0.5px); /* Subtle blur for cosmic effect */
 }
 
-/* Grid column variations - default setup */
-.grid-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-3 { grid-template-columns: repeat(3, 1fr); }
-.grid-4 { grid-template-columns: repeat(4, 1fr); }
-
-/* Responsive breakpoints */
-@media (max-width: 1400px) {
-  .grid-4 { grid-template-columns: repeat(3, 1fr); }
+/* Adding subtle animation to make particles even more cosmic */
+@keyframes cosmic-pulse {
+  0% { opacity: 0.65; filter: blur(0.5px); }
+  50% { opacity: 0.75; filter: blur(1px); }
+  100% { opacity: 0.65; filter: blur(0.5px); }
 }
 
-@media (max-width: 1000px) {
-  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+/* Apply animation to particles canvas */
+.particles-js-canvas-el {
+  animation: cosmic-pulse 10s infinite ease-in-out;
 }
+/*END OF PARTICLESJS */
 
-@media (max-width: 650px) {
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-}
 
-/* Flashcard container - minimal styling */
-.flashcard {
-  background: rgba(30, 37, 78, 0.75);
-  backdrop-filter: blur(8px);
-  border-radius: 10px; /* Slightly smaller radius */
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* Smaller shadow */
-  border: 1px solid rgba(224, 178, 255, 0.3);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Make the anchor fill the entire card */
-.flashcard a {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: inherit;
-  height: 100%;
-}
-
-/* Remove underline effect from links */
-.flashcard a::after {
-  display: none;
-}
-
-/* Hover effects - more subtle */
-.flashcard:hover {
-  transform: translateY(-4px); /* Less dramatic lift */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  border-color: var(--link-color);
-}
-
-/* Image container - Base styling without dimensions */
-.flashcard-image {
-  background: rgba(18, 20, 42, 0.6);
-  padding: 0.8rem; /* Smaller default padding */
-  display: flex;
-  align-items: center;
-  justify-content: center;  
-  overflow: hidden;
-}
-
-/* Image styling */
-.flashcard-image img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4)); /* Smaller shadow */
-  transition: transform 0.3s ease;
-}
-
-.flashcard:hover .flashcard-image img {
-  transform: scale(1.05);
-}
-
-/* Content area - minimal default padding */
-.flashcard-content {
-  padding: 0.8rem;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Typography defaults - smaller */
-.flashcard-content h3 {
-  margin: 0 0 0.5rem;
-  color: var(--text-accent);
-  font-size: 1.1rem; /* Smaller default */
-  font-weight: 600;
-}
-
-.flashcard-content p {
-  margin: 0;
-  color: var(--text-normal);
-  font-size: 0.85rem; /* Smaller default */
-  line-height: 1.3;
-  opacity: 0.9;
-}
-.round-img {
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.round-img-50 { width: 50px; height: 50px; }
-.round-img-100 { width: 100px; height: 100px; }
-.round-img-150 { width: 150px; height: 150px; }
-.round-img-200 { width: 200px; height: 200px; }
-/* Add more size classes as needed */
 
 .datetime-container {
   position: fixed;
