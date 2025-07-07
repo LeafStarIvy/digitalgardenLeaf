@@ -358,36 +358,6 @@ body {
   box-shadow: var(--box-shadow);
 }
 
-// Replace section 9. LINK STYLES
-// Restore original link style with improvements
-a {
-  color: var(--link-color);
-  text-decoration: none;
-  position: relative;
-  transition: color 0.3s ease;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -2px; left: 0;
-    width: 0; height: 2px;
-    background: var(--link-color);
-    transition: width 0.3s ease;
-  }
-  
-  &:hover { color: var(--highlight); }
-  &:hover::after { width: 100%; }
-  
-  // Optional enhancement for internal links while keeping original animation
-  &.internal-link {
-    border-bottom: 1px dashed rgba(138, 214, 238, 0.4);
-    
-    &:hover {
-      border-bottom: 1px dashed rgba(191, 166, 224, 0.6);
-    }
-  }
-}
-
 // 10. WIDGET STYLE
 // ------------------------------------------------------------------
 .widget {
