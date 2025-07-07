@@ -358,17 +358,33 @@ body {
   box-shadow: var(--box-shadow);
 }
 
-// 10. WIDGET STYLE
-// ------------------------------------------------------------------
-.widget {
-  background: var(--widget-bg);
-  border: 1px solid var(--widget-border);
-  box-shadow: var(--widget-shadow);
-  border-radius: var(--border-radius);
-  padding: 1rem;
-  margin: 1rem 0;
+// 9. LINK STYLES WHEN HOVERING ABOVE ONE
+a {
+  color: var(--link-color);
+  text-decoration: none;
   position: relative;
-  z-index: 2;
+  transition: color 0.3s ease;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 0; height: 2px;
+    background: var(--link-color);
+    transition: width 0.3s ease;
+  }
+  
+  &:hover { color: var(--highlight); }
+  &:hover::after { width: 100%; }
+  
+  // Optional enhancement for internal links while keeping original animation
+  &.internal-link {
+    border-bottom: 1px dashed rgba(138, 214, 238, 0.4);
+    
+    &:hover {
+      border-bottom: 1px dashed rgba(191, 166, 224, 0.6);
+    }
+  }
 }
 
 // Replace section 11. CUSTOM SCROLLBAR
