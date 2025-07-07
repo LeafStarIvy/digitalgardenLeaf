@@ -699,124 +699,6 @@ pre code {
 
 
 
-/* 17. Minimal flashcard base system - dimension-neutral */
-.flashcard-grid {
-  display: grid;
-  gap: 1rem; /* Smaller default gap */
-  margin: 1.5rem 0;
-}
-
-/* Grid column variations - default setup */
-.grid-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-3 { grid-template-columns: repeat(3, 1fr); }
-.grid-4 { grid-template-columns: repeat(4, 1fr); }
-
-/* Responsive breakpoints */
-@media (max-width: 1400px) {
-  .grid-4 { grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (max-width: 1000px) {
-  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 650px) {
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-}
-
-/* Flashcard container - minimal styling */
-.flashcard {
-  background: rgba(30, 37, 78, 0.75);
-  backdrop-filter: blur(8px);
-  border-radius: 10px; /* Slightly smaller radius */
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* Smaller shadow */
-  border: 1px solid rgba(224, 178, 255, 0.3);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Make the anchor fill the entire card */
-.flashcard a {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: inherit;
-  height: 100%;
-}
-
-/* Remove underline effect from links */
-.flashcard a::after {
-  display: none;
-}
-
-/* Hover effects - more subtle */
-.flashcard:hover {
-  transform: translateY(-4px); /* Less dramatic lift */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  border-color: var(--link-color);
-}
-
-/* Image container - Base styling without dimensions */
-.flashcard-image {
-  background: rgba(18, 20, 42, 0.6);
-  padding: 0.8rem; /* Smaller default padding */
-  display: flex;
-  align-items: center;
-  justify-content: center;  
-  overflow: hidden;
-}
-
-/* Image styling */
-.flashcard-image img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4)); /* Smaller shadow */
-  transition: transform 0.3s ease;
-}
-
-.flashcard:hover .flashcard-image img {
-  transform: scale(1.05);
-}
-
-/* Content area - minimal default padding */
-.flashcard-content {
-  padding: 0.8rem;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Typography defaults - smaller */
-.flashcard-content h3 {
-  margin: 0 0 0.5rem;
-  color: var(--text-accent);
-  font-size: 1.1rem; /* Smaller default */
-  font-weight: 600;
-}
-
-.flashcard-content p {
-  margin: 0;
-  color: var(--text-normal);
-  font-size: 0.85rem; /* Smaller default */
-  line-height: 1.3;
-  opacity: 0.9;
-}
-.round-img {
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.round-img-50 { width: 50px; height: 50px; }
-.round-img-100 { width: 100px; height: 100px; }
-.round-img-150 { width: 150px; height: 150px; }
-.round-img-200 { width: 200px; height: 200px; }
-/* Add more size classes as needed */
-
-
-/* 18. ON SITE TIMER */
 .datetime-container {
   position: fixed;
   top: 1rem;
@@ -888,6 +770,208 @@ pre code {
 
 .datetime-reset-hidden {
   display: none;
+}
+
+/* 18. GALAXY SPIRAL ANIMATION
+   ------------------------------------------------------------------
+   Creates an animated spiral effect that resembles a galaxy
+   Use this on special sections or the homepage for impact
+*/
+
+.galaxy-spiral-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3rem 0;
+}
+
+.galaxy-spiral {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  transform-style: preserve-3d;
+  animation: galaxy-rotate 60s linear infinite;
+}
+
+.spiral-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 0 4px 2px rgba(255, 255, 255, 0.3);
+  transform-style: preserve-3d;
+}
+
+@keyframes galaxy-rotate {
+  0% { transform: rotateZ(0deg); }
+  100% { transform: rotateZ(360deg); }
+}
+
+/* Core glow effect for galaxy center */
+.galaxy-core {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, 
+                rgba(255, 255, 255, 0.7) 0%, 
+                rgba(186, 230, 253, 0.5) 20%, 
+                rgba(139, 92, 246, 0.4) 40%, 
+                transparent 80%);
+  filter: blur(10px);
+  animation: core-pulse 8s infinite ease-in-out;
+}
+
+@keyframes core-pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 0.6; }
+}
+
+// 16. FLOATING PLANETS SYSTEM
+// ------------------------------------------------------------------
+.galaxy-body {
+  perspective: 1000px;
+  overflow-x: hidden;
+}
+
+.planet-system {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.planet {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.65;
+  background-size: 100% 100%;
+  box-shadow: inset 3px -3px 15px rgba(0,0,0,0.4),
+              0 0 10px rgba(255,255,255,0.2);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Planet types */
+.planet.gas-giant {
+  background: linear-gradient(to right, 
+    var(--aurora-teal-700), 
+    var(--aurora-purple-700), 
+    var(--aurora-teal-500)
+  );
+  box-shadow: 0 0 30px rgba(105, 194, 236, 0.3);
+}
+
+.planet.rocky {
+  background: radial-gradient(circle at 30% 30%, 
+    var(--aurora-amber-300), 
+    var(--aurora-amber-500) 40%, 
+    var(--aurora-rose-500) 70%
+  );
+  box-shadow: 0 0 20px rgba(239, 146, 96, 0.2);
+}
+
+.planet.ice {
+  background: linear-gradient(to bottom,
+    var(--aurora-teal-300), 
+    var(--aurora-cyan-100), 
+    var(--aurora-purple-100)
+  );
+  box-shadow: 0 0 25px rgba(175, 211, 255, 0.35);
+}
+
+.planet.earth-like {
+  background: radial-gradient(circle at 40% 40%,
+    var(--aurora-cyan-300),
+    var(--aurora-emerald-500) 30%, 
+    var(--aurora-teal-700) 70%
+  );
+  box-shadow: 0 0 25px rgba(100, 214, 189, 0.25);
+}
+
+.planet.ringed {
+  position: relative;
+}
+
+.planet.ringed::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateX(75deg);
+  width: 200%;
+  height: 40%;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  z-index: -1;
+}
+
+/* Planet animations */
+@keyframes planet-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(10px) rotate(var(--spin-amount, 180deg));
+  }
+}
+
+/* Different orbit animations */
+@keyframes orbit-1 {
+  0% { transform: rotate3d(1, 0.5, 0.2, 0deg) translateX(var(--orbit-distance)) rotate3d(0, 1, 0.5, 0deg); }
+  100% { transform: rotate3d(1, 0.5, 0.2, 360deg) translateX(var(--orbit-distance)) rotate3d(0, 1, 0.5, 360deg); }
+}
+
+@keyframes orbit-2 {
+  0% { transform: rotate3d(0.5, 1, 0.1, 0deg) translateX(var(--orbit-distance)) rotate3d(0.2, 0, 1, 0deg); }
+  100% { transform: rotate3d(0.5, 1, 0.1, 360deg) translateX(var(--orbit-distance)) rotate3d(0.2, 0, 1, 360deg); }
+}
+
+@keyframes orbit-3 {
+  0% { transform: rotate3d(0.3, 0.6, 1, 0deg) translateX(var(--orbit-distance)) rotate3d(1, 0.1, 0.2, 0deg); }
+  100% { transform: rotate3d(0.3, 0.6, 1, 360deg) translateX(var(--orbit-distance)) rotate3d(1, 0.1, 0.2, 360deg); }
+}
+
+/* Moon orbiting planet */
+.moon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--planet-size) * 0.2);
+  height: calc(var(--planet-size) * 0.2);
+  border-radius: 50%;
+  background: linear-gradient(145deg, #d4d4d4, #9e9e9e);
+  transform: translate(-50%, -50%);
+  animation: moon-orbit 15s linear infinite;
+  box-shadow: inset 3px -3px 5px rgba(0,0,0,0.4),
+              0 0 5px rgba(255,255,255,0.2);
+}
+
+@keyframes moon-orbit {
+  0% { transform: rotate(0deg) translateX(calc(var(--planet-size) * 0.8)) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(calc(var(--planet-size) * 0.8)) rotate(-360deg); }
+}
+
+/* Make notes wider and bigger */
+.content.cm-s-obsidian {
+  max-width: 900px !important; /* Increase from default width */
+  width: 90% !important; /* Use more screen width */
+  margin: 0 auto; /* Keep centered */
+  padding: 2rem 3rem; /* Add more padding */
+  font-size: 1.1em; /* Make text slightly bigger */
+  line-height: 1.7; /* Better readability */
 }
 
 /* Keep body full width so scrollbar stays at browser edge */
