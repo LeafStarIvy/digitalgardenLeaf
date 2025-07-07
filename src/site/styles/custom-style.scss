@@ -890,8 +890,7 @@ pre code {
   display: none;
 }
 
-
-/* 19. Wider Notes - Keep body full width so scrollbar stays at browser edge */
+/* Keep body full width so scrollbar stays at browser edge */
 body {
   width: 100% !important;
   max-width: none !important;
@@ -970,7 +969,6 @@ html {
     font-size: 1em;
   }
 }
-
 
 /* ===== FOCUS MODE STYLES (no font/header overrides) ===== */
 
@@ -1159,4 +1157,3 @@ body.fullscreen-mode {
   padding: 8vh 2vw;
   display: block;
 }
-
