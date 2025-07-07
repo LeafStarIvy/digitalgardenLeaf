@@ -345,20 +345,6 @@ body {
   }
 }
 
-
-// 6. MIXINS & UTILITIES
-// ------------------------------------------------------------------
-@mixin gradient-bg($dir, $start, $end) {
-  background: linear-gradient($dir, $start, $end);
-}
-
-@mixin glass-card($blur: 8px, $alpha: 0.1) {
-  background: rgba(255,255,255,$alpha);
-  backdrop-filter: blur($blur);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-}
-
 // Replace in section 7. GLASS CARDS & PANELS
 .card {
   @include glass-card(12px, 0.12);
