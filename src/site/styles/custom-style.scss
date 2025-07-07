@@ -2,11 +2,16 @@
  * ENHANCED COSMIC DIGITAL GARDEN SCSS
  * Advanced immersive cosmic theme with expanded color system,
  * interactive elements, and pure CSS animations
- * Structured by numbered sections for clarity
+ *
+ * Below each major block is a clear “SECTION # – Title” comment.
+ * Related settings (e.g. color scales, typography, layout) are grouped
+ * so you can immediately see how they interconnect.
  */
 
-// 1. CORE VARIABLES & EXPANDED AURORA CELESTIAL PALETTE
-// ------------------------------------------------------------------
+// SECTION 1 – Core Color Variables & Aurora Spectra
+// -------------------------------------------------
+// Defines the entire color system: deep space neutrals,
+// aurora-inspired accent hues, and gradient presets.
 :root {
   /* Primary Cosmic Scale */
   --cosmic-void: #010508;        /* Absolute void */
@@ -14,7 +19,7 @@
   --primary-900: #020B19;        /* Deepest Space */
   --primary-850: #051425;        /* Deeper Space */
   --primary-800: #0A192F;        /* Deep Space */
-  --primary-750: #0E2038;        /* Between Deep Space and Space */
+  --primary-750: #0E2038;        /* Transition hue */
   --primary-700: #112240;        /* Space */
   --primary-650: #172C4C;        /* Upper Space */
   --primary-600: #1E3A5F;        /* Twilight */
@@ -32,62 +37,41 @@
   --primary-50 : #D4E5FF;        /* Light Sky */
   --primary-25 : #E9F2FF;        /* Whisper Sky */
 
-  /* Aurora Teal Spectrum */
-  --aurora-teal-900: #035D87;    /* Deep Ocean Teal */
-  --aurora-teal-700: #0679B3;    /* Ocean Teal */
-  --aurora-teal-500: #0EA5E9;    /* Electric Teal */
-  --aurora-teal-300: #38BDF8;    /* Bright Teal */
-  --aurora-teal-200: #55C6FA;    /* Light Electric Teal */
-  --aurora-teal-100: #7DD3FC;    /* Light Teal */
-  --aurora-teal-50 : #BAE6FD;    /* Ice Teal */
-  --aurora-teal-25 : #E0F5FF;    /* Faint Teal */
+  /* Aurora Teal Spectrum – cool accent scale */
+  --aurora-teal-900: #035D87;
+  --aurora-teal-700: #0679B3;
+  --aurora-teal-500: #0EA5E9;
+  --aurora-teal-300: #38BDF8;
+  --aurora-teal-200: #55C6FA;
+  --aurora-teal-100: #7DD3FC;
+  --aurora-teal-50 : #BAE6FD;
+  --aurora-teal-25 : #E0F5FF;
 
-  /* Aurora Cyan Spectrum */
-  --aurora-cyan-900: #03565F;    /* Deep Cyan */
-  --aurora-cyan-700: #047481;    /* Ocean Cyan */
-  --aurora-cyan-500: #06B6D4;    /* Cyan */
-  --aurora-cyan-300: #22D3EE;    /* Bright Cyan */
-  --aurora-cyan-200: #4DDBF1;    /* Light Electric Cyan */
-  --aurora-cyan-100: #A5F3FC;    /* Light Cyan */
-  --aurora-cyan-50 : #CFFAFE;    /* Ice Cyan */
-  --aurora-cyan-25 : #ECFDFF;    /* Faint Cyan */
+  /* Aurora Cyan Spectrum – complementary cool accent */
+  --aurora-cyan-900: #03565F;
+  --aurora-cyan-700: #047481;
+  --aurora-cyan-500: #06B6D4;
+  --aurora-cyan-300: #22D3EE;
+  --aurora-cyan-200: #4DDBF1;
+  --aurora-cyan-100: #A5F3FC;
+  --aurora-cyan-50 : #CFFAFE;
+  --aurora-cyan-25 : #ECFDFF;
 
-  /* Aurora Purple Spectrum */
-  --aurora-purple-900: #4B1E99;  /* Deep Dark Purple */
-  --aurora-purple-700: #5F25C0;  /* Dark Purple */
-  --aurora-purple-500: #7C3AED;  /* Deep Purple */
-  --aurora-purple-400: #8B51F5;  /* Rich Purple */
-  --aurora-purple-300: #A78BFA;  /* Medium Purple */
-  --aurora-purple-200: #BFA8FC;  /* Light Medium Purple */
-  --aurora-purple-100: #C4B5FD;  /* Light Purple */
-  --aurora-purple-50 : #EDE9FE;  /* Ice Purple */
-  --aurora-purple-25 : #F6F4FF;  /* Faint Purple */
+  /* Aurora Purple & Pink – warm accent scales */
+  --aurora-purple-900: #4B1E99;  --aurora-pink-900: #8F1DAA;
+  --aurora-purple-700: #5F25C0;  --aurora-pink-700: #B324D3;
+  --aurora-purple-500: #7C3AED;  --aurora-pink-500: #D946EF;
+  --aurora-purple-300: #A78BFA;  --aurora-pink-300: #F0ABFC;
+  --aurora-purple-100: #C4B5FD;  --aurora-pink-100: #F5D0FE;
+  --aurora-purple-50 : #EDE9FE;  --aurora-pink-50 : #FAE8FF;
+  --aurora-purple-25 : #F6F4FF;  --aurora-pink-25 : #FDF4FF;
 
-  /* Aurora Pink Spectrum */
-  --aurora-pink-900: #8F1DAA;    /* Deep Dark Pink */
-  --aurora-pink-700: #B324D3;    /* Dark Pink */
-  --aurora-pink-500: #D946EF;    /* Deep Pink */
-  --aurora-pink-400: #E26BF2;    /* Rich Pink */
-  --aurora-pink-300: #F0ABFC;    /* Medium Pink */
-  --aurora-pink-200: #F2BDFD;    /* Light Medium Pink */
-  --aurora-pink-100: #F5D0FE;    /* Light Pink */
-  --aurora-pink-50 : #FAE8FF;    /* Ice Pink */
-  --aurora-pink-25 : #FDF4FF;    /* Faint Pink */
+  /* Complementary Hues */
+  --aurora-emerald-500: #10B981; --aurora-amber-500: #F59E0B; --aurora-rose-500: #F43F5E;
+  --aurora-emerald-300: #34D399; --aurora-amber-300: #FBBF24; --aurora-rose-300: #FB7185;
+  --aurora-emerald-100: #A7F3D0; --aurora-amber-100: #FDE68A; --aurora-rose-100: #FCA5B3;
 
-  /* Additional Hues */
-  --aurora-emerald-500: #10B981; /* Emerald */
-  --aurora-emerald-300: #34D399; /* Bright Emerald */
-  --aurora-emerald-100: #A7F3D0; /* Light Emerald */
-
-  --aurora-amber-500 : #F59E0B;  /* Amber */
-  --aurora-amber-300 : #FBBF24;  /* Bright Amber */
-  --aurora-amber-100 : #FDE68A;  /* Light Amber */
-
-  --aurora-rose-500  : #F43F5E;  /* Rose */
-  --aurora-rose-300  : #FB7185;  /* Bright Rose */
-  --aurora-rose-100  : #FCA5B3;  /* Light Rose */
-
-  /* Advanced Gradient Palettes */
+  /* Gradient Presets */
   --gradient-cosmic-horizon : linear-gradient(135deg, var(--primary-900), var(--primary-700) 50%, var(--primary-600));
   --gradient-aurora-sweep   : linear-gradient(90deg, var(--aurora-purple-500), var(--aurora-pink-500), var(--aurora-teal-500));
   --gradient-northern-lights: linear-gradient(135deg, var(--aurora-cyan-500), var(--aurora-teal-300), var(--aurora-purple-400));
@@ -97,7 +81,7 @@
   --gradient-button-glow    : linear-gradient(45deg, var(--aurora-purple-500), var(--aurora-teal-500));
   --gradient-card-highlight : linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
 
-  /* Background system */
+  /* Background & Surface Layers */
   --background-primary    : var(--primary-800);
   --background-secondary  : var(--primary-700);
   --background-tertiary   : var(--primary-600);
@@ -106,106 +90,87 @@
   --surface-2             : var(--primary-400);
   --surface-3             : var(--primary-450);
 
-  /* Glass effect presets */
-  --glass-bg       : rgba(10,25,47,0.75);
+  /* Glass Effect Variables */
+  --glass-bg         : rgba(10,25,47,0.75);
   --glass-bg-lighter: rgba(16,36,64,0.65);
   --glass-bg-lightest: rgba(22,42,75,0.55);
-  --glass-bg-dark  : rgba(1,8,15,0.85);
-  --glass-bg-darkest: rgba(1,5,10,0.95);
+  --glass-bg-dark    : rgba(1,8,15,0.85);
+  --glass-bg-darkest : rgba(1,5,10,0.95);
   --glass-blur-strong: blur(12px);
   --glass-blur-medium: blur(8px);
   --glass-blur-light : blur(4px);
-
-  /* Typography system */
-  --font-family-main      : 'Inter','SF Pro Display',system-ui,sans-serif;
-  --font-family-heading   : 'Space Grotesk','Montserrat','Segoe UI',sans-serif;
-  --font-family-code      : 'JetBrains Mono','Fira Code',monospace;
-  --font-size-xs          : 0.75rem;
-  --font-size-sm          : 0.875rem;
-  --font-size-base        : 1rem;
-  --font-size-md          : 1.125rem;
-  --font-size-lg          : 1.25rem;
-  --font-size-xl          : 1.5rem;
-  --font-size-2xl         : 1.75rem;
-  --font-size-3xl         : 2.25rem;
-  --font-size-4xl         : 3rem;
-  --font-size-5xl         : 3.75rem;
-  --font-size-6xl         : 4.5rem;
-
-  --line-height-tight     : 1.2;
-  --line-height-snug      : 1.375;
-  --line-height-base      : 1.6;
-  --letter-spacing-tight  : -0.025em;
-  --letter-spacing-normal : 0;
-  --letter-spacing-wide   : 0.025em;
-
-  /* Text colors */
-  --text-primary      : var(--aurora-cyan-50);
-  --text-secondary    : var(--aurora-teal-100);
-  --text-tertiary     : var(--aurora-teal-200);
-  --text-accent       : var(--aurora-purple-100);
-  --text-accent-strong: var(--aurora-purple-300);
-  --text-muted        : var(--primary-200);
-  --text-dim          : var(--primary-300);
-  --text-normal       : var(--primary-50);
-  --text-bright       : var(--primary-25);
-  --text-highlight    : var(--aurora-amber-100);
-  --text-danger       : var(--aurora-rose-300);
-  --text-success      : var(--aurora-emerald-300);
-  --text-warning      : var(--aurora-amber-300);
-  --text-info         : var(--aurora-teal-300);
-
-  /* Interactive system */
-  --link-color        : var(--aurora-teal-300);
-  --link-hover        : var(--aurora-cyan-100);
-  --link-active       : var(--aurora-cyan-200);
-  --link-visited      : var(--aurora-teal-700);
-  --highlight         : var(--aurora-purple-300);
-  --highlight-bright  : var(--aurora-purple-200);
-  --selection-bg      : rgba(10,147,150,0.25);
-  --selection-text    : var(--aurora-cyan-50);
-
-  /* Layout & spacing */
-  --content-width         : 700px;
-  --content-width-wide    : 900px;
-  --site-padding          : 24px;
-  --site-padding-sm       : 16px;
-  --element-spacing       : 24px;
-  --element-spacing-sm    : 16px;
-
-  /* Borders & shadows */
-  --border-radius         : 12px;
-  --border-width          : 1px;
-  --border-color          : rgba(255,255,255,0.1);
-  --shadow-sm             : 0 4px 6px rgba(0,0,0,0.1),0 2px 4px rgba(0,0,0,0.06);
-
-  /* Transitions & animations */
-  --transition-speed      : 0.3s;
-  --transition-ease       : cubic-bezier(0.4,0,0.2,1);
-  --animation-normal      : 500ms;
 }
 
-// 2. GLOBAL BASE STYLES
-// ------------------------------------------------------------------
+// SECTION 2 – Global Typography & Text Roles
+// ------------------------------------------
+// Sets font families, sizes, line-heights, and text-color roles.
+:root {
+  /* Font Stacks */
+  --font-family-main    : 'Inter','SF Pro Display',system-ui,sans-serif;
+  --font-family-heading : 'Space Grotesk','Montserrat','Segoe UI',sans-serif;
+  --font-family-code    : 'JetBrains Mono','Fira Code',monospace;
+
+  /* Font Sizes */
+  --font-size-xs  : 0.75rem;  --font-size-sm  : 0.875rem;
+  --font-size-base: 1rem;     --font-size-md  : 1.125rem;
+  --font-size-lg  : 1.25rem;  --font-size-xl  : 1.5rem;
+  --font-size-2xl : 1.75rem;  --font-size-3xl : 2.25rem;
+  --font-size-4xl : 3rem;     --font-size-5xl : 3.75rem;
+  --font-size-6xl : 4.5rem;
+
+  /* Line Heights */
+  --line-height-tight  : 1.2;
+  --line-height-snug   : 1.375;
+  --line-height-base   : 1.6;
+  --line-height-loose  : 1.75;
+  --line-height-relaxed: 1.9;
+
+  /* Letter Spacing */
+  --letter-spacing-tight : -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide  : 0.025em;
+  --letter-spacing-wider : 0.05em;
+  --letter-spacing-widest: 0.1em;
+
+  /* Text Color Roles */
+  --text-primary       : var(--aurora-cyan-50);
+  --text-secondary     : var(--aurora-teal-100);
+  --text-tertiary      : var(--aurora-teal-200);
+  --text-accent        : var(--aurora-purple-100);
+  --text-accent-strong : var(--aurora-purple-300);
+  --text-muted         : var(--primary-200);
+  --text-dim           : var(--primary-300);
+  --text-normal        : var(--primary-50);
+  --text-bright        : var(--primary-25);
+  --text-highlight     : var(--aurora-amber-100);
+  --text-danger        : var(--aurora-rose-300);
+  --text-success       : var(--aurora-emerald-300);
+  --text-warning       : var(--aurora-amber-300);
+  --text-info          : var(--aurora-teal-300);
+}
+
+// SECTION 3 – Global Base Styles & Selection
+// ------------------------------------------
 body {
-  margin:0; padding:0;
   font-family: var(--font-family-main);
-  font-size: var(--font-size-base);
+  font-size:   var(--font-size-base);
   line-height: var(--line-height-base);
-  color: var(--text-primary);
+  color:       var(--text-primary);
   background-color: var(--primary-900);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  margin: 0;
+  overflow-x: hidden;
 }
-
 ::selection {
   background-color: var(--selection-bg);
-  color: var(--selection-text);
+  color:            var(--selection-text);
 }
 
-// 3. ENHANCED BACKGROUND: Multi-layered cosmic environment
-// ------------------------------------------------------------------
-html,body {
+// SECTION 4 – Enhanced Multi‑Layered Background
+// ---------------------------------------------
+html, body {
   background-image:
     radial-gradient(ellipse at 10% 40%, rgba(88,28,135,0.15) 0%, transparent 70%),
     radial-gradient(ellipse at 90% 25%, rgba(139,92,246,0.12) 0%, transparent 70%),
@@ -215,203 +180,494 @@ html,body {
     linear-gradient(var(--bg-gradient-dir), var(--bg-gradient-start), var(--bg-gradient-mid) 50%, var(--bg-gradient-end));
 }
 
-// 4. NOISE TEXTURE OVERLAY
-// ------------------------------------------------------------------
+// SECTION 5 – Noise Texture Overlay
+// --------------------------------
 .noise-overlay {
-  position:fixed; top:0; left:0; width:100%; height:100%;
+  position: fixed; top:0; left:0; width:100%; height:100%;
   z-index:0; pointer-events:none; opacity:0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  background-repeat:repeat; background-size:150px 150px;
-  mix-blend-mode:soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg ... %3E");
+  background-repeat: repeat; background-size: 150px 150px;
+  mix-blend-mode: soft-light;
 }
 
-// 5. MIXINS & UTILITIES
-// ------------------------------------------------------------------
-@mixin gradient-bg($dir,$start,$end){background:linear-gradient($dir,$start,$end);}
-@mixin glass-card($blur:8px,$alpha:0.1){background:rgba(255,255,255,$alpha);backdrop-filter:blur($blur);border-radius:var(--border-radius);box-shadow:var(--shadow-sm);}  
+// SECTION 6 – Mixins & Utilities
+// -------------------------------
+@mixin gradient-bg($dir, $start, $end) {
+  background: linear-gradient($dir, $start, $end);
+}
+@mixin glass-card($blur:8px,$alpha:0.1) {
+  background: rgba(255,255,255,$alpha);
+  backdrop-filter: blur($blur);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
 
-// 6. GLASS CARDS & PANELS
-// ------------------------------------------------------------------
+// SECTION 7 – Glass Cards & Panels
+// --------------------------------
 .card {
   @include glass-card(12px,0.12);
-  padding:1.5rem; margin:1rem 0;
-  border:1px solid rgba(255,255,255,0.1);
-  position:relative; z-index:2;
-  overflow:hidden;
-  transition: all var(--transition-speed) var(--transition-ease);
-  &:hover { transform:translateY(-5px); box-shadow:0 10px 30px rgba(0,0,0,0.25); border-color:rgba(255,255,255,0.2); }
-  &::after { content:''; position:absolute; top:0; left:0; width:200%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent); opacity:0; transition:opacity 0.3s ease; pointer-events:none; animation: shimmer 2s infinite; }
+  padding: 1.5rem; margin: 1rem 0;
+  border: 1px solid rgba(255,255,255,0.1);
+  position: relative; z-index:2;
+  transition: all 0.3s cubic-bezier(0.25,0.8,0.25,1);
+  overflow: hidden;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    border-color: rgba(255,255,255,0.2);
+  }
+  &::after {
+    content: '';
+    position: absolute; top:0; left:0;
+    width:200%; height:100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    opacity:0; transition: opacity 0.3s ease;
+    animation: shimmer 2s infinite;
+  }
+}
+@keyframes shimmer {
+  0%,100%{ transform: translateX(-100%); }
+  50%   { transform: translateX(100%); }
 }
 
-// 7. ENHANCED BUTTONS
-// ------------------------------------------------------------------
+// SECTION 8 – Enhanced Buttons
+// ----------------------------
 .btn {
-  display:inline-block;
-  padding:var(--button-padding-y) var(--button-padding-x);
-  border-radius:var(--border-radius);
-  cursor:pointer; position:relative; overflow:hidden;
-  transition:all var(--transition-speed) var(--transition-ease);
-  border:1px solid rgba(255,255,255,0.1);
-  &--primary { @include gradient-bg(135deg,var(--primary-700),var(--primary-800)); color:var(--text-primary);}  
-  &--accent  { @include gradient-bg(135deg,var(--aurora-purple-500),var(--aurora-teal-500)); color:#fff;}  
-  &--link    { background:transparent; color:var(--link-color); text-decoration:underline;}
-  &::before  { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent); z-index:-1; transition:left 0.7s ease; }
-  &:hover { transform:translateY(-2px); box-shadow:0 5px 15px rgba(0,0,0,0.3),0 0 10px var(--glow-cyan-subtle); border-color:rgba(255,255,255,0.2); &::before { left:100%; }}
-  &:active { transform:translateY(1px); }
+  display: inline-block;
+  padding: var(--button-padding-y) var(--button-padding-x);
+  border-radius: var(--border-radius);
+  font-family: var(--font-family-main);
+  cursor: pointer; position: relative; overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.1);
+
+  &--primary {
+    background: var(--gradient-cosmic-horizon);
+    color: var(--text-primary);
+  }
+  &--accent {
+    background: var(--gradient-aurora-sweep);
+    color: #fff;
+  }
+  &--link {
+    background: transparent;
+    color: var(--link-color);
+    text-decoration: underline;
+  }
+
+  &::before {
+    content: '';
+    position: absolute; top:0; left:-100%;
+    width:100%; height:100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    z-index:-1; transition: left 0.7s ease;
+  }
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3), 0 0 10px var(--glow-cyan-subtle);
+    border-color: rgba(255,255,255,0.2);
+    &::before { left: 100%; }
+  }
+  &:active { transform: translateY(1px); }
 }
 
-// 8. LINK STYLES
-// ------------------------------------------------------------------
-a { color:var(--link-color); text-decoration:none; position:relative; transition:color var(--transition-speed) var(--transition-ease);
-  &::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:var(--link-color); transition:width 0.3s ease; }
-  &:hover { color:var(--highlight); &::after { width:100%; }}
-  &.internal-link { border-bottom:1px dashed rgba(138,214,238,0.4);
-    &:hover { border-bottom:1px dashed rgba(191,166,224,0.6); }}
+// SECTION 9 – Link Styles
+// ----------------------
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+  &::after {
+    content: ''; position: absolute;
+    bottom: -2px; left: 0;
+    width: 0; height: 2px;
+    background: var(--link-color);
+    transition: width 0.3s ease;
+  }
+  &:hover {
+    color: var(--highlight);
+    &::after { width: 100%; }
+  }
+  &.internal-link {
+    border-bottom: 1px dashed rgba(138,214,238,0.4);
+    &:hover { border-color: rgba(191,166,224,0.6); }
+  }
 }
 
-// 9. WIDGET STYLE
-// ------------------------------------------------------------------
+// SECTION 10 – Widget Styles
+// -------------------------
 .widget {
-  background:var(--widget-bg);
-  border:1px solid var(--widget-border);
-  box-shadow:var(--widget-shadow);
-  border-radius:var(--border-radius);
-  padding:1rem; margin:1rem 0;
-  position:relative; z-index:2;
+  background: var(--widget-bg);
+  border: 1px solid var(--widget-border);
+  box-shadow: var(--widget-shadow);
+  border-radius: var(--border-radius);
+  padding: 1rem; margin: 1rem 0;
+  position: relative; z-index: 2;
 }
 
-// 10. CUSTOM SCROLLBAR
-// ------------------------------------------------------------------
-::-webkit-scrollbar { width:8px; height:8px; }
-::-webkit-scrollbar-track { background:rgba(0,0,0,0.1); border-radius:10px; }
-::-webkit-scrollbar-thumb { background:linear-gradient(var(--highlight),var(--text-accent)); border-radius:10px; background-clip:padding-box; border:2px solid transparent; }
-::-webkit-scrollbar-thumb:hover { background:linear-gradient(var(--text-accent),var(--highlight)); border-width:1px; }
-* { scrollbar-width:thin; scrollbar-color:var(--highlight) transparent; }
+// SECTION 11 – Custom Scrollbar
+// -----------------------------
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); border-radius: 10px; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--highlight), var(--text-accent));
+  border-radius: 10px; border: 2px solid transparent; background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(var(--text-accent), var(--highlight));
+  border-width: 1px;
+}
+* { scrollbar-width: thin; scrollbar-color: var(--highlight) transparent; }
 
-// 11. DIGITAL GARDEN OVERRIDES
-// ------------------------------------------------------------------
+// SECTION 12 – Digital Garden Overrides: Headings, Callouts, Tables, Code
+// -----------------------------------------------------------------------
 h1,h2,h3,h4,h5,h6 {
-  letter-spacing:var(--heading-letter-spacing);
-  line-height:var(--line-height-tight);
-  margin-top:2em; margin-bottom:0.5em;
-  font-weight:var(--font-weight-bold);
+  letter-spacing: var(--heading-letter-spacing);
+  line-height: var(--line-height-tight);
+  margin-top: 2em; margin-bottom: 0.5em;
+  font-weight: var(--font-weight-bold);
 }
 h1 {
-  font-size:2.8rem; background:linear-gradient(90deg,var(--text-primary),var(--highlight)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:none;
+  font-size: 2.8rem;
+  background: linear-gradient(90deg, var(--text-primary), var(--highlight));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-h2 { font-size:2rem; color:var(--text-accent); }
-h3 { font-size:1.5rem; color:var(--text-primary); }
-p,li,td { line-height:var(--line-height-loose); letter-spacing:var(--body-letter-spacing); }
-blockquote { border-left:4px solid var(--highlight); padding-left:1rem; font-style:italic; color:var(--text-muted); }
-pre,code { font-family:var(--font-family-code); font-size:0.9em; border-radius:var(--border-radius); }
-pre { padding:1rem; overflow-x:auto; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.1); }
-code { background:rgba(0,0,0,0.2); padding:0.2em 0.4em; }
+h2 { font-size: 2rem; color: var(--text-accent); }
+h3 { font-size: 1.5rem; color: var(--text-primary); }
+p,li,td { line-height: var(--line-height-loose); }
+blockquote {
+  border-left: 4px solid var(--highlight);
+  padding-left: 1rem; font-style: italic; color: var(--text-muted);
+}
+.callout {
+  border-left: var(--callout-border-width) solid var(--highlight);
+  background: rgba(0,0,0,0.2);
+  padding: var(--callout-padding); margin:1.5rem 0;
+  border-radius: var(--callout-radius); position: relative; z-index:2;
+}
+.callout::before {
+  content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent 50%);
+  pointer-events:none;
+}
+.callout.note      { border-left-color: var(--link-color); }
+.callout.warning   { border-left-color: #FFD77A; }
+.callout.important { border-left-color: #FF7A7A; }
+.callout.tip       { border-left-color: #7AFF9C; }
+table {
+  width:100%; border-collapse: separate; border-spacing:0; margin:2rem 0; overflow:hidden;
+  border-radius: var(--border-radius); box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+table thead {
+  background: var(--background-secondary); color: var(--text-primary);
+}
+table th, table td {
+  padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+table tbody tr:nth-child(even) { background: rgba(0,0,0,0.1); }
+table tbody tr:hover        { background: rgba(255,255,255,0.05); }
+pre, code {
+  font-family: var(--font-family-code); font-size: 0.9em;
+  background: rgba(0,0,0,0.2); border-radius: var(--border-radius);
+}
+pre {
+  padding:1rem; overflow-x:auto; border:1px solid rgba(255,255,255,0.1);
+}
+code { padding:0.2em 0.4em; }
+pre code { background: transparent; padding: 0; }
+.code-header {
+  background: rgba(0,0,0,0.4); padding:0.5rem 1rem;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  font-size: 0.8em; color: var(--text-muted);
+  border:1px solid rgba(255,255,255,0.1); border-bottom:none;
+}
 
-// 12. SIDEBAR & TITLE HEADER GIF
-// ------------------------------------------------------------------
-:root { --title-header-gif: url('/img/fractal-title.gif'); --title-header-gif-height:120px; --title-header-gif-width:100%; --title-header-gif-margin-bottom:10px; }
+// SECTION 13 – Sidebar GIF Header & Opacity Controls
+// ---------------------------------------------------
+:root {
+  --title-header-gif: url('/img/fractal-title.gif');
+  --title-header-gif-height: 120px;
+  --sidebar-opacity: 0.85;
+  --sidebar-hover-opacity: 0.95;
+  --sidebar-transition: opacity 0.3s ease;
+}
 .filetree-sidebar h1 {
-  margin-top:var(--title-header-gif-height); position:relative;
-  &::before { content:''; position:absolute; top:calc(-1 * var(--title-header-gif-height) - var(--title-header-gif-margin-bottom)); left:0; width:var(--title-header-gif-width); height:var(--title-header-gif-height); background-image:var(--title-header-gif); background-size:contain; background-position:center; background-repeat:no-repeat; z-index:1; }
+  margin-top: var(--title-header-gif-height);
+  position: relative;
 }
-@media(max-width:800px) {.filetree-sidebar h1::before{position:relative;display:block;top:0;margin-bottom:var(--title-header-gif-margin-bottom);}}
-
-// 13. SIDEBAR OPACITY CONTROL
-// ------------------------------------------------------------------
-:root { --sidebar-opacity:0.85; --sidebar-hover-opacity:0.95; --sidebar-transition:opacity 0.3s ease; }
-.sidebar, .graph-fs, #full-graph {
-  opacity:var(--sidebar-opacity); transition:var(--sidebar-transition);
+.filetree-sidebar h1::before {
+  content: ''; position: absolute;
+  top: calc(-1 * var(--title-header-gif-height) - 10px);
+  left:0; width:100%; height: var(--title-header-gif-height);
+  background-image: var(--title-header-gif);
+  background-size: contain; background-position:center; background-repeat:no-repeat;
+  z-index:1;
 }
-.sidebar:hover, .graph-fs:hover, #full-graph:hover { opacity:var(--sidebar-hover-opacity); }
-
-// 14. FLOATING ACTION BUTTON
-// ------------------------------------------------------------------
-.floating-action-button { position:fixed; bottom:2rem; right:2rem; width:50px; height:50px; border-radius:50%; background:var(--highlight); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,0.3); cursor:pointer; z-index:100; transition:all 0.3s cubic-bezier(0.25,0.8,0.25,1);
-  &:hover { transform:translateY(-5px); background:var(--text-accent); box-shadow:0 8px 16px rgba(0,0,0,0.4); }
-  svg { width:24px; height:24px; color:var(--background-primary); }
+.sidebar, .graph-fs {
+  opacity: var(--sidebar-opacity);
+  transition: var(--sidebar-transition);
 }
-.fab-menu { position:fixed; bottom:5rem; right:2rem; display:flex; flex-direction:column; gap:0.75rem; transform:translateY(20px); opacity:0; pointer-events:none; transition:all 0.3s cubic-bezier(0.25,0.8,0.25,1);
-  &.active { transform:translateY(0); opacity:1; pointer-events:all; }
-  .fab-item { background:var(--background-secondary); padding:0.5rem 1rem; border-radius:20px; box-shadow:0 2px 6px rgba(0,0,0,0.2); color:var(--text-primary); display:flex; align-items:center; gap:0.5rem; transition:all 0.2s ease;
-    &:hover { transform:translateX(-5px); background:var(--background-secondary-alt); }
-    svg { width:18px; height:18px; }
-  }
+.sidebar:hover, .graph-fs:hover {
+  opacity: var(--sidebar-hover-opacity);
 }
 
-// 15. ENHANCED NAVIGATION
-// ------------------------------------------------------------------
-.nav-container { backdrop-filter:blur(10px); background:rgba(18,20,42,0.6); position:sticky; top:0; z-index:100; padding:1rem 0; border-bottom:1px solid rgba(255,255,255,0.1); box-shadow:0 4px 12px rgba(0,0,0,0.1);
-  .nav-content { max-width:var(--content-width); margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
-  .nav-logo { font-size:1.25rem; font-weight:var(--font-weight-bold); color:var(--text-primary); display:flex; align-items:center; gap:0.5rem;
-    svg { width:24px; height:24px; }
-  }
-  .nav-links { display:flex; gap:1.5rem; a { color:var(--text-muted); font-weight:var(--font-weight-medium); transition:color 0.2s ease;
-     &:hover, &.active { color:var(--text-primary); } }}
+// SECTION 14 – Floating Action Button & Menu
+// -------------------------------------------
+.floating-action-button {
+  position: fixed; bottom:2rem; right:2rem;
+  width:50px; height:50px; border-radius:50%;
+  background: var(--highlight); display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 12px rgba(0,0,0,0.3); cursor:pointer; z-index:100;
+  transition: all 0.3s cubic-bezier(0.25,0.8,0.25,1);
+}
+.floating-action-button:hover {
+  transform: translateY(-5px); background: var(--text-accent);
+  box-shadow:0 8px 16px rgba(0,0,0,0.4);
+}
+.fab-menu {
+  position: fixed; bottom:5rem; right:2rem;
+  display:flex; flex-direction:column; align-items:flex-end; gap:0.75rem;
+  z-index:99; transform: translateY(20px); opacity:0; pointer-events:none;
+  transition: all 0.3s cubic-bezier(0.25,0.8,0.25,1);
+}
+.fab-menu.active { transform: translateY(0); opacity:1; pointer-events:all; }
+.fab-item {
+  background: var(--background-secondary); padding:0.5rem 1rem;
+  border-radius:20px; box-shadow:0 2px 6px rgba(0,0,0,0.2);
+  display:flex; align-items:center; gap:0.5rem; color:var(--text-primary);
+  text-decoration:none; transition: all 0.2s ease;
+}
+.fab-item:hover {
+  transform: translateX(-5px); background: var(--background-secondary-alt);
 }
 
-// 16. PARTICLES ENHANCEMENT
-// ------------------------------------------------------------------
+// SECTION 15 – Enhanced Sticky Navigation Bar
+// --------------------------------------------
+.nav-container {
+  backdrop-filter: blur(10px); background:rgba(18,20,42,0.6);
+  position: sticky; top:0; z-index:100;
+  padding:1rem 0; margin-bottom:2rem;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+.nav-container .nav-content {
+  max-width: var(--content-width); margin:0 auto;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.nav-logo {
+  font-size:1.25rem; font-weight: var(--font-weight-bold);
+  color: var(--text-primary); display:flex; align-items:center; gap:0.5rem;
+}
+.nav-links { display:flex; gap:1.5rem; align-items:center; }
+.nav-links a {
+  color: var(--text-muted); font-weight: var(--font-weight-medium);
+  transition: color 0.2s ease;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+
+// SECTION 16 – Particles Canvas Enhancement
+// ------------------------------------------
 .particles-js-canvas-el {
-  opacity:0.65; mix-blend-mode:screen; filter:blur(0.5px);
-  animation:cosmic-pulse 10s infinite ease-in-out;
+  opacity: 0.65; mix-blend-mode: screen; filter: blur(0.5px);
+  animation: cosmic-pulse 10s infinite ease-in-out;
 }
-@keyframes cosmic-pulse { 0%,100%{opacity:0.65;filter:blur(0.5px);}50%{opacity:0.75;filter:blur(1px);} }
+@keyframes cosmic-pulse {
+  0%,100% { opacity:0.65; filter: blur(0.5px); }
+  50%     { opacity:0.75; filter: blur(1px);   }
+}
 
-// 17. FLASHCARD GRID
-// ------------------------------------------------------------------
+// SECTION 17 – Flashcard Grid & Items
+// -----------------------------------
 .flashcard-grid { display:grid; gap:1rem; margin:1.5rem 0; }
-.grid-2 { grid-template-columns:repeat(2,1fr); }
-.grid-3 { grid-template-columns:repeat(3,1fr); }
-.grid-4 { grid-template-columns:repeat(4,1fr); }
-@media(max-width:1400px){.grid-4{grid-template-columns:repeat(3,1fr);}}
-@media(max-width:1000px){.grid-3, .grid-4{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:650px){.grid-2, .grid-3, .grid-4{grid-template-columns:1fr;}}
-.flashcard { background:rgba(30,37,78,0.75); backdrop-filter:blur(8px); border-radius:10px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.25); border:1px solid rgba(224,178,255,0.3); transition:all 0.3s ease; display:flex; flex-direction:column;
-  &:hover { transform:translateY(-4px); box-shadow:0 8px 16px rgba(0,0,0,0.3); border-color:var(--link-color); }
-  .flashcard-image { background:rgba(18,20,42,0.6); padding:0.8rem; display:flex; align-items:center; justify-content:center; overflow:hidden;
-    img { max-width:100%; max-height:100%; object-fit:contain; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.4)); transition:transform 0.3s ease; }
-    &:hover img { transform:scale(1.05); }
-  }
-  .flashcard-content { padding:0.8rem; flex-grow:1; display:flex; flex-direction:column;
-    h3 { margin:0 0 0.5rem; color:var(--text-accent); font-size:1.1rem; font-weight:600; }
-    p { margin:0; color:var(--text-normal); font-size:0.85rem; line-height:1.3; opacity:0.9; }
-  }
+.grid-2 { grid-template-columns: repeat(2,1fr); }
+.grid-3 { grid-template-columns: repeat(3,1fr); }
+.grid-4 { grid-template-columns: repeat(4,1fr); }
+@media (max-width:1400px) { .grid-4 { grid-template-columns: repeat(3,1fr); }}
+@media (max-width:1000px) { .grid-3,.grid-4 { grid-template-columns: repeat(2,1fr); }}
+@media (max-width:650px)  { .grid-2,.grid-3,.grid-4 { grid-template-columns:1fr; }}
+
+.flashcard {
+  background: rgba(30,37,78,0.75); backdrop-filter: blur(8px);
+  border-radius:10px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.25);
+  border:1px solid rgba(224,178,255,0.3); transition: all 0.3s ease;
+  display:flex; flex-direction:column;
 }
+.flashcard a {
+  display:flex; flex-direction:column; text-decoration:none; color:inherit; height:100%;
+}
+.flashcard-image {
+  background: rgba(18,20,42,0.6); padding:0.8rem;
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+}
+.flashcard-image img {
+  max-width:100%; max-height:100%; object-fit:contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4)); transition: transform 0.3s ease;
+}
+.flashcard:hover { transform: translateY(-4px); box-shadow:0 8px 16px rgba(0,0,0,0.3); border-color: var(--link-color); }
+.flashcard:hover .flashcard-image img { transform:scale(1.05); }
+.flashcard-content {
+  padding:0.8rem; flex-grow:1; display:flex; flex-direction:column;
+}
+.flashcard-content h3 {
+  margin:0 0 0.5rem; color:var(--text-accent); font-size:1.1rem; font-weight:600;
+}
+.flashcard-content p {
+  margin:0; color:var(--text-normal); font-size:0.85rem; line-height:1.3; opacity:0.9;
+}
+
+// SECTION 18 – Rounded Image Utility Classes
+// -------------------------------------------
 .round-img { border-radius:50%; object-fit:cover; }
 .round-img-50 { width:50px; height:50px; }
-.round-img-100 { width:100px; height:100px; }
-.round-img-150 { width:150px; height:150px; }
-.round-img-200 { width:200px; height:200px; }
+.round-img-100{ width:100px; height:100px; }
+.round-img-150{ width:150px; height:150px; }
+.round-img-200{ width:200px; height:200px; }
 
-// 18. DATETIME TOGGLE & RESET
-// ------------------------------------------------------------------
-.datetime-container { position:fixed; top:1rem; right:1rem; font-size:1rem; color:var(--text-muted); display:flex; align-items:center; gap:0.75rem; opacity:0.9; transition:opacity 0.2s ease;
-  &:hover { opacity:1; }
+// SECTION 19 – DateTime Toggle & Reset Controls
+// ----------------------------------------------
+.datetime-container {
+  position: fixed; top:1rem; right:1rem;
+  font-family: var(--font-family-main); font-size:1rem;
+  color: var(--text-muted); display:flex; align-items:center; gap:0.75rem;
+  opacity:0.9; transition: opacity 0.2s ease, transform 0.3s ease; z-index:100;
 }
-.datetime-toggle, .datetime-reset { background:none; border:none; cursor:pointer; display:flex; align-items:center; padding:0.25rem; color:var(--text-muted); transition:opacity 0.2s ease; }
-.datetime-reset { font-size:0.875rem; gap:0.5rem; border-radius:4px; opacity:0.7; }
-.datetime-hidden, .datetime-reset-hidden { display:none; }
+.datetime-container:hover { opacity:1; }
+.datetime-toggle, .datetime-reset {
+  background: none; border: none; cursor: pointer; padding:0.25rem;
+  color: var(--text-muted); opacity:0.6; transition: opacity 0.2s ease;
+}
+.datetime-toggle:hover, .datetime-reset:hover { opacity:1; }
+.datetime-hidden, .datetime-reset-hidden { display: none; }
 
-// 19. GALAXY SPIRAL ANIMATION
-// ------------------------------------------------------------------
-.galaxy-spiral-container { position:relative; width:100%; height:500px; overflow:hidden; display:flex; align-items:center; justify-content:center; margin:3rem 0; }
-.galaxy-spiral { position:relative; width:400px; height:400px; transform-style:preserve-3d; animation:galaxy-rotate 60s linear infinite; }
-.spiral-star { position:absolute; width:2px; height:2px; border-radius:50%; background:white; box-shadow:0 0 4px 2px rgba(255,255,255,0.3); transform-style:preserve-3d; }
-@keyframes galaxy-rotate { 0%{transform:rotateZ(0deg);}100%{transform:rotateZ(360deg);} }
-.galaxy-core { position:absolute; width:80px; height:80px; border-radius:50%; background:radial-gradient(circle at center,rgba(255,255,255,0.7)0%,rgba(186,230,253,0.5)20%,rgba(139,92,246,0.4)40%,transparent80%); filter:blur(10px); animation:core-pulse 8s infinite ease-in-out; }
-@keyframes core-pulse { 0%,100%{transform:scale(1);opacity:0.6;}50%{transform:scale(1.2);opacity:0.8;} }
+// SECTION 20 – Galaxy Spiral Animation
+// -------------------------------------
+.galaxy-spiral-container {
+  position: relative; width:100%; height:500px;
+  overflow:hidden; display:flex; align-items:center; justify-content:center;
+  margin:3rem 0;
+}
+.galaxy-spiral {
+  position: relative; width:400px; height:400px;
+  transform-style: preserve-3d; animation: galaxy-rotate 60s linear infinite;
+}
+.spiral-star {
+  position:absolute; width:2px; height:2px; border-radius:50%;
+  background-color:white; box-shadow:0 0 4px 2px rgba(255,255,255,0.3);
+}
+@keyframes galaxy-rotate {
+  0%   { transform: rotateZ(0deg); }
+  100% { transform: rotateZ(360deg); }
+}
+.galaxy-core {
+  position:absolute; width:80px; height:80px; border-radius:50%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.7) 0%, rgba(186,230,253,0.5) 20%, rgba(139,92,246,0.4) 40%, transparent 80%);
+  filter: blur(10px); animation: core-pulse 8s infinite ease-in-out;
+}
+@keyframes core-pulse {
+  0%   { transform: scale(1);   opacity:0.6; }
+  50%  { transform: scale(1.2); opacity:0.8; }
+  100% { transform: scale(1);   opacity:0.6; }
+}
 
-// 20. FLOATING PLANETS SYSTEM
-// ------------------------------------------------------------------
+// SECTION 21 – Floating Planets System & Orbits
+// ---------------------------------------------
 .galaxy-body { perspective:1000px; overflow-x:hidden; }
-.planet-system { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-3; pointer-events:none; transform-style:preserve-3d; }
-.planet { position:absolute; border-radius:50%; opacity:0.65; background-size:100% 100%; box-shadow:inset 3px -3px 15px rgba(0,0,0,0.4),0 0 10px rgba(255,255,255,0.2); transform-style:preserve-3d; will-change:transform; }
-.planet.gas-giant { background:linear-gradient(to right,var(--aurora-teal-700),var(--aurora-purple-700),var(--aurora-teal-500)); box-shadow:0 0 30px rgba(105,194,236,0.3); }
-.planet.rocky { background:radial-gradient(circle at 30% 30%,var(--aurora-amber-300),var(--aurora-amber-500)40%,var(--aurora-rose-500)70%); box-shadow:0 0 20px rgba(239,146,96,0.2); }
-.planet.ice { background:linear-gradient(to bottom,var(--aurora-teal-300),var(--aurora-cyan-100),var(--aurora-purple-100)); box-shadow:0 0 25px rgba(175,211,255,0.35); }
-.planet.earth-like { background:radial-gradient(circle at 40% 40%,var(--aurora-cyan-300),var(--aurora-emerald-500)30%,var(--aurora-teal-700)70%); box-shadow:0 0 25px rgba(100,214,189,0.25); }
-.planet.ringed::after { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotateX(75deg); width:200%; height:40%; border-radius:50%; background:transparent; box-shadow:0 0 20px 5px rgba(255,255,255,0.1); border:2px solid rgba(255,255,255,0.2); z-index:-1; }
-@keyframes orbit-1 { 0%{transform:rotate3d(1,0.5,0.2,0deg) translateX(var(--orbit-distance)) rotate3d(0,1,0.5,0deg);}100%{transform:rotate3d(1,0.5,0.2,360deg) translateX(var(--orbit-distance)) rotate3d(0,1,0.5,360deg);} }
-@keyframes moon-orbit { 0%{transform:rotate(0deg) translateX(calc(var(--planet-size)*0.8)) rotate(0deg);}100%{transform:rotate(360deg) translateX(calc(var(--planet-size)*0.8)) rotate(-360deg);} }
+.planet-system {
+  position:fixed; top:0; left:0; width:100%; height:100%;
+  z-index:-3; pointer-events:none; transform-style: preserve-3d;
+}
+.planet {
+  position:absolute; border-radius:50%; opacity:0.65;
+  background-size:100% 100%; box-shadow: inset 3px -3px 15px rgba(0,0,0,0.4), 0 0 10px rgba(255,255,255,0.2);
+  transform-style: preserve-3d; will-change: transform;
+}
+.planet.gas-giant {
+  background: linear-gradient(to right, var(--aurora-teal-700), var(--aurora-purple-700), var(--aurora-teal-500));
+  box-shadow: 0 0 30px rgba(105,194,236,0.3);
+}
+.planet.rocky {
+  background: radial-gradient(circle at 30% 30%, var(--aurora-amber-300), var(--aurora-amber-500) 40%, var(--aurora-rose-500) 70%);
+  box-shadow: 0 0 20px rgba(239,146,96,0.2);
+}
+.planet.ice {
+  background: linear-gradient(to bottom, var(--aurora-teal-300), var(--aurora-cyan-100), var(--aurora-purple-100));
+  box-shadow: 0 0 25px rgba(175,211,255,0.35);
+}
+.planet.earth-like {
+  background: radial-gradient(circle at 40% 40%, var(--aurora-cyan-300), var(--aurora-emerald-500) 30%, var(--aurora-teal-700) 70%);
+  box-shadow: 0 0 25px rgba(100,214,189,0.25);
+}
+.planet.ringed {
+  position: relative;
+}
+.planet.ringed::after {
+  content: ''; position:absolute; top:50%; left:50%;
+  transform: translate(-50%,-50%) rotateX(75deg);
+  width:200%; height:40%; border-radius:50%;
+  box-shadow:0 0 20px 5px rgba(255,255,255,0.1);
+  border:2px solid rgba(255,255,255,0.2); z-index:-1;
+}
+@keyframes planet-float {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  50%     { transform: translateY(10px) rotate(var(--spin-amount,180deg)); }
+}
+@keyframes orbit-1 {
+  to { transform: rotate3d(1,0.5,0.2,360deg) translateX(var(--orbit-distance)) rotate3d(0,1,0.5,360deg); }
+}
+@keyframes orbit-2 {
+  to { transform: rotate3d(0.5,1,0.1,360deg) translateX(var(--orbit-distance)) rotate3d(0.2,0,1,360deg); }
+}
+@keyframes orbit-3 {
+  to { transform: rotate3d(0.3,0.6,1,360deg) translateX(var(--orbit-distance)) rotate3d(1,0.1,0.2,360deg); }
+}
+.moon {
+  position:absolute; top:50%; left:50%;
+  width: calc(var(--planet-size)*0.2); height: calc(var(--planet-size)*0.2);
+  border-radius:50%; background: linear-gradient(145deg,#d4d4d4,#9e9e9e);
+  transform: translate(-50%, -50%);
+  animation: moon-orbit 15s linear infinite;
+  box-shadow: inset 3px -3px 5px rgba(0,0,0,0.4),0 0 5px rgba(255,255,255,0.2);
+}
+@keyframes moon-orbit {
+  to { transform: rotate(360deg) translateX(calc(var(--planet-size)*0.8)) rotate(-360deg); }
+}
 
-/* End of Enhanced Cosmic Digital Garden SCSS */
+// SECTION 22 – Content Width & Responsiveness Overrides
+// ------------------------------------------------------
+.content.cm-s-obsidian {
+  max-width: 900px !important;
+  width: 90%    !important;
+  margin: 0 auto;
+  padding: 2rem 3rem;
+  font-size: 1.1em;
+  line-height: 1.7;
+}
+html {
+  width:100%; overflow-x:hidden;
+}
+.content h1 { font-size:2.4em; margin-bottom:1rem; }
+.content h2 { font-size:2em; margin-bottom:0.8rem; }
+.content h3 { font-size:1.6em; margin-bottom:0.6rem; }
+.content h4 { font-size:1.3em; margin-bottom:0.5rem; }
+.content p  { margin-bottom:1.2em; font-size:inherit; }
+.content ul, .content ol { margin-bottom:1.2em; padding-left:2em; }
+.content li { margin-bottom:0.5em; line-height:1.6; }
+.content pre {
+  margin:1.5em 0; padding:1.5em; border-radius:8px;
+}
+.content blockquote {
+  margin:1.5em 0; padding:1em 2em; border-left:4px solid var(--accent-color,#666);
+}
+@media (max-width:768px) {
+  .content.cm-s-obsidian {
+    width:95% !important; padding:1rem 2rem; font-size:1.05em;
+  }
+}
+@media (max-width:480px) {
+  .content.cm-s-obsidian {
+    width:98% !important; padding:1rem 1.5rem; font-size:1em;
+  }
+}
