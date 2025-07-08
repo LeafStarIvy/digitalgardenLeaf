@@ -1,99 +1,76 @@
 /*
- * SUPER MARIO GALAXY DIGITAL GARDEN THEME
- * A melancholic deep space experience inspired by SMG's cosmic atmosphere
- * Complete redesign with ethereal blues, cosmic depth, and nostalgic atmosphere
+ * SUPER MARIO GALAXY INSPIRED DIGITAL GARDEN
+ * Deep melancholic space atmosphere with cosmic blues
+ * Completely redesigned for a personal memory & thought space
  */
 
-/* =============================================================================
-   CORE THEME FOUNDATION
-   ============================================================================= */
+/* ========================================
+   CORE FOUNDATION & GALAXY COLOR PALETTE
+   ======================================== */
 
 :root {
-  /* Super Mario Galaxy Deep Space Palette */
-  --void-black: #000307;
-  --deep-space: #0a0f1a;
-  --cosmic-navy: #0f1828;
-  --twilight-blue: #162033;
-  --galaxy-blue: #1e2a42;
-  --nebula-blue: #253350;
-  --star-blue: #2d3d5f;
-  --horizon-blue: #35486d;
-  --distant-blue: #3d537a;
-  --ethereal-blue: #4a6088;
-  --morning-blue: #576d96;
-  --sky-blue: #6a7fa8;
-  --light-blue: #7d92ba;
-  --mist-blue: #91a5cc;
-  --cloud-blue: #a5b8de;
-  --whisper-blue: #c4d2ed;
-  --dream-blue: #dbe4f5;
-  --celestial-white: #f0f4fa;
+  /* Deep Space Blues - Mario Galaxy inspired */
+  --void-black: #000510;
+  --cosmic-deep: #0a0f2b;
+  --space-dark: #141b3c;
+  --galaxy-blue: #1e2749;
+  --nebula-blue: #2a3556;
+  --star-blue: #364463;
+  --cosmic-mist: #435270;
+  --space-gray: #50607d;
+  --stellar-light: #5d6e8a;
+  --cosmic-silver: #6a7c97;
   
   /* Melancholic Accent Colors */
-  --stardust-gold: #ffd700;
-  --comet-yellow: #ffeb3b;
-  --aurora-cyan: #00e5ff;
-  --cosmic-purple: #7c4dff;
-  --nebula-pink: #ff4081;
-  --meteor-orange: #ff6d00;
-  --plasma-green: #00e676;
-  --void-red: #ff1744;
+  --sad-purple: #4a4e7c;
+  --lonely-blue: #3d5a8c;
+  --distant-cyan: #2d6a9c;
+  --memory-teal: #1d7aac;
+  --dream-blue: #0d8abc;
+  --hope-light: #5b9dd1;
+  --gentle-glow: #89b7e6;
+  --soft-shine: #b7d1fb;
   
-  /* Atmospheric Gradients */
-  --gradient-void: linear-gradient(180deg, var(--void-black) 0%, var(--deep-space) 100%);
-  --gradient-cosmic: linear-gradient(135deg, var(--deep-space) 0%, var(--cosmic-navy) 30%, var(--twilight-blue) 100%);
-  --gradient-galaxy: linear-gradient(45deg, var(--galaxy-blue) 0%, var(--nebula-blue) 50%, var(--star-blue) 100%);
-  --gradient-horizon: linear-gradient(to bottom, var(--horizon-blue), var(--distant-blue));
-  --gradient-ethereal: linear-gradient(135deg, var(--ethereal-blue) 0%, var(--morning-blue) 100%);
-  --gradient-starlight: linear-gradient(90deg, var(--stardust-gold) 0%, var(--comet-yellow) 100%);
-  --gradient-aurora: linear-gradient(45deg, var(--aurora-cyan) 0%, var(--cosmic-purple) 50%, var(--nebula-pink) 100%);
+  /* Emotional Gradients */
+  --gradient-melancholy: linear-gradient(135deg, var(--void-black) 0%, var(--cosmic-deep) 30%, var(--space-dark) 70%, var(--galaxy-blue) 100%);
+  --gradient-memory: linear-gradient(45deg, var(--galaxy-blue), var(--nebula-blue), var(--space-dark));
+  --gradient-dream: linear-gradient(90deg, var(--sad-purple), var(--lonely-blue), var(--distant-cyan));
+  --gradient-hope: linear-gradient(180deg, var(--memory-teal), var(--dream-blue), var(--hope-light));
+  --gradient-gentle: radial-gradient(circle at 30% 20%, var(--gentle-glow) 0%, var(--dream-blue) 50%, var(--galaxy-blue) 100%);
   
-  /* Typography System */
-  --font-cosmic: 'Orbitron', 'Space Grotesk', system-ui, sans-serif;
-  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  /* Typography for emotional expression */
+  --font-memory: 'Crimson Text', 'Georgia', serif;
+  --font-thought: 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+  --font-whisper: 'Fira Sans', 'Arial', sans-serif;
+  --font-dream: 'Playfair Display', 'Times New Roman', serif;
   
-  /* Spacing & Layout */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
-  --space-4xl: 6rem;
+  /* Spacing for contemplative flow */
+  --space-intimate: 0.5rem;
+  --space-quiet: 1rem;
+  --space-gentle: 1.5rem;
+  --space-thoughtful: 2rem;
+  --space-reflective: 3rem;
+  --space-expansive: 4rem;
+  --space-cosmic: 6rem;
   
-  --container-sm: 640px;
-  --container-md: 768px;
-  --container-lg: 1024px;
-  --container-xl: 1280px;
+  /* Subtle animations for organic feel */
+  --flow-gentle: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --flow-organic: cubic-bezier(0.23, 1, 0.32, 1);
+  --flow-dreamy: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --flow-melancholy: cubic-bezier(0.4, 0, 0.2, 1);
   
-  /* Effects */
-  --blur-subtle: blur(2px);
-  --blur-medium: blur(8px);
-  --blur-strong: blur(20px);
-  --glow-subtle: drop-shadow(0 0 10px currentColor);
-  --glow-medium: drop-shadow(0 0 20px currentColor);
-  --glow-strong: drop-shadow(0 0 40px currentColor);
-  
-  /* Animation Timings */
-  --timing-instant: 0.1s;
-  --timing-fast: 0.2s;
-  --timing-normal: 0.3s;
-  --timing-slow: 0.5s;
-  --timing-slower: 0.8s;
-  --timing-cosmic: 2s;
-  --timing-eternal: 8s;
-  
-  /* Easing Functions */
-  --ease-cosmic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --ease-orbit: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  --ease-float: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Soft glows and shadows */
+  --glow-memory: 0 0 20px rgba(61, 90, 140, 0.3);
+  --glow-dream: 0 0 30px rgba(13, 138, 188, 0.2);
+  --glow-gentle: 0 0 40px rgba(139, 183, 230, 0.15);
+  --shadow-floating: 0 8px 32px rgba(0, 5, 16, 0.4);
+  --shadow-resting: 0 4px 16px rgba(0, 5, 16, 0.3);
+  --shadow-whisper: 0 2px 8px rgba(0, 5, 16, 0.2);
 }
 
-/* =============================================================================
-   RESET & BASE STYLES
-   ============================================================================= */
+/* ========================================
+   COSMIC FOUNDATION & BODY SETUP
+   ======================================== */
 
 * {
   margin: 0;
@@ -101,35 +78,18 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-}
-
 body {
-  font-family: var(--font-body);
-  background: var(--gradient-void);
-  color: var(--whisper-blue);
-  line-height: 1.6;
+  font-family: var(--font-thought);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--soft-shine);
+  background: var(--gradient-melancholy);
+  min-height: 100vh;
   overflow-x: hidden;
   position: relative;
-  min-height: 100vh;
   
-  /* Cosmic Background Effects */
+  /* Subtle texture overlay */
   &::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-cosmic);
-    opacity: 0.8;
-    z-index: -2;
-    animation: cosmic-drift var(--timing-eternal) ease-in-out infinite alternate;
-  }
-  
-  &::after {
     content: '';
     position: fixed;
     top: 0;
@@ -137,337 +97,156 @@ body {
     width: 100%;
     height: 100%;
     background: 
-      radial-gradient(circle at 20% 30%, rgba(0, 229, 255, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(124, 77, 255, 0.08) 0%, transparent 50%),
-      radial-gradient(circle at 40% 80%, rgba(255, 64, 129, 0.06) 0%, transparent 50%);
+      radial-gradient(circle at 20% 80%, rgba(77, 78, 124, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(45, 106, 156, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(29, 122, 172, 0.06) 0%, transparent 50%);
+    pointer-events: none;
     z-index: -1;
-    animation: aurora-dance var(--timing-eternal) ease-in-out infinite alternate;
+  }
+  
+  /* Animated cosmic mist */
+  &::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: 
+      radial-gradient(circle at 25% 25%, rgba(54, 100, 163, 0.05) 0%, transparent 60%),
+      radial-gradient(circle at 75% 75%, rgba(93, 110, 138, 0.03) 0%, transparent 60%);
+    animation: cosmicDrift 60s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
   }
 }
 
-@keyframes cosmic-drift {
-  0% { transform: translateX(-2px) translateY(-1px) scale(1); }
-  100% { transform: translateX(2px) translateY(1px) scale(1.005); }
-}
-
-@keyframes aurora-dance {
-  0% { opacity: 0.3; transform: rotate(0deg) scale(1); }
-  50% { opacity: 0.6; transform: rotate(0.5deg) scale(1.02); }
-  100% { opacity: 0.4; transform: rotate(-0.5deg) scale(0.98); }
-}
-
-/* =============================================================================
-   TYPOGRAPHY
-   ============================================================================= */
+/* ========================================
+   TYPOGRAPHY - EMOTIONAL EXPRESSION
+   ======================================== */
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-cosmic);
-  font-weight: 600;
-  line-height: 1.2;
-  margin-bottom: var(--space-md);
-  color: var(--celestial-white);
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  font-family: var(--font-memory);
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: var(--space-gentle);
+  color: var(--gentle-glow);
   letter-spacing: 0.02em;
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  background: var(--gradient-starlight);
+  font-size: 2.5rem;
+  background: var(--gradient-hope);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: var(--space-lg);
-  animation: star-shimmer var(--timing-cosmic) ease-in-out infinite alternate;
+  margin-bottom: var(--space-thoughtful);
+  text-shadow: var(--glow-gentle);
 }
 
 h2 {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  color: var(--aurora-cyan);
-  margin-bottom: var(--space-md);
-  position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 60px;
-    height: 2px;
-    background: var(--gradient-aurora);
-    border-radius: 2px;
-    animation: glow-pulse var(--timing-slow) ease-in-out infinite alternate;
-  }
+  font-size: 2rem;
+  color: var(--hope-light);
+  margin-top: var(--space-reflective);
+  margin-bottom: var(--space-gentle);
 }
 
 h3 {
-  font-size: clamp(1.25rem, 3vw, 2rem);
-  color: var(--cosmic-purple);
-  margin-bottom: var(--space-sm);
+  font-size: 1.5rem;
+  color: var(--dream-blue);
+  margin-top: var(--space-thoughtful);
 }
 
 h4 {
-  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-  color: var(--nebula-pink);
-  margin-bottom: var(--space-sm);
+  font-size: 1.25rem;
+  color: var(--memory-teal);
 }
 
 h5, h6 {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  color: var(--mist-blue);
-  margin-bottom: var(--space-sm);
+  font-size: 1rem;
+  color: var(--distant-cyan);
+  font-weight: 500;
 }
 
 p {
-  margin-bottom: var(--space-md);
-  color: var(--cloud-blue);
-  line-height: 1.7;
-  text-align: justify;
-  hyphens: auto;
+  margin-bottom: var(--space-gentle);
+  color: var(--soft-shine);
+  line-height: 1.8;
 }
 
-@keyframes star-shimmer {
-  0% { filter: brightness(1) saturate(1); }
-  100% { filter: brightness(1.2) saturate(1.3); }
-}
-
-@keyframes glow-pulse {
-  0% { box-shadow: 0 0 5px currentColor; }
-  100% { box-shadow: 0 0 15px currentColor, 0 0 30px currentColor; }
-}
-
-/* =============================================================================
-   LAYOUT & CONTAINERS
-   ============================================================================= */
+/* ========================================
+   CONTENT STRUCTURE & LAYOUT
+   ======================================== */
 
 .container {
-  max-width: var(--container-lg);
+  max-width: 900px;
   margin: 0 auto;
-  padding: 0 var(--space-lg);
-  position: relative;
-}
-
-.main-content {
-  padding: var(--space-2xl) 0;
-  min-height: 100vh;
+  padding: var(--space-cosmic) var(--space-thoughtful);
   position: relative;
   z-index: 1;
 }
 
-.content-wrapper {
-  backdrop-filter: var(--blur-subtle);
-  background: rgba(15, 24, 40, 0.4);
-  border-radius: 24px;
-  padding: var(--space-2xl);
-  margin: var(--space-xl) 0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+/* Main content area */
+.content {
+  background: rgba(20, 27, 60, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: var(--space-reflective);
+  margin-bottom: var(--space-cosmic);
+  border: 1px solid rgba(139, 183, 230, 0.1);
+  box-shadow: var(--shadow-floating);
   position: relative;
-  animation: float var(--timing-cosmic) ease-in-out infinite alternate;
+  overflow: hidden;
   
+  /* Subtle inner glow */
   &::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: var(--gradient-galaxy);
-    opacity: 0.1;
-    border-radius: 24px;
-    z-index: -1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gentle-glow), transparent);
+    opacity: 0.3;
   }
 }
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-4px); }
-}
-
-/* =============================================================================
-   NAVIGATION
-   ============================================================================= */
-
-.nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  backdrop-filter: var(--blur-strong);
-  background: rgba(10, 15, 26, 0.9);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: var(--space-md) 0;
-  transition: all var(--timing-normal) var(--ease-cosmic);
-  
-  &.scrolled {
-    backdrop-filter: var(--blur-strong);
-    background: rgba(10, 15, 26, 0.95);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  }
-}
-
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: var(--container-xl);
-  margin: 0 auto;
-  padding: 0 var(--space-lg);
-}
-
-.nav-logo {
-  font-family: var(--font-cosmic);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--stardust-gold);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  transition: all var(--timing-normal) var(--ease-cosmic);
-  
-  &:hover {
-    color: var(--comet-yellow);
-    filter: var(--glow-medium);
-    transform: scale(1.05);
-  }
-  
-  &::before {
-    content: '✦';
-    font-size: 1.2em;
-    animation: star-rotate var(--timing-cosmic) linear infinite;
-  }
-}
-
-.nav-links {
-  display: flex;
-  gap: var(--space-lg);
-  list-style: none;
-  
-  a {
-    color: var(--cloud-blue);
-    text-decoration: none;
-    font-weight: 500;
-    padding: var(--space-sm) var(--space-md);
-    border-radius: 12px;
-    transition: all var(--timing-normal) var(--ease-cosmic);
-    position: relative;
-    
-    &:hover {
-      color: var(--aurora-cyan);
-      background: rgba(0, 229, 255, 0.1);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 229, 255, 0.3);
-    }
-    
-    &.active {
-      color: var(--cosmic-purple);
-      background: rgba(124, 77, 255, 0.15);
-      
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: -4px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 4px;
-        height: 4px;
-        background: var(--cosmic-purple);
-        border-radius: 50%;
-        box-shadow: 0 0 8px var(--cosmic-purple);
-      }
-    }
-  }
-}
-
-@keyframes star-rotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* =============================================================================
-   CARDS & COMPONENTS
-   ============================================================================= */
-
-.card {
-  background: rgba(30, 42, 66, 0.6);
-  backdrop-filter: var(--blur-medium);
+/* Article/note styling */
+article {
+  background: rgba(30, 39, 73, 0.4);
   border-radius: 16px;
-  padding: var(--space-xl);
-  margin: var(--space-lg) 0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  position: relative;
-  transition: all var(--timing-normal) var(--ease-cosmic);
+  padding: var(--space-reflective);
+  margin-bottom: var(--space-thoughtful);
+  border: 1px solid rgba(91, 157, 209, 0.15);
+  box-shadow: var(--shadow-resting);
+  transition: all 0.4s var(--flow-gentle);
   
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
-    border-color: rgba(0, 229, 255, 0.3);
-  }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--gradient-aurora);
-    border-radius: 2px 2px 0 0;
-    opacity: 0;
-    transition: opacity var(--timing-normal) var(--ease-cosmic);
-  }
-  
-  &:hover::before {
-    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-floating), var(--glow-memory);
+    border-color: rgba(91, 157, 209, 0.25);
   }
 }
 
-.card-header {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  margin-bottom: var(--space-lg);
-  
-  .card-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    background: var(--gradient-starlight);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    color: var(--deep-space);
-    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
-  }
-  
-  .card-title {
-    font-family: var(--font-cosmic);
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--celestial-white);
-    margin: 0;
-  }
-}
+/* ========================================
+   NAVIGATION & LINKS
+   ======================================== */
 
-/* =============================================================================
-   LINKS & INTERACTIONS
-   ============================================================================= */
+nav {
+  background: rgba(10, 15, 43, 0.8);
+  backdrop-filter: blur(15px);
+  padding: var(--space-gentle) var(--space-thoughtful);
+  border-radius: 12px;
+  margin-bottom: var(--space-reflective);
+  border: 1px solid rgba(54, 100, 163, 0.2);
+  box-shadow: var(--shadow-whisper);
+}
 
 a {
-  color: var(--aurora-cyan);
+  color: var(--dream-blue);
   text-decoration: none;
-  transition: all var(--timing-fast) var(--ease-cosmic);
+  transition: all 0.3s var(--flow-gentle);
   position: relative;
-  
-  &:hover {
-    color: var(--comet-yellow);
-    text-shadow: 0 0 8px currentColor;
-  }
   
   &::after {
     content: '';
@@ -476,172 +255,244 @@ a {
     left: 0;
     width: 0;
     height: 1px;
-    background: var(--gradient-aurora);
-    transition: width var(--timing-normal) var(--ease-cosmic);
-  }
-  
-  &:hover::after {
-    width: 100%;
-  }
-}
-
-/* =============================================================================
-   FORMS & INPUTS
-   ============================================================================= */
-
-input, textarea, select {
-  background: rgba(15, 24, 40, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: var(--space-md);
-  color: var(--cloud-blue);
-  font-family: var(--font-body);
-  font-size: 1rem;
-  transition: all var(--timing-normal) var(--ease-cosmic);
-  backdrop-filter: var(--blur-subtle);
-  
-  &:focus {
-    outline: none;
-    border-color: var(--aurora-cyan);
-    box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.2);
-    background: rgba(15, 24, 40, 0.9);
-  }
-  
-  &::placeholder {
-    color: var(--star-blue);
-  }
-}
-
-button {
-  background: var(--gradient-galaxy);
-  border: none;
-  border-radius: 12px;
-  padding: var(--space-md) var(--space-lg);
-  color: var(--celestial-white);
-  font-family: var(--font-cosmic);
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all var(--timing-normal) var(--ease-cosmic);
-  position: relative;
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left var(--timing-slow) var(--ease-cosmic);
+    background: var(--hope-light);
+    transition: width 0.3s var(--flow-gentle);
   }
   
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 229, 255, 0.3);
-    filter: brightness(1.1);
+    color: var(--hope-light);
+    text-shadow: var(--glow-dream);
     
-    &::before {
-      left: 100%;
+    &::after {
+      width: 100%;
     }
   }
   
-  &:active {
-    transform: translateY(0);
+  &:visited {
+    color: var(--memory-teal);
   }
 }
 
-/* =============================================================================
-   LISTS & CONTENT
-   ============================================================================= */
+/* Internal links (wiki-style) */
+.internal-link {
+  color: var(--gentle-glow);
+  background: rgba(139, 183, 230, 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  border: 1px solid rgba(139, 183, 230, 0.2);
+  transition: all 0.3s var(--flow-gentle);
+  
+  &:hover {
+    background: rgba(139, 183, 230, 0.2);
+    box-shadow: var(--glow-gentle);
+    transform: translateY(-1px);
+  }
+}
+
+/* ========================================
+   LISTS & STRUCTURE
+   ======================================== */
 
 ul, ol {
-  margin: var(--space-md) 0;
-  padding-left: var(--space-xl);
+  margin-left: var(--space-thoughtful);
+  margin-bottom: var(--space-gentle);
+  color: var(--soft-shine);
+}
+
+li {
+  margin-bottom: var(--space-intimate);
+  line-height: 1.7;
   
-  li {
-    margin: var(--space-sm) 0;
-    color: var(--cloud-blue);
-    
-    &::marker {
-      color: var(--aurora-cyan);
-    }
+  &::marker {
+    color: var(--dream-blue);
   }
 }
 
+/* Custom list styling */
+ul li {
+  position: relative;
+  list-style: none;
+  
+  &::before {
+    content: '◦';
+    color: var(--hope-light);
+    position: absolute;
+    left: -1.2em;
+    font-size: 1.2em;
+  }
+}
+
+/* ========================================
+   QUOTES & BLOCKQUOTES
+   ======================================== */
+
 blockquote {
-  border-left: 4px solid var(--cosmic-purple);
-  padding-left: var(--space-lg);
-  margin: var(--space-lg) 0;
+  background: rgba(77, 78, 124, 0.2);
+  border-left: 4px solid var(--dream-blue);
+  padding: var(--space-gentle) var(--space-thoughtful);
+  margin: var(--space-thoughtful) 0;
+  border-radius: 0 12px 12px 0;
+  font-family: var(--font-memory);
   font-style: italic;
-  color: var(--mist-blue);
-  background: rgba(124, 77, 255, 0.05);
-  border-radius: 0 8px 8px 0;
+  color: var(--gentle-glow);
   position: relative;
   
   &::before {
     content: '"';
+    font-size: 3rem;
+    color: var(--lonely-blue);
     position: absolute;
     top: -10px;
     left: 10px;
-    font-size: 3rem;
-    color: var(--cosmic-purple);
+    line-height: 1;
     opacity: 0.3;
   }
 }
 
+/* ========================================
+   CODE & TECHNICAL ELEMENTS
+   ======================================== */
+
 code {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 5, 16, 0.6);
+  color: var(--hope-light);
   padding: 0.2em 0.4em;
   border-radius: 4px;
-  font-family: var(--font-mono);
+  font-family: 'Fira Code', monospace;
   font-size: 0.9em;
-  color: var(--plasma-green);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(54, 100, 163, 0.3);
 }
 
 pre {
-  background: rgba(0, 0, 0, 0.6);
-  padding: var(--space-lg);
-  border-radius: 12px;
+  background: rgba(0, 5, 16, 0.8);
+  color: var(--soft-shine);
+  padding: var(--space-gentle);
+  border-radius: 8px;
   overflow-x: auto;
-  margin: var(--space-lg) 0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin: var(--space-gentle) 0;
+  border: 1px solid rgba(54, 100, 163, 0.2);
+  box-shadow: var(--shadow-whisper);
   
   code {
     background: none;
     padding: 0;
     border: none;
-    color: var(--dream-blue);
   }
 }
 
-/* =============================================================================
+/* ========================================
+   TAGS & METADATA
+   ======================================== */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-intimate);
+  margin: var(--space-gentle) 0;
+}
+
+.tag {
+  background: rgba(45, 106, 156, 0.3);
+  color: var(--gentle-glow);
+  padding: 0.3em 0.8em;
+  border-radius: 20px;
+  font-size: 0.85em;
+  border: 1px solid rgba(45, 106, 156, 0.4);
+  transition: all 0.3s var(--flow-gentle);
+  
+  &:hover {
+    background: rgba(45, 106, 156, 0.5);
+    transform: translateY(-1px);
+    box-shadow: var(--glow-memory);
+  }
+}
+
+.metadata {
+  color: var(--stellar-light);
+  font-size: 0.9em;
+  margin-top: var(--space-thoughtful);
+  padding-top: var(--space-gentle);
+  border-top: 1px solid rgba(54, 100, 163, 0.2);
+}
+
+/* ========================================
+   SEARCH & INTERACTIVE ELEMENTS
+   ======================================== */
+
+.search-container {
+  position: relative;
+  margin-bottom: var(--space-thoughtful);
+}
+
+.search-input {
+  width: 100%;
+  background: rgba(20, 27, 60, 0.6);
+  border: 1px solid rgba(139, 183, 230, 0.2);
+  border-radius: 12px;
+  padding: var(--space-gentle);
+  color: var(--soft-shine);
+  font-family: var(--font-thought);
+  font-size: 1rem;
+  transition: all 0.3s var(--flow-gentle);
+  
+  &:focus {
+    outline: none;
+    border-color: var(--dream-blue);
+    box-shadow: var(--glow-dream);
+    background: rgba(20, 27, 60, 0.8);
+  }
+  
+  &::placeholder {
+    color: var(--stellar-light);
+  }
+}
+
+/* ========================================
+   TABLES & STRUCTURED DATA
+   ======================================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-thoughtful) 0;
+  background: rgba(30, 39, 73, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-resting);
+}
+
+th, td {
+  padding: var(--space-gentle);
+  text-align: left;
+  border-bottom: 1px solid rgba(54, 100, 163, 0.2);
+}
+
+th {
+  background: rgba(77, 78, 124, 0.4);
+  color: var(--gentle-glow);
+  font-weight: 500;
+}
+
+td {
+  color: var(--soft-shine);
+}
+
+tr:hover {
+  background: rgba(54, 100, 163, 0.1);
+}
+
+/* ========================================
    RESPONSIVE DESIGN
-   ============================================================================= */
+   ======================================== */
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 var(--space-md);
+    padding: var(--space-thoughtful) var(--space-gentle);
   }
   
-  .content-wrapper {
-    padding: var(--space-xl) var(--space-lg);
-    margin: var(--space-lg) 0;
-  }
-  
-  .nav-container {
-    padding: 0 var(--space-md);
-  }
-  
-  .nav-links {
-    gap: var(--space-md);
-    
-    a {
-      padding: var(--space-sm);
-      font-size: 0.9rem;
-    }
+  .content {
+    padding: var(--space-thoughtful);
+    border-radius: 16px;
   }
   
   h1 {
@@ -649,99 +500,139 @@ pre {
   }
   
   h2 {
+    font-size: 1.75rem;
+  }
+  
+  article {
+    padding: var(--space-thoughtful);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: var(--space-gentle);
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
     font-size: 1.5rem;
   }
   
-  .card {
-    padding: var(--space-lg);
+  .content {
+    padding: var(--space-gentle);
   }
 }
 
-/* =============================================================================
-   CUSTOM ANIMATIONS
-   ============================================================================= */
+/* ========================================
+   ANIMATIONS & TRANSITIONS
+   ======================================== */
 
-@keyframes constellation-twinkle {
+@keyframes cosmicDrift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(-2%, -1%) rotate(1deg); }
+  66% { transform: translate(1%, -2%) rotate(-1deg); }
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes memorySpark {
   0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.2); }
+  50% { opacity: 0.7; transform: scale(1.05); }
 }
 
-@keyframes meteor-streak {
-  0% { transform: translateX(-100vw) translateY(100vh); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateX(100vw) translateY(-100vh); opacity: 0; }
+/* Gentle floating animation for articles */
+article {
+  animation: gentleFloat 8s ease-in-out infinite;
 }
 
-@keyframes nebula-flow {
-  0% { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
-  100% { transform: translateX(-50%) translateY(-50%) rotate(360deg); }
+/* Memory spark animation for headings */
+h1, h2 {
+  animation: memorySpark 6s ease-in-out infinite;
 }
 
-/* =============================================================================
-   UTILITY CLASSES
-   ============================================================================= */
+/* ========================================
+   SPECIAL CONTENT TYPES
+   ======================================== */
 
-.text-center { text-align: center; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
-
-.mb-0 { margin-bottom: 0; }
-.mb-sm { margin-bottom: var(--space-sm); }
-.mb-md { margin-bottom: var(--space-md); }
-.mb-lg { margin-bottom: var(--space-lg); }
-.mb-xl { margin-bottom: var(--space-xl); }
-
-.mt-0 { margin-top: 0; }
-.mt-sm { margin-top: var(--space-sm); }
-.mt-md { margin-top: var(--space-md); }
-.mt-lg { margin-top: var(--space-lg); }
-.mt-xl { margin-top: var(--space-xl); }
-
-.cosmic-glow {
-  filter: var(--glow-medium);
-  animation: star-shimmer var(--timing-cosmic) ease-in-out infinite alternate;
+/* Memory entries */
+.memory-entry {
+  background: var(--gradient-memory);
+  border: 1px solid rgba(183, 209, 251, 0.2);
+  border-radius: 16px;
+  padding: var(--space-reflective);
+  margin-bottom: var(--space-thoughtful);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '✨';
+    position: absolute;
+    top: var(--space-gentle);
+    right: var(--space-gentle);
+    font-size: 1.5rem;
+    opacity: 0.5;
+  }
 }
 
-.floating {
-  animation: float var(--timing-cosmic) ease-in-out infinite alternate;
+/* Thought bubbles */
+.thought {
+  background: rgba(74, 78, 124, 0.2);
+  border: 1px solid rgba(74, 78, 124, 0.4);
+  border-radius: 20px;
+  padding: var(--space-gentle);
+  margin: var(--space-gentle) 0;
+  position: relative;
+  font-style: italic;
+  color: var(--gentle-glow);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid rgba(74, 78, 124, 0.4);
+  }
 }
 
-.constellation {
-  animation: constellation-twinkle var(--timing-slow) ease-in-out infinite;
+/* Future plans */
+.future-plan {
+  background: var(--gradient-hope);
+  color: var(--void-black);
+  border-radius: 12px;
+  padding: var(--space-gentle);
+  margin: var(--space-gentle) 0;
+  box-shadow: var(--glow-dream);
+  
+  h3, h4, h5, h6 {
+    color: var(--space-dark);
+  }
+  
+  p {
+    color: var(--cosmic-deep);
+  }
 }
 
-/* =============================================================================
-   SCROLLBAR STYLING
-   ============================================================================= */
+/* ========================================
+   FOOTER & FINAL TOUCHES
+   ======================================== */
 
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--deep-space);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--gradient-aurora);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--gradient-starlight);
-}
-
-/* =============================================================================
-   SELECTION STYLING
-   ============================================================================= */
-
-::selection {
-  background: rgba(0, 229, 255, 0.3);
-  color: var(--celestial-white);
-}
-
-::-moz-selection {
-  background: rgba(0, 229, 255, 0.3);
-  color: var(--celestial-white);
+footer {
+  background: rgba(0, 5, 16, 0.6);
+  backdrop-filter: blur(10px);
+  padding: var(--space-reflective);
+  text-align: center;
+  color: var(--stellar-light);
+  border-top: 1px solid rgba(54, 100, 163, 0.2);
+  margin-top: var(--space-cosmic);
+  border-radius: 12px;
 }
