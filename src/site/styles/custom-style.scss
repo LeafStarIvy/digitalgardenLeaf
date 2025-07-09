@@ -1,380 +1,523 @@
-/*
- * CELESTIAL OBSERVATORY - DIGITAL GARDEN THEME
- *
- * An advanced, immersive, and serene theme for personal knowledge systems.
- * Features layered animated backgrounds, glassmorphism, refined typography,
- * and subtle interactive details for a magical user experience.
- *
- * Version: 2.1 (Restored & Improved Starfield)
- * Created by Gemini
- */
 
-/*
- * TABLE OF CONTENTS
- * -----------------
- * 1. FONT IMPORTS
- * 2. ROOT VARIABLES (THEME CONTROLS)
- * - Color Palette (Ethereal & Sophisticated)
- * - Typography System
- * - Layout, Spacing & Sizing
- * - Borders & Radii
- * - Shadows & Glows (Depth System)
- * - Transitions & Animations
- * - **New: Shooting Star Controls**
- * 3. GLOBAL STYLES & RESETS
- * 4. DYNAMIC BACKGROUND SYSTEM
- * - Deep Space Base
- * - Animated Nebula Layer
- * - **New: CSS Shooting Star**
- * - Particles.js Integration
- * 5. CORE LAYOUT & STRUCTURE
- * - Main Content Container (The "Observatory Lens")
- * - Sidebar (Floating Instrument Panel)
- * 6. TYPOGRAPHY & TEXT STYLING
- * - Headings (with subtle glow)
- * - Body Text & Paragraphs
- * - Links (with new hover effect)
- * 7. COMPONENT REDESIGN
- * - Buttons (Glowing Orbs)
- * - Blockquotes (Carved Runes)
- * - Code Blocks (Futuristic Terminal)
- * - Tags (Crystal Shards)
- * - Horizontal Rule (Stardust Trail)
- * 8. WIDGETS & MISCELLANEOUS
- * - On-Site Timer (Holographic Display)
- * 9. ADVANCED ANIMATIONS & KEYFRAMES
- * - Nebula Flow, Content Float, etc.
- * - **New: Shooting Star Animation**
- * - Scroll-based Fade-in Animations
-*/
+        /* * CELESTIAL OBSERVATORY - DIGITAL GARDEN THEME 
+         * * An advanced, immersive, and serene theme for personal knowledge systems. 
+         * Features layered animated backgrounds, glassmorphism, refined typography, 
+         * and subtle interactive details for a magical user experience. 
+         * * Version: 2.1 (Dynamic Stars Update)
+         * Created by Gemini 
+         */
 
-/* 1. FONT IMPORTS */
-@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Lato:wght@400;700&family=Fira+Code:wght@400&display=swap');
+        /* * TABLE OF CONTENTS 
+         * ----------------- 
+         * 1. FONT IMPORTS 
+         * 2. ROOT VARIABLES (THEME CONTROLS) 
+         * 3. GLOBAL STYLES & RESETS 
+         * 4. DYNAMIC BACKGROUND SYSTEM 
+         * 5. CORE LAYOUT & STRUCTURE 
+         * 6. TYPOGRAPHY & TEXT STYLING 
+         * 7. COMPONENT REDESIGN 
+         * 8. WIDGETS & MISCELLANEOUS 
+         * 9. ADVANCED ANIMATIONS & KEYFRAMES 
+         */
 
-/* 2. ROOT VARIABLES (THEME CONTROLS) */
-:root {
-  /* -- Color Palette -- */
-  --color-deep-space: #010409;
-  --color-nebula-violet: #2c1a4d;
-  --color-nebula-blue: #1f3a5f;
-  --color-starlight: #e6f1ff;
-  --color-glow-celeste: #a7d8ff;
-  --color-glow-lilac: #d8b4fe;
+        /* 1. FONT IMPORTS */
+        @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Lato:wght@400;700&family=Fira+Code:wght@400&display=swap');
 
-  /* Glassmorphic Surface */
-  --surface-color: rgba(12, 18, 29, 0.5);
-  --surface-blur: blur(16px);
-  --surface-border-color: rgba(167, 216, 255, 0.2);
+        /* 2. ROOT VARIABLES (THEME CONTROLS) */
+        :root {
+            /* -- Color Palette -- */
+            --color-deep-space: #010409;
+            --color-nebula-violet: #2c1a4d;
+            --color-nebula-blue: #1f3a5f;
+            --color-starlight: #e6f1ff;
+            --color-glow-celeste: #a7d8ff;
+            --color-glow-lilac: #d8b4fe;
 
-  /* Text Colors */
-  --text-primary: #c9d1d9; /* Softer than pure white for readability */
-  --text-secondary: #8b949e;
-  --text-headings: var(--color-starlight);
-  --text-accent: var(--color-glow-celeste);
-  --text-link-hover: #ffffff;
+            /* Glassmorphic Surface */
+            --surface-color: rgba(12, 18, 29, 0.5);
+            --surface-blur: blur(16px);
+            --surface-border-color: rgba(167, 216, 255, 0.2);
 
-  /* Accent & Interactive Colors */
-  --accent-primary: var(--color-glow-celeste);
-  --accent-secondary: var(--color-glow-lilac);
-  --selection-bg: rgba(167, 216, 255, 0.2);
-  --selection-text: #ffffff;
+            /* Text Colors */
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --text-headings: var(--color-starlight);
+            --text-accent: var(--color-glow-celeste);
+            --text-link-hover: #ffffff;
 
-  /* -- Typography System -- */
-  --font-family-headings: 'Marcellus', serif; /* Elegant, classic serif */
-  --font-family-body: 'Lato', sans-serif; /* Clean, modern sans-serif */
-  --font-family-code: 'Fira Code', monospace;
-  --font-size-base: 18px;
-  --line-height-base: 1.75;
+            /* Accent & Interactive Colors */
+            --accent-primary: var(--color-glow-celeste);
+            --accent-secondary: var(--color-glow-lilac);
+            --selection-bg: rgba(167, 216, 255, 0.2);
+            --selection-text: #ffffff;
 
-  /* -- Layout, Spacing & Sizing -- */
-  --content-width: 850px;
-  --sidebar-width: 300px;
-  --spacing-unit: 1.75rem;
-  --header-height: 80px;
+            /* -- Typography System -- */
+            --font-family-headings: 'Marcellus', serif;
+            --font-family-body: 'Lato', sans-serif;
+            --font-family-code: 'Fira Code', monospace;
+            --font-size-base: 18px;
+            --line-height-base: 1.75;
 
-  /* -- Borders & Radii -- */
-  --border-radius-soft: 16px;
-  --border-radius-medium: 12px;
-  --border-radius-small: 8px;
-  --border-width: 1px;
+            /* -- Layout, Spacing & Sizing -- */
+            --content-width: 850px;
+            --sidebar-width: 300px;
+            --spacing-unit: 1.75rem;
+            --header-height: 80px;
 
-  /* -- Shadows & Glows (Depth System) -- */
-  --shadow-glow-subtle: 0 0 12px 0 rgba(167, 216, 255, 0.15);
-  --shadow-glow-medium: 0 0 24px 0 rgba(167, 216, 255, 0.25);
-  --shadow-text-glow: 0 0 8px rgba(216, 180, 254, 0.5);
-  --shadow-content-block: 0 16px 40px rgba(0, 0, 0, 0.3);
+            /* -- Borders & Radii -- */
+            --border-radius-soft: 16px;
+            --border-radius-medium: 12px;
+            --border-radius-small: 8px;
+            --border-width: 1px;
 
-  /* -- Transitions & Animations -- */
-  --transition-smooth: 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  --transition-fast: 200ms ease-out;
+            /* -- Shadows & Glows (Depth System) -- */
+            --shadow-glow-subtle: 0 0 12px 0 rgba(167, 216, 255, 0.15);
+            --shadow-glow-medium: 0 0 24px 0 rgba(167, 216, 255, 0.25);
+            --shadow-text-glow: 0 0 8px rgba(216, 180, 254, 0.5);
+            --shadow-content-block: 0 16px 40px rgba(0, 0, 0, 0.3);
 
-  /* -- NEW: Shooting Star Controls -- */
-  /* Adjust these values to change the shooting star's behavior */
-  --shooting-star-duration: 12s; /* Controls travel time. Lower is faster. */
-  --shooting-star-frequency: 10s; /* Controls time between stars. */
+            /* -- Transitions & Animations -- */
+            --transition-smooth: 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
+            --transition-fast: 200ms ease-out;
+        }
+
+        /* 3. GLOBAL STYLES & RESETS */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-body);
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-base);
+            color: var(--text-primary);
+            background-color: var(--color-deep-space);
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background-color: var(--selection-bg);
+            color: var(--selection-text);
+        }
+
+        /* 4. DYNAMIC BACKGROUND SYSTEM */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(330deg, var(--color-nebula-violet) 0%, var(--color-nebula-blue) 50%, var(--color-deep-space) 100%);
+            background-size: 200% 200%;
+            animation: nebula-flow 45s ease infinite;
+            z-index: -3;
+        }
+        
+        #shooting-stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 5px 2px white;
+            animation: shooting-star-animation linear;
+            opacity: 0;
+        }
+
+        #particles-js {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -2;
+        }
+
+        .particles-js-canvas-el {
+            animation: fadeIn 4s 1s ease-in-out forwards;
+            opacity: 0;
+        }
+
+        /* 5. CORE LAYOUT & STRUCTURE */
+        .content-container {
+            max-width: var(--content-width);
+            margin: calc(var(--header-height) + 5vh) auto 10vh;
+            padding: calc(var(--spacing-unit) * 2);
+            position: relative;
+            z-index: 10;
+            background: var(--surface-color);
+            backdrop-filter: var(--surface-blur);
+            -webkit-backdrop-filter: var(--surface-blur);
+            border-radius: var(--border-radius-soft);
+            border: var(--border-width) solid var(--surface-border-color);
+            box-shadow: var(--shadow-content-block);
+            animation: float 15s ease-in-out infinite, fadeIn-up 1s var(--transition-smooth);
+        }
+
+        .content-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 10% 20%, var(--accent-primary) 0%, transparent 35%),
+                        radial-gradient(circle at 90% 80%, var(--accent-secondary) 0%, transparent 40%);
+            opacity: 0.15;
+            mix-blend-mode: screen;
+            border-radius: var(--border-radius-soft);
+            pointer-events: none;
+            transition: opacity var(--transition-smooth);
+        }
+        .content-container:hover::before {
+            opacity: 0.25;
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth);
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* 6. TYPOGRAPHY & TEXT STYLING */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-family-headings);
+            color: var(--text-headings);
+            font-weight: 400;
+            line-height: 1.3;
+            text-shadow: var(--shadow-text-glow);
+            margin: calc(var(--spacing-unit) * 1.5) 0 var(--spacing-unit) 0;
+        }
+        h1 { font-size: 3.5rem; letter-spacing: 1px; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.75rem; }
+
+        p { margin-bottom: var(--spacing-unit); }
+        strong { font-weight: 700; color: var(--text-accent); }
+
+        a {
+            color: var(--text-accent);
+            text-decoration: none;
+            position: relative;
+            transition: color var(--transition-fast);
+        }
+        a:hover {
+            color: var(--text-link-hover);
+        }
+        a::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent-secondary);
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all var(--transition-smooth);
+        }
+        a:hover::before {
+            visibility: visible;
+            transform: scaleX(1);
+        }
+
+        /* 7. COMPONENT REDESIGN */
+        .button, button {
+            font-family: var(--font-family-body);
+            font-weight: 700;
+            color: var(--color-starlight);
+            background: transparent;
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--border-radius-medium);
+            border: var(--border-width) solid var(--surface-border-color);
+            cursor: pointer;
+            box-shadow: var(--shadow-glow-subtle);
+            transition: var(--transition-smooth);
+        }
+        .button:hover, button:hover {
+            background-color: var(--surface-border-color);
+            box-shadow: var(--shadow-glow-medium);
+            transform: translateY(-2px);
+        }
+
+        blockquote {
+            margin: var(--spacing-unit) 0;
+            padding: var(--spacing-unit);
+            background: rgba(0,0,0,0.1);
+            border: none;
+            border-left: 3px solid var(--accent-secondary);
+            border-radius: var(--border-radius-small);
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        pre, code { font-family: var(--font-family-code); }
+        pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: var(--spacing-unit);
+            border-radius: var(--border-radius-medium);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow-x: auto;
+        }
+        :not(pre) > code {
+            background: var(--surface-border-color);
+            color: var(--text-accent);
+            padding: 0.2em 0.5em;
+            border-radius: var(--border-radius-small);
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, transparent, var(--surface-border-color), transparent);
+            margin: calc(var(--spacing-unit) * 2) 0;
+        }
+
+        /* 8. WIDGETS & MISCELLANEOUS */
+        .datetime-container {
+            position: fixed;
+            top: 1.5rem;
+            right: 2rem;
+            font-family: var(--font-family-code);
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            background: var(--surface-color);
+            backdrop-filter: var(--surface-blur);
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--border-radius-medium);
+            border: 1px solid var(--surface-border-color);
+            box-shadow: var(--shadow-glow-subtle);
+            z-index: 100;
+            transition: var(--transition-smooth);
+        }
+        .datetime-container:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-glow-medium);
+        }
+        
+        .star-controls {
+            position: fixed;
+            top: 1.5rem;
+            left: 2rem;
+            font-family: var(--font-family-code);
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            background: var(--surface-color);
+            backdrop-filter: var(--surface-blur);
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--border-radius-medium);
+            border: 1px solid var(--surface-border-color);
+            box-shadow: var(--shadow-glow-subtle);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .star-controls label {
+            font-weight: 700;
+        }
+        .star-controls input[type="range"] {
+            width: 150px;
+        }
+
+
+        /* 9. ADVANCED ANIMATIONS & KEYFRAMES */
+        @keyframes nebula-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes shooting-star-animation {
+            0% {
+                transform: translate(0, 0) scale(0);
+                opacity: 1;
+            }
+            80% {
+                transform: translate(var(--tx), var(--ty)) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeIn-up {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="shooting-stars-container"></div>
+
+    <div id="particles-js"></div>
+
+    <div class="star-controls">
+        <label for="star-frequency">Star Frequency</label>
+        <input type="range" id="star-frequency" min="100" max="5000" value="1500" step="100">
+    </div>
+
+    <div class="datetime-container">
+        <span id="date"></span> | <span id="time"></span>
+    </div>
+
+    <div class="content-container">
+        <div class="fade-in-section">
+            <h1>Celestial Observatory</h1>
+            <p>Welcome to your personal digital garden. A space to cultivate knowledge, connect ideas, and watch your thoughts grow like constellations in the night sky.</p>
+        </div>
+
+        <hr>
+
+        <div class="fade-in-section">
+            <h2>Stardust Notes</h2>
+            <p>This is a paragraph of text. <strong>Strong text looks like this.</strong> Links are designed to be subtle yet interactive, like <a href="#">a distant pulsar</a> calling out across the void. Everything is designed for a calm, focused reading experience.</p>
+            <blockquote>"The cosmos is within us. We are made of star-stuff. We are a way for the universe to know itself." - Carl Sagan</blockquote>
+        </div>
+
+        <div class="fade-in-section">
+            <h2>Code Terminal</h2>
+            <pre><code>function greet(planet) {
+    console.log(`Greetings from ${planet}!`);
 }
+greet("Earth");</code></pre>
+            <p>Inline code, like <code>&lt;div&gt;</code>, is also styled.</p>
+        </div>
 
-/* 3. GLOBAL STYLES & RESETS */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
+        <div class="fade-in-section">
+            <button class="button">Explore Deeper</button>
+        </div>
+    </div>
 
-body {
-  font-family: var(--font-family-body);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
-  color: var(--text-primary);
-  background-color: var(--color-deep-space);
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
+    <!-- Particles.js library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
-::selection {
-  background-color: var(--selection-bg);
-  color: var(--selection-text);
-}
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        
+        // --- PARTICLES.JS INITIALIZATION ---
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 160, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#ffffff" },
+                "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } },
+                "opacity": { "value": 0.5, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } },
+                "size": { "value": 2, "random": true, "anim": { "enable": false } },
+                "line_linked": { "enable": false },
+                "move": { "enable": true, "speed": 0.3, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": false }, "onclick": { "enable": false } } },
+            "retina_detect": true
+        });
 
-/* 4. DYNAMIC BACKGROUND SYSTEM */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(330deg, var(--color-nebula-violet) 0%, var(--color-nebula-blue) 50%, var(--color-deep-space) 100%);
-  background-size: 200% 200%;
-  animation: nebula-flow 45s ease infinite;
-  z-index: -3;
-}
+        // --- DATE & TIME WIDGET ---
+        const dateElement = document.getElementById('date');
+        const timeElement = document.getElementById('time');
+        function updateDateTime() {
+            const now = new Date();
+            dateElement.textContent = now.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            timeElement.textContent = now.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+        }
+        updateDateTime();
+        setInterval(updateDateTime, 1000 * 60); // Update every minute
 
-/* --- Improved CSS Shooting Star Layer --- */
-/* A single, more prominent shooting star. Its timing can be adjusted in :root */
-body::after {
-  content: '';
-  position: fixed;
-  top: -200px; /* Start far off-screen to hide the element before animation */
-  right: -200px;
-  width: 200px; /* Length of the trail */
-  height: 2px;
-  background: linear-gradient(to left, var(--color-starlight), transparent);
-  border-radius: 999px;
-  transform: rotate(-45deg); /* Set the angle of the star's path */
-  z-index: -1;
-  animation: shooting-star-anim var(--shooting-star-duration) ease-in-out infinite;
-  animation-delay: var(--shooting-star-frequency);
-}
+        // --- SCROLL FADE-IN EFFECT ---
+        const faders = document.querySelectorAll('.fade-in-section');
+        const appearOptions = {
+            threshold: 0.2,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('is-visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
 
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
 
-#particles-js {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: -2;
-}
+        // --- DYNAMIC SHOOTING STARS ---
+        const starsContainer = document.getElementById('shooting-stars-container');
+        const frequencySlider = document.getElementById('star-frequency');
+        let starInterval;
 
-.particles-js-canvas-el {
-  animation: fadeIn 4s 1s ease-in-out forwards;
-  opacity: 0;
-}
+        function createShootingStar() {
+            const star = document.createElement('div');
+            star.classList.add('shooting-star');
 
-/* 5. CORE LAYOUT & STRUCTURE */
-.content-container {
-  max-width: var(--content-width);
-  margin: calc(var(--header-height) + 5vh) auto 10vh;
-  padding: calc(var(--spacing-unit) * 2);
-  position: relative;
-  z-index: 10;
-  background: var(--surface-color);
-  backdrop-filter: var(--surface-blur);
-  -webkit-backdrop-filter: var(--surface-blur);
-  border-radius: var(--border-radius-soft);
-  border: var(--border-width) solid var(--surface-border-color);
-  box-shadow: var(--shadow-content-block);
-  animation: float 15s ease-in-out infinite, fadeIn-up 1s var(--transition-smooth);
-}
+            // Randomize starting position and trajectory
+            const startX = Math.random() * window.innerWidth;
+            const startY = Math.random() * window.innerHeight * 0.5; // Start in the top half
+            const endX = (Math.random() - 0.5) * 2 * window.innerWidth; // Travel across the screen
+            const endY = Math.random() * window.innerHeight;
 
-/* Aurora glow inside the container */
-.content-container::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(circle at 10% 20%, var(--accent-primary) 0%, transparent 35%),
-                radial-gradient(circle at 90% 80%, var(--accent-secondary) 0%, transparent 40%);
-    opacity: 0.15;
-    mix-blend-mode: screen;
-    border-radius: var(--border-radius-soft);
-    pointer-events: none;
-    transition: opacity var(--transition-smooth);
-}
-.content-container:hover::before {
-    opacity: 0.25;
-}
+            star.style.left = `${startX}px`;
+            star.style.top = `${startY}px`;
 
-/* Elements to fade in on scroll (requires JS to add the 'is-visible' class) */
-.fade-in-section {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth);
-}
-.fade-in-section.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+            // Use CSS variables for animation properties
+            star.style.setProperty('--tx', `${endX}px`);
+            star.style.setProperty('--ty', `${endY}px`);
+            
+            // Randomize duration and delay
+            const duration = (Math.random() * 5 + 5); // 5-10 seconds
+            const delay = Math.random() * 5; // 0-5 second delay
+            
+            star.style.animationDuration = `${duration}s`;
+            star.style.animationDelay = `${delay}s`;
 
+            starsContainer.appendChild(star);
 
-/* 6. TYPOGRAPHY & TEXT STYLING */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-headings);
-  color: var(--text-headings);
-  font-weight: 400; /* Marcellus is best at a normal weight */
-  line-height: 1.3;
-  text-shadow: var(--shadow-text-glow);
-  margin: calc(var(--spacing-unit) * 1.5) 0 var(--spacing-unit) 0;
-}
-h1 { font-size: 3.5rem; letter-spacing: 1px; }
-h2 { font-size: 2.5rem; }
-h3 { font-size: 1.75rem; }
+            // Remove the star after its animation is complete to prevent DOM clutter
+            star.addEventListener('animationend', () => {
+                star.remove();
+            });
+        }
 
-p { margin-bottom: var(--spacing-unit); }
-strong { font-weight: 700; color: var(--text-accent); }
+        function updateStarFrequency() {
+            clearInterval(starInterval);
+            // The slider value is inverted because a smaller interval means more frequent stars
+            const frequency = 6000 - frequencySlider.value;
+            starInterval = setInterval(createShootingStar, frequency);
+        }
 
-a {
-  color: var(--text-accent);
-  text-decoration: none;
-  position: relative;
-  transition: color var(--transition-fast);
-}
-a:hover {
-  color: var(--text-link-hover);
-}
-a::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  bottom: -4px;
-  left: 0;
-  background-color: var(--accent-secondary);
-  visibility: hidden;
-  transform: scaleX(0);
-  transition: all var(--transition-smooth);
-}
-a:hover::before {
-  visibility: visible;
-  transform: scaleX(1);
-}
+        // Initial setup
+        updateStarFrequency();
+        for(let i = 0; i < 5; i++) { // Create a few initial stars
+            createShootingStar();
+        }
 
-/* 7. COMPONENT REDESIGN */
-.button, button {
-  font-family: var(--font-family-body);
-  font-weight: 700;
-  color: var(--color-starlight);
-  background: transparent;
-  padding: 0.8rem 1.8rem;
-  border-radius: var(--border-radius-medium);
-  border: var(--border-width) solid var(--surface-border-color);
-  cursor: pointer;
-  box-shadow: var(--shadow-glow-subtle);
-  transition: var(--transition-smooth);
-}
-.button:hover, button:hover {
-  background-color: var(--surface-border-color);
-  box-shadow: var(--shadow-glow-medium);
-  transform: translateY(-2px);
-}
+        // Event listener for the slider
+        frequencySlider.addEventListener('input', updateStarFrequency);
 
-blockquote {
-  margin: var(--spacing-unit) 0;
-  padding: var(--spacing-unit);
-  background: rgba(0,0,0,0.1);
-  border: none;
-  border-left: 3px solid var(--accent-secondary);
-  border-radius: var(--border-radius-small);
-  font-style: italic;
-  color: var(--text-secondary);
-}
-
-pre, code { font-family: var(--font-family-code); }
-pre {
-  background: rgba(0, 0, 0, 0.3);
-  padding: var(--spacing-unit);
-  border-radius: var(--border-radius-medium);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  overflow-x: auto;
-}
-:not(pre) > code {
-  background: var(--surface-border-color);
-  color: var(--text-accent);
-  padding: 0.2em 0.5em;
-  border-radius: var(--border-radius-small);
-}
-
-hr {
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, transparent, var(--surface-border-color), transparent);
-    margin: calc(var(--spacing-unit) * 2) 0;
-}
-
-/* 8. WIDGETS & MISCELLANEOUS */
-.datetime-container {
-  position: fixed;
-  top: 1.5rem;
-  right: 2rem;
-  font-family: var(--font-family-code);
-  font-size: 0.9rem;
-  color: var(--text-primary);
-  background: var(--surface-color);
-  backdrop-filter: var(--surface-blur);
-  padding: 0.6rem 1.2rem;
-  border-radius: var(--border-radius-medium);
-  border: 1px solid var(--surface-border-color);
-  box-shadow: var(--shadow-glow-subtle);
-  z-index: 100;
-  transition: var(--transition-smooth);
-}
-.datetime-container:hover {
-    transform: scale(1.05);
-    box-shadow: var(--shadow-glow-medium);
-}
-
-/* 9. ADVANCED ANIMATIONS & KEYFRAMES */
-@keyframes nebula-flow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes shooting-star-anim {
-  0% {
-    transform: rotate(-45deg) translateY(0) translateX(0);
-    opacity: 0;
-  }
-  5% {
-    opacity: 1; /* Fade in quickly */
-  }
-  95% {
-    opacity: 1; /* Stay visible for most of the duration */
-  }
-  100% {
-    /* Travel across the entire viewport diagonally */
-    transform: rotate(-45deg) translateY(150vh) translateX(-150vw);
-    opacity: 0; /* Fade out at the end */
-  }
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes fadeIn-up {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+    });
