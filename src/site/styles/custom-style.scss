@@ -1,134 +1,344 @@
-/*==============================================================================
-   CORE: :root custom properties for full Aurora–Galaxy palette
-==============================================================================*/
+/*
+ * SUPER MARIO GALAXY - DIGITAL GARDEN THEME
+ *
+ * A whimsical, celestial theme inspired by the feeling of
+ * exploring floating worlds against a cosmic backdrop.
+ *
+ * Created by Gemini
+ */
+
+/*
+ * TABLE OF CONTENTS
+ * -----------------
+ * 1. FONT IMPORTS
+ * 2. ROOT VARIABLES (THEME CONTROLS)
+ * - Color Palette
+ * - Typography
+ * - Layout & Spacing
+ * - Effects & Animation
+ * 3. BASE & RESET STYLES
+ * 4. BACKGROUND & PARTICLE EFFECTS
+ * 5. TYPOGRAPHY & TEXT STYLES
+ * 6. LAYOUT & CORE STRUCTURE
+ * - Main Content Area
+ * - Sidebar
+ * 7. COMPONENT STYLING
+ * - Note Cards / Content Blocks
+ * - Links & Buttons
+ * - Blockquotes & Callouts
+ * - Code Blocks
+ * - Tags
+ * - Header & Navigation
+ * 8. WIDGETS & MISC
+ * - On-Site Timer
+ * 9. KEYFRAME ANIMATIONS
+*/
+
+/* 1. FONT IMPORTS */
+/* We're using Quicksand for its friendly, rounded feel for headers, and Inter for its excellent readability for body text. */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400&display=swap');
+
+
+/* 2. ROOT VARIABLES (THEME CONTROLS) */
 :root {
-  /*— Deep Space & Nebula Base —*/
-  --cosmic-void:       #00030a;
-  --cosmic-abyss:      #000a1f;
-  --primary-900:       #001d3d;
-  --primary-850:       #012147;
-  --primary-800:       #043262;
-  --primary-750:       #07457d;
-  --primary-700:       #0a5798;
-  --primary-650:       #0d6bae;
-  --primary-600:       #107fc4;
-  --primary-550:       #2a8cd1;
-  --primary-500:       #4499de;
-  --primary-450:       #5eaceb;
-  --primary-400:       #78bfff;
-  --primary-350:       #94d1ff;
-  --primary-300:       #b0e3ff;
-  --primary-250:       #cdefff;
-  --primary-200:       #e0f7ff;
-  --primary-150:       #f0fbff;
-  --primary-100:       #f9fdff;
+  /* -- COLOR PALETTE -- */
+  /* Inspired by the provided images: deep space, bright skies, and grassy planetoids. */
 
-  /*— Aurora Teal → Cyan Spectrum —*/
-  --aurora-teal-900:   #014f5c;
-  --aurora-teal-700:   #016a7e;
-  --aurora-teal-500:   #028fa8;
-  --aurora-teal-300:   #04b8d0;
-  --aurora-teal-100:   #7edcea;
-  --aurora-cyan-900:   #00525f;
-  --aurora-cyan-700:   #017181;
-  --aurora-cyan-500:   #02a5b3;
-  --aurora-cyan-300:   #04d1e3;
-  --aurora-cyan-100:   #a5f3fa;
+  /* Core Backgrounds */
+  --galaxy-deep-space: #0b021d;
+  --galaxy-nebula-start: #1e0a45;
+  --galaxy-nebula-end: #3c166b;
+  --galaxy-sky-blue: #87CEEB;
 
-  /*— Aurora Purple → Pink Spectrum —*/
-  --aurora-purple-900: #3b0364;
-  --aurora-purple-700: #5a0b96;
-  --aurora-purple-500: #7d17cd;
-  --aurora-purple-300: #a161e8;
-  --aurora-purple-100: #d1b3f7;
-  --aurora-pink-900:   #6b004b;
-  --aurora-pink-700:   #a01872;
-  --aurora-pink-500:   #d42cad;
-  --aurora-pink-300:   #f06fcf;
-  --aurora-pink-100:   #f7ccee;
+  /* Content "Planetoid" Colors */
+  --planet-surface: #f0f8ff; /* A very light, airy blue-white */
+  --planet-crust: #e0e8ef;
+  --planet-grass: #a3d487;
+  --planet-grass-dark: #7da863;
 
-  /*— Complementary Accents —*/
-  --aurora-emerald-500: #10b981;
-  --aurora-amber-500:   #f59e0b;
-  --aurora-rose-500:    #e11d48;
+  /* Text Colors */
+  --text-primary: #2c3e50; /* A dark, soft slate for readability */
+  --text-secondary: #5a6a7a;
+  --text-headings: #3b2a55; /* A deep purple for headers */
+  --text-light: #f0f8ff; /* For use on dark backgrounds */
 
-  /*— Gradient Presets —*/
-  --gradient-cosmic-sky:
-    linear-gradient(135deg, var(--primary-900), var(--primary-700) 50%, var(--primary-500));
-  --gradient-northern-lights:
-    linear-gradient(90deg, var(--aurora-cyan-300), var(--aurora-teal-300), var(--aurora-purple-300));
-  --gradient-nebula:
-    radial-gradient(circle at 30% 30%, rgba(160,62,238,0.1), transparent 60%),
-    radial-gradient(circle at 75% 65%, rgba(26,199,225,0.08), transparent 55%);
-  --gradient-star-trail:
-    linear-gradient(60deg, var(--primary-900), var(--primary-800) 30%, var(--primary-700) 70%, var(--primary-600));
+  /* Accent & Interactive Colors */
+  --accent-star-yellow: #FFD700;
+  --accent-comet-teal: #00aba9;
+  --accent-comet-teal-hover: #00c7c5;
+  --link-color: var(--accent-comet-teal);
+  --link-hover-color: var(--accent-star-yellow);
+  --selection-bg: rgba(255, 215, 0, 0.25);
+  --selection-text: var(--text-primary);
 
-  /*— Text & Link Colors —*/
-  --text-main:         #e0e8f8;
-  --text-muted:        rgba(224,232,248,0.6);
-  --text-highlight:    var(--aurora-pink-300);
-  --link-color:        var(--aurora-teal-500);
-  --link-hover:        var(--aurora-cyan-300);
-  --selection-bg:      rgba(224,232,248,0.15);
-  --selection-text:    #00030a;
+  /* -- TYPOGRAPHY -- */
+  --font-family-headings: 'Quicksand', sans-serif;
+  --font-family-body: 'Inter', sans-serif;
+  --font-family-code: 'JetBrains Mono', monospace;
+  --font-size-base: 17px; /* A slightly larger base for comfort */
+  --line-height-base: 1.7;
 
-  /*— Typography & Layout Defaults —*/
-  --font-sans:         'Inter', sans-serif;
-  --font-mono:         'JetBrains Mono', monospace;
-  --base-font-size:    16px;
-  --line-height:       1.6;
-  --site-padding:      2rem;
+  /* -- LAYOUT & SPACING -- */
+  --content-width: 800px;
+  --sidebar-width: 280px;
+  --border-radius-soft: 12px;
+  --border-radius-round: 50px; /* For buttons and tags */
+  --spacing-unit: 1.5rem;
+
+  /* -- EFFECTS & ANIMATION -- */
+  --shadow-float: 0 10px 25px rgba(11, 2, 29, 0.3), 0 5px 10px rgba(11, 2, 29, 0.2);
+  --shadow-glow: 0 0 15px rgba(135, 206, 235, 0.5);
+  --transition-smooth: 300ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+
+/* 3. BASE & RESET STYLES */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 body {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--text-primary);
+  background-color: var(--galaxy-deep-space);
   margin: 0;
-  padding: 0;
-  font-family: var(--font-sans);
-  font-size: var(--base-font-size);
-  line-height: var(--line-height);
-  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
 
-  /*— Layered Cosmic Background —*/
-  background-color: var(--primary-900);
-  background-image:
-    /* fine starfield */
-    url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='3' height='3'>\
-  <circle cx='1.5' cy='1.5' r='0.8' fill='rgba(255,255,255,0.12)'/>\
-</svg>") repeat,
-    /* nebula dust overlays */
-    var(--gradient-nebula),
-    /* deep-sky gradient */
-    var(--gradient-cosmic-sky);
+/* Selection highlight */
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
+}
 
-  background-attachment: fixed, fixed, fixed;
-  background-size: 3px 3px, cover, cover;
 
-  /*— Subtle Slow Drift Animation —*/
-  animation: cosmic-drift 120s linear infinite;
+/* 4. BACKGROUND & PARTICLE EFFECTS */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  /* A gradient from daytime sky to nebula space */
+  background: linear-gradient(
+    to bottom,
+    var(--galaxy-sky-blue) 0%,
+    rgba(135, 206, 235, 0.5) 30%,
+    transparent 60%,
+    var(--galaxy-nebula-start) 100%
+  );
+  z-index: -2;
+}
 
-  /*— Link Styling —*/
-  a {
-    color: var(--link-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
+/* Style for the particles.js canvas */
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* You might need to target the specific canvas element if #particles-js is just a container */
+.particles-js-canvas-el {
+  mix-blend-mode: screen; /* Makes stars look bright on the dark bg */
+  animation: fadeIn 3s ease-in;
+}
+
+
+/* 5. TYPOGRAPHY & TEXT STYLES */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-headings);
+  color: var(--text-headings);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: var(--spacing-unit);
+  margin-top: calc(var(--spacing-unit) * 1.5);
+}
+
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.8rem; }
+p { margin-bottom: var(--spacing-unit); }
+
+strong { font-weight: 600; color: var(--text-headings); }
+
+
+/* 6. LAYOUT & CORE STRUCTURE */
+/* Main content area - the "planetoid" */
+.content-container { /* You'll need to wrap your main content in this div */
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: calc(var(--spacing-unit) * 2);
+  background: var(--planet-surface);
+  border-radius: var(--border-radius-soft);
+  box-shadow: var(--shadow-float);
+  position: relative;
+  z-index: 10;
+  margin-top: 10vh; /* Push it down from the top */
+  margin-bottom: 10vh;
+  animation: float 12s ease-in-out infinite;
+  border: 4px solid var(--planet-crust);
+}
+
+/* Add some grassy bits to the top of the content */
+.content-container::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 5%;
+  width: 90%;
+  height: 20px;
+  background: var(--planet-grass);
+  border-radius: 10px;
+  filter: blur(2px);
+  opacity: 0.8;
+}
+
+/* Sidebar styling */
+.sidebar {
+  background: rgba(11, 2, 29, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+  padding: var(--spacing-unit);
+  border-radius: var(--border-radius-soft);
+}
+
+
+/* 7. COMPONENT STYLING */
+
+/* Links & Buttons */
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+  position: relative;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--accent-star-yellow);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+a:hover {
+  color: var(--link-hover-color);
+}
+
+a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.button, button {
+  font-family: var(--font-family-headings);
+  background-color: var(--accent-comet-teal);
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--border-radius-round);
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(0, 171, 169, 0.4);
+  transition: var(--transition-smooth);
+}
+
+.button:hover, button:hover {
+  background-color: var(--accent-comet-teal-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 171, 169, 0.5);
+}
+
+/* Blockquotes & Callouts */
+blockquote {
+  margin: var(--spacing-unit) 0;
+  padding: var(--spacing-unit);
+  background: var(--planet-crust);
+  border-left: 5px solid var(--planet-grass-dark);
+  border-radius: 0 var(--border-radius-soft) var(--border-radius-soft) 0;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Code Blocks */
+pre, code {
+  font-family: var(--font-family-code);
+}
+
+pre {
+  background-color: var(--galaxy-deep-space);
+  color: var(--text-light);
+  padding: var(--spacing-unit);
+  border-radius: var(--border-radius-soft);
+  overflow-x: auto;
+  border: 1px solid var(--galaxy-nebula-end);
+}
+
+/* Inline code */
+:not(pre) > code {
+  background-color: var(--planet-crust);
+  color: var(--text-headings);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+
+
+/* 8. WIDGETS & MISC */
+/* On-Site Timer */
+.datetime-container {
+  position: fixed;
+  top: 1rem;
+  right: 1.5rem;
+  font-family: var(--font-family-code);
+  font-size: 0.9rem;
+  color: var(--text-light);
+  background: rgba(11, 2, 29, 0.5);
+  backdrop-filter: blur(5px);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-round);
+  box-shadow: var(--shadow-glow);
+  border: 1px solid rgba(135, 206, 235, 0.3);
+  z-index: 100;
+  transition: var(--transition-smooth);
+}
+
+.datetime-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(135, 206, 235, 0.7);
+}
+
+
+/* 9. KEYFRAME ANIMATIONS */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
   }
-  a:hover {
-    color: var(--link-hover);
+  50% {
+    transform: translateY(-20px);
   }
-
-  /*— Text Selection —*/
-  &::selection {
-    background-color: var(--selection-bg);
-    color: var(--selection-text);
+  100% {
+    transform: translateY(0px);
   }
 }
 
-@keyframes cosmic-drift {
-  from {
-    background-position: 0 0, 0 0, 0 0;
-  }
-  to {
-    background-position: -200px -100px, 0 0, 0 0;
-  }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
