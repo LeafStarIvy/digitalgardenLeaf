@@ -368,10 +368,10 @@ hr {
 .shooting-star:nth-child(1) {
     top: 0;
     left: 0;
-    --start-x: -20vw;
-    --start-y: 10vh;
-    --end-x: 120vw;
-    --end-y: 40vh;
+    --start-x: 110vw; /* Start from top-right area */
+    --start-y: -10vh;
+    --end-x: -20vw;   /* End in bottom-left area */
+    --end-y: 80vh;
     animation-duration: 12s;
     animation-delay: 1s;
 }
@@ -379,10 +379,10 @@ hr {
 .shooting-star:nth-child(2) {
     top: 0;
     left: 0;
-    --start-x: -10vw;
-    --start-y: 60vh;
-    --end-x: 130vw;
-    --end-y: 5vh;
+    --start-x: 130vw; /* Start from top-right area */
+    --start-y: 20vh;
+    --end-x: -10vw;   /* End in bottom-left area */
+    --end-y: 110vh;
     animation-duration: 15s;
     animation-delay: 4.5s;
 }
@@ -390,10 +390,10 @@ hr {
 .shooting-star:nth-child(3) {
     top: 0;
     left: 0;
-    --start-x: 120vw;
-    --start-y: 80vh;
-    --end-x: -30vw;
-    --end-y: 15vh;
+    --start-x: 105vw; /* Start from top-right area */
+    --start-y: 5vh;
+    --end-x: -30vw;   /* End in bottom-left area */
+    --end-y: 90vh;
     animation-duration: 11s;
     animation-delay: 7s;
 }
@@ -401,10 +401,10 @@ hr {
 .shooting-star:nth-child(4) {
     top: 0;
     left: 0;
-    --start-x: 110vw;
-    --start-y: 5vh;
-    --end-x: -40vw;
-    --end-y: 65vh;
+    --start-x: 120vw; /* Start from top-right area */
+    --start-y: 0vh;
+    --end-x: -40vw;   /* End in bottom-left area */
+    --end-y: 100vh;
     animation-duration: 18s;
     animation-delay: 2.2s;
 }
@@ -412,10 +412,10 @@ hr {
 .shooting-star:nth-child(5) {
     top: 0;
     left: 0;
-    --start-x: -5vw;
-    --start-y: 95vh;
-    --end-x: 105vw;
-    --end-y: 75vh;
+    --start-x: 100vw; /* Start from top-right area */
+    --start-y: 30vh;
+    --end-x: -5vw;    /* End in bottom-left area */
+    --end-y: 120vh;
     animation-duration: 14s;
     animation-delay: 10s;
 }
