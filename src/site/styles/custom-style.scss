@@ -1,1159 +1,702 @@
 /*
- * ENHANCED COSMIC DIGITAL GARDEN SCSS
- * Advanced immersive cosmic theme with expanded color system,
- * interactive elements, and pure CSS animations
+ * MELANCHOLIC DEEP SPACE DIGITAL GARDEN
+ * Inspired by Super Mario Galaxy's contemplative cosmic atmosphere
+ * A complete redesign focused on deep space melancholy and wonder
  */
 
-// 1. CORE VARIABLES & EXPANDED AURORA CELESTIAL PALETTE
-// ------------------------------------------------------------------
-body {
-  /* Aurora Celestial theme - Massively enhanced color system */
+/* ===== COSMIC FOUNDATION ===== */
+:root {
+  /* Deep Space Color Palette - Melancholic Blues */
+  --void-black: #000205;
+  --space-deep: #0a0f1c;
+  --space-medium: #1a1f35;
+  --space-light: #2d334a;
+  --nebula-blue: #1e2b4a;
+  --nebula-purple: #2a1f3d;
+  --nebula-teal: #1f3a3a;
   
-  /* Primary Cosmic Scale - Expanded depth range */
-  --cosmic-void: #010508;        /* Absolute void */
-  --cosmic-abyss: #01080F;       /* Deep abyss */
-  --primary-900: #020B19;        /* Deepest Space */
-  --primary-850: #051425;        /* Deeper Space */
-  --primary-800: #0A192F;        /* Deep Space */
-  --primary-750: #0E2038;        /* Between Deep Space and Space */
-  --primary-700: #112240;        /* Space */
-  --primary-650: #172C4C;        /* Upper Space */
-  --primary-600: #1E3A5F;        /* Twilight */
-  --primary-550: #244467;        /* Lower Dusk */
-  --primary-500: #2A4A73;        /* Dusk */
-  --primary-450: #31547F;        /* Upper Dusk */
-  --primary-400: #3B5F8F;        /* Evening Sky */
-  --primary-350: #466B9E;        /* Lower Night Sky */
-  --primary-300: #5478AD;        /* Night Sky */
-  --primary-250: #658ABE;        /* Upper Night Sky */
-  --primary-200: #7599CB;        /* Dawn */
-  --primary-150: #8AADED;        /* Lower Morning Sky */
-  --primary-100: #A3BFEF;        /* Morning Sky */
-  --primary-75: #BECCEA;         /* Light Morning */
-  --primary-50: #D4E5FF;         /* Light Sky */
-  --primary-25: #E9F2FF;         /* Whisper Sky */
+  /* Stardust & Light */
+  --stardust-bright: #b8c5db;
+  --stardust-dim: #7a8aa3;
+  --stardust-faint: #4a5568;
+  --cosmic-glow: #64b5f6;
+  --distant-star: #90caf9;
+  --nova-white: #e3f2fd;
   
-  /* Aurora Spectrum - Expanded with intensity levels */
+  /* Melancholic Accents */
+  --melancholy-blue: #3d5a80;
+  --deep-sorrow: #293241;
+  --gentle-sadness: #5a728a;
+  --nostalgic-purple: #4a4e69;
+  --wistful-teal: #457b9d;
   
-  /* Teal/Blue spectrum */
-  --aurora-teal-900: #035D87;    /* Deep Ocean Teal */
-  --aurora-teal-700: #0679B3;    /* Ocean Teal */
-  --aurora-teal-500: #0EA5E9;    /* Electric Teal */
-  --aurora-teal-300: #38BDF8;    /* Bright Teal */
-  --aurora-teal-200: #55C6FA;    /* Light Electric Teal */
-  --aurora-teal-100: #7DD3FC;    /* Light Teal */
-  --aurora-teal-50: #BAE6FD;     /* Ice Teal */
-  --aurora-teal-25: #E0F5FF;     /* Faint Teal */
+  /* Typography */
+  --font-primary: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   
-  /* Cyan spectrum */
-  --aurora-cyan-900: #03565F;    /* Deep Cyan */
-  --aurora-cyan-700: #047481;    /* Ocean Cyan */
-  --aurora-cyan-500: #06B6D4;    /* Cyan */
-  --aurora-cyan-300: #22D3EE;    /* Bright Cyan */
-  --aurora-cyan-200: #4DDBF1;    /* Light Electric Cyan */
-  --aurora-cyan-100: #A5F3FC;    /* Light Cyan */
-  --aurora-cyan-50: #CFFAFE;     /* Ice Cyan */
-  --aurora-cyan-25: #ECFDFF;     /* Faint Cyan */
+  /* Measurements */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
   
-  /* Purple spectrum */
-  --aurora-purple-900: #4B1E99;  /* Deep Dark Purple */
-  --aurora-purple-700: #5F25C0;  /* Dark Purple */
-  --aurora-purple-500: #7C3AED;  /* Deep Purple */
-  --aurora-purple-400: #8B51F5;  /* Rich Purple */
-  --aurora-purple-300: #A78BFA;  /* Medium Purple */
-  --aurora-purple-200: #BFA8FC;  /* Light Medium Purple */
-  --aurora-purple-100: #C4B5FD;  /* Light Purple */
-  --aurora-purple-50: #EDE9FE;   /* Ice Purple */
-  --aurora-purple-25: #F6F4FF;   /* Faint Purple */
-  
-  /* Pink spectrum */
-  --aurora-pink-900: #8F1DAA;    /* Deep Dark Pink */
-  --aurora-pink-700: #B324D3;    /* Dark Pink */
-  --aurora-pink-500: #D946EF;    /* Deep Pink */
-  --aurora-pink-400: #E26BF2;    /* Rich Pink */
-  --aurora-pink-300: #F0ABFC;    /* Medium Pink */
-  --aurora-pink-200: #F2BDFD;    /* Light Medium Pink */
-  --aurora-pink-100: #F5D0FE;    /* Light Pink */
-  --aurora-pink-50: #FAE8FF;     /* Ice Pink */
-  --aurora-pink-25: #FDF4FF;     /* Faint Pink */
-  
-  /* Additional aurora hues */
-  --aurora-emerald-500: #10B981; /* Emerald */
-  --aurora-emerald-300: #34D399; /* Bright Emerald */
-  --aurora-emerald-100: #A7F3D0; /* Light Emerald */
-  
-  --aurora-amber-500: #F59E0B;   /* Amber */
-  --aurora-amber-300: #FBBF24;   /* Bright Amber */
-  --aurora-amber-100: #FDE68A;   /* Light Amber */
-  
-  --aurora-rose-500: #F43F5E;    /* Rose */
-  --aurora-rose-300: #FB7185;    /* Bright Rose */
-  --aurora-rose-100: #FCA5B3;    /* Light Rose */
-  
-  /* Advanced Gradient Palettes */
-  --gradient-cosmic-horizon: linear-gradient(135deg, var(--primary-900), var(--primary-700) 50%, var(--primary-600));
-  --gradient-aurora-sweep: linear-gradient(90deg, var(--aurora-purple-500), var(--aurora-pink-500), var(--aurora-teal-500));
-  --gradient-northern-lights: linear-gradient(135deg, var(--aurora-cyan-500), var(--aurora-teal-300), var(--aurora-purple-400));
-  --gradient-nebula-dust: linear-gradient(to bottom, var(--primary-800), var(--primary-700), var(--aurora-purple-900) 80%);
-  --gradient-star-trail: linear-gradient(60deg, var(--primary-900), var(--primary-800) 30%, var(--primary-700) 70%, var(--primary-600));
-  --gradient-text-cosmic: linear-gradient(90deg, var(--aurora-teal-300), var(--aurora-cyan-200), var(--aurora-purple-300));
-  --gradient-button-glow: linear-gradient(45deg, var(--aurora-purple-500), var(--aurora-teal-500));
-  --gradient-card-highlight: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
-  
-  /* Background system - Enhanced with variable opacity levels */
-  --background-primary: var(--primary-800);
-  --background-secondary: var(--primary-700);
-  --background-tertiary: var(--primary-600);
-  --background-quaternary: var(--primary-500);
-  --surface-1: var(--primary-500);
-  --surface-2: var(--primary-400);
-  --surface-3: var(--primary-450);
-  
-  /* Glass effect presets with variable intensity */
-  --glass-bg: rgba(10, 25, 47, 0.75);
-  --glass-bg-lighter: rgba(16, 36, 64, 0.65);
-  --glass-bg-lightest: rgba(22, 42, 75, 0.55);
-  --glass-bg-dark: rgba(1, 8, 15, 0.85);
-  --glass-bg-darkest: rgba(1, 5, 10, 0.95);
-  --glass-blur-strong: blur(12px);
-  --glass-blur-medium: blur(8px);
-  --glass-blur-light: blur(4px);
-  
-  /* Text system - Enhanced with varied intensity and purpose */
-  --text-primary: var(--aurora-cyan-50);
-  --text-secondary: var(--aurora-teal-100);
-  --text-tertiary: var(--aurora-teal-200);
-  --text-accent: var(--aurora-purple-100);
-  --text-accent-strong: var(--aurora-purple-300);
-  --text-muted: var(--primary-200);
-  --text-dim: var(--primary-300);
-  --text-normal: var(--primary-50);
-  --text-bright: var(--primary-25);
-  --text-highlight: var(--aurora-amber-100);
-  --text-danger: var(--aurora-rose-300);
-  --text-success: var(--aurora-emerald-300);
-  --text-warning: var(--aurora-amber-300);
-  --text-info: var(--aurora-teal-300);
-  
-  /* Interactive system - Expanded states */
-  --link-color: var(--aurora-teal-300);
-  --link-hover: var(--aurora-cyan-100);
-  --link-active: var(--aurora-cyan-200);
-  --link-visited: var(--aurora-teal-700);
-  --highlight: var(--aurora-purple-300);
-  --highlight-dim: var(--aurora-purple-700);
-  --highlight-bright: var(--aurora-purple-200);
-  --highlight-bg: rgba(124, 58, 237, 0.12);
-  --highlight-bg-strong: rgba(124, 58, 237, 0.25);
-  --selection-bg: rgba(10, 147, 150, 0.25);
-  --selection-text: var(--aurora-cyan-50);
-  
-  /* Typography system - Enhanced with spacing and rhythm */
-  --font-family-main: 'Inter', 'SF Pro Display', system-ui, sans-serif;
-  --font-family-heading: 'Space Grotesk', 'Montserrat', 'Segoe UI', sans-serif;
-  --font-family-code: 'JetBrains Mono', 'Fira Code', monospace;
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-md: 1.125rem;
-  --font-size-lg: 1.25rem;
-  --font-size-xl: 1.5rem;
-  --font-size-2xl: 1.75rem;
-  --font-size-3xl: 2.25rem;
-  --font-size-4xl: 3rem;
-  --font-size-5xl: 3.75rem;
-  --font-size-6xl: 4.5rem;
-  
-  --line-height-tight: 1.2;
-  --line-height-snug: 1.375;
-  --line-height-base: 1.6;
-  --line-height-loose: 1.75;
-  --line-height-relaxed: 1.9;
-  
-  --font-weight-light: 300;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
-  
-  --letter-spacing-tight: -0.025em;
-  --letter-spacing-normal: 0;
-  --letter-spacing-wide: 0.025em;
-  --letter-spacing-wider: 0.05em;
-  --letter-spacing-widest: 0.1em;
-  
-  --heading-letter-spacing: -0.025em;
-  --body-letter-spacing: 0.01em;
-  --code-letter-spacing: -0.01em;
-  
-  /* Layout system - Fine-tuned responsive controls */
-  --content-width: 700px;
-  --content-width-wide: 900px;
-  --content-width-narrow: 600px;
-  --sidebar-width: 300px;
-  --sidebar-width-collapsed: 60px;
-  --site-padding: 24px;
-  --site-padding-sm: 16px;
-  --site-padding-lg: 32px;
-  --element-spacing: 24px;
-  --element-spacing-sm: 16px;
-  --element-spacing-lg: 32px;
-  --element-spacing-xl: 48px;
-  --header-height: 60px;
-  --header-height-mobile: 50px;
-  --section-spacing: 64px;
-  --grid-gap: 24px;
-  
-  /* Border system - Expanded with variants */
-  --border-radius-2xs: 2px;
-  --border-radius-xs: 4px;
-  --border-radius-sm: 8px;
-  --border-radius: 12px;
-  --border-radius-md: 12px;
-  --border-radius-lg: 16px;
-  --border-radius-xl: 24px;
-  --border-radius-2xl: 32px;
-  --border-radius-3xl: 48px;
-  --border-radius-full: 9999px;
-  
-  --border-width-thin: 0.5px;
-  --border-width: 1px;
-  --border-width-2: 2px;
-  --border-width-4: 4px;
-  --border-width-8: 8px;
-  
-  --border-style: solid;
-  --border-style-dashed: dashed;
-  --border-style-dotted: dotted;
-  
-  --border-color: rgba(255, 255, 255, 0.1);
-  --border-color-strong: rgba(255, 255, 255, 0.15);
-  --border-color-subtle: rgba(255, 255, 255, 0.05);
-  --border-color-accent: rgba(10, 147, 150, 0.4);
-  --border-color-highlight: rgba(124, 58, 237, 0.4);
-  
-  /* Shadow system - Enhanced depth perception */
-  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-  --shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.25), 0 15px 12px rgba(0, 0, 0, 0.15);
-  --shadow-xl: 0 25px 60px rgba(0, 0, 0, 0.3), 0 20px 25px rgba(0, 0, 0, 0.25);
-  --shadow-2xl: 0 35px 75px rgba(0, 0, 0, 0.35), 0 30px 40px rgba(0, 0, 0, 0.3);
-  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
-  --shadow-inner-md: inset 0 4px 8px 0 rgba(0, 0, 0, 0.12);
-  --shadow-inner-lg: inset 0 8px 16px 0 rgba(0, 0, 0, 0.18);
-  --shadow-outline: 0 0 0 3px rgba(37, 99, 235, 0.25);
-  --shadow-outline-purple: 0 0 0 3px rgba(124, 58, 237, 0.25);
-  --shadow-outline-teal: 0 0 0 3px rgba(14, 165, 233, 0.25);
-  
-  /* Glow effects - New effect system */
-  --glow-subtle: 0 0 15px rgba(14, 165, 233, 0.15);
-  --glow-medium: 0 0 25px rgba(14, 165, 233, 0.25);
-  --glow-strong: 0 0 35px rgba(14, 165, 233, 0.35);
-  --glow-purple-subtle: 0 0 15px rgba(124, 58, 237, 0.15);
-  --glow-purple-medium: 0 0 25px rgba(124, 58, 237, 0.25);
-  --glow-purple-strong: 0 0 35px rgba(124, 58, 237, 0.35);
-  --glow-cyan-subtle: 0 0 15px rgba(6, 182, 212, 0.15);
-  --glow-cyan-medium: 0 0 25px rgba(6, 182, 212, 0.25);
-  --glow-cyan-strong: 0 0 35px rgba(6, 182, 212, 0.35);
-  
-  /* Component-specific variables */
-  --callout-border-width: 2px;
-  --callout-padding: 18px;
-  --callout-radius: var(--border-radius-sm);
-  --callout-shadow: var(--shadow-sm);
-  
-  --widget-bg: var(--glass-bg);
-  --widget-border: var(--border-color);
-  --widget-shadow: var(--shadow-md);
-  --widget-radius: var(--border-radius);
-  
-  --card-bg: var(--glass-bg-lighter);
-  --card-border: var(--border-color);
-  --card-shadow: var(--shadow-md);
-  --card-radius: var(--border-radius-md);
-  --card-padding: 1.5rem;
-  
-  --button-radius: var(--border-radius);
-  --button-padding-y: 0.6em;
-  --button-padding-x: 1.2em;
-  --button-shadow: var(--shadow-sm);
-  --button-shadow-hover: var(--shadow-md);
-  
-  --background-primary-alt: var(--glass-bg);
-  --background-secondary-alt: var(--glass-bg-lighter);
-  
-  /* Background gradient */
-  --bg-gradient-start: var(--primary-900);
-  --bg-gradient-mid: var(--primary-800);
-  --bg-gradient-end: var(--primary-700);
-  --bg-gradient-dir: 135deg;
-  
-  /* Effects */
-  --blur-amount: 10px;
-  --blur-amount-strong: 20px;
-  --blur-amount-subtle: 5px;
-  --grain-opacity: 0.04;
-  --grain-size: 150px;
-  --aurora-opacity: 0.2;
-  --starfield-opacity: 0.5;
-  --transition-speed: 0.3s;
-  --transition-speed-fast: 0.15s;
-  --transition-speed-slow: 0.5s;
-  --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-ease-in: cubic-bezier(0.4, 0, 1, 1);
-  --transition-ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --transition-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  
-  /* Animation timings */
-  --animation-slower: 1500ms;
-  --animation-slow: 1000ms;
-  --animation-normal: 500ms;
-  --animation-fast: 300ms;
-  --animation-faster: 150ms;
-  
-  /* Parallax depths */
-  --parallax-depth-1: 10px;
-  --parallax-depth-2: 20px;
-  --parallax-depth-3: 30px;
-  --parallax-depth-4: 40px;
-  
-  /* Custom masks for clipping effects */
-  --mask-fade-horizontal: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-  --mask-fade-vertical: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-  --mask-radial: radial-gradient(circle at center, black 30%, transparent 70%);
-  
-  /* Global setup */
-  position: relative;
-  z-index: 0;
-  font-family: var(--font-family-main);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
-  letter-spacing: var(--body-letter-spacing);
-  color: var(--text-primary);
-  background-color: var(--primary-900);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  
-  /* Set up selection styling */
-  ::selection {
-    background-color: var(--selection-bg);
-    color: var(--selection-text);
-  }
+  /* Animation */
+  --transition-gentle: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-cosmic: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  --float-duration: 6s;
+  --pulse-duration: 3s;
 }
 
-// 6. MIXINS & UTILITIES
-// ------------------------------------------------------------------
-@mixin gradient-bg($dir, $start, $end) {
-  background: linear-gradient($dir, $start, $end);
-}
-
-@mixin glass-card($blur: 8px, $alpha: 0.1) {
-  background: rgba(255,255,255,$alpha);
-  backdrop-filter: blur($blur);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-}
-
-// 9. LINK STYLES WHEN HOVERING ABOVE ONE
-a {
-  color: var(--link-color);
-  text-decoration: none;
-  position: relative;
-  transition: color 0.3s ease;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -2px; left: 0;
-    width: 0; height: 2px;
-    background: var(--link-color);
-    transition: width 0.3s ease;
-  }
-  
-  &:hover { color: var(--highlight); }
-  &:hover::after { width: 100%; }
-  
-  // Optional enhancement for internal links while keeping original animation
-  &.internal-link {
-    border-bottom: 1px dashed rgba(138, 214, 238, 0.4);
-    
-    &:hover {
-      border-bottom: 1px dashed rgba(191, 166, 224, 0.6);
-    }
-  }
-}
-
-// Replace section 11. CUSTOM SCROLLBAR
-// ------------------------------------------------------------------
-::-webkit-scrollbar { 
-  width: 8px; 
-  height: 8px;
-}
-
-::-webkit-scrollbar-track { 
-  background: rgba(0,0,0,0.1);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--highlight), var(--text-accent));
-  border-radius: 10px;
-  border: 2px solid transparent;
-  background-clip: padding-box;
-  
-  &:hover {
-    background: linear-gradient(var(--text-accent), var(--highlight));
-    border-width: 1px;
-  }
-}
-
-// For Firefox
+/* ===== COSMIC RESET & BASE ===== */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: var(--highlight) transparent;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-// 12.1 Base Heading (h1) Overrides
-h1 {
-  font-size: 2.8rem;
-  margin-bottom: 1rem;
-  color: var(--text-primary);
-  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
 }
 
-// 12.2 Callout Component Styles
-.callout {
-  border-left: var(--callout-border-width) solid var(--highlight);
-  background: rgba(0,0,0,0.2);
-  padding: var(--callout-padding);
-  margin: 1.5rem 0;
-  border-radius: var(--callout-radius);
+body {
+  font-family: var(--font-primary);
+  background: linear-gradient(135deg, var(--void-black) 0%, var(--space-deep) 40%, var(--nebula-blue) 100%);
+  color: var(--stardust-bright);
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
   position: relative;
-  z-index: 2;
-  overflow: hidden;
 }
 
-  /* 12.2.1 Callout Gradient Overlay */
-  .callout::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(135deg,
-                rgba(255,255,255,0.05),
-                transparent 50%);
-    pointer-events: none;
-  }
-
-  /* 12.2.2 Callout Type Colors */
-  .callout.note    { border-left-color: var(--link-color); }
-  .callout.warning { border-left-color: #FFD77A; }
-  .callout.important { border-left-color: #FF7A7A; }
-  .callout.tip     { border-left-color: #7AFF9C; }
-
-  /* 12.2.3 Callout Title */
-  .callout .callout-title {
-    font-weight: var(--font-weight-medium);
-    margin-bottom: 0.5rem;
-    display: flex;
-    align-items: center;
-  }
-    .callout .callout-title svg {
-      margin-right: 0.5rem;
-    }
-
-// 12.3 Table Overrides
-table {
+/* ===== COSMIC BACKGROUND LAYERS ===== */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  margin: 2rem 0;
-  overflow: hidden;
-  border-radius: var(--border-radius);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(100, 181, 246, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(77, 77, 148, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(69, 123, 157, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -2;
 }
 
-  /* 12.3.1 Table Header */
-  table thead {
-    background: var(--background-secondary);
-    color: var(--text-primary);
-  }
-    table thead th {
-      padding: 1rem;
-      text-align: left;
-      font-weight: var(--font-weight-medium);
-      border-bottom: 2px solid rgba(255,255,255,0.1);
-    }
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(0deg, var(--space-deep) 0%, transparent 20%),
+    linear-gradient(180deg, var(--space-deep) 0%, transparent 20%);
+  pointer-events: none;
+  z-index: -1;
+}
 
-  /* 12.3.2 Table Body Rows */
-  table tbody tr:nth-child(even) {
-    background: rgba(0,0,0,0.1);
-  }
-  table tbody tr:hover {
-    background: rgba(255,255,255,0.05);
-  }
-
-  /* 12.3.3 Table Cells */
-  table th,
-  table td {
-    padding: 0.85rem 1rem;
-    border: none;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-
-// 12.4 Universal Heading Typography (h1–h6)
+/* ===== TYPOGRAPHY SYSTEM ===== */
 h1, h2, h3, h4, h5, h6 {
-  letter-spacing: var(--heading-letter-spacing);
-  line-height: var(--line-height-tight);
-  margin-top: 2em;
-  margin-bottom: 0.5em;
-  font-weight: var(--font-weight-bold);
+  font-family: var(--font-heading);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  margin-bottom: var(--space-md);
+  color: var(--nova-white);
+  text-shadow: 0 0 20px rgba(100, 181, 246, 0.3);
 }
 
-// 12.5 Specific Heading Styles
 h1 {
-  font-size: 2.8rem;
-  background: linear-gradient(90deg, var(--text-primary), var(--highlight));
+  font-size: 2.5rem;
+  font-weight: 200;
+  margin-bottom: var(--space-lg);
+  background: linear-gradient(135deg, var(--distant-star), var(--cosmic-glow));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: none;
+  background-clip: text;
 }
 
 h2 {
   font-size: 2rem;
-  color: var(--text-accent);
+  border-bottom: 1px solid var(--melancholy-blue);
+  padding-bottom: var(--space-xs);
+  margin-bottom: var(--space-lg);
 }
 
 h3 {
   font-size: 1.5rem;
-  color: var(--text-primary);
+  color: var(--distant-star);
 }
 
-// 12.6 Body Text (p, li, td) Styles
-p, li, td {
-  line-height: var(--line-height-loose);
-  letter-spacing: var(--body-letter-spacing);
+h4 {
+  font-size: 1.25rem;
+  color: var(--stardust-bright);
 }
 
-// 12.7 Blockquote Styles
-blockquote {
-  border-left: 4px solid var(--highlight);
-  padding-left: 1rem;
-  font-style: italic;
-  color: var(--text-muted);
+p {
+  margin-bottom: var(--space-md);
+  color: var(--stardust-dim);
+  font-size: 1.1rem;
 }
 
-// 12.8 Code Block & Inline Code Typography
-pre, code {
-  font-family: var(--font-family-code);
-  font-size: 0.9em;
-  border-radius: var(--border-radius);
+/* ===== CONTENT CONTAINER ===== */
+.site-body-left-column,
+.site-body-right-column {
+  background: none;
 }
 
-pre {
-  padding: 1rem;
-  overflow-x: auto;
-  background: rgba(0,0,0,0.3);
-  border: 1px solid rgba(255,255,255,0.1);
+.site-body-left-column {
+  width: 280px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  background: linear-gradient(180deg, 
+    rgba(26, 31, 53, 0.95) 0%, 
+    rgba(16, 20, 35, 0.98) 100%);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(100, 181, 246, 0.1);
+  z-index: 10;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--melancholy-blue) transparent;
 }
 
-code {
-  background: rgba(0,0,0,0.2);
-  padding: 0.2em 0.4em;
+.site-body-left-column::-webkit-scrollbar {
+  width: 6px;
 }
 
-pre code {
+.site-body-left-column::-webkit-scrollbar-track {
   background: transparent;
+}
+
+.site-body-left-column::-webkit-scrollbar-thumb {
+  background: var(--melancholy-blue);
+  border-radius: 3px;
+}
+
+.site-body-right-column {
+  margin-left: 280px;
+  padding: var(--space-2xl) var(--space-xl);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ===== NAVIGATION STYLING ===== */
+.site-header {
+  padding: var(--space-lg) var(--space-md);
+  border-bottom: 1px solid rgba(100, 181, 246, 0.1);
+  margin-bottom: var(--space-lg);
+}
+
+.site-header h1 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 0;
+  color: var(--nova-white);
+  text-shadow: 0 0 15px rgba(100, 181, 246, 0.4);
+}
+
+.nav-header {
+  color: var(--distant-star);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: var(--space-md) 0 var(--space-sm) 0;
+  padding-left: var(--space-md);
+}
+
+.navbar-nav {
+  list-style: none;
+  margin: 0;
   padding: 0;
 }
 
-// 12.9 Code Header Bar
-.code-header {
-  background: rgba(0,0,0,0.4);
-  padding: 0.5rem 1rem;
-  font-family: var(--font-family-code);
-  font-size: 0.8em;
-  color: var(--text-muted);
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-bottom: none;
+.navbar-nav li {
+  margin-bottom: var(--space-xs);
 }
 
-
-// Define the title header GIF variable
-:root {
-  --title-header-gif: url('/img/fractal-title.gif');
-  --title-header-gif-height: 120px;
-  --title-header-gif-width: 100%;
-  --title-header-gif-margin-bottom: 10px;
-}
-
-// Add the GIF above the sidebar title
-.filetree-sidebar {
-  h1 {
-    // Add spacing for the GIF above
-    margin-top: var(--title-header-gif-height);
-    position: relative;
-    
-    // Create the GIF element using pseudo-element
-    &::before {
-      content: '';
-      position: absolute;
-      top: calc(-1 * var(--title-header-gif-height) - var(--title-header-gif-margin-bottom));
-      left: 0;
-      width: var(--title-header-gif-width);
-      height: var(--title-header-gif-height);
-      background-image: var(--title-header-gif);
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-      z-index: 1;
-    }
-  }
-}
-
-// For mobile responsiveness
-@media (max-width: 800px) {
-  .filetree-sidebar {
-    h1::before {
-      // Show the GIF even when the h1 is hidden on mobile
-      position: relative;
-      display: block;
-      top: 0;
-      margin-bottom: var(--title-header-gif-margin-bottom);
-    }
-  }
-}
-// Add opacity to right sidebar elements (graph, backlinks)
-// Adjust the opacity value to your preference (0.0 - 1.0)
-:root {
-  --sidebar-opacity: 0.85; // 85% opacity - change as needed
-  --sidebar-hover-opacity: 0.95; // Opacity when hovering
-  --sidebar-transition: opacity 0.3s ease; // Smooth transition effect
-}
-
-// Target the sidebar container and its components
-.sidebar {
-  opacity: var(--sidebar-opacity);
-  transition: var(--sidebar-transition);
-  
-  // Apply opacity to all main components
-  .graph, 
-  .toc, 
-  .backlinks,
-  #link-graph,
-  .sidebar-container {
-    opacity: var(--sidebar-opacity);
-    transition: var(--sidebar-transition);
-  }
-  
-  // Optional: Increase opacity when hovering
-  &:hover {
-    opacity: var(--sidebar-hover-opacity);
-    
-    .graph, 
-    .toc, 
-    .backlinks,
-    #link-graph,
-    .sidebar-container {
-      opacity: var(--sidebar-hover-opacity);
-    }
-  }
-}
-
-// Also apply to fullscreen graph mode
-.graph-fs, #full-graph {
-  opacity: var(--sidebar-opacity);
-  transition: var(--sidebar-transition);
-  
-  &:hover {
-    opacity: var(--sidebar-hover-opacity);
-  }
-}
-
-
-/* 16. Particles enhancement for cosmic theme */
-.particles-js-canvas-el {
-  opacity: 0.65; /* Adjust opacity to match your cosmic theme */
-  mix-blend-mode: screen; /* Makes particles blend nicely with background */
-  filter: blur(0.5px); /* Subtle blur for cosmic effect */
-}
-
-/* Adding subtle animation to make particles even more cosmic */
-@keyframes cosmic-pulse {
-  0% { opacity: 0.65; filter: blur(0.5px); }
-  50% { opacity: 0.75; filter: blur(1px); }
-  100% { opacity: 0.65; filter: blur(0.5px); }
-}
-
-/* Apply animation to particles canvas */
-.particles-js-canvas-el {
-  animation: cosmic-pulse 10s infinite ease-in-out;
-}
-/*END OF PARTICLESJS */
-
-
-
-/* 17. Minimal flashcard base system - dimension-neutral */
-.flashcard-grid {
-  display: grid;
-  gap: 1rem; /* Smaller default gap */
-  margin: 1.5rem 0;
-}
-
-/* Grid column variations - default setup */
-.grid-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-3 { grid-template-columns: repeat(3, 1fr); }
-.grid-4 { grid-template-columns: repeat(4, 1fr); }
-
-/* Responsive breakpoints */
-@media (max-width: 1400px) {
-  .grid-4 { grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (max-width: 1000px) {
-  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 650px) {
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-}
-
-/* Flashcard container - minimal styling */
-.flashcard {
-  background: rgba(30, 37, 78, 0.75);
-  backdrop-filter: blur(8px);
-  border-radius: 10px; /* Slightly smaller radius */
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* Smaller shadow */
-  border: 1px solid rgba(224, 178, 255, 0.3);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Make the anchor fill the entire card */
-.flashcard a {
-  display: flex;
-  flex-direction: column;
+.navbar-nav a {
+  display: block;
+  padding: var(--space-xs) var(--space-md);
+  color: var(--stardust-dim);
   text-decoration: none;
-  color: inherit;
-  height: 100%;
-}
-
-/* Remove underline effect from links */
-.flashcard a::after {
-  display: none;
-}
-
-/* Hover effects - more subtle */
-.flashcard:hover {
-  transform: translateY(-4px); /* Less dramatic lift */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  border-color: var(--link-color);
-}
-
-/* Image container - Base styling without dimensions */
-.flashcard-image {
-  background: rgba(18, 20, 42, 0.6);
-  padding: 0.8rem; /* Smaller default padding */
-  display: flex;
-  align-items: center;
-  justify-content: center;  
+  border-radius: 8px;
+  transition: var(--transition-gentle);
+  font-size: 0.95rem;
+  position: relative;
   overflow: hidden;
 }
 
-/* Image styling */
-.flashcard-image img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4)); /* Smaller shadow */
-  transition: transform 0.3s ease;
+.navbar-nav a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(100, 181, 246, 0.1), transparent);
+  transition: width 0.3s ease;
 }
 
-.flashcard:hover .flashcard-image img {
-  transform: scale(1.05);
+.navbar-nav a:hover::before {
+  width: 100%;
 }
 
-/* Content area - minimal default padding */
-.flashcard-content {
-  padding: 0.8rem;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+.navbar-nav a:hover {
+  color: var(--distant-star);
+  background: rgba(100, 181, 246, 0.05);
+  transform: translateX(4px);
 }
 
-/* Typography defaults - smaller */
-.flashcard-content h3 {
-  margin: 0 0 0.5rem;
-  color: var(--text-accent);
-  font-size: 1.1rem; /* Smaller default */
-  font-weight: 600;
+.navbar-nav a.active {
+  color: var(--cosmic-glow);
+  background: rgba(100, 181, 246, 0.1);
+  box-shadow: 0 0 20px rgba(100, 181, 246, 0.2);
 }
 
-.flashcard-content p {
-  margin: 0;
-  color: var(--text-normal);
-  font-size: 0.85rem; /* Smaller default */
-  line-height: 1.3;
-  opacity: 0.9;
-}
-.round-img {
-  border-radius: 50%;
-  object-fit: cover;
+/* ===== MAIN CONTENT STYLING ===== */
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
-.round-img-50 { width: 50px; height: 50px; }
-.round-img-100 { width: 100px; height: 100px; }
-.round-img-150 { width: 150px; height: 150px; }
-.round-img-200 { width: 200px; height: 200px; }
-/* Add more size classes as needed */
+.content::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: calc(100% + 100px);
+  height: calc(100% + 100px);
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(100, 181, 246, 0.02) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
 
+/* ===== ARTICLE STYLING ===== */
+article {
+  background: linear-gradient(135deg, 
+    rgba(26, 31, 53, 0.4) 0%, 
+    rgba(16, 20, 35, 0.6) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(100, 181, 246, 0.1);
+  border-radius: 16px;
+  padding: var(--space-xl);
+  margin-bottom: var(--space-xl);
+  position: relative;
+  overflow: hidden;
+}
 
-/* 18. ON SITE TIMER */
+article::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(100, 181, 246, 0.5), transparent);
+}
+
+article::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle at center, rgba(100, 181, 246, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ===== LINKS ===== */
+a {
+  color: var(--cosmic-glow);
+  text-decoration: none;
+  transition: var(--transition-gentle);
+  position: relative;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--cosmic-glow), var(--distant-star));
+  transition: width 0.3s ease;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+a:hover {
+  color: var(--distant-star);
+  text-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
+}
+
+/* ===== LISTS ===== */
+ul, ol {
+  margin-left: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+li {
+  margin-bottom: var(--space-xs);
+  color: var(--stardust-dim);
+}
+
+li::marker {
+  color: var(--cosmic-glow);
+}
+
+/* ===== BLOCKQUOTES ===== */
+blockquote {
+  margin: var(--space-lg) 0;
+  padding: var(--space-md) var(--space-lg);
+  background: linear-gradient(135deg, 
+    rgba(61, 90, 128, 0.1) 0%, 
+    rgba(74, 78, 105, 0.1) 100%);
+  border-left: 3px solid var(--cosmic-glow);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: var(--stardust-bright);
+  position: relative;
+}
+
+blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: var(--space-md);
+  font-size: 3rem;
+  color: var(--cosmic-glow);
+  opacity: 0.3;
+}
+
+/* ===== CODE BLOCKS ===== */
+code {
+  font-family: var(--font-mono);
+  background: rgba(10, 15, 28, 0.8);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--distant-star);
+  border: 1px solid rgba(100, 181, 246, 0.1);
+}
+
+pre {
+  background: linear-gradient(135deg, 
+    rgba(10, 15, 28, 0.9) 0%, 
+    rgba(16, 20, 35, 0.9) 100%);
+  padding: var(--space-md);
+  border-radius: 12px;
+  overflow-x: auto;
+  margin: var(--space-md) 0;
+  border: 1px solid rgba(100, 181, 246, 0.1);
+  position: relative;
+}
+
+pre::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cosmic-glow), transparent);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  border: none;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* ===== TABLES ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-md) 0;
+  background: rgba(26, 31, 53, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  border-bottom: 1px solid rgba(100, 181, 246, 0.1);
+}
+
+th {
+  background: rgba(100, 181, 246, 0.1);
+  color: var(--nova-white);
+  font-weight: 500;
+}
+
+td {
+  color: var(--stardust-dim);
+}
+
+/* ===== BUTTONS & INTERACTIVE ELEMENTS ===== */
+button, .button {
+  background: linear-gradient(135deg, 
+    rgba(100, 181, 246, 0.2) 0%, 
+    rgba(69, 123, 157, 0.2) 100%);
+  color: var(--distant-star);
+  border: 1px solid rgba(100, 181, 246, 0.3);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 8px;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition-gentle);
+  position: relative;
+  overflow: hidden;
+}
+
+button::before, .button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(100, 181, 246, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+button:hover::before, .button:hover::before {
+  left: 100%;
+}
+
+button:hover, .button:hover {
+  background: linear-gradient(135deg, 
+    rgba(100, 181, 246, 0.3) 0%, 
+    rgba(69, 123, 157, 0.3) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(100, 181, 246, 0.2);
+}
+
+/* ===== DATETIME COMPONENT ===== */
 .datetime-container {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
-  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
-  font-size: 1rem; /* Increased from 0.875rem */
-  color: var(--text-muted, #6e6e6e);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem; /* Increased spacing */
-  opacity: 0.9;
-  transition: opacity 0.2s ease, transform 0.3s ease;
+  top: var(--space-md);
+  right: var(--space-md);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--stardust-dim);
+  background: rgba(26, 31, 53, 0.8);
+  backdrop-filter: blur(10px);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 8px;
+  border: 1px solid rgba(100, 181, 246, 0.1);
   z-index: 100;
+  transition: var(--transition-gentle);
 }
 
 .datetime-container:hover {
-  opacity: 1;
+  background: rgba(26, 31, 53, 0.9);
+  color: var(--distant-star);
 }
 
 .datetime-toggle {
   background: none;
   border: none;
+  color: var(--stardust-dim);
   cursor: pointer;
-  padding: 0.25rem;
-  color: var(--text-muted, #6e6e6e);
-  opacity: 0.6;
-  transition: opacity 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: var(--space-xs);
+  border-radius: 4px;
+  transition: var(--transition-gentle);
+  margin-left: var(--space-xs);
 }
 
 .datetime-toggle:hover {
-  opacity: 1;
+  color: var(--cosmic-glow);
+  background: rgba(100, 181, 246, 0.1);
+}
+
+.datetime-reset {
+  position: fixed;
+  bottom: var(--space-md);
+  right: var(--space-md);
+  background: rgba(26, 31, 53, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(100, 181, 246, 0.1);
+  color: var(--stardust-dim);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: var(--transition-gentle);
+  z-index: 100;
+}
+
+.datetime-reset:hover {
+  background: rgba(26, 31, 53, 0.9);
+  color: var(--distant-star);
 }
 
 .datetime-hidden {
   display: none;
 }
 
-/* Reset button that appears when datetime is hidden */
-.datetime-reset {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 0.875rem;
-  color: var(--text-muted, #6e6e6e);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 4px;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
-  z-index: 100;
-}
-
-.datetime-reset:hover {
-  opacity: 1;
-}
-
-.datetime-reset svg {
-  width: 16px;
-  height: 16px;
-}
-
 .datetime-reset-hidden {
   display: none;
 }
 
-/* Keep body full width so scrollbar stays at browser edge */
-body {
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-}
-
-/* If there's a main wrapper, make it full width too */
-html {
+/* ===== PARTICLES.JS ENHANCEMENT ===== */
+.particles-js-canvas-el {
+  position: fixed !important;
+  top: 0;
+  left: 0;
   width: 100%;
-  overflow-x: hidden;
+  height: 100%;
+  z-index: -10;
+  opacity: 0.6;
+  mix-blend-mode: screen;
 }
 
-/* Adjust headings to be proportionally bigger */
-.content h1 { 
-  font-size: 2.4em; 
-  margin-bottom: 1rem;
-}
-.content h2 { 
-  font-size: 2em; 
-  margin-bottom: 0.8rem;
-}
-.content h3 { 
-  font-size: 1.6em; 
-  margin-bottom: 0.6rem;
-}
-.content h4 { 
-  font-size: 1.3em; 
-  margin-bottom: 0.5rem;
+/* ===== COSMIC ANIMATIONS ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
-/* Make paragraphs more spacious */
-.content p {
-  margin-bottom: 1.2em;
-  font-size: inherit;
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
-/* Adjust lists for better spacing */
-.content ul, .content ol {
-  margin-bottom: 1.2em;
-  padding-left: 2em;
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
 }
 
-.content li {
-  margin-bottom: 0.5em;
-  line-height: 1.6;
+.cosmic-float {
+  animation: float var(--float-duration) ease-in-out infinite;
 }
 
-/* Make code blocks wider too */
-.content pre {
-  margin: 1.5em 0;
-  padding: 1.5em;
-  border-radius: 8px;
+.cosmic-pulse {
+  animation: pulse var(--pulse-duration) ease-in-out infinite;
 }
 
-/* Adjust blockquotes */
-.content blockquote {
-  margin: 1.5em 0;
-  padding: 1em 2em;
-  border-left: 4px solid var(--accent-color, #666);
+.cosmic-twinkle {
+  animation: twinkle 2s ease-in-out infinite;
 }
 
-/* Responsive design - adjust for smaller screens */
+/* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
-  .content.cm-s-obsidian {
-    width: 95% !important;
-    padding: 1rem 2rem;
-    font-size: 1.05em;
-  }
-}
-
-@media (max-width: 480px) {
-  .content.cm-s-obsidian {
-    width: 98% !important;
-    padding: 1rem 1.5rem;
-    font-size: 1em;
-  }
-}
-
-/* ===== FOCUS MODE STYLES (no font/header overrides) ===== */
-
-/* Fullscreen Button (unchanged) */
-.fullscreen-btn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: linear-gradient(135deg, var(--text-accent, #667eea) 0%, #764ba2 100%);
-  border: none;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  z-index: 1001;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-  }
-  &:active {
-    transform: translateY(0);
-  }
-  svg {
-    flex-shrink: 0;
-  }
-}
-
-/* Smooth transitions */
-.navbar,
-.filetree-sidebar,
-.sidebar,
-.content,
-.fullscreen-btn {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Focus Mode */
-body.fullscreen-mode {
-  /* 1. Hide UI elements */
-  .navbar,
-  .filetree-sidebar,
-  .sidebar,
-  .search-container,
-  .fullpage-overlay,
-  .galaxy-spiral-container {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  /* 2. Tweak fullscreen button */
-  .fullscreen-btn {
-    background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
-    top: 30px;
-    right: 30px;
-    transform: scale(1.1);
-    z-index: 9999;
-  }
-
-  /* 3. Widen & center .content, but keep existing fonts/colors */
-  .content {
-    max-width: 95vw !important;   /* fill ~95% of viewport width */
-    margin: 0 auto;
-    padding: 8vh 2vw;             /* vertical/horizontal padding */
-    min-height: 100vh;
-
-    display: block;               /* normal flow so embedded layouts remain intact */
-    /* No font-size overrides here: original theme fonts/colors apply */
-  }
-
-  /* 4. Ensure images & embeds fill the width of .content */
-  .content {
-    img {
-      max-width: 100% !important;
-      height: auto !important;
-      display: block;
-      margin: 1rem auto;
-    }
-    figure img {
-      max-width: 100% !important;
-      height: auto !important;
-    }
-    iframe,
-    embed,
-    video {
-      max-width: 100% !important;
-      width: 100% !important;
-      height: auto !important;
-    }
-    /* Excalidraw override: replace selector if your embed wrapper differs */
-    .excalidraw-embed,
-    .excalidraw-container {
-      width: 100% !important;
-      min-height: 60vh; /* ensures visible; adjust if needed */
-    }
-    /* Flashcards override: replace with your actual wrapper class */
-    .flashcards-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      width: 100%;
-      max-width: none;
-      margin: 0 auto;
-    }
-    /* Other widget overrides, if any: diagrams/charts etc. */
-    .diagram-container,
-    .chart-container {
-      max-width: 100% !important;
-    }
-  }
-
-  /* 5. Optional cap on extremely wide screens */
-  @media (min-width: 2000px) {
-    .content {
-      max-width: 1600px !important;
-      margin: 0 auto;
-    }
-    /* If you have .cards-container or other wrappers: cap them similarly */
-    .flashcards-container,
-    .cards-container {
-      max-width: 1600px;
-      margin: 0 auto;
-    }
-  }
-
-  /* 6. Tablet adjustments */
-  @media (max-width: 1200px) {
-    .content {
-      max-width: 90vw !important;
-      padding: 6vh 3vw;
-    }
-  }
-  /* 7. Mobile adjustments */
-  @media (max-width: 768px) {
-    .content {
-      max-width: 90vw !important;
-      padding: 4vh 2vw;
-    }
-    .fullscreen-btn {
-      top: 15px;
-      right: 15px;
-      padding: 10px 16px;
-      font-size: 12px;
-    }
-    .flashcards-container {
-      grid-template-columns: 1fr;
-    }
-  }
-}
-
-/* Fullscreen API support: if you use requestFullscreen() on .content */
-.content:fullscreen {
-  max-width: 95vw !important;
-  margin: 0 auto;
-  padding: 8vh 2vw;
-  display: block;
-
-  img, iframe, embed, video {
-    max-width: 100% !important;
-    width: 100% !important;
-    height: auto !important;
-  }
-  .excalidraw-embed,
-  .excalidraw-container {
-    width: 100% !important;
-    min-height: 60vh;
-  }
-  .flashcards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
+  .site-body-left-column {
     width: 100%;
-    margin: 0 auto;
+    height: auto;
+    position: relative;
+    min-height: auto;
+  }
+  
+  .site-body-right-column {
+    margin-left: 0;
+    padding: var(--space-md);
+  }
+  
+  .datetime-container {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin-bottom: var(--space-md);
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  article {
+    padding: var(--space-md);
   }
 }
-:fullscreen .content {
-  max-width: 95vw !important;
-  margin: 0 auto;
-  padding: 8vh 2vw;
-  display: block;
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--space-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--cosmic-glow), var(--melancholy-blue));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--distant-star), var(--cosmic-glow));
+}
+
+/* ===== SELECTION STYLING ===== */
+::selection {
+  background: rgba(100, 181, 246, 0.3);
+  color: var(--nova-white);
+}
+
+/* ===== FOCUS STYLES ===== */
+:focus {
+  outline: 2px solid var(--cosmic-glow);
+  outline-offset: 2px;
+}
+
+/* ===== MELANCHOLIC TOUCHES ===== */
+.melancholic-glow {
+  box-shadow: 0 0 30px rgba(100, 181, 246, 0.15);
+}
+
+.deep-thought {
+  background: linear-gradient(135deg, 
+    rgba(41, 50, 65, 0.3) 0%, 
+    rgba(26, 31, 53, 0.3) 100%);
+  border-left: 3px solid var(--wistful-teal);
+  padding: var(--space-md);
+  margin: var(--space-md) 0;
+  border-radius: 0 8px 8px 0;
+}
+
+/* ===== FINAL COSMIC TOUCHES ===== */
+body {
+  background-attachment: fixed;
+}
+
+.cosmic-separator {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cosmic-glow), transparent);
+  margin: var(--space-xl) 0;
+  opacity: 0.3;
+}
+
+.stardust-text {
+  color: var(--stardust-bright);
+  text-shadow: 0 0 10px rgba(184, 197, 219, 0.3);
+}
+
+.nova-text {
+  color: var(--nova-white);
+  text-shadow: 0 0 15px rgba(227, 242, 253, 0.4);
 }
