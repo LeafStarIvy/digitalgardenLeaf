@@ -1,279 +1,85 @@
-/*
-  obsidian-galaxy-theme.css
-  "Super Mario Galaxy"–inspired Digital Garden theme for Obsidian Publish
-  ---------------------------------------------------------------
-  • Dark cosmic background with layered parallax starfields
-  • Floating planet-like content sections with soft orbits
-  • Nebula glows, twinkling stars via tsParticles
-  • Responsive layout, accessible typography
-  • Instructions at bottom for integration
-*/
+/*==============================================================================
+  1. ROOT VARIABLES & BODY STYLING
+  Defining our cosmic color palette, typography defaults,
+  and base background layers (starfield + nebula overlays).
+==============================================================================*/
 
 :root {
-  /* Color Palette */
-  --bg-black:        #0b0c23;
-  --bg-deep:         #171b36;
-  --bg-mid:          #1f274f;
-  --bg-light:        #2c3a76;
-  --accent-cyan:     #78b8ff;
-  --accent-violet:   #cfa3ff;
-  --text-light:      #e0e8f8;
+  /*— PRIMARY PALETTE —*/
+  --color-bg-deep:    #12121e;  /* near‐black cosmic void */
+  --color-bg-mid:     #1a2245;  /* deep midnight blue */
+  --color-bg-light:   #2a3c7e;  /* galaxy twilight */
+  --color-nebula1:    rgba(138, 43, 226, 0.15); /* soft violet */
+  --color-nebula2:    rgba(65, 105, 225, 0.12); /* pale royal blue */
+  --color-text:       #e0e8f8;  /* off‐white starlight */
+  --color-accent:     #78b8ff;  /* starlight cyan */
+  --color-accent2:    #cfa3ff;  /* nebula lavender */
 
-  /* Planet Sizing */
-  --planet-min:      200px;
-  --planet-max:      400px;
-
-  /* Animation Timings */
-  --anim-drift:      80s;
-  --anim-orbit:      25s;
-  --anim-twinkle:    6s;
+  /*— ANIMATION DURATION & SIZES —*/
+  --anim-drift:       80s;      /* starfield drift */
+  --anim-nebula:      40s;      /* nebula pulse */
+  --font-base:        1rem;     /* default text size */
+  --line-height:      1.6;      /* comfortable reading */
 }
 
-/*--------------------------------------------------------------
-  1) GLOBAL RESET & BACKGROUND
---------------------------------------------------------------*/
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; }
+/* RESET & TYPOGRAPHY BASE */
+* {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: var(--font-base);
+  scroll-behavior: smooth;
+}
 body {
-  background:
-    /* distant stars */
-    radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px) 0 0 / 50px 50px,
-    radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px) 25px 25px / 100px 100px,
-    /* deep gradient */
-    linear-gradient(135deg, var(--bg-black), var(--bg-deep) 40%, var(--bg-mid));
-  color: var(--text-light);
   font-family: 'Inter', sans-serif;
-  min-height:100vh;
-  overflow-x:hidden;
-  animation: driftBackground var(--anim-drift) linear infinite;
-}
-
-@keyframes driftBackground {
-  0%   { background-position: 0 0, 25px 25px; }
-  100% { background-position: -200px -120px, 25px 25px; }
-}
-
-/* Add nebula overlay */
-body::after {
-  content:"";
-  position:fixed; inset:0;
+  line-height: var(--line-height);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
   background:
-    radial-gradient(ellipse at 20% 30%, rgba(207,163,255,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 60%, rgba(120,184,255,0.06) 0%, transparent 60%);
-  pointer-events:none;
-  z-index:-1;
-  animation: driftBackground var(--anim-drift) reverse infinite;
+    /* Layer 1: dark cosmic gradient */
+    linear-gradient(135deg,
+      var(--color-bg-deep)   0%,
+      var(--color-bg-mid)    50%,
+      var(--color-bg-light) 100%
+    ),
+    /* Layer 2: subtle nebula overlays */
+    radial-gradient(circle at 30% 25%, var(--color-nebula1) 0%, transparent 60%),
+    radial-gradient(circle at 75% 65%, var(--color-nebula2) 0%, transparent 55%);
 }
 
-/*--------------------------------------------------------------
-  2) HEADER & NAVIGATION BAR
---------------------------------------------------------------*/
-.site-header {
-  position: sticky;
-  top:0; left:0;
-  width:100%;
-  background: rgba(23,31,61,0.75);
-  backdrop-filter: blur(8px);
-  padding:1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index:1000;
-  border-bottom:1px solid var(--accent-cyan);
+/* STARFIELD LAYER (CSS‐only, gentle drift) */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px) 0 0 / 40px 40px,
+    radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px) 20px 20px / 60px 60px;
+  z-index: -2;
+  animation: starDrift var(--anim-drift) linear infinite;
 }
 
-.site-header .navbar-brand {
-  font-size:1.8rem;
-  color: var(--accent-violet);
-  text-shadow: 0 0 8px var(--accent-violet);
-  letter-spacing:1px;
+/* NEBULA PULSE OVERLAY (slight scale and opacity shift) */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(circle at 40% 40%, var(--color-nebula1) 0%, transparent 70%),
+    radial-gradient(circle at 60% 60%, var(--color-nebula2) 0%, transparent 65%);
+  z-index: -1;
+  animation: nebulaPulse var(--anim-nebula) ease-in-out infinite alternate;
 }
 
-.site-header .navbar-nav {
-  display:flex; gap:1.5rem;
-  list-style:none;
+/* KEYFRAMES FOR ANIMATIONS */
+@keyframes starDrift {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(-200px, -100px); }
 }
-
-.site-header .nav-link {
-  position:relative;
-  color: var(--text-light);
-  text-decoration:none;
-  font-weight:500;
-  padding:0.25rem 0.5rem;
-  transition:color .3s;
+@keyframes nebulaPulse {
+  0%   { opacity: 0.3; transform: scale(1); }
+  100% { opacity: 0.6; transform: scale(1.05); }
 }
-.site-header .nav-link::after {
-  content:'';
-  position:absolute;
-  bottom:-2px; left:50%;
-  width:0; height:2px;
-  background: var(--accent-cyan);
-  transition:width .3s, left .3s;
-}
-.site-header .nav-link:hover {
-  color: var(--accent-cyan);
-}
-.site-header .nav-link:hover::after {
-  width:100%; left:0;
-}
-
-/*--------------------------------------------------------------
-  3) PARTICLE STARFIELD (requires tsParticles init in JS)
---------------------------------------------------------------*/
-#tsparticles {
-  position:fixed !important;
-  top:0; left:0;
-  width:100% !important;
-  height:100% !important;
-  z-index:0;
-  pointer-events:none;
-}
-
-/*--------------------------------------------------------------
-  4) PLANET/SECTION STYLING
---------------------------------------------------------------*/
-.garden-section {
-  position: relative;
-  margin: 4rem auto;
-  width: clamp(var(--planet-min), 80vw, var(--planet-max));
-  aspect-ratio: 1 / 1;
-  background: linear-gradient(145deg, var(--bg-mid), var(--bg-light));
-  border-radius: 50%;
-  overflow: hidden;
-  box-shadow:
-    inset 0 0 30px rgba(0,0,0,0.4),
-    0 10px 30px rgba(0,0,0,0.5);
-  animation: floatPlanet var(--anim-orbit) ease-in-out infinite;
-  z-index:1;
-}
-
-@keyframes floatPlanet {
-  0%,100% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-}
-
-.garden-section .content-wrapper {
-  position:absolute;
-  inset:15%;
-  overflow-y:auto;
-  padding:1rem;
-  background: rgba(11,12,35,0.35);
-  border-radius:50%;
-  backdrop-filter: blur(4px);
-  color: var(--text-light);
-}
-
-.garden-section .content-wrapper::-webkit-scrollbar {
-  width:6px;
-}
-.garden-section .content-wrapper::-webkit-scrollbar-thumb {
-  background: var(--accent-cyan);
-  border-radius:3px;
-}
-
-/*--------------------------------------------------------------
-  5) TYPOGRAPHY & LINKS
---------------------------------------------------------------*/
-h1, h2, h3 {
-  color: var(--accent-cyan);
-  text-shadow: 0 0 6px var(--accent-cyan);
-  margin-bottom:0.75rem;
-}
-h1 {
-  font-size:2rem;
-  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-violet));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-p, li { margin-bottom:0.75rem; line-height:1.5; }
-a {
-  color: var(--accent-cyan);
-  text-decoration: underline;
-  transition: color .3s, text-shadow .3s;
-}
-a:hover {
-  color: var(--accent-violet);
-  text-shadow: 0 0 4px var(--accent-violet);
-}
-
-/*--------------------------------------------------------------
-  6) BUTTON STYLING
---------------------------------------------------------------*/
-button, input[type="button"], input[type="submit"] {
-  background: var(--accent-cyan);
-  color: var(--bg-black);
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius:20px;
-  cursor: pointer;
-  font-weight:600;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  transition: transform .2s, box-shadow .2s;
-}
-button:hover, input[type="button"]:hover, input[type="submit"]:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
-}
-
-/*--------------------------------------------------------------
-  7) ORBITING ICON WIDGETS (optional JS)
---------------------------------------------------------------*/
-.orbit-container {
-  position: relative;
-  width: 100%; height: 300px;
-  margin: 3rem 0;
-}
-.orbit-item {
-  position: absolute; top:50%; left:50%;
-  width:60px; height:60px;
-  margin:-30px;
-  border-radius:50%;
-  background: var(--accent-violet);
-  box-shadow: 0 0 8px var(--accent-violet);
-  animation: spinOrbit var(--anim-orbit) linear infinite;
-}
-@keyframes spinOrbit { to { transform: rotate(360deg); } }
-
-/*--------------------------------------------------------------
-  8) FOOTER
---------------------------------------------------------------*/
-.site-footer {
-  text-align:center;
-  padding:2rem;
-  color: rgba(224,232,248,0.6);
-  font-size:0.9rem;
-}
-
-/*--------------------------------------------------------------
-  9) RESPONSIVE ADJUSTMENTS
---------------------------------------------------------------*/
-@media(max-width:768px) {
-  .site-header { flex-direction:column; gap:0.75rem; }
-  .garden-section { width: clamp(150px, 90vw, 300px); }
-}
-
-/*--------------------------------------------------------------
-  Integration Instructions:
-  1) Include this CSS in your Obsidian Publish custom theme.
-  2) Install tsParticles (or Particles.js) and add the JS init below in your site header:
-
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
-<script>
-  tsParticles.load("tsparticles", {
-    particles: {
-      number: { value: 120, density: { enable: true, area: 900 } },
-      color: { value: ["#AAAAFF","#FFDDAA","#FFFFFF"] },
-      shape: { type: "star", stroke: { width: 1, color: "#FFEE88" } },
-      opacity: { value: 0.8, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.3 } },
-      size: { value: 2, random: true, anim: { enable: false } },
-      move: { enable: true, speed: 0.03, direction: "none", random: true, straight: false }
-    },
-    interactivity: {
-      events: { onhover: { enable: false }, onclick: { enable: true, mode: "push" } }
-    }
-  });
-</script>
-
-  3) In your Obsidian template for each note page, wrap main sections in <div class="garden-section"><div class="content-wrapper">…your content…</div></div>
-  4) Optional: Add <div class="orbit-container"> with children <div class="orbit-item"></div> for decorative orbiting icons.
---------------------------------------------------------------*/
