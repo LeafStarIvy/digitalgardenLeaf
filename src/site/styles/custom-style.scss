@@ -327,97 +327,109 @@ hr {
   100% { background-position: 0% 50%; }
 }
 
+/* * CELESTIAL OBSERVATORY - DYNAMIC SHOOTING STARS (CSS-ONLY)
+ * ---------------------------------------------------------
+ * This method uses multiple HTML elements (.shooting-star) to create
+ * the effect of numerous, randomized shooting stars without JavaScript.
+ * All stars now travel from the top-right to the bottom-left.
+ *
+ * Instructions:
+ * 1. Add <div class="shooting-star"></div> multiple times to your HTML body.
+ * 2. Remove the old `body::after` and `@keyframes shooting-star` rules.
+ * 3. Add this entire CSS block to your custom stylesheet.
+ */
+
 .shooting-star {
-    position: fixed;
-    /* The top/left are set by the animation variables */
-    width: 2px;
-    height: 2px;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 0 0 7px 2px rgba(255, 255, 255, 0.8);
-    z-index: -1;
-    opacity: 0;
-    /* Each star's animation is defined using nth-child selectors */
-    animation-name: shoot-across;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+    position: fixed;
+    /* The top/left are set by the animation variables */
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 7px 2px rgba(255, 255, 255, 0.8);
+    z-index: -1;
+    opacity: 0;
+    /* Each star's animation is defined using nth-child selectors */
+    animation-name: shoot-across;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
 @keyframes shoot-across {
-    0% {
-        opacity: 1;
-        transform: translate(var(--start-x), var(--start-y)) scale(0.5);
-    }
-    70% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        transform: translate(var(--end-x), var(--end-y)) scale(1);
-    }
+    0% {
+        opacity: 1;
+        transform: translate(var(--start-x), var(--start-y)) scale(0.5);
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--end-x), var(--end-y)) scale(1);
+    }
 }
 
 /* * We use nth-child to give each star unique properties.
- * This creates the illusion of randomness.
- * --start-x/y: The starting coordinate of the star's path.
- * --end-x/y: The ending coordinate of the star's path.
- * animation-duration: How long the star takes to cross the screen.
- * animation-delay: When the star's animation begins.
+ * This creates the illusion of randomness.
+ * --start-x/y: The starting coordinate of the star's path.
+ * --end-x/y: The ending coordinate of the star's path.
+ * animation-duration: How long the star takes to cross the screen.
+ * animation-delay: When the star's animation begins.
 */
 
 .shooting-star:nth-child(1) {
-    top: 0;
-    left: 0;
-    --start-x: 110vw; /* Start from top-right area */
-    --start-y: -10vh;
-    --end-x: -20vw;   /* End in bottom-left area */
-    --end-y: 80vh;
-    animation-duration: 12s;
-    animation-delay: 1s;
+    top: 0;
+    left: 0;
+    --start-x: 110vw; 
+    --start-y: -20vh; /* Starts higher */
+    --end-x: -20vw;   
+    --end-y: 90vh; /* Ends lower */
+    animation-duration: 12s;
+    animation-delay: 1s;
 }
 
 .shooting-star:nth-child(2) {
-    top: 0;
-    left: 0;
-    --start-x: 130vw; /* Start from top-right area */
-    --start-y: 20vh;
-    --end-x: -10vw;   /* End in bottom-left area */
-    --end-y: 110vh;
-    animation-duration: 15s;
-    animation-delay: 4.5s;
+    top: 0;
+    left: 0;
+    --start-x: 130vw; 
+    --start-y: 0vh; /* Starts near top */
+    --end-x: -10vw;  
+    --end-y: 120vh; /* Ends much lower */
+    animation-duration: 15s;
+    animation-delay: 4.5s;
 }
 
 .shooting-star:nth-child(3) {
-    top: 0;
-    left: 0;
-    --start-x: 105vw; /* Start from top-right area */
-    --start-y: 5vh;
-    --end-x: -30vw;   /* End in bottom-left area */
-    --end-y: 90vh;
-    animation-duration: 11s;
-    animation-delay: 7s;
+    top: 0;
+    left: 0;
+    --start-x: 105vw; 
+    --start-y: -10vh; /* Starts higher */
+    --end-x: -30vw;   
+    --end-y: 100vh; /* Ends lower */
+    animation-duration: 11s;
+    animation-delay: 7s;
 }
 
 .shooting-star:nth-child(4) {
-    top: 0;
-    left: 0;
-    --start-x: 120vw; /* Start from top-right area */
-    --start-y: 0vh;
-    --end-x: -40vw;   /* End in bottom-left area */
-    --end-y: 100vh;
-    animation-duration: 18s;
-    animation-delay: 2.2s;
+    top: 0;
+    left: 0;
+    --start-x: 120vw; 
+    --start-y: 10vh; /* Starts a bit lower than previous */
+    --end-x: -40vw;   
+    --end-y: 130vh; /* Ends much lower */
+    animation-duration: 18s;
+    animation-delay: 2.2s;
 }
 
 .shooting-star:nth-child(5) {
-    top: 0;
-    left: 0;
-    --start-x: 100vw; /* Start from top-right area */
-    --start-y: 30vh;
-    --end-x: -5vw;    /* End in bottom-left area */
-    --end-y: 120vh;
-    animation-duration: 14s;
-    animation-delay: 10s;
+    top: 0;
+    left: 0;
+    --start-x: 100vw; 
+    --start-y: -5vh; /* Starts slightly higher */
+    --end-x: -5vw;    
+    --end-y: 110vh; /* Ends lower */
+    animation-duration: 14s;
+    animation-delay: 10s;
 }
 
 @keyframes float {
