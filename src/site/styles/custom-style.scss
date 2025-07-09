@@ -5,7 +5,7 @@
  * Features layered animated backgrounds, glassmorphism, refined typography,
  * and subtle interactive details for a magical user experience.
  *
- * Version: 2.1
+ * Version: 2.1 (Restored & Improved Starfield)
  * Created by Gemini
  */
 
@@ -20,11 +20,12 @@
  * - Borders & Radii
  * - Shadows & Glows (Depth System)
  * - Transitions & Animations
+ * - **New: Shooting Star Controls**
  * 3. GLOBAL STYLES & RESETS
  * 4. DYNAMIC BACKGROUND SYSTEM
  * - Deep Space Base
  * - Animated Nebula Layer
- * - Multi-Layer CSS Shooting Stars
+ * - **New: CSS Shooting Star**
  * - Particles.js Integration
  * 5. CORE LAYOUT & STRUCTURE
  * - Main Content Container (The "Observatory Lens")
@@ -42,7 +43,8 @@
  * 8. WIDGETS & MISCELLANEOUS
  * - On-Site Timer (Holographic Display)
  * 9. ADVANCED ANIMATIONS & KEYFRAMES
- * - Nebula Flow, Shooting Stars, Content Float, etc.
+ * - Nebula Flow, Content Float, etc.
+ * - **New: Shooting Star Animation**
  * - Scroll-based Fade-in Animations
 */
 
@@ -105,6 +107,11 @@
   /* -- Transitions & Animations -- */
   --transition-smooth: 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
   --transition-fast: 200ms ease-out;
+
+  /* -- NEW: Shooting Star Controls -- */
+  /* Adjust these values to change the shooting star's behavior */
+  --shooting-star-duration: 12s; /* Controls travel time. Lower is faster. */
+  --shooting-star-frequency: 10s; /* Controls time between stars. */
 }
 
 /* 3. GLOBAL STYLES & RESETS */
@@ -140,52 +147,23 @@ body::before {
   z-index: -3;
 }
 
-/* 4a. Multi-Layer CSS Shooting Stars */
-/* To use this, add <div class="shooting-star-container"></div> to your HTML body */
-.shooting-star {
-    position: fixed;
-    width: 2px;
-    height: 2px;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 0 6px 2px #fff;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    opacity: 0;
-    z-index: -1;
+/* --- Improved CSS Shooting Star Layer --- */
+/* A single, more prominent shooting star. Its timing can be adjusted in :root */
+body::after {
+  content: '';
+  position: fixed;
+  top: -200px; /* Start far off-screen to hide the element before animation */
+  right: -200px;
+  width: 200px; /* Length of the trail */
+  height: 2px;
+  background: linear-gradient(to left, var(--color-starlight), transparent);
+  border-radius: 999px;
+  transform: rotate(-45deg); /* Set the angle of the star's path */
+  z-index: -1;
+  animation: shooting-star-anim var(--shooting-star-duration) ease-in-out infinite;
+  animation-delay: var(--shooting-star-frequency);
 }
 
-.shooting-star:nth-child(1) {
-    top: 10%;
-    left: 50%;
-    animation-name: shooting-star-1;
-    animation-duration: 15s;
-    animation-delay: 1s;
-}
-
-.shooting-star:nth-child(2) {
-    top: 40%;
-    left: 80%;
-    animation-name: shooting-star-2;
-    animation-duration: 12s;
-    animation-delay: 3s;
-}
-
-.shooting-star:nth-child(3) {
-    top: 0%;
-    left: 30%;
-    animation-name: shooting-star-3;
-    animation-duration: 18s;
-    animation-delay: 6s;
-}
-
-.shooting-star:nth-child(4) {
-    top: 80%;
-    left: 10%;
-    animation-name: shooting-star-4;
-    animation-duration: 10s;
-    animation-delay: 8s;
-}
 
 #particles-js {
   position: fixed;
@@ -232,7 +210,7 @@ body::before {
     opacity: 0.25;
 }
 
-/* Elements to fade in on scroll */
+/* Elements to fade in on scroll (requires JS to add the 'is-visible' class) */
 .fade-in-section {
     opacity: 0;
     transform: translateY(30px);
@@ -367,25 +345,22 @@ hr {
   100% { background-position: 0% 50%; }
 }
 
-@keyframes shooting-star-1 {
-    0% { transform: translate(0, 0) scale(0); opacity: 1; }
-    80% { transform: translate(-80vw, 80vh) scale(1); opacity: 1; }
-    100% { transform: translate(-90vw, 90vh) scale(1); opacity: 0; }
-}
-@keyframes shooting-star-2 {
-    0% { transform: translate(0, 0) scale(0); opacity: 1; }
-    80% { transform: translate(-100vw, 50vh) scale(1); opacity: 1; }
-    100% { transform: translate(-110vw, 55vh) scale(1); opacity: 0; }
-}
-@keyframes shooting-star-3 {
-    0% { transform: translate(0, 0) scale(0); opacity: 1; }
-    80% { transform: translate(50vw, 120vh) scale(1); opacity: 1; }
-    100% { transform: translate(55vw, 130vh) scale(1); opacity: 0; }
-}
-@keyframes shooting-star-4 {
-    0% { transform: translate(0, 0) scale(0); opacity: 1; }
-    80% { transform: translate(-60vw, 40vh) scale(1); opacity: 1; }
-    100% { transform: translate(-65vw, 45vh) scale(1); opacity: 0; }
+@keyframes shooting-star-anim {
+  0% {
+    transform: rotate(-45deg) translateY(0) translateX(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1; /* Fade in quickly */
+  }
+  95% {
+    opacity: 1; /* Stay visible for most of the duration */
+  }
+  100% {
+    /* Travel across the entire viewport diagonally */
+    transform: rotate(-45deg) translateY(150vh) translateX(-150vw);
+    opacity: 0; /* Fade out at the end */
+  }
 }
 
 @keyframes float {
