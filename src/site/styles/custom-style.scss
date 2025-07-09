@@ -1,85 +1,134 @@
 /*==============================================================================
-  1. ROOT VARIABLES & BODY STYLING
-  Defining our cosmic color palette, typography defaults,
-  and base background layers (starfield + nebula overlays).
+   CORE: :root custom properties for full Aurora–Galaxy palette
 ==============================================================================*/
-
 :root {
-  /*— PRIMARY PALETTE —*/
-  --color-bg-deep:    #12121e;  /* near‐black cosmic void */
-  --color-bg-mid:     #1a2245;  /* deep midnight blue */
-  --color-bg-light:   #2a3c7e;  /* galaxy twilight */
-  --color-nebula1:    rgba(138, 43, 226, 0.15); /* soft violet */
-  --color-nebula2:    rgba(65, 105, 225, 0.12); /* pale royal blue */
-  --color-text:       #e0e8f8;  /* off‐white starlight */
-  --color-accent:     #78b8ff;  /* starlight cyan */
-  --color-accent2:    #cfa3ff;  /* nebula lavender */
+  /*— Deep Space & Nebula Base —*/
+  --cosmic-void:       #00030a;
+  --cosmic-abyss:      #000a1f;
+  --primary-900:       #001d3d;
+  --primary-850:       #012147;
+  --primary-800:       #043262;
+  --primary-750:       #07457d;
+  --primary-700:       #0a5798;
+  --primary-650:       #0d6bae;
+  --primary-600:       #107fc4;
+  --primary-550:       #2a8cd1;
+  --primary-500:       #4499de;
+  --primary-450:       #5eaceb;
+  --primary-400:       #78bfff;
+  --primary-350:       #94d1ff;
+  --primary-300:       #b0e3ff;
+  --primary-250:       #cdefff;
+  --primary-200:       #e0f7ff;
+  --primary-150:       #f0fbff;
+  --primary-100:       #f9fdff;
 
-  /*— ANIMATION DURATION & SIZES —*/
-  --anim-drift:       80s;      /* starfield drift */
-  --anim-nebula:      40s;      /* nebula pulse */
-  --font-base:        1rem;     /* default text size */
-  --line-height:      1.6;      /* comfortable reading */
+  /*— Aurora Teal → Cyan Spectrum —*/
+  --aurora-teal-900:   #014f5c;
+  --aurora-teal-700:   #016a7e;
+  --aurora-teal-500:   #028fa8;
+  --aurora-teal-300:   #04b8d0;
+  --aurora-teal-100:   #7edcea;
+  --aurora-cyan-900:   #00525f;
+  --aurora-cyan-700:   #017181;
+  --aurora-cyan-500:   #02a5b3;
+  --aurora-cyan-300:   #04d1e3;
+  --aurora-cyan-100:   #a5f3fa;
+
+  /*— Aurora Purple → Pink Spectrum —*/
+  --aurora-purple-900: #3b0364;
+  --aurora-purple-700: #5a0b96;
+  --aurora-purple-500: #7d17cd;
+  --aurora-purple-300: #a161e8;
+  --aurora-purple-100: #d1b3f7;
+  --aurora-pink-900:   #6b004b;
+  --aurora-pink-700:   #a01872;
+  --aurora-pink-500:   #d42cad;
+  --aurora-pink-300:   #f06fcf;
+  --aurora-pink-100:   #f7ccee;
+
+  /*— Complementary Accents —*/
+  --aurora-emerald-500: #10b981;
+  --aurora-amber-500:   #f59e0b;
+  --aurora-rose-500:    #e11d48;
+
+  /*— Gradient Presets —*/
+  --gradient-cosmic-sky:
+    linear-gradient(135deg, var(--primary-900), var(--primary-700) 50%, var(--primary-500));
+  --gradient-northern-lights:
+    linear-gradient(90deg, var(--aurora-cyan-300), var(--aurora-teal-300), var(--aurora-purple-300));
+  --gradient-nebula:
+    radial-gradient(circle at 30% 30%, rgba(160,62,238,0.1), transparent 60%),
+    radial-gradient(circle at 75% 65%, rgba(26,199,225,0.08), transparent 55%);
+  --gradient-star-trail:
+    linear-gradient(60deg, var(--primary-900), var(--primary-800) 30%, var(--primary-700) 70%, var(--primary-600));
+
+  /*— Text & Link Colors —*/
+  --text-main:         #e0e8f8;
+  --text-muted:        rgba(224,232,248,0.6);
+  --text-highlight:    var(--aurora-pink-300);
+  --link-color:        var(--aurora-teal-500);
+  --link-hover:        var(--aurora-cyan-300);
+  --selection-bg:      rgba(224,232,248,0.15);
+  --selection-text:    #00030a;
+
+  /*— Typography & Layout Defaults —*/
+  --font-sans:         'Inter', sans-serif;
+  --font-mono:         'JetBrains Mono', monospace;
+  --base-font-size:    16px;
+  --line-height:       1.6;
+  --site-padding:      2rem;
 }
 
-/* RESET & TYPOGRAPHY BASE */
-* {
-  margin: 0; padding: 0;
-  box-sizing: border-box;
-}
-html {
-  font-size: var(--font-base);
-  scroll-behavior: smooth;
-}
 body {
-  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: var(--base-font-size);
   line-height: var(--line-height);
-  color: var(--color-text);
-  min-height: 100vh;
-  overflow-x: hidden;
-  position: relative;
-  background:
-    /* Layer 1: dark cosmic gradient */
-    linear-gradient(135deg,
-      var(--color-bg-deep)   0%,
-      var(--color-bg-mid)    50%,
-      var(--color-bg-light) 100%
-    ),
-    /* Layer 2: subtle nebula overlays */
-    radial-gradient(circle at 30% 25%, var(--color-nebula1) 0%, transparent 60%),
-    radial-gradient(circle at 75% 65%, var(--color-nebula2) 0%, transparent 55%);
+  color: var(--text-main);
+
+  /*— Layered Cosmic Background —*/
+  background-color: var(--primary-900);
+  background-image:
+    /* fine starfield */
+    url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='3' height='3'>\
+  <circle cx='1.5' cy='1.5' r='0.8' fill='rgba(255,255,255,0.12)'/>\
+</svg>") repeat,
+    /* nebula dust overlays */
+    var(--gradient-nebula),
+    /* deep-sky gradient */
+    var(--gradient-cosmic-sky);
+
+  background-attachment: fixed, fixed, fixed;
+  background-size: 3px 3px, cover, cover;
+
+  /*— Subtle Slow Drift Animation —*/
+  animation: cosmic-drift 120s linear infinite;
+
+  /*— Link Styling —*/
+  a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    color: var(--link-hover);
+  }
+
+  /*— Text Selection —*/
+  &::selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-text);
+  }
 }
 
-/* STARFIELD LAYER (CSS‐only, gentle drift) */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background:
-    radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px) 0 0 / 40px 40px,
-    radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px) 20px 20px / 60px 60px;
-  z-index: -2;
-  animation: starDrift var(--anim-drift) linear infinite;
-}
-
-/* NEBULA PULSE OVERLAY (slight scale and opacity shift) */
-body::after {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background:
-    radial-gradient(circle at 40% 40%, var(--color-nebula1) 0%, transparent 70%),
-    radial-gradient(circle at 60% 60%, var(--color-nebula2) 0%, transparent 65%);
-  z-index: -1;
-  animation: nebulaPulse var(--anim-nebula) ease-in-out infinite alternate;
-}
-
-/* KEYFRAMES FOR ANIMATIONS */
-@keyframes starDrift {
-  from { transform: translate(0, 0); }
-  to   { transform: translate(-200px, -100px); }
-}
-@keyframes nebulaPulse {
-  0%   { opacity: 0.3; transform: scale(1); }
-  100% { opacity: 0.6; transform: scale(1.05); }
+@keyframes cosmic-drift {
+  from {
+    background-position: 0 0, 0 0, 0 0;
+  }
+  to {
+    background-position: -200px -100px, 0 0, 0 0;
+  }
 }
