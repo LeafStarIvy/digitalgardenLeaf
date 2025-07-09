@@ -1,9 +1,11 @@
 /*
- * SUPER MARIO GALAXY - DIGITAL GARDEN THEME
+ * CELESTIAL OBSERVATORY - DIGITAL GARDEN THEME
  *
- * A whimsical, celestial theme inspired by the feeling of
- * exploring floating worlds against a cosmic backdrop.
+ * An advanced, immersive, and serene theme for personal knowledge systems.
+ * Features layered animated backgrounds, glassmorphism, refined typography,
+ * and subtle interactive details for a magical user experience.
  *
+ * Version: 2.0
  * Created by Gemini
  */
 
@@ -12,87 +14,100 @@
  * -----------------
  * 1. FONT IMPORTS
  * 2. ROOT VARIABLES (THEME CONTROLS)
- * - Color Palette
- * - Typography
- * - Layout & Spacing
- * - Effects & Animation
- * 3. BASE & RESET STYLES
- * 4. BACKGROUND & PARTICLE EFFECTS
- * 5. TYPOGRAPHY & TEXT STYLES
- * 6. LAYOUT & CORE STRUCTURE
- * - Main Content Area
- * - Sidebar
- * 7. COMPONENT STYLING
- * - Note Cards / Content Blocks
- * - Links & Buttons
- * - Blockquotes & Callouts
- * - Code Blocks
- * - Tags
- * - Header & Navigation
- * 8. WIDGETS & MISC
- * - On-Site Timer
- * 9. KEYFRAME ANIMATIONS
+ * - Color Palette (Ethereal & Sophisticated)
+ * - Typography System
+ * - Layout, Spacing & Sizing
+ * - Borders & Radii
+ * - Shadows & Glows (Depth System)
+ * - Transitions & Animations
+ * 3. GLOBAL STYLES & RESETS
+ * 4. DYNAMIC BACKGROUND SYSTEM
+ * - Deep Space Base
+ * - Animated Nebula Layer
+ * - CSS Shooting Stars
+ * - Particles.js Integration
+ * 5. CORE LAYOUT & STRUCTURE
+ * - Main Content Container (The "Observatory Lens")
+ * - Sidebar (Floating Instrument Panel)
+ * 6. TYPOGRAPHY & TEXT STYLING
+ * - Headings (with subtle glow)
+ * - Body Text & Paragraphs
+ * - Links (with new hover effect)
+ * 7. COMPONENT REDESIGN
+ * - Buttons (Glowing Orbs)
+ * - Blockquotes (Carved Runes)
+ * - Code Blocks (Futuristic Terminal)
+ * - Tags (Crystal Shards)
+ * - Horizontal Rule (Stardust Trail)
+ * 8. WIDGETS & MISCELLANEOUS
+ * - On-Site Timer (Holographic Display)
+ * 9. ADVANCED ANIMATIONS & KEYFRAMES
+ * - Nebula Flow, Shooting Stars, Content Float, etc.
+ * - Scroll-based Fade-in Animations
 */
 
 /* 1. FONT IMPORTS */
-/* We're using Quicksand for its friendly, rounded feel for headers, and Inter for its excellent readability for body text. */
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Lato:wght@400;700&family=Fira+Code:wght@400&display=swap');
 
 /* 2. ROOT VARIABLES (THEME CONTROLS) */
 :root {
-  /* -- COLOR PALETTE -- */
-  /* Inspired by the provided images: deep space, bright skies, and grassy planetoids. */
+  /* -- Color Palette -- */
+  --color-deep-space: #010409;
+  --color-nebula-violet: #2c1a4d;
+  --color-nebula-blue: #1f3a5f;
+  --color-starlight: #e6f1ff;
+  --color-glow-celeste: #a7d8ff;
+  --color-glow-lilac: #d8b4fe;
 
-  /* Core Backgrounds */
-  --galaxy-deep-space: #0b021d;
-  --galaxy-nebula-start: #1e0a45;
-  --galaxy-nebula-end: #3c166b;
-  --galaxy-sky-blue: #87CEEB;
-
-  /* Content "Planetoid" Colors */
-  --planet-surface: #f0f8ff; /* A very light, airy blue-white */
-  --planet-crust: #e0e8ef;
-  --planet-grass: #a3d487;
-  --planet-grass-dark: #7da863;
+  /* Glassmorphic Surface */
+  --surface-color: rgba(12, 18, 29, 0.5);
+  --surface-blur: blur(16px);
+  --surface-border-color: rgba(167, 216, 255, 0.2);
 
   /* Text Colors */
-  --text-primary: #2c3e50; /* A dark, soft slate for readability */
-  --text-secondary: #5a6a7a;
-  --text-headings: #3b2a55; /* A deep purple for headers */
-  --text-light: #f0f8ff; /* For use on dark backgrounds */
+  --text-primary: #c9d1d9; /* Softer than pure white for readability */
+  --text-secondary: #8b949e;
+  --text-headings: var(--color-starlight);
+  --text-accent: var(--color-glow-celeste);
+  --text-link-hover: #ffffff;
 
   /* Accent & Interactive Colors */
-  --accent-star-yellow: #FFD700;
-  --accent-comet-teal: #00aba9;
-  --accent-comet-teal-hover: #00c7c5;
-  --link-color: var(--accent-comet-teal);
-  --link-hover-color: var(--accent-star-yellow);
-  --selection-bg: rgba(255, 215, 0, 0.25);
-  --selection-text: var(--text-primary);
+  --accent-primary: var(--color-glow-celeste);
+  --accent-secondary: var(--color-glow-lilac);
+  --selection-bg: rgba(167, 216, 255, 0.2);
+  --selection-text: #ffffff;
 
-  /* -- TYPOGRAPHY -- */
-  --font-family-headings: 'Quicksand', sans-serif;
-  --font-family-body: 'Inter', sans-serif;
-  --font-family-code: 'JetBrains Mono', monospace;
-  --font-size-base: 17px; /* A slightly larger base for comfort */
-  --line-height-base: 1.7;
+  /* -- Typography System -- */
+  --font-family-headings: 'Marcellus', serif; /* Elegant, classic serif */
+  --font-family-body: 'Lato', sans-serif; /* Clean, modern sans-serif */
+  --font-family-code: 'Fira Code', monospace;
+  --font-size-base: 18px;
+  --line-height-base: 1.75;
 
-  /* -- LAYOUT & SPACING -- */
-  --content-width: 800px;
-  --sidebar-width: 280px;
-  --border-radius-soft: 12px;
-  --border-radius-round: 50px; /* For buttons and tags */
-  --spacing-unit: 1.5rem;
+  /* -- Layout, Spacing & Sizing -- */
+  --content-width: 850px;
+  --sidebar-width: 300px;
+  --spacing-unit: 1.75rem;
+  --header-height: 80px;
 
-  /* -- EFFECTS & ANIMATION -- */
-  --shadow-float: 0 10px 25px rgba(11, 2, 29, 0.3), 0 5px 10px rgba(11, 2, 29, 0.2);
-  --shadow-glow: 0 0 15px rgba(135, 206, 235, 0.5);
-  --transition-smooth: 300ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  /* -- Borders & Radii -- */
+  --border-radius-soft: 16px;
+  --border-radius-medium: 12px;
+  --border-radius-small: 8px;
+  --border-width: 1px;
+
+  /* -- Shadows & Glows (Depth System) -- */
+  --shadow-glow-subtle: 0 0 12px 0 rgba(167, 216, 255, 0.15);
+  --shadow-glow-medium: 0 0 24px 0 rgba(167, 216, 255, 0.25);
+  --shadow-text-glow: 0 0 8px rgba(216, 180, 254, 0.5);
+  --shadow-content-block: 0 16px 40px rgba(0, 0, 0, 0.3);
+
+  /* -- Transitions & Animations -- */
+  --transition-smooth: 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --transition-fast: 200ms ease-out;
 }
 
-
-/* 3. BASE & RESET STYLES */
+/* 3. GLOBAL STYLES & RESETS */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -102,243 +117,243 @@ body {
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
   color: var(--text-primary);
-  background-color: var(--galaxy-deep-space);
+  background-color: var(--color-deep-space);
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-x: hidden;
 }
 
-/* Selection highlight */
 ::selection {
   background-color: var(--selection-bg);
   color: var(--selection-text);
 }
 
-
-/* 4. BACKGROUND & PARTICLE EFFECTS */
+/* 4. DYNAMIC BACKGROUND SYSTEM */
 body::before {
   content: '';
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-  /* A gradient from daytime sky to nebula space */
-  background: linear-gradient(
-    to bottom,
-    var(--galaxy-sky-blue) 0%,
-    rgba(135, 206, 235, 0.5) 30%,
-    transparent 60%,
-    var(--galaxy-nebula-start) 100%
-  );
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(330deg, var(--color-nebula-violet) 0%, var(--color-nebula-blue) 50%, var(--color-deep-space) 100%);
+  background-size: 200% 200%;
+  animation: nebula-flow 45s ease infinite;
+  z-index: -3;
+}
+
+/* Optional: Add a shooting star layer */
+body::after {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 5px 2px white;
+    animation: shooting-star 15s linear infinite;
+    z-index: -1;
+    opacity: 0;
+}
+
+#particles-js {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   z-index: -2;
 }
 
-/* Style for the particles.js canvas */
-#particles-js {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
-
-/* You might need to target the specific canvas element if #particles-js is just a container */
 .particles-js-canvas-el {
-  mix-blend-mode: screen; /* Makes stars look bright on the dark bg */
-  animation: fadeIn 3s ease-in;
+  animation: fadeIn 4s 1s ease-in-out forwards;
+  opacity: 0;
+}
+
+/* 5. CORE LAYOUT & STRUCTURE */
+.content-container {
+  max-width: var(--content-width);
+  margin: calc(var(--header-height) + 5vh) auto 10vh;
+  padding: calc(var(--spacing-unit) * 2);
+  position: relative;
+  z-index: 10;
+  background: var(--surface-color);
+  backdrop-filter: var(--surface-blur);
+  -webkit-backdrop-filter: var(--surface-blur);
+  border-radius: var(--border-radius-soft);
+  border: var(--border-width) solid var(--surface-border-color);
+  box-shadow: var(--shadow-content-block);
+  animation: float 15s ease-in-out infinite, fadeIn-up 1s var(--transition-smooth);
+}
+
+/* Aurora glow inside the container */
+.content-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 10% 20%, var(--accent-primary) 0%, transparent 35%),
+                radial-gradient(circle at 90% 80%, var(--accent-secondary) 0%, transparent 40%);
+    opacity: 0.15;
+    mix-blend-mode: screen;
+    border-radius: var(--border-radius-soft);
+    pointer-events: none;
+    transition: opacity var(--transition-smooth);
+}
+.content-container:hover::before {
+    opacity: 0.25;
+}
+
+/* Elements to fade in on scroll */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth);
+}
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
-/* 5. TYPOGRAPHY & TEXT STYLES */
+/* 6. TYPOGRAPHY & TEXT STYLING */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-family-headings);
   color: var(--text-headings);
-  font-weight: 700;
+  font-weight: 400; /* Marcellus is best at a normal weight */
   line-height: 1.3;
-  margin-bottom: var(--spacing-unit);
-  margin-top: calc(var(--spacing-unit) * 1.5);
+  text-shadow: var(--shadow-text-glow);
+  margin: calc(var(--spacing-unit) * 1.5) 0 var(--spacing-unit) 0;
 }
+h1 { font-size: 3.5rem; letter-spacing: 1px; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 1.75rem; }
 
-h1 { font-size: 2.8rem; }
-h2 { font-size: 2.2rem; }
-h3 { font-size: 1.8rem; }
 p { margin-bottom: var(--spacing-unit); }
+strong { font-weight: 700; color: var(--text-accent); }
 
-strong { font-weight: 600; color: var(--text-headings); }
-
-
-/* 6. LAYOUT & CORE STRUCTURE */
-/* Main content area - the "planetoid" */
-.content-container { /* You'll need to wrap your main content in this div */
-  max-width: var(--content-width);
-  margin: 0 auto;
-  padding: calc(var(--spacing-unit) * 2);
-  background: var(--planet-surface);
-  border-radius: var(--border-radius-soft);
-  box-shadow: var(--shadow-float);
+a {
+  color: var(--text-accent);
+  text-decoration: none;
   position: relative;
-  z-index: 10;
-  margin-top: 10vh; /* Push it down from the top */
-  margin-bottom: 10vh;
-  animation: float 12s ease-in-out infinite;
-  border: 4px solid var(--planet-crust);
+  transition: color var(--transition-fast);
 }
-
-/* Add some grassy bits to the top of the content */
-.content-container::before {
+a:hover {
+  color: var(--text-link-hover);
+}
+a::before {
   content: '';
   position: absolute;
-  top: -10px;
-  left: 5%;
-  width: 90%;
-  height: 20px;
-  background: var(--planet-grass);
-  border-radius: 10px;
-  filter: blur(2px);
-  opacity: 0.8;
+  width: 100%;
+  height: 1px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--accent-secondary);
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all var(--transition-smooth);
+}
+a:hover::before {
+  visibility: visible;
+  transform: scaleX(1);
 }
 
-/* Sidebar styling */
-.sidebar {
-  background: rgba(11, 2, 29, 0.5);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-light);
-  padding: var(--spacing-unit);
-  border-radius: var(--border-radius-soft);
-}
-
-
-/* 7. COMPONENT STYLING */
-
-/* Links & Buttons */
-a {
-  color: var(--link-color);
-  text-decoration: none;
-  font-weight: 600;
-  transition: var(--transition-smooth);
-  position: relative;
-}
-
-a::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: -2px;
-    left: 0;
-    background-color: var(--accent-star-yellow);
-    transform: scaleX(0);
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-}
-
-a:hover {
-  color: var(--link-hover-color);
-}
-
-a:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
-
+/* 7. COMPONENT REDESIGN */
 .button, button {
-  font-family: var(--font-family-headings);
-  background-color: var(--accent-comet-teal);
-  color: white;
-  padding: 0.8rem 1.6rem;
-  border-radius: var(--border-radius-round);
-  border: none;
-  cursor: pointer;
+  font-family: var(--font-family-body);
   font-weight: 700;
-  box-shadow: 0 4px 10px rgba(0, 171, 169, 0.4);
+  color: var(--color-starlight);
+  background: transparent;
+  padding: 0.8rem 1.8rem;
+  border-radius: var(--border-radius-medium);
+  border: var(--border-width) solid var(--surface-border-color);
+  cursor: pointer;
+  box-shadow: var(--shadow-glow-subtle);
   transition: var(--transition-smooth);
 }
-
 .button:hover, button:hover {
-  background-color: var(--accent-comet-teal-hover);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0, 171, 169, 0.5);
+  background-color: var(--surface-border-color);
+  box-shadow: var(--shadow-glow-medium);
+  transform: translateY(-2px);
 }
 
-/* Blockquotes & Callouts */
 blockquote {
   margin: var(--spacing-unit) 0;
   padding: var(--spacing-unit);
-  background: var(--planet-crust);
-  border-left: 5px solid var(--planet-grass-dark);
-  border-radius: 0 var(--border-radius-soft) var(--border-radius-soft) 0;
+  background: rgba(0,0,0,0.1);
+  border: none;
+  border-left: 3px solid var(--accent-secondary);
+  border-radius: var(--border-radius-small);
+  font-style: italic;
+  color: var(--text-secondary);
 }
 
-blockquote p:last-child {
-  margin-bottom: 0;
-}
-
-/* Code Blocks */
-pre, code {
-  font-family: var(--font-family-code);
-}
-
+pre, code { font-family: var(--font-family-code); }
 pre {
-  background-color: var(--galaxy-deep-space);
-  color: var(--text-light);
+  background: rgba(0, 0, 0, 0.3);
   padding: var(--spacing-unit);
-  border-radius: var(--border-radius-soft);
+  border-radius: var(--border-radius-medium);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   overflow-x: auto;
-  border: 1px solid var(--galaxy-nebula-end);
 }
-
-/* Inline code */
 :not(pre) > code {
-  background-color: var(--planet-crust);
-  color: var(--text-headings);
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
+  background: var(--surface-border-color);
+  color: var(--text-accent);
+  padding: 0.2em 0.5em;
+  border-radius: var(--border-radius-small);
 }
 
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, transparent, var(--surface-border-color), transparent);
+    margin: calc(var(--spacing-unit) * 2) 0;
+}
 
-/* 8. WIDGETS & MISC */
-/* On-Site Timer */
+/* 8. WIDGETS & MISCELLANEOUS */
 .datetime-container {
   position: fixed;
-  top: 1rem;
-  right: 1.5rem;
+  top: 1.5rem;
+  right: 2rem;
   font-family: var(--font-family-code);
   font-size: 0.9rem;
-  color: var(--text-light);
-  background: rgba(11, 2, 29, 0.5);
-  backdrop-filter: blur(5px);
-  padding: 0.5rem 1rem;
-  border-radius: var(--border-radius-round);
-  box-shadow: var(--shadow-glow);
-  border: 1px solid rgba(135, 206, 235, 0.3);
+  color: var(--text-primary);
+  background: var(--surface-color);
+  backdrop-filter: var(--surface-blur);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--border-radius-medium);
+  border: 1px solid var(--surface-border-color);
+  box-shadow: var(--shadow-glow-subtle);
   z-index: 100;
   transition: var(--transition-smooth);
 }
-
 .datetime-container:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(135, 206, 235, 0.7);
+    box-shadow: var(--shadow-glow-medium);
 }
 
+/* 9. ADVANCED ANIMATIONS & KEYFRAMES */
+@keyframes nebula-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-/* 9. KEYFRAME ANIMATIONS */
+@keyframes shooting-star {
+    0% { transform: translate(100vw, -100vh) scale(0); opacity: 1; }
+    80% { transform: translate(-50vw, 50vh) scale(1); opacity: 1; }
+    100% { transform: translate(-60vw, 60vh) scale(1); opacity: 0; }
+}
+
 @keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
 }
 
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+@keyframes fadeIn-up {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
 }
