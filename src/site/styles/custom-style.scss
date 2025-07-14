@@ -1,8 +1,9 @@
 /*
  * CELESTIAL GALAXY - DIGITAL GARDEN THEME
+ * Super Mario Galaxy Inspired CSS Skybox
  *
- * A unified theme with WebM video background support for digital gardens.
- * Features refined glassmorphism, elegant typography, and subtle animations.
+ * A unified theme with animated CSS galaxy background.
+ * Features refined glassmorphism, elegant typography, and celestial animations.
  */
 
 /* ========================================================================
@@ -12,16 +13,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Lato:wght@400;700&family=Fira+Code:wght@400&display=swap');
 
 :root {
-  /* -- Color Palette (Blended) -- */
+  /* -- Color Palette (Galaxy Inspired) -- */
   --color-void: #010409;
-  --color-deep-space: #0f1629;
-  --color-nebula-violet: #2c1a4d;
-  --color-nebula-blue: #1f3a5f;
+  --color-deep-space: #0a0f1c;
+  --color-nebula-violet: #2d1b69;
+  --color-nebula-blue: #1a237e;
+  --color-nebula-purple: #4a148c;
+  --color-nebula-pink: #880e4f;
   --color-starlight: #e6f1ff;
   --color-comet-white: #f8fafc;
   --color-glow-celeste: #a7d8ff;
   --color-glow-lilac: #d8b4fe;
   --color-aurora-cyan: #06b6d4;
+  --color-galaxy-gold: #ffd700;
+  --color-galaxy-rose: #ff6b9d;
+  --color-galaxy-teal: #4ecdc4;
 
   /* -- Glassmorphic Surface -- */
   --surface-color: rgba(12, 18, 29, 0.45);
@@ -99,7 +105,6 @@ body {
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
-  /* Ensure body doesn't have a background that blocks video */
   background: transparent;
 }
 
@@ -109,45 +114,154 @@ body {
 }
 
 /* ========================================================================
-   3. VIDEO BACKGROUND (FIXED)
+   3. GALAXY SKYBOX BACKGROUND (PURE CSS)
    ======================================================================== */
 
-.video-background {
+.galaxy-skybox {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -999; /* Much lower z-index to ensure it stays behind everything */
+  z-index: -999;
   overflow: hidden;
-  pointer-events: none; /* Prevents interaction with video */
+  pointer-events: none;
+  
+  /* Base galaxy gradient */
+  background: 
+    radial-gradient(ellipse at 20% 50%, var(--color-nebula-violet) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, var(--color-nebula-blue) 0%, transparent 50%),
+    radial-gradient(ellipse at 40% 80%, var(--color-nebula-purple) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 30%, var(--color-nebula-pink) 0%, transparent 50%),
+    linear-gradient(135deg, var(--color-deep-space) 0%, var(--color-void) 100%);
+  
+  animation: galaxyShift 120s ease-in-out infinite;
 }
 
-.video-background video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
-  /* Ensure video loads and plays properly */
-  opacity: 1;
-}
-
-/* Subtle overlay to ensure text readability */
-.video-background::after {
+/* Nebula clouds layers */
+.galaxy-skybox::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(1, 4, 9, 0.3);
-  pointer-events: none;
-  z-index: 1;
+  background: 
+    radial-gradient(circle at 70% 40%, rgba(255, 107, 157, 0.1) 0%, transparent 30%),
+    radial-gradient(circle at 30% 70%, rgba(78, 205, 196, 0.08) 0%, transparent 35%),
+    radial-gradient(circle at 90% 10%, rgba(255, 215, 0, 0.06) 0%, transparent 25%),
+    radial-gradient(circle at 10% 90%, rgba(167, 216, 255, 0.12) 0%, transparent 40%);
+  animation: nebulaFloat 80s ease-in-out infinite alternate;
+}
+
+/* Distant stars field */
+.galaxy-skybox::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+    radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.7), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: starsShimmer 60s linear infinite;
+}
+
+/* Animated star particles */
+.star-field {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -990;
+}
+
+.star {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: starTwinkle 3s ease-in-out infinite;
+}
+
+/* Star size variations */
+.star.small {
+  width: 1px;
+  height: 1px;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+.star.medium {
+  width: 2px;
+  height: 2px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+}
+
+.star.large {
+  width: 3px;
+  height: 3px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 1);
+}
+
+/* Colored stars for galaxy effect */
+.star.golden {
+  background: radial-gradient(circle, var(--color-galaxy-gold) 0%, transparent 70%);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+}
+
+.star.rose {
+  background: radial-gradient(circle, var(--color-galaxy-rose) 0%, transparent 70%);
+  box-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+}
+
+.star.teal {
+  background: radial-gradient(circle, var(--color-galaxy-teal) 0%, transparent 70%);
+  box-shadow: 0 0 8px rgba(78, 205, 196, 0.4);
+}
+
+/* Floating cosmic dust particles */
+.cosmic-dust {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -985;
+  background: 
+    radial-gradient(1px 1px at 15% 25%, rgba(167, 216, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 35% 55%, rgba(216, 180, 254, 0.2), transparent),
+    radial-gradient(1px 1px at 65% 35%, rgba(255, 215, 0, 0.1), transparent),
+    radial-gradient(1px 1px at 85% 75%, rgba(255, 107, 157, 0.15), transparent);
+  background-size: 400px 300px;
+  animation: dustFloat 100s linear infinite;
+}
+
+/* Shooting stars */
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: linear-gradient(45deg, #fff, transparent);
+  border-radius: 50%;
+  z-index: -980;
+  animation: shootingStar 8s linear infinite;
+}
+
+.shooting-star::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.8), transparent);
+  transform: translateX(-50px);
 }
 
 /* ========================================================================
@@ -169,13 +283,11 @@ body {
   animation: float 15s ease-in-out infinite, fadeIn-up 1s var(--transition-smooth);
 }
 
-/* Ensure all main content has proper z-index */
 .content, main {
   position: relative;
   z-index: 10;
 }
 
-/* Navbar and other UI elements */
 nav, .navbar, .sidebar {
   position: relative;
   z-index: 100;
@@ -345,7 +457,6 @@ table th {
     box-shadow: var(--shadow-glow-medium);
 }
 
-/* Elements to fade in on scroll */
 .fade-in-section {
     opacity: 0;
     transform: translateY(30px);
@@ -365,6 +476,80 @@ table th {
 /* ========================================================================
    8. ANIMATIONS & KEYFRAMES
    ======================================================================== */
+
+@keyframes galaxyShift {
+  0%, 100% { 
+    filter: hue-rotate(0deg) brightness(1); 
+  }
+  25% { 
+    filter: hue-rotate(30deg) brightness(1.1); 
+  }
+  50% { 
+    filter: hue-rotate(60deg) brightness(0.9); 
+  }
+  75% { 
+    filter: hue-rotate(30deg) brightness(1.05); 
+  }
+}
+
+@keyframes nebulaFloat {
+  0% { 
+    transform: translateX(0) translateY(0) rotate(0deg); 
+    opacity: 0.8; 
+  }
+  100% { 
+    transform: translateX(-20px) translateY(-10px) rotate(5deg); 
+    opacity: 1; 
+  }
+}
+
+@keyframes starsShimmer {
+  0% { 
+    transform: translateX(0); 
+    opacity: 0.6; 
+  }
+  100% { 
+    transform: translateX(200px); 
+    opacity: 1; 
+  }
+}
+
+@keyframes starTwinkle {
+  0%, 100% { 
+    opacity: 0.3; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.2); 
+  }
+}
+
+@keyframes dustFloat {
+  0% { 
+    transform: translateX(0) translateY(0); 
+  }
+  100% { 
+    transform: translateX(-400px) translateY(-100px); 
+  }
+}
+
+@keyframes shootingStar {
+  0% { 
+    transform: translateX(-100px) translateY(-100px); 
+    opacity: 0; 
+  }
+  10% { 
+    opacity: 1; 
+  }
+  90% { 
+    opacity: 1; 
+  }
+  100% { 
+    transform: translateX(100vw) translateY(100vh); 
+    opacity: 0; 
+  }
+}
 
 @keyframes float {
   0% { transform: translateY(0px); }
@@ -395,32 +580,29 @@ table th {
     margin: calc(var(--header-height) + 3vh) auto 5vh;
   }
   
-  /* Ensure video background works on mobile */
-  .video-background video {
-    object-fit: cover;
-    width: 100vw;
-    height: 100vh;
+  /* Optimize animations for mobile */
+  .galaxy-skybox {
+    animation-duration: 180s;
+  }
+  
+  .star-field {
+    display: none; /* Hide complex star field on mobile for performance */
   }
 }
 
 /* ========================================================================
-   10. FALLBACK STYLES
+   10. ACCESSIBILITY & PERFORMANCE
    ======================================================================== */
 
-/* Fallback background if video fails to load */
-@supports not (object-fit: cover) {
-  .video-background {
-    background: linear-gradient(45deg, var(--color-void) 0%, var(--color-deep-space) 50%, var(--color-nebula-violet) 100%);
-  }
-  .video-background video {
-    display: none;
-  }
-}
-
-/* Prefers-reduced-motion support */
 @media (prefers-reduced-motion: reduce) {
-  .video-background video {
-    animation-play-state: paused;
+  .galaxy-skybox,
+  .galaxy-skybox::before,
+  .galaxy-skybox::after,
+  .star,
+  .cosmic-dust,
+  .shooting-star {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
   
   .content-container {
@@ -431,5 +613,14 @@ table th {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Performance optimization for older devices */
+@media (max-resolution: 1dppx) {
+  .galaxy-skybox::before,
+  .galaxy-skybox::after,
+  .cosmic-dust {
+    display: none;
   }
 }
