@@ -1,10 +1,8 @@
 /*
  * CELESTIAL GALAXY - DIGITAL GARDEN THEME
  *
- * A unified theme blending the ethereal nature of the "Celestial Observatory"
- * with the deep, cosmic atmosphere of the "Super Mario Galaxy" style.
- * It features a WebM video background, refined glassmorphism, elegant
- * typography, and dynamic, subtle animations for an immersive experience.
+ * A unified theme with WebM video background support for digital gardens.
+ * Features refined glassmorphism, elegant typography, and subtle animations.
  */
 
 /* ========================================================================
@@ -132,28 +130,16 @@ body {
   object-fit: cover;
 }
 
-/* Fallback overlay in case video doesn't load */
+/* Optional: Add a subtle overlay to ensure text readability */
 .video-background::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(330deg, var(--color-nebula-violet) 0%, var(--color-nebula-blue) 50%, var(--color-deep-space) 100%);
-  z-index: -1;
-}
-
-/* Optional: Add a subtle overlay to enhance readability */
-.video-background::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  bottom: 0;
   background: rgba(1, 4, 9, 0.3);
-  z-index: 1;
+  pointer-events: none;
 }
 
 /* ========================================================================
