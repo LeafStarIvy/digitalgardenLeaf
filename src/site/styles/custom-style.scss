@@ -3,7 +3,7 @@
  *
  * A unified theme blending the ethereal nature of the "Celestial Observatory"
  * with the deep, cosmic atmosphere of the "Super Mario Galaxy" style.
- * It features layered animated backgrounds, refined glassmorphism, elegant
+ * It features a WebM video background, refined glassmorphism, elegant
  * typography, and dynamic, subtle animations for an immersive experience.
  */
 
@@ -107,53 +107,54 @@ body {
 }
 
 /* ========================================================================
-   3. DYNAMIC BACKGROUND & ATMOSPHERE
+   3. VIDEO BACKGROUND
    ======================================================================== */
 
-body::before {
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  overflow: hidden;
+}
+
+.video-background video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+/* Fallback overlay in case video doesn't load */
+.video-background::after {
   content: '';
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(330deg, var(--color-nebula-violet) 0%, var(--color-nebula-blue) 50%, var(--color-deep-space) 100%);
-  background-size: 200% 200%;
-  animation: nebula-flow 45s ease infinite;
-  z-index: -3;
+  z-index: -1;
 }
 
-#particles-js {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  z-index: -2;
+/* Optional: Add a subtle overlay to enhance readability */
+.video-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(1, 4, 9, 0.3);
+  z-index: 1;
 }
-
-.particles-js-canvas-el {
-  animation: fadeIn 4s 1s ease-in-out forwards;
-  opacity: 0;
-}
-
-.shooting-star {
-    position: fixed;
-    top: 0; left: 0;
-    width: 2px;
-    height: 2px;
-    background: white;
-    border-radius: 50%;
-    box-shadow: 0 0 7px 2px rgba(255, 255, 255, 0.8);
-    z-index: -1;
-    opacity: 0;
-    animation-name: shoot-across;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-/* Individual star animations */
-.shooting-star:nth-child(1){--start-x:110vw;--start-y:-30vh;--end-x:-20vw;--end-y:100vh;animation-duration:12s;animation-delay:1s}
-.shooting-star:nth-child(2){--start-x:130vw;--start-y:40vh;--end-x:-10vw;--end-y:130vh;animation-duration:15s;animation-delay:4.5s}
-.shooting-star:nth-child(3){--start-x:105vw;--start-y:-15vh;--end-x:-30vw;--end-y:110vh;animation-duration:11s;animation-delay:7s}
-.shooting-star:nth-child(4){--start-x:120vw;--start-y:-40vh;--end-x:-40vw;--end-y:120vh;animation-duration:18s;animation-delay:2.2s}
-.shooting-star:nth-child(5){--start-x:100vw;--start-y:50vh;--end-x:-5vw;--end-y:140vh;animation-duration:14s;animation-delay:10s}
-
 
 /* ========================================================================
    4. CORE LAYOUT & GLASSMORPHIC PANELS
@@ -353,22 +354,9 @@ table th {
 ::-webkit-scrollbar-thumb { background: var(--accent-tertiary); border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
 
-
 /* ========================================================================
    8. ANIMATIONS & KEYFRAMES
    ======================================================================== */
-
-@keyframes nebula-flow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes shoot-across {
-    0% { opacity: 1; transform: translate(var(--start-x), var(--start-y)) scale(0.5); }
-    70% { opacity: 1; }
-    100% { opacity: 0; transform: translate(var(--end-x), var(--end-y)) scale(1); }
-}
 
 @keyframes float {
   0% { transform: translateY(0px); }
