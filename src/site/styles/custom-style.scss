@@ -112,8 +112,8 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: -10;
   overflow: hidden;
 }
@@ -128,19 +128,6 @@ body {
   height: auto;
   transform: translate(-50%, -50%);
   object-fit: cover;
-  opacity: 0.8;
-}
-
-/* Fallback background in case video doesn't load */
-.video-background::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(330deg, var(--color-nebula-violet) 0%, var(--color-nebula-blue) 50%, var(--color-deep-space) 100%);
-  z-index: -1;
 }
 
 /* Optional: Add a subtle overlay to ensure text readability */
@@ -151,9 +138,8 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(1, 4, 9, 0.2);
+  background: rgba(1, 4, 9, 0.3);
   pointer-events: none;
-  z-index: 1;
 }
 
 /* ========================================================================
@@ -386,4 +372,32 @@ table th {
     padding: var(--spacing-unit);
     margin: calc(var(--header-height) + 3vh) auto 5vh;
   }
+}
+
+/* Add this temporarily to debug the video background */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  overflow: hidden;
+  /* Temporary debug border */
+  border: 3px solid red;
+  background-color: blue;
+}
+
+.video-background video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  /* Temporary debug border */
+  border: 3px solid green;
 }
