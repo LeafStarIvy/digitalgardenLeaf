@@ -11,6 +11,15 @@
     {% endfor %}
   </head>
   <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
+    <!-- Video background must be placed immediately after body opening tag -->
+    <div class="video-background">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="/img/video/Astrogalaxy1.webm" type="video/webm">
+        <!-- Fallback for browsers that don't support WebM -->
+        <source src="/img/video/Astrogalaxy1.mp4" type="video/mp4">
+      </video>
+    </div>
+    
     {%include "components/notegrowthhistory.njk"%}
     {% if settings.dgShowFileTree !== true %}
       {%include "components/navbar.njk"%}
@@ -25,7 +34,6 @@
       {% if settings.dgShowInlineTitle === true %}
         <h1>{{ noteTitle  }}</h1>
       {% endif %}
-
       <div class="header-meta">
         {% if settings.dgShowTags === true and tags %}
           <div class="header-tags">
@@ -60,11 +68,9 @@
         {% include imp %}
       {% endfor %}
     </main>
-
     {% if settings.dgShowBacklinks === true or settings.dgShowLocalGraph === true or settings.dgShowToc === true%}
       {%include "components/sidebar.njk" %}
     {%endif%}
-
     {% if settings.dgLinkPreview === true %}
       {%include "components/linkPreview.njk"%}
     {% endif %}
@@ -78,14 +84,5 @@
     {% include "components/particlesScript.njk" %}
     <link rel="stylesheet" href="/styles/datetime-display.css">
     <script src="/scripts/datetime-display.js"></script>
-<body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
-    <div class="video-background">
-      <video autoplay muted loop playsinline preload="auto">
-        <source src="/img/video/Astrogalaxy1.webm" type="video/webm">
-      </video>
-    </div>
-    
-    {%include "components/notegrowthhistory.njk"%}
-    <!-- rest of your content -->
-    </body>
-  </html>
+  </body>
+</html>
