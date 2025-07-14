@@ -78,14 +78,12 @@
     {% include "components/particlesScript.njk" %}
     <link rel="stylesheet" href="/styles/datetime-display.css">
     <script src="/scripts/datetime-display.js"></script>
-    <div class="galaxy-spiral-container">
-    <div class="galaxy-spiral galaxy-spiral-js"></div>
-    <div class="galaxy-core"></div>
-    <div class="shooting-star"></div>
-    <div class="shooting-star"></div>
-    <div class="shooting-star"></div>
-    <div class="shooting-star"></div>
-    <div class="shooting-star"></div>
+<div class="video-background">
+  <video autoplay muted loop playsinline>
+    <source src="/site/img/video/Astrogalaxy1.webm" type="video/webm">
+    <!-- Fallback for browsers that don't support WebM -->
+    <source src="/path/to/your/video.mp4" type="video/mp4">
+  </video>
 </div>
     </body>
   </html>
