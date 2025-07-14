@@ -11,13 +11,14 @@
     {% endfor %}
   </head>
   <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
-    <!-- Video background must be placed immediately after body opening tag -->
-    <div class="video-background">
-      <video autoplay muted loop playsinline preload="auto">
-        <source src="/img/video/Astrogalaxy1.webm" type="video/webm">
-        <!-- Fallback for browsers that don't support WebM -->
-        <source src="/img/video/Astrogalaxy1.mp4" type="video/mp4">
-      </video>
+    
+    <!-- Galaxy Skybox Background -->
+    <div class="galaxy-skybox">
+      <div class="star-field" id="starField"></div>
+      <div class="cosmic-dust"></div>
+      <div class="shooting-star" style="top: 20%; left: -10%; animation-delay: 0s;"></div>
+      <div class="shooting-star" style="top: 60%; left: -10%; animation-delay: 3s;"></div>
+      <div class="shooting-star" style="top: 80%; left: -10%; animation-delay: 6s;"></div>
     </div>
     
     {%include "components/notegrowthhistory.njk"%}
@@ -84,5 +85,68 @@
     {% include "components/particlesScript.njk" %}
     <link rel="stylesheet" href="/styles/datetime-display.css">
     <script src="/scripts/datetime-display.js"></script>
+    
+    <!-- Galaxy Star Field Generator -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const starField = document.getElementById('starField');
+        const starCount = window.innerWidth < 768 ? 100 : 200; // Fewer stars on mobile
+        
+        // Create random stars
+        for (let i = 0; i < starCount; i++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          
+          // Random position
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          star.style.left = x + '%';
+          star.style.top = y + '%';
+          
+          // Random size
+          const sizeRand = Math.random();
+          if (sizeRand < 0.7) {
+            star.classList.add('small');
+          } else if (sizeRand < 0.9) {
+            star.classList.add('medium');
+          } else {
+            star.classList.add('large');
+          }
+          
+          // Random color (10% chance for colored stars)
+          const colorRand = Math.random();
+          if (colorRand < 0.03) {
+            star.classList.add('golden');
+          } else if (colorRand < 0.06) {
+            star.classList.add('rose');
+          } else if (colorRand < 0.09) {
+            star.classList.add('teal');
+          }
+          
+          // Random animation delay
+          star.style.animationDelay = Math.random() * 3 + 's';
+          
+          starField.appendChild(star);
+        }
+        
+        // Add more shooting stars periodically
+        setInterval(() => {
+          if (Math.random() < 0.3) { // 30% chance every 5 seconds
+            const shootingStar = document.createElement('div');
+            shootingStar.className = 'shooting-star';
+            shootingStar.style.top = Math.random() * 70 + '%';
+            shootingStar.style.left = '-10%';
+            shootingStar.style.animationDelay = '0s';
+            
+            document.querySelector('.galaxy-skybox').appendChild(shootingStar);
+            
+            // Remove after animation
+            setTimeout(() => {
+              shootingStar.remove();
+            }, 8000);
+          }
+        }, 5000);
+      });
+    </script>
   </body>
 </html>
