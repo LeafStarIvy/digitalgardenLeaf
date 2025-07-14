@@ -101,15 +101,12 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
     {% include "components/particlesScript.njk" %}
     <link rel="stylesheet" href="/styles/datetime-display.css">
     <script src="/scripts/datetime-display.js"></script>
-<body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
-    <div class="video-background">
-      <video autoplay muted loop playsinline preload="auto">
-        <source src="/img/video/Astrogalaxy1.webm" type="video/webm">
-      </video>
-    </div>
-    
-    <button class="fullscreen-btn" id="fullscreenBtn">
-    <!-- rest of your content -->
+<div class="video-background">
+  <video autoplay muted loop playsinline preload="auto">
+    <source src="/img/video/Astrogalaxy1.webm" type="video/webm">
+    <!-- Optional: Add MP4 fallback if you have one -->
+    <!-- <source src="/img/video/Astrogalaxy1.mp4" type="video/mp4"> -->
+  </video>
 <script>
 // Fullscreen Note Feature (Focus Mode)
 (function() {
