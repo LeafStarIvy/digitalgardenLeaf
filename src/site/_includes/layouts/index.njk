@@ -78,12 +78,14 @@
     {% include "components/particlesScript.njk" %}
     <link rel="stylesheet" href="/styles/datetime-display.css">
     <script src="/scripts/datetime-display.js"></script>
-<div class="video-background">
-  <video autoplay muted loop playsinline>
-    <source src="/site/img/video/Astrogalaxy1.webm" type="video/webm">
-    <!-- Fallback for browsers that don't support WebM -->
-    <source src="/path/to/your/video.mp4" type="video/mp4">
-  </video>
-</div>
+<body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
+    <div class="video-background">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="/img/video/Astrogalaxy1.webm" type="video/webm">
+      </video>
+    </div>
+    
+    {%include "components/notegrowthhistory.njk"%}
+    <!-- rest of your content -->
     </body>
   </html>
