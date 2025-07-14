@@ -85,6 +85,7 @@
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 body {
@@ -97,6 +98,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   position: relative;
+  min-height: 100vh;
+  /* Ensure body doesn't have a background that blocks video */
+  background: transparent;
 }
 
 ::selection {
@@ -105,17 +109,18 @@ body {
 }
 
 /* ========================================================================
-   3. VIDEO BACKGROUND
+   3. VIDEO BACKGROUND (FIXED)
    ======================================================================== */
 
 .video-background {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -10;
+  width: 100vw;
+  height: 100vh;
+  z-index: -999; /* Much lower z-index to ensure it stays behind everything */
   overflow: hidden;
+  pointer-events: none; /* Prevents interaction with video */
 }
 
 .video-background video {
@@ -128,9 +133,11 @@ body {
   height: auto;
   transform: translate(-50%, -50%);
   object-fit: cover;
+  /* Ensure video loads and plays properly */
+  opacity: 1;
 }
 
-/* Optional: Add a subtle overlay to ensure text readability */
+/* Subtle overlay to ensure text readability */
 .video-background::after {
   content: '';
   position: absolute;
@@ -140,6 +147,7 @@ body {
   bottom: 0;
   background: rgba(1, 4, 9, 0.3);
   pointer-events: none;
+  z-index: 1;
 }
 
 /* ========================================================================
@@ -159,6 +167,18 @@ body {
   border: var(--border-width) solid var(--surface-border-color);
   box-shadow: var(--shadow-content-block);
   animation: float 15s ease-in-out infinite, fadeIn-up 1s var(--transition-smooth);
+}
+
+/* Ensure all main content has proper z-index */
+.content, main {
+  position: relative;
+  z-index: 10;
+}
+
+/* Navbar and other UI elements */
+nav, .navbar, .sidebar {
+  position: relative;
+  z-index: 100;
 }
 
 /* Internal glow effect */
@@ -238,6 +258,8 @@ button, .button {
   cursor: pointer;
   box-shadow: var(--shadow-glow-subtle);
   transition: var(--transition-smooth);
+  position: relative;
+  z-index: 10;
 }
 button:hover, .button:hover {
   background-color: var(--surface-border-color);
@@ -372,32 +394,42 @@ table th {
     padding: var(--spacing-unit);
     margin: calc(var(--header-height) + 3vh) auto 5vh;
   }
+  
+  /* Ensure video background works on mobile */
+  .video-background video {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+  }
 }
 
-/* Add this temporarily to debug the video background */
-.video-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -10;
-  overflow: hidden;
-  /* Temporary debug border */
-  border: 3px solid red;
-  background-color: blue;
+/* ========================================================================
+   10. FALLBACK STYLES
+   ======================================================================== */
+
+/* Fallback background if video fails to load */
+@supports not (object-fit: cover) {
+  .video-background {
+    background: linear-gradient(45deg, var(--color-void) 0%, var(--color-deep-space) 50%, var(--color-nebula-violet) 100%);
+  }
+  .video-background video {
+    display: none;
+  }
 }
 
-.video-background video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
-  /* Temporary debug border */
-  border: 3px solid green;
+/* Prefers-reduced-motion support */
+@media (prefers-reduced-motion: reduce) {
+  .video-background video {
+    animation-play-state: paused;
+  }
+  
+  .content-container {
+    animation: none;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
