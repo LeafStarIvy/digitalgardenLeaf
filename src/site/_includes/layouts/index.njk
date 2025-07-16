@@ -137,7 +137,7 @@
           }
         }, 5000);
       });
-
+    </script>
 <div class="galaxy-skybox">
         <!-- Mario stars will be inserted here by JavaScript -->
     </div>
@@ -147,14 +147,14 @@
         class MarioStarField {
             constructor() {
                 this.colors = [
-                    { name: '' },
-                    { name: 'blue' },
-                    { name: 'cyan' },
-                    { name: 'purple' },
-                    { name: 'green' },
-                    { name: 'pink' },
-                    { name: 'orange' },
-                    { name: 'red' }
+                    { name: '', glow: 'rgba(255, 215, 0, 0.4)' },
+                    { name: 'blue', glow: 'rgba(33, 150, 243, 0.4)' },
+                    { name: 'cyan', glow: 'rgba(0, 188, 212, 0.4)' },
+                    { name: 'purple', glow: 'rgba(156, 39, 176, 0.4)' },
+                    { name: 'green', glow: 'rgba(76, 175, 80, 0.4)' },
+                    { name: 'pink', glow: 'rgba(233, 30, 99, 0.4)' },
+                    { name: 'orange', glow: 'rgba(255, 152, 0, 0.4)' },
+                    { name: 'red', glow: 'rgba(244, 67, 54, 0.4)' }
                 ];
                 
                 this.sizes = [
@@ -186,11 +186,6 @@
                 const star = document.createElement('div');
                 star.className = 'mario-star';
                 
-                // Add Mario star eyes
-                const eyes = document.createElement('div');
-                eyes.className = 'mario-star-eyes';
-                star.appendChild(eyes);
-                
                 // Add random size
                 const size = this.getRandomSize();
                 if (size) star.classList.add(size);
@@ -219,12 +214,13 @@
                 // Set CSS custom properties
                 star.style.setProperty('--random-y', `${startY}px`);
                 star.style.setProperty('--random-y-end', `${endY}px`);
+                star.style.setProperty('--glow-color', colorData.glow);
                 
-                // Dynamic opacity based on size - much more subtle
-                let opacity = 0.15;
-                if (size === 'large') opacity = 0.18;
-                else if (size === 'small') opacity = 0.12;
-                else if (size === 'tiny') opacity = 0.1;
+                // Dynamic opacity based on size
+                let opacity = 0.5;
+                if (size === 'large') opacity = 0.6;
+                else if (size === 'small') opacity = 0.4;
+                else if (size === 'tiny') opacity = 0.3;
                 
                 star.style.setProperty('--star-opacity', opacity);
                 
@@ -346,6 +342,5 @@
             }
         });
     </script>
-
   </body>
 </html>
