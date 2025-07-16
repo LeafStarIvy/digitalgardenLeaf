@@ -11,24 +11,7 @@
     {% endfor %}
   </head>
   <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
-    
-    <!-- Galaxy Skybox Background -->
-    <div class="galaxy-skybox">
-      <div class="star-field" id="starField"></div>
-      <div class="cosmic-dust"></div>
-      <div class="shooting-star" style="top: 20%; left: -10%; animation-delay: 0s;"></div>
-      <div class="shooting-star" style="top: 60%; left: -10%; animation-delay: 3s;"></div>
-      <div class="shooting-star" style="top: 80%; left: -10%; animation-delay: 6s;"></div>
-    </div>
-
-<div class="galaxy-skybox"></div>
-<div class="mario-star-field">
-  <div class="mario-star"></div>
-  <div class="mario-star large blue"></div>
-  <div class="mario-star small cyan"></div>
-  <div class="mario-star purple"></div>
-  <!-- Add more stars as needed -->
-</div>
+  
 
     {%include "components/notegrowthhistory.njk"%}
     {% if settings.dgShowFileTree !== true %}
@@ -154,6 +137,210 @@
           }
         }, 5000);
       });
+    </script>
+<div class="galaxy-skybox">
+        <!-- Mario stars will be inserted here by JavaScript -->
+    </div>
+
+    <script>
+        // Enhanced Mario Star Field Generator
+        class MarioStarField {
+            constructor() {
+                this.colors = [
+                    { name: '', glow: 'rgba(255, 215, 0, 0.4)' },
+                    { name: 'blue', glow: 'rgba(33, 150, 243, 0.4)' },
+                    { name: 'cyan', glow: 'rgba(0, 188, 212, 0.4)' },
+                    { name: 'purple', glow: 'rgba(156, 39, 176, 0.4)' },
+                    { name: 'green', glow: 'rgba(76, 175, 80, 0.4)' },
+                    { name: 'pink', glow: 'rgba(233, 30, 99, 0.4)' },
+                    { name: 'orange', glow: 'rgba(255, 152, 0, 0.4)' },
+                    { name: 'red', glow: 'rgba(244, 67, 54, 0.4)' }
+                ];
+                
+                this.sizes = [
+                    { name: 'tiny', weight: 0.15 },
+                    { name: 'small', weight: 0.35 },
+                    { name: '', weight: 0.35 },
+                    { name: 'large', weight: 0.15 }
+                ];
+                
+                this.effects = ['', 'twinkle', 'pulse'];
+                this.starField = null;
+                this.animationFrameId = null;
+            }
+
+            getRandomSize() {
+                const random = Math.random();
+                let accumulator = 0;
+                
+                for (const size of this.sizes) {
+                    accumulator += size.weight;
+                    if (random < accumulator) {
+                        return size.name;
+                    }
+                }
+                return '';
+            }
+
+            createStar(isFirst = false) {
+                const star = document.createElement('div');
+                star.className = 'mario-star';
+                
+                // Add random size
+                const size = this.getRandomSize();
+                if (size) star.classList.add(size);
+                
+                // Add random color
+                const colorData = this.colors[Math.floor(Math.random() * this.colors.length)];
+                if (colorData.name) star.classList.add(colorData.name);
+                
+                // Add random effect (30% chance)
+                if (Math.random() < 0.3) {
+                    const effect = this.effects[Math.floor(Math.random() * this.effects.length)];
+                    if (effect) star.classList.add(effect);
+                }
+                
+                // First star configuration
+                if (isFirst) {
+                    star.classList.add('first');
+                }
+                
+                // Random positioning
+                const screenHeight = window.innerHeight;
+                const startY = Math.random() * screenHeight;
+                const drift = (Math.random() - 0.5) * 300; // More dramatic drift
+                const endY = Math.max(0, Math.min(screenHeight, startY + drift));
+                
+                // Set CSS custom properties
+                star.style.setProperty('--random-y', `${startY}px`);
+                star.style.setProperty('--random-y-end', `${endY}px`);
+                star.style.setProperty('--glow-color', colorData.glow);
+                
+                // Dynamic opacity based on size
+                let opacity = 0.5;
+                if (size === 'large') opacity = 0.6;
+                else if (size === 'small') opacity = 0.4;
+                else if (size === 'tiny') opacity = 0.3;
+                
+                star.style.setProperty('--star-opacity', opacity);
+                
+                // Random animation delay (0-80 seconds)
+                if (!isFirst) {
+                    const delay = Math.random() * 80;
+                    star.style.animationDelay = `${delay}s`;
+                }
+                
+                // Random animation duration variation (±25%)
+                const baseDuration = this.getBaseDuration(size);
+                const durationVariation = baseDuration * (0.75 + Math.random() * 0.5);
+                star.style.animationDuration = `${durationVariation}s`;
+                
+                return star;
+            }
+
+            getBaseDuration(size) {
+                switch (size) {
+                    case 'large': return 90;
+                    case 'small': return 55;
+                    case 'tiny': return 40;
+                    default: return 70;
+                }
+            }
+
+            createStarField() {
+                const starField = document.createElement('div');
+                starField.className = 'mario-star-field';
+                
+                // Create 12-18 stars for better distribution
+                const starCount = Math.floor(Math.random() * 7) + 12;
+                
+                for (let i = 0; i < starCount; i++) {
+                    const star = this.createStar(i === 0);
+                    starField.appendChild(star);
+                }
+                
+                return starField;
+            }
+
+            init() {
+                this.cleanup();
+                
+                const galaxySkybox = document.querySelector('.galaxy-skybox');
+                if (!galaxySkybox) return;
+                
+                this.starField = this.createStarField();
+                galaxySkybox.appendChild(this.starField);
+                
+                // Schedule next recreation
+                this.scheduleRecreation();
+            }
+
+            cleanup() {
+                if (this.animationFrameId) {
+                    cancelAnimationFrame(this.animationFrameId);
+                    this.animationFrameId = null;
+                }
+                
+                const existingStarField = document.querySelector('.mario-star-field');
+                if (existingStarField) {
+                    existingStarField.remove();
+                }
+            }
+
+            scheduleRecreation() {
+                // Recreate stars every 2-3 minutes with some randomness
+                const delay = (120 + Math.random() * 60) * 1000;
+                
+                setTimeout(() => {
+                    this.init();
+                }, delay);
+            }
+
+            handleResize() {
+                // Debounced resize handler
+                clearTimeout(this.resizeTimeout);
+                this.resizeTimeout = setTimeout(() => {
+                    this.init();
+                }, 300);
+            }
+        }
+
+        // Initialize the Mario Star Field
+        let marioStarField;
+
+        function initMarioStars() {
+            if (marioStarField) {
+                marioStarField.cleanup();
+            }
+            
+            marioStarField = new MarioStarField();
+            marioStarField.init();
+        }
+
+        // Start when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initMarioStars);
+        } else {
+            initMarioStars();
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (marioStarField) {
+                marioStarField.handleResize();
+            }
+        });
+
+        // Handle visibility change to optimize performance
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                if (marioStarField) {
+                    marioStarField.cleanup();
+                }
+            } else {
+                setTimeout(initMarioStars, 500);
+            }
+        });
     </script>
   </body>
 </html>
