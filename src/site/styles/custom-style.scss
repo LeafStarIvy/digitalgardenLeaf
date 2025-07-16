@@ -243,133 +243,296 @@ body {
 }
 
 /* ========================================================================
-   SUPER MARIO GALAXY STARS
-   ======================================================================== */
+  SUPER MARIO GALAXY STARS (COMPLETE ENHANCED VERSION)
+ ======================================================================== */
 
-.mario-star-field {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -988;
-  overflow: hidden;
-}
+        .mario-star-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -988;
+            overflow: hidden;
+            pointer-events: none;
+        }
 
-.mario-star {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  animation: marioStarScroll 25s linear infinite;
-  opacity: 0.4;
-}
+        .mario-star {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            animation: marioStarFloat 70s linear infinite;
+            opacity: 0.5;
+            transform-origin: center;
+            will-change: transform, opacity;
+        }
 
-.mario-star.large {
-  width: 32px;
-  height: 32px;
-  animation-duration: 30s;
-  opacity: 0.5;
-}
+        .mario-star.large {
+            width: 120px;
+            height: 120px;
+            animation-duration: 90s;
+            opacity: 0.6;
+        }
 
-.mario-star.small {
-  width: 16px;
-  height: 16px;
-  animation-duration: 20s;
-  opacity: 0.3;
-}
+        .mario-star.small {
+            width: 65px;
+            height: 65px;
+            animation-duration: 55s;
+            opacity: 0.4;
+        }
 
-/* Super Mario Star Shape using CSS */
-.mario-star::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, 
-    rgba(255, 215, 0, 0.8) 0%, 
-    rgba(255, 193, 7, 0.7) 50%, 
-    rgba(255, 235, 59, 0.6) 100%
-  );
-  clip-path: polygon(
-    50% 0%, 
-    61% 35%, 
-    98% 35%, 
-    68% 57%, 
-    79% 91%, 
-    50% 70%, 
-    21% 91%, 
-    32% 57%, 
-    2% 35%, 
-    39% 35%
-  );
-  filter: blur(0.5px);
-  animation: marioStarGlow 3s ease-in-out infinite;
-}
+        .mario-star.tiny {
+            width: 45px;
+            height: 45px;
+            animation-duration: 40s;
+            opacity: 0.3;
+        }
 
-/* Alternative star variations */
-.mario-star.blue::before {
-  background: linear-gradient(45deg, 
-    rgba(33, 150, 243, 0.8) 0%, 
-    rgba(66, 165, 245, 0.7) 50%, 
-    rgba(144, 202, 249, 0.6) 100%
-  );
-}
+        /* First star always visible */
+        .mario-star.first {
+            animation-delay: 0s !important;
+        }
 
-.mario-star.cyan::before {
-  background: linear-gradient(45deg, 
-    rgba(0, 188, 212, 0.8) 0%, 
-    rgba(77, 208, 225, 0.7) 50%, 
-    rgba(178, 235, 242, 0.6) 100%
-  );
-}
+        /* Enhanced Mario Star Shape with better glow */
+        .mario-star::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(255, 215, 0, 0.8) 0%, 
+                rgba(255, 193, 7, 0.6) 30%,
+                rgba(255, 235, 59, 0.5) 70%,
+                rgba(255, 245, 157, 0.4) 100%
+            );
+            clip-path: polygon(
+                50% 0%, 
+                61% 35%, 
+                98% 35%, 
+                68% 57%, 
+                79% 91%, 
+                50% 70%, 
+                21% 91%, 
+                32% 57%, 
+                2% 35%, 
+                39% 35%
+            );
+            filter: blur(0.8px) drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
+            animation: marioStarGlow 5s ease-in-out infinite;
+            mix-blend-mode: screen;
+        }
 
-.mario-star.purple::before {
-  background: linear-gradient(45deg, 
-    rgba(156, 39, 176, 0.8) 0%, 
-    rgba(186, 104, 200, 0.7) 50%, 
-    rgba(225, 190, 231, 0.6) 100%
-  );
-}
+        /* Enhanced star inner glow */
+        .mario-star::after {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 15%;
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 0.6) 0%, 
+                rgba(255, 255, 255, 0.3) 30%,
+                transparent 70%
+            );
+            clip-path: polygon(
+                50% 0%, 
+                61% 35%, 
+                98% 35%, 
+                68% 57%, 
+                79% 91%, 
+                50% 70%, 
+                21% 91%, 
+                32% 57%, 
+                2% 35%, 
+                39% 35%
+            );
+            animation: marioStarInnerGlow 3s ease-in-out infinite alternate;
+            mix-blend-mode: overlay;
+        }
 
-/* Floating cosmic dust particles (Enhanced Blue) */
-.cosmic-dust {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -985;
-  background: 
-    radial-gradient(1px 1px at 15% 25%, rgba(100, 181, 246, 0.4), transparent),
-    radial-gradient(1px 1px at 35% 55%, rgba(66, 165, 245, 0.3), transparent),
-    radial-gradient(1px 1px at 65% 35%, rgba(33, 150, 243, 0.2), transparent),
-    radial-gradient(1px 1px at 85% 75%, rgba(0, 188, 212, 0.25), transparent);
-  background-size: 400px 300px;
-  animation: dustFloat 100s linear infinite;
-}
+        /* Color variations with enhanced gradients */
+        .mario-star.blue::before {
+            background: linear-gradient(45deg, 
+                rgba(33, 150, 243, 0.8) 0%, 
+                rgba(66, 165, 245, 0.6) 30%,
+                rgba(144, 202, 249, 0.5) 70%,
+                rgba(187, 222, 251, 0.4) 100%
+            );
+            filter: blur(0.8px) drop-shadow(0 0 8px rgba(33, 150, 243, 0.4));
+        }
 
-/* Shooting stars */
-.shooting-star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: linear-gradient(45deg, #fff, transparent);
-  border-radius: 50%;
-  z-index: -980;
-  animation: shootingStar 8s linear infinite;
-}
+        .mario-star.cyan::before {
+            background: linear-gradient(45deg, 
+                rgba(0, 188, 212, 0.8) 0%, 
+                rgba(77, 208, 225, 0.6) 30%,
+                rgba(178, 235, 242, 0.5) 70%,
+                rgba(224, 247, 250, 0.4) 100%
+            );
+            filter: blur(0.8px) drop-shadow(0 0 8px rgba(0, 188, 212, 0.4));
+        }
 
-.shooting-star::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50px;
-  height: 1px;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.8), transparent);
-  transform: translateX(-50px);
-}
+        .mario-star.purple::before {
+            background: linear-gradient(45deg, 
+                rgba(156, 39, 176, 0.8) 0%, 
+                rgba(186, 104, 200, 0.6) 30%,
+                rgba(225, 190, 231, 0.5) 70%,
+                rgba(243, 229, 245, 0.4) 100%
+            );
+            filter: blur(0.8px) drop-shadow(0 0 8px rgba(156, 39, 176, 0.4));
+        }
+
+        .mario-star.green::before {
+            background: linear-gradient(45deg, 
+                rgba(76, 175, 80, 0.8) 0%, 
+                rgba(129, 199, 132, 0.6) 30%,
+                rgba(200, 230, 201, 0.5) 70%,
+                rgba(232, 245, 233, 0.4) 100%
+            );
+            filter: blur(0.8px) drop-shadow(0 0 8px rgba(76, 175, 80, 0.4));
+        }
+
+        .mario-star.pink::before {
+            background: linear-gradient(45deg, 
+                rgba(233, 30, 99, 0.8) 0%, 
+                rgba(240, 98, 146, 0.6) 30%,
+                rgba(248, 187, 208, 0.5) 70%,
+                rgba(252, 228, 236, 0.4) 100%
+            );
+            filter: blur(0.8px) drop-shadow(0 0 8px rgba(233, 30, 99, 0.4));
+        }
+
+        .mario-star.orange::before {
+            background: linear-gradient(45deg, 
+                rgba(255, 152, 0, 0.8) 0%, 
+                rgba(255, 183, 77, 0.6) 30%,
+                rgba(255, 224, 178, 0.5) 70%,
+                rgba(255, 243, 224, 0.4) 100%
+            );
+            filter: blur(0.8px) drop-shadow(0 0 8px rgba(255, 152, 0, 0.4));
+        }
+
+        .mario-star.red::before {
+            background: linear-gradient(45deg, 
+                rgba(244, 67, 54, 0.8) 0%, 
+                rgba(239, 154, 154, 0.6) 30%,
+                rgba(255, 205, 210, 0.5) 70%,
+                rgba(255, 235, 238, 0.4) 100%
+            );
+            filter: blur(0.8px) drop-shadow(0 0 8px rgba(244, 67, 54, 0.4));
+        }
+
+        /* Enhanced animations */
+        @keyframes marioStarFloat {
+            0% { 
+                transform: translateX(-150px) translateY(var(--random-y, 0px)) rotate(0deg) scale(0.8); 
+                opacity: 0; 
+            }
+            3% { 
+                opacity: var(--star-opacity, 0.5); 
+                transform: translateX(-120px) translateY(var(--random-y, 0px)) rotate(10deg) scale(1);
+            }
+            97% { 
+                opacity: var(--star-opacity, 0.5); 
+                transform: translateX(calc(100vw - 50px)) translateY(var(--random-y-end, 0px)) rotate(350deg) scale(1);
+            }
+            100% { 
+                transform: translateX(calc(100vw + 150px)) translateY(var(--random-y-end, 0px)) rotate(360deg) scale(0.8); 
+                opacity: 0; 
+            }
+        }
+
+        @keyframes marioStarGlow {
+            0%, 100% { 
+                filter: blur(0.8px) drop-shadow(0 0 8px var(--glow-color, rgba(255, 215, 0, 0.4))) brightness(1); 
+            }
+            50% { 
+                filter: blur(0.8px) drop-shadow(0 0 20px var(--glow-color, rgba(255, 215, 0, 0.7))) brightness(1.3); 
+            }
+        }
+
+        @keyframes marioStarInnerGlow {
+            0% { 
+                opacity: 0.3; 
+                transform: scale(0.9);
+            }
+            100% { 
+                opacity: 0.7; 
+                transform: scale(1.1);
+            }
+        }
+
+        /* Twinkle effect for some stars */
+        .mario-star.twinkle {
+            animation: marioStarFloat 70s linear infinite, starTwinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes starTwinkle {
+            0%, 100% { 
+                opacity: var(--star-opacity, 0.5); 
+            }
+            50% { 
+                opacity: calc(var(--star-opacity, 0.5) * 1.5); 
+            }
+        }
+
+        /* Pulsing effect for special stars */
+        .mario-star.pulse::before {
+            animation: marioStarGlow 5s ease-in-out infinite, starPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes starPulse {
+            0%, 100% { 
+                transform: scale(1); 
+            }
+            50% { 
+                transform: scale(1.15); 
+            }
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .mario-star {
+                width: 65px;
+                height: 65px;
+                animation-duration: 60s;
+            }
+            
+            .mario-star.large {
+                width: 85px;
+                height: 85px;
+                animation-duration: 80s;
+            }
+            
+            .mario-star.small {
+                width: 50px;
+                height: 50px;
+                animation-duration: 45s;
+            }
+            
+            .mario-star.tiny {
+                width: 35px;
+                height: 35px;
+                animation-duration: 35s;
+            }
+        }
+
+        /* Performance optimization */
+        @media (prefers-reduced-motion: reduce) {
+            .mario-star {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+
+        /* Hide on very low resolution devices */
+        @media (max-resolution: 1dppx) {
+            .mario-star-field {
+                display: none;
+            }
+        }
 
 /* ========================================================================
    4. CORE LAYOUT & GLASSMORPHIC PANELS
