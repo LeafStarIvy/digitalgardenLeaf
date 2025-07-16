@@ -11,8 +11,16 @@
     {% endfor %}
   </head>
   <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
-  
-
+    
+    <!-- Galaxy Skybox Background -->
+    <div class="galaxy-skybox">
+      <div class="star-field" id="starField"></div>
+      <div class="cosmic-dust"></div>
+      <div class="shooting-star" style="top: 20%; left: -10%; animation-delay: 0s;"></div>
+      <div class="shooting-star" style="top: 60%; left: -10%; animation-delay: 3s;"></div>
+      <div class="shooting-star" style="top: 80%; left: -10%; animation-delay: 6s;"></div>
+    </div>
+    
     {%include "components/notegrowthhistory.njk"%}
     {% if settings.dgShowFileTree !== true %}
       {%include "components/navbar.njk"%}
@@ -75,7 +83,9 @@
     {% endfor %}
     {%include "components/lucideIcons.njk"%}
     {% include "components/particlesScript.njk" %}
-
+    <link rel="stylesheet" href="/styles/datetime-display.css">
+    <script src="/scripts/datetime-display.js"></script>
+    
     <!-- Galaxy Star Field Generator -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
