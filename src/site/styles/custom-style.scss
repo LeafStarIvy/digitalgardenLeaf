@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════════════════════
    🌌 COSMIC DIGITAL GARDEN - PREMIUM OBSIDIAN THEME 🌌
-   Designed for Obsidian Digital Garden Plugin
+   Designed for Obsidian Digital Garden Plugin - FIXED VERSION
    ═══════════════════════════════════════════════════════════════════════════════════ */
 
 /* ─────────────────────────────────────────────────────────────────────────────────── */
@@ -140,7 +140,7 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
 }
 
 .star-constellation::before,
@@ -171,18 +171,17 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────────── */
-/* 🌌 BASE STYLES & COSMIC BACKGROUND */
+/* 🌌 BASE STYLES & COSMIC BACKGROUND - FIXED FOR SCROLLING */
 /* ─────────────────────────────────────────────────────────────────────────────────── */
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  /* IMPORTANT: Remove any overflow hidden */
 }
 
 body {
@@ -191,28 +190,33 @@ body {
   line-height: 1.7;
   color: var(--text-primary);
   background: var(--cosmic-deep);
-  min-height: 100vh;
-  position: relative;
+  margin: 0;
+  padding: 0;
+  /* FIXED: Allow normal scrolling */
   overflow-x: hidden;
+  overflow-y: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  min-height: 100vh;
 }
 
-/* Multi-layered Cosmic Background */
+/* FIXED: Multi-layered Cosmic Background - Changed to absolute positioning */
 body::before {
   content: '';
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  min-height: 100%;
   background: 
     radial-gradient(circle at 25% 25%, var(--cosmic-purple) 0%, transparent 25%),
     radial-gradient(circle at 75% 75%, var(--space-blue) 0%, transparent 25%),
     radial-gradient(circle at 50% 50%, var(--nebula-blue) 0%, transparent 30%),
     linear-gradient(135deg, var(--cosmic-deep) 0%, var(--cosmic-dark) 50%, var(--space-blue) 100%);
   opacity: 0.7;
-  z-index: -3;
+  z-index: -10;
   animation: cosmicShift 20s ease-in-out infinite alternate;
 }
 
@@ -221,14 +225,15 @@ body::before {
   100% { transform: scale(1.1) rotate(2deg); opacity: 0.8; }
 }
 
-/* Advanced Starfield Animation */
+/* FIXED: Advanced Starfield Animation - Changed to absolute positioning */
 body::after {
   content: '';
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  min-height: 100%;
   background-image:
     radial-gradient(2px 2px at 20px 30px, var(--star-gold), transparent),
     radial-gradient(2px 2px at 40px 70px, var(--aurora-blue), transparent),
@@ -242,7 +247,7 @@ body::after {
   background-size: 300px 200px;
   animation: starfieldDrift 15s linear infinite, starfieldTwinkle 8s ease-in-out infinite alternate;
   opacity: 0.8;
-  z-index: -2;
+  z-index: -5;
 }
 
 @keyframes starfieldDrift {
@@ -256,25 +261,29 @@ body::after {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────────── */
-/* 🏗️ LAYOUT CONTAINERS */
+/* 🏗️ LAYOUT CONTAINERS - FIXED */
 /* ─────────────────────────────────────────────────────────────────────────────────── */
 
 .container, 
 main, 
-.site-content {
+.site-content,
+.app-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: var(--space-xl);
   position: relative;
   z-index: 1;
+  /* FIXED: Ensure proper stacking */
+  background: transparent;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────────── */
-/* 🎯 HEADER & NAVIGATION */
+/* 🎯 HEADER & NAVIGATION - FIXED */
 /* ─────────────────────────────────────────────────────────────────────────────────── */
 
 header,
-.site-header {
+.site-header,
+.navbar-container {
   background: var(--surface-primary);
   backdrop-filter: blur(20px) saturate(1.2);
   border-bottom: 2px solid var(--border-primary);
@@ -284,8 +293,10 @@ header,
   box-shadow: var(--shadow-cosmic);
   position: relative;
   overflow: hidden;
+  z-index: 10;
 }
 
+/* FIXED: Header star decoration using CSS-only approach */
 header::before {
   content: '';
   position: absolute;
@@ -293,8 +304,10 @@ header::before {
   left: var(--space-xl);
   width: 32px;
   height: 32px;
-  --size: 32px;
-  --color: var(--star-gold);
+  background: var(--star-gold);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  box-shadow: var(--glow-primary);
+  animation: starPulse 2s ease-in-out infinite alternate;
 }
 
 header::after {
@@ -345,6 +358,7 @@ h1,
   100% { background-position: 100% 50%; }
 }
 
+/* FIXED: Title star decoration */
 h1::after,
 .site-title::after {
   content: '';
@@ -353,8 +367,9 @@ h1::after,
   right: -24px;
   width: 20px;
   height: 20px;
-  --size: 20px;
-  --color: var(--star-gold);
+  background: var(--star-gold);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  box-shadow: var(--glow-primary);
   animation: starPulse 2s ease-in-out infinite alternate;
 }
 
@@ -371,6 +386,7 @@ nav,
   box-shadow: var(--glow-secondary);
   position: relative;
   overflow: hidden;
+  z-index: 5;
 }
 
 nav::before,
@@ -398,6 +414,8 @@ nav ul,
   align-items: center;
   gap: var(--space-xl);
   flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
 }
 
 nav a,
@@ -417,16 +435,17 @@ nav a,
   gap: var(--space-sm);
 }
 
+/* FIXED: Nav link star using CSS clip-path */
 nav a::before,
 .nav-link::before {
   content: '';
   width: 8px;
   height: 8px;
-  --size: 8px;
-  --color: var(--stellar-blue);
+  background: var(--stellar-blue);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   opacity: 0;
   transition: all var(--transition-smooth);
-  transform: rotate(45deg) scale(0.5);
+  transform: scale(0.5);
 }
 
 nav a:hover,
@@ -441,7 +460,7 @@ nav a:hover,
 nav a:hover::before,
 .nav-link:hover::before {
   opacity: 1;
-  transform: rotate(45deg) scale(1);
+  transform: scale(1);
 }
 
 nav a:active,
@@ -456,7 +475,8 @@ nav a:active,
 .content,
 .note-content,
 article,
-.markdown-rendered {
+.markdown-rendered,
+.markdown-preview-section {
   background: var(--surface-primary);
   backdrop-filter: blur(20px);
   padding: var(--space-2xl);
@@ -467,6 +487,7 @@ article,
   position: relative;
   overflow: hidden;
   animation: contentFadeIn 0.8s ease-out;
+  z-index: 2;
 }
 
 @keyframes contentFadeIn {
@@ -480,6 +501,7 @@ article,
   }
 }
 
+/* FIXED: Content star decoration */
 .content::before,
 .note-content::before,
 article::before {
@@ -489,8 +511,8 @@ article::before {
   right: var(--space-lg);
   width: 12px;
   height: 12px;
-  --size: 12px;
-  --color: var(--aurora-blue);
+  background: var(--aurora-blue);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   opacity: 0.4;
 }
 
@@ -524,6 +546,10 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
+h1:first-child, h2:first-child, h3:first-child {
+  margin-top: 0;
+}
+
 h1 { font-size: clamp(2.5rem, 4vw, 3.5rem); }
 h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
 h3 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); }
@@ -538,6 +564,7 @@ h2 {
   position: relative;
 }
 
+/* FIXED: H2 star decoration */
 h2::before {
   content: '';
   position: absolute;
@@ -546,8 +573,8 @@ h2::before {
   transform: translateY(-50%);
   width: 16px;
   height: 16px;
-  --size: 16px;
-  --color: var(--stellar-blue);
+  background: var(--stellar-blue);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   opacity: 0.8;
 }
 
@@ -563,14 +590,15 @@ h2::after {
   box-shadow: var(--glow-primary);
 }
 
+/* FIXED: H3 star decoration */
 h3::before {
   content: '';
   margin-right: var(--space-sm);
   display: inline-block;
   width: 10px;
   height: 10px;
-  --size: 10px;
-  --color: var(--quantum-teal);
+  background: var(--quantum-teal);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
 
 h4::before {
@@ -738,6 +766,7 @@ ul li {
   padding-left: var(--space-lg);
 }
 
+/* FIXED: List star bullets */
 ul li::before {
   content: '';
   position: absolute;
@@ -745,8 +774,8 @@ ul li::before {
   top: 0.7em;
   width: 6px;
   height: 6px;
-  --size: 6px;
-  --color: var(--stellar-blue);
+  background: var(--stellar-blue);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   transform: translateY(-50%);
 }
 
@@ -758,8 +787,9 @@ ol li::marker {
 /* Nested lists */
 ul ul li::before,
 ol ul li::before {
-  --color: var(--quantum-teal);
-  --size: 4px;
+  background: var(--quantum-teal);
+  width: 4px;
+  height: 4px;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────────── */
@@ -777,103 +807,3 @@ blockquote {
   backdrop-filter: blur(10px);
 }
 
-blockquote::before {
-  content: '"';
-  position: absolute;
-  top: -10px;
-  left: var(--space-lg);
-  font-size: 3rem;
-  color: var(--stellar-blue);
-  opacity: 0.3;
-  line-height: 1;
-  font-family: Georgia, serif;
-}
-
-blockquote p {
-  color: var(--text-primary);
-  margin-bottom: var(--space-md);
-}
-
-blockquote p:last-child {
-  margin-bottom: 0;
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────────── */
-/* 📊 TABLES */
-/* ─────────────────────────────────────────────────────────────────────────────────── */
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: var(--space-xl) 0;
-  background: var(--surface-secondary);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-cosmic);
-}
-
-th, td {
-  padding: var(--space-lg);
-  text-align: left;
-  border-bottom: 1px solid var(--border-secondary);
-  position: relative;
-}
-
-th {
-  background: var(--space-blue);
-  color: var(--text-primary);
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-}
-
-th::after {
-  content: '';
-  position: absolute;
-  right: var(--space-md);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 8px;
-  height: 8px;
-  --size: 8px;
-  --color: var(--star-gold);
-  opacity: 0.6;
-}
-
-td {
-  color: var(--text-secondary);
-  transition: background-color var(--transition-fast);
-}
-
-tr:hover td {
-  background: var(--surface-overlay);
-}
-
-tr:last-child td {
-  border-bottom: none;
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────────── */
-/* 🏷️ TAGS & METADATA */
-/* ─────────────────────────────────────────────────────────────────────────────────── */
-
-.tag,
-.cm-hashtag,
-.frontmatter-container .tag {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  background: linear-gradient(135deg, var(--cosmic-purple), var(--nebula-purple));
-  color: var(--text-primary);
-  padding: 4px 12px;
-  border-radius: var(--radius-full);
-  font-size: 0.8rem;
-  font-weight: 500;
-  margin: 2px 4px 2px 0;
-  border: 1px solid rgba(124, 58, 237, 0.3);
-  transition: all var(--transition-smooth);
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-}
