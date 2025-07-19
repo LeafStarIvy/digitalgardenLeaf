@@ -1,70 +1,55 @@
 /* ═══════════════════════════════════════════════════════════════════════════════════
-   🌌 COSMIC DIGITAL GARDEN - ENHANCED OBSIDIAN THEME 🌌
-   Refined and Enhanced by Gemini
+   🌌 COSMIC DIGITAL GARDEN - MASTER EDITION 🌌
+   Rebuilt from the ground up by Gemini, with enhanced complexity & visual fidelity.
    ═══════════════════════════════════════════════════════════════════════════════════ */
 
 /* ─────────────────────────────────────────────────────────────────────────────────── */
 /* 🎨 SETUP: CSS VARIABLES & REUSABLE ELEMENTS */
 /* ─────────────────────────────────────────────────────────────────────────────────── */
 :root {
-  /* Core Blue Spectrum */
-  --cosmic-deep: #0b101b; /* Darker, richer deep space */
-  --cosmic-dark: #1a2332;
-  --cosmic-medium: #2d3748;
-  --cosmic-light: #4a5568;
-  --space-blue: #1e3a8a;
-  --nebula-blue: #2563eb;
-  --stellar-blue: #3b82f6;
+  /* Core Palette */
+  --cosmic-deep: #0a0f1b;
+  --cosmic-dark: #111827;
+  --cosmic-medium: #1f2937;
+  --surface-main: rgba(17, 24, 39, 0.75); /* Content background with transparency */
+  --glass-edge: rgba(59, 130, 246, 0.2); /* For glowing borders */
+  --glass-surface: rgba(31, 41, 55, 0.5); /* For nav and other glass elements */
+  
+  /* Accent Palette */
+  --star-gold: #fbbf24;
   --aurora-blue: #60a5fa;
-  --crystal-blue: #93c5fd;
-
-  /* Accent Colors */
-  --star-gold: #facc15; /* Brighter, more vibrant gold */
-  --star-amber: #f59e0b;
-  --cosmic-purple: #7c3aed;
-  --nebula-purple: #9333ea; /* More vibrant purple */
-  --quantum-teal: #0891b2;
-  --plasma-cyan: #06b6d4;
-
-  /* Surface & Text Colors */
-  --surface-main: rgba(26, 35, 50, 0.85); /* Main content background */
-  --surface-glass: rgba(45, 55, 72, 0.5); /* Lighter, for overlays */
-  --surface-overlay: rgba(59, 130, 246, 0.1); /* Subtle hover effect */
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-muted: #94a3b8;
-  --text-accent: var(--aurora-blue);
-  --text-heading: var(--crystal-blue);
-
-  /* Borders & Effects */
-  --border-glow: rgba(96, 165, 250, 0.3);
-  --border-dim: rgba(74, 85, 104, 0.4);
-  --glow-star: 0 0 12px rgba(250, 204, 21, 0.5);
-  --glow-nebula: 0 0 20px rgba(59, 130, 246, 0.3);
-  --shadow-main: 0 10px 40px rgba(0, 0, 0, 0.5);
+  --nebula-purple: #8b5cf6;
+  --plasma-cyan: #22d3ee;
+  --hyper-link: var(--aurora-blue);
+  
+  /* Text Palette */
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-muted: #9ca3af;
+  --text-heading: #e5e7eb;
+  
+  /* Effects & Transitions */
+  --shadow-glow: 0 0 40px rgba(139, 92, 246, 0.15);
+  --glow-star: 0 0 10px rgba(251, 191, 36, 0.7);
+  --glow-nebula: 0 0 20px rgba(96, 165, 250, 0.5);
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.15s ease-out;
 
   /* Sizing & Spacing */
-  --space-xs: 0.25rem;
   --space-sm: 0.5rem;
   --space-md: 1rem;
   --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --radius-sm: 4px;
-  --radius-md: 8px;
+  --space-xl: 2.5rem;
+  --radius-md: 12px;
   --radius-lg: 16px;
-  --radius-xl: 24px;
 
-  /* Transitions */
-  --transition-fast: 0.2s ease-out;
-  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  
   /* ⭐ REUSABLE 4-POINTED STAR ⭐ */
-  --star-path: polygon(50% 0%, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0% 50%, 35% 35%);
+  --star-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%);
 }
 
+
 /* ─────────────────────────────────────────────────────────────────────────────────── */
-/* 🌌 BASE STYLES & SCROLL-FIXED COSMIC BACKGROUND */
+/* 🌌 BASE STYLES & FIXED COSMIC BACKGROUND */
 /* ─────────────────────────────────────────────────────────────────────────────────── */
 
 *, *::before, *::after {
@@ -72,60 +57,63 @@
 }
 
 html {
-  font-size: 16px;
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  color: var(--text-primary);
   background-color: var(--cosmic-deep);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Prevent horizontal scroll */
-  position: relative; /* Crucial for positioning pseudo-elements */
-  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Allow vertical scrolling while hiding horizontal overflow */
+  overflow-x: hidden;
 }
 
 /* ✅ FIXED: Background Layer 1 - Nebula Clouds */
 body::before {
   content: '';
-  position: absolute; /* Changed from fixed to absolute to scroll with the page */
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-image: 
-    radial-gradient(circle at 15% 20%, hsla(250, 80%, 60%, 0.3), transparent 30%),
-    radial-gradient(circle at 85% 75%, hsla(220, 80%, 50%, 0.35), transparent 35%),
-    linear-gradient(160deg, var(--cosmic-deep) 40%, var(--space-blue) 100%);
-  background-attachment: fixed; /* Keep the gradient fixed while content scrolls over */
-  z-index: -2;
-  animation: cosmicDrift 30s ease-in-out infinite alternate;
+  position: fixed; /* Use 'fixed' to keep it locked to the viewport */
+  inset: 0; /* shorthand for top, right, bottom, left = 0 */
+  z-index: -10;
+  background: 
+    radial-gradient(ellipse 40% 50% at 20% 25%, rgba(139, 92, 246, 0.25), transparent),
+    radial-gradient(ellipse 40% 50% at 80% 70%, rgba(37, 99, 235, 0.25), transparent),
+    linear-gradient(170deg, var(--cosmic-deep) 30%, var(--cosmic-dark) 100%);
+  animation: cosmic-drift 45s ease-in-out infinite alternate;
 }
 
 /* ✅ FIXED: Background Layer 2 - Starfield */
 body::after {
   content: '';
-  position: absolute; /* Changed from fixed to absolute */
-  top: 0; left: 0; right: 0; bottom: 0;
+  position: fixed; /* Use 'fixed' to keep it locked to the viewport */
+  inset: 0;
+  z-index: -5;
   background-image:
-    radial-gradient(1px 1px at 20px 30px, var(--star-gold), transparent),
-    radial-gradient(1px 1px at 80px 90px, var(--crystal-blue), transparent),
-    radial-gradient(2px 2px at 160px 120px, var(--star-gold), transparent),
-    radial-gradient(1px 1px at 250px 40px, var(--aurora-blue), transparent);
-  background-size: 300px 300px;
-  background-attachment: fixed; /* Keep stars fixed */
-  z-index: -1;
-  animation: starTwinkle 5s ease-in-out infinite alternate;
+    radial-gradient(1px 1px at 10% 20%, var(--star-gold), transparent),
+    radial-gradient(1px 1px at 80% 30%, var(--aurora-blue), transparent),
+    radial-gradient(1.5px 1.5px at 50% 50%, var(--star-gold), transparent),
+    radial-gradient(1px 1px at 30% 85%, var(--plasma-cyan), transparent),
+    radial-gradient(1.5px 1.5px at 90% 90%, var(--star-gold), transparent);
+  background-size: 250px 250px;
+  animation: 
+    starfield-drift 120s linear infinite,
+    starfield-twinkle 6s ease-in-out infinite alternate;
 }
 
-@keyframes cosmicDrift {
-  from { transform: rotate(-2deg) scale(1.1); }
-  to { transform: rotate(2deg) scale(1.1); }
+@keyframes cosmic-drift {
+  from { transform: rotate(-3deg) scale(1.2); }
+  to   { transform: rotate(3deg) scale(1.2); }
 }
-@keyframes starTwinkle {
-  from { opacity: 0.5; }
-  to { opacity: 1; }
+@keyframes starfield-drift {
+  from { background-position: 0 0; }
+  to   { background-position: -250px 250px; }
+}
+@keyframes starfield-twinkle {
+  from { opacity: 0.4; }
+  to   { opacity: 0.9; }
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────────── */
@@ -133,28 +121,28 @@ body::after {
 /* ─────────────────────────────────────────────────────────────────────────────────── */
 
 .site-content, main, .markdown-preview-view {
-  max-width: 800px; /* Optimal reading width */
+  max-width: 850px;
   margin: 0 auto;
   padding: var(--space-lg) var(--space-xl);
-  position: relative; /* Stacking context */
+  position: relative;
   z-index: 1;
 }
 
-/* Main Content Box */
+/* Main Content Box with Glassmorphism */
 .content, .note-content, article, .markdown-rendered {
   background: var(--surface-main);
-  backdrop-filter: blur(12px) saturate(1.2);
-  border: 1px solid var(--border-dim);
+  backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid var(--glass-edge);
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glow);
   padding: var(--space-xl);
-  margin-bottom: var(--space-2xl);
-  box-shadow: var(--shadow-main);
-  animation: contentFadeIn 0.6s var(--transition-smooth) backwards;
+  margin-bottom: var(--space-xl);
+  animation: content-fade-in 0.8s var(--transition-smooth) backwards;
 }
 
-@keyframes contentFadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes content-fade-in {
+  from { opacity: 0; transform: translateY(25px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────────── */
@@ -162,86 +150,102 @@ body::after {
 /* ─────────────────────────────────────────────────────────────────────────────────── */
 
 header, .site-header {
-  text-align: center;
-  padding: var(--space-2xl) var(--space-lg);
+  padding: var(--space-xl) 0;
   margin-bottom: var(--space-xl);
-  border-bottom: 1px solid var(--border-glow);
+  position: relative;
+  text-align: center;
 }
 
+/* Shimmering line effect */
+header::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--aurora-blue), transparent);
+  animation: shimmer 5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+/* Animated Gradient Title */
 h1.site-title {
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(3rem, 7vw, 4.5rem);
   font-weight: 800;
-  line-height: 1.2;
-  margin: 0 0 var(--space-md) 0;
-  background: linear-gradient(135deg, var(--crystal-blue), var(--star-gold));
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin: 0;
+  background: linear-gradient(125deg, var(--star-gold), var(--aurora-blue), var(--nebula-purple), var(--star-gold));
+  background-size: 400% 400%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
-  letter-spacing: -0.03em;
+  animation: gradient-pan 8s ease-in-out infinite;
 }
 
-.site-description {
-  color: var(--text-secondary);
-  font-size: 1.1rem;
-  max-width: 60ch;
-  margin: 0 auto;
+@keyframes gradient-pan {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 nav, .navbar {
   display: flex;
   justify-content: center;
-  margin-bottom: var(--space-2xl);
+  margin-bottom: var(--space-xl);
 }
 
 nav ul, .nav-links {
   display: flex;
-  gap: var(--space-sm);
   flex-wrap: wrap;
+  gap: var(--space-sm);
   justify-content: center;
   list-style: none;
   margin: 0;
   padding: var(--space-sm);
-  background: var(--surface-glass);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border-dim);
+  background: var(--glass-surface);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-edge);
   border-radius: var(--radius-md);
+  box-shadow: var(--shadow-glow);
 }
 
 nav a, .nav-link {
   color: var(--text-secondary);
   text-decoration: none;
-  padding: 0.6rem 1rem;
-  border-radius: var(--radius-sm);
   font-weight: 500;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
   transition: all var(--transition-fast);
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
+  position: relative;
+  overflow: hidden;
 }
 
-/* ✨ Nav Link Star ✨ */
 nav a::before {
   content: '';
-  width: 10px;
-  height: 10px;
-  background-color: var(--text-muted);
-  clip-path: var(--star-path);
-  transition: all var(--transition-fast);
-  transform: scale(0.8);
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--surface-main), transparent);
+  transition: left var(--transition-smooth);
 }
 
 nav a:hover, .nav-link:hover,
 nav a.active, .nav-link.active {
   color: var(--text-primary);
-  background: var(--surface-overlay);
+  background-color: var(--glass-edge);
 }
 
-nav a:hover::before, .nav-link:hover::before,
-nav a.active::before, .nav-link.active::before {
-  background-color: var(--star-gold);
-  transform: scale(1) rotate(180deg);
-  filter: drop-shadow(var(--glow-star));
+nav a:hover::before {
+  left: 100%;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────────── */
@@ -250,33 +254,29 @@ nav a.active::before, .nav-link.active::before {
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--text-heading);
-  font-weight: 700;
-  margin: var(--space-xl) 0 var(--space-md) 0;
-  line-height: 1.3;
+  font-weight: 600;
+  margin: var(--space-lg) 0 var(--space-md) 0;
   letter-spacing: -0.02em;
 }
-h1 { font-size: 2.25rem; }
-h2 { font-size: 1.75rem; }
-h3 { font-size: 1.4rem; }
-h4 { font-size: 1.2rem; }
 
 h2 {
+  font-size: 2rem;
   padding-bottom: var(--space-sm);
-  border-bottom: 1px solid var(--border-glow);
-  margin-top: var(--space-2xl);
+  border-bottom: 1px solid var(--glass-edge);
+  margin-top: var(--space-xl);
+  display: flex;
+  align-items: center;
 }
 
-/* ✨ Heading Star Decoration ✨ */
-h3::before {
+h2::before {
   content: '';
-  display: inline-block;
-  vertical-align: middle;
-  width: 1em;
-  height: 1em;
-  margin-right: var(--space-sm);
-  background-color: var(--text-accent);
+  width: 12px;
+  height: 12px;
+  margin-right: var(--space-md);
+  flex-shrink: 0;
+  background-color: var(--hyper-link);
   clip-path: var(--star-path);
-  transform: translateY(-0.1em);
+  filter: drop-shadow(var(--glow-nebula));
 }
 
 p {
@@ -285,106 +285,70 @@ p {
   margin-bottom: var(--space-md);
 }
 
-p:first-of-type {
-  font-size: 1.1rem;
-  color: var(--text-primary);
-}
-
 a {
-  color: var(--text-accent);
+  color: var(--hyper-link);
   text-decoration: none;
   font-weight: 500;
   transition: color var(--transition-fast);
 }
+
 a:hover {
   color: var(--star-gold);
-  text-decoration: underline;
-  text-decoration-color: var(--star-gold);
-  text-underline-offset: 3px;
 }
 
-/* Internal Links (Obsidian WikiLinks) */
+/* Richer Internal & External Links */
 .internal-link {
-  background-color: rgba(59, 130, 246, 0.15);
-  border-bottom: 2px solid rgba(59, 130, 246, 0.4);
-  color: var(--aurora-blue) !important;
-  padding: 2px 4px;
-  border-radius: var(--radius-sm);
-  text-decoration: none !important;
+  --link-color: var(--nebula-purple);
+  color: var(--link-color) !important;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.5);
+  transition: all var(--transition-fast);
 }
 .internal-link:hover {
-  background-color: rgba(250, 204, 21, 0.2);
-  border-bottom-color: var(--star-gold);
-  color: var(--star-gold) !important;
+  color: var(--text-primary) !important;
+  background-color: rgba(139, 92, 246, 0.2);
+  border-bottom-color: transparent;
+  border-radius: 4px;
+  text-shadow: 0 0 8px rgba(139, 92, 246, 0.7);
 }
 
-/* External Links */
 .external-link::after {
-  content: '↗';
-  font-size: 0.8em;
-  margin-left: var(--space-xs);
-  display: inline-block;
-  transform: translateY(-1px);
-  opacity: 0.7;
+  content: '✦'; /* Changed to a star-like glyph */
+  font-size: 0.7em;
+  margin-left: var(--space-sm);
+  vertical-align: super;
+  opacity: 0.6;
 }
 
-ul, ol {
-  padding-left: var(--space-lg);
-  margin-bottom: var(--space-md);
-}
-li {
-  color: var(--text-secondary);
-  padding-left: var(--space-sm);
-  margin-bottom: var(--space-sm);
-}
-
-/* ✨ List Star Bullets ✨ */
+/* List bullets with animation */
 ul > li {
   list-style: none;
   position: relative;
+  padding-left: var(--space-md);
 }
 ul > li::before {
   content: '';
   position: absolute;
-  left: -1.2rem;
-  top: 0.7em;
-  transform: translateY(-50%);
-  width: 8px;
-  height: 8px;
-  background-color: var(--stellar-blue);
+  left: 0;
+  top: 0.75em;
+  width: 7px;
+  height: 7px;
+  background-color: var(--text-muted);
   clip-path: var(--star-path);
+  transform: translateY(-50%);
+  transition: all var(--transition-smooth);
 }
-ul ul > li::before {
-  background-color: var(--quantum-teal);
-  transform: translateY(-50%) rotate(45deg);
-}
-
-ol {
-  list-style-type: decimal-leading-zero;
-}
-ol li::marker {
-  color: var(--stellar-blue);
-  font-weight: 600;
+ul > li:hover::before {
+  background-color: var(--star-gold);
+  transform: translateY(-50%) rotate(180deg) scale(1.2);
+  filter: drop-shadow(var(--glow-star));
 }
 
 blockquote {
   margin: var(--space-lg) 0;
-  padding: var(--space-md) var(--space-lg);
-  border-left: 3px solid var(--nebula-purple);
-  background-color: var(--surface-overlay);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 0 0 0 var(--space-lg);
+  border-left: 2px solid var(--nebula-purple);
   font-style: italic;
-  color: var(--text-secondary);
-}
-blockquote p {
-  margin-bottom: 0;
-}
-
-hr {
-  border: none;
-  height: 1px;
-  background-image: linear-gradient(to right, transparent, var(--border-glow), transparent);
-  margin: var(--space-xl) 0;
+  color: var(--text-muted);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────────── */
@@ -393,26 +357,27 @@ hr {
 
 code {
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
-  background: var(--surface-glass);
+  background: var(--glass-surface);
   color: var(--plasma-cyan);
   padding: 3px 6px;
-  border-radius: var(--radius-sm);
-  font-size: 0.9em;
+  border-radius: 4px;
+  font-size: 0.92em;
 }
 
 pre {
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
-  background: var(--cosmic-deep);
-  border: 1px solid var(--border-dim);
+  background: var(--cosmic-dark);
+  border: 1px solid var(--glass-edge);
   border-radius: var(--radius-md);
   padding: var(--space-lg);
   overflow-x: auto;
   margin: var(--space-lg) 0;
+  box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
 }
 
 pre > code {
   background: none;
   padding: 0;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
 }
