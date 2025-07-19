@@ -1,91 +1,72 @@
 /*
- * CELESTIAL GALAXY - DIGITAL GARDEN THEME
- * Super Mario Galaxy Inspired CSS Skybox
- *
- * A unified theme with animated CSS galaxy background.
- * Features refined glassmorphism, elegant typography, and celestial animations.
+ * CELESTIAL 4-POINTED STAR GALAXY THEME
+ * A cosmic journey through space with enchanting 4-pointed stars
+ * 
+ * Features deep space backgrounds, floating 4-pointed stars,
+ * elegant glassmorphism, and mesmerizing cosmic animations.
  */
 
 /* ========================================================================
    1. FONT IMPORTS & CORE VARIABLES
    ======================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Lato:wght@400;700&family=Fira+Code:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  /* -- Color Palette (Enhanced Blue Galaxy) -- */
-  --color-void: #010409;
-  --color-deep-space: #0a0f1c;
-  --color-nebula-violet: #2d1b69;
-  --color-nebula-blue: #1a237e;
-  --color-nebula-deep-blue: #0d47a1;
-  --color-nebula-cyan: #006064;
-  --color-nebula-purple: #4a148c;
-  --color-nebula-pink: #880e4f;
-  --color-starlight: #e6f1ff;
-  --color-comet-white: #f8fafc;
-  --color-glow-celeste: #64b5f6;
-  --color-glow-azure: #42a5f5;
-  --color-glow-lilac: #d8b4fe;
-  --color-aurora-cyan: #00bcd4;
-  --color-aurora-blue: #2196f3;
-  --color-galaxy-gold: #ffd700;
-  --color-galaxy-rose: #ff6b9d;
-  --color-galaxy-teal: #4ecdc4;
-  --color-galaxy-sapphire: #0f4c75;
+  /* -- Cosmic Color Palette -- */
+  --void-black: #000510;
+  --deep-space: #0a0e27;
+  --nebula-indigo: #1a1f3a;
+  --nebula-violet: #2d1b69;
+  --nebula-blue: #0f3460;
+  --nebula-cyan: #164e63;
+  --starlight: #e1e7ff;
+  --cosmic-white: #f8faff;
+  --aurora-blue: #3b82f6;
+  --aurora-cyan: #06b6d4;
+  --aurora-purple: #8b5cf6;
+  --plasma-pink: #ec4899;
+  --solar-gold: #f59e0b;
+  --cosmic-teal: #14b8a6;
 
-  /* -- Glassmorphic Surface (Enhanced Blue) -- */
-  --surface-color: rgba(13, 25, 45, 0.55);
-  --surface-blur: blur(16px);
-  --surface-border-color: rgba(100, 181, 246, 0.25);
+  /* -- 4-Pointed Star Colors -- */
+  --star-primary: #ffffff;
+  --star-blue: #60a5fa;
+  --star-cyan: #22d3ee;
+  --star-purple: #a78bfa;
+  --star-pink: #f472b6;
+  --star-gold: #fbbf24;
+  --star-emerald: #34d399;
 
-  /* -- Text Colors (Enhanced Blue Accents) -- */
-  --text-primary: #c9d1d9;
+  /* -- Glass Surfaces -- */
+  --glass-surface: rgba(30, 41, 59, 0.4);
+  --glass-border: rgba(148, 163, 184, 0.2);
+  --glass-blur: blur(20px);
+  --glass-glow: 0 0 40px rgba(59, 130, 246, 0.15);
+
+  /* -- Typography -- */
+  --font-primary: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --text-primary: #e2e8f0;
   --text-secondary: #94a3b8;
-  --text-headings: var(--color-starlight);
-  --text-accent: var(--color-glow-azure);
-  --text-link-hover: var(--color-comet-white);
-  --text-muted: #64748b;
+  --text-accent: var(--aurora-blue);
+  --text-glow: 0 0 20px rgba(59, 130, 246, 0.5);
 
-  /* -- Accent & Interactive Colors (More Blue) -- */
-  --accent-primary: var(--color-glow-celeste);
-  --accent-secondary: var(--color-aurora-blue);
-  --accent-tertiary: var(--color-aurora-cyan);
-  --selection-bg: rgba(100, 181, 246, 0.35);
-  --selection-text: var(--color-comet-white);
+  /* -- Layout & Spacing -- */
+  --container-max-width: 1200px;
+  --content-padding: 2rem;
+  --section-gap: 4rem;
+  --border-radius: 24px;
+  --border-radius-lg: 32px;
 
-  /* -- Typography System (Unified) -- */
-  --font-family-headings: 'Marcellus', serif;
-  --font-family-body: 'Lato', sans-serif;
-  --font-family-code: 'Fira Code', monospace;
-  --font-size-base: 18px;
-  --line-height-base: 1.7;
-
-  /* -- Layout, Spacing & Sizing -- */
-  --content-width: 850px;
-  --sidebar-width: 280px;
-  --spacing-unit: 1.75rem;
-  --header-height: 75px;
-
-  /* -- Borders & Radii -- */
-  --border-radius-soft: 16px;
-  --border-radius-medium: 12px;
-  --border-radius-small: 8px;
-  --border-width: 1px;
-
-  /* -- Shadows & Glows (Enhanced Blue) -- */
-  --shadow-glow-subtle: 0 0 12px 0 rgba(100, 181, 246, 0.25);
-  --shadow-glow-medium: 0 0 24px 0 rgba(66, 165, 245, 0.35);
-  --shadow-text-glow: 0 0 8px rgba(100, 181, 246, 0.6);
-  --shadow-content-block: 0 16px 40px rgba(0, 0, 0, 0.35);
-
-  /* -- Transitions & Animations -- */
-  --transition-smooth: 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  --transition-fast: 200ms ease-out;
+  /* -- Animations -- */
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.2s ease-out;
 }
 
 /* ========================================================================
-   2. GLOBAL STYLES & RESETS
+   2. RESET & BASE STYLES
    ======================================================================== */
 
 *, *::before, *::after {
@@ -96,534 +77,686 @@
 
 html {
   scroll-behavior: smooth;
-  height: 100%;
+  font-size: 16px;
 }
 
 body {
-  font-family: var(--font-family-body);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
+  font-family: var(--font-body);
+  background: var(--void-black);
   color: var(--text-primary);
-  background-color: var(--color-void);
+  line-height: 1.7;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  position: relative;
-  min-height: 100vh;
-  background: transparent;
 }
 
 ::selection {
-  background-color: var(--selection-bg);
-  color: var(--selection-text);
+  background: rgba(59, 130, 246, 0.3);
+  color: var(--cosmic-white);
 }
 
 /* ========================================================================
-   3. GALAXY SKYBOX BACKGROUND (ENHANCED BLUE)
+   3. COSMIC BACKGROUND SYSTEM
    ======================================================================== */
 
-.galaxy-skybox {
+.cosmic-canvas {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -999;
+  z-index: -1000;
   overflow: hidden;
   pointer-events: none;
-  
-  /* Enhanced blue galaxy gradient */
-  background: 
-    radial-gradient(ellipse at 20% 50%, var(--color-nebula-deep-blue) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, var(--color-nebula-blue) 0%, transparent 50%),
-    radial-gradient(ellipse at 40% 80%, var(--color-nebula-cyan) 0%, transparent 50%),
-    radial-gradient(ellipse at 60% 30%, var(--color-galaxy-sapphire) 0%, transparent 50%),
-    radial-gradient(ellipse at 10% 70%, var(--color-aurora-blue) 0%, transparent 40%),
-    linear-gradient(135deg, var(--color-deep-space) 0%, var(--color-void) 100%);
-  
-  animation: galaxyShift 120s ease-in-out infinite;
 }
 
-/* Enhanced blue nebula clouds layers */
-.galaxy-skybox::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 70% 40%, rgba(33, 150, 243, 0.15) 0%, transparent 30%),
-    radial-gradient(circle at 30% 70%, rgba(0, 188, 212, 0.12) 0%, transparent 35%),
-    radial-gradient(circle at 90% 10%, rgba(100, 181, 246, 0.1) 0%, transparent 25%),
-    radial-gradient(circle at 10% 90%, rgba(66, 165, 245, 0.18) 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(13, 71, 161, 0.08) 0%, transparent 60%);
-  animation: nebulaFloat 80s ease-in-out infinite alternate;
-}
-
-/* Distant stars field */
-.galaxy-skybox::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    radial-gradient(2px 2px at 20px 30px, #fff, transparent),
-    radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
-    radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.6), transparent),
-    radial-gradient(1px 1px at 130px 80px, #fff, transparent),
-    radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.7), transparent);
-  background-repeat: repeat;
-  background-size: 200px 100px;
-  animation: starsShimmer 60s linear infinite;
-}
-
-/* Animated star particles */
-.star-field {
+/* Deep Space Base Layer */
+.space-backdrop {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -990;
+  background: 
+    radial-gradient(ellipse at 25% 25%, var(--nebula-indigo) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 75%, var(--nebula-blue) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 10%, var(--nebula-violet) 0%, transparent 40%),
+    radial-gradient(ellipse at 10% 80%, var(--nebula-cyan) 0%, transparent 45%),
+    linear-gradient(135deg, var(--deep-space) 0%, var(--void-black) 100%);
+  animation: cosmicShift 180s ease-in-out infinite;
 }
 
-.star {
+/* Nebula Layers */
+.nebula-layer {
   position: absolute;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
-  border-radius: 50%;
-  animation: starTwinkle 3s ease-in-out infinite;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 35%),
+    radial-gradient(circle at 60% 20%, rgba(6, 182, 212, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 30% 90%, rgba(236, 72, 153, 0.06) 0%, transparent 30%);
+  animation: nebulaFlow 120s ease-in-out infinite alternate;
 }
 
-/* Star size variations */
-.star.small {
-  width: 1px;
-  height: 1px;
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
-}
-
-.star.medium {
-  width: 2px;
-  height: 2px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
-}
-
-.star.large {
-  width: 3px;
-  height: 3px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 1);
-}
-
-/* Colored stars for galaxy effect */
-.star.golden {
-  background: radial-gradient(circle, var(--color-galaxy-gold) 0%, transparent 70%);
-  box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
-}
-
-.star.rose {
-  background: radial-gradient(circle, var(--color-galaxy-rose) 0%, transparent 70%);
-  box-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
-}
-
-.star.teal {
-  background: radial-gradient(circle, var(--color-galaxy-teal) 0%, transparent 70%);
-  box-shadow: 0 0 8px rgba(78, 205, 196, 0.4);
-}
-
-.star.blue {
-  background: radial-gradient(circle, var(--color-aurora-blue) 0%, transparent 70%);
-  box-shadow: 0 0 10px rgba(33, 150, 243, 0.6);
-}
-
-.star.cyan {
-  background: radial-gradient(circle, var(--color-aurora-cyan) 0%, transparent 70%);
-  box-shadow: 0 0 8px rgba(0, 188, 212, 0.5);
+/* Distant Star Field */
+.distant-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 40px 60px, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 120px 20px, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 200px 100px, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(2px 2px at 300px 40px, rgba(255, 255, 255, 0.7), transparent);
+  background-size: 400px 200px;
+  background-repeat: repeat;
+  animation: starFieldDrift 200s linear infinite;
 }
 
 /* ========================================================================
-   SUPER MARIO GALAXY STARS
+   4. 4-POINTED STAR SYSTEM
    ======================================================================== */
 
-.mario-star-field {
+.four-point-stars {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -988;
-  overflow: hidden;
+  z-index: -900;
 }
 
-.mario-star {
+.star-4point {
   position: absolute;
-  width: 24px;
-  height: 24px;
-  animation: marioStarScroll 25s linear infinite;
-  opacity: 0.4;
+  width: var(--size, 16px);
+  height: var(--size, 16px);
+  animation: starFloat var(--duration, 20s) linear infinite;
+  opacity: var(--opacity, 0.6);
 }
 
-.mario-star.large {
-  width: 32px;
-  height: 32px;
-  animation-duration: 30s;
-  opacity: 0.5;
-}
-
-.mario-star.small {
-  width: 16px;
-  height: 16px;
-  animation-duration: 20s;
-  opacity: 0.3;
-}
-
-/* Super Mario Star Shape using CSS */
-.mario-star::before {
+/* 4-Pointed Star Shape */
+.star-4point::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, 
-    rgba(255, 215, 0, 0.8) 0%, 
-    rgba(255, 193, 7, 0.7) 50%, 
-    rgba(255, 235, 59, 0.6) 100%
-  );
+  background: var(--color, var(--star-primary));
   clip-path: polygon(
     50% 0%, 
-    61% 35%, 
-    98% 35%, 
-    68% 57%, 
-    79% 91%, 
-    50% 70%, 
-    21% 91%, 
-    32% 57%, 
-    2% 35%, 
-    39% 35%
+    60% 40%, 
+    100% 50%, 
+    60% 60%, 
+    50% 100%, 
+    40% 60%, 
+    0% 50%, 
+    40% 40%
   );
-  filter: blur(0.5px);
-  animation: marioStarGlow 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px currentColor) blur(0.5px);
+  animation: starPulse var(--pulse-duration, 4s) ease-in-out infinite;
 }
 
-/* Alternative star variations */
-.mario-star.blue::before {
-  background: linear-gradient(45deg, 
-    rgba(33, 150, 243, 0.8) 0%, 
-    rgba(66, 165, 245, 0.7) 50%, 
-    rgba(144, 202, 249, 0.6) 100%
-  );
+/* Star Size Variations */
+.star-4point.tiny {
+  --size: 8px;
+  --duration: 25s;
+  --opacity: 0.4;
+  --pulse-duration: 3s;
 }
 
-.mario-star.cyan::before {
-  background: linear-gradient(45deg, 
-    rgba(0, 188, 212, 0.8) 0%, 
-    rgba(77, 208, 225, 0.7) 50%, 
-    rgba(178, 235, 242, 0.6) 100%
-  );
+.star-4point.small {
+  --size: 12px;
+  --duration: 22s;
+  --opacity: 0.5;
+  --pulse-duration: 3.5s;
 }
 
-.mario-star.purple::before {
-  background: linear-gradient(45deg, 
-    rgba(156, 39, 176, 0.8) 0%, 
-    rgba(186, 104, 200, 0.7) 50%, 
-    rgba(225, 190, 231, 0.6) 100%
-  );
+.star-4point.medium {
+  --size: 16px;
+  --duration: 20s;
+  --opacity: 0.6;
+  --pulse-duration: 4s;
 }
 
-/* Floating cosmic dust particles (Enhanced Blue) */
-.cosmic-dust {
+.star-4point.large {
+  --size: 24px;
+  --duration: 18s;
+  --opacity: 0.7;
+  --pulse-duration: 4.5s;
+}
+
+.star-4point.huge {
+  --size: 32px;
+  --duration: 15s;
+  --opacity: 0.8;
+  --pulse-duration: 5s;
+}
+
+/* Colored Star Variants */
+.star-4point.blue { --color: var(--star-blue); }
+.star-4point.cyan { --color: var(--star-cyan); }
+.star-4point.purple { --color: var(--star-purple); }
+.star-4point.pink { --color: var(--star-pink); }
+.star-4point.gold { --color: var(--star-gold); }
+.star-4point.emerald { --color: var(--star-emerald); }
+
+/* Floating 4-Point Star Clusters */
+.star-cluster {
   position: absolute;
+  animation: clusterDrift var(--cluster-duration, 40s) ease-in-out infinite;
+}
+
+.star-cluster .star-4point {
+  position: relative;
+  display: inline-block;
+  margin: 0 8px;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Hero 4-Pointed Stars */
+.hero-stars {
+  position: fixed;
   top: 0;
   left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -800;
+  pointer-events: none;
+}
+
+.hero-star-large {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  opacity: 0.3;
+  animation: heroStarOrbit 60s linear infinite;
+}
+
+.hero-star-large::before {
+  content: '';
+  position: absolute;
   width: 100%;
   height: 100%;
-  z-index: -985;
-  background: 
-    radial-gradient(1px 1px at 15% 25%, rgba(100, 181, 246, 0.4), transparent),
-    radial-gradient(1px 1px at 35% 55%, rgba(66, 165, 245, 0.3), transparent),
-    radial-gradient(1px 1px at 65% 35%, rgba(33, 150, 243, 0.2), transparent),
-    radial-gradient(1px 1px at 85% 75%, rgba(0, 188, 212, 0.25), transparent);
-  background-size: 400px 300px;
-  animation: dustFloat 100s linear infinite;
+  background: linear-gradient(45deg, 
+    var(--star-primary) 0%, 
+    var(--aurora-blue) 50%, 
+    var(--aurora-cyan) 100%);
+  clip-path: polygon(
+    50% 0%, 
+    60% 40%, 
+    100% 50%, 
+    60% 60%, 
+    50% 100%, 
+    40% 60%, 
+    0% 50%, 
+    40% 40%
+  );
+  filter: drop-shadow(0 0 20px currentColor) blur(1px);
+  animation: heroStarGlow 8s ease-in-out infinite;
 }
 
-/* Shooting stars */
-.shooting-star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: linear-gradient(45deg, #fff, transparent);
-  border-radius: 50%;
-  z-index: -980;
-  animation: shootingStar 8s linear infinite;
+/* ========================================================================
+   5. CONTENT LAYOUT & GLASSMORPHISM
+   ======================================================================== */
+
+.page-container {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.shooting-star::before {
+.main-content {
+  flex: 1;
+  padding: 6rem 0 4rem;
+  position: relative;
+}
+
+.content-section {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+  margin-bottom: var(--section-gap);
+}
+
+.glass-panel {
+  background: var(--glass-surface);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 2.5rem;
+  box-shadow: var(--glass-glow);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.glass-panel::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 50px;
-  height: 1px;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.8), transparent);
-  transform: translateX(-50px);
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    transparent 50%, 
+    rgba(59, 130, 246, 0.05) 100%);
+  pointer-events: none;
+  border-radius: var(--border-radius);
+}
+
+.glass-panel:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 60px rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Enhanced Glass Panel with 4-Pointed Star Decoration */
+.glass-panel-starred {
+  position: relative;
+}
+
+.glass-panel-starred::after {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 20px;
+  height: 20px;
+  background: var(--aurora-blue);
+  opacity: 0.6;
+  clip-path: polygon(
+    50% 0%, 
+    60% 40%, 
+    100% 50%, 
+    60% 60%, 
+    50% 100%, 
+    40% 60%, 
+    0% 50%, 
+    40% 40%
+  );
+  filter: drop-shadow(0 0 10px currentColor);
+  animation: panelStarTwinkle 6s ease-in-out infinite;
 }
 
 /* ========================================================================
-   4. CORE LAYOUT & GLASSMORPHIC PANELS
-   ======================================================================== */
-
-.content-container {
-  max-width: var(--content-width);
-  margin: calc(var(--header-height) + 5vh) auto 10vh;
-  padding: calc(var(--spacing-unit) * 2);
-  position: relative;
-  z-index: 10;
-  background: var(--surface-color);
-  backdrop-filter: var(--surface-blur);
-  -webkit-backdrop-filter: var(--surface-blur);
-  border-radius: var(--border-radius-soft);
-  border: var(--border-width) solid var(--surface-border-color);
-  box-shadow: var(--shadow-content-block);
-  animation: float 15s ease-in-out infinite, fadeIn-up 1s var(--transition-smooth);
-}
-
-.content, main {
-  position: relative;
-  z-index: 10;
-}
-
-nav, .navbar, .sidebar {
-  position: relative;
-  z-index: 100;
-}
-
-/* Internal glow effect (Enhanced Blue) */
-.content-container::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(circle at 10% 20%, var(--accent-primary) 0%, transparent 35%),
-                radial-gradient(circle at 90% 80%, var(--accent-secondary) 0%, transparent 40%);
-    opacity: 0.2;
-    mix-blend-mode: screen;
-    border-radius: var(--border-radius-soft);
-    pointer-events: none;
-    transition: opacity var(--transition-smooth);
-}
-.content-container:hover::before {
-    opacity: 0.3;
-}
-
-/* ========================================================================
-   5. TYPOGRAPHY & TEXT STYLING
+   6. TYPOGRAPHY SYSTEM
    ======================================================================== */
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-headings);
-  color: var(--text-headings);
-  font-weight: 400;
-  line-height: 1.3;
-  text-shadow: var(--shadow-text-glow);
-  margin: calc(var(--spacing-unit) * 1.5) 0 var(--spacing-unit) 0;
+  font-family: var(--font-primary);
+  color: var(--starlight);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  text-shadow: var(--text-glow);
 }
-h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); letter-spacing: 1px; }
-h2 { font-size: clamp(2rem, 4vw, 2.5rem); }
-h3 { font-size: clamp(1.5rem, 3vw, 1.75rem); }
 
-p { margin-bottom: var(--spacing-unit); color: var(--text-secondary); }
-strong { font-weight: 700; color: var(--text-accent); }
+h1 {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, 
+    var(--starlight) 0%, 
+    var(--aurora-blue) 50%, 
+    var(--aurora-cyan) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2rem;
+}
 
+h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 2rem;
+}
+
+h3 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: var(--aurora-blue);
+}
+
+p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.lead-text {
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+strong {
+  color: var(--text-accent);
+  font-weight: 600;
+}
+
+/* Links */
 a {
   color: var(--text-accent);
   text-decoration: none;
   position: relative;
-  transition: color var(--transition-fast);
+  transition: var(--transition-fast);
 }
+
 a:hover {
-  color: var(--text-link-hover);
+  color: var(--starlight);
+  text-shadow: 0 0 10px currentColor;
 }
+
 a::before {
   content: '';
   position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: -4px;
+  bottom: -2px;
   left: 0;
-  background-color: var(--accent-secondary);
-  visibility: hidden;
-  transform: scaleX(0);
-  transition: all var(--transition-smooth);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--aurora-blue), var(--aurora-cyan));
+  transition: width 0.3s ease;
 }
+
 a:hover::before {
-  visibility: visible;
-  transform: scaleX(1);
+  width: 100%;
 }
 
 /* ========================================================================
-   6. COMPONENT STYLING
+   7. INTERACTIVE ELEMENTS
    ======================================================================== */
 
-button, .button {
-  font-family: var(--font-family-body);
-  font-weight: 700;
-  color: var(--color-starlight);
-  background: transparent;
-  padding: 0.8rem 1.8rem;
-  border-radius: var(--border-radius-medium);
-  border: var(--border-width) solid var(--surface-border-color);
+.cosmic-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: var(--glass-surface);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  color: var(--starlight);
+  font-family: var(--font-primary);
+  font-weight: 500;
+  font-size: 1rem;
   cursor: pointer;
-  box-shadow: var(--shadow-glow-subtle);
   transition: var(--transition-smooth);
+  text-decoration: none;
   position: relative;
-  z-index: 10;
-}
-button:hover, .button:hover {
-  background-color: var(--surface-border-color);
-  box-shadow: var(--shadow-glow-medium);
-  transform: translateY(-2px);
+  overflow: hidden;
 }
 
-blockquote {
-  margin: var(--spacing-unit) 0;
-  padding: var(--spacing-unit);
-  background: rgba(100, 181, 246, 0.08);
-  border-left: 3px solid var(--accent-secondary);
-  border-radius: var(--border-radius-small);
-  font-style: italic;
-  color: var(--text-secondary);
+.cosmic-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, var(--aurora-blue) 0%, transparent 70%);
+  transition: var(--transition-smooth);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cosmic-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 40px rgba(59, 130, 246, 0.3);
+  border-color: var(--aurora-blue);
+}
+
+.cosmic-button:hover::before {
+  width: 300px;
+  height: 300px;
+  opacity: 0.1;
+}
+
+/* Button with 4-Point Star Icon */
+.cosmic-button-starred::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: currentColor;
+  clip-path: polygon(
+    50% 0%, 
+    60% 40%, 
+    100% 50%, 
+    60% 60%, 
+    50% 100%, 
+    40% 60%, 
+    0% 50%, 
+    40% 40%
+  );
+  animation: buttonStarSpin 4s ease-in-out infinite;
+}
+
+/* Code Blocks */
+pre, code {
+  font-family: var(--font-mono);
 }
 
 pre {
-  background: rgba(0, 0, 0, 0.35);
-  padding: var(--spacing-unit);
-  border-radius: var(--border-radius-medium);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
   overflow-x: auto;
+  margin: 1.5rem 0;
 }
-code, pre {
-    font-family: var(--font-family-code);
-}
+
 :not(pre) > code {
-  background: var(--surface-border-color);
-  color: var(--accent-tertiary);
-  padding: 0.2em 0.5em;
-  border-radius: var(--border-radius-small);
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--aurora-cyan);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.9em;
 }
 
-hr {
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, transparent, var(--surface-border-color), transparent);
-    margin: calc(var(--spacing-unit) * 2) 0;
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid var(--aurora-blue);
+  background: rgba(59, 130, 246, 0.05);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: var(--border-radius);
+  font-style: italic;
+  position: relative;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: var(--spacing-unit) 0;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: var(--border-radius-medium);
-  overflow: hidden;
-}
-table th, table td {
-  padding: var(--spacing-unit);
-  text-align: left;
-  border-bottom: 1px solid var(--surface-border-color);
-}
-table th {
-  background: rgba(100, 181, 246, 0.15);
-  color: var(--text-headings);
-  font-weight: 700;
+blockquote::before {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 16px;
+  height: 16px;
+  background: var(--aurora-blue);
+  opacity: 0.6;
+  clip-path: polygon(
+    50% 0%, 
+    60% 40%, 
+    100% 50%, 
+    60% 60%, 
+    50% 100%, 
+    40% 60%, 
+    0% 50%, 
+    40% 40%
+  );
 }
 
 /* ========================================================================
-   7. WIDGETS & UI ELEMENTS
+   8. SPECIALIZED COMPONENTS
    ======================================================================== */
 
-.datetime-container {
+/* Navigation Header */
+.cosmic-nav {
   position: fixed;
-  top: 1.5rem;
-  right: 2rem;
-  font-family: var(--font-family-code);
-  font-size: 0.9rem;
-  color: var(--text-primary);
-  background: var(--surface-color);
-  backdrop-filter: var(--surface-blur);
-  padding: 0.6rem 1.2rem;
-  border-radius: var(--border-radius-medium);
-  border: 1px solid var(--surface-border-color);
-  box-shadow: var(--shadow-glow-subtle);
-  z-index: 100;
-  transition: var(--transition-smooth);
-}
-.datetime-container:hover {
-    transform: scale(1.05);
-    box-shadow: var(--shadow-glow-medium);
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--glass-surface);
+  backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 1rem 0;
+  z-index: 1000;
 }
 
-.fade-in-section {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth);
-}
-.fade-in-section.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+.nav-content {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: var(--color-deep-space); }
-::-webkit-scrollbar-thumb { background: var(--accent-tertiary); border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
+.nav-logo {
+  font-family: var(--font-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--starlight);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-logo::before {
+  content: '';
+  width: 24px;
+  height: 24px;
+  background: var(--aurora-blue);
+  clip-path: polygon(
+    50% 0%, 
+    60% 40%, 
+    100% 50%, 
+    60% 60%, 
+    50% 100%, 
+    40% 60%, 
+    0% 50%, 
+    40% 40%
+  );
+  filter: drop-shadow(0 0 10px currentColor);
+  animation: logoStarRotate 8s linear infinite;
+}
+
+/* Footer */
+.cosmic-footer {
+  background: var(--glass-surface);
+  backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--glass-border);
+  padding: 3rem 0 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.footer-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--aurora-blue) 50%, 
+    transparent 100%);
+}
+
+.footer-stars::before,
+.footer-stars::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  width: 8px;
+  height: 8px;
+  background: var(--aurora-blue);
+  clip-path: polygon(
+    50% 0%, 
+    60% 40%, 
+    100% 50%, 
+    60% 60%, 
+    50% 100%, 
+    40% 60%, 
+    0% 50%, 
+    40% 40%
+  );
+}
+
+.footer-stars::before {
+  left: 25%;
+  animation: footerStarTwinkle 3s ease-in-out infinite;
+}
+
+.footer-stars::after {
+  right: 25%;
+  animation: footerStarTwinkle 3s ease-in-out infinite 1.5s;
+}
 
 /* ========================================================================
-   8. ANIMATIONS & KEYFRAMES
+   9. ANIMATION KEYFRAMES
    ======================================================================== */
 
-@keyframes galaxyShift {
+@keyframes cosmicShift {
   0%, 100% { 
     filter: hue-rotate(0deg) brightness(1); 
   }
-  25% { 
-    filter: hue-rotate(15deg) brightness(1.1); 
+  33% { 
+    filter: hue-rotate(20deg) brightness(1.1); 
   }
-  50% { 
-    filter: hue-rotate(30deg) brightness(0.9); 
-  }
-  75% { 
-    filter: hue-rotate(15deg) brightness(1.05); 
+  66% { 
+    filter: hue-rotate(-10deg) brightness(0.9); 
   }
 }
 
-@keyframes nebulaFloat {
+@keyframes nebulaFlow {
   0% { 
     transform: translateX(0) translateY(0) rotate(0deg); 
-    opacity: 0.8; 
   }
   100% { 
-    transform: translateX(-20px) translateY(-10px) rotate(5deg); 
-    opacity: 1; 
+    transform: translateX(-30px) translateY(-15px) rotate(2deg); 
   }
 }
 
-@keyframes starsShimmer {
+@keyframes starFieldDrift {
   0% { 
-    transform: translateX(0); 
-    opacity: 0.6; 
+    transform: translateX(0) translateY(0); 
   }
   100% { 
-    transform: translateX(200px); 
-    opacity: 1; 
+    transform: translateX(-400px) translateY(-200px); 
   }
 }
 
-@keyframes starTwinkle {
+@keyframes starFloat {
+  0% { 
+    transform: translateX(-50px) translateY(var(--float-y, 0px)) rotate(0deg); 
+    opacity: 0; 
+  }
+  10% { 
+    opacity: var(--opacity, 0.6); 
+  }
+  90% { 
+    opacity: var(--opacity, 0.6); 
+  }
+  100% { 
+    transform: translateX(calc(100vw + 50px)) translateY(var(--float-y, 0px)) rotate(360deg); 
+    opacity: 0; 
+  }
+}
+
+@keyframes starPulse {
   0%, 100% { 
-    opacity: 0.3; 
+    opacity: 0.6; 
     transform: scale(1); 
   }
   50% { 
@@ -632,134 +765,141 @@ table th {
   }
 }
 
-@keyframes marioStarScroll {
+@keyframes clusterDrift {
   0% { 
-    transform: translateX(-50px) translateY(-20px) rotate(0deg); 
-    opacity: 0; 
-  }
-  5% { 
-    opacity: 0.6; 
-  }
-  95% { 
-    opacity: 0.6; 
-  }
-  100% { 
-    transform: translateX(calc(100vw + 50px)) translateY(20px) rotate(360deg); 
-    opacity: 0; 
-  }
-}
-
-@keyframes marioStarGlow {
-  0%, 100% { 
-    filter: brightness(1) drop-shadow(0 0 3px rgba(255, 215, 0, 0.5)); 
+    transform: translateY(0px); 
   }
   50% { 
-    filter: brightness(1.3) drop-shadow(0 0 8px rgba(255, 215, 0, 0.8)); 
-  }
-}
-
-@keyframes dustFloat {
-  0% { 
-    transform: translateX(0) translateY(0); 
+    transform: translateY(-20px); 
   }
   100% { 
-    transform: translateX(-400px) translateY(-100px); 
+    transform: translateY(0px); 
   }
 }
 
-@keyframes shootingStar {
+@keyframes heroStarOrbit {
   0% { 
-    transform: translateX(-100px) translateY(-100px); 
-    opacity: 0; 
-  }
-  10% { 
-    opacity: 1; 
-  }
-  90% { 
-    opacity: 1; 
+    transform: rotate(0deg) translateX(200px) rotate(0deg); 
   }
   100% { 
-    transform: translateX(100vw) translateY(100vh); 
-    opacity: 0; 
+    transform: rotate(360deg) translateX(200px) rotate(-360deg); 
   }
 }
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
+@keyframes heroStarGlow {
+  0%, 100% { 
+    filter: drop-shadow(0 0 20px currentColor) brightness(1); 
+  }
+  50% { 
+    filter: drop-shadow(0 0 40px currentColor) brightness(1.5); 
+  }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+@keyframes panelStarTwinkle {
+  0%, 100% { 
+    opacity: 0.6; 
+    transform: scale(1) rotate(0deg); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.3) rotate(180deg); 
+  }
 }
 
-@keyframes fadeIn-up {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes buttonStarSpin {
+  0%, 100% { 
+    transform: rotate(0deg) scale(1); 
+  }
+  50% { 
+    transform: rotate(180deg) scale(1.2); 
+  }
+}
+
+@keyframes logoStarRotate {
+  0% { 
+    transform: rotate(0deg); 
+  }
+  100% { 
+    transform: rotate(360deg); 
+  }
+}
+
+@keyframes footerStarTwinkle {
+  0%, 100% { 
+    opacity: 0.4; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.5); 
+  }
 }
 
 /* ========================================================================
-   9. RESPONSIVE DESIGN
+   10. RESPONSIVE DESIGN
    ======================================================================== */
 
 @media (max-width: 768px) {
   :root {
-    --header-height: 65px;
+    --content-padding: 1rem;
+    --section-gap: 3rem;
+    --border-radius: 16px;
   }
-  .content-container {
-    padding: var(--spacing-unit);
-    margin: calc(var(--header-height) + 3vh) auto 5vh;
+
+  .glass-panel {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .cosmic-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* Reduce star complexity on mobile */
+  .star-4point.tiny,
+  .star-4point.small {
+    display: none;
   }
   
-  /* Optimize animations for mobile */
-  .galaxy-skybox {
-    animation-duration: 180s;
+  .hero-stars {
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 4rem 0 3rem;
   }
   
-  .star-field {
-    display: none; /* Hide complex star field on mobile for performance */
-  }
-  
-  .mario-star-field .mario-star {
-    animation-duration: 35s; /* Slower on mobile */
+  .nav-content {
+    padding: 0 1rem;
   }
 }
 
 /* ========================================================================
-   10. ACCESSIBILITY & PERFORMANCE
+   11. PERFORMANCE & ACCESSIBILITY
    ======================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
-  .galaxy-skybox,
-  .galaxy-skybox::before,
-  .galaxy-skybox::after,
-  .star,
-  .mario-star,
-  .cosmic-dust,
-  .shooting-star {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-  }
-  
-  .content-container {
-    animation: none;
-  }
-  
-  * {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
 
-/* Performance optimization for older devices */
-@media (max-resolution: 1dppx) {
-  .galaxy-skybox::before,
-  .galaxy-skybox::after,
-  .cosmic-dust,
-  .mario-star-field {
-    display: none;
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --glass-surface: rgba(0, 0, 0, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --text-primary: #ffffff;
+    --text-secondary: #e2e8f0;
   }
 }
