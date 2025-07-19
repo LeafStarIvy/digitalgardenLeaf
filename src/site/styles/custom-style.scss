@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════════════════
-   🌌 COSMIC DIGITAL  GARDEN - PREMIUM OBSIDIAN THEME 🌌
+   🌌 COSMIC DIGITAL GARDEN - PREMIUM OBSIDIAN THEME 🌌
    Designed for Obsidian Digital Garden Plugin - FIXED VERSION
    ═══════════════════════════════════════════════════════════════════════════════════ */
 
@@ -806,9 +806,3 @@ blockquote {
   font-style: italic;
   backdrop-filter: blur(10px);
 }
-
-blockquote::before {
-  content: '"';
-  position: absolute;
-  top: -10px;
-  left: var(--space-lg
