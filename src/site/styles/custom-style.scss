@@ -1,17 +1,21 @@
 /* =========================================================
-   COSMIC DIGITAL GARDEN — custom.css (revamped for Mario Galaxy vibe)
-   - Save to /styles/custom.css
+   COSMIC DIGITAL GARDEN — Super Mario Galaxy Skybox Edition
    ========================================================= */
 
-/* ---------- Palette & variables ---------- */
+/* =========================================================
+   1. Palette & CSS Variables
+   ========================================================= */
 :root {
   --bg-deep: #040619;
-  --bg-mid:  #0d1232;
+  --bg-mid: #0d1232;
+  --bg-far: #000011;
   --nebula-1: rgba(45, 85, 255, 0.25);
   --nebula-2: rgba(124, 58, 237, 0.25);
   --nebula-3: rgba(6, 182, 212, 0.12);
   --accent-aurora: #7dd3fc;
   --accent-gold: #ffcb6b;
+  --accent-pink: #ff6fb3;
+  --accent-violet: #b692ff;
   --text: #e9f2ff;
   --muted: #9fb0d6;
   --glass: rgba(12,18,30,0.56);
@@ -21,7 +25,9 @@
   --shadow-deep: 0 14px 50px rgba(2,6,18,0.75);
 }
 
-/* ---------- reset & base ---------- */
+/* =========================================================
+   2. Reset & Base
+   ========================================================= */
 * {
   box-sizing: border-box;
 }
@@ -33,18 +39,19 @@ html {
 }
 body {
   margin: 0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   color: var(--text);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
-  background: none; /* Remove old gradients, replaced by skybox */
+  background: none;
   overflow-x: hidden;
 }
 
-/* ---------- SKYBOX WRAPPER (fixed, full screen) ---------- */
+/* =========================================================
+   3. Skybox Container (full-viewport backdrop)
+   ========================================================= */
 .galaxy-skybox {
   position: fixed;
   inset: 0;
@@ -53,58 +60,81 @@ body {
   overflow: visible;
   perspective: 1000px;
   transform-style: preserve-3d;
-  background: radial-gradient(ellipse at center, #020315 0%, #000011 100%);
+  background:
+    radial-gradient(ellipse at center, var(--bg-mid) 0%, var(--bg-far) 100%),
+    linear-gradient(180deg, rgba(10,15,40,0.5) 0%, rgba(0,0,0,0.85) 100%);
   filter: saturate(1.15) contrast(1.1);
 }
 
-/* ---------- Cosmic Bodies (big glowing spheres) ---------- */
+/* =========================================================
+   4. Milky Way Arc (soft diagonal sweep)
+   ========================================================= */
+.milky-way {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.05) 0%, transparent 60%),
+              repeating-linear-gradient(45deg, rgba(255,255,255,0.06) 0 2px, transparent 2px 6px);
+  transform: rotate(25deg);
+  filter: blur(100px);
+  opacity: 0.4;
+  animation: driftArc 120s ease-in-out infinite alternate;
+}
+@keyframes driftArc {
+  0% { transform: rotate(25deg) translateY(0px); }
+  100% { transform: rotate(25deg) translateY(50px); }
+}
+
+/* =========================================================
+   5. Cosmic Bodies (planets, moons, galaxies)
+   ========================================================= */
 .cosmic-body {
   position: absolute;
   border-radius: 50%;
-  filter: drop-shadow(0 0 30px var(--accent-aurora));
   will-change: transform;
-  opacity: 0.7;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
   mix-blend-mode: screen;
+  opacity: 0.7;
 }
-
-/* Large glowing planet 1 */
 .cosmic-body.planet-1 {
-  width: 600px;
-  height: 600px;
-  top: 10%;
-  left: 15%;
+  width: 620px; height: 620px;
+  top: 8%; left: 12%;
   background: radial-gradient(circle at 40% 40%, #2d55ff, transparent 70%);
-  animation-name: floatSlow1;
-  animation-duration: 40s;
+  filter: drop-shadow(0 0 30px var(--accent-aurora));
+  animation: floatSlow1 40s ease-in-out infinite alternate;
 }
-
-/* Large glowing planet 2 */
 .cosmic-body.planet-2 {
-  width: 500px;
-  height: 500px;
-  top: 60%;
-  left: 70%;
-  background: radial-gradient(circle at 30% 30%, #7c3aed, transparent 80%);
-  animation-name: floatSlow2;
-  animation-duration: 35s;
+  width: 500px; height: 500px;
+  top: 60%; left: 70%;
+  background: radial-gradient(circle at 30% 30%, var(--accent-violet), transparent 80%);
+  filter: drop-shadow(0 0 40px var(--accent-violet));
+  animation: floatSlow2 35s ease-in-out infinite alternate;
+}
+.cosmic-body.moon {
+  width: 280px; height: 280px;
+  top: 25%; left: 75%;
+  background: radial-gradient(circle at 50% 50%, #ccc, transparent 70%);
+  filter: drop-shadow(0 0 25px #fff);
+  animation: floatSlow3 28s ease-in-out infinite alternate;
+}
+.cosmic-body.galaxy {
+  width: 800px; height: 800px;
+  top: 50%; left: 20%;
+  background: conic-gradient(from 0deg, var(--accent-pink), transparent, var(--accent-violet), transparent, var(--accent-pink));
+  border-radius: 50%;
+  opacity: 0.15;
+  filter: blur(40px);
+  animation: spinGalaxy 180s linear infinite;
+}
+@keyframes spinGalaxy {
+  0% { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(360deg) scale(1.05); }
 }
 
-/* Smaller glowing nebula 3 */
-.cosmic-body.nebula-3 {
-  width: 400px;
-  height: 400px;
-  top: 35%;
-  left: 50%;
-  background: radial-gradient(circle at 50% 50%, #06b6d4, transparent 75%);
-  animation-name: floatSlow3;
-  animation-duration: 30s;
-  opacity: 0.45;
-}
-
-/* Animations for subtle floating */
+/* =========================================================
+   6. Floating Animations
+   ========================================================= */
 @keyframes floatSlow1 {
   0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
   100% { transform: translate3d(10px, 15px, 0) rotate(3deg) scale(1.05); }
@@ -114,274 +144,98 @@ body {
   100% { transform: translate3d(-15px, 12px, 0) rotate(-4deg) scale(1.1); }
 }
 @keyframes floatSlow3 {
-  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
-  100% { transform: translate3d(12px, -10px, 0) rotate(2deg) scale(1.08); }
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(12px, -10px, 0) scale(1.08); }
 }
 
-/* ---------- Nebula Layers for depth & parallax ---------- */
+/* =========================================================
+   7. Nebula Layers (depth + parallax)
+   ========================================================= */
 .nebula {
   position: absolute;
-  left: -25%;
-  top: -25%;
-  width: 150%;
-  height: 150%;
+  left: -25%; top: -25%;
+  width: 150%; height: 150%;
   border-radius: 50%;
   filter: blur(80px) saturate(180%);
   pointer-events: none;
-  will-change: transform, opacity;
   mix-blend-mode: screen;
 }
-
 .nebula--back {
-  background: radial-gradient(
-      700px 420px at 18% 32%,
-      rgba(10, 28, 60, 0.85),
-      transparent 35%
-    ),
-    radial-gradient(480px 300px at 82% 72%, var(--nebula-2), transparent 32%);
-  opacity: 0.65;
-  transform: translate(-8%, -5%) scale(1.1);
+  background: radial-gradient(700px 420px at 18% 32%, rgba(10, 28, 60, 0.85), transparent 35%),
+              radial-gradient(480px 300px at 82% 72%, var(--nebula-2), transparent 32%);
   animation: nebulaFloat 50s ease-in-out infinite alternate;
 }
-
 .nebula--mid {
-  background: radial-gradient(
-      480px 260px at 62% 32%,
-      var(--nebula-1),
-      transparent 38%
-    ),
-    radial-gradient(420px 230px at 22% 70%, var(--nebula-2), transparent 36%);
-  opacity: 0.55;
-  transform: translate(3%, 3%) scale(1.05);
+  background: radial-gradient(480px 260px at 62% 32%, var(--nebula-1), transparent 38%),
+              radial-gradient(420px 230px at 22% 70%, var(--nebula-2), transparent 36%);
   animation: nebulaFloat 45s ease-in-out infinite alternate-reverse;
 }
-
 .nebula--front {
-  background: radial-gradient(
-      280px 180px at 32% 32%,
-      var(--nebula-3),
-      transparent 45%
-    ),
-    radial-gradient(320px 220px at 72% 72%, rgba(255, 255, 255, 0.03), transparent 45%);
-  opacity: 0.4;
-  transform: translate(-3%, 7%) scale(1.03);
+  background: radial-gradient(280px 180px at 32% 32%, var(--nebula-3), transparent 45%),
+              radial-gradient(320px 220px at 72% 72%, rgba(255,255,255,0.03), transparent 45%);
   animation: nebulaFloat 40s ease-in-out infinite alternate;
 }
-
 @keyframes nebulaFloat {
-  0% {
-    transform: translate(0%, 0%) scale(1);
-  }
-  100% {
-    transform: translate(3%, 4%) scale(1.03);
-  }
+  0% { transform: translate(0%, 0%) scale(1); }
+  100% { transform: translate(3%, 4%) scale(1.03); }
 }
 
-/* ---------- Stars: keep particles.js canvas layering ---------- */
+/* =========================================================
+   8. Particle Stars (particles.js)
+   ========================================================= */
 .pg-canvas {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   pointer-events: none;
-  z-index: 1;
   mix-blend-mode: screen;
   opacity: 0.9;
   filter: brightness(1.05) contrast(1.1);
 }
+.pg-canvas--bg { z-index: 0; opacity: 0.8; }
+.pg-canvas--mid { z-index: 2; opacity: 0.9; }
+.pg-canvas--fg { z-index: 3; opacity: 1; }
 
-.pg-canvas--bg {
-  z-index: 0;
-  opacity: 0.8;
-}
-
-.pg-canvas--mid {
-  z-index: 2;
-  opacity: 0.9;
-}
-
-.pg-canvas--fg {
-  z-index: 3;
-  opacity: 1;
-}
-
-/* ---------- Shooting stars container ---------- */
+/* =========================================================
+   9. Shooting Stars
+   ========================================================= */
 .shooting-stars {
   position: absolute;
   inset: 0;
   z-index: 5;
   pointer-events: none;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.6) 10px, transparent 11px);
+  animation: shooting 2s linear infinite;
+}
+@keyframes shooting {
+  0% { background-position: 0 0; }
+  100% { background-position: 100% 100%; }
 }
 
-/* ---------- Main content container (above skybox) ---------- */
-.container,
-main,
-.content,
-.app-container {
+/* =========================================================
+   10. Content Container (storybook glass panels)
+   ========================================================= */
+.container, main, .content, .app-container {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 4rem 1.2rem;
   position: relative;
-  z-index: 10; /* above skybox */
+  z-index: 10;
   backdrop-filter: saturate(140%) blur(12px);
   background: rgba(10, 15, 40, 0.3);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-deep);
-}
-
-/* Garden article styling */
-.garden-article {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.04),
-    rgba(255, 255, 255, 0.01)
-  );
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(12px) saturate(130%);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
-  box-shadow: var(--shadow-deep);
-  color: var(--text);
-  margin-bottom: 2.4rem;
-  position: relative;
-  z-index: 15;
 }
 
-/* Spotlight behind content to emulate Mario Galaxy stage */
+/* =========================================================
+   11. Decorative Spotlight
+   ========================================================= */
 .garden-article::before {
   content: "";
   position: absolute;
   inset: -40px -60px auto -60px;
   height: 460px;
-  background: radial-gradient(
-    900px 300px at 50% 12%,
-    rgba(125, 211, 252, 0.12),
-    rgba(0, 0, 0, 0)
-  );
+  background: radial-gradient(900px 300px at 50% 12%, rgba(125, 211, 252, 0.12), transparent);
   z-index: -1;
-  pointer-events: none;
   filter: blur(42px);
-}
-
-/* ---------- Headers & tags ---------- */
-.site-header {
-  margin-bottom: 1.2rem;
-  text-align: center;
-}
-
-.site-title {
-  font-size: clamp(1.8rem, 4vw, 3.4rem);
-  margin: 0 0 0.6rem 0;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  background: linear-gradient(
-    90deg,
-    #7dd3fc,
-    #b692ff,
-    #ffd16b,
-    #7dd3fc
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 280% 280%;
-  animation: titleGradient 10s ease-in-out infinite;
-}
-
-@keyframes titleGradient {
-  to {
-    background-position: 100% 0;
-  }
-}
-
-.header-meta {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  color: var(--muted);
-}
-
-.header-tags .tag {
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.02);
-  color: var(--text);
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.header-tags .tag:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(12, 20, 40, 0.7);
-}
-
-/* Links & code blocks */
-a {
-  color: var(--accent-aurora);
-  text-decoration: none;
-}
-
-pre {
-  background: rgba(8, 12, 20, 0.56);
-  padding: 1rem;
-  border-radius: 12px;
-  overflow-x: auto;
-  font-size: 0.9rem;
-  color: var(--text);
-}
-
-/* Focus mode */
-.fullscreen-mode .content {
-  max-width: 100%;
-  padding: 3.5rem 2rem;
-}
-
-.fullscreen-btn {
-  position: fixed;
-  right: 1rem;
-  bottom: 1.2rem;
-  z-index: 80;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(255, 255, 255, 0.01)
-  );
-  color: var(--text);
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  padding: 0.5rem 0.75rem;
-  border-radius: 999px;
-  cursor: pointer;
-  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(6px);
-}
-
-/* Respect reduce motion */
-@media (prefers-reduced-motion: reduce) {
-  .nebula,
-  .pg-canvas,
-  .site-title,
-  .cosmic-body {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-  }
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .container,
-  main,
-  .content {
-    padding: 2rem 1rem;
-  }
-  .garden-article {
-    padding: 1.4rem;
-    border-radius: 12px;
-  }
 }
