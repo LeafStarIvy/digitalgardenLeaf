@@ -1,121 +1,567 @@
-<!-- Particles.js -->
-{# particlesScript.njk - Enhanced to work on all site pages #}
+{# components/particlesScript.njk
+   Replaces previous particle script.
+   Adds 3 canvas layers, planetoids, star-bits, comets, and UI toggles.
+   Include this in index.njk and note.njk (you already do).
+#}
 
-{# Create particles container #}
-<div id="particles-js" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10; pointer-events: none;"></div>
+<!-- Particle Skybox Component -->
+<div class="pskybox" aria-hidden="true">
+  <canvas id="psky-far" class="psky-canvas psky-far"></canvas>
+  <canvas id="psky-mid" class="psky-canvas psky-mid"></canvas>
+  <canvas id="psky-front" class="psky-canvas psky-front"></canvas>
 
-{# Load the particles script #}
-<script src="/scripts/particles.min.js"></script>
+  <!-- DOM toggles (only visible if JS enables) -->
+  <div id="psky-controls" class="psky-controls" aria-hidden="true">
+    <button id="psky-toggle" class="psky-btn" title="Toggle Cosmic Effects">Particles: <span id="psky-state">On</span></button>
+    <button id="psky-sound-toggle" class="psky-btn" title="Toggle Sound Effects">Chime: <span id="psky-sound-state">Off</span></button>
+  </div>
+</div>
 
-{# Initialize particles with settings that match your cosmic theme #}
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    if (window.particlesJS) {
-      window.particlesJS('particles-js', {
-        "particles": {
-          "number": {
-            "value": 80,
-            "density": {
-              "enable": true,
-              "value_area": 800
-            }
-          },
-          "color": {
-            "value": ["#38BDF8", "#22D3EE", "#7C3AED", "#D946EF"]
-          },
-          "shape": {
-            "type": "circle",
-            "stroke": {
-              "width": 0,
-              "color": "#000000"
-            },
-            "polygon": {
-              "nb_sides": 5
-            }
-          },
-          "opacity": {
-            "value": 0.3,
-            "random": true,
-            "anim": {
-              "enable": true,
-              "speed": 0.2,
-              "opacity_min": 0.1,
-              "sync": false
-            }
-          },
-          "size": {
-            "value": 3,
-            "random": true,
-            "anim": {
-              "enable": true,
-              "speed": 2,
-              "size_min": 0.1,
-              "sync": false
-            }
-          },
-          "line_linked": {
-            "enable": true,
-            "distance": 150,
-            "color": "#38BDF8",
-            "opacity": 0.2,
-            "width": 1
-          },
-          "move": {
-            "enable": true,
-            "speed": 0.5,
-            "direction": "none",
-            "random": true,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false,
-            "attract": {
-              "enable": true,
-              "rotateX": 600,
-              "rotateY": 1200
-            }
-          }
-        },
-        "interactivity": {
-          "detect_on": "window",
-          "events": {
-            "onhover": {
-              "enable": true,
-              "mode": "grab"
-            },
-            "onclick": {
-              "enable": false,
-              "mode": "push"
-            },
-            "resize": true
-          },
-          "modes": {
-            "grab": {
-              "distance": 140,
-              "line_linked": {
-                "opacity": 0.5
-              }
-            },
-            "bubble": {
-              "distance": 400,
-              "size": 4,
-              "duration": 2,
-              "opacity": 0.8,
-              "speed": 3
-            },
-            "repulse": {
-              "distance": 200,
-              "duration": 0.4
-            },
-            "push": {
-              "particles_nb": 4
-            },
-            "remove": {
-              "particles_nb": 2
-            }
-          }
-        },
-        "retina_detect": true
+/* components/particlesScript.njk
+   Multi-layer particle skybox inspired by SMG skyboxes.
+   - Far: static & twinkling background stars
+   - Mid: planetoids & drifting nebula hints
+   - Front: interactive star-bits, comets, bursts
+   - Respect prefers-reduced-motion, performance caps, and provides localStorage toggles
+*/
+
+(function(){
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const containerClass = 'pskybox';
+  const container = document.querySelector('.' + containerClass);
+  if (!container) return;
+
+  // Canvas elements
+  const canvases = {
+    far: document.getElementById('psky-far'),
+    mid: document.getElementById('psky-mid'),
+    front: document.getElementById('psky-front')
+  };
+
+  const ctx = {
+    far: canvases.far.getContext('2d'),
+    mid: canvases.mid.getContext('2d'),
+    front: canvases.front.getContext('2d')
+  };
+
+  // Local storage keys
+  const keyEnabled = 'psky_enabled_v1';
+  const keySound = 'psky_sound_v1';
+
+  // Controls UI
+  const controls = document.getElementById('psky-controls');
+  const toggleBtn = document.getElementById('psky-toggle');
+  const toggleState = document.getElementById('psky-state');
+  const soundBtn = document.getElementById('psky-sound-toggle');
+  const soundState = document.getElementById('psky-sound-state');
+
+  // Tunables (feel free to tweak)
+  const FAR_STAR_COUNT_DESKTOP = 380;
+  const FAR_STAR_COUNT_MOBILE = 140;
+  const MID_PLANET_COUNT = 3;
+  const FRONT_STARBIT_COUNT = 42; // base count that will respawn
+  const COMET_CHANCE = 0.48; // each interval chance to spawn
+  const COMET_INTERVAL = 4200; // ms
+  const BURST_CHANCE = 0.28;
+  const MAX_FPS = 60;
+
+  // State
+  let w = 0, h = 0, DPR = Math.max(1, window.devicePixelRatio || 1);
+  let farStars = [], midPlanets = [], frontBits = [], comets = [], bursts = [];
+  let lastTime = performance.now();
+  let running = (localStorage.getItem(keyEnabled) !== 'false'); // default true
+  let soundEnabled = (localStorage.getItem(keySound) === 'true'); // default false
+  let rafId = null;
+  let cometTimer = null;
+
+  // Optional tiny chime using WebAudio (no external assets)
+  let audioCtx = null;
+  function initAudio() {
+    if (!window.AudioContext) return null;
+    try {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    } catch (e) {
+      audioCtx = null;
+    }
+    return audioCtx;
+  }
+  const hasAudio = !!initAudio();
+
+  // Utility helpers
+  const rand = (a,b) => Math.random() * (b - a) + a;
+  const clamp = (v,min,max) => Math.max(min, Math.min(max, v));
+
+  // Resize canvases to viewport
+  function resize() {
+    w = Math.max(600, window.innerWidth);
+    h = Math.max(360, window.innerHeight);
+    DPR = Math.max(1, window.devicePixelRatio || 1);
+
+    Object.values(canvases).forEach(c => {
+      c.width = Math.round(w * DPR);
+      c.height = Math.round(h * DPR);
+      c.style.width = w + 'px';
+      c.style.height = h + 'px';
+    });
+
+    // Reset transforms
+    ctx.far.setTransform(DPR,0,0,DPR,0,0);
+    ctx.mid.setTransform(DPR,0,0,DPR,0,0);
+    ctx.front.setTransform(DPR,0,0,DPR,0,0);
+
+    // Recreate particles with new density
+    initParticles();
+  }
+
+  // Initialize star / planet pools
+  function initParticles() {
+    farStars = [];
+    midPlanets = [];
+    frontBits = [];
+    comets = [];
+    bursts = [];
+
+    const farCount = (w < 768) ? FAR_STAR_COUNT_MOBILE : FAR_STAR_COUNT_DESKTOP;
+    for (let i=0;i<farCount;i++){
+      farStars.push({
+        x: rand(0, w),
+        y: rand(0, h),
+        r: rand(0.35, 1.6),
+        alphaBase: rand(0.15, 0.95),
+        twPhase: rand(0, Math.PI * 2),
+        hue: (Math.random() < 0.08) ? rand(200, 240) : 210,
+        blinkSpeed: rand(0.6, 1.8)
       });
     }
+
+    for (let i=0;i<MID_PLANET_COUNT;i++){
+      midPlanets.push({
+        x: rand(0.1 * w, 0.9 * w),
+        y: rand(0.1 * h, 0.8 * h),
+        r: rand(70, 190),
+        rotation: rand(0, Math.PI*2),
+        rotationSpeed: rand(-0.0009, 0.0009),
+        hueA: rand(200, 240),
+        hueB: rand(270, 320),
+        driftX: rand(-0.03, 0.03),
+        driftY: rand(-0.02, 0.02),
+        glow: rand(0.1, 0.35)
+      });
+    }
+
+    for (let i=0;i<FRONT_STARBIT_COUNT;i++){
+      frontBits.push(spawnStarBit(true));
+    }
+  }
+
+  // Spawn a single star-bit (front layer collectible-like)
+  function spawnStarBit(initial=false){
+    // Appear near center-ish or random edges
+    const edgeSpread = 0.12;
+    const fromEdge = Math.random() > 0.6;
+    let x = rand(0, w), y = rand(0, h);
+    if (!initial && fromEdge) {
+      // spawn near top-left / top-right to simulate falling from above
+      if (Math.random() < 0.5) { x = rand(-0.08*w, 0.2*w); y = rand(-0.05*h, 0.35*h); }
+      else { x = rand(0.8*w, 1.08*w); y = rand(0, 0.45*h); }
+    }
+    return {
+      x, y,
+      vx: rand(-0.06, 0.06) * w/1200,
+      vy: rand(0.02, 0.12) * h/900,
+      r: rand(1.2, 3.8),
+      life: rand(6.8, 18.2),
+      age: initial ? rand(0,6) : 0,
+      hue: (Math.random() < 0.12) ? rand(45,60) : (Math.random() < 0.12 ? rand(330,360) : rand(195,225)),
+      sparklePhase: rand(0, Math.PI*2),
+      attract: 0
+    };
+  }
+
+  // Spawn comet (front layer visual)
+  function spawnComet() {
+    // start off-left or off-top
+    let startX = rand(-0.15 * w, -0.03 * w);
+    let startY = rand(0.05 * h, 0.7 * h);
+    let speed = rand(0.8, 1.8) * (w/1400);
+    // Direction predominantly to bottom-right
+    comets.push({
+      x: startX, y: startY,
+      vx: speed * rand(0.9, 1.4) * (w/1400),
+      vy: speed * rand(0.55, 1.0) * (h/900),
+      len: rand(160, 420),
+      life: rand(1.1, 2.4),
+      age: 0,
+      hue: rand(200, 260)
+    });
+
+    // small burst of star-bits on spawn
+    const burstCount = Math.floor(rand(8, 18));
+    for (let i=0;i<burstCount;i++){
+      bursts.push({
+        x: startX + rand(-20, 20),
+        y: startY + rand(-20, 20),
+        vx: rand(-1,1) * (w/1400),
+        vy: rand(-1,1) * (h/900),
+        r: rand(0.6, 2.6),
+        age: 0,
+        life: rand(0.6, 1.6),
+        hue: rand(200,260)
+      });
+    }
+
+    // optional chime
+    if (soundEnabled && hasAudio) playChime(rand(220,720), 0.02, 0.08);
+  }
+
+  // Tiny audio chime using simple oscillator envelope
+  function playChime(freq, attack, decay) {
+    if (!audioCtx) return;
+    const now = audioCtx.currentTime;
+    const o = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    o.type = 'sine';
+    o.frequency.value = freq;
+    g.gain.value = 0;
+    o.connect(g);
+    g.connect(audioCtx.destination);
+    o.start(now);
+    g.gain.linearRampToValueAtTime(0.03, now + (attack || 0.02));
+    g.gain.linearRampToValueAtTime(0.0001, now + (attack || 0.02) + (decay || 0.08));
+    o.stop(now + (attack || 0.02) + (decay || 0.08) + 0.02);
+  }
+
+  // Draw utilities
+  function clearAll() {
+    ctx.far.clearRect(0,0,w,h);
+    ctx.mid.clearRect(0,0,w,h);
+    ctx.front.clearRect(0,0,w,h);
+  }
+
+  function drawFar(now) {
+    const c = ctx.far;
+    // subtle vignette gradient behind stars (very low alpha)
+    c.save();
+    c.fillStyle = 'rgba(0,0,0,0)';
+    c.fillRect(0,0,w,h);
+    // draw stars
+    for (let s of farStars) {
+      // small twinkle
+      const t = (now/1000) * s.blinkSpeed + s.twPhase;
+      const a = s.alphaBase + Math.sin(t) * 0.35 * Math.sin(t*0.7);
+      c.globalAlpha = clamp(a, 0.06, 1);
+      if (s.hue && s.hue !== 210) {
+        c.fillStyle = `hsla(${s.hue}, 85%, 65%, ${c.globalAlpha})`;
+      } else {
+        c.fillStyle = `rgba(255,255,255,${c.globalAlpha})`;
+      }
+      c.beginPath();
+      c.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      c.fill();
+    }
+    c.restore();
+  }
+
+  function drawMid(now) {
+    const c = ctx.mid;
+    // clear & soft composite
+    c.clearRect(0,0,w,h);
+    // planets / planetoids
+    for (let p of midPlanets) {
+      // drift and spin
+      p.x += p.driftX * (w/1200);
+      p.y += p.driftY * (h/900);
+      p.rotation += p.rotationSpeed;
+      // wrap-around
+      if (p.x < -p.r) p.x = w + p.r;
+      if (p.x > w + p.r) p.x = -p.r;
+      if (p.y < -p.r) p.y = h + p.r;
+      if (p.y > h + p.r) p.y = -p.r;
+
+      // soft glowing gradient
+      const g = c.createRadialGradient(p.x, p.y, Math.max(6, p.r*0.12), p.x, p.y, p.r*1.2);
+      g.addColorStop(0, `hsla(${p.hueA}, 82%, 66%, ${0.9 * p.glow})`);
+      g.addColorStop(0.4, `hsla(${(p.hueA + p.hueB)/2}, 60%, 50%, ${0.35 * p.glow})`);
+      g.addColorStop(1, `rgba(0,0,0,0)`);
+      c.globalCompositeOperation = 'lighter';
+      c.fillStyle = g;
+      c.beginPath();
+      c.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      c.fill();
+      c.globalCompositeOperation = 'source-over';
+
+      // faint rim using stroke
+      c.beginPath();
+      c.strokeStyle = `hsla(${p.hueB}, 68%, 62%, ${0.06})`;
+      c.lineWidth = Math.max(1, p.r * 0.02);
+      c.arc(p.x, p.y, p.r*0.96, 0, Math.PI*2);
+      c.stroke();
+    }
+  }
+
+  function drawFront(now, dt, mouse) {
+    const c = ctx.front;
+    // clear in a soft way for persistence/glow
+    c.clearRect(0,0,w,h);
+
+    // draw bursts (quick sparkles)
+    for (let i = bursts.length - 1; i >= 0; i--) {
+      const b = bursts[i];
+      b.age += dt;
+      if (b.age >= b.life) { bursts.splice(i,1); continue; }
+      const t = b.age / b.life;
+      c.globalAlpha = 1 - t;
+      c.fillStyle = `hsla(${b.hue}, 90%, 60%, ${c.globalAlpha})`;
+      c.beginPath();
+      c.arc(b.x + b.vx * b.age * 30, b.y + b.vy * b.age * 30, b.r * (1 - t) * 1.6, 0, Math.PI*2);
+      c.fill();
+    }
+
+    // comets
+    for (let i=comets.length-1;i>=0;i--) {
+      const cm = comets[i];
+      cm.age += dt;
+      if (cm.age >= cm.life) { comets.splice(i,1); continue; }
+      // draw comet tail with gradient
+      const t = cm.age / cm.life;
+      const tailX = cm.x - cm.vx * cm.len * 0.4;
+      const tailY = cm.y - cm.vy * cm.len * 0.4;
+      c.save();
+      c.globalCompositeOperation = 'lighter';
+      const g = c.createLinearGradient(cm.x, cm.y, tailX, tailY);
+      g.addColorStop(0, `rgba(255,255,255,${0.95 * (1 - t)})`);
+      g.addColorStop(0.4, `hsla(${cm.hue}, 90%, 60%, ${0.45 * (1 - t)})`);
+      g.addColorStop(1, 'rgba(255,255,255,0)');
+      c.strokeStyle = g;
+      c.lineWidth = Math.max(1, cm.len * 0.06);
+      c.beginPath();
+      c.moveTo(cm.x, cm.y);
+      c.lineTo(tailX, tailY);
+      c.stroke();
+
+      // core
+      c.beginPath();
+      c.fillStyle = `rgba(255,255,255,${1 - t})`;
+      c.arc(cm.x, cm.y, 2.6 + (1-t) * 3, 0, Math.PI*2);
+      c.fill();
+      c.restore();
+
+      // integrate movement
+      cm.x += cm.vx * dt * 0.9;
+      cm.y += cm.vy * dt * 0.9;
+    }
+
+    // star-bits
+    for (let i = frontBits.length - 1; i >= 0; i--) {
+      const s = frontBits[i];
+      s.age += dt;
+      if (s.age > s.life) {
+        // respawn with small chance instantly or after shift
+        if (Math.random() < 0.6) frontBits[i] = spawnStarBit(false);
+        else frontBits.splice(i,1);
+        continue;
+      }
+
+      // cursor attraction
+      if (mouse && mouse.active) {
+        const dx = mouse.x - s.x, dy = mouse.y - s.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 160) {
+          const force = (1 - dist/160) * 0.04;
+          s.vx += (dx/dist) * force * (w/1200);
+          s.vy += (dy/dist) * force * (h/900);
+          s.attract = Math.min(1, s.attract + 0.02);
+        } else {
+          s.attract = Math.max(0, s.attract - 0.01);
+        }
+      } else {
+        s.attract = Math.max(0, s.attract - 0.02);
+      }
+
+      // gentle gravity & drag
+      s.vy += 0.0008 * (h/900); // downward drift
+      s.vx *= 0.997;
+      s.vy *= 0.998;
+
+      s.x += s.vx * dt * 60;
+      s.y += s.vy * dt * 60;
+
+      // sparkle & alpha
+      const sparkle = Math.abs(Math.sin((now/800) + s.sparklePhase));
+      const alpha = clamp(0.25 + sparkle*0.9 + s.attract*0.4, 0.06, 1);
+
+      // hue-to-color mapping: approximate HSLA blend
+      c.globalCompositeOperation = 'lighter';
+      c.beginPath();
+      // draw glow
+      const glow = Math.max(3, s.r * 3 + s.attract * 4);
+      const glowGrad = c.createRadialGradient(s.x, s.y, 0, s.x, s.y, glow*2.2);
+      glowGrad.addColorStop(0, `hsla(${s.hue}, 95%, 60%, ${0.36 * alpha})`);
+      glowGrad.addColorStop(0.5, `hsla(${s.hue}, 85%, 55%, ${0.12 * alpha})`);
+      glowGrad.addColorStop(1, 'rgba(0,0,0,0)');
+      c.fillStyle = glowGrad;
+      c.arc(s.x, s.y, glow*1.6, 0, Math.PI*2);
+      c.fill();
+
+      // core
+      c.beginPath();
+      c.fillStyle = `rgba(255,255,255,${alpha})`;
+      c.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      c.fill();
+
+      // small trailing line for falling bits
+      c.beginPath();
+      c.strokeStyle = `rgba(255,255,255,${alpha*0.12})`;
+      c.lineWidth = Math.max(0.5, s.r * 0.2);
+      c.moveTo(s.x - s.vx * 6, s.y - s.vy * 6);
+      c.lineTo(s.x, s.y);
+      c.stroke();
+
+      c.globalCompositeOperation = 'source-over';
+
+      // Wrap/respawn if off-screen
+      if (s.y > h + 40 || s.x < -80 || s.x > w + 80) {
+        if (Math.random() < 0.7) frontBits[i] = spawnStarBit(false);
+        else frontBits.splice(i,1);
+      }
+    }
+  }
+
+  // animation loop
+  function frame(now) {
+    const dt = Math.min(0.06, (now - lastTime) / 1000); // cap dt
+    lastTime = now;
+
+    // fade background slowly: (we do direct clearing)
+    drawFar(now);
+    drawMid(now);
+    // pass mouse info
+    frameMouseTick();
+    drawFront(now, dt, mouse);
+
+    // FPS-friendly: if reduce-motion -> single draw
+    rafId = requestAnimationFrame(frame);
+  }
+
+  // Mouse handling - also touch
+  const mouse = { x: w/2, y: h/2, active: false };
+  function onPointerMove(e) {
+    const rect = canvases.front.getBoundingClientRect();
+    mouse.x = (e.clientX - rect.left);
+    mouse.y = (e.clientY - rect.top);
+    mouse.active = true;
+  }
+  function onPointerLeave() { mouse.active = false; }
+  canvases.front.addEventListener('pointermove', onPointerMove);
+  canvases.front.addEventListener('pointerdown', onPointerMove);
+  canvases.front.addEventListener('pointerleave', onPointerLeave);
+  canvases.front.addEventListener('touchstart', (ev)=> {
+    const t = ev.touches[0]; if (t) onPointerMove(t);
+  }, {passive:true});
+  canvases.front.addEventListener('touchmove', (ev)=> {
+    const t = ev.touches[0]; if (t) onPointerMove(t);
+  }, {passive:true});
+  canvases.front.addEventListener('touchend', onPointerLeave);
+
+  // pointer-based mouse tick to occasionally attract and cause bursts
+  let lastPointerTick = 0;
+  function frameMouseTick() {
+    if (!mouse.active) return;
+    const now = performance.now();
+    if (now - lastPointerTick > 220) {
+      // small chance to create a burst where pointer is
+      if (Math.random() < 0.12) {
+        for (let i=0;i<10;i++){
+          bursts.push({
+            x: mouse.x + rand(-8,8),
+            y: mouse.y + rand(-8,8),
+            vx: rand(-0.6,0.6) * (w/1200),
+            vy: rand(-0.6,0.6) * (h/900),
+            r: rand(0.4,2.0),
+            age: 0,
+            life: rand(0.25, 0.6),
+            hue: rand(200,260)
+          });
+        }
+        if (hasAudio && soundEnabled) playChime(rand(360,880), 0.01, 0.09);
+      }
+      lastPointerTick = now;
+    }
+  }
+
+  // periodic comet spawner
+  function startCometSpawner() {
+    if (cometTimer) clearInterval(cometTimer);
+    cometTimer = setInterval(() => {
+      if (!running || prefersReduced) return;
+      if (Math.random() < COMET_CHANCE) spawnComet();
+      // occasionally spawn starbit clusters
+      if (Math.random() < BURST_CHANCE) {
+        for (let i=0;i<Math.floor(rand(6,14));i++){
+          frontBits.push(spawnStarBit(false));
+        }
+      }
+    }, COMET_INTERVAL);
+  }
+
+  // Control UI wiring
+  function updateControlsUI() {
+    if (!controls) return;
+    controls.style.display = 'flex';
+    toggleState.textContent = running ? 'On' : 'Off';
+    soundState.textContent = soundEnabled ? 'On' : 'Off';
+  }
+  if (toggleBtn) toggleBtn.addEventListener('click', () => {
+    running = !running;
+    localStorage.setItem(keyEnabled, running ? 'true' : 'false');
+    updateControlsUI();
+    if (running) {
+      lastTime = performance.now();
+      if (!rafId) rafId = requestAnimationFrame(frame);
+      startCometSpawner();
+    } else {
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+      if (cometTimer) { clearInterval(cometTimer); cometTimer = null; }
+      clearAll();
+    }
   });
+  if (soundBtn) soundBtn.addEventListener('click', () => {
+    soundEnabled = !soundEnabled;
+    localStorage.setItem(keySound, soundEnabled ? 'true' : 'false');
+    updateControlsUI();
+    if (soundEnabled && !audioCtx) initAudio();
+  });
+
+  // Start / stop based on reduced-motion & stored prefs
+  updateControlsUI();
+
+  // Initialize & start
+  resize();
+  if (!prefersReduced && running) {
+    lastTime = performance.now();
+    rafId = requestAnimationFrame(frame);
+    startCometSpawner();
+  } else {
+    // single draw for reduced motion or disabled
+    drawFar(lastTime);
+    drawMid(lastTime);
+    drawFront(lastTime, 0.016, null);
+  }
+
+  // Responsive resize
+  let resizeTimer;
+  window.addEventListener('resize', ()=> {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resize, 200);
+  });
+
+  // Ensure cleanup on SPA navigations (if your site does PJAX etc.)
+  window.addEventListener('beforeunload', ()=> {
+    if (rafId) cancelAnimationFrame(rafId);
+    if (cometTimer) clearInterval(cometTimer);
+    canvases.front.removeEventListener('pointermove', onPointerMove);
+  });
+
+})();
 </script>
