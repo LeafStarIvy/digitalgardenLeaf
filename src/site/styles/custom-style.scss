@@ -275,3 +275,83 @@ blockquote {
   .garden-article { padding: 1.4rem; border-radius: 12px; }
   .site-title { font-size: clamp(1.6rem, 6vw, 2.2rem); }
 }
+
+/* ====== PARTICLE SKYBOX STYLES (SMG-inspired) ====== */
+/* Add to styles/custom.css or merge with existing */
+
+.pskybox {
+  position: fixed;
+  inset: 0;
+  pointer-events: none; /* interactive elements inside are handled intentionally */
+  z-index: -120;
+  overflow: hidden;
+}
+
+/* Layered canvases - far background -> mid -> front (interactive) */
+.psky-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: optimizeQuality;
+}
+
+/* stacking order */
+.psky-far { z-index: 1; opacity: 0.95; mix-blend-mode: normal; }
+.psky-mid { z-index: 2; opacity: 0.92; mix-blend-mode: screen; filter: blur(0.6px) saturate(1.05); }
+.psky-front { z-index: 3; opacity: 1; mix-blend-mode: lighter; }
+
+/* Controls (small unobtrusive) */
+.psky-controls {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  display: none; /* JS will enable; invisible to assistive tech if left hidden */
+  gap: 0.4rem;
+  z-index: 120;
+  pointer-events: auto; /* so buttons are clickable */
+}
+.psky-btn {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  color: #eaf4ff;
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 0.45rem 0.6rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.5);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+.psky-btn:hover { transform: translateY(-3px); }
+
+/* Make the skybox feel punchier (bloom and grade) */
+.pskybox::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  background: radial-gradient(1000px 500px at 20% 15%, rgba(20,36,80,0.12), transparent 12%),
+              radial-gradient(900px 420px at 82% 78%, rgba(24,28,64,0.12), transparent 12%),
+              linear-gradient(180deg, rgba(7,14,28,0.18), rgba(2,8,20,0.25));
+  mix-blend-mode: multiply;
+  opacity: 1;
+  filter: contrast(1.02) saturate(1.06);
+}
+
+/* video background in notes may overlay — ensure skybox behind content */
+.video-background { z-index: -80; }
+
+/* Accessibility: hide controls when reduced-motion (optional) */
+@media (prefers-reduced-motion: reduce) {
+  .psky-controls { display: none !important; }
+  .psky-canvas { filter: none !important; opacity: 0.9 !important; }
+}
+
+/* mobile performance adjustments */
+@media (max-width: 900px) {
+  .psky-controls { right: 0.6rem; top: 0.6rem; }
+  .psky-btn { padding: 0.38rem 0.5rem; font-size: 0.78rem; }
+}
+
