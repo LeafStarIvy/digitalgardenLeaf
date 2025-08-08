@@ -1,186 +1,72 @@
----
-permalink: "notes/{{ page.fileSlug | slugify }}/"
----
-<!DOCTYPE html>
-<html lang="{{ meta.mainLanguage }}">
-  <head>
-    <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
-    {%include "components/pageheader.njk"%}
-    {% for imp in dynamics.common.head %}
-      {% include imp %}
-    {% endfor %}
-    {% for imp in dynamics.notes.head %}
-      {% include imp %}
-    {% endfor %}
-  </head>
-  <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
-<button class="fullscreen-btn" id="fullscreenBtn">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
-  </svg>
-  <span>Focus Mode</span>
-</button>
-    {%include "components/notegrowthhistory.njk"%}
-    
-    {% if settings.dgShowFileTree !== true %}
-      {%include "components/navbar.njk"%}
-    {%else%}
-      {%include "components/filetree.njk"%}
-    {% endif %}
+{# note.njk - Single Note Template #}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{ page.title }} — {{ site.title or "Garden" }}</title>
+  <meta name="description" content="{{ page.excerpt | truncate(160) }}">
+  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | url }}">
+</head>
+<body class="garden note-page">
+  <canvas id="nebula-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+  <canvas id="star-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+  <canvas id="shooting-canvas" class="bg-canvas" aria-hidden="true"></canvas>
 
-    {% if settings.dgEnableSearch === true %}
-      {%include "components/searchContainer.njk"%}
-    {% endif %}
+  <header class="site-header" role="banner">
+    <div class="header-inner container">
+      <a class="brand small" href="{{ '/' | url }}">
+        <div class="brand-text">
+          <div class="title">{{ site.title or "Garden" }}</div>
+        </div>
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="{{ '/' | url }}">Home</a></li>
+          <li><a href="#back" onclick="history.back();return false;">Back</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <main class="content cm-s-obsidian {{contentClasses}}">
-      <header>
-        {% if settings.dgShowInlineTitle === true %}
-          <h1 data-note-icon="{% if noteIcon %}{{noteIcon}}{% else %}{{meta.noteIconsSettings.default}}{% endif %}">{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</h1>
-        {% endif %}
-        <div class="header-meta">
-          {% if settings.dgShowTags === true and tags %}
-            <div class="header-tags">
-              {% for tag in tags %}
-                {% if tag != 'gardenEntry' and tag !='note' %}
-                  <a class="tag" onclick="toggleTagSearch(this)">
-                    #{{tag}}
-                  </a>
-                {% endif %}
-              {% endfor %}
+  <main class="container site-main">
+    <article class="card note-article">
+      <header class="note-header">
+        <h1 class="note-title">{{ page.title }}</h1>
+        <div class="note-meta">
+          {% if page.date %}<time datetime="{{ page.date }}">{{ page.date | date("YYYY-MM-DD") }}</time>{% endif %}
+          {% if page.tags %}
+            <div class="tags">
+              {% for t in page.tags %}<a class="tag" href="{{ '/tags/' + t | url }}">#{{ t }}</a>{% endfor %}
             </div>
           {% endif %}
-          {%- if meta.timestampSettings.showCreated or meta.timestampSettings.showUpdated -%}
-          <div class="timestamps">
-            {%- if meta.timestampSettings.showCreated and created -%}
-            <div><i icon-name="calendar-plus"></i> <span class="human-date" data-date="{{created}}"></span></div>
-            {%- endif -%}
-            {%- if meta.timestampSettings.showUpdated and updated -%}
-            <div><i icon-name="calendar-clock"></i> <span class="human-date" data-date="{{updated}}"></span></div>
-            {%- endif -%}
-          </div>
-          {%- endif -%}
         </div>
-      {% for imp in dynamics.common.header %}
-        {% include imp %}
-      {% endfor %}
-      {% for imp in dynamics.notes.header %}
-        {% include imp %}
-      {% endfor %}
       </header>
-      {% for imp in dynamics.common.beforeContent %}
-        {% include imp %}
-      {% endfor %}
-      {% for imp in dynamics.notes.beforeContent %}
-        {% include imp %}
-      {% endfor %}
-      {{ content | hideDataview | taggify | link | safe}}
-      {% for imp in dynamics.common.afterContent %}
-        {% include imp %}
-      {% endfor %}
-      {% for imp in dynamics.notes.afterContent %}
-        {% include imp %}
-      {% endfor %}
-    </main>
 
-    {% if settings.dgShowBacklinks === true or settings.dgShowLocalGraph === true or settings.dgShowToc === true%}
-      {%include "components/sidebar.njk"%}
-    {% endif %}
+      <section class="note-body">
+        {{ page.content | safe }}
+      </section>
 
-    {% if settings.dgLinkPreview === true %}
-      {%include "components/linkPreview.njk"%}
-    {% endif %}
-    {% include "components/references.njk" %}
-    {% include "components/timestamps.njk" %}
-    {% for imp in dynamics.common.footer %}
-      {% include imp %}
-    {% endfor %}
-    {% for imp in dynamics.notes.footer %}
-      {% include imp %}
-    {% endfor %}
-    {%include "components/lucideIcons.njk"%}
-    {% include "components/particlesScript.njk" %}
-    <link rel="stylesheet" href="/styles/datetime-display.css">
-    <script src="/scripts/datetime-display.js"></script>
-<div class="video-background">
-  <video autoplay muted loop playsinline preload="auto">
-    <source src="/img/video/Astrogalaxy1.webm" type="video/webm">
-    <!-- Optional: Add MP4 fallback if you have one -->
-    <!-- <source src="/img/video/Astrogalaxy1.mp4" type="video/mp4"> -->
-  </video>
-<script>
-// Fullscreen Note Feature (Focus Mode)
-(function() {
-  let isFullscreen = false;
+      <footer class="note-footer">
+        <div class="nav-prev-next">
+          {% if page.prev %}<a href="{{ page.prev.url | url }}" class="prev">← {{ page.prev.title }}</a>{% endif %}
+          {% if page.next %}<a href="{{ page.next.url | url }}" class="next">{{ page.next.title }} →</a>{% endif %}
+        </div>
+      </footer>
+    </article>
+  </main>
 
-  const fullscreenBtn = document.getElementById('fullscreenBtn');
-  if (!fullscreenBtn) return;
+  <footer class="site-footer">
+    <div class="container">
+      <small>© {{ (site.author or "You") }}</small>
+    </div>
+  </footer>
 
-  function toggleFullscreen() {
-    isFullscreen = !isFullscreen;
-
-    if (isFullscreen) {
-      document.body.classList.add('fullscreen-mode');
-      fullscreenBtn.innerHTML = `
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
-        </svg>
-        <span>Exit Focus</span>
-      `;
-    } else {
-      document.body.classList.remove('fullscreen-mode');
-      fullscreenBtn.innerHTML = `
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
-        </svg>
-        <span>Focus Mode</span>
-      `;
-    }
-
-    // After toggling the class, give the browser a moment then dispatch resize
-    // so that embedded widgets (Excalidraw, flashcards, etc.) can recalc.
-    setTimeout(() => {
-      window.dispatchEvent(new Event('resize'));
-      // If needed: call specific re-render functions here, e.g.:
-      // if (window.Excalidraw && typeof window.Excalidraw.recalcSize === 'function') {
-      //   window.Excalidraw.recalcSize();
-      // }
-    }, 100);
-  }
-
-  // Button click handler
-  fullscreenBtn.addEventListener('click', toggleFullscreen);
-
-  // F11 keyboard shortcut: toggle focus mode (prevent default fullscreen)
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'F11') {
-      e.preventDefault();
-      toggleFullscreen();
-    }
-  });
-
-  // Escape to exit focus mode
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && isFullscreen) {
-      toggleFullscreen();
-    }
-  });
-
-  // Optional: Auto-hide cursor after inactivity in focus mode
-  let cursorTimeout;
-  function resetCursorTimeout() {
-    clearTimeout(cursorTimeout);
-    document.body.style.cursor = 'default';
-
-    if (isFullscreen) {
-      cursorTimeout = setTimeout(() => {
-        document.body.style.cursor = 'none';
-      }, 4000);
-    }
-  }
-  document.addEventListener('mousemove', resetCursorTimeout);
-  document.addEventListener('mousedown', resetCursorTimeout);
-})();
-</script>
-</div>
-  </body>
+  <script>
+    /* Same inline cosmic script as index.njk - keep identical for consistent visuals */
+    {% include '/assets/js/cosmic-inline.njk' ignore missing %}
+    /* If your pipeline doesn't support includes, the index.njk inline script will still execute if present.
+       You can also place the same inline script here. */
+  </script>
+</body>
 </html>
