@@ -1,483 +1,157 @@
-/* ============================================================
-   COSMIC RED FOREST — custom-style.css
-   "Ethereal Garden" visual system for Obsidian Digital Garden
+/* =========================================================
+   ETHEREAL FOREST UI — ethereal.css
+   Phase 1: Foundation, Colors, Typography, Parallax Background
+   ========================================================= */
 
-   WARNING: This file is intentionally large and highly detailed.
-   Drop into /styles/custom-style.css and load from your index.njk
-   and note.njk templates. It aims to be a complete, self-contained
-   visual system: root/body, background forest motion, UI chrome,
-   cards, grids, sidebar, right-connected-pages panel (On this page),
-   marble/frosted UI elements, micro-interaction animations, and
-   a huge utility & token system so maintainers can iterate.
-
-   DESIGN GOAL: Abandon the star/space theme. Create a red Japanese
-   forest that is slightly moving — mist, light shafts, drifting leaves,
-   and an ethereal, white, marble/futuristic UI placed above it.
-
-   NOTES:
-   - This CSS is defensive and written to style common Obsidian
-     classnames (.site-header, .content, .garden-article, .garden-grid,
-     .backlinks, .tags) but you can tweak selectors to match your templates.
-   - Minimal optional HTML additions are listed at the bottom of the file.
-
-   FILE STRUCTURE (PARTS):
-   PART 00 - Quick install notes
-   PART 01 - Tokens and palette (aurora + forest reds)
-   PART 02 - Reset & base typography
-   PART 03 - Root & body: layered forest background
-   PART 04 - Animated leaf sprites & fog system (CSS-only)
-   PART 05 - Marble / frost UI chrome (glass + marble textures)
-   PART 06 - Header & site-branding (large, friendly, elegant)
-   PART 07 - App layout: center, left-nav, right-connected pages
-   PART 08 - Garden grid & cards (project/note tiles)
-   PART 09 - Note/article styles and reading experience
-   PART 10 - Right panel: "On this page" + Linked mentions UI
-   PART 11 - Search, tags, filters, chips
-   PART 12 - Tiny components: badges, media, callouts
-   PART 13 - Interactions, focus states & keyboard accessibility
-   PART 14 - Motion tuning, prefers-reduced-motion, perf
-   PART 15 - Utilities & helper classes (debug + layout)
-   PART 16 - Theme toggles & extension spots
-   PART 17 - Optional HTML snippets (where to add containers)
-
-   ============================================================ */
-
-/* ============================================================
-   PART 00 — QUICK INSTALL NOTES
-   ============================================================
-   1. Save this file as /styles/custom-style.css and load it in both
-      index.njk and note.njk (or your base layout).
-   2. OPTIONAL: For full background effect, insert the
-      <div class="forest-sky" ...> container immediately inside <body>.
-      See PART 17 for snippet.
-   3. No external images are required — moving leaves and mist are
-      implemented with embedded SVG data URIs and CSS animations.
-   4. If you use particles.js or custom canvases, this CSS will not
-      overwrite typical classes; rather, it sits behind UI elements.
-   5. If the site looks pale, increase --ui-contrast or --marble-sheen
-      variables in PART 01.
-
-   ============================================================ */
-
-/* ============================================================
-   PART 01 — TOKENS & PALETTE
-   ============================================================ */
-:root{
-  /* Layout */
-  --max-width: 1200px;
-  --gutter: 1.2rem;
-  --radius-lg: 16px;
-  --radius-md: 10px;
-  --card-elev: 0 22px 70px rgba(12,10,18,0.56);
-
-  /* Typography */
-  --font-ui: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  --font-mono: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
-  --fs-base: 16px; --fs-sm:14px; --fs-lg:18px; --fs-xl:26px;
-
-  /* Neutral */
-  --bg-0: #07060a; /* deep void */
-  --bg-1: #0f0b10; /* deep charcoal */
-  --card-bg: rgba(255,255,255,0.96); /* ethereal white main panels */
-  --glass-01: rgba(255,255,255,0.08); /* subtle glass overlay */
-  --glass-02: rgba(255,255,255,0.04);
-
-  /* Red forest spectrum (main) */
-  --forest-900: #23050a;
-  --forest-800: #3a0610;
-  --forest-700: #5c0c14;
-  --forest-600: #7a1216;
-  --forest-500: #a01b20;
-  --forest-400: #b84b4d;
-  --forest-300: #cf6d6f;
-  --forest-200: #e59b9c;
-  --forest-100: #f3dcdc;
-
-  /* Accent / ethereal tints */
-  --mist-1: rgba(255,255,255,0.06); /* light mist overlay */
-  --mist-2: rgba(255,255,255,0.12);
-  --sheen: rgba(255,255,255,0.18);
-
-  /* Marble & futuristic accents */
-  --marble-vein: linear-gradient(140deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.06) 100%);
-  --accent-cool: #8ed0ff; /* cyan-ish accent for highlights */
-  --accent-warm: #ffd08a; /* warm amber highlights */
-
-  /* Shadows */
-  --shadow-strong: 0 24px 80px rgba(9,8,10,0.58);
-
-  /* Motion */
-  --leaf-fall-speed: 36s;
-  --mist-swirl-speed: 24s;
-  --shaft-pulse-speed: 7.25s;
-
-  /* Accessibility */
-  --focus-ring: rgba(137,200,255,0.18);
+/* ---------- Variables ---------- */
+:root {
+  --white-marble: #fdfdfd;
+  --white-marble-vein: rgba(240, 240, 240, 0.65);
+  --gold-accent: #d4af37;
+  --deep-red: #5e0b0b;
+  --maple-red: #b22222;
+  --mist-white: rgba(255, 255, 255, 0.25);
+  --text-dark: rgba(20, 20, 20, 0.85);
+  --shadow-deep: 0 20px 60px rgba(0, 0, 0, 0.4);
+  --radius-lg: 18px;
+  --max-width: 1280px;
 }
 
-/* ============================================================
-   PART 02 — RESET & BASE TYPOGRAPHY
-   ============================================================ */
-*{box-sizing:border-box}
-html,body{height:100%}
-html{font-family:var(--font-ui);font-size:var(--fs-base);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-body{margin:0;background:var(--bg-0);color:#111}
-
-/* base container used across site */
-.container{width:min(100%,var(--max-width));margin:0 auto;padding:0 1rem}
-
-/* head levels */
-h1{font-size:clamp(1.6rem,3.2vw,2.8rem);margin:0 0 .6rem 0;letter-spacing:-0.02em;color:var(--forest-900)}
-h2{font-size:1.45rem;margin:0 0 .5rem 0;color:#3b2a2b}
-
-p{margin:0 0 1rem 0;color:#2b2b2b}
-
-/* link defaults */
-a{color:var(--accent-cool);text-decoration:none}
-a:hover{text-decoration:underline}
-
-/* utility for visually-hidden text */
-.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-/* ============================================================
-   PART 03 — ROOT & BODY: LAYERED RED FOREST BACKGROUND
-   - multiple moving layers (parallax via transform) using pseudo elements
-   - fog, shafts, mid/near tree silhouettes, distant mountains
-   ============================================================ */
-
-/* Body-level layout and base ambient lighting */
-.app-root{position:relative;min-height:100vh;overflow-x:hidden;background:linear-gradient(180deg,var(--forest-900),var(--forest-700) 35%,rgba(0,0,0,0.4) 100%)}
-
-/* top-level decorative container for background layers */
-.forest-sky{position:fixed;inset:0;z-index:-200;pointer-events:none;overflow:hidden}
-
-/* Distant wash & color grade */
-.forest-sky .grade{position:absolute;inset:0;background:radial-gradient(60% 40% at 20% 10%,rgba(255,80,80,0.06),transparent 12%),linear-gradient(180deg,rgba(0,0,0,0.0),rgba(0,0,0,0.45));mix-blend-mode:multiply;opacity:0.95}
-
-/* distant mountains silhouette layer */
-.forest-sky .mountain{position:absolute;left:-10%;right:-10%;height:26vh;bottom:18vh;background:linear-gradient(180deg,rgba(0,0,0,0.0),rgba(10,6,8,0.6));clip-path:polygon(0% 100%,8% 70%,16% 76%,26% 62%,36% 74%,46% 60%,56% 68%,64% 56%,74% 64%,86% 42%,100% 60%,100% 100%);opacity:.9;transform:translateZ(0);}
-
-/* far tree silhouettes: slow drift */
-.forest-sky .trees-far{position:absolute;inset:auto 0 8% 0;height:42vh;background-repeat:repeat-x;background-size:contain;filter:blur(8px) saturate(120%);opacity:0.78;transform:translate3d(0,0,0)}
-/* near trees: larger shapes, more movement */
-.forest-sky .trees-mid{position:absolute;inset:auto 0 4% 0;height:54vh;background-repeat:repeat-x;background-size:cover;filter:blur(2px) saturate(120%);opacity:0.9;transform:translate3d(0,0,0)}
-
-/* near foreground trunks & leaves (silhouettes) */
-.forest-sky .trees-near{position:absolute;bottom:0;left:0;right:0;height:80vh;background-repeat:repeat-x;background-size:contain;mix-blend-mode:multiply;opacity:0.96}
-
-/* dappled light shafts (soft vertical gradients moving slowly) */
-.forest-sky .shafts{position:absolute;inset:6% 6% 6% 6%;pointer-events:none;mix-blend-mode:screen;opacity:0.36}
-.forest-sky .shafts::before,.forest-sky .shafts::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,250,0.06),transparent 20%);filter:blur(16px);opacity:0.9}
-
-/* animated mist layer (multiple overlapping swirls) */
-.forest-sky .mist{position:absolute;inset:-20% -20% auto -20%;height:60vh;pointer-events:none;opacity:0.48;filter:blur(28px) saturate(110%);mix-blend-mode:screen}
-
-/* leaf particle container — see PART 04 for leaf mechanics */
-.forest-sky .leaf-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-
-/* z-index ordering to ensure UI sits above */
-.forest-sky .mountain{z-index:1}
-.forest-sky .trees-far{z-index:10}
-.forest-sky .mist{z-index:20}
-.forest-sky .trees-mid{z-index:30}
-.forest-sky .shafts{z-index:40}
-.forest-sky .leaf-layer{z-index:60}
-.forest-sky .trees-near{z-index:80}
-
-/* subtle ambient vignette to draw eyes to center */
-.forest-sky .vignette{position:absolute;inset:0;background:radial-gradient(60% 40% at 50% 40%,rgba(0,0,0,0.0),rgba(0,0,0,0.55));pointer-events:none;z-index:100}
-
-/* ============================================================
-   PART 04 — ANIMATED LEAVES, MIST & SHAFTS (CSS-only)
-   - Uses embedded SVG sprites for leaves and procedural animation
-   - Many layers, different speeds for parallax depth
-   ============================================================ */
-
-/* SVG leaf sprite (small, repeated) — encoded as data URI */
-/* A compact crimson leaf graphic — repeated with background-image */
-:root{--leaf-svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'><g fill='none' fill-rule='evenodd'><path d='M5 28c5-7 15-10 23-12 4-1 9-2 13 0' stroke='%23ff5c5c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='0.95'/><path d='M15 30c2-5 9-8 18-10' stroke='%23ff9a9a' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' opacity='0.7'/></g></svg>");}
-
-/* generic leaf animation keyframes */
-@keyframes leafFall { 0%{transform: translate3d(var(--x,0px),-10vh,0) rotate(var(--r,0deg)) scale(var(--s,1)); opacity:1} 70%{opacity:0.95} 100%{transform:translate3d(calc(var(--x,0px) + 8vw),110vh,0) rotate(calc(var(--r,0deg) + 180deg)) scale(calc(var(--s,0.86))); opacity:0} }
-
-/* container that instantiates many leaves using pseudo-elements */
-.leaf-cloud{position:absolute;inset:0;pointer-events:none}
-
-/* We'll create multiple small bands each with different animation durations
-   and background-position animations to simulate many leaves without DOM nodes */
-.leaf-cloud .band{position:absolute;left:-20%;width:140%;height:30vh;top:10vh;opacity:0.86;background-repeat:repeat-x;background-size:48px 48px;background-image:var(--leaf-svg);filter:drop-shadow(0 8px 12px rgba(0,0,0,0.22));mix-blend-mode:screen}
-
-/* band variants (depth) */
-.leaf-cloud .band.depth-1{height:22vh;top:6vh;opacity:0.64;animation:leafBand1 calc(var(--leaf-fall-speed) * 1.05) linear infinite}
-.leaf-cloud .band.depth-2{height:28vh;top:18vh;opacity:0.78;animation:leafBand2 calc(var(--leaf-fall-speed) * 0.92) linear infinite}
-.leaf-cloud .band.depth-3{height:36vh;top:30vh;opacity:0.96;animation:leafBand3 calc(var(--leaf-fall-speed) * 1.35) linear infinite}
-
-/* leaf band horizontal drift keyframes */
-@keyframes leafBand1{0%{background-position:0 0;transform:translate3d(0,0,0)}100%{background-position:1000px 0;transform:translate3d(40px,8vh,0)}}
-@keyframes leafBand2{0%{background-position:0 0;transform:translate3d(0,0,0)}100%{background-position:1200px 0;transform:translate3d(-60px,22vh,0)}}
-@keyframes leafBand3{0%{background-position:0 0;transform:translate3d(0,0,0)}100%{background-position:900px 0;transform:translate3d(80px,40vh,0)}}
-
-/* smaller drifting single leaves using pseudo elements for richer look */
-.leaf-cloud::before, .leaf-cloud::after{content:"";position:absolute;left:10%;top:-10vh;width:48px;height:48px;background-image:var(--leaf-svg);background-size:48px 48px;animation:leafSingle1 22s linear infinite;opacity:.9}
-.leaf-cloud::after{left:80%;top:-5vh;animation:leafSingle2 30s linear infinite;opacity:.82}
-@keyframes leafSingle1{0%{transform:translate3d(0,-4vh,0) rotate(0deg)}50%{transform:translate3d(20vw,40vh,0) rotate(120deg)}100%{transform:translate3d(-10vw,120vh,0) rotate(320deg);opacity:0}}
-@keyframes leafSingle2{0%{transform:translate3d(0,-6vh,0) rotate(0deg)}50%{transform:translate3d(-22vw,38vh,0) rotate(-120deg)}100%{transform:translate3d(10vw,130vh,0) rotate(-360deg);opacity:0}}
-
-/* Mist layers — multiple overlapping swirls */
-.mist-swarm{position:absolute;left:0;right:0;height:50vh;top:12vh;pointer-events:none;mix-blend-mode:screen}
-.mist-swarm .mist-layer{position:absolute;left:-10%;right:-10%;height:100%;background:radial-gradient(40% 40% at 20% 30%,rgba(255,255,255,0.06),transparent 30%),radial-gradient(50% 30% at 80% 70%,rgba(255,220,200,0.03),transparent 30%);filter:blur(28px);opacity:0.28;animation:mistDrift var(--mist-swirl-speed) linear infinite}
-.mist-swarm .mist-layer.alt{opacity:0.18;animation-direction:reverse}
-@keyframes mistDrift{0%{transform:translate3d(0,0,0)}50%{transform:translate3d(8%,2%,0)}100%{transform:translate3d(0,0,0)}}
-
-/* light shafts subtle pulsing using masks */
-.shafts .shaft{position:absolute;left:10%;top:0;width:12%;height:100%;background:linear-gradient(180deg,rgba(255,255,255,0.12),transparent 40%);filter:blur(18px);opacity:0.55;transform:skewX(-8deg);animation:shaftPulse var(--shaft-pulse-speed) ease-in-out infinite}
-.shafts .shaft.s2{left:38%;width:10%;opacity:0.38;animation-delay:-2s}
-.shafts .shaft.s3{left:66%;width:14%;opacity:0.42;animation-delay:-1.2s}
-@keyframes shaftPulse{0%{opacity:0.28}50%{opacity:0.6}100%{opacity:0.28}}
-
-/* ============================================================
-   PART 05 — MARBLE & FROST UI CHROME
-   - panels look like ethereal white marble with techy accents
-   - includes micro-veins, glow edges and subtle noise
-   ============================================================ */
-
-/* subtle noise texture using SVG data URI (tiny repeat) */
-:root{--noise-svg:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><filter id='a'><feTurbulence baseFrequency='0.85' numOctaves='1' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23a)' opacity='0.03' fill='white'/></svg>")}
-
-/* card surface style: marble + frosted glass dual layer */
-.surface-card{
-  background-color:var(--card-bg);
-  background-image: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(245,245,246,0.98)), var(--marble-vein);
-  border-radius:var(--radius-lg);
-  box-shadow:var(--card-elev);
-  border:1px solid rgba(0,0,0,0.06);
-  position:relative;overflow:hidden;
+/* ---------- Base Reset ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* sheen highlight across top */
-.surface-card::before{content:"";position:absolute;left:-30%;top:-40%;width:160%;height:80%;background:linear-gradient(90deg,rgba(255,255,255,0.25),rgba(255,255,255,0.02));transform:rotate(-18deg);mix-blend-mode:overlay;opacity:0.65;pointer-events:none}
-
-/* faint noise overlay to emulate marble grain */
-.surface-card::after{content:"";position:absolute;inset:0;background-image:var(--noise-svg);opacity:0.04;pointer-events:none}
-
-/* small inset micro-border for futuristic feel */
-.surface-card .micro-edge{position:absolute;inset:1px;border-radius:calc(var(--radius-lg)-1px);pointer-events:none;border:1px solid rgba(255,255,255,0.02);mix-blend-mode:overlay}
-
-/* interactive panel (hover) */
-.surface-card:hover{transform:translateY(-6px);box-shadow:0 36px 120px rgba(10,8,12,0.48)}
-
-/* ============================================================
-   PART 06 — HEADER / BRANDING
-   ============================================================ */
-
-.site-header{position:relative;display:flex;align-items:center;justify-content:space-between;padding:1rem 0;z-index:120}
-.header-shell{display:flex;align-items:center;gap:1rem;padding:.7rem;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.86),rgba(255,255,255,0.94));border:1px solid rgba(0,0,0,0.06);box-shadow:0 10px 40px rgba(6,6,8,0.28)}
-
-.site-logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent-cool),var(--accent-warm));display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1.05rem}
-
-.site-title{font-size:clamp(1.1rem,2.4vw,1.9rem);font-weight:800;color:#2a1111;background:linear-gradient(90deg,var(--forest-700),var(--forest-500));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.site-tag{font-size:.9rem;color:var(--forest-400)}
-
-.site-actions{display:flex;align-items:center;gap:.6rem}
-.btn{padding:.48rem .72rem;border-radius:999px;border:1px solid rgba(0,0,0,0.06);background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(245,245,246,0.98));font-weight:700;cursor:pointer}
-.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.02)}
-
-/* search pill */
-.search-pill{display:flex;align-items:center;gap:.6rem;padding:.45rem .6rem;border-radius:999px;background:rgba(255,255,255,0.94);box-shadow:inset 0 1px 0 rgba(255,255,255,0.6)}
-.search-pill input{border:none;background:transparent;outline:none;font-size:var(--fs-sm);color:#1b1212}
-
-/* small responsive tweaks */
-@media (max-width:820px){.site-logo{width:44px;height:44px}.site-title{font-size:1.15rem}.search-pill{display:none}}
-
-/* ============================================================
-   PART 07 — APP LAYOUT (center, left nav, right connected pages)
-   ============================================================ */
-
-.app-wrapper{position:relative;z-index:100}
-.app-center{margin:0 auto;padding:1rem;width:min(100%,var(--max-width))}
-
-.page-shell{display:grid;grid-template-columns:1fr 340px;gap:1.2rem;align-items:start}
-.page-shell.with-left-nav{grid-template-columns:260px 1fr 340px}
-
-/* content shell */
-.content{padding:1.6rem;border-radius:14px;background:transparent;min-width:0}
-
-/* left nav */
-.sidebar-left{position:sticky;top:88px;padding:1rem;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.92),rgba(250,250,250,0.96));border:1px solid rgba(0,0,0,0.04)}
-
-/* right sidebar for connections */
-.sidebar-right{position:sticky;top:88px;padding:1rem;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.94),rgba(250,250,250,0.98));border:1px solid rgba(0,0,0,0.04);max-height:calc(100vh - 120px);overflow:auto}
-
-/* responsive adjustments */
-@media (max-width:980px){.page-shell{grid-template-columns:1fr}.sidebar-left{display:none}.sidebar-right{position:relative;max-height:none;overflow:visible}}
-
-/* ============================================================
-   PART 08 — GARDEN GRID & CARDS
-   ============================================================ */
-
-.garden-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
-
-.card{padding:1rem;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(250,250,250,0.98));border:1px solid rgba(0,0,0,0.04);box-shadow:0 18px 64px rgba(8,6,10,0.12);position:relative}
-.card .thumb{height:156px;border-radius:10px;overflow:hidden;background:linear-gradient(180deg,rgba(0,0,0,0.06),rgba(0,0,0,0.12));display:block}
-.card-title{font-weight:800;font-size:1.05rem;color:#301212;margin:0}
-.card-excerpt{color:#4a3a3a;font-size:.95rem}
-.card-meta{display:flex;justify-content:space-between;align-items:center;font-size:.86rem;color:#6b5656}
-
-/* action overlay */
-.card-actions{position:absolute;right:12px;top:12px;display:flex;gap:.5rem}
-
-/* media badge */
-.media-badge{position:absolute;left:12px;top:12px;padding:.2rem .45rem;border-radius:8px;background:linear-gradient(90deg,rgba(0,0,0,0.06),rgba(0,0,0,0.02));color:white;font-weight:800}
-
-/* ============================================================
-   PART 09 — NOTE / ARTICLE STYLING
-   ============================================================ */
-
-.garden-article{padding:2rem;border-radius:14px;background:var(--card-bg);box-shadow:var(--shadow-strong);border:1px solid rgba(0,0,0,0.03)}
-
-.garden-article h1{font-size:clamp(1.6rem,3.4vw,3rem);margin-bottom:.6rem}
-.garden-article p{color:#3b2b2b;font-size:1rem}
-
-/* code blocks */
-.garden-article pre{background:#0f0f10;color:#fff;padding:1rem;border-radius:10px;overflow:auto}
-.garden-article code{background:rgba(0,0,0,0.04);padding:.12rem .4rem;border-radius:6px}
-
-/* blockquote */
-.garden-article blockquote{border-left:4px solid rgba(0,0,0,0.06);padding:.6rem 1rem;background:rgba(0,0,0,0.01);color:#5a4040;border-radius:8px}
-
-/* callouts */
-.callout{padding:.9rem;border-radius:10px;background:linear-gradient(90deg,rgba(255,240,240,0.96),rgba(255,255,255,0.98));border:1px solid rgba(0,0,0,0.02)}
-
-/* image gallery styles */
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.6rem}
-.gallery img{width:100%;height:auto;border-radius:10px}
-
-/* ============================================================
-   PART 10 — RIGHT PANEL: ON THIS PAGE + CONNECTED PAGES
-   ============================================================ */
-
-.sidebar-right h3{margin:0 0 .6rem 0;font-size:1.02rem}
-
-.on-this-page{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1rem}
-.on-this-page a{padding:.45rem .6rem;border-radius:8px;background:rgba(0,0,0,0.02);color:#6b4f4f;text-decoration:none}
-.on-this-page a:hover{background:rgba(0,0,0,0.03);color:#301212}
-
-.backlinks-list{display:flex;flex-direction:column;gap:.6rem}
-.backlink-item{display:flex;gap:.6rem;align-items:flex-start;padding:.6rem;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(250,250,250,0.98));border:1px solid rgba(0,0,0,0.04)}
-.backlink-thumb{width:64px;height:52px;border-radius:8px;background:linear-gradient(180deg,rgba(0,0,0,0.06),rgba(0,0,0,0.12))}
-.backlink-title{font-weight:700;color:#371212}
-.backlink-excerpt{color:#6b5757;font-size:.95rem}
-
-/* ============================================================
-   PART 11 — SEARCH, TAGS & FILTERS
-   ============================================================ */
-
-.search-results{position:absolute;z-index:220;margin-top:.6rem;width:min(840px,calc(100% - 2rem));background:var(--card-bg);border-radius:12px;border:1px solid rgba(0,0,0,0.05);box-shadow:0 22px 66px rgba(10,6,12,0.12)}
-
-.tag-cloud{display:flex;gap:.5rem;flex-wrap:wrap}
-.tag{padding:.32rem .6rem;border-radius:999px;background:linear-gradient(90deg,rgba(0,0,0,0.02),rgba(0,0,0,0.01));border:1px solid rgba(0,0,0,0.02);font-weight:700}
-.tag:hover{transform:translateY(-3px)}
-.tag.active{background:linear-gradient(90deg,rgba(255,180,180,0.12),rgba(255,120,120,0.06));border:1px solid rgba(255,120,120,0.12)}
-
-/* ============================================================
-   PART 12 — TINY COMPONENTS: BADGES, TOOLTIPS, CALL-TO-ACTION
-   ============================================================ */
-
-.badge{display:inline-block;padding:.22rem .5rem;border-radius:999px;background:linear-gradient(90deg,var(--accent-warm),var(--accent-cool));color:#fff;font-weight:800}
-
-.tooltip{position:relative}
-.tooltip .tip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#111;padding:.45rem .6rem;border-radius:6px;color:#fff;font-size:.82rem;white-space:nowrap;box-shadow:0 8px 20px rgba(0,0,0,0.5)}
-
-/* floating action button */
-.fab{position:fixed;right:1rem;bottom:1.4rem;background:linear-gradient(90deg,var(--accent-cool),var(--accent-warm));padding:.6rem 1rem;border-radius:999px;color:white;font-weight:800;box-shadow:0 18px 60px rgba(0,0,0,0.32);z-index:230}
-
-/* ============================================================
-   PART 13 — INTERACTIONS & ACCESSIBILITY
-   ============================================================ */
-
-:focus{outline:none}
-:focus-visible{outline:3px solid var(--focus-ring);outline-offset:3px;border-radius:6px}
-
-/* keyboard focus for clickable cards */
-.card:focus{box-shadow:0 30px 90px rgba(20,8,12,0.36);transform:translateY(-10px)}
-
-/* hover / active micro animations */
-button, .btn{transition:transform .18s cubic-bezier(.2,.9,.3,1),box-shadow .18s}
-
-/* link underlines that animate */
-.link-underline{position:relative}
-.link-underline::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;background:linear-gradient(90deg,var(--accent-cool),var(--accent-warm));width:0;transition:width .28s}
-.link-underline:hover::after{width:100%}
-
-/* ============================================================
-   PART 14 — MOTION TUNING & REDUCED MOTION
-   ============================================================ */
-@media (prefers-reduced-motion:reduce){
-  .leaf-cloud,.mist-swarm,.shafts,.trees-mid,.trees-near{animation:none!important;transition:none!important}
+html, body {
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  background: var(--white-marble);
+  color: var(--text-dark);
+  overflow-x: hidden;
 }
 
-/* reduce heavy blurs on small screens */
-@media (max-width:1280px){.mist-swarm{filter:blur(20px)}.forest-sky .trees-far{filter:blur(12px)}}
+/* ---------- Parallax Forest Background ---------- */
+.forest-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+}
 
-/* ============================================================
-   PART 15 — UTILITIES & DEBUGGING
-   ============================================================ */
+.layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
 
-.row{display:flex;gap:1rem}
-.col{flex:1}
-.center{text-align:center}
-.u-hidden{display:none!important}
-.u-muted{opacity:.66}
-.debug-outline *{outline:1px dashed rgba(0,0,0,0.06)}
+.layer-back {
+  background-image: url('images/forest_back.jpg'); /* Distant red trees */
+  transform: translateZ(-2px) scale(3);
+}
 
-/* spacing helpers */
-.mt-1{margin-top:.6rem}.mt-2{margin-top:1.2rem}.mb-1{margin-bottom:.6rem}
+.layer-mid {
+  background-image: url('images/forest_mid.png'); /* Mid-level trunks & leaves */
+  transform: translateZ(-1px) scale(2);
+}
 
-/* ============================================================
-   PART 16 — THEME TOGGLES & EXTENSION POINTS
-   ============================================================ */
+.layer-front {
+  background-image: url('images/forest_front.png'); /* Foreground leaves & branches */
+  transform: translateZ(0) scale(1.5);
+}
 
-/* Add .theme-dawn / .theme-night classes on <body> to toggle palettes */
-.theme-dawn{--forest-700:#7a2b2b;--forest-500:#c65d4e;--accent-cool:#6debd5}
-.theme-night{--forest-700:#47121a;--forest-500:#8e1f28;--accent-cool:#8ed0ff}
+.mist-layer {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, var(--mist-white), transparent 70%);
+  animation: mistMove 60s ease-in-out infinite;
+  mix-blend-mode: lighten;
+}
 
-/* ============================================================
-   PART 17 — OPTIONAL HTML SNIPPETS (place these in index.njk & note.njk)
-   ============================================================
-   Insert SNIPPET A (Sky / Background) immediately after <body>
+@keyframes mistMove {
+  0% { transform: translateX(-10%) translateY(0); opacity: 0.4; }
+  50% { transform: translateX(10%) translateY(-5%); opacity: 0.55; }
+  100% { transform: translateX(-10%) translateY(0); opacity: 0.4; }
+}
 
-   <div class="forest-sky" aria-hidden="true">
-     <div class="grade"></div>
-     <div class="mountain"></div>
-     <div class="trees-far" style="background-image:url(\'data:image/svg+xml;utf8,<svg ...>\')"></div>
-     <div class="mist-swarm"><div class="mist-layer"></div><div class="mist-layer alt"></div></div>
-     <div class="shafts"><div class="shaft s1"></div><div class="shaft s2"></div><div class="shaft s3"></div></div>
-     <div class="leaf-layer"><div class="leaf-cloud"><div class="band depth-1"></div><div class="band depth-2"></div><div class="band depth-3"></div></div></div>
-     <div class="trees-mid" style="background-image:url(\'data:image/svg+xml;utf8,<svg ...>\')"></div>
-     <div class="trees-near" style="background-image:url(\'data:image/svg+xml;utf8,<svg ...>\')"></div>
-     <div class="vignette"></div>
-   </div>
+/* ---------- Header & Nav ---------- */
+.site-header {
+  position: relative;
+  z-index: 5;
+  padding: 2rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-lg);
+  max-width: var(--max-width);
+  margin: 2rem auto;
+  box-shadow: var(--shadow-deep);
+}
 
-   SNIPPET B (Main Shell) - wrap your content like this in your base layout
+.site-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--maple-red), var(--gold-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-   <div class="app-wrapper">
-     <div class="app-center container">
-       <header class="site-header">
-         <div class="header-shell">
-           <div class="site-brand"><div class="site-logo">DG</div>
-           <div><div class="site-title">Your Garden</div><div class="site-tag">Ethereal thoughts</div></div></div>
-           <div class="site-actions"><div class="search-pill"><input placeholder="Search notes..."/></div><button class="btn">New</button></div>
-         </div>
-       </header>
+.nav-bar {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
 
-       <div class="page-shell with-left-nav">
-         <aside class="sidebar-left"> ... nav ... </aside>
-         <main class="content"> ... note content or grid ... </main>
-         <aside class="sidebar-right"> ... on this page / mentions ... </aside>
-       </div>
-     </div>
-   </div>
+.nav-bar a {
+  font-weight: 600;
+  color: var(--deep-red);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
 
-   ============================================================
-   END OF FILE - custom-style.css
-   ============================================================ */
+.nav-bar a:hover {
+  color: var(--gold-accent);
+}
+
+/* ---------- Hero Card ---------- */
+.hero-card {
+  background: var(--white-marble);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-deep);
+  max-width: 800px;
+  margin: 4rem auto;
+  text-align: center;
+}
+
+.hero-card h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.hero-card p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.cta-btn {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  background: linear-gradient(135deg, var(--maple-red), var(--gold-accent));
+  color: white;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: var(--shadow-deep);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
