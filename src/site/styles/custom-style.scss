@@ -384,3 +384,110 @@ pre, code {
 }
 
 /* End of custom.css part 1 */
+
+/* =========================================================================
+   PART 2 — SKYBOX DYNAMICS
+   File: assets/js/skybox.js
+   Purpose: Periodically adjust CSS nebula colors, accent tones, and trigger
+            occasional shooting stars. Keeps the sky lively while preserving
+            the original DOM structure (galaxy-skybox, .nebula, .shooting-stars).
+   ========================================================================= */
+
+(function () {
+  if (typeof window === 'undefined') return;
+  const root = document.documentElement;
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return;
+
+  // Color palettes to cycle through (arrays of RGB triplets)
+  const palettes = [
+    { n1: [45,85,255,0.22], n2: [124,58,237,0.22], n3: [6,182,212,0.12], accent: '#7dd3fc' },
+    { n1: [255,115,128,0.18], n2: [255,197,102,0.18], n3: [255,87,34,0.09], accent: '#ffb86b' },
+    { n1: [39,202,120,0.18], n2: [16,185,129,0.18], n3: [6,182,212,0.08], accent: '#6ef3ce' },
+    { n1: [124,58,237,0.22], n2: [45,85,255,0.22], n3: [168,85,247,0.11], accent: '#b692ff' }
+  ];
+
+  let index = Math.floor(Math.random() * palettes.length);
+
+  function setPalette(p) {
+    // p.n1 etc are arrays that include alpha in the last element
+    root.style.setProperty('--nebula-1', `rgba(${p.n1[0]}, ${p.n1[1]}, ${p.n1[2]}, ${p.n1[3]})`);
+    root.style.setProperty('--nebula-2', `rgba(${p.n2[0]}, ${p.n2[1]}, ${p.n2[2]}, ${p.n2[3]})`);
+    root.style.setProperty('--nebula-3', `rgba(${p.n3[0]}, ${p.n3[1]}, ${p.n3[2]}, ${p.n3[3]})`);
+    root.style.setProperty('--accent-aurora', p.accent);
+  }
+
+  // gently transition between palettes every 35-60s
+  function schedulePaletteChange() {
+    const delay = 35000 + Math.random() * 25000; // 35-60s
+    setTimeout(() => {
+      index = (index + 1) % palettes.length;
+      setPalette(palettes[index]);
+      schedulePaletteChange();
+    }, delay);
+  }
+
+  // Shooting star generator
+  const starContainerQuery = '.galaxy-skybox .shooting-stars, .shooting-stars';
+  function triggerShootingStar() {
+    const container = document.querySelector(starContainerQuery) || (() => {
+      // create one if missing
+      const gs = document.createElement('div');
+      gs.className = 'shooting-stars';
+      const sky = document.querySelector('.galaxy-skybox') || document.body;
+      sky.appendChild(gs);
+      return gs;
+    })();
+
+    const star = document.createElement('div');
+    star.className = 'shooting-star';
+    // random starting position within top-left quadrant
+    const startX = Math.random() * window.innerWidth * 0.6;
+    const startY = Math.random() * window.innerHeight * 0.55;
+    star.style.left = `${startX}px`;
+    star.style.top = `${startY}px`;
+    star.style.transform = `rotate(-${8 + Math.random() * 30}deg)`;
+
+    container.appendChild(star);
+    // force layout then animate with class
+    requestAnimationFrame(() => star.classList.add('animate'));
+    // cleanup
+    setTimeout(() => {
+      star.remove();
+    }, 1200);
+  }
+
+  function scheduleShootingStars() {
+    // lower frequency — 1 every 10-50s on average
+    const delay = 10000 + Math.random() * 40000;
+    setTimeout(() => {
+      triggerShootingStar();
+      // sometimes trigger multiples
+      if (Math.random() < 0.3) setTimeout(triggerShootingStar, 200 + Math.random() * 800);
+      scheduleShootingStars();
+    }, delay);
+  }
+
+  // init
+  setPalette(palettes[index]);
+  schedulePaletteChange();
+  scheduleShootingStars();
+
+  // Subtle skybox parallax on mouse move (small, not intrusive)
+  let lastX = 0, lastY = 0;
+  window.addEventListener('mousemove', (e) => {
+    const sx = (e.clientX / window.innerWidth - 0.5) * 8; // -4..4
+    const sy = (e.clientY / window.innerHeight - 0.5) * 6; // -3..3
+    // throttle low effort
+    if (Math.abs(sx - lastX) + Math.abs(sy - lastY) > 0.5) {
+      const nebulaBack = document.querySelector('.nebula--back');
+      const nebulaMid = document.querySelector('.nebula--mid');
+      const nebulaFront = document.querySelector('.nebula--front');
+      if (nebulaBack) nebulaBack.style.transform = `translate(${ -8 + sx }%, ${ -5 + sy }%) scale(1.1)`;
+      if (nebulaMid) nebulaMid.style.transform = `translate(${ 3 + sx/2 }%, ${ 3 + sy/2 }%) scale(1.05)`;
+      if (nebulaFront) nebulaFront.style.transform = `translate(${ -3 + sx/4 }%, ${ 7 + sy/4 }%) scale(1.03)`;
+      lastX = sx; lastY = sy;
+    }
+  }, { passive: true });
+
+})();
