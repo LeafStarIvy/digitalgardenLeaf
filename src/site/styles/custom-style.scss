@@ -1,755 +1,330 @@
-/* ================================================================
-   COSMIC DIGITAL GARDEN — custom-style.css
-   - Drop this file into /styles/custom-style.css for index.njk & note.njk
-   - Large, modular CSS file with parts labeled PART 01 .. PART 12
-   - Preserves particle layers (.pg-canvas*), nebula, cosmic bodies
-   ================================================================ */
+/* ============================================================
+   CUSTOM-STYLE.CSS — COSMIC DIGITAL GARDEN (REVAMP)
+   - Drop into /styles/custom-style.css
+   - PARTS numbered and commented for reviewers
+   ============================================================ */
 
-/* ================================================================
-   PART 01 — CORE VARIABLES & THEME TOKENS
-   Purpose: centralize all colors, sizes and animation timing.
-   Swap tokens here to alter the whole theme quickly.
-   ================================================================ */
+/* ============================================================
+   PART 01 — ROOT TOKENS (Aurora Celestial palette supplied)
+   - Highly granular palette, spacing, typography & effects
+   ============================================================ */
 :root {
-  /* -- COLOR & SKY */
-  --hue-base: 220;                /* base hue for blues/purples */
-  --hue-offset: 20;               /* small offset for variation */
-  --bg-deep: #030318;             /* deepest background */
-  --bg-mid:  #0d1232;             /* mid background for cards */
-  --nebula-1: rgba(45, 85, 255, 0.28);
-  --nebula-2: rgba(124, 58, 237, 0.28);
-  --nebula-3: rgba(6, 182, 212, 0.12);
-  --accent-aurora: #7dd3fc;       /* cyan-ish aurora */
-  --accent-gold: #ffcb6b;         /* used for warm highlights */
-  --text: #eaf2ff;
-  --muted: #9fb0d6;
-  --glass: rgba(8, 12, 22, 0.44);
-  --glass-border: rgba(120,160,255,0.06);
-  --max-width: 1180px;
-  --radius-lg: 14px;
-  --radius-md: 10px;
-  --shadow-deep: 0 18px 60px rgba(0,0,0,0.6);
-  --ui-ease: cubic-bezier(.2,.9,.3,1);
-  --mood-cycle-duration: 28s;     /* hue cycle duration; change to lengthen mood rotation */
-  --particle-opacity: 0.95;
+  /* ---------- Color System (from your example) ---------- */
+  --cosmic-void: #010508;
+  --cosmic-abyss: #01080F;
+  --primary-900: #020B19;
+  --primary-850: #051425;
+  --primary-800: #0A192F;
+  --primary-750: #0E2038;
+  --primary-700: #112240;
+  --primary-650: #172C4C;
+  --primary-600: #1E3A5F;
+  --primary-550: #244467;
+  --primary-500: #2A4A73;
+  --primary-450: #31547F;
+  --primary-400: #3B5F8F;
+  --primary-350: #466B9E;
+  --primary-300: #5478AD;
+  --primary-250: #658ABE;
+  --primary-200: #7599CB;
+  --primary-150: #8AADED;
+  --primary-100: #A3BFEF;
+  --primary-75:  #BECCEA;
+  --primary-50:  #D4E5FF;
+  --primary-25:  #E9F2FF;
 
-  /* layout */
+  /* ---------- Aurora spectrums ---------- */
+  --aurora-teal-900: #035D87;
+  --aurora-teal-700: #0679B3;
+  --aurora-teal-500: #0EA5E9;
+  --aurora-teal-300: #38BDF8;
+  --aurora-teal-200: #55C6FA;
+  --aurora-teal-100: #7DD3FC;
+  --aurora-teal-50:  #BAE6FD;
+  --aurora-teal-25:  #E0F5FF;
+
+  --aurora-cyan-900: #03565F;
+  --aurora-cyan-700: #047481;
+  --aurora-cyan-500: #06B6D4;
+  --aurora-cyan-300: #22D3EE;
+  --aurora-cyan-200: #4DDBF1;
+  --aurora-cyan-100: #A5F3FC;
+  --aurora-cyan-50:  #CFFAFE;
+
+  --aurora-purple-900: #4B1E99;
+  --aurora-purple-700: #5F25C0;
+  --aurora-purple-500: #7C3AED;
+  --aurora-purple-400: #8B51F5;
+  --aurora-purple-300: #A78BFA;
+  --aurora-purple-100: #C4B5FD;
+
+  --aurora-pink-900: #8F1DAA;
+  --aurora-pink-700: #B324D3;
+  --aurora-pink-500: #D946EF;
+  --aurora-pink-300: #F0ABFC;
+
+  --aurora-emerald-500: #10B981;
+  --aurora-amber-500: #F59E0B;
+  --aurora-rose-500: #F43F5E;
+
+  /* ---------- Gradients & accents ---------- */
+  --gradient-cosmic-horizon: linear-gradient(135deg, var(--primary-900), var(--primary-700) 50%, var(--primary-600));
+  --gradient-aurora-sweep: linear-gradient(90deg, var(--aurora-purple-500), var(--aurora-pink-500), var(--aurora-teal-500));
+  --gradient-northern-lights: linear-gradient(135deg, var(--aurora-cyan-500), var(--aurora-teal-300), var(--aurora-purple-400));
+  --gradient-nebula-dust: linear-gradient(to bottom, var(--primary-800), var(--primary-700), var(--aurora-purple-900) 80%);
+
+  /* ---------- UI tokens ---------- */
+  --bg-primary: var(--primary-900);
+  --bg-secondary: rgba(8, 12, 24, 0.5);
+  --surface-1: rgba(16, 28, 46, 0.6);
+  --surface-2: rgba(20, 36, 62, 0.55);
+  --glass-bg: rgba(12, 20, 36, 0.56);
+  --glass-bg-lighter: rgba(18, 30, 52, 0.44);
+  --glass-border: rgba(255,255,255,0.04);
+
+  --text-primary: var(--aurora-cyan-50);
+  --text-secondary: var(--aurora-teal-100);
+  --muted: var(--primary-200);
+  --accent: var(--aurora-teal-100);
+  --accent-strong: var(--aurora-purple-300);
+  --success: var(--aurora-emerald-500);
+  --danger: var(--aurora-rose-500);
+
+  /* spacing & layout */
+  --site-padding: 24px;
+  --site-padding-sm: 16px;
+  --max-width: 1200px;
   --sidebar-width: 320px;
-  --gutter: 1.25rem;
-  --card-min-width: 260px;
-  --card-max-width: 520px;
+  --gutter: 20px;
 
-  /* accessibility & motion */
-  --reduce-motion: 0;             /* set to 1 via JS or media query if desired */
+  /* radii & shadows */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --shadow-soft: 0 8px 30px rgba(2,6,20,0.45);
+  --shadow-deep: 0 28px 80px rgba(2,6,20,0.65);
+
+  /* typography */
+  --font-main: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --font-heading: 'Space Grotesk', 'Montserrat', sans-serif;
+  --fz-xs: .75rem;
+  --fz-sm: .9rem;
+  --fz-base: 1rem;
+  --fz-md: 1.125rem;
+  --fz-lg: 1.35rem;
+  --fz-xl: 1.85rem;
+
+  /* animation & performance */
+  --ui-ease: cubic-bezier(.16,.84,.28,1);
+  --mood-duration: 30s;
+  --reduce-motion: 0;
+  --particle-opacity: 0.90;
 }
 
-/* ================================================================
-   PART 02 — BASE RESET, TYPOGRAPHY & ACCESSIBILITY
-   ================================================================ */
-*,
-*::before,
-*::after { box-sizing: border-box; }
-
-html {
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
-               "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  height: 100%;
-  scroll-behavior: smooth;
-  background: var(--bg-deep);
-  color: var(--text);
-}
-
+/* ============================================================
+   PART 02 — BASE / RESET / BODY
+   - Strong improved body/root as you supplied, with selection, base background, and grain
+   ============================================================ */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+html { background: var(--bg-primary); font-family: var(--font-main); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 body {
   margin: 0;
-  min-height: 100%;
-  line-height: 1.45;
+  color: var(--text-primary);
+  background-image: var(--gradient-cosmic-horizon);
+  background-size: cover;
+  background-attachment: fixed;
+  line-height: 1.55;
+  font-size: var(--fz-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  min-height: 100vh;
   -webkit-tap-highlight-color: transparent;
-  background: none;
 }
 
-/* ensure images/videos do not overflow note cards */
-img, picture, video {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 8px;
-}
+/* selection styling */
+::selection { background: rgba(10,147,150,0.20); color: var(--aurora-cyan-50); }
 
-/* links */
-a { color: var(--accent-aurora); text-decoration: none; }
-a:hover, a:focus { text-decoration: underline; outline: none; }
+/* default headings */
+h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--text-primary); margin: 0 0 .4rem 0; letter-spacing: -0.01em; }
+h1 { font-size: var(--fz-4xl, 2.25rem); line-height: 1.05; }
+h2 { font-size: var(--fz-2xl, 1.75rem); }
+h3 { font-size: var(--fz-lg); }
 
-/* focus visible (keyboard users) */
-:focus { outline: none; }
-:focus-visible {
-  outline: 3px solid rgba(125, 211, 252, 0.14);
-  outline-offset: 3px;
-  border-radius: 6px;
-}
+/* paragraphs and lists */
+p, li { color: var(--text-secondary); margin: 0 0 1rem 0; font-size: var(--fz-sm); }
 
-/* small utility */
-.screen-reader-only {
-  position: absolute !important;
-  left: -10000px; top: auto; width: 1px; height: 1px;
-  overflow: hidden;
-}
+/* small elements */
+small, .meta { font-size: var(--fz-xs); color: var(--muted); }
 
-/* ================================================================
-   PART 03 — SKYBOX (background) + COLOR MOOD CYCLE
-   - preserves .pg-canvas layers for particles.js
-   - provides nebula layers + cosmic bodies
-   ================================================================ */
+/* ============================================================
+   PART 03 — SKYBOX, NEBULAE & COSMIC BODIES (preserve particles)
+   - Styling for .galaxy-skybox and layers. Add mood-cycle class to animate.
+   ============================================================ */
 
-/* fixed, full-screen sky wrapper */
+/* main skybox wrapper (fixed, behind content) */
 .galaxy-skybox {
   position: fixed;
   inset: 0;
-  z-index: -100;
-  pointer-events: none;     /* don't intercept clicks */
+  z-index: -110;
+  pointer-events: none;
   overflow: visible;
-  transform-style: preserve-3d;
-  background: radial-gradient(circle at 50% 20%, rgba(6,8,18,0.9), rgba(0,0,3,1));
-  /* subtle base grain using linear-gradients — low-cost */
-  background-blend-mode: screen;
-  transition: filter 600ms var(--ui-ease);
-  will-change: filter;
-  mix-blend-mode: normal;
+  background: radial-gradient(ellipse at 20% 20%, rgba(255,255,255,0.02), transparent 5%),
+              radial-gradient(ellipse at 80% 75%, rgba(124,58,237,0.02), transparent 8%),
+              linear-gradient(180deg, rgba(2,6,20,0.9), rgba(0,0,8,1));
+  filter: saturate(1.05) contrast(1.02);
+  will-change: filter, transform;
 }
 
-/* hue-rotation mood cycle (animates CSS variables via filter) */
-@keyframes skyHueCycle {
-  0%   { filter: hue-rotate(-6deg) saturate(1.02) brightness(0.98); }
-  16%  { filter: hue-rotate(0deg)  saturate(1.05) brightness(1); }
-  33%  { filter: hue-rotate(14deg) saturate(1.12) brightness(1.02); }
-  50%  { filter: hue-rotate(32deg) saturate(1.03) brightness(1.03); }
-  66%  { filter: hue-rotate(18deg) saturate(1.08) brightness(1.01); }
-  83%  { filter: hue-rotate(-8deg) saturate(1.00) brightness(0.99); }
-  100% { filter: hue-rotate(-6deg)  saturate(1.02) brightness(0.98); }
+/* mood hue cycle — subtle hue rotate on the skybox */
+@keyframes moodHue {
+  0%   { filter: hue-rotate(0deg) saturate(0.98) brightness(.98); }
+  25%  { filter: hue-rotate(10deg) saturate(1.05) brightness(1.02); }
+  50%  { filter: hue-rotate(24deg) saturate(1.08) brightness(1.03); }
+  75%  { filter: hue-rotate(8deg)  saturate(1.02) brightness(1.01); }
+  100% { filter: hue-rotate(0deg)  saturate(0.98) brightness(.98); }
 }
-
-/* apply mood cycle, but respect prefers-reduced-motion */
 @media (prefers-reduced-motion: no-preference) {
-  .galaxy-skybox.mood-cycle {
-    animation: skyHueCycle var(--mood-cycle-duration) linear infinite;
-  }
+  .galaxy-skybox.mood { animation: moodHue var(--mood-duration) linear infinite; }
 }
 
-/* Nebula layers (back / mid / front) */
-.nebula {
-  position: absolute;
-  left: -25%;
-  top: -25%;
-  width: 150%;
-  height: 150%;
-  border-radius: 50%;
-  filter: blur(56px) saturate(160%);
-  pointer-events: none;
-  mix-blend-mode: screen;
-  will-change: transform, opacity;
-  opacity: 0.55;
+/* nebula layers (depth) */
+.nebula { position: absolute; border-radius: 50%; filter: blur(48px) saturate(150%); pointer-events: none; mix-blend-mode: screen; }
+.nebula--back { width: 160%; height: 160%; left: -30%; top: -20%; background: radial-gradient(700px 420px at 18% 32%, rgba(10,28,60,0.86), transparent 35%), radial-gradient(480px 300px at 82% 72%, var(--aurora-purple-400), transparent 32%); opacity: .62; transform: scale(1.08); }
+.nebula--mid  { width: 140%; height: 140%; left: -10%; top: -5%; background: radial-gradient(480px 260px at 62% 32%, var(--aurora-teal-300), transparent 38%), radial-gradient(420px 230px at 22% 70%, var(--aurora-purple-300), transparent 36%); opacity: .55; transform: scale(1.03); }
+.nebula--front{ width: 120%; height: 120%; left: -5%; top: 5%; background: radial-gradient(280px 180px at 32% 32%, var(--aurora-cyan-500), transparent 45%), radial-gradient(320px 220px at 72% 72%, rgba(255,255,255,0.02), transparent 45%); opacity: .42; transform: scale(1.015); }
+
+/* cosmic bodies (planets / glows) */
+.cosmic-body { position: absolute; border-radius: 50%; pointer-events: none; mix-blend-mode: screen; filter: drop-shadow(0 0 36px rgba(125,211,252,0.06)); opacity: .82; }
+.cosmic-body.planet-1 { width: 520px; height: 520px; top: 6%; left: 8%; background: radial-gradient(circle at 40% 40%, var(--aurora-teal-700), transparent 72%); transform: translateZ(0); }
+.cosmic-body.planet-2 { width: 420px; height: 420px; top: 60%; left: 66%; background: radial-gradient(circle at 30% 30%, var(--aurora-purple-500), transparent 78%); transform: translateZ(0); }
+.cosmic-body.nebula-3 { width: 300px; height: 300px; top: 38%; left: 46%; background: radial-gradient(circle at 50% 50%, var(--aurora-cyan-500), transparent 78%); transform: translateZ(0); }
+
+/* subtle float animations, but stop if reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  .cosmic-body { animation: floatSlow 36s var(--ui-ease) infinite alternate; }
+  @keyframes floatSlow { to { transform: translateY(14px) rotate(3deg) translateZ(0); } }
 }
 
-/* each nebula has its own subtle movement */
-.nebula--back {
-  background:
-    radial-gradient(700px 420px at 18% 32%, rgba(10, 28, 60, 0.88), transparent 35%),
-    radial-gradient(480px 300px at 82% 72%, var(--nebula-2), transparent 32%);
-  transform: translate(-6%, -3%) scale(1.06);
-  animation: nebulaDriftBack 48s ease-in-out infinite alternate;
-}
-.nebula--mid {
-  background:
-    radial-gradient(480px 260px at 62% 32%, var(--nebula-1), transparent 38%),
-    radial-gradient(420px 230px at 22% 70%, var(--nebula-2), transparent 36%);
-  transform: translate(3%, 4%) scale(1.03);
-  animation: nebulaDriftMid 40s ease-in-out infinite alternate-reverse;
-}
-.nebula--front {
-  background:
-    radial-gradient(280px 180px at 32% 32%, var(--nebula-3), transparent 45%),
-    radial-gradient(320px 220px at 72% 72%, rgba(255,255,255,0.02), transparent 45%);
-  transform: translate(-3%, 7%) scale(1.02);
-  opacity: 0.42;
-  animation: nebulaDriftFront 36s ease-in-out infinite alternate;
-}
-
-/* nebula animations (transform only) */
-@keyframes nebulaDriftBack { to { transform: translate(-9%, -6%) scale(1.07) } }
-@keyframes nebulaDriftMid  { to { transform: translate(5%, 6%) scale(1.05) } }
-@keyframes nebulaDriftFront{ to { transform: translate(-1%, 10%) scale(1.03) } }
-
-/* Cosmic bodies (planets / big glows) */
-.cosmic-body {
-  position: absolute;
-  border-radius: 50%;
-  filter: drop-shadow(0 0 40px rgba(125,211,252,0.12)) saturate(1.08);
-  will-change: transform, opacity;
-  opacity: 0.75;
-  mix-blend-mode: screen;
-  pointer-events: none;
-  transform-origin: 50% 50%;
-}
-
-/* example body placements (tweak in your HTML if needed) */
-.cosmic-body.planet-1 {
-  width: 520px; height: 520px;
-  top: 8%; left: 10%;
-  background: radial-gradient(circle at 40% 40%, #2d55ff 0%, rgba(45,85,255,0.05) 65%, transparent 75%);
-  animation: bodyFloatA 38s var(--ui-ease) infinite alternate;
-}
-.cosmic-body.planet-2 {
-  width: 420px; height: 420px;
-  top: 58%; left: 68%;
-  background: radial-gradient(circle at 30% 30%, #7c3aed 0%, rgba(124,58,237,0.04) 68%, transparent 78%);
-  animation: bodyFloatB 34s var(--ui-ease) infinite alternate;
-}
-.cosmic-body.nebula-3 {
-  width: 380px; height: 380px;
-  top: 34%; left: 50%;
-  background: radial-gradient(circle at 50% 50%, rgba(6,182,212,0.85), transparent 78%);
-  animation: bodyFloatC 28s var(--ui-ease) infinite alternate;
-}
-
-@keyframes bodyFloatA { to { transform: translate3d(12px, 18px, 0) rotate(2deg) scale(1.03);} }
-@keyframes bodyFloatB { to { transform: translate3d(-18px, 10px, 0) rotate(-3deg) scale(1.06);} }
-@keyframes bodyFloatC { to { transform: translate3d(8px, -12px, 0) rotate(1.5deg) scale(1.04);} }
-
-/* ================================================================
-   PART 04 — PARTICLES / STARS LAYER (particles.js & layering)
-   - Preserve pg-canvas classes. If your JS uses those names it's safe.
-   ================================================================ */
-
-/* general canvas settings */
-.pg-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  mix-blend-mode: screen;
-  opacity: var(--particle-opacity);
-  transition: opacity 320ms var(--ui-ease);
-  will-change: opacity;
-}
-
-/* three depth layers for parallax + performance tuning */
-.pg-canvas--bg  { z-index: 0; opacity: calc(var(--particle-opacity) * 0.7); filter: blur(0.6px) contrast(1.05); }
-.pg-canvas--mid { z-index: 2; opacity: calc(var(--particle-opacity) * 0.9); filter: blur(0.2px); }
-.pg-canvas--fg  { z-index: 3; opacity: var(--particle-opacity); }
-
-/* If you want to visually hide particles on mobile or under perf constraints */
-@media (max-width: 700px) {
-  .pg-canvas { opacity: 0.55; filter: blur(0.8px); }
-}
-
-/* Optional "night glare" for large screens */
+/* small sheen over the whole skybox for depth */
 .galaxy-skybox::after {
   content: "";
   position: absolute;
-  inset: -20%;
-  background: radial-gradient(circle at 40% 40%, rgba(255,255,255,0.015), transparent 20%);
+  inset: -8%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.012), transparent 20%);
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
 }
 
-/* ================================================================
-   PART 05 — LAYOUT: HEADER, NAV, SIDEBAR, MAIN CONTENT
-   - Styles assume standard Obsidian/digital garden HTML classes, but
-     defensive to avoid breakage if class names differ slightly.
-   ================================================================ */
+/* ============================================================
+   PART 04 — PARTICLES & STARS (preserve pg-canvas)
+   - Use your existing particles.js but ensure class names are correct
+   ============================================================ */
+.pg-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: -100; mix-blend-mode: screen; opacity: var(--particle-opacity); transition: opacity .35s var(--ui-ease); }
+.pg-canvas--bg  { z-index: -105; opacity: .75; filter: blur(.8px); }
+.pg-canvas--mid { z-index: -95; opacity: .9; filter: blur(.2px); }
+.pg-canvas--fg  { z-index: -85; opacity: 1; }
 
-/* top header */
+/* mobile/perf fallback: reduce canvas intensity */
+@media (max-width: 860px) { .pg-canvas { opacity: .55; filter: blur(.9px); } }
+
+/* ============================================================
+   PART 05 — PAGE LAYOUT: header, wrapper, columns, right sidebar
+   ============================================================ */
+
+/* top header: large, airy, centered with controls */
 .site-header {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.25rem 1.5rem;
   width: 100%;
   max-width: var(--max-width);
-  margin: 1.5rem auto 0 auto;
-  z-index: 20;
-  position: relative;
-  color: var(--text);
-}
-
-/* title & nav group */
-.site-brand {
+  margin: 18px auto;
   display: flex;
-  gap: 0.9rem;
   align-items: center;
-}
-.site-title {
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  font-size: clamp(1.4rem, 2.8vw, 2.6rem);
-  margin: 0;
-  background: linear-gradient(90deg, #7dd3fc, #b692ff, #ffd16b);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% 200%;
-  animation: titleShimmer 10s linear infinite;
-}
-@keyframes titleShimmer {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-.brand-note {
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-/* nav actions (search, theme toggles) */
-.site-actions {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-/* header container background (subtle glass) */
-.header-shell {
-  background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.008));
-  border: 1px solid rgba(255,255,255,0.02);
-  backdrop-filter: blur(6px) saturate(120%);
-  border-radius: 12px;
-  padding: 8px;
-}
-
-/* main layout container */
-.app-wrapper {
-  display: grid;
-  grid-template-columns: 1fr minmax(auto, var(--max-width)) 1fr;
-  gap: 0;
-  justify-content: center;
-  align-items: start;
-  padding: 2rem 1rem 4rem 1rem;
-  position: relative;
-  z-index: 10;
-}
-
-/* center column holds content; side columns act as gutters */
-.app-center {
-  grid-column: 2;
-  width: 100%;
-  max-width: var(--max-width);
-}
-
-/* page shell: content vs optional aside/sidebar */
-.page-shell {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 340px;
-  gap: 1.25rem;
-  align-items: start;
-}
-
-/* when sidebar absent, just single column */
-.page-shell.no-sidebar { grid-template-columns: 1fr; }
-
-/* main content container (cards, notes) */
-.content {
-  padding: 2rem;
-  background: rgba(6,8,18,0.34);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-deep);
+  gap: 16px;
+  padding: 12px 20px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.006));
+  border-radius: var(--radius-md);
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(8px) saturate(120%);
+  box-shadow: var(--shadow-soft);
+  z-index: 30;
+  position: relative;
 }
 
-/* floating right sidebar (tags, backlinks, toc) */
+/* brand area */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.brand .logo {
+  width: 56px; height: 56px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--aurora-teal-500), var(--aurora-purple-500));
+  box-shadow: var(--shadow-soft);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: white; font-weight: 700; font-family: var(--font-heading);
+}
+.brand .title {
+  display: flex; flex-direction: column;
+}
+.brand .title .site-title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: transparent;
+  background: var(--gradient-text-cosmic, linear-gradient(90deg, var(--aurora-teal-300), var(--aurora-purple-300)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.brand .title .subtitle { font-size: .9rem; color: var(--muted); margin-top: 2px; }
+
+/* header actions: search / theme toggle / new note */
+.header-actions { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+
+/* wrapper with left gutter and right sidebar */
+.app {
+  max-width: var(--max-width);
+  margin: 22px auto;
+  padding: 0 var(--site-padding);
+  position: relative;
+  z-index: 20;
+}
+
+/* layout columns: main + right sidebar */
+.page-grid {
+  display: grid;
+  grid-template-columns: 1fr var(--sidebar-width);
+  gap: 22px;
+  align-items: start;
+}
+
+/* if sidebar absent, single column */
+.page-grid.no-sidebar { grid-template-columns: 1fr; }
+
+/* main content shell */
+.main {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-deep);
+}
+
+/* right sidebar with "On this page" and "Connected pages" */
 .sidebar {
   position: sticky;
-  top: calc(1rem + 60px);
+  top: 20px;
   align-self: start;
-  padding: 1.2rem;
-  border-radius: 12px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.006));
-  border: 1px solid rgba(255,255,255,0.02);
-  height: fit-content;
-}
-
-/* mobile responsive — stack layout */
-@media (max-width: 980px) {
-  .page-shell {
-    grid-template-columns: 1fr;
-  }
-  .sidebar {
-    position: relative;
-    top: auto;
-    margin-top: 1rem;
-  }
-  .site-header { padding: 1rem; margin: 1rem; }
-}
-
-/* ================================================================
-   PART 06 — GARDEN GRID & CARDS (notes, projects, media)
-   ================================================================ */
-
-/* grid containing many cards / notes */
-.garden-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
-  gap: 1.1rem;
-  align-items: start;
-}
-
-/* card base (Zettelkasten note / project / video entry) */
-.garden-card {
-  min-height: 120px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  padding: 1.15rem;
-  border-radius: 12px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.006));
-  border: 1px solid rgba(255,255,255,0.03);
-  box-shadow: 0 8px 30px rgba(2,6,20,0.45);
-  transition: transform 260ms var(--ui-ease), box-shadow 260ms var(--ui-ease), background 260ms var(--ui-ease);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-/* card hover / focus */
-.garden-card:hover,
-.garden-card:focus-within {
-  transform: translateY(-6px);
-  box-shadow: 0 22px 60px rgba(3,9,30,0.64);
-}
-
-/* title & excerpt */
-.card-title {
-  font-weight: 700;
-  font-size: 1.05rem;
-  margin: 0;
-}
-.card-meta {
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-/* thumbnail block (image/video) */
-.card-media {
-  width: 100%;
-  height: 140px;
-  border-radius: 8px;
-  overflow: hidden;
-  object-fit: cover;
-  background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.24));
-}
-
-/* article (full note view) — use .garden-article to style note.njk */
-.garden-article {
-  background: linear-gradient(180deg, rgba(255,255,255,0.032), rgba(255,255,255,0.006));
-  border: 1px solid var(--glass-border);
-  padding: 2rem;
-  border-radius: var(--radius-lg);
-  color: var(--text);
-  line-height: 1.6;
-  box-shadow: 0 24px 80px rgba(2,6,18,0.6);
-}
-
-/* spotlight behind article for Mario Galaxy vibe */
-.garden-article::before {
-  content: "";
-  position: absolute;
-  left: -40px;
-  right: -40px;
-  top: -120px;
-  height: 420px;
-  background: radial-gradient(900px 300px at 50% 12%, rgba(125,211,252,0.12), rgba(0,0,0,0));
-  z-index: -1;
-  pointer-events: none;
-  filter: blur(48px);
-}
-
-/* code blocks and pre blocks */
-.garden-article pre,
-.garden-article code {
-  background: rgba(6,8,18,0.52);
-  border-radius: 10px;
-  padding: .75rem;
-  display: block;
-  overflow-x: auto;
-  color: var(--text);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
-  font-size: 0.92rem;
-}
-
-/* inline code */
-.garden-article code { padding: 0.12rem 0.34rem; border-radius: 6px; }
-
-/* media embeds (YouTube, Vimeo, iframes) */
-.embed-responsive {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  border-radius: 10px;
-}
-.embed-responsive iframe {
-  position: absolute;
-  left: 0; top: 0; width: 100%; height: 100%;
-  border: none;
-}
-
-/* ================================================================
-   PART 07 — TAGS, FILTERS, SEARCH UI
-   - Tag chips, search box, tag sidebar styles
-   ================================================================ */
-
-/* tag chip */
-.tag {
-  display: inline-flex;
-  gap: .45rem;
-  align-items: center;
-  padding: .35rem .6rem;
-  border-radius: 999px;
-  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border: 1px solid rgba(255,255,255,0.03);
-  font-weight: 600;
-  color: var(--text);
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: transform 160ms var(--ui-ease), box-shadow 240ms var(--ui-ease);
-}
-.tag:hover { transform: translateY(-3px); box-shadow: 0 10px 34px rgba(0,0,0,0.48); }
-.tag.is-active { background: linear-gradient(90deg, rgba(125,211,252,0.08), rgba(124,58,237,0.06)); }
-
-/* search box */
-.search-shell {
-  display: flex;
-  align-items: center;
-  gap: .6rem;
-  padding: .35rem .5rem;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.02);
-  width: min(640px, 100%);
-}
-.search-field {
-  border: none;
-  background: transparent;
-  padding: .5rem .4rem;
-  outline: none;
-  color: var(--text);
-  width: 100%;
-  font-size: 0.98rem;
-}
-.search-actions { display: flex; gap: .5rem; align-items: center; }
-
-/* search results dropdown (small) */
-.search-results {
-  position: absolute;
-  z-index: 120;
-  margin-top: .6rem;
-  width: min(720px, calc(100% - 2rem));
-  background: rgba(6,8,18,0.84);
-  border: 1px solid rgba(255,255,255,0.02);
-  border-radius: 12px;
-  box-shadow: 0 16px 46px rgba(2,6,18,0.5);
-  padding: .6rem;
-}
-
-/* ================================================================
-   PART 08 — NAV & CONTROLS — THEMED BUTTONS & TOGGLES
-   ================================================================ */
-
-/* universal button */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  padding: .5rem .75rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.03);
+  padding: 18px;
+  border-radius: var(--radius-md);
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008));
-  color: var(--text);
-  cursor: pointer;
-  transition: transform 200ms var(--ui-ease), box-shadow 200ms var(--ui-ease);
-}
-.btn:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(0,0,0,0.4); }
-
-/* primary accent */
-.btn-primary {
-  background: linear-gradient(90deg, rgba(125,211,252,0.14), rgba(124,58,237,0.10));
-  border: 1px solid rgba(125,211,252,0.12);
-}
-
-/* small icon button circular */
-.icon-btn {
-  width: 36px; height: 36px; padding: 0; justify-content: center;
-}
-
-/* floating fullscreen button (preserve from earlier) */
-.fullscreen-btn {
-  position: fixed;
-  right: 1rem;
-  bottom: 1.2rem;
-  z-index: 80;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  color: var(--text);
-  border: 1px solid rgba(255,255,255,0.03);
-  padding: 0.5rem 0.75rem;
-  border-radius: 999px;
-  cursor: pointer;
-  box-shadow: 0 12px 36px rgba(0,0,0,0.45);
-  backdrop-filter: blur(6px);
-}
-
-/* ================================================================
-   PART 09 — SIDEBAR & LINKED MENTIONS (backlinks etc.)
-   ================================================================ */
-
-.sidebar h3 {
-  margin: 0 0 0.6rem 0;
-  font-size: 1.05rem;
-  color: var(--text);
-}
-.backlinks-list {
-  display: flex;
-  flex-direction: column;
-  gap: .6rem;
-}
-
-/* backlink item */
-.backlink-item {
-  padding: .45rem .6rem;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.01);
   border: 1px solid rgba(255,255,255,0.02);
-  transition: transform 160ms var(--ui-ease);
-}
-.backlink-item:hover { transform: translateY(-4px); }
-
-/* small graph view preview */
-.graph-preview {
-  width: 100%;
-  height: 160px;
-  border-radius: 8px;
-  overflow: hidden;
-  background: linear-gradient(180deg, rgba(2,6,30,0.3), rgba(0,0,6,0.1));
-  border: 1px solid rgba(255,255,255,0.02);
+  box-shadow: var(--shadow-soft);
 }
 
-/* ================================================================
-   PART 10 — HELPER UTILITIES & DEBUG CLASSES
-   ================================================================ */
-
-/* centered container for hero / intro on index.njk */
-.hero {
-  padding: 3.5rem 1.2rem;
-  text-align: center;
-  margin-bottom: 1.4rem;
-}
-.hero .lead { font-size: clamp(1rem, 2.4vw, 1.25rem); color: var(--muted); margin-top: .6rem; }
-
-/* small badges */
-.badge {
-  display:inline-block; padding: .25rem .5rem; border-radius: 999px;
-  background: rgba(255,255,255,0.02); color: var(--text); font-weight: 700; font-size:.8rem;
+/* foldable / collapsible sidebar for mobile */
+@media (max-width: 980px) {
+  .page-grid { grid-template-columns: 1fr; }
+  .sidebar { position: relative; top: auto; margin-top: 18px; }
 }
 
-/* debug outlines — remove in production */
-.debug-outline *[data-debug] { outline: 1px dashed rgba(255,255,255,0.06); }
-
-/* tiny utility for visually hiding elements (but still keyboard accessible) */
-.hide-visually { position: absolute !important; width: 1px; height: 1px; left: -9999px; top: auto; overflow: hidden; }
-
-/* fluid container helpers */
-.container { max-width: var(--max-width); margin: 0 auto; padding: 0 1rem; }
-
-/* ================================================================
-   PART 11 — PERFORMANCE & MOTION REDUCTION
-   - Respect preferences and reduce heavy visual effects on low-power
-   - Avoid expensive property animations (no animating box-shadow / width)
-   ================================================================ */
-
-/* Respect prefers-reduced-motion by disabling non-essential animations */
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
-  .galaxy-skybox { filter: none !important; }
-  .pg-canvas { opacity: 0.6 !important; }
-}
-
-/* steer heavy blurs to only apply on large screens */
-@media (max-width: 1280px) {
-  .nebula { filter: blur(44px) saturate(140%); }
-  .galaxy-skybox::after { display: none; }
-}
-
-/* reduce rasterization by limiting transform layers */
-.garden-card,
-.galaxy-skybox,
-.nebula,
-.cosmic-body { will-change: transform, opacity; }
-
-/* don't trigger layout with transitions on properties like width/height in critical paths */
-* { transition-property: background-color, color, opacity, transform, filter; }
-
-/* ================================================================
-   PART 12 — OPTIONAL: MINI THEME SWITCH (CSS only fallback)
-   - You can toggle .theme-night vs .theme-dawn to alter base tokens
-   - If you want JS-driven moods, toggle the classes from code
-   ================================================================ */
-.theme-dawn {
-  --nebula-1: rgba(255,140,105,0.20);
-  --nebula-2: rgba(255,200,120,0.18);
-  --nebula-3: rgba(255,255,240,0.06);
-  --accent-aurora: #ffd9a6;
-  --accent-gold: #ffb86b;
-  --bg-deep: #0b0810;
-}
-.theme-night {
-  --nebula-1: rgba(45, 85, 255, 0.28);
-  --nebula-2: rgba(124, 58, 237, 0.28);
-  --nebula-3: rgba(6, 182, 212, 0.12);
-  --accent-aurora: #7dd3fc;
-  --accent-gold: #ffcb6b;
-}
-
-/* ================================================================
-   END — small notes for maintainers
-   ================================================================ */
-/*
-  Minimal HTML additions recommended (OPTIONAL):
-  - Add a single skybox container in your base layout (index.njk / note.njk)
-    <div class="galaxy-skybox mood-cycle" aria-hidden="true">
-      <div class="nebula nebula--back"></div>
-      <div class="nebula nebula--mid"></div>
-      <div class="nebula nebula--front"></div>
-      <div class="cosmic-body planet-1" aria-hidden="true"></div>
-      <div class="cosmic-body planet-2" aria-hidden="true"></div>
-      <div class="cosmic-body nebula-3" aria-hidden="true"></div>
-      <!-- particles.js canvases should be included where they currently are,
-           but ensure they have classes 'pg-canvas pg-canvas--bg' / '--mid' / '--fg' -->
-      <!-- e.g. <canvas class="pg-canvas pg-canvas--bg" id="particles-bg"></canvas> -->
-    </div>
-
-  - If you cannot edit layout HTML, the CSS is defensive and will still style existing elements.
-  - To reduce motion on page load, add class ".no-animations" on <body> or rely on prefers-reduced-motion.
-
-  Accessibility & performance notes:
-  - Keep text contrast high on cards and titles; adjust --text if needed.
-  - If particles cause perf problems, reduce their density in your particles.js config or hide .pg-canvas--bg on mobile via CSS.
-  - The mood-cycle applies a CSS filter to the whole sky; if you want JS-controlled moods, toggle classes .theme-dawn / .theme-night on <body>.
-
-  Files to edit (if you want to add the optional HTML above):
-  - index.njk : insert the <div class="galaxy-skybox mood-cycle"> markup just after <body>.
-  - note.njk  : same as index.njk for consistent backgrounds across note pages.
-  - Ensure your particles.js initialisation writes its canvases with classes: pg-canvas pg-canvas--bg (and optional --mid, --fg).
-
-  That's it — the CSS above is self-contained and built to be dropped in as your
-  main `custom-style.css`. If you'd like, I can now:
-    • Produce a small patch for your index.njk + note.njk with the recommended skybox markup,
-    • Generate a sample `particles.js` config tuned to match this theme,
-    • Or expand the CSS with additional components (TOC, author card, galleries).
-*/
-
-/* end of custom-style.css */
