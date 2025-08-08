@@ -7,9 +7,11 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
+
     {% include "components/pageheader.njk" %}
     {% for imp in dynamics.common.head %}{% include imp %}{% endfor %}
     {% for imp in dynamics.notes.head %}{% include imp %}{% endfor %}
+
     <link rel="stylesheet" href="/styles/custom.css">
   </head>
 
@@ -30,12 +32,12 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
       {% include "components/searchContainer.njk" %}
     {% endif %}
 
-    {# Keep the same galaxy layers for notes so the aesthetic is uniform #}
-    <div class="galaxy-skybox small" aria-hidden="true">
-      <canvas id="starCanvasSmall" class="star-canvas small-canvas"></canvas>
+    <!-- reuse the same skybox for notes -->
+    <div class="galaxy-skybox small" id="galaxySkyboxNote" aria-hidden="true">
       <div class="nebula nebula--back"></div>
       <div class="nebula nebula--front"></div>
-      <div id="shootingStarContainerSmall" class="shooting-stars"></div>
+      <div id="shootingStarContainerNote" class="shooting-stars" aria-hidden="true"></div>
+
       <div class="video-background">
         <video autoplay muted loop playsinline preload="auto" class="bg-video">
           <source src="/img/video/Astrogalaxy1.webm" type="video/webm">
@@ -100,99 +102,8 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
     {% for imp in dynamics.common.footer %}{% include imp %}{% endfor %}
     {% for imp in dynamics.notes.footer %}{% include imp %}{% endfor %}
     {% include "components/lucideIcons.njk" %}
+
+    {# include the particle/sky script which will auto-detect the galaxySkybox or galaxySkyboxNote containers #}
     {% include "components/particlesScript.njk" %}
-
-    <script>
-      /* ------------- Focus Mode (Fullscreen-like) ------------- */
-      (function(){
-        const btn = document.getElementById('fullscreenBtn');
-        if (!btn) return;
-        let focused = false;
-        const body = document.body;
-
-        function setBtnLabel() {
-          btn.setAttribute('aria-pressed', String(focused));
-          const label = btn.querySelector('.fs-label');
-          if (label) label.textContent = focused ? 'Exit Focus' : 'Focus Mode';
-        }
-
-        function toggleFocus() {
-          focused = !focused;
-          body.classList.toggle('fullscreen-mode', focused);
-          setBtnLabel();
-          setTimeout(()=> window.dispatchEvent(new Event('resize')), 120);
-        }
-
-        btn.addEventListener('click', toggleFocus);
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'F11') { e.preventDefault(); toggleFocus(); }
-          if (e.key === 'Escape' && focused) { toggleFocus(); }
-        });
-      })();
-
-      /* ------------- Small star canvas for notes ------------- */
-      (function() {
-        const canvas = document.getElementById('starCanvasSmall');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        let w = canvas.width = Math.max(window.innerWidth, 600);
-        let h = canvas.height = Math.max(window.innerHeight, 300);
-        const DPR = window.devicePixelRatio || 1;
-        canvas.width = w * DPR;
-        canvas.height = h * DPR;
-        canvas.style.width = w + 'px';
-        canvas.style.height = h + 'px';
-        ctx.scale(DPR, DPR);
-
-        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const stars = [];
-        function rand(min,max){ return Math.random()*(max-min)+min; }
-
-        function init(){
-          stars.length = 0;
-          const count = (window.innerWidth < 768) ? 50 : 110;
-          for (let i=0;i<count;i++){
-            stars.push({
-              x: rand(0,w),
-              y: rand(0,h),
-              r: rand(0.4,1.4),
-              a: rand(0.15,0.9),
-              tw: rand(0,Math.PI*2)
-            });
-          }
-        }
-        function draw(t){
-          ctx.clearRect(0,0,w,h);
-          for (let i=0;i<stars.length;i++){
-            const s = stars[i];
-            const alpha = prefersReduced ? s.a : s.a + Math.sin((t/800)+s.tw)*0.25;
-            ctx.fillStyle = 'rgba(255,255,255,' + Math.max(0.06, Math.min(1, alpha)) + ')';
-            ctx.beginPath();
-            ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
-            ctx.fill();
-          }
-        }
-        let raf;
-        function loop(ts){ draw(ts); raf = requestAnimationFrame(loop); }
-        init();
-        if (!prefersReduced) loop(performance.now()); else draw(performance.now());
-
-        window.addEventListener('resize', ()=> {
-          clearTimeout(window._noteResize);
-          window._noteResize = setTimeout(()=>{
-            w = canvas.width = Math.max(window.innerWidth, 600);
-            h = canvas.height = Math.max(window.innerHeight, 300);
-            const DPR = window.devicePixelRatio || 1;
-            canvas.width = w * DPR;
-            canvas.height = h * DPR;
-            canvas.style.width = w + 'px';
-            canvas.style.height = h + 'px';
-            ctx.scale(DPR, DPR);
-            init();
-          }, 200);
-        });
-      })();
-    </script>
-
   </body>
 </html>
