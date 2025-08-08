@@ -1,229 +1,219 @@
-{# index.njk - Digital Garden Home #}
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>{{ site.title or "Digital Garden" }}</title>
-  <meta name="description" content="{{ site.description or 'A personal digital garden' }}">
-  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | url }}">
-</head>
-<body class="garden">
-  <!-- Canvas layers for background (canvas is controlled in JS below) -->
-  <canvas id="nebula-canvas" class="bg-canvas" aria-hidden="true"></canvas>
-  <canvas id="star-canvas" class="bg-canvas" aria-hidden="true"></canvas>
-  <canvas id="shooting-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+<!DOCTYPE html>
+<html lang="{{ meta.mainLanguage }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
 
-  <!-- Top navigation / header -->
-  <header class="site-header" role="banner">
-    <div class="header-inner container">
-      <a class="brand" href="{{ '/' | url }}">
-        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><defs/><g fill="none" stroke="none"><rect width="64" height="64" rx="10" fill="url(#grad)"/></g></svg>
-        <div class="brand-text">
-          <div class="title">{{ site.title or "My Digital Garden" }}</div>
-          <div class="subtitle">{{ site.description or "Notes, seeds & ideas" }}</div>
-        </div>
-      </a>
+    {# keep your header includes so plugin-inserted assets still load #}
+    {% include "components/pageheader.njk" %}
+    {% for imp in dynamics.common.head %}{% include imp %}{% endfor %}
+    {% for imp in dynamics.index.head %}{% include imp %}{% endfor %}
 
-      <nav class="main-nav" role="navigation" aria-label="Main navigation">
-        <ul>
-          <li><a href="{{ '/' | url }}">Home</a></li>
-          {% if site.about %}<li><a href="{{ site.about }}">About</a></li>{% endif %}
-          <li><a href="#search" id="open-search">Search</a></li>
-        </ul>
-      </nav>
+    {# Primary stylesheet - point this to your theme's custom.css #}
+    <link rel="stylesheet" href="/styles/custom.css">
+  </head>
+
+  <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
+
+    {# ---------- COSMIC LAYERS (DOM + CANVAS) ---------- #}
+    <div class="galaxy-skybox" aria-hidden="true">
+      <!-- Canvas starfield for performance -->
+      <canvas id="starCanvas" class="star-canvas" width="1600" height="900"></canvas>
+
+      <!-- decorative nebula layers -->
+      <div class="nebula nebula--back"></div>
+      <div class="nebula nebula--mid"></div>
+      <div class="nebula nebula--front"></div>
+
+      <!-- a container for occasional shooting-star DOM elements -->
+      <div id="shootingStarContainer" class="shooting-stars"></div>
     </div>
-  </header>
 
-  <main class="container site-main">
-    <section class="intro card">
-      <h1 class="page-heading">Welcome to {{ site.title or "the Garden" }}</h1>
-      <p class="lead">A curated set of notes, linked ideas and growing thoughts. Use the search, browse tags, or jump into a note.</p>
-      <div class="controls">
-        <div class="tag-cloud">
-          {% for tag in site.tags | default([]) %}
-            <a href="{{ '/tags/' + tag | url }}" class="tag">{{ tag }}</a>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
+    {# keep your growth/history and nav includes #}
+    {% include "components/notegrowthhistory.njk" %}
+    {% if settings.dgShowFileTree !== true %}
+      {% include "components/navbar.njk" %}
+    {% else %}
+      {% include "components/filetree.njk" %}
+    {% endif %}
+    {% if settings.dgEnableSearch === true %}
+      {% include "components/searchContainer.njk" %}
+    {% endif %}
 
-    <section class="list-grid">
-      {% for page in pages %}
-      <article class="card note-card">
-        <a class="card-link" href="{{ page.url | url }}">
-          {% if page.cover %}
-            <div class="cover" style="background-image: url('{{ page.cover | url }}')" role="img" aria-label="Cover for {{ page.title }}"></div>
-          {% endif %}
-          <div class="card-content">
-            <h2 class="note-title">{{ page.title }}</h2>
-            {% if page.excerpt %}
-              <p class="excerpt">{{ page.excerpt | truncate(240) }}</p>
-            {% endif %}
-            <div class="meta">
-              {% if page.date %}<time datetime="{{ page.date }}">{{ page.date | date("YYYY-MM-DD") }}</time>{% endif %}
-              {% if page.tags %}
-                <ul class="meta-tags">
-                  {% for t in page.tags %}
-                    <li><a href="{{ '/tags/' + t | url }}" class="meta-tag">#{{ t }}</a></li>
-                  {% endfor %}
-                </ul>
-              {% endif %}
+    <main class="content cm-s-obsidian {{contentClasses}}">
+      <header class="site-header">
+        {% if settings.dgShowInlineTitle === true %}
+          <h1 class="site-title">{{ noteTitle }}</h1>
+        {% endif %}
+
+        <div class="header-meta">
+          {% if settings.dgShowTags === true and tags %}
+            <div class="header-tags">
+              {% for tag in tags %}
+                {% if tag != 'gardenEntry' and tag != 'note' %}
+                  <a class="tag" onclick="toggleTagSearch(this)">#{{tag}}</a>
+                {% endif %}
+              {% endfor %}
             </div>
-          </div>
-        </a>
+          {% endif %}
+        </div>
+
+        {% for imp in dynamics.common.header %}{% include imp %}{% endfor %}
+        {% for imp in dynamics.index.header %}{% include imp %}{% endfor %}
+      </header>
+
+      {% for imp in dynamics.common.beforeContent %}{% include imp %}{% endfor %}
+      {% for imp in dynamics.index.beforeContent %}{% include imp %}{% endfor %}
+
+      <article class="garden-article">
+        {{ content | hideDataview | taggify | link | safe }}
       </article>
-      {% endfor %}
-    </section>
-  </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <small>© {{ (site.author or "You") }} — Built with a Cosmic Theme</small>
-    </div>
-  </footer>
+      {% for imp in dynamics.common.afterContent %}{% include imp %}{% endfor %}
+      {% for imp in dynamics.index.afterContent %}{% include imp %}{% endfor %}
+    </main>
 
-  <!-- Lightweight JS to power canvas starfield; keeps everything self-contained -->
-  <script>
-  /* === cosmic-bg.js inline - small optimized starfield + nebula + shooting stars ===
-     - Uses 3 canvases for layers: nebula, stars, shooting
-     - Respects prefers-reduced-motion
-  */
-  (function () {
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) return;
+    {% if settings.dgShowBacklinks === true or settings.dgShowLocalGraph === true or settings.dgShowToc === true %}
+      {% include "components/sidebar.njk" %}
+    {% endif %}
 
-    const nebula = document.getElementById('nebula-canvas');
-    const stars = document.getElementById('star-canvas');
-    const shoot = document.getElementById('shooting-canvas');
-    const canvases = [nebula, stars, shoot];
+    {% if settings.dgLinkPreview === true %}
+      {% include "components/linkPreview.njk" %}
+    {% endif %}
 
-    function setSize() {
-      canvases.forEach(c => {
-        c.width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-        c.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-      });
-    }
-    window.addEventListener('resize', setSize, { passive: true });
-    setSize();
+    {% for imp in dynamics.common.footer %}{% include imp %}{% endfor %}
+    {% for imp in dynamics.index.footer %}{% include imp %}{% endfor %}
+    {% include "components/lucideIcons.njk" %}
+    {% include "components/particlesScript.njk" %} {# optional - kept for compatibility #}
 
-    // Nebula: gentle gradient noise using layered radial gradients painted to canvas
-    const nebCtx = nebula.getContext('2d');
-    function drawNebula(t) {
-      nebCtx.clearRect(0,0,nebula.width,nebula.height);
-      const w = nebula.width, h = nebula.height;
-      // soft radial blobs
-      const blobs = [
-        {x: w*0.2 + Math.sin(t*0.0006)*200, y: h*0.25 + Math.cos(t*0.0004)*120, r: Math.max(w,h)*0.9, color: 'rgba(42,28,90,0.18)'},
-        {x: w*0.8 + Math.cos(t*0.0005)*220, y: h*0.75 + Math.sin(t*0.0007)*150, r: Math.max(w,h)*0.7, color: 'rgba(30,58,138,0.14)'},
-        {x: w*0.5 + Math.sin(t*0.0009)*150, y: h*0.5 + Math.cos(t*0.0008)*100, r: Math.max(w,h)*0.6, color: 'rgba(12,18,34,0.20)'}
-      ];
-      blobs.forEach(b => {
-        const g = nebCtx.createRadialGradient(b.x, b.y, b.r*0.05, b.x, b.y, b.r);
-        g.addColorStop(0, b.color);
-        g.addColorStop(1, 'rgba(0,0,0,0)');
-        nebCtx.fillStyle = g;
-        nebCtx.fillRect(0,0,w,h);
-      });
-    }
+    <script>
+      /* ============================
+         Starfield & Shooting Stars
+         - Canvas starfield (fast)
+         - Responsive, respects prefers-reduced-motion
+         ============================ */
+      (function() {
+        const canvas = document.getElementById('starCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        let shootingInterval;
+        let w = canvas.width = Math.max(window.innerWidth, 800);
+        let h = canvas.height = Math.max(window.innerHeight, 600);
+        const DPR = window.devicePixelRatio || 1;
+        canvas.width = w * DPR;
+        canvas.height = h * DPR;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.scale(DPR, DPR);
 
-    // Star layer: many small points, twinkle
-    const starCtx = stars.getContext('2d');
-    const starCount = Math.floor((window.screen.width * window.screen.height) / 7000);
-    const starField = [];
-    for (let i=0;i<starCount;i++){
-      starField.push({
-        x: Math.random()*stars.width,
-        y: Math.random()*stars.height,
-        r: Math.random()*1.3 + 0.3,
-        tw: Math.random()*3000 + 2000,
-        phase: Math.random()*Math.PI*2,
-        hue: (Math.random()*40)+200, // blue-gold range
-        alpha: Math.random()*0.9 + 0.1
-      });
-    }
-    function drawStars(t) {
-      starCtx.clearRect(0,0,stars.width,stars.height);
-      starField.forEach(s => {
-        const tw = (Math.sin((t + s.phase)/s.tw)+1)/2; // 0..1
-        starCtx.beginPath();
-        const a = s.alpha * (0.5 + 0.5*tw);
-        starCtx.fillStyle = 'hsla(' + s.hue + ', 90%,' + (50 + tw*10) + '%,' + a +')';
-        starCtx.arc(s.x, s.y, s.r + tw*0.6, 0, Math.PI*2);
-        starCtx.fill();
-      });
-    }
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Shooting stars: sparse, randomized events
-    const shootCtx = shoot.getContext('2d');
-    const shooting = [];
-    function spawnShooting() {
-      if (Math.random() > 0.6) return; // density control
-      const startX = Math.random()*shoot.width * 0.8;
-      const startY = Math.random()*shoot.height*0.25;
-      shooting.push({
-        x: startX,
-        y: startY,
-        vx: 4 + Math.random()*6,
-        vy: 2 + Math.random()*4,
-        life: 0,
-        maxLife: 70 + Math.random()*40,
-        len: 80 + Math.random()*120,
-        hue: 50 + Math.random()*40
-      });
-    }
-    function drawShooting() {
-      shootCtx.clearRect(0,0,shoot.width,shoot.height);
-      for (let i = shooting.length-1; i>=0; i--) {
-        const p = shooting[i];
-        p.life++;
-        const progress = p.life / p.maxLife;
-        const sx = p.x + p.vx * p.life;
-        const sy = p.y + p.vy * p.life;
-        // tail
-        const tx = sx - p.vx * (p.len/8);
-        const ty = sy - p.vy * (p.len/8);
-        const grd = shootCtx.createLinearGradient(tx, ty, sx, sy);
-        grd.addColorStop(0, 'rgba(255,255,255,' + (0.0+ (1-progress)*0.3) + ')');
-        grd.addColorStop(0.6, 'rgba(255,255,255,' + (0.6*(1-progress)) + ')');
-        grd.addColorStop(1, 'rgba(255,255,255,0)');
-        shootCtx.strokeStyle = grd;
-        shootCtx.lineWidth = 1.6 + (1-progress)*1.8;
-        shootCtx.beginPath();
-        shootCtx.moveTo(tx, ty);
-        shootCtx.lineTo(sx, sy);
-        shootCtx.stroke();
-        // head
-        shootCtx.fillStyle = 'rgba(255,255,255,' + (0.9*(1-progress)) + ')';
-        shootCtx.beginPath();
-        shootCtx.arc(sx, sy, 1.8 + (1-progress)*2.2, 0, Math.PI*2);
-        shootCtx.fill();
-        if (p.life > p.maxLife) shooting.splice(i,1);
-      }
-    }
+        function rand(min, max){ return Math.random()*(max-min)+min; }
 
-    // Animation loop
-    let last = performance.now();
-    function loop(now){
-      const t = now;
-      // gentle parallax: move blobs slowly
-      drawNebula(t);
-      drawStars(t);
-      if (Math.random() < 0.01) spawnShooting(); // chance to spawn
-      drawShooting();
-      requestAnimationFrame(loop);
-    }
-    requestAnimationFrame(loop);
+        function initStars() {
+          stars = [];
+          const count = (window.innerWidth < 768) ? 110 : 260;
+          for (let i=0;i<count;i++) {
+            stars.push({
+              x: Math.random() * w,
+              y: Math.random() * h,
+              z: Math.random(),                // depth (for parallax & twinkle)
+              size: Math.random() * 1.8 + 0.3,
+              baseAlpha: 0.3 + Math.random()*0.7,
+              twinklePhase: Math.random() * Math.PI * 2,
+              hueShift: (Math.random() < 0.08) ? rand(-10, 10) : 0 // small colored pops
+            });
+          }
+        }
 
-    // Simple parallax on mouse move for desktop
-    window.addEventListener('mousemove', (e) => {
-      const rx = (e.clientX / window.innerWidth - 0.5) * 0.08;
-      const ry = (e.clientY / window.innerHeight - 0.5) * 0.08;
-      nebula.style.transform = `translate3d(${rx*80}px, ${ry*40}px, 0) scale(1.02)`;
-      stars.style.transform = `translate3d(${rx*50}px, ${ry*25}px, 0)`;
-    }, { passive: true });
+        function draw(now) {
+          // Clear
+          ctx.clearRect(0,0,w,h);
 
-  })();
-  </script>
-</body>
+          // slight gradient background fill is done by CSS layers; canvas just draws stars
+          for (let i=0;i<stars.length;i++){
+            const s = stars[i];
+
+            // twinkle (frame-rate safe)
+            const twinkle = prefersReduced ? 0.0 : Math.sin((now/900) + s.twinklePhase) * 0.35;
+            const alpha = Math.max(0.12, Math.min(1, s.baseAlpha + twinkle));
+
+            // color variation
+            const hue = 210 + s.hueShift; // bluish base
+            ctx.fillStyle = 'rgba(255,255,255,'+alpha+')';
+            // colored star overlay if hueShift set
+            if (s.hueShift !== 0) {
+              ctx.fillStyle = `hsla(${hue}, 80%, ${60 - Math.abs(s.hueShift)}%, ${alpha})`;
+            }
+
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.size * (1 + s.z*0.6), 0, Math.PI*2);
+            ctx.fill();
+          }
+        }
+
+        // shooting star generator (DOM elements for nice CSS blur streak)
+        function spawnShootingStar() {
+          if (prefersReduced) return;
+          const container = document.getElementById('shootingStarContainer');
+          if (!container) return;
+
+          const el = document.createElement('div');
+          el.className = 'shooting-star';
+          const top = rand(8, 70);
+          el.style.top = top + '%';
+          el.style.left = '-8%';
+          el.style.setProperty('--duration', (rand(0.9, 1.6)) + 's');
+          el.style.setProperty('--translate-x', (w * (0.7 + Math.random()*0.6)) + 'px');
+          el.style.setProperty('--translate-y', (h * (0.2 + Math.random()*0.6)) + 'px');
+
+          container.appendChild(el);
+          // remove after animation
+          setTimeout(()=> el.remove(), 2200);
+        }
+
+        // animate loop
+        let rafId;
+        function loop(ts){
+          draw(ts || performance.now());
+          rafId = requestAnimationFrame(loop);
+        }
+
+        function onResize(){
+          w = canvas.width = Math.max(window.innerWidth, 800);
+          h = canvas.height = Math.max(window.innerHeight, 600);
+          const DPR = window.devicePixelRatio || 1;
+          canvas.width = w * DPR;
+          canvas.height = h * DPR;
+          canvas.style.width = w + 'px';
+          canvas.style.height = h + 'px';
+          ctx.scale(DPR, DPR);
+          initStars();
+        }
+
+        // init
+        initStars();
+        if (!prefersReduced) {
+          loop();
+          shootingInterval = setInterval(() => { if (Math.random() < 0.55) spawnShootingStar(); }, 4000);
+        } else {
+          // one static draw for reduced motion
+          draw(performance.now());
+        }
+
+        window.addEventListener('resize', () => {
+          // debounce
+          clearTimeout(window._starResizeTimeout);
+          window._starResizeTimeout = setTimeout(onResize, 200);
+        });
+      })();
+    </script>
+
+    {# Keep site JS includes; include your custom script files below if needed #}
+    {% for imp in dynamics.common.footer %}{% include imp %}{% endfor %}
+    {% for imp in dynamics.index.footer %}{% include imp %}{% endfor %}
+
+  </body>
 </html>
