@@ -1,643 +1,229 @@
+{# index.njk - Digital Garden Home #}
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Cosmic Garden — Digital Garden</title>
-<meta name="description" content="Cosmic blue-space digital garden — gradient nebula, drifting stars and falling shooting stars." />
-<style>
-/* ============================
-   COSMIC GARDEN - COMPLETE SITE
-   Single-file (HTML/CSS/JS)
-   ============================ */
-
-/* ----- :root - palette & tuning ----- */
-:root{
-  /* Palette */
-  --deep:#071127;
-  --darker:#071422;
-  --space-blue:#0f2b66;
-  --nebula-indigo:#2b2b6b;
-  --nebula-purple:#4b2f8c;
-  --nebula-teal:#0aa5b3;
-  --accent-gold:#f6c24a;
-  --accent-ice:#9bd6ff;
-
-  /* Surfaces & text */
-  --glass: rgba(14,22,36,0.55);
-  --glass-2: rgba(18,28,44,0.72);
-  --muted: rgba(210,223,240,0.85);
-  --text: #eef7ff;
-
-  /* layout */
-  --max-width: 1100px;
-  --radius-md: 14px;
-
-  /* animation tuning */
-  --nebula-speed: 30s;       /* slower = more cinematic */
-  --star-twinkle-speed: 6s;
-  --shooting-interval: 5200ms;
-
-  /* accessibility */
-  --reduced-motion:false;
-}
-
-/* ----- reset-ish ----- */
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial}
-body{
-  color:var(--text);
-  background:var(--deep);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  overflow-x:hidden;
-}
-
-/* ----- background layers ----- */
-/* Use fixed-position layers behind content:
-   1) nebula gradient layers via pseudo elements
-   2) canvas starfield (fast)
-   3) canvas shooting stars overlay (particle trails)
-*/
-#bg {
-  position:fixed;
-  inset:0;
-  z-index:-100;
-  pointer-events:none;
-}
-
-/* Nebula base: two overlapping animated gradients for depth */
-#bg .nebula {
-  position:absolute; inset:0;
-  background:
-    radial-gradient(40% 40% at 20% 25%, rgba(75,47,140,0.55), transparent 18%),
-    radial-gradient(30% 30% at 80% 70%, rgba(10,110,178,0.45), transparent 20%),
-    linear-gradient(180deg, rgba(2,8,23,1) 0%, rgba(11,18,38,0.95) 100%);
-  mix-blend-mode: screen;
-  filter: blur(28px) saturate(120%);
-  opacity:0.9;
-  transform-origin:center;
-  will-change:transform,opacity;
-  animation: nebula-move var(--nebula-speed) linear infinite;
-  z-index:-100;
-}
-
-/* extra nebula haze (slower) */
-#bg .nebula.alt {
-  background:
-    radial-gradient(50% 30% at 60% 40%, rgba(75,40,160,0.32), transparent 24%),
-    radial-gradient(35% 35% at 30% 80%, rgba(12,70,120,0.28), transparent 25%);
-  filter: blur(54px) saturate(130%);
-  animation-duration: calc(var(--nebula-speed) * 1.9);
-  opacity:0.75;
-  z-index:-101;
-}
-
-@keyframes nebula-move {
-  0% { transform: scale(1) rotate(0deg) translate3d(0,0,0); opacity:0.86; }
-  50%{ transform: scale(1.06) rotate(1.6deg) translate3d(-1.5%,0.5%,0); opacity:0.92 }
-  100%{ transform: scale(1) rotate(0deg) translate3d(0,0,0); opacity:0.86; }
-}
-
-/* ----- canvas layers (starfield + shooting) ----- */
-.canvas-layer {
-  position:absolute; inset:0;
-  z-index:-90;
-}
-
-/* ----- page container ----- */
-.site {
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding:clamp(1rem,3vw,2rem);
-  gap:1.25rem;
-}
-
-/* ----- header ----- */
-.header {
-  width:100%;
-  max-width:var(--max-width);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:1rem;
-  padding:1rem 1.25rem;
-  border-radius:calc(var(--radius-md) + 2px);
-  background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border: 1px solid rgba(150,180,255,0.06);
-  box-shadow: 0 6px 30px rgba(3,8,20,0.6);
-  backdrop-filter: blur(8px) saturate(110%);
-}
-
-/* title */
-.site-title {
-  display:flex;
-  align-items:center;
-  gap:0.85rem;
-}
-.logo {
-  width:42px;height:42px;border-radius:10px;
-  display:grid;place-items:center;
-  background: linear-gradient(135deg,var(--space-blue),var(--nebula-indigo));
-  box-shadow: 0 6px 22px rgba(32,86,160,0.16), 0 0 28px rgba(75,47,140,0.06);
-  transform:translateZ(0);
-}
-.logo svg{display:block;width:24px;height:24px}
-.title-text{
-  font-weight:700;
-  font-size: clamp(1.1rem, 2.6vw, 1.6rem);
-  line-height:1;
-  letter-spacing:-0.02em;
-  background:linear-gradient(90deg,var(--accent-ice),var(--accent-gold) 60%, #d2f2ff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-/* nav */
-.nav {
-  display:flex;gap:0.6rem;align-items:center;
-}
-.nav a {
-  color:var(--muted);text-decoration:none;padding:0.5rem 0.9rem;border-radius:10px;
-  font-weight:600;font-size:0.95rem;
-  border:1px solid transparent;
-  transition:all 220ms ease;
-}
-.nav a:hover {
-  color:var(--text);
-  transform:translateY(-3px);
-  box-shadow:0 8px 18px rgba(30,80,180,0.06), 0 0 12px rgba(90,150,255,0.03);
-  background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border:1px solid rgba(140,180,255,0.06);
-}
-
-/* ----- main layout ----- */
-.main {
-  width:100%;
-  max-width:var(--max-width);
-  display:grid;
-  grid-template-columns: 1fr 320px;
-  gap:1rem;
-  align-items:start;
-}
-
-/* content cards (notes/posts) */
-.card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border-radius: var(--radius-md);
-  padding:1.25rem;
-  border:1px solid rgba(120,150,255,0.04);
-  box-shadow: 0 12px 40px rgba(5,10,20,0.55);
-  backdrop-filter: blur(8px) saturate(110%);
-}
-
-/* article layout */
-.article-title {
-  font-size: clamp(1.6rem,3vw,2.1rem);
-  margin:0 0 0.35rem 0;
-  color:var(--text);
-  font-weight:800;
-}
-.meta { color:rgba(210,223,240,0.7); font-size:0.9rem; margin-bottom:0.75rem }
-
-/* markdown body */
-.markdown {
-  color:var(--muted);
-  line-height:1.7;
-  font-size:1rem;
-  max-width:70ch;
-}
-.markdown p{margin:0 0 1rem 0}
-.markdown h2{margin:1.2rem 0 0.6rem;color:var(--accent-ice);font-weight:700}
-
-/* code blocks */
-pre, code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "JetBrains Mono", monospace;
-}
-pre {
-  background:linear-gradient(180deg, rgba(2,8,23,0.6), rgba(6,10,20,0.5));
-  border-radius:10px;padding:1rem;overflow:auto;font-size:0.92rem;border:1px solid rgba(120,150,255,0.04);
-  box-shadow: inset 0 4px 18px rgba(0,0,0,0.45);
-  color:#dff3ff;
-}
-
-/* lists with star bullets */
-ul {padding-left:1.2rem}
-ul li{position:relative;margin:0.5rem 0;padding-left:0.6rem}
-ul li::before{
-  content:"✦";position:absolute;left:0;top:0;font-size:0.9rem;color:var(--accent-gold);opacity:0.95;
-  transform:translateY(0.08rem) rotate(15deg);
-}
-
-/* sidebar */
-.sidebar {
-  display:flex;flex-direction:column;gap:1rem;
-  position:sticky;top:1.25rem;
-}
-
-/* small widgets */
-.widget {
-  padding:0.9rem;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-  border:1px solid rgba(120,150,255,0.03);
-  color:var(--muted);
-}
-
-/* footer */
-.footer {
-  width:100%; max-width:var(--max-width);
-  color:var(--muted); font-size:0.95rem;
-  text-align:center;padding:1rem;margin-top:1rem;
-}
-
-/* ----- responsive ----- */
-@media (max-width:980px){
-  .main{grid-template-columns:1fr; padding-bottom:40px}
-  .sidebar{position:relative;top:0}
-}
-
-/* ----- motion preferences ----- */
-@media (prefers-reduced-motion:reduce){
-  :root{ --nebula-speed: 99999s; --star-twinkle-speed: 99999s; --shooting-interval: 99999999ms; }
-  .nebula { animation:none !important }
-}
-
-/* small utility */
-.kv {font-size:0.9rem;color:var(--muted);display:flex;gap:0.6rem;align-items:center}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{ site.title or "Digital Garden" }}</title>
+  <meta name="description" content="{{ site.description or 'A personal digital garden' }}">
+  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | url }}">
 </head>
-<body>
+<body class="garden">
+  <!-- Canvas layers for background (canvas is controlled in JS below) -->
+  <canvas id="nebula-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+  <canvas id="star-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+  <canvas id="shooting-canvas" class="bg-canvas" aria-hidden="true"></canvas>
 
-<!-- Background layers -->
-<div id="bg" aria-hidden="true">
-  <div class="nebula"></div>
-  <div class="nebula alt"></div>
-  <!-- star canvas -->
-  <canvas class="canvas-layer" id="star-canvas"></canvas>
-  <!-- shooting stars canvas (separate for trails) -->
-  <canvas class="canvas-layer" id="shooting-canvas"></canvas>
-</div>
+  <!-- Top navigation / header -->
+  <header class="site-header" role="banner">
+    <div class="header-inner container">
+      <a class="brand" href="{{ '/' | url }}">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><defs/><g fill="none" stroke="none"><rect width="64" height="64" rx="10" fill="url(#grad)"/></g></svg>
+        <div class="brand-text">
+          <div class="title">{{ site.title or "My Digital Garden" }}</div>
+          <div class="subtitle">{{ site.description or "Notes, seeds & ideas" }}</div>
+        </div>
+      </a>
 
-<!-- Site -->
-<div class="site" id="site">
-
-  <!-- header -->
-  <header class="header" role="banner">
-    <div class="site-title">
-      <div class="logo" aria-hidden="true">
-        <!-- small star logo -->
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M12 2l1.9 4.2L18 8l-4 2 1 4-3.9-2L8 14l1-4-4-2 4.1-1.8L12 2z" fill="white" opacity="0.92"/>
-        </svg>
-      </div>
-      <div>
-        <div class="title-text">Cosmic Garden</div>
-        <div style="font-size:0.78rem;color:rgba(210,223,240,0.6)">A blue-space digital garden</div>
-      </div>
+      <nav class="main-nav" role="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="{{ '/' | url }}">Home</a></li>
+          {% if site.about %}<li><a href="{{ site.about }}">About</a></li>{% endif %}
+          <li><a href="#search" id="open-search">Search</a></li>
+        </ul>
+      </nav>
     </div>
-
-    <nav class="nav" role="navigation" aria-label="Main Navigation">
-      <a href="#">Home</a>
-      <a href="#">Notes</a>
-      <a href="#">Tags</a>
-      <a href="#">About</a>
-    </nav>
   </header>
 
-  <!-- main -->
-  <main class="main" role="main">
-
-    <!-- primary content -->
-    <section class="card" aria-labelledby="post-title">
-      <article>
-        <h1 id="post-title" class="article-title">Welcome to your Cosmic Digital Garden</h1>
-        <div class="meta">Updated • <time datetime="2025-08-08">August 8, 2025</time></div>
-
-        <div class="markdown">
-          <p>This garden is crafted with <strong>a slow-moving blue nebula</strong>, a performant canvas starfield and occasional shooting stars that streak across the sky. It's designed to be readable, focused, and atmospheric.</p>
-
-          <h2>Design decisions</h2>
-          <ul>
-            <li>Canvas starfield for many twinkling stars without heavy DOM usage.</li>
-            <li>Separate shooting-star canvas so trails blend smoothly.</li>
-            <li>CSS nebula layers for soft color depth and GPU-accelerated motion.</li>
-          </ul>
-
-          <h2>Example code block</h2>
-          <pre><code>// Example: add a note
-const note = {title:"New Thought", body:"Write here..."};
-save(note);</code></pre>
-
-          <p>Scroll, browse, and enjoy. The animations will scale down on low-power or reduced-motion user preferences.</p>
+  <main class="container site-main">
+    <section class="intro card">
+      <h1 class="page-heading">Welcome to {{ site.title or "the Garden" }}</h1>
+      <p class="lead">A curated set of notes, linked ideas and growing thoughts. Use the search, browse tags, or jump into a note.</p>
+      <div class="controls">
+        <div class="tag-cloud">
+          {% for tag in site.tags | default([]) %}
+            <a href="{{ '/tags/' + tag | url }}" class="tag">{{ tag }}</a>
+          {% endfor %}
         </div>
-      </article>
+      </div>
     </section>
 
-    <!-- sidebar -->
-    <aside class="sidebar" role="complementary" aria-label="Sidebar">
-      <div class="widget">
-        <strong>Stats</strong>
-        <div class="kv"><span>💫</span><span id="star-count">—</span> stars</div>
-        <div class="kv"><span>☄️</span> shooting every <span id="shoot-interval">—</span></div>
-      </div>
-
-      <div class="widget">
-        <strong>Quick Links</strong>
-        <ul style="margin:0;padding-left:1rem">
-          <li>📚 Garden Index</li>
-          <li>🧭 Map</li>
-          <li>⚙️ Settings</li>
-        </ul>
-      </div>
-    </aside>
-
+    <section class="list-grid">
+      {% for page in pages %}
+      <article class="card note-card">
+        <a class="card-link" href="{{ page.url | url }}">
+          {% if page.cover %}
+            <div class="cover" style="background-image: url('{{ page.cover | url }}')" role="img" aria-label="Cover for {{ page.title }}"></div>
+          {% endif %}
+          <div class="card-content">
+            <h2 class="note-title">{{ page.title }}</h2>
+            {% if page.excerpt %}
+              <p class="excerpt">{{ page.excerpt | truncate(240) }}</p>
+            {% endif %}
+            <div class="meta">
+              {% if page.date %}<time datetime="{{ page.date }}">{{ page.date | date("YYYY-MM-DD") }}</time>{% endif %}
+              {% if page.tags %}
+                <ul class="meta-tags">
+                  {% for t in page.tags %}
+                    <li><a href="{{ '/tags/' + t | url }}" class="meta-tag">#{{ t }}</a></li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+          </div>
+        </a>
+      </article>
+      {% endfor %}
+    </section>
   </main>
 
-  <footer class="footer">Made with 💙 — Cosmic Garden template</footer>
-</div>
+  <footer class="site-footer">
+    <div class="container">
+      <small>© {{ (site.author or "You") }} — Built with a Cosmic Theme</small>
+    </div>
+  </footer>
 
-<script>
-/* =====================================================
-   Starfield + Shooting Stars
-   - Efficient canvas-based particle system
-   - Throttles on small screens / battery saver
-   - Respect prefers-reduced-motion
-   ===================================================== */
+  <!-- Lightweight JS to power canvas starfield; keeps everything self-contained -->
+  <script>
+  /* === cosmic-bg.js inline - small optimized starfield + nebula + shooting stars ===
+     - Uses 3 canvases for layers: nebula, stars, shooting
+     - Respects prefers-reduced-motion
+  */
+  (function () {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
 
-(() => {
-  // Config (adjust here)
-  const config = {
-    baseStars: 220,                // default star count on desktop
-    mobileStars: 80,               // star count for small screens
-    starSize: [0.3, 1.6],          // min & max radius
-    twinkleSpeed: 0.6,             // how quickly twinkle varies (multiplier)
-    shootingInterval: 5200,        // ms between attempts to spawn a shooting star
-    shootingChance: 0.38,          // per interval chance to spawn
-    shootingSpeed: [700,1200],     // pixels per second travel speed (min,max)
-    shootingLength: [180, 420],    // length of streak pixels
-    shootingFade: 380,             // ms fade out after travel
-    maxTrailParticles: 80          // max trail particles to render
-  };
+    const nebula = document.getElementById('nebula-canvas');
+    const stars = document.getElementById('star-canvas');
+    const shoot = document.getElementById('shooting-canvas');
+    const canvases = [nebula, stars, shoot];
 
-  // elements and canvases
-  const starCanvas = document.getElementById('star-canvas');
-  const shootingCanvas = document.getElementById('shooting-canvas');
-  const container = document.getElementById('bg');
-
-  // detect reduced motion
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // dynamic responsive tuning
-  function isMobileLite(){
-    return window.innerWidth <= 900 || /Mobi|Android/i.test(navigator.userAgent);
-  }
-
-  // set canvas sizes
-  function resizeCanvases(){
-    [starCanvas, shootingCanvas].forEach(c => {
-      const dpr = Math.max(1, window.devicePixelRatio || 1);
-      c.width = Math.round(window.innerWidth * dpr);
-      c.height = Math.round(window.innerHeight * dpr);
-      c.style.width = window.innerWidth + 'px';
-      c.style.height = window.innerHeight + 'px';
-      c.getContext('2d').setTransform(dpr,0,0,dpr,0,0);
-    });
-  }
-
-  // Star class
-  class Star {
-    constructor(w,h){
-      this.reset(w,h,true);
+    function setSize() {
+      canvases.forEach(c => {
+        c.width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        c.height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+      });
     }
-    reset(w,h(initial),first=false){
-      const width = w, height = h;
-      this.x = Math.random()*width;
-      this.y = Math.random()*height;
-      // size bias: more small stars
-      this.r = Math.random() ** 1.8 * (config.starSize[1]-config.starSize[0]) + config.starSize[0];
-      // base brightness
-      this.alpha = 0.35 + Math.random()*0.65;
-      // twinkle phase & speed
-      this.phase = Math.random()*Math.PI*2;
-      this.speed = (0.2 + Math.random()*1.1) * (1/config.twinkleSpeed);
-      // color slight variation
-      const t = Math.random();
-      if (t < 0.06) this.color = 'rgba(246,194,74,';        // warm gold
-      else if (t < 0.18) this.color = 'rgba(155,214,255,';   // cool ice
-      else if (t < 0.26) this.color = 'rgba(6,166,212,';     // teal-ish
-      else this.color = 'rgba(255,255,255,';                // neutral white
-      // optionally initial twinkle offset
-      if (first) this.phase += Math.random() * Math.PI*2;
-    }
-    twinkle(dt){
-      this.phase += this.speed * dt;
-      // sine wave alpha
-      return this.alpha * (0.5 + 0.5 * Math.sin(this.phase));
-    }
-    draw(ctx, dt){
-      const a = this.twinkle(dt);
-      ctx.beginPath();
-      ctx.fillStyle = this.color + (0.5 * a + 0.4) + ')';
-      ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
-      ctx.fill();
-    }
-  }
+    window.addEventListener('resize', setSize, { passive: true });
+    setSize();
 
-  // Shooting star: moves along diagonal across screen with short trail
-  class Shooting {
-    constructor(w,h){
-      this.w = w; this.h = h;
-      // spawn from top-left to bottom-right diagonal region for nice arc
-      // random start on left or top
-      if (Math.random() < 0.5){
-        this.x = Math.random() * (w*0.3);
-        this.y = -20 - Math.random()*80;
-      } else {
-        this.x = -20 - Math.random()*120;
-        this.y = Math.random() * (h*0.35);
-      }
-      this.angle = 45 * (Math.PI/180); // 45deg
-      // length and speed
-      this.len = config.shootingLength[0] + Math.random()*(config.shootingLength[1]-config.shootingLength[0]);
-      this.speed = config.shootingSpeed[0] + Math.random()*(config.shootingSpeed[1]-config.shootingSpeed[0]);
-      // velocity components
-      this.vx = Math.cos(this.angle) * (this.speed/1000);
-      this.vy = Math.sin(this.angle) * (this.speed/1000);
-      this.lived = 0;
-      this.ttl = (Math.max(window.innerWidth, window.innerHeight) / (this.speed/1000)) + 300; // ms
-      this.opacity = 1;
-      this.trail = [];
+    // Nebula: gentle gradient noise using layered radial gradients painted to canvas
+    const nebCtx = nebula.getContext('2d');
+    function drawNebula(t) {
+      nebCtx.clearRect(0,0,nebula.width,nebula.height);
+      const w = nebula.width, h = nebula.height;
+      // soft radial blobs
+      const blobs = [
+        {x: w*0.2 + Math.sin(t*0.0006)*200, y: h*0.25 + Math.cos(t*0.0004)*120, r: Math.max(w,h)*0.9, color: 'rgba(42,28,90,0.18)'},
+        {x: w*0.8 + Math.cos(t*0.0005)*220, y: h*0.75 + Math.sin(t*0.0007)*150, r: Math.max(w,h)*0.7, color: 'rgba(30,58,138,0.14)'},
+        {x: w*0.5 + Math.sin(t*0.0009)*150, y: h*0.5 + Math.cos(t*0.0008)*100, r: Math.max(w,h)*0.6, color: 'rgba(12,18,34,0.20)'}
+      ];
+      blobs.forEach(b => {
+        const g = nebCtx.createRadialGradient(b.x, b.y, b.r*0.05, b.x, b.y, b.r);
+        g.addColorStop(0, b.color);
+        g.addColorStop(1, 'rgba(0,0,0,0)');
+        nebCtx.fillStyle = g;
+        nebCtx.fillRect(0,0,w,h);
+      });
     }
-    step(dt){
-      // dt in ms
-      const dtSec = dt;
-      this.x += this.vx * dtSec;
-      this.y += this.vy * dtSec;
-      this.lived += dt;
-      // add trail particle occasionally
-      this.trail.push({x:this.x, y:this.y, size:Math.random()*2.4+0.4, life: 300 + Math.random()*200});
-      if (this.trail.length > config.maxTrailParticles) this.trail.shift();
-      // fade at end
-      if (this.lived > this.ttl - config.shootingFade) {
-        this.opacity = Math.max(0, (this.ttl - this.lived)/config.shootingFade);
+
+    // Star layer: many small points, twinkle
+    const starCtx = stars.getContext('2d');
+    const starCount = Math.floor((window.screen.width * window.screen.height) / 7000);
+    const starField = [];
+    for (let i=0;i<starCount;i++){
+      starField.push({
+        x: Math.random()*stars.width,
+        y: Math.random()*stars.height,
+        r: Math.random()*1.3 + 0.3,
+        tw: Math.random()*3000 + 2000,
+        phase: Math.random()*Math.PI*2,
+        hue: (Math.random()*40)+200, // blue-gold range
+        alpha: Math.random()*0.9 + 0.1
+      });
+    }
+    function drawStars(t) {
+      starCtx.clearRect(0,0,stars.width,stars.height);
+      starField.forEach(s => {
+        const tw = (Math.sin((t + s.phase)/s.tw)+1)/2; // 0..1
+        starCtx.beginPath();
+        const a = s.alpha * (0.5 + 0.5*tw);
+        starCtx.fillStyle = 'hsla(' + s.hue + ', 90%,' + (50 + tw*10) + '%,' + a +')';
+        starCtx.arc(s.x, s.y, s.r + tw*0.6, 0, Math.PI*2);
+        starCtx.fill();
+      });
+    }
+
+    // Shooting stars: sparse, randomized events
+    const shootCtx = shoot.getContext('2d');
+    const shooting = [];
+    function spawnShooting() {
+      if (Math.random() > 0.6) return; // density control
+      const startX = Math.random()*shoot.width * 0.8;
+      const startY = Math.random()*shoot.height*0.25;
+      shooting.push({
+        x: startX,
+        y: startY,
+        vx: 4 + Math.random()*6,
+        vy: 2 + Math.random()*4,
+        life: 0,
+        maxLife: 70 + Math.random()*40,
+        len: 80 + Math.random()*120,
+        hue: 50 + Math.random()*40
+      });
+    }
+    function drawShooting() {
+      shootCtx.clearRect(0,0,shoot.width,shoot.height);
+      for (let i = shooting.length-1; i>=0; i--) {
+        const p = shooting[i];
+        p.life++;
+        const progress = p.life / p.maxLife;
+        const sx = p.x + p.vx * p.life;
+        const sy = p.y + p.vy * p.life;
+        // tail
+        const tx = sx - p.vx * (p.len/8);
+        const ty = sy - p.vy * (p.len/8);
+        const grd = shootCtx.createLinearGradient(tx, ty, sx, sy);
+        grd.addColorStop(0, 'rgba(255,255,255,' + (0.0+ (1-progress)*0.3) + ')');
+        grd.addColorStop(0.6, 'rgba(255,255,255,' + (0.6*(1-progress)) + ')');
+        grd.addColorStop(1, 'rgba(255,255,255,0)');
+        shootCtx.strokeStyle = grd;
+        shootCtx.lineWidth = 1.6 + (1-progress)*1.8;
+        shootCtx.beginPath();
+        shootCtx.moveTo(tx, ty);
+        shootCtx.lineTo(sx, sy);
+        shootCtx.stroke();
+        // head
+        shootCtx.fillStyle = 'rgba(255,255,255,' + (0.9*(1-progress)) + ')';
+        shootCtx.beginPath();
+        shootCtx.arc(sx, sy, 1.8 + (1-progress)*2.2, 0, Math.PI*2);
+        shootCtx.fill();
+        if (p.life > p.maxLife) shooting.splice(i,1);
       }
     }
-    draw(ctx){
-      ctx.save();
-      // trail render
-      for (let i = this.trail.length-1; i >= 0; i--){
-        const p = this.trail[i];
-        const alpha = Math.max(0, (p.life / 600));
-        ctx.beginPath();
-        ctx.fillStyle = 'rgba(255,250,230,' + (0.06 * alpha * this.opacity) + ')';
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
-        ctx.fill();
-        p.life -= 14;
-      }
-      // main streak
-      ctx.beginPath();
-      const grad = ctx.createLinearGradient(this.x, this.y, this.x - Math.cos(this.angle)*this.len, this.y - Math.sin(this.angle)*this.len);
-      grad.addColorStop(0, 'rgba(255,255,255,' + (0.95*this.opacity) + ')');
-      grad.addColorStop(0.3, 'rgba(246,194,74,' + (0.5*this.opacity) + ')');
-      grad.addColorStop(1, 'rgba(246,194,74,0)');
-      ctx.strokeStyle = grad;
-      ctx.lineWidth = 1.6;
-      ctx.lineCap = 'round';
-      ctx.moveTo(this.x, this.y);
-      ctx.lineTo(this.x - Math.cos(this.angle)*this.len, this.y - Math.sin(this.angle)*this.len);
-      ctx.stroke();
-      ctx.restore();
-    }
-    alive(){
-      return this.lived < this.ttl && this.opacity > 0.01 &&
-             this.x < window.innerWidth + 100 && this.y < window.innerHeight + 100;
-    }
-  }
 
-  // Main state
-  let stars = [];
-  let shootPool = [];
-  let lastTime = performance.now();
-  let starCountTarget = config.baseStars;
-  let running = true;
-
-  // Canvas contexts
-  let sctx, shctx;
-
-  function init(){
-    resizeCanvases();
-    sctx = starCanvas.getContext('2d', { alpha: true });
-    shctx = shootingCanvas.getContext('2d', { alpha: true });
-
-    // set star count based on device
-    starCountTarget = isMobileLite() ? config.mobileStars : config.baseStars;
-    if (reduced) starCountTarget = Math.round(starCountTarget * 0.5);
-
-    // create stars
-    stars = [];
-    for (let i=0;i<starCountTarget;i++){
-      stars.push(new Star(window.innerWidth, window.innerHeight));
-    }
-
-    // set stats display
-    const elStarCount = document.getElementById('star-count');
-    if (elStarCount) elStarCount.textContent = starCountTarget;
-    const elInterval = document.getElementById('shoot-interval');
-    if (elInterval) elInterval.textContent = (config.shootingInterval/1000).toFixed(1) + 's';
-
-    // start loop
-    lastTime = performance.now();
-    requestAnimationFrame(loop);
-
-    // spawn shooting stars at interval
-    scheduleShooters();
-  }
-
-  // schedule shooting star attempts, adaptive
-  let shootTimer = null;
-  function scheduleShooters(){
-    if (reduced) return;
-    const interval = Math.max(1400, config.shootingInterval * (isMobileLite() ? 1.6 : 1.0));
-    shootTimer = setInterval(() => {
-      if (Math.random() < config.shootingChance) spawnShooting();
-    }, interval);
-  }
-
-  function spawnShooting(){
-    // spawn 1-2 shooting stars occasionally
-    const count = (Math.random() < 0.2) ? 2 : 1;
-    for (let i=0;i<count;i++){
-      shootPool.push(new Shooting(window.innerWidth, window.innerHeight));
-    }
-  }
-
-  // main RAF loop
-  function loop(now){
-    if (!running) return;
-    const dt = Math.min(44, now - lastTime); // clamp dt to avoid burst
-    lastTime = now;
-
-    // update and draw star canvas
-    sctx.clearRect(0,0, starCanvas.width, starCanvas.height);
-    sctx.save();
-    // subtle global glow layer (very faint)
-    // draw each star
-    for (let i=0;i<stars.length;i++){
-      stars[i].draw(sctx, dt * (1/16));
-    }
-    sctx.restore();
-
-    // update shooting canvas: clear with alpha to preserve trails slightly
-    shctx.clearRect(0,0, shootingCanvas.width, shootingCanvas.height);
-    // update shooting objects
-    for (let i=shootPool.length -1; i>=0; i--){
-      const s = shootPool[i];
-      s.step(dt);
-      s.draw(shctx);
-      if (!s.alive()) shootPool.splice(i,1);
-    }
-
-    requestAnimationFrame(loop);
-  }
-
-  // Resize observer for responsiveness
-  window.addEventListener('resize', () => {
-    resizeCanvases();
-    // adjust star array: refill or trim
-    const desired = isMobileLite() ? config.mobileStars : config.baseStars;
-    const target = reduced ? Math.round(desired * 0.5) : desired;
-    if (stars.length < target) {
-      const add = target - stars.length;
-      for (let i=0;i<add;i++) stars.push(new Star(window.innerWidth, window.innerHeight));
-    } else if (stars.length > target){
-      stars = stars.slice(0, target);
-    }
-    // update stat display
-    const elStarCount = document.getElementById('star-count');
-    if (elStarCount) elStarCount.textContent = stars.length;
-  });
-
-  // init on DOM ready
-  window.addEventListener('load', () => {
-    init();
-  });
-
-  // visibility handling: pause when hidden
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      running = false;
-      if (shootTimer) clearInterval(shootTimer);
-    } else {
-      running = true;
-      lastTime = performance.now();
+    // Animation loop
+    let last = performance.now();
+    function loop(now){
+      const t = now;
+      // gentle parallax: move blobs slowly
+      drawNebula(t);
+      drawStars(t);
+      if (Math.random() < 0.01) spawnShooting(); // chance to spawn
+      drawShooting();
       requestAnimationFrame(loop);
-      if (!shootTimer) scheduleShooters();
     }
-  });
+    requestAnimationFrame(loop);
 
-})();
-</script>
+    // Simple parallax on mouse move for desktop
+    window.addEventListener('mousemove', (e) => {
+      const rx = (e.clientX / window.innerWidth - 0.5) * 0.08;
+      const ry = (e.clientY / window.innerHeight - 0.5) * 0.08;
+      nebula.style.transform = `translate3d(${rx*80}px, ${ry*40}px, 0) scale(1.02)`;
+      stars.style.transform = `translate3d(${rx*50}px, ${ry*25}px, 0)`;
+    }, { passive: true });
 
+  })();
+  </script>
 </body>
 </html>
