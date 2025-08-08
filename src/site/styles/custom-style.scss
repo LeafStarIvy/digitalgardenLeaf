@@ -1,129 +1,181 @@
-/* ===========================================
-   🌌 Cosmic Blue Space Theme (Redesigned)
-   =========================================== */
+/* custom.css - Cosmic Blue Space Digital Garden
+   Fully rewritten: layout, type, starfield-friendly canvas layering,
+   glass cards, accessible typography, and subtle micro-interactions.
+*/
 
-/* ---- Color Variables ---- */
-:root {
-  --bg-deep: #0b1120;
-  --bg-dark: #111827;
-  --bg-blue: #1e3a8a;
-  --bg-purple: #312e81;
+/* -------------------------
+   DESIGN SYSTEM VARIABLES
+   ------------------------- */
+:root{
+  --bg-deep: #071028;
+  --bg-mid: #0b1730;
+  --nebula-1: #12203b;
+  --nebula-2: #1b3a8a;
+  --accent-1: #60a5fa; /* aurora blue */
+  --accent-2: #93c5fd; /* crystal */
   --accent-gold: #fbbf24;
-  --accent-blue: #60a5fa;
-  --accent-cyan: #06b6d4;
-  --text-light: #f8fafc;
-  --text-mid: #cbd5e1;
-  --glass-bg: rgba(17, 24, 39, 0.6);
-  --border-glow: rgba(96, 165, 250, 0.4);
+  --glass: rgba(8,12,20,0.55);
+  --glass-2: rgba(14,20,34,0.65);
+  --muted: #9fb4d9;
+  --text: #eaf2ff;
+  --shadow: 0 12px 30px rgba(5,8,20,0.6);
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --container-max: 1100px;
+  --flow: 1.25rem;
+  --accent-glow: 0 0 30px rgba(96,165,250,0.14);
 }
 
-/* ---- Base Reset ---- */
-* {
-  box-sizing: border-box;
-}
-html, body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-  color: var(--text-light);
-  background: var(--bg-deep);
-  overflow-x: hidden;
+/* -------------------------
+   BASIC LAYOUT & RESET
+   ------------------------- */
+* { box-sizing: border-box; }
+html,body { height:100%; }
+body.garden {
+  margin:0;
+  background: linear-gradient(180deg,var(--bg-deep), var(--bg-mid));
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.6;
+  overflow-x:hidden;
 }
 
-/* ---- Multi-Layer Cosmic Background ---- */
-body::before, 
-body::after, 
-#star-layer, 
-#shooting-stars {
+/* Canvas backgrounds layered behind content */
+.bg-canvas {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  inset: 0;
   z-index: -10;
-  content: "";
-  pointer-events: none;
+  display:block;
+  width:100%;
+  height:100%;
+  pointer-events:none;
 }
 
-/* Nebula Gradient Layer */
-body::before {
-  background: radial-gradient(circle at 20% 30%, var(--bg-purple), transparent 60%),
-              radial-gradient(circle at 80% 70%, var(--bg-blue), transparent 60%),
-              linear-gradient(135deg, var(--bg-deep), var(--bg-dark));
-  animation: nebulaShift 40s ease-in-out infinite alternate;
-}
-@keyframes nebulaShift {
-  0% { transform: scale(1) rotate(0deg); }
-  100% { transform: scale(1.1) rotate(5deg); }
-}
-
-/* Starfield Layer */
-body::after {
-  background-image: radial-gradient(1px 1px at 20% 20%, white, transparent),
-                    radial-gradient(1px 1px at 50% 80%, var(--accent-blue), transparent),
-                    radial-gradient(1px 1px at 80% 40%, var(--accent-gold), transparent);
-  background-size: 300px 300px;
-  animation: starTwinkle 8s ease-in-out infinite alternate;
-  opacity: 0.7;
-}
-@keyframes starTwinkle {
-  0% { opacity: 0.5; }
-  100% { opacity: 0.9; }
-}
-
-/* Shooting Stars Layer */
-#shooting-stars {
-  background: transparent;
-}
-.shooting-star {
-  position: absolute;
-  top: -10px;
-  width: 2px;
-  height: 80px;
-  background: linear-gradient(180deg, white, transparent);
-  opacity: 0.8;
-  transform: rotate(45deg);
-  animation: shootingStarFall 2s linear forwards;
-}
-@keyframes shootingStarFall {
-  to {
-    transform: translate(400px, 400px) rotate(45deg);
-    opacity: 0;
-  }
-}
-
-/* ---- Glassy Content Containers ---- */
+/* -------------------------
+   SITE STRUCTURE
+   ------------------------- */
 .container {
-  max-width: 900px;
-  margin: auto;
-  padding: 2rem;
-}
-.content-block {
-  background: var(--glass-bg);
-  border: 1px solid var(--border-glow);
-  border-radius: 1rem;
-  padding: 2rem;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 0 30px rgba(0,0,0,0.4);
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 2.0rem 1.25rem;
 }
 
-/* ---- Typography ---- */
-h1, h2, h3 {
-  background: linear-gradient(90deg, var(--accent-blue), var(--accent-gold), var(--accent-cyan));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientShift 6s ease infinite alternate;
+/* Header */
+.site-header {
+  position: sticky;
+  top: 12px;
+  z-index: 40;
+  margin: 0 auto 1.25rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background: linear-gradient(180deg, rgba(12,18,34,0.55), rgba(12,18,34,0.35));
+  padding: 0.65rem 1rem;
+  border-radius: 12px;
+  backdrop-filter: blur(8px) saturate(1.05);
+  border: 1px solid rgba(130,160,255,0.06);
+  box-shadow: var(--shadow);
 }
-@keyframes gradientShift {
-  to { background-position: 200% 0; }
+.header-inner { display:flex; align-items:center; justify-content:space-between; width:100%; gap:1rem; }
+.brand { display:flex; gap:0.75rem; align-items:center; text-decoration:none; color:var(--text); }
+.brand.small .title { font-size:1rem; font-weight:700; color:var(--text); }
+.brand-mark { width:46px; height:46px; border-radius: 9px; background: linear-gradient(135deg,var(--nebula-2), var(--nebula-1)); box-shadow: var(--accent-glow); }
+
+/* Title */
+.title { font-weight:800; font-size:1.15rem; letter-spacing:-0.01em; }
+.subtitle { font-size:0.78rem; color:var(--muted); margin-top: -3px; }
+
+/* Nav */
+.main-nav ul { display:flex; gap:0.6rem; list-style:none; margin:0; padding:0; align-items:center; }
+.main-nav a { color:var(--muted); text-decoration:none; padding:6px 10px; border-radius:8px; font-weight:600; font-size:0.92rem; transition:all 220ms ease; }
+.main-nav a:hover { color:var(--text); background: rgba(96,165,250,0.05); transform:translateY(-2px); box-shadow: var(--accent-glow); }
+
+/* -------------------------
+   CARDS / CONTENT AREAS
+   ------------------------- */
+.card {
+  background: linear-gradient(180deg, rgba(12,18,34,0.55), rgba(14,20,34,0.48));
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  backdrop-filter: blur(10px) saturate(1.05);
 }
 
-/* Star beside headings */
-h2::before {
-  content: "✦";
-  display: inline-block;
-  margin-right: 0.5rem;
-  color: var(--accent-gold);
-  animation: starSpin 6s linear infinite;
+/* Intro / lead */
+.intro .page-heading { font-size: clamp(1.6rem, 3.2vw, 2.6rem); margin:0 0 0.5rem; background: linear-gradient(90deg,var(--accent-1),var(--accent-2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.lead { color:var(--muted); margin-bottom:1rem; }
+
+/* Tags cloud */
+.tag-cloud { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem; }
+.tag { display:inline-block; padding:6px 10px; font-weight:600; font-size:0.86rem; color:var(--text); background: linear-gradient(90deg, rgba(96,165,250,0.12), rgba(147,197,253,0.06)); border-radius:999px; text-decoration:none; border:1px solid rgba(96,165,250,0.06); }
+
+/* Grid of notes */
+.list-grid {
+  display:grid;
+  grid-template-columns: repeat( auto-fit, minmax(260px,1fr) );
+  gap: 1.1rem;
+  margin-top: 0.5rem;
 }
-@keyframes starSpin {
-  to { transform: rotate(360deg); }
+.note-card { overflow:hidden; display:flex; flex-direction:column; min-height:140px; padding:0; }
+.card-link { display:flex; flex-direction:column; height:100%; text-decoration:none; color:inherit; }
+.cover { height:120px; background-size:cover; background-position:center; border-radius:12px 12px 0 0; box-shadow: inset 0 -40px 120px rgba(8,12,30,0.45); }
+.card-content { padding:1rem; display:flex; flex-direction:column; gap:0.5rem; flex:1; }
+.note-title { margin:0; font-size:1.05rem; color:var(--text); }
+.excerpt { margin:0; color:var(--muted); font-size:0.95rem; }
+.meta { display:flex; align-items:center; justify-content:space-between; gap:0.5rem; margin-top:auto; }
+.meta time { color:var(--muted); font-size:0.82rem; }
+.meta-tags { display:flex; gap:0.4rem; list-style:none; padding:0; margin:0; }
+.meta-tag { font-size:0.82rem; color:var(--accent-2); text-decoration:none; }
+
+/* Note page */
+.note-article { padding:1.5rem; }
+.note-header { margin-bottom:1rem; }
+.note-header .note-title { font-size: clamp(1.6rem, 4.2vw, 2.4rem); margin:0 0 0.5rem; color:var(--text); }
+.note-meta { display:flex; gap:1rem; align-items:center; color:var(--muted); font-size:0.9rem; }
+.tags .tag { padding:4px 8px; font-size:0.85rem; }
+
+/* Content body */
+.note-body { color: var(--text); font-size:1rem; max-width:68ch; line-height:1.7; }
+.note-body h2 { color:var(--accent-1); margin-top:1.25rem; margin-bottom:0.5rem; }
+.note-body p { margin:0 0 1rem 0; color:var(--muted); }
+.note-body a { color:var(--accent-2); text-decoration:underline; }
+.note-body pre, .note-body code {
+  background: rgba(6,10,18,0.6);
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  display:block;
+  overflow:auto;
+  border: 1px solid rgba(96,165,250,0.07);
+}
+
+/* Footer */
+.site-footer { padding: 1.25rem 0; color:var(--muted); text-align:center; }
+
+/* -------------------------
+   Micro-interactions
+   ------------------------- */
+a { transition: color 180ms ease, transform 200ms ease; }
+.note-card:hover .card-link { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(2,8,20,0.5); }
+
+/* -------------------------
+   Accessibility: reduce motion
+   ------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .bg-canvas { display:none !important; }
+  * { transition:none !important; animation:none !important; }
+}
+
+/* -------------------------
+   Responsive tweaks
+   ------------------------- */
+@media (max-width:720px) {
+  .header-inner { flex-direction:column; gap:0.5rem; align-items:flex-start; }
+  .brand-mark { display:none; }
+  .list-grid { grid-template-columns: 1fr; }
+  .site-header { padding:0.6rem; }
 }
