@@ -328,3 +328,266 @@ small, .meta { font-size: var(--fz-xs); color: var(--muted); }
   .sidebar { position: relative; top: auto; margin-top: 18px; }
 }
 
+/* ============================================================
+   PART 06 — HERO / INDEX PAGE LAYOUT (index.njk)
+   - Large hero with subtitle, search and tagline
+   ============================================================ */
+
+.hero {
+  display: grid;
+  gap: 12px;
+  padding: 28px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.008));
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  margin-bottom: 18px;
+}
+.hero .lead { color: var(--text-secondary); font-size: var(--fz-md); }
+.hero .cta-row { display:flex; gap:12px; align-items:center; margin-top:6px; }
+
+/* search big */
+.search-big {
+  display:flex; align-items:center; gap:8px;
+  padding: 10px 14px; border-radius: 999px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.02);
+}
+.search-big input { background: transparent; border: none; outline: none; color: var(--text-primary); width: 420px; font-size: var(--fz-base); }
+@media (max-width: 860px) { .search-big input { width: 100%; } }
+
+/* ============================================================
+   PART 07 — GARDEN GRID / CARDS (notes, projects, media)
+   ============================================================ */
+
+.garden-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* standard card */
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.016), rgba(255,255,255,0.006));
+  border-radius: var(--radius-md);
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,0.02);
+  box-shadow: 0 10px 30px rgba(2,6,20,0.4);
+  transition: transform .28s var(--ui-ease), box-shadow .28s var(--ui-ease);
+  display: flex; flex-direction: column; gap: 10px; min-height: 140px;
+}
+.card:hover, .card:focus-within { transform: translateY(-6px); box-shadow: var(--shadow-deep); }
+
+/* media thumbnail */
+.card .thumb { width: 100%; height: 150px; border-radius: 10px; overflow: hidden; background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.35)); display:block; }
+
+/* meta row */
+.card .meta { display:flex; gap:10px; align-items:center; justify-content:space-between; font-size: .85rem; color: var(--muted); }
+
+/* title */
+.card .title { font-weight: 700; color: var(--text-primary); font-size: 1rem; margin: 0; }
+
+/* excerpt */
+.card .excerpt { color: var(--text-secondary); font-size: 0.95rem; line-height:1.4; }
+
+/* badges */
+.badges { display:flex; gap:8px; flex-wrap:wrap; }
+.badge {
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.006));
+  border: 1px solid rgba(255,255,255,0.02);
+  color: var(--text-primary); font-weight:600; padding:6px 10px; border-radius:999px; font-size:.78rem;
+}
+
+/* ============================================================
+   PART 08 — NOTE / ARTICLE VIEW (note.njk)
+   - Readable single-column content with in-article TOC anchors,
+     clear media, and floating right sidebar showing On This Page + Connected Pages
+   ============================================================ */
+
+.garden-article {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006));
+  padding: 26px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-deep);
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-size: var(--fz-sm);
+}
+
+/* article headings */
+.garden-article h1 { font-size: 1.9rem; margin-bottom: 8px; color: var(--text-primary); }
+.garden-article h2 { font-size: 1.35rem; margin-top: 20px; color: var(--text-primary); }
+.garden-article p { color: var(--text-secondary); }
+
+/* callouts / blockquote */
+.garden-article blockquote {
+  border-left: 4px solid rgba(124,58,237,0.14);
+  padding: 12px 16px; margin: 12px 0; background: rgba(124,58,237,0.03);
+  border-radius: 8px; color: var(--text-secondary);
+}
+
+/* code blocks */
+.garden-article pre, .garden-article code {
+  background: rgba(5,8,18,0.64); padding: 10px; border-radius: 10px; color: var(--text-primary); font-family: monospace;
+}
+
+/* responsive images & embeds inside the article */
+.garden-article img, .garden-article video { border-radius: 10px; max-width: 100%; height: auto; }
+
+/* ============================================================
+   PART 09 — RIGHT SIDEBAR CONTENT (On this page, Connected pages)
+   - This is the critical area you said was missing.
+   - We style .on-this-page and .connected-pages containers here.
+   ============================================================ */
+
+.sidebar-section { margin-bottom: 14px; }
+.sidebar-section h4 { font-size: .95rem; margin: 0 0 8px 0; color: var(--text-primary); }
+.on-this-page { display:flex; flex-direction:column; gap:8px; }
+.on-this-page a { display:block; padding:8px; border-radius:8px; color:var(--text-secondary); background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.02); text-decoration:none; transition: background .18s var(--ui-ease); }
+.on-this-page a:hover { background: rgba(125,211,252,0.06); color:var(--text-primary); transform: translateX(6px); }
+
+/* connected pages / backlinks */
+.connected-pages { display:flex; flex-direction:column; gap:8px; }
+.connected-pages .link { padding:10px; border-radius:8px; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006)); border:1px solid rgba(255,255,255,0.02); color:var(--text-secondary); transition: transform .18s var(--ui-ease); }
+.connected-pages .link:hover { transform: translateY(-4px); color:var(--text-primary); box-shadow: var(--shadow-soft); }
+
+/* small graph preview area */
+.graph-preview { height: 160px; border-radius: 10px; background: linear-gradient(180deg, rgba(16,20,36,0.55), rgba(6,8,20,0.4)); border: 1px solid rgba(255,255,255,0.02); overflow:hidden; }
+
+/* ============================================================
+   PART 10 — NAV, SEARCH & BUTTONS
+   ============================================================ */
+
+.nav { display:flex; gap:10px; align-items:center; }
+.nav a { color: var(--text-secondary); padding: 8px 10px; border-radius: 9px; text-decoration:none; }
+.nav a:hover { color: var(--text-primary); background: rgba(255,255,255,0.02); transform: translateY(-2px); }
+
+.search {
+  display:flex; align-items:center; gap:8px;
+  background: rgba(255,255,255,0.02); padding: 8px 12px; border-radius: 999px; border:1px solid rgba(255,255,255,0.02);
+}
+.search input { background: transparent; border: none; color: var(--text-primary); outline: none; min-width: 220px; }
+
+/* buttons */
+.btn {
+  display:inline-flex; align-items:center; gap:8px; padding: 8px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.02);
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.006)); color: var(--text-primary); cursor:pointer; transition: transform .18s var(--ui-ease);
+}
+.btn-primary {
+  background: linear-gradient(90deg, rgba(124,58,237,0.12), rgba(14,165,233,0.08));
+  border: 1px solid rgba(124,58,237,0.14);
+  color: var(--text-primary);
+}
+.btn:hover { transform: translateY(-3px); }
+
+/* ============================================================
+   PART 11 — TAGS, FILTERS & META
+   ============================================================ */
+.tag-list { display:flex; gap:8px; flex-wrap:wrap; }
+.tag {
+  padding:6px 10px; border-radius:999px; font-weight:600; color:var(--text-primary);
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.006)); border:1px solid rgba(255,255,255,0.02);
+}
+.tag:hover { transform: translateY(-3px); box-shadow: var(--shadow-soft); }
+
+/* ============================================================
+   PART 12 — FOOTER & SMALL UI PIECES
+   ============================================================ */
+.site-footer { max-width: var(--max-width); margin: 24px auto 48px auto; text-align:center; color:var(--muted); font-size:.9rem; }
+
+/* small floating fullscreen or focus button (kept) */
+.fullscreen-btn {
+  position: fixed; right: 18px; bottom: 18px; z-index: 60;
+  padding: 10px 14px; border-radius: 999px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.02);
+  color:var(--text-primary); box-shadow: var(--shadow-soft);
+}
+
+/* ============================================================
+   PART 13 — RESPONSIVE TUNING & ACCESSIBILITY
+   ============================================================ */
+
+/* ease motion preferences */
+@media (prefers-reduced-motion: reduce) { :root { --reduce-motion: 1; } .galaxy-skybox, .cosmic-body, .nebula, .card, .pg-canvas { animation: none !important; transition: none !important; } }
+
+/* breakpoints */
+@media (max-width: 980px) {
+  .page-grid { grid-template-columns: 1fr; }
+  .brand .site-title { font-size: 1.15rem; }
+  .sidebar { display: none; } /* optional: hide sidebar on small devices; you can toggle with JS */
+  .search input { min-width: 120px; }
+  .card .thumb { height: 120px; }
+}
+
+/* really small */
+@media (max-width: 520px) {
+  .site-header { padding: 10px; gap: 8px; }
+  .brand .logo { width: 44px; height: 44px; }
+  .hero { padding: 18px; }
+  .garden-grid { gap: 12px; }
+}
+
+/* ============================================================
+   PART 14 — UTILITY CLASSES (for maintainers)
+   ============================================================ */
+.u-center { text-align:center; }
+.u-muted { color: var(--muted); }
+.hidden { display:none !important; }
+
+/* debug highlight */
+.debug-outline *[data-debug] { outline: 1px dashed rgba(255,255,255,0.06); }
+
+/* ============================================================
+   PART 15 — MINIMAL HTML SUGGESTIONS (index.njk & note.njk)
+   - Optional: add these small snippets for full skybox + sidebar content
+   ============================================================ */
+
+/*
+  Add to your base layout (index.njk and note.njk) just after <body>:
+
+  <!-- SKYBOX: background layers & particles canvases -->
+  <div class="galaxy-skybox mood" aria-hidden="true">
+    <div class="nebula nebula--back"></div>
+    <div class="nebula nebula--mid"></div>
+    <div class="nebula nebula--front"></div>
+
+    <div class="cosmic-body planet-1" aria-hidden="true"></div>
+    <div class="cosmic-body planet-2" aria-hidden="true"></div>
+    <div class="cosmic-body nebula-3" aria-hidden="true"></div>
+
+    <!-- particles canvases (ensure the js creates these with the classes) -->
+    <canvas class="pg-canvas pg-canvas--bg"></canvas>
+    <canvas class="pg-canvas pg-canvas--mid"></canvas>
+    <canvas class="pg-canvas pg-canvas--fg"></canvas>
+  </div>
+
+  ------------------------------------------------------------------
+  Sidebar 'On this page' and 'Connected pages' — ensure note.njk prints
+  these elements in the sidebar area (you likely already have a sidebar
+  partial in the Digital Garden template — adapt names if needed):
+
+  <aside class="sidebar">
+    <div class="sidebar-section on-this-page">
+      <h4>On this page</h4>
+      <!-- Render headings list -->
+      <a href="#heading-1">Heading 1</a>
+      <a href="#heading-2">Heading 2</a>
+    </div>
+
+    <div class="sidebar-section connected-pages">
+      <h4>Connected pages</h4>
+      <!-- Render backlinks -->
+      <div class="link"><a href="/notes/other">Other note title</a></div>
+      <div class="link"><a href="/notes/project">Project note</a></div>
+    </div>
+
+    <div class="sidebar-section">
+      <h4>Graph</h4>
+      <div class="graph-preview"><!-- optional SVG/canvas --></div>
+    </div>
+  </aside>
+
+  Note: if you cannot modify Nunjucks, place these same classes in the HTML your template already generates.
+*/
+
+/* ============================================================
+   END OF custom-style.css
+   ============================================================ */
