@@ -81,5 +81,20 @@
 
     {# THIS is the single include that owns all sky particles & falling stars #}
     {% include "components/particlesScript.njk" %}
+<!-- SKYBOX: ethereal aurora background (aria-hidden) -->
+<div class="galaxy-skybox mood-cycle" aria-hidden="true">
+  <div class="nebula nebula--back" aria-hidden="true"></div>
+  <div class="nebula nebula--mid" aria-hidden="true"></div>
+  <div class="nebula nebula--front" aria-hidden="true"></div>
+
+  <div class="cosmic-body p1" aria-hidden="true"></div>
+  <div class="cosmic-body p2" aria-hidden="true"></div>
+
+  <!-- particles.js canvases: ensure your particle init uses these classes -->
+  <!-- optional: <canvas class="pg-canvas pg-canvas--bg"></canvas> -->
+  <!-- optional: <canvas class="pg-canvas pg-canvas--mid"></canvas> -->
+  <!-- optional: <canvas class="pg-canvas pg-canvas--fg"></canvas> -->
+</div>
+
   </body>
 </html>
