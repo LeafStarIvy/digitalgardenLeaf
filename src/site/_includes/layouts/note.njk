@@ -1,72 +1,198 @@
-{# note.njk - Single Note Template #}
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>{{ page.title }} — {{ site.title or "Garden" }}</title>
-  <meta name="description" content="{{ page.excerpt | truncate(160) }}">
-  <link rel="stylesheet" href="{{ '/assets/css/custom.css' | url }}">
-</head>
-<body class="garden note-page">
-  <canvas id="nebula-canvas" class="bg-canvas" aria-hidden="true"></canvas>
-  <canvas id="star-canvas" class="bg-canvas" aria-hidden="true"></canvas>
-  <canvas id="shooting-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+---
+permalink: "notes/{{ page.fileSlug | slugify }}/"
+---
+<!DOCTYPE html>
+<html lang="{{ meta.mainLanguage }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
+    {% include "components/pageheader.njk" %}
+    {% for imp in dynamics.common.head %}{% include imp %}{% endfor %}
+    {% for imp in dynamics.notes.head %}{% include imp %}{% endfor %}
+    <link rel="stylesheet" href="/styles/custom.css">
+  </head>
 
-  <header class="site-header" role="banner">
-    <div class="header-inner container">
-      <a class="brand small" href="{{ '/' | url }}">
-        <div class="brand-text">
-          <div class="title">{{ site.title or "Garden" }}</div>
-        </div>
-      </a>
-      <nav class="main-nav">
-        <ul>
-          <li><a href="{{ '/' | url }}">Home</a></li>
-          <li><a href="#back" onclick="history.back();return false;">Back</a></li>
-        </ul>
-      </nav>
+  <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
+
+    <button class="fullscreen-btn" id="fullscreenBtn" aria-pressed="false" title="Toggle Focus Mode">
+      <svg class="fs-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M16 3h3a2 2 0 0 1 2 2v3"/><path d="M8 21H5a2 2 0 0 1-2-2v-3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+      <span class="fs-label">Focus Mode</span>
+    </button>
+
+    {% include "components/notegrowthhistory.njk" %}
+    {% if settings.dgShowFileTree !== true %}
+      {% include "components/navbar.njk" %}
+    {% else %}
+      {% include "components/filetree.njk" %}
+    {% endif %}
+    {% if settings.dgEnableSearch === true %}
+      {% include "components/searchContainer.njk" %}
+    {% endif %}
+
+    {# Keep the same galaxy layers for notes so the aesthetic is uniform #}
+    <div class="galaxy-skybox small" aria-hidden="true">
+      <canvas id="starCanvasSmall" class="star-canvas small-canvas"></canvas>
+      <div class="nebula nebula--back"></div>
+      <div class="nebula nebula--front"></div>
+      <div id="shootingStarContainerSmall" class="shooting-stars"></div>
+      <div class="video-background">
+        <video autoplay muted loop playsinline preload="auto" class="bg-video">
+          <source src="/img/video/Astrogalaxy1.webm" type="video/webm">
+        </video>
+      </div>
     </div>
-  </header>
 
-  <main class="container site-main">
-    <article class="card note-article">
-      <header class="note-header">
-        <h1 class="note-title">{{ page.title }}</h1>
-        <div class="note-meta">
-          {% if page.date %}<time datetime="{{ page.date }}">{{ page.date | date("YYYY-MM-DD") }}</time>{% endif %}
-          {% if page.tags %}
-            <div class="tags">
-              {% for t in page.tags %}<a class="tag" href="{{ '/tags/' + t | url }}">#{{ t }}</a>{% endfor %}
+    <main class="content cm-s-obsidian {{contentClasses}}">
+      <header class="site-header">
+        {% if settings.dgShowInlineTitle === true %}
+          <h1 class="site-title" data-note-icon="{% if noteIcon %}{{noteIcon}}{% else %}{{meta.noteIconsSettings.default}}{% endif %}">
+            {% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}
+          </h1>
+        {% endif %}
+
+        <div class="header-meta">
+          {% if settings.dgShowTags === true and tags %}
+            <div class="header-tags">
+              {% for tag in tags %}
+                {% if tag != 'gardenEntry' and tag != 'note' %}
+                  <a class="tag" onclick="toggleTagSearch(this)">#{{tag}}</a>
+                {% endif %}
+              {% endfor %}
             </div>
           {% endif %}
+
+          {%- if meta.timestampSettings.showCreated or meta.timestampSettings.showUpdated -%}
+          <div class="timestamps">
+            {%- if meta.timestampSettings.showCreated and created -%}
+            <div><i icon-name="calendar-plus"></i> <span class="human-date" data-date="{{created}}"></span></div>
+            {%- endif -%}
+            {%- if meta.timestampSettings.showUpdated and updated -%}
+            <div><i icon-name="calendar-clock"></i> <span class="human-date" data-date="{{updated}}"></span></div>
+            {%- endif -%}
+          </div>
+          {%- endif -%}
         </div>
+
+        {% for imp in dynamics.common.header %}{% include imp %}{% endfor %}
+        {% for imp in dynamics.notes.header %}{% include imp %}{% endfor %}
       </header>
 
-      <section class="note-body">
-        {{ page.content | safe }}
-      </section>
+      {% for imp in dynamics.common.beforeContent %}{% include imp %}{% endfor %}
+      {% for imp in dynamics.notes.beforeContent %}{% include imp %}{% endfor %}
 
-      <footer class="note-footer">
-        <div class="nav-prev-next">
-          {% if page.prev %}<a href="{{ page.prev.url | url }}" class="prev">← {{ page.prev.title }}</a>{% endif %}
-          {% if page.next %}<a href="{{ page.next.url | url }}" class="next">{{ page.next.title }} →</a>{% endif %}
-        </div>
-      </footer>
-    </article>
-  </main>
+      <article class="garden-article">
+        {{ content | hideDataview | taggify | link | safe }}
+      </article>
 
-  <footer class="site-footer">
-    <div class="container">
-      <small>© {{ (site.author or "You") }}</small>
-    </div>
-  </footer>
+      {% for imp in dynamics.common.afterContent %}{% include imp %}{% endfor %}
+      {% for imp in dynamics.notes.afterContent %}{% include imp %}{% endfor %}
+    </main>
 
-  <script>
-    /* Same inline cosmic script as index.njk - keep identical for consistent visuals */
-    {% include '/assets/js/cosmic-inline.njk' ignore missing %}
-    /* If your pipeline doesn't support includes, the index.njk inline script will still execute if present.
-       You can also place the same inline script here. */
-  </script>
-</body>
+    {% if settings.dgShowBacklinks === true or settings.dgShowLocalGraph === true or settings.dgShowToc === true %}
+      {% include "components/sidebar.njk" %}
+    {% endif %}
+    {% if settings.dgLinkPreview === true %}
+      {% include "components/linkPreview.njk" %}
+    {% endif %}
+    {% include "components/references.njk" %}
+    {% include "components/timestamps.njk" %}
+    {% for imp in dynamics.common.footer %}{% include imp %}{% endfor %}
+    {% for imp in dynamics.notes.footer %}{% include imp %}{% endfor %}
+    {% include "components/lucideIcons.njk" %}
+    {% include "components/particlesScript.njk" %}
+
+    <script>
+      /* ------------- Focus Mode (Fullscreen-like) ------------- */
+      (function(){
+        const btn = document.getElementById('fullscreenBtn');
+        if (!btn) return;
+        let focused = false;
+        const body = document.body;
+
+        function setBtnLabel() {
+          btn.setAttribute('aria-pressed', String(focused));
+          const label = btn.querySelector('.fs-label');
+          if (label) label.textContent = focused ? 'Exit Focus' : 'Focus Mode';
+        }
+
+        function toggleFocus() {
+          focused = !focused;
+          body.classList.toggle('fullscreen-mode', focused);
+          setBtnLabel();
+          setTimeout(()=> window.dispatchEvent(new Event('resize')), 120);
+        }
+
+        btn.addEventListener('click', toggleFocus);
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'F11') { e.preventDefault(); toggleFocus(); }
+          if (e.key === 'Escape' && focused) { toggleFocus(); }
+        });
+      })();
+
+      /* ------------- Small star canvas for notes ------------- */
+      (function() {
+        const canvas = document.getElementById('starCanvasSmall');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let w = canvas.width = Math.max(window.innerWidth, 600);
+        let h = canvas.height = Math.max(window.innerHeight, 300);
+        const DPR = window.devicePixelRatio || 1;
+        canvas.width = w * DPR;
+        canvas.height = h * DPR;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.scale(DPR, DPR);
+
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const stars = [];
+        function rand(min,max){ return Math.random()*(max-min)+min; }
+
+        function init(){
+          stars.length = 0;
+          const count = (window.innerWidth < 768) ? 50 : 110;
+          for (let i=0;i<count;i++){
+            stars.push({
+              x: rand(0,w),
+              y: rand(0,h),
+              r: rand(0.4,1.4),
+              a: rand(0.15,0.9),
+              tw: rand(0,Math.PI*2)
+            });
+          }
+        }
+        function draw(t){
+          ctx.clearRect(0,0,w,h);
+          for (let i=0;i<stars.length;i++){
+            const s = stars[i];
+            const alpha = prefersReduced ? s.a : s.a + Math.sin((t/800)+s.tw)*0.25;
+            ctx.fillStyle = 'rgba(255,255,255,' + Math.max(0.06, Math.min(1, alpha)) + ')';
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+            ctx.fill();
+          }
+        }
+        let raf;
+        function loop(ts){ draw(ts); raf = requestAnimationFrame(loop); }
+        init();
+        if (!prefersReduced) loop(performance.now()); else draw(performance.now());
+
+        window.addEventListener('resize', ()=> {
+          clearTimeout(window._noteResize);
+          window._noteResize = setTimeout(()=>{
+            w = canvas.width = Math.max(window.innerWidth, 600);
+            h = canvas.height = Math.max(window.innerHeight, 300);
+            const DPR = window.devicePixelRatio || 1;
+            canvas.width = w * DPR;
+            canvas.height = h * DPR;
+            canvas.style.width = w + 'px';
+            canvas.style.height = h + 'px';
+            ctx.scale(DPR, DPR);
+            init();
+          }, 200);
+        });
+      })();
+    </script>
+
+  </body>
 </html>
