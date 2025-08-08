@@ -1,100 +1,37 @@
 <!DOCTYPE html>
-<html lang="{{ meta.mainLanguage }}">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ethereal Forest</title>
+  <link rel="stylesheet" href="ethereal.css">
+</head>
+<body>
+  <div class="forest-bg">
+    <div class="layer layer-back"></div>
+    <div class="layer layer-mid"></div>
+    <div class="layer layer-front"></div>
+    <div class="mist-layer"></div>
+  </div>
 
-    {% include "components/pageheader.njk" %}
-    {% for imp in dynamics.common.head %}{% include imp %}{% endfor %}
-    {% for imp in dynamics.index.head %}{% include imp %}{% endfor %}
+  <header class="site-header">
+    <h1 class="site-title">Ethereal Forest UI</h1>
+    <nav class="nav-bar">
+      <a href="#">Home</a>
+      <a href="#">Gallery</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
 
-    <link rel="stylesheet" href="/styles/custom.css">
-  </head>
+  <main class="content">
+    <section class="hero-card">
+      <h2>Step Into Serenity</h2>
+      <p>Immerse yourself in a timeless Japanese maple forest. Every detail flows like a gentle stream.</p>
+      <button class="cta-btn">Begin Journey</button>
+    </section>
+  </main>
 
-  <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
-
-    <!-- Galaxy Skybox: the particle script will create canvases inside this -->
-    <div class="galaxy-skybox" id="galaxySkybox" aria-hidden="true">
-      <!-- decorative nebula layers for parallax (pure CSS; moved visually behind content) -->
-      <div class="nebula nebula--back"></div>
-      <div class="nebula nebula--mid"></div>
-      <div class="nebula nebula--front"></div>
-      <!-- container for DOM shooting-star elements (script will append) -->
-      <div id="shootingStarContainer" class="shooting-stars" aria-hidden="true"></div>
-    </div>
-
-    {% include "components/notegrowthhistory.njk" %}
-    {% if settings.dgShowFileTree !== true %}
-      {% include "components/navbar.njk" %}
-    {% else %}
-      {% include "components/filetree.njk" %}
-    {% endif %}
-    {% if settings.dgEnableSearch === true %}
-      {% include "components/searchContainer.njk" %}
-    {% endif %}
-
-    <main class="content cm-s-obsidian {{contentClasses}}">
-      <header class="site-header">
-        {% if settings.dgShowInlineTitle === true %}
-          <h1 class="site-title">{{ noteTitle }}</h1>
-        {% endif %}
-
-        <div class="header-meta">
-          {% if settings.dgShowTags === true and tags %}
-            <div class="header-tags">
-              {% for tag in tags %}
-                {% if tag != 'gardenEntry' and tag != 'note' %}
-                  <a class="tag" onclick="toggleTagSearch(this)">#{{tag}}</a>
-                {% endif %}
-              {% endfor %}
-            </div>
-          {% endif %}
-        </div>
-
-        {% for imp in dynamics.common.header %}{% include imp %}{% endfor %}
-        {% for imp in dynamics.index.header %}{% include imp %}{% endfor %}
-      </header>
-
-      {% for imp in dynamics.common.beforeContent %}{% include imp %}{% endfor %}
-      {% for imp in dynamics.index.beforeContent %}{% include imp %}{% endfor %}
-
-      <article class="garden-article">
-        {{ content | hideDataview | taggify | link | safe }}
-      </article>
-
-      {% for imp in dynamics.common.afterContent %}{% include imp %}{% endfor %}
-      {% for imp in dynamics.index.afterContent %}{% include imp %}{% endfor %}
-    </main>
-
-    {% if settings.dgShowBacklinks === true or settings.dgShowLocalGraph === true or settings.dgShowToc === true %}
-      {% include "components/sidebar.njk" %}
-    {% endif %}
-
-    {% if settings.dgLinkPreview === true %}
-      {% include "components/linkPreview.njk" %}
-    {% endif %}
-
-    {% for imp in dynamics.common.footer %}{% include imp %}{% endfor %}
-    {% for imp in dynamics.index.footer %}{% include imp %}{% endfor %}
-    {% include "components/lucideIcons.njk" %}
-
-    {# THIS is the single include that owns all sky particles & falling stars #}
-    {% include "components/particlesScript.njk" %}
-<!-- SKYBOX: ethereal aurora background (aria-hidden) -->
-<div class="galaxy-skybox mood-cycle" aria-hidden="true">
-  <div class="nebula nebula--back" aria-hidden="true"></div>
-  <div class="nebula nebula--mid" aria-hidden="true"></div>
-  <div class="nebula nebula--front" aria-hidden="true"></div>
-
-  <div class="cosmic-body p1" aria-hidden="true"></div>
-  <div class="cosmic-body p2" aria-hidden="true"></div>
-
-  <!-- particles.js canvases: ensure your particle init uses these classes -->
-  <!-- optional: <canvas class="pg-canvas pg-canvas--bg"></canvas> -->
-  <!-- optional: <canvas class="pg-canvas pg-canvas--mid"></canvas> -->
-  <!-- optional: <canvas class="pg-canvas pg-canvas--fg"></canvas> -->
-</div>
-
-  </body>
+  <script src="ethereal.js"></script>
+</body>
 </html>
