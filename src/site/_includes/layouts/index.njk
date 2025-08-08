@@ -5,32 +5,25 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
 
-    {# keep your header includes so plugin-inserted assets still load #}
     {% include "components/pageheader.njk" %}
     {% for imp in dynamics.common.head %}{% include imp %}{% endfor %}
     {% for imp in dynamics.index.head %}{% include imp %}{% endfor %}
 
-    {# Primary stylesheet - point this to your theme's custom.css #}
     <link rel="stylesheet" href="/styles/custom.css">
   </head>
 
   <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
 
-    {# ---------- COSMIC LAYERS (DOM + CANVAS) ---------- #}
-    <div class="galaxy-skybox" aria-hidden="true">
-      <!-- Canvas starfield for performance -->
-      <canvas id="starCanvas" class="star-canvas" width="1600" height="900"></canvas>
-
-      <!-- decorative nebula layers -->
+    <!-- Galaxy Skybox: the particle script will create canvases inside this -->
+    <div class="galaxy-skybox" id="galaxySkybox" aria-hidden="true">
+      <!-- decorative nebula layers for parallax (pure CSS; moved visually behind content) -->
       <div class="nebula nebula--back"></div>
       <div class="nebula nebula--mid"></div>
       <div class="nebula nebula--front"></div>
-
-      <!-- a container for occasional shooting-star DOM elements -->
-      <div id="shootingStarContainer" class="shooting-stars"></div>
+      <!-- container for DOM shooting-star elements (script will append) -->
+      <div id="shootingStarContainer" class="shooting-stars" aria-hidden="true"></div>
     </div>
 
-    {# keep your growth/history and nav includes #}
     {% include "components/notegrowthhistory.njk" %}
     {% if settings.dgShowFileTree !== true %}
       {% include "components/navbar.njk" %}
@@ -85,135 +78,8 @@
     {% for imp in dynamics.common.footer %}{% include imp %}{% endfor %}
     {% for imp in dynamics.index.footer %}{% include imp %}{% endfor %}
     {% include "components/lucideIcons.njk" %}
-    {% include "components/particlesScript.njk" %} {# optional - kept for compatibility #}
 
-    <script>
-      /* ============================
-         Starfield & Shooting Stars
-         - Canvas starfield (fast)
-         - Responsive, respects prefers-reduced-motion
-         ============================ */
-      (function() {
-        const canvas = document.getElementById('starCanvas');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        let stars = [];
-        let shootingInterval;
-        let w = canvas.width = Math.max(window.innerWidth, 800);
-        let h = canvas.height = Math.max(window.innerHeight, 600);
-        const DPR = window.devicePixelRatio || 1;
-        canvas.width = w * DPR;
-        canvas.height = h * DPR;
-        canvas.style.width = w + 'px';
-        canvas.style.height = h + 'px';
-        ctx.scale(DPR, DPR);
-
-        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        function rand(min, max){ return Math.random()*(max-min)+min; }
-
-        function initStars() {
-          stars = [];
-          const count = (window.innerWidth < 768) ? 110 : 260;
-          for (let i=0;i<count;i++) {
-            stars.push({
-              x: Math.random() * w,
-              y: Math.random() * h,
-              z: Math.random(),                // depth (for parallax & twinkle)
-              size: Math.random() * 1.8 + 0.3,
-              baseAlpha: 0.3 + Math.random()*0.7,
-              twinklePhase: Math.random() * Math.PI * 2,
-              hueShift: (Math.random() < 0.08) ? rand(-10, 10) : 0 // small colored pops
-            });
-          }
-        }
-
-        function draw(now) {
-          // Clear
-          ctx.clearRect(0,0,w,h);
-
-          // slight gradient background fill is done by CSS layers; canvas just draws stars
-          for (let i=0;i<stars.length;i++){
-            const s = stars[i];
-
-            // twinkle (frame-rate safe)
-            const twinkle = prefersReduced ? 0.0 : Math.sin((now/900) + s.twinklePhase) * 0.35;
-            const alpha = Math.max(0.12, Math.min(1, s.baseAlpha + twinkle));
-
-            // color variation
-            const hue = 210 + s.hueShift; // bluish base
-            ctx.fillStyle = 'rgba(255,255,255,'+alpha+')';
-            // colored star overlay if hueShift set
-            if (s.hueShift !== 0) {
-              ctx.fillStyle = `hsla(${hue}, 80%, ${60 - Math.abs(s.hueShift)}%, ${alpha})`;
-            }
-
-            ctx.beginPath();
-            ctx.arc(s.x, s.y, s.size * (1 + s.z*0.6), 0, Math.PI*2);
-            ctx.fill();
-          }
-        }
-
-        // shooting star generator (DOM elements for nice CSS blur streak)
-        function spawnShootingStar() {
-          if (prefersReduced) return;
-          const container = document.getElementById('shootingStarContainer');
-          if (!container) return;
-
-          const el = document.createElement('div');
-          el.className = 'shooting-star';
-          const top = rand(8, 70);
-          el.style.top = top + '%';
-          el.style.left = '-8%';
-          el.style.setProperty('--duration', (rand(0.9, 1.6)) + 's');
-          el.style.setProperty('--translate-x', (w * (0.7 + Math.random()*0.6)) + 'px');
-          el.style.setProperty('--translate-y', (h * (0.2 + Math.random()*0.6)) + 'px');
-
-          container.appendChild(el);
-          // remove after animation
-          setTimeout(()=> el.remove(), 2200);
-        }
-
-        // animate loop
-        let rafId;
-        function loop(ts){
-          draw(ts || performance.now());
-          rafId = requestAnimationFrame(loop);
-        }
-
-        function onResize(){
-          w = canvas.width = Math.max(window.innerWidth, 800);
-          h = canvas.height = Math.max(window.innerHeight, 600);
-          const DPR = window.devicePixelRatio || 1;
-          canvas.width = w * DPR;
-          canvas.height = h * DPR;
-          canvas.style.width = w + 'px';
-          canvas.style.height = h + 'px';
-          ctx.scale(DPR, DPR);
-          initStars();
-        }
-
-        // init
-        initStars();
-        if (!prefersReduced) {
-          loop();
-          shootingInterval = setInterval(() => { if (Math.random() < 0.55) spawnShootingStar(); }, 4000);
-        } else {
-          // one static draw for reduced motion
-          draw(performance.now());
-        }
-
-        window.addEventListener('resize', () => {
-          // debounce
-          clearTimeout(window._starResizeTimeout);
-          window._starResizeTimeout = setTimeout(onResize, 200);
-        });
-      })();
-    </script>
-
-    {# Keep site JS includes; include your custom script files below if needed #}
-    {% for imp in dynamics.common.footer %}{% include imp %}{% endfor %}
-    {% for imp in dynamics.index.footer %}{% include imp %}{% endfor %}
-
+    {# THIS is the single include that owns all sky particles & falling stars #}
+    {% include "components/particlesScript.njk" %}
   </body>
 </html>
