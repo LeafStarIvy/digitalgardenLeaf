@@ -223,7 +223,7 @@ main,
   margin: 0 auto;
   padding: 4rem 1.2rem;
   position: relative;
-  z-index: 5; /* lowered from 10 so modals/graph can go above */
+  z-index: 10; /* above skybox */
   backdrop-filter: saturate(140%) blur(12px);
   background: rgba(10, 15, 40, 0.3);
   border-radius: var(--radius-lg);
@@ -245,7 +245,7 @@ main,
   color: var(--text);
   margin-bottom: 2.4rem;
   position: relative;
-  z-index: 6; /* lowered from 15 */
+  z-index: 15;
 }
 
 /* Spotlight behind content to emulate Mario Galaxy stage */
@@ -359,14 +359,6 @@ pre {
   cursor: pointer;
   box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(6px);
-}
-
-/* Ensure graph view & search modal stay on top */
-.graph-view,
-#graph-container,
-.search-modal,
-.modal {
-  z-index: 200 !important;
 }
 
 /* Respect reduce motion */
