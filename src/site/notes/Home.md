@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-11T17:13:21.307+02:00","updated":"2025-08-11T19:12:38.250+02:00"}
+{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-11T17:13:21.307+02:00","updated":"2025-08-11T19:17:21.754+02:00"}
 ---
 
 #                   ✨Main Page✨
@@ -29,43 +29,42 @@ Hallo ik ben
 
 { .block-language-dataview}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
+f
 
 test
 
