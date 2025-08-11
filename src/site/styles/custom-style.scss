@@ -1,5 +1,6 @@
 /* =========================================================
    COSMIC DIGITAL GARDEN — custom.css (revamped for Mario Galaxy vibe)
+   + stacking-context / overlay rescue fixes
    - Save to /styles/custom.css
    ========================================================= */
 
@@ -48,7 +49,7 @@ body {
 .galaxy-skybox {
   position: fixed;
   inset: 0;
-  z-index: -100;
+  z-index: -100; /* keep skybox behind everything */
   pointer-events: none;
   overflow: visible;
   perspective: 1000px;
@@ -178,6 +179,7 @@ body {
 }
 
 /* ---------- Stars: keep particles.js canvas layering ---------- */
+/* Note: particle canvases are created inside .galaxy-skybox (z-index:-100), so their z-index values are relative to that stacking context. */
 .pg-canvas {
   position: absolute;
   left: 0;
@@ -207,6 +209,7 @@ body {
 }
 
 /* ---------- Shooting stars container ---------- */
+/* shooting-stars lives inside .galaxy-skybox so it remains behind content */
 .shooting-stars {
   position: absolute;
   inset: 0;
@@ -223,7 +226,7 @@ main,
   margin: 0 auto;
   padding: 4rem 1.2rem;
   position: relative;
-  z-index: 10; /* above skybox */
+  z-index: 0; /* keep at baseline; overlays will be fixed above this */
   backdrop-filter: saturate(140%) blur(12px);
   background: rgba(10, 15, 40, 0.3);
   border-radius: var(--radius-lg);
@@ -245,7 +248,7 @@ main,
   color: var(--text);
   margin-bottom: 2.4rem;
   position: relative;
-  z-index: 15;
+  z-index: 1; /* minimal positive so content sits above skybox elements */
 }
 
 /* Spotlight behind content to emulate Mario Galaxy stage */
@@ -359,6 +362,77 @@ pre {
   cursor: pointer;
   box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(6px);
+}
+
+/* ===========================
+   OVERLAY / GRAPH / SEARCH RESCUE
+   - Attempts to catch common graph/search/modal elements and force them above content.
+   - This block is intentionally broad: it targets class/id name fragments commonly used
+     by graph and modal implementations. If you see an overlay still behind the note,
+     copy/paste that overlay element's exact class or id and I'll add it explicitly.
+   =========================== */
+
+/* keep it conservative: only set fixed + very high z-index and allow element to keep its size */
+[class*="graph"],
+[id*="graph"],
+[class*="connected"],
+[class*="connected-pages"],
+[class*="world"],
+[class*="dg-"],
+[class*="digital"],
+[class*="garden-graph"],
+[class*="graph-view"],
+[class*="graph-container"],
+[class*="connected-view"],
+[class*="connected-overlay"],
+[class*="world-overlay"],
+[class*="world-modal"],
+[class*="modal"],
+[class*="overlay"],
+[class*="search"],
+[class*="search-modal"],
+[class*="search-overlay"],
+[class*="search-container"],
+[id*="Graph"],
+[id*="connected"],
+[role="dialog"],
+[aria-modal="true"] {
+  position: fixed !important;   /* detach from transformed/relative parents */
+  z-index: 999999 !important;   /* very high so overlay is on top */
+  pointer-events: auto !important;
+  /* do not force width/height here (keeps small popups intact) */
+  /* background stays as-defined by the plugin */
+}
+
+/* Also make sure any direct likely IDs get catch-all reset */
+#graph,
+#graphContainer,
+#graph-container,
+#connected-pages,
+#connectedPages,
+#worldButton,
+#world-overlay {
+  position: fixed !important;
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+}
+
+/* If the plugin sets a 'fullscreen' class, ensure it's topmost */
+.fullscreen,
+.fullscreen-overlay,
+.fullscreen-mode,
+.is-fullscreen {
+  position: fixed !important;
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+}
+
+/* Accessibility overlays (common attributes) */
+[aria-hidden="false"][role="dialog"],
+[role="dialog"][aria-modal="true"] {
+  position: fixed !important;
+  z-index: 999999 !important;
+  pointer-events: auto !important;
 }
 
 /* Respect reduce motion */
