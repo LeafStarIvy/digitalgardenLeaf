@@ -10,17 +10,37 @@
     {% for imp in dynamics.index.head %}{% include imp %}{% endfor %}
 
     <link rel="stylesheet" href="/styles/custom.css">
+    <style>
+      /* Ensure galaxy is always behind everything else */
+      .galaxy-skybox {
+        position: fixed;
+        inset: 0;
+        z-index: -1; /* behind all content */
+        pointer-events: none; /* don’t block clicks */
+      }
+      .nebula, .shooting-stars {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+      /* Obsidian DG popups, modals, fullscreen should always be on top */
+      .modal,
+      .fullscreen,
+      .connected-pages-fullscreen,
+      .graph-view,
+      .popover {
+        z-index: 9999 !important;
+      }
+    </style>
   </head>
 
   <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
 
-    <!-- Galaxy Skybox: the particle script will create canvases inside this -->
+    <!-- Galaxy Skybox: always visually behind -->
     <div class="galaxy-skybox" id="galaxySkybox" aria-hidden="true">
-      <!-- decorative nebula layers for parallax (pure CSS; moved visually behind content) -->
       <div class="nebula nebula--back"></div>
       <div class="nebula nebula--mid"></div>
       <div class="nebula nebula--front"></div>
-      <!-- container for DOM shooting-star elements (script will append) -->
       <div id="shootingStarContainer" class="shooting-stars" aria-hidden="true"></div>
     </div>
 
@@ -79,7 +99,6 @@
     {% for imp in dynamics.index.footer %}{% include imp %}{% endfor %}
     {% include "components/lucideIcons.njk" %}
 
-    {# THIS is the single include that owns all sky particles & falling stars #}
     {% include "components/particlesScript.njk" %}
   </body>
 </html>
