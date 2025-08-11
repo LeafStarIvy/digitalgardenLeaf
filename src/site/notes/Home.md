@@ -1,11 +1,13 @@
 ---
-{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-04-26T16:53:37.550+02:00","updated":"2025-05-18T15:22:13.487+02:00"}
+{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-03T19:32:05.363+02:00","updated":"2025-08-03T13:52:36.565+02:00"}
 ---
 
 #                   ✨Main Page✨
 
 > [!INFO]  
 > Welcome to your **Cosmic Vault**—this is mission control for all your notes.
+
+Hallo
 
 ---
 
