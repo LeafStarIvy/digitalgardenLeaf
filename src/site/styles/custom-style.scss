@@ -1,1 +1,433 @@
+/* =========================================================
+   COSMIC DIGITAL GARDEN — custom.css (revamped for Mario Galaxy vibe)
+   - Save to /styles/custom.css
+   ========================================================= */
 
+/* ---------- Palette & variables ---------- */
+:root {
+  --bg-deep: #040619;
+  --bg-mid:  #0d1232;
+  --nebula-1: rgba(45, 85, 255, 0.25);
+  --nebula-2: rgba(124, 58, 237, 0.25);
+  --nebula-3: rgba(6, 182, 212, 0.12);
+  --accent-aurora: #7dd3fc;
+  --accent-gold: #ffcb6b;
+  --text: #e9f2ff;
+  --muted: #9fb0d6;
+  --glass: rgba(12,18,30,0.56);
+  --glass-border: rgba(120,160,255,0.08);
+  --max-width: 1180px;
+  --radius-lg: 16px;
+  --shadow-deep: 0 14px 50px rgba(2,6,18,0.75);
+}
+
+/* ---------- reset & base ---------- */
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background: var(--bg-deep);
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  background: none; /* Remove old gradients, replaced by skybox */
+  overflow-x: hidden;
+}
+
+/* ---------- SKYBOX WRAPPER (fixed, full screen) ---------- */
+.galaxy-skybox {
+  position: fixed;
+  inset: 0;
+  z-index: -100;
+  pointer-events: none;
+  overflow: visible;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  background: radial-gradient(ellipse at center, #020315 0%, #000011 100%);
+  filter: saturate(1.15) contrast(1.1);
+}
+
+/* ---------- Cosmic Bodies (big glowing spheres) ---------- */
+.cosmic-body {
+  position: absolute;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 30px var(--accent-aurora));
+  will-change: transform;
+  opacity: 0.7;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  mix-blend-mode: screen;
+}
+
+/* Large glowing planet 1 */
+.cosmic-body.planet-1 {
+  width: 600px;
+  height: 600px;
+  top: 10%;
+  left: 15%;
+  background: radial-gradient(circle at 40% 40%, #2d55ff, transparent 70%);
+  animation-name: floatSlow1;
+  animation-duration: 40s;
+}
+
+/* Large glowing planet 2 */
+.cosmic-body.planet-2 {
+  width: 500px;
+  height: 500px;
+  top: 60%;
+  left: 70%;
+  background: radial-gradient(circle at 30% 30%, #7c3aed, transparent 80%);
+  animation-name: floatSlow2;
+  animation-duration: 35s;
+}
+
+/* Smaller glowing nebula 3 */
+.cosmic-body.nebula-3 {
+  width: 400px;
+  height: 400px;
+  top: 35%;
+  left: 50%;
+  background: radial-gradient(circle at 50% 50%, #06b6d4, transparent 75%);
+  animation-name: floatSlow3;
+  animation-duration: 30s;
+  opacity: 0.45;
+}
+
+/* Animations for subtle floating */
+@keyframes floatSlow1 {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  100% { transform: translate3d(10px, 15px, 0) rotate(3deg) scale(1.05); }
+}
+@keyframes floatSlow2 {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  100% { transform: translate3d(-15px, 12px, 0) rotate(-4deg) scale(1.1); }
+}
+@keyframes floatSlow3 {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  100% { transform: translate3d(12px, -10px, 0) rotate(2deg) scale(1.08); }
+}
+
+/* ---------- Nebula Layers for depth & parallax ---------- */
+.nebula {
+  position: absolute;
+  left: -25%;
+  top: -25%;
+  width: 150%;
+  height: 150%;
+  border-radius: 50%;
+  filter: blur(80px) saturate(180%);
+  pointer-events: none;
+  will-change: transform, opacity;
+  mix-blend-mode: screen;
+}
+
+.nebula--back {
+  background: radial-gradient(
+      700px 420px at 18% 32%,
+      rgba(10, 28, 60, 0.85),
+      transparent 35%
+    ),
+    radial-gradient(480px 300px at 82% 72%, var(--nebula-2), transparent 32%);
+  opacity: 0.65;
+  transform: translate(-8%, -5%) scale(1.1);
+  animation: nebulaFloat 50s ease-in-out infinite alternate;
+}
+
+.nebula--mid {
+  background: radial-gradient(
+      480px 260px at 62% 32%,
+      var(--nebula-1),
+      transparent 38%
+    ),
+    radial-gradient(420px 230px at 22% 70%, var(--nebula-2), transparent 36%);
+  opacity: 0.55;
+  transform: translate(3%, 3%) scale(1.05);
+  animation: nebulaFloat 45s ease-in-out infinite alternate-reverse;
+}
+
+.nebula--front {
+  background: radial-gradient(
+      280px 180px at 32% 32%,
+      var(--nebula-3),
+      transparent 45%
+    ),
+    radial-gradient(320px 220px at 72% 72%, rgba(255, 255, 255, 0.03), transparent 45%);
+  opacity: 0.4;
+  transform: translate(-3%, 7%) scale(1.03);
+  animation: nebulaFloat 40s ease-in-out infinite alternate;
+}
+
+@keyframes nebulaFloat {
+  0% {
+    transform: translate(0%, 0%) scale(1);
+  }
+  100% {
+    transform: translate(3%, 4%) scale(1.03);
+  }
+}
+
+/* ---------- Stars: keep particles.js canvas layering ---------- */
+.pg-canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  filter: brightness(1.05) contrast(1.1);
+}
+
+.pg-canvas--bg {
+  z-index: 0;
+  opacity: 0.8;
+}
+
+.pg-canvas--mid {
+  z-index: 2;
+  opacity: 0.9;
+}
+
+.pg-canvas--fg {
+  z-index: 3;
+  opacity: 1;
+}
+
+/* ---------- Shooting stars container ---------- */
+.shooting-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ---------- Main content container (above skybox) ---------- */
+.container,
+main,
+.content,
+.app-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 4rem 1.2rem;
+  position: relative;
+  z-index: 10; /* above skybox */
+  backdrop-filter: saturate(140%) blur(12px);
+  background: rgba(10, 15, 40, 0.3);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-deep);
+}
+
+/* Garden article styling */
+.garden-article {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px) saturate(130%);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-deep);
+  color: var(--text);
+  margin-bottom: 2.4rem;
+  position: relative;
+  z-index: 15;
+}
+
+/* Spotlight behind content to emulate Mario Galaxy stage */
+.garden-article::before {
+  content: "";
+  position: absolute;
+  inset: -40px -60px auto -60px;
+  height: 460px;
+  background: radial-gradient(
+    900px 300px at 50% 12%,
+    rgba(125, 211, 252, 0.12),
+    rgba(0, 0, 0, 0)
+  );
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(42px);
+}
+
+/* ---------- Headers & tags ---------- */
+.site-header {
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+.site-title {
+  font-size: clamp(1.8rem, 4vw, 3.4rem);
+  margin: 0 0 0.6rem 0;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  background: linear-gradient(
+    90deg,
+    #7dd3fc,
+    #b692ff,
+    #ffd16b,
+    #7dd3fc
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 280% 280%;
+  animation: titleGradient 10s ease-in-out infinite;
+}
+
+@keyframes titleGradient {
+  to {
+    background-position: 100% 0;
+  }
+}
+
+.header-meta {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  color: var(--muted);
+}
+
+.header-tags .tag {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.header-tags .tag:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(12, 20, 40, 0.7);
+}
+
+/* Links & code blocks */
+a {
+  color: var(--accent-aurora);
+  text-decoration: none;
+}
+
+pre {
+  background: rgba(8, 12, 20, 0.56);
+  padding: 1rem;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+/* Focus mode */
+.fullscreen-mode .content {
+  max-width: 100%;
+  padding: 3.5rem 2rem;
+}
+
+.fullscreen-btn {
+  position: fixed;
+  right: 1rem;
+  bottom: 1.2rem;
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+}
+
+/* Respect reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .nebula,
+  .pg-canvas,
+  .site-title,
+  .cosmic-body {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .container,
+  main,
+  .content {
+    padding: 2rem 1rem;
+  }
+  .garden-article {
+    padding: 1.4rem;
+    border-radius: 12px;
+  }
+}
+
+/* ---------- Fix ---------- */
+
+/* --- Background Layers --- */
+.galaxy-skybox,
+.galaxy-skybox * {
+  position: absolute;
+  z-index: -100 !important; /* stays behind all content */
+}
+
+/* --- Main content (note pages) --- */
+main.content,
+.garden-article,
+.container,
+.content,
+.app-container {
+  position: relative;
+  z-index: 5 !important; /* lower than graph/search layers */
+}
+
+/* --- Graph / World View --- */
+#graph-container,
+.graph-view,
+.worldview-container {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 200 !important; /* guaranteed above main note */
+}
+
+/* --- Search modal and overlays --- */
+.search-modal,
+.search-container,
+.modal {
+  position: fixed !important;
+  z-index: 300 !important;
+}
+
+/* Prevent stacking context traps from parents */
+body,
+html {
+  z-index: auto;
+  position: static;
+}
