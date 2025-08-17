@@ -1,1159 +1,1682 @@
 /*
- * ENHANCED COSMIC DIGITAL GARDEN SCSS
- * Advanced immersive cosmic theme with expanded color system,
- * interactive elements, and pure CSS animations
+ * ADVANCED GALAXY THEME - COMPLETE SITE TRANSFORMATION
+ * Deep space exploration with cutting-edge design
  */
 
-// 1. CORE VARIABLES & EXPANDED AURORA CELESTIAL PALETTE
-// ------------------------------------------------------------------
-body {
-  /* Aurora Celestial theme - Massively enhanced color system */
+// =============================================================================
+// 1. ADVANCED GALAXY COLOR SYSTEM
+// =============================================================================
+
+:root {
+  /* Deep Space Foundation Colors */
+  --void-black: #000000;
+  --deep-void: #0a0a0f;
+  --cosmic-void: #0f0f1a;
+  --space-depths: #141425;
+  --nebula-dark: #1a1a2e;
+  --stellar-dark: #16213e;
+  --cosmic-navy: #0f1419;
+  --interstellar: #16181d;
   
-  /* Primary Cosmic Scale - Expanded depth range */
-  --cosmic-void: #010508;        /* Absolute void */
-  --cosmic-abyss: #01080F;       /* Deep abyss */
-  --primary-900: #020B19;        /* Deepest Space */
-  --primary-850: #051425;        /* Deeper Space */
-  --primary-800: #0A192F;        /* Deep Space */
-  --primary-750: #0E2038;        /* Between Deep Space and Space */
-  --primary-700: #112240;        /* Space */
-  --primary-650: #172C4C;        /* Upper Space */
-  --primary-600: #1E3A5F;        /* Twilight */
-  --primary-550: #244467;        /* Lower Dusk */
-  --primary-500: #2A4A73;        /* Dusk */
-  --primary-450: #31547F;        /* Upper Dusk */
-  --primary-400: #3B5F8F;        /* Evening Sky */
-  --primary-350: #466B9E;        /* Lower Night Sky */
-  --primary-300: #5478AD;        /* Night Sky */
-  --primary-250: #658ABE;        /* Upper Night Sky */
-  --primary-200: #7599CB;        /* Dawn */
-  --primary-150: #8AADED;        /* Lower Morning Sky */
-  --primary-100: #A3BFEF;        /* Morning Sky */
-  --primary-75: #BECCEA;         /* Light Morning */
-  --primary-50: #D4E5FF;         /* Light Sky */
-  --primary-25: #E9F2FF;         /* Whisper Sky */
+  /* Galaxy Core Colors */
+  --galaxy-core-1: #16213e;
+  --galaxy-core-2: #1a2332;
+  --galaxy-core-3: #1e2a3a;
+  --galaxy-core-4: #233142;
+  --galaxy-core-5: #2a394a;
+  --galaxy-spiral: #2f4156;
   
-  /* Aurora Spectrum - Expanded with intensity levels */
+  /* Stellar Light Spectrum */
+  --star-white: #f8fafc;
+  --star-blue-white: #e2e8f0;
+  --star-silver: #cbd5e1;
+  --cosmic-dust: #94a3b8;
+  --nebula-mist: #64748b;
+  --dark-matter: #475569;
+  --void-matter: #334155;
   
-  /* Teal/Blue spectrum */
-  --aurora-teal-900: #035D87;    /* Deep Ocean Teal */
-  --aurora-teal-700: #0679B3;    /* Ocean Teal */
-  --aurora-teal-500: #0EA5E9;    /* Electric Teal */
-  --aurora-teal-300: #38BDF8;    /* Bright Teal */
-  --aurora-teal-200: #55C6FA;    /* Light Electric Teal */
-  --aurora-teal-100: #7DD3FC;    /* Light Teal */
-  --aurora-teal-50: #BAE6FD;     /* Ice Teal */
-  --aurora-teal-25: #E0F5FF;     /* Faint Teal */
+  /* Advanced Nebula Palette */
+  --nebula-purple-900: #2d1b69;
+  --nebula-purple-800: #3730a3;
+  --nebula-purple-700: #4338ca;
+  --nebula-purple-600: #4f46e5;
+  --nebula-purple-500: #6366f1;
+  --nebula-purple-400: #818cf8;
+  --nebula-purple-300: #a5b4fc;
+  --nebula-purple-200: #c7d2fe;
+  --nebula-purple-100: #e0e7ff;
   
-  /* Cyan spectrum */
-  --aurora-cyan-900: #03565F;    /* Deep Cyan */
-  --aurora-cyan-700: #047481;    /* Ocean Cyan */
-  --aurora-cyan-500: #06B6D4;    /* Cyan */
-  --aurora-cyan-300: #22D3EE;    /* Bright Cyan */
-  --aurora-cyan-200: #4DDBF1;    /* Light Electric Cyan */
-  --aurora-cyan-100: #A5F3FC;    /* Light Cyan */
-  --aurora-cyan-50: #CFFAFE;     /* Ice Cyan */
-  --aurora-cyan-25: #ECFDFF;     /* Faint Cyan */
+  --nebula-cyan-900: #0c4a6e;
+  --nebula-cyan-800: #075985;
+  --nebula-cyan-700: #0369a1;
+  --nebula-cyan-600: #0284c7;
+  --nebula-cyan-500: #0ea5e9;
+  --nebula-cyan-400: #38bdf8;
+  --nebula-cyan-300: #7dd3fc;
+  --nebula-cyan-200: #bae6fd;
+  --nebula-cyan-100: #e0f2fe;
   
-  /* Purple spectrum */
-  --aurora-purple-900: #4B1E99;  /* Deep Dark Purple */
-  --aurora-purple-700: #5F25C0;  /* Dark Purple */
-  --aurora-purple-500: #7C3AED;  /* Deep Purple */
-  --aurora-purple-400: #8B51F5;  /* Rich Purple */
-  --aurora-purple-300: #A78BFA;  /* Medium Purple */
-  --aurora-purple-200: #BFA8FC;  /* Light Medium Purple */
-  --aurora-purple-100: #C4B5FD;  /* Light Purple */
-  --aurora-purple-50: #EDE9FE;   /* Ice Purple */
-  --aurora-purple-25: #F6F4FF;   /* Faint Purple */
+  --nebula-teal-900: #134e4a;
+  --nebula-teal-800: #115e59;
+  --nebula-teal-700: #0f766e;
+  --nebula-teal-600: #0d9488;
+  --nebula-teal-500: #14b8a6;
+  --nebula-teal-400: #2dd4bf;
+  --nebula-teal-300: #5eead4;
+  --nebula-teal-200: #99f6e4;
+  --nebula-teal-100: #ccfbf1;
   
-  /* Pink spectrum */
-  --aurora-pink-900: #8F1DAA;    /* Deep Dark Pink */
-  --aurora-pink-700: #B324D3;    /* Dark Pink */
-  --aurora-pink-500: #D946EF;    /* Deep Pink */
-  --aurora-pink-400: #E26BF2;    /* Rich Pink */
-  --aurora-pink-300: #F0ABFC;    /* Medium Pink */
-  --aurora-pink-200: #F2BDFD;    /* Light Medium Pink */
-  --aurora-pink-100: #F5D0FE;    /* Light Pink */
-  --aurora-pink-50: #FAE8FF;     /* Ice Pink */
-  --aurora-pink-25: #FDF4FF;     /* Faint Pink */
+  --nebula-violet-900: #4c1d95;
+  --nebula-violet-800: #5b21b6;
+  --nebula-violet-700: #6d28d9;
+  --nebula-violet-600: #7c3aed;
+  --nebula-violet-500: #8b5cf6;
+  --nebula-violet-400: #a78bfa;
+  --nebula-violet-300: #c4b5fd;
+  --nebula-violet-200: #ddd6fe;
+  --nebula-violet-100: #ede9fe;
   
-  /* Additional aurora hues */
-  --aurora-emerald-500: #10B981; /* Emerald */
-  --aurora-emerald-300: #34D399; /* Bright Emerald */
-  --aurora-emerald-100: #A7F3D0; /* Light Emerald */
+  --nebula-indigo-900: #312e81;
+  --nebula-indigo-800: #3730a3;
+  --nebula-indigo-700: #4338ca;
+  --nebula-indigo-600: #4f46e5;
+  --nebula-indigo-500: #6366f1;
+  --nebula-indigo-400: #818cf8;
+  --nebula-indigo-300: #a5b4fc;
+  --nebula-indigo-200: #c7d2fe;
+  --nebula-indigo-100: #e0e7ff;
   
-  --aurora-amber-500: #F59E0B;   /* Amber */
-  --aurora-amber-300: #FBBF24;   /* Bright Amber */
-  --aurora-amber-100: #FDE68A;   /* Light Amber */
+  --nebula-pink-900: #831843;
+  --nebula-pink-800: #be185d;
+  --nebula-pink-700: #c2185b;
+  --nebula-pink-600: #db2777;
+  --nebula-pink-500: #ec4899;
+  --nebula-pink-400: #f472b6;
+  --nebula-pink-300: #f9a8d4;
+  --nebula-pink-200: #fbcfe8;
+  --nebula-pink-100: #fce7f3;
   
-  --aurora-rose-500: #F43F5E;    /* Rose */
-  --aurora-rose-300: #FB7185;    /* Bright Rose */
-  --aurora-rose-100: #FCA5B3;    /* Light Rose */
+  /* Stellar Energy Colors */
+  --stellar-gold: #fbbf24;
+  --stellar-amber: #f59e0b;
+  --stellar-orange: #ea580c;
+  --stellar-red: #dc2626;
+  --stellar-emerald: #10b981;
+  --stellar-lime: #84cc16;
   
-  /* Advanced Gradient Palettes */
-  --gradient-cosmic-horizon: linear-gradient(135deg, var(--primary-900), var(--primary-700) 50%, var(--primary-600));
-  --gradient-aurora-sweep: linear-gradient(90deg, var(--aurora-purple-500), var(--aurora-pink-500), var(--aurora-teal-500));
-  --gradient-northern-lights: linear-gradient(135deg, var(--aurora-cyan-500), var(--aurora-teal-300), var(--aurora-purple-400));
-  --gradient-nebula-dust: linear-gradient(to bottom, var(--primary-800), var(--primary-700), var(--aurora-purple-900) 80%);
-  --gradient-star-trail: linear-gradient(60deg, var(--primary-900), var(--primary-800) 30%, var(--primary-700) 70%, var(--primary-600));
-  --gradient-text-cosmic: linear-gradient(90deg, var(--aurora-teal-300), var(--aurora-cyan-200), var(--aurora-purple-300));
-  --gradient-button-glow: linear-gradient(45deg, var(--aurora-purple-500), var(--aurora-teal-500));
-  --gradient-card-highlight: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
+  /* Advanced Gradient System */
+  --gradient-cosmic-dawn: linear-gradient(135deg, var(--deep-void) 0%, var(--nebula-dark) 30%, var(--galaxy-core-2) 70%, var(--nebula-purple-900) 100%);
+  --gradient-stellar-horizon: linear-gradient(90deg, var(--nebula-purple-800), var(--nebula-cyan-700), var(--nebula-teal-600));
+  --gradient-nebula-storm: linear-gradient(45deg, var(--nebula-violet-800), var(--nebula-purple-700), var(--nebula-indigo-800));
+  --gradient-galaxy-spiral: conic-gradient(from 45deg, var(--nebula-purple-600), var(--nebula-cyan-500), var(--nebula-violet-600), var(--nebula-purple-600));
+  --gradient-starfield: radial-gradient(circle at 30% 20%, var(--nebula-purple-800) 0%, transparent 50%), radial-gradient(circle at 70% 80%, var(--nebula-cyan-800) 0%, transparent 50%);
+  --gradient-aurora: linear-gradient(90deg, var(--nebula-purple-400), var(--nebula-cyan-300), var(--nebula-teal-400), var(--nebula-violet-400));
+  --gradient-cosmic-text: linear-gradient(90deg, var(--nebula-cyan-200), var(--nebula-purple-200), var(--nebula-violet-300));
+  --gradient-button-nova: linear-gradient(135deg, var(--nebula-purple-600), var(--nebula-cyan-600));
+  --gradient-card-cosmic: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(14, 165, 233, 0.05) 100%);
   
-  /* Background system - Enhanced with variable opacity levels */
-  --background-primary: var(--primary-800);
-  --background-secondary: var(--primary-700);
-  --background-tertiary: var(--primary-600);
-  --background-quaternary: var(--primary-500);
-  --surface-1: var(--primary-500);
-  --surface-2: var(--primary-400);
-  --surface-3: var(--primary-450);
+  /* Background System */
+  --bg-primary: var(--deep-void);
+  --bg-secondary: var(--cosmic-void);
+  --bg-tertiary: var(--space-depths);
+  --bg-card: var(--nebula-dark);
+  --bg-surface: var(--stellar-dark);
+  --bg-overlay: rgba(10, 10, 15, 0.95);
   
-  /* Glass effect presets with variable intensity */
-  --glass-bg: rgba(10, 25, 47, 0.75);
-  --glass-bg-lighter: rgba(16, 36, 64, 0.65);
-  --glass-bg-lightest: rgba(22, 42, 75, 0.55);
-  --glass-bg-dark: rgba(1, 8, 15, 0.85);
-  --glass-bg-darkest: rgba(1, 5, 10, 0.95);
-  --glass-blur-strong: blur(12px);
-  --glass-blur-medium: blur(8px);
-  --glass-blur-light: blur(4px);
+  /* Glass Morphism System */
+  --glass-cosmic: rgba(22, 33, 62, 0.7);
+  --glass-nebula: rgba(29, 27, 105, 0.6);
+  --glass-stellar: rgba(16, 18, 29, 0.8);
+  --glass-void: rgba(10, 10, 15, 0.9);
+  --glass-blur-intense: blur(20px);
+  --glass-blur-medium: blur(12px);
+  --glass-blur-light: blur(6px);
   
-  /* Text system - Enhanced with varied intensity and purpose */
-  --text-primary: var(--aurora-cyan-50);
-  --text-secondary: var(--aurora-teal-100);
-  --text-tertiary: var(--aurora-teal-200);
-  --text-accent: var(--aurora-purple-100);
-  --text-accent-strong: var(--aurora-purple-300);
-  --text-muted: var(--primary-200);
-  --text-dim: var(--primary-300);
-  --text-normal: var(--primary-50);
-  --text-bright: var(--primary-25);
-  --text-highlight: var(--aurora-amber-100);
-  --text-danger: var(--aurora-rose-300);
-  --text-success: var(--aurora-emerald-300);
-  --text-warning: var(--aurora-amber-300);
-  --text-info: var(--aurora-teal-300);
+  /* Text Hierarchy */
+  --text-primary: var(--star-white);
+  --text-secondary: var(--star-blue-white);
+  --text-tertiary: var(--star-silver);
+  --text-accent: var(--nebula-cyan-200);
+  --text-accent-bright: var(--nebula-purple-300);
+  --text-muted: var(--cosmic-dust);
+  --text-dim: var(--nebula-mist);
+  --text-highlight: var(--stellar-gold);
+  --text-success: var(--stellar-emerald);
+  --text-warning: var(--stellar-amber);
+  --text-danger: var(--stellar-red);
   
-  /* Interactive system - Expanded states */
-  --link-color: var(--aurora-teal-300);
-  --link-hover: var(--aurora-cyan-100);
-  --link-active: var(--aurora-cyan-200);
-  --link-visited: var(--aurora-teal-700);
-  --highlight: var(--aurora-purple-300);
-  --highlight-dim: var(--aurora-purple-700);
-  --highlight-bright: var(--aurora-purple-200);
-  --highlight-bg: rgba(124, 58, 237, 0.12);
-  --highlight-bg-strong: rgba(124, 58, 237, 0.25);
-  --selection-bg: rgba(10, 147, 150, 0.25);
-  --selection-text: var(--aurora-cyan-50);
+  /* Interactive States */
+  --link-primary: var(--nebula-cyan-400);
+  --link-hover: var(--nebula-cyan-200);
+  --link-active: var(--nebula-cyan-100);
+  --link-visited: var(--nebula-purple-400);
   
-  /* Typography system - Enhanced with spacing and rhythm */
-  --font-family-main: 'Inter', 'SF Pro Display', system-ui, sans-serif;
-  --font-family-heading: 'Space Grotesk', 'Montserrat', 'Segoe UI', sans-serif;
-  --font-family-code: 'JetBrains Mono', 'Fira Code', monospace;
+  /* Border & Shadow System */
+  --border-cosmic: rgba(79, 70, 229, 0.3);
+  --border-nebula: rgba(14, 165, 233, 0.25);
+  --border-stellar: rgba(99, 102, 241, 0.2);
+  --border-void: rgba(248, 250, 252, 0.1);
+  
+  --shadow-cosmic: 0 25px 60px rgba(10, 10, 15, 0.6), 0 0 40px rgba(79, 70, 229, 0.15);
+  --shadow-nebula: 0 20px 40px rgba(10, 10, 15, 0.5), 0 0 30px rgba(14, 165, 233, 0.1);
+  --shadow-stellar: 0 15px 30px rgba(10, 10, 15, 0.4), 0 0 20px rgba(99, 102, 241, 0.08);
+  --shadow-void: inset 0 1px 0 rgba(248, 250, 252, 0.05);
+  --shadow-glow-purple: 0 0 30px rgba(139, 92, 246, 0.5);
+  --shadow-glow-cyan: 0 0 30px rgba(56, 189, 248, 0.5);
+  --shadow-glow-teal: 0 0 30px rgba(45, 212, 191, 0.5);
+  
+  /* Advanced Typography */
+  --font-family-display: 'Orbitron', 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-family-body: 'Inter', 'SF Pro Text', system-ui, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
-  --font-size-md: 1.125rem;
-  --font-size-lg: 1.25rem;
-  --font-size-xl: 1.5rem;
-  --font-size-2xl: 1.75rem;
-  --font-size-3xl: 2.25rem;
-  --font-size-4xl: 3rem;
-  --font-size-5xl: 3.75rem;
-  --font-size-6xl: 4.5rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+  --font-size-7xl: 4.5rem;
+  --font-size-8xl: 6rem;
   
-  --line-height-tight: 1.2;
-  --line-height-snug: 1.375;
-  --line-height-base: 1.6;
-  --line-height-loose: 1.75;
-  --line-height-relaxed: 1.9;
+  /* Spacing System */
+  --space-px: 1px;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
   
-  --font-weight-light: 300;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
+  /* Border Radius System */
+  --radius-sm: 0.375rem;
+  --radius: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-3xl: 3rem;
+  --radius-full: 9999px;
   
-  --letter-spacing-tight: -0.025em;
-  --letter-spacing-normal: 0;
-  --letter-spacing-wide: 0.025em;
-  --letter-spacing-wider: 0.05em;
-  --letter-spacing-widest: 0.1em;
+  /* Animation System */
+  --duration-75: 75ms;
+  --duration-100: 100ms;
+  --duration-150: 150ms;
+  --duration-200: 200ms;
+  --duration-300: 300ms;
+  --duration-500: 500ms;
+  --duration-700: 700ms;
+  --duration-1000: 1000ms;
   
-  --heading-letter-spacing: -0.025em;
-  --body-letter-spacing: 0.01em;
-  --code-letter-spacing: -0.01em;
-  
-  /* Layout system - Fine-tuned responsive controls */
-  --content-width: 700px;
-  --content-width-wide: 900px;
-  --content-width-narrow: 600px;
-  --sidebar-width: 300px;
-  --sidebar-width-collapsed: 60px;
-  --site-padding: 24px;
-  --site-padding-sm: 16px;
-  --site-padding-lg: 32px;
-  --element-spacing: 24px;
-  --element-spacing-sm: 16px;
-  --element-spacing-lg: 32px;
-  --element-spacing-xl: 48px;
-  --header-height: 60px;
-  --header-height-mobile: 50px;
-  --section-spacing: 64px;
-  --grid-gap: 24px;
-  
-  /* Border system - Expanded with variants */
-  --border-radius-2xs: 2px;
-  --border-radius-xs: 4px;
-  --border-radius-sm: 8px;
-  --border-radius: 12px;
-  --border-radius-md: 12px;
-  --border-radius-lg: 16px;
-  --border-radius-xl: 24px;
-  --border-radius-2xl: 32px;
-  --border-radius-3xl: 48px;
-  --border-radius-full: 9999px;
-  
-  --border-width-thin: 0.5px;
-  --border-width: 1px;
-  --border-width-2: 2px;
-  --border-width-4: 4px;
-  --border-width-8: 8px;
-  
-  --border-style: solid;
-  --border-style-dashed: dashed;
-  --border-style-dotted: dotted;
-  
-  --border-color: rgba(255, 255, 255, 0.1);
-  --border-color-strong: rgba(255, 255, 255, 0.15);
-  --border-color-subtle: rgba(255, 255, 255, 0.05);
-  --border-color-accent: rgba(10, 147, 150, 0.4);
-  --border-color-highlight: rgba(124, 58, 237, 0.4);
-  
-  /* Shadow system - Enhanced depth perception */
-  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-  --shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.25), 0 15px 12px rgba(0, 0, 0, 0.15);
-  --shadow-xl: 0 25px 60px rgba(0, 0, 0, 0.3), 0 20px 25px rgba(0, 0, 0, 0.25);
-  --shadow-2xl: 0 35px 75px rgba(0, 0, 0, 0.35), 0 30px 40px rgba(0, 0, 0, 0.3);
-  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
-  --shadow-inner-md: inset 0 4px 8px 0 rgba(0, 0, 0, 0.12);
-  --shadow-inner-lg: inset 0 8px 16px 0 rgba(0, 0, 0, 0.18);
-  --shadow-outline: 0 0 0 3px rgba(37, 99, 235, 0.25);
-  --shadow-outline-purple: 0 0 0 3px rgba(124, 58, 237, 0.25);
-  --shadow-outline-teal: 0 0 0 3px rgba(14, 165, 233, 0.25);
-  
-  /* Glow effects - New effect system */
-  --glow-subtle: 0 0 15px rgba(14, 165, 233, 0.15);
-  --glow-medium: 0 0 25px rgba(14, 165, 233, 0.25);
-  --glow-strong: 0 0 35px rgba(14, 165, 233, 0.35);
-  --glow-purple-subtle: 0 0 15px rgba(124, 58, 237, 0.15);
-  --glow-purple-medium: 0 0 25px rgba(124, 58, 237, 0.25);
-  --glow-purple-strong: 0 0 35px rgba(124, 58, 237, 0.35);
-  --glow-cyan-subtle: 0 0 15px rgba(6, 182, 212, 0.15);
-  --glow-cyan-medium: 0 0 25px rgba(6, 182, 212, 0.25);
-  --glow-cyan-strong: 0 0 35px rgba(6, 182, 212, 0.35);
-  
-  /* Component-specific variables */
-  --callout-border-width: 2px;
-  --callout-padding: 18px;
-  --callout-radius: var(--border-radius-sm);
-  --callout-shadow: var(--shadow-sm);
-  
-  --widget-bg: var(--glass-bg);
-  --widget-border: var(--border-color);
-  --widget-shadow: var(--shadow-md);
-  --widget-radius: var(--border-radius);
-  
-  --card-bg: var(--glass-bg-lighter);
-  --card-border: var(--border-color);
-  --card-shadow: var(--shadow-md);
-  --card-radius: var(--border-radius-md);
-  --card-padding: 1.5rem;
-  
-  --button-radius: var(--border-radius);
-  --button-padding-y: 0.6em;
-  --button-padding-x: 1.2em;
-  --button-shadow: var(--shadow-sm);
-  --button-shadow-hover: var(--shadow-md);
-  
-  --background-primary-alt: var(--glass-bg);
-  --background-secondary-alt: var(--glass-bg-lighter);
-  
-  /* Background gradient */
-  --bg-gradient-start: var(--primary-900);
-  --bg-gradient-mid: var(--primary-800);
-  --bg-gradient-end: var(--primary-700);
-  --bg-gradient-dir: 135deg;
-  
-  /* Effects */
-  --blur-amount: 10px;
-  --blur-amount-strong: 20px;
-  --blur-amount-subtle: 5px;
-  --grain-opacity: 0.04;
-  --grain-size: 150px;
-  --aurora-opacity: 0.2;
-  --starfield-opacity: 0.5;
-  --transition-speed: 0.3s;
-  --transition-speed-fast: 0.15s;
-  --transition-speed-slow: 0.5s;
-  --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-ease-in: cubic-bezier(0.4, 0, 1, 1);
-  --transition-ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --transition-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  
-  /* Animation timings */
-  --animation-slower: 1500ms;
-  --animation-slow: 1000ms;
-  --animation-normal: 500ms;
-  --animation-fast: 300ms;
-  --animation-faster: 150ms;
-  
-  /* Parallax depths */
-  --parallax-depth-1: 10px;
-  --parallax-depth-2: 20px;
-  --parallax-depth-3: 30px;
-  --parallax-depth-4: 40px;
-  
-  /* Custom masks for clipping effects */
-  --mask-fade-horizontal: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-  --mask-fade-vertical: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-  --mask-radial: radial-gradient(circle at center, black 30%, transparent 70%);
-  
-  /* Global setup */
-  position: relative;
-  z-index: 0;
-  font-family: var(--font-family-main);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
-  letter-spacing: var(--body-letter-spacing);
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+// =============================================================================
+// 2. ADVANCED ANIMATED BACKGROUND SYSTEM
+// =============================================================================
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-body);
   color: var(--text-primary);
-  background-color: var(--primary-900);
+  background: var(--bg-primary);
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
-  /* Set up selection styling */
-  ::selection {
-    background-color: var(--selection-bg);
-    color: var(--selection-text);
-  }
 }
 
-// 6. MIXINS & UTILITIES
-// ------------------------------------------------------------------
-@mixin gradient-bg($dir, $start, $end) {
-  background: linear-gradient($dir, $start, $end);
-}
-
-@mixin glass-card($blur: 8px, $alpha: 0.1) {
-  background: rgba(255,255,255,$alpha);
-  backdrop-filter: blur($blur);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-}
-
-// 9. LINK STYLES WHEN HOVERING ABOVE ONE
-a {
-  color: var(--link-color);
-  text-decoration: none;
-  position: relative;
-  transition: color 0.3s ease;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -2px; left: 0;
-    width: 0; height: 2px;
-    background: var(--link-color);
-    transition: width 0.3s ease;
-  }
-  
-  &:hover { color: var(--highlight); }
-  &:hover::after { width: 100%; }
-  
-  // Optional enhancement for internal links while keeping original animation
-  &.internal-link {
-    border-bottom: 1px dashed rgba(138, 214, 238, 0.4);
-    
-    &:hover {
-      border-bottom: 1px dashed rgba(191, 166, 224, 0.6);
-    }
-  }
-}
-
-// Replace section 11. CUSTOM SCROLLBAR
-// ------------------------------------------------------------------
-::-webkit-scrollbar { 
-  width: 8px; 
-  height: 8px;
-}
-
-::-webkit-scrollbar-track { 
-  background: rgba(0,0,0,0.1);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--highlight), var(--text-accent));
-  border-radius: 10px;
-  border: 2px solid transparent;
-  background-clip: padding-box;
-  
-  &:hover {
-    background: linear-gradient(var(--text-accent), var(--highlight));
-    border-width: 1px;
-  }
-}
-
-// For Firefox
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--highlight) transparent;
-}
-
-// 12.1 Base Heading (h1) Overrides
-h1 {
-  font-size: 2.8rem;
-  margin-bottom: 1rem;
-  color: var(--text-primary);
-  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-}
-
-// 12.2 Callout Component Styles
-.callout {
-  border-left: var(--callout-border-width) solid var(--highlight);
-  background: rgba(0,0,0,0.2);
-  padding: var(--callout-padding);
-  margin: 1.5rem 0;
-  border-radius: var(--callout-radius);
-  position: relative;
-  z-index: 2;
-  overflow: hidden;
-}
-
-  /* 12.2.1 Callout Gradient Overlay */
-  .callout::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: linear-gradient(135deg,
-                rgba(255,255,255,0.05),
-                transparent 50%);
-    pointer-events: none;
-  }
-
-  /* 12.2.2 Callout Type Colors */
-  .callout.note    { border-left-color: var(--link-color); }
-  .callout.warning { border-left-color: #FFD77A; }
-  .callout.important { border-left-color: #FF7A7A; }
-  .callout.tip     { border-left-color: #7AFF9C; }
-
-  /* 12.2.3 Callout Title */
-  .callout .callout-title {
-    font-weight: var(--font-weight-medium);
-    margin-bottom: 0.5rem;
-    display: flex;
-    align-items: center;
-  }
-    .callout .callout-title svg {
-      margin-right: 0.5rem;
-    }
-
-// 12.3 Table Overrides
-table {
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  margin: 2rem 0;
+  height: 100%;
+  background: var(--gradient-cosmic-dawn);
+  z-index: -3;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(79, 70, 229, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(14, 165, 233, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 90% 20%, rgba(45, 212, 191, 0.15) 0%, transparent 50%);
+  z-index: -2;
+  animation: nebula-drift 20s ease-in-out infinite;
+}
+
+/* Animated Starfield */
+.starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.star {
+  position: absolute;
+  background: var(--star-white);
+  border-radius: 50%;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.star:nth-child(odd) {
+  animation-delay: -1s;
+}
+
+.star:nth-child(3n) {
+  animation-delay: -2s;
+}
+
+.star.small {
+  width: 1px;
+  height: 1px;
+  opacity: 0.6;
+}
+
+.star.medium {
+  width: 2px;
+  height: 2px;
+  opacity: 0.8;
+}
+
+.star.large {
+  width: 3px;
+  height: 3px;
+  opacity: 1;
+  box-shadow: 0 0 10px var(--star-white);
+}
+
+// =============================================================================
+// 3. ADVANCED ANIMATIONS & EFFECTS
+// =============================================================================
+
+@keyframes nebula-drift {
+  0%, 100% {
+    transform: translateX(0) translateY(0) scale(1);
+  }
+  25% {
+    transform: translateX(10px) translateY(-20px) scale(1.05);
+  }
+  50% {
+    transform: translateX(-10px) translateY(10px) scale(0.95);
+  }
+  75% {
+    transform: translateX(20px) translateY(5px) scale(1.02);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes cosmic-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(14, 165, 233, 0.6);
+  }
+}
+
+@keyframes aurora-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float-cosmic {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+  66% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+}
+
+@keyframes stellar-glow {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 30px currentColor;
+  }
+  50% {
+    text-shadow: 
+      0 0 5px currentColor,
+      0 0 15px currentColor,
+      0 0 25px currentColor;
+  }
+}
+
+// =============================================================================
+// 4. ADVANCED COMPONENT SYSTEM
+// =============================================================================
+
+/* Glass Morphism Cards */
+.cosmic-card {
+  background: var(--glass-cosmic);
+  backdrop-filter: var(--glass-blur-medium);
+  border: 1px solid var(--border-cosmic);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-cosmic);
+  transition: all var(--duration-300) var(--ease-out);
+  position: relative;
   overflow: hidden;
-  border-radius: var(--border-radius);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-  /* 12.3.1 Table Header */
-  table thead {
-    background: var(--background-secondary);
-    color: var(--text-primary);
-  }
-    table thead th {
-      padding: 1rem;
-      text-align: left;
-      font-weight: var(--font-weight-medium);
-      border-bottom: 2px solid rgba(255,255,255,0.1);
-    }
-
-  /* 12.3.2 Table Body Rows */
-  table tbody tr:nth-child(even) {
-    background: rgba(0,0,0,0.1);
-  }
-  table tbody tr:hover {
-    background: rgba(255,255,255,0.05);
-  }
-
-  /* 12.3.3 Table Cells */
-  table th,
-  table td {
-    padding: 0.85rem 1rem;
-    border: none;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-
-// 12.4 Universal Heading Typography (h1–h6)
-h1, h2, h3, h4, h5, h6 {
-  letter-spacing: var(--heading-letter-spacing);
-  line-height: var(--line-height-tight);
-  margin-top: 2em;
-  margin-bottom: 0.5em;
-  font-weight: var(--font-weight-bold);
+.cosmic-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gradient-aurora);
+  opacity: 0.6;
 }
 
-// 12.5 Specific Heading Styles
+.cosmic-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-cosmic), var(--shadow-glow-purple);
+  border-color: var(--nebula-purple-400);
+}
+
+/* Advanced Typography */
 h1 {
-  font-size: 2.8rem;
-  background: linear-gradient(90deg, var(--text-primary), var(--highlight));
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-5xl);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  background: var(--gradient-cosmic-text);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: var(--text-primary);
+  margin-bottom: var(--space-6);
   text-shadow: none;
+  animation: stellar-glow 4s ease-in-out infinite;
 }
 
 h2 {
-  font-size: 2rem;
-  color: var(--text-accent);
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-3xl);
+  font-weight: 600;
+  color: var(--text-accent-bright);
+  margin-bottom: var(--space-4);
+  position: relative;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--gradient-stellar-horizon);
+  border-radius: var(--radius-full);
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-accent);
+  margin-bottom: var(--space-3);
+}
+
+p {
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+}
+
+/* Advanced Link System */
+a {
+  color: var(--link-primary);
+  text-decoration: none;
+  position: relative;
+  transition: all var(--duration-200) var(--ease-out);
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-stellar-horizon);
+  transition: width var(--duration-300) var(--ease-out);
+}
+
+a:hover {
+  color: var(--link-hover);
+  text-shadow: 0 0 10px currentColor;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* Cosmic Buttons */
+.btn-cosmic {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  background: var(--gradient-button-nova);
+  border: none;
+  border-radius: var(--radius-full);
   color: var(--text-primary);
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: all var(--duration-200) var(--ease-out);
+  box-shadow: var(--shadow-stellar);
+  position: relative;
+  overflow: hidden;
 }
 
-// 12.6 Body Text (p, li, td) Styles
-p, li, td {
-  line-height: var(--line-height-loose);
-  letter-spacing: var(--body-letter-spacing);
+.btn-cosmic::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left var(--duration-500) var(--ease-out);
 }
 
-// 12.7 Blockquote Styles
-blockquote {
-  border-left: 4px solid var(--highlight);
-  padding-left: 1rem;
-  font-style: italic;
-  color: var(--text-muted);
+.btn-cosmic:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: var(--shadow-cosmic), var(--shadow-glow-cyan);
 }
 
-// 12.8 Code Block & Inline Code Typography
-pre, code {
-  font-family: var(--font-family-code);
-  font-size: 0.9em;
-  border-radius: var(--border-radius);
+.btn-cosmic:hover::before {
+  left: 100%;
 }
 
-pre {
-  padding: 1rem;
-  overflow-x: auto;
-  background: rgba(0,0,0,0.3);
-  border: 1px solid rgba(255,255,255,0.1);
+/* Navigation */
+.navbar {
+  background: var(--glass-void);
+  backdrop-filter: var(--glass-blur-intense);
+  border-bottom: 1px solid var(--border-void);
+  padding: var(--space-4) 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-code {
-  background: rgba(0,0,0,0.2);
-  padding: 0.2em 0.4em;
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-pre code {
-  background: transparent;
+.nav-logo {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-8);
+  list-style: none;
+  margin: 0;
   padding: 0;
 }
 
-// 12.9 Code Header Bar
-.code-header {
-  background: rgba(0,0,0,0.4);
-  padding: 0.5rem 1rem;
-  font-family: var(--font-family-code);
-  font-size: 0.8em;
-  color: var(--text-muted);
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-bottom: none;
+.nav-link {
+  color: var(--text-tertiary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all var(--duration-200) var(--ease-out);
+  position: relative;
 }
 
-
-// Define the title header GIF variable
-:root {
-  --title-header-gif: url('/img/fractal-title.gif');
-  --title-header-gif-height: 120px;
-  --title-header-gif-width: 100%;
-  --title-header-gif-margin-bottom: 10px;
+.nav-link:hover {
+  color: var(--text-primary);
+  transform: translateY(-1px);
 }
 
-// Add the GIF above the sidebar title
-.filetree-sidebar {
-  h1 {
-    // Add spacing for the GIF above
-    margin-top: var(--title-header-gif-height);
-    position: relative;
-    
-    // Create the GIF element using pseudo-element
-    &::before {
-      content: '';
-      position: absolute;
-      top: calc(-1 * var(--title-header-gif-height) - var(--title-header-gif-margin-bottom));
-      left: 0;
-      width: var(--title-header-gif-width);
-      height: var(--title-header-gif-height);
-      background-image: var(--title-header-gif);
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-      z-index: 1;
-    }
-  }
+/* Content Areas */
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-6);
+  position: relative;
+  z-index: 1;
 }
 
-// For mobile responsiveness
-@media (max-width: 800px) {
-  .filetree-sidebar {
-    h1::before {
-      // Show the GIF even when the h1 is hidden on mobile
-      position: relative;
-      display: block;
-      top: 0;
-      margin-bottom: var(--title-header-gif-margin-bottom);
-    }
-  }
-}
-// Add opacity to right sidebar elements (graph, backlinks)
-// Adjust the opacity value to your preference (0.0 - 1.0)
-:root {
-  --sidebar-opacity: 0.85; // 85% opacity - change as needed
-  --sidebar-hover-opacity: 0.95; // Opacity when hovering
-  --sidebar-transition: opacity 0.3s ease; // Smooth transition effect
-}
-
-// Target the sidebar container and its components
 .sidebar {
-  opacity: var(--sidebar-opacity);
-  transition: var(--sidebar-transition);
-  
-  // Apply opacity to all main components
-  .graph, 
-  .toc, 
-  .backlinks,
-  #link-graph,
-  .sidebar-container {
-    opacity: var(--sidebar-opacity);
-    transition: var(--sidebar-transition);
-  }
-  
-  // Optional: Increase opacity when hovering
-  &:hover {
-    opacity: var(--sidebar-hover-opacity);
-    
-    .graph, 
-    .toc, 
-    .backlinks,
-    #link-graph,
-    .sidebar-container {
-      opacity: var(--sidebar-hover-opacity);
-    }
-  }
+  background: var(--glass-stellar);
+  backdrop-filter: var(--glass-blur-medium);
+  border: 1px solid var(--border-stellar);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  opacity: 0.9;
+  transition: all var(--duration-300) var(--ease-out);
 }
 
-// Also apply to fullscreen graph mode
-.graph-fs, #full-graph {
-  opacity: var(--sidebar-opacity);
-  transition: var(--sidebar-transition);
-  
-  &:hover {
-    opacity: var(--sidebar-hover-opacity);
-  }
+.sidebar:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-nebula);
 }
 
-
-/* 16. Particles enhancement for cosmic theme */
-.particles-js-canvas-el {
-  opacity: 0.65; /* Adjust opacity to match your cosmic theme */
-  mix-blend-mode: screen; /* Makes particles blend nicely with background */
-  filter: blur(0.5px); /* Subtle blur for cosmic effect */
+/* Table Styles */
+table {
+  width: 100%;
+  background: var(--glass-cosmic);
+  backdrop-filter: var(--glass-blur-light);
+  border: 1px solid var(--border-cosmic);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin: var(--space-6) 0;
+  box-shadow: var(--shadow-stellar);
 }
 
-/* Adding subtle animation to make particles even more cosmic */
-@keyframes cosmic-pulse {
-  0% { opacity: 0.65; filter: blur(0.5px); }
-  50% { opacity: 0.75; filter: blur(1px); }
-  100% { opacity: 0.65; filter: blur(0.5px); }
+thead {
+  background: var(--gradient-nebula-storm);
 }
 
-/* Apply animation to particles canvas */
-.particles-js-canvas-el {
-  animation: cosmic-pulse 10s infinite ease-in-out;
+thead th {
+  padding: var(--space-4);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: left;
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
-/*END OF PARTICLESJS */
 
+tbody td {
+  padding: var(--space-4);
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-void);
+}
 
+tbody tr:hover {
+  background: var(--glass-nebula);
+}
 
-/* 17. Minimal flashcard base system - dimension-neutral */
+/* Code Blocks */
+pre {
+  background: var(--cosmic-void);
+  border: 1px solid var(--border-stellar);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  overflow-x: auto;
+  box-shadow: var(--shadow-void);
+  position: relative;
+}
+
+pre::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-aurora);
+}
+
+code {
+  font-family: var(--font-family-mono);
+  color: var(--nebula-cyan-300);
+  font-size: var(--font-size-sm);
+}
+
+/* Blockquotes */
+blockquote {
+  background: var(--glass-cosmic);
+  backdrop-filter: var(--glass-blur-light);
+  border-left: 4px solid var(--nebula-purple-500);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  padding: var(--space-6);
+  margin: var(--space-6) 0;
+  font-style: italic;
+  color: var(--text-tertiary);
+  box-shadow: var(--shadow-stellar);
+  position: relative;
+}
+
+blockquote::before {
+  content: '"';
+  font-size: var(--font-size-6xl);
+  color: var(--nebula-purple-400);
+  position: absolute;
+  top: -10px;
+  left: var(--space-4);
+  line-height: 1;
+  font-family: serif;
+}
+
+/* Callouts */
+.callout {
+  background: var(--glass-cosmic);
+  backdrop-filter: var(--glass-blur-medium);
+  border: 1px solid var(--border-cosmic);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin: var(--space-6) 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-stellar);
+}
+
+.callout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--gradient-stellar-horizon);
+}
+
+.callout.note {
+  border-left-color: var(--nebula-cyan-500);
+}
+
+.callout.warning {
+  border-left-color: var(--stellar-amber);
+}
+
+.callout.important {
+  border-left-color: var(--stellar-red);
+}
+
+.callout.tip {
+  border-left-color: var(--stellar-emerald);
+}
+
+/* Advanced Flashcard System */
 .flashcard-grid {
   display: grid;
-  gap: 1rem; /* Smaller default gap */
-  margin: 1.5rem 0;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+  margin: var(--space-8) 0;
 }
 
-/* Grid column variations - default setup */
-.grid-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-3 { grid-template-columns: repeat(3, 1fr); }
-.grid-4 { grid-template-columns: repeat(4, 1fr); }
-
-/* Responsive breakpoints */
-@media (max-width: 1400px) {
-  .grid-4 { grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (max-width: 1000px) {
-  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 650px) {
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-}
-
-/* Flashcard container - minimal styling */
 .flashcard {
-  background: rgba(30, 37, 78, 0.75);
-  backdrop-filter: blur(8px);
-  border-radius: 10px; /* Slightly smaller radius */
+  background: var(--glass-cosmic);
+  backdrop-filter: var(--glass-blur-medium);
+  border: 1px solid var(--border-cosmic);
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* Smaller shadow */
-  border: 1px solid rgba(224, 178, 255, 0.3);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
+  transition: all var(--duration-300) var(--ease-out);
+  box-shadow: var(--shadow-stellar);
+  position: relative;
+  animation: float-cosmic 6s ease-in-out infinite;
 }
 
-/* Make the anchor fill the entire card */
-.flashcard a {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: inherit;
-  height: 100%;
+.flashcard:nth-child(even) {
+  animation-delay: -3s;
 }
 
-/* Remove underline effect from links */
-.flashcard a::after {
-  display: none;
-}
-
-/* Hover effects - more subtle */
 .flashcard:hover {
-  transform: translateY(-4px); /* Less dramatic lift */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  border-color: var(--link-color);
+  transform: translateY(-12px) scale(1.05);
+  box-shadow: var(--shadow-cosmic), var(--shadow-glow-purple);
+  border-color: var(--nebula-purple-400);
 }
 
-/* Image container - Base styling without dimensions */
 .flashcard-image {
-  background: rgba(18, 20, 42, 0.6);
-  padding: 0.8rem; /* Smaller default padding */
+  height: 200px;
+  background: var(--gradient-starfield);
   display: flex;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
+  position: relative;
   overflow: hidden;
 }
 
-/* Image styling */
 .flashcard-image img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4)); /* Smaller shadow */
-  transition: transform 0.3s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-500) var(--ease-out);
 }
 
 .flashcard:hover .flashcard-image img {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
-/* Content area - minimal default padding */
 .flashcard-content {
-  padding: 0.8rem;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+  padding: var(--space-6);
 }
 
-/* Typography defaults - smaller */
 .flashcard-content h3 {
-  margin: 0 0 0.5rem;
-  color: var(--text-accent);
-  font-size: 1.1rem; /* Smaller default */
+  margin: 0 0 var(--space-2) 0;
+  color: var(--text-accent-bright);
+  font-size: var(--font-size-lg);
   font-weight: 600;
 }
 
 .flashcard-content p {
   margin: 0;
-  color: var(--text-normal);
-  font-size: 0.85rem; /* Smaller default */
-  line-height: 1.3;
-  opacity: 0.9;
-}
-.round-img {
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.round-img-50 { width: 50px; height: 50px; }
-.round-img-100 { width: 100px; height: 100px; }
-.round-img-150 { width: 150px; height: 150px; }
-.round-img-200 { width: 200px; height: 200px; }
-/* Add more size classes as needed */
-
-
-/* 18. ON SITE TIMER */
-.datetime-container {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
-  font-size: 1rem; /* Increased from 0.875rem */
-  color: var(--text-muted, #6e6e6e);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem; /* Increased spacing */
-  opacity: 0.9;
-  transition: opacity 0.2s ease, transform 0.3s ease;
-  z-index: 100;
-}
-
-.datetime-container:hover {
-  opacity: 1;
-}
-
-.datetime-toggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.25rem;
-  color: var(--text-muted, #6e6e6e);
-  opacity: 0.6;
-  transition: opacity 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.datetime-toggle:hover {
-  opacity: 1;
-}
-
-.datetime-hidden {
-  display: none;
-}
-
-/* Reset button that appears when datetime is hidden */
-.datetime-reset {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 0.875rem;
-  color: var(--text-muted, #6e6e6e);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 4px;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
-  z-index: 100;
-}
-
-.datetime-reset:hover {
-  opacity: 1;
-}
-
-.datetime-reset svg {
-  width: 16px;
-  height: 16px;
-}
-
-.datetime-reset-hidden {
-  display: none;
-}
-
-/* Keep body full width so scrollbar stays at browser edge */
-body {
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-}
-
-/* If there's a main wrapper, make it full width too */
-html {
-  width: 100%;
-  overflow-x: hidden;
-}
-
-/* Adjust headings to be proportionally bigger */
-.content h1 { 
-  font-size: 2.4em; 
-  margin-bottom: 1rem;
-}
-.content h2 { 
-  font-size: 2em; 
-  margin-bottom: 0.8rem;
-}
-.content h3 { 
-  font-size: 1.6em; 
-  margin-bottom: 0.6rem;
-}
-.content h4 { 
-  font-size: 1.3em; 
-  margin-bottom: 0.5rem;
-}
-
-/* Make paragraphs more spacious */
-.content p {
-  margin-bottom: 1.2em;
-  font-size: inherit;
-}
-
-/* Adjust lists for better spacing */
-.content ul, .content ol {
-  margin-bottom: 1.2em;
-  padding-left: 2em;
-}
-
-.content li {
-  margin-bottom: 0.5em;
+  color: var(--text-tertiary);
+  font-size: var(--font-size-sm);
   line-height: 1.6;
 }
 
-/* Make code blocks wider too */
-.content pre {
-  margin: 1.5em 0;
-  padding: 1.5em;
-  border-radius: 8px;
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
 }
 
-/* Adjust blockquotes */
-.content blockquote {
-  margin: 1.5em 0;
-  padding: 1em 2em;
-  border-left: 4px solid var(--accent-color, #666);
+::-webkit-scrollbar-track {
+  background: var(--cosmic-void);
+  border-radius: var(--radius-full);
 }
 
-/* Responsive design - adjust for smaller screens */
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-stellar-horizon);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--cosmic-void);
+  transition: all var(--duration-200) var(--ease-out);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gradient-aurora);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--cosmic-void);
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--nebula-purple-500) var(--cosmic-void);
+}
+
+/* Selection Styling */
+::selection {
+  background: var(--nebula-purple-500);
+  color: var(--text-primary);
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background: var(--nebula-purple-500);
+  color: var(--text-primary);
+  text-shadow: none;
+}
+
+// =============================================================================
+// 5. ADVANCED LAYOUT SYSTEM
+// =============================================================================
+
+/* Grid System */
+.grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+.col-span-1 { grid-column: span 1; }
+.col-span-2 { grid-column: span 2; }
+.col-span-3 { grid-column: span 3; }
+.col-span-4 { grid-column: span 4; }
+
+/* Flexbox Utilities */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.items-end { align-items: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+.gap-2 { gap: var(--space-2); }
+.gap-4 { gap: var(--space-4); }
+.gap-6 { gap: var(--space-6); }
+.gap-8 { gap: var(--space-8); }
+
+/* Container System */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.container-sm {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.container-lg {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-8);
+}
+
+/* Spacing Utilities */
+.m-0 { margin: 0; }
+.m-2 { margin: var(--space-2); }
+.m-4 { margin: var(--space-4); }
+.m-6 { margin: var(--space-6); }
+.m-8 { margin: var(--space-8); }
+
+.mt-0 { margin-top: 0; }
+.mt-2 { margin-top: var(--space-2); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-6 { margin-top: var(--space-6); }
+.mt-8 { margin-top: var(--space-8); }
+
+.mb-0 { margin-bottom: 0; }
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-6 { margin-bottom: var(--space-6); }
+.mb-8 { margin-bottom: var(--space-8); }
+
+.p-0 { padding: 0; }
+.p-2 { padding: var(--space-2); }
+.p-4 { padding: var(--space-4); }
+.p-6 { padding: var(--space-6); }
+.p-8 { padding: var(--space-8); }
+
+/* Advanced Form Styling */
+.form-group {
+  margin-bottom: var(--space-6);
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  color: var(--text-accent);
+  margin-bottom: var(--space-2);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--glass-cosmic);
+  backdrop-filter: var(--glass-blur-light);
+  border: 1px solid var(--border-cosmic);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  transition: all var(--duration-200) var(--ease-out);
+  box-shadow: var(--shadow-void);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--nebula-purple-400);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), var(--shadow-stellar);
+  background: var(--glass-nebula);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--text-dim);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Advanced Badge System */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  transition: all var(--duration-200) var(--ease-out);
+}
+
+.badge-primary {
+  background: var(--nebula-purple-900);
+  color: var(--nebula-purple-200);
+  border-color: var(--nebula-purple-700);
+}
+
+.badge-secondary {
+  background: var(--nebula-cyan-900);
+  color: var(--nebula-cyan-200);
+  border-color: var(--nebula-cyan-700);
+}
+
+.badge-success {
+  background: var(--nebula-teal-900);
+  color: var(--nebula-teal-200);
+  border-color: var(--nebula-teal-700);
+}
+
+.badge-warning {
+  background: rgba(245, 158, 11, 0.2);
+  color: var(--stellar-amber);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.badge-danger {
+  background: rgba(220, 38, 38, 0.2);
+  color: var(--stellar-red);
+  border-color: rgba(220, 38, 38, 0.3);
+}
+
+/* Advanced Alert System */
+.alert {
+  background: var(--glass-cosmic);
+  backdrop-filter: var(--glass-blur-medium);
+  border: 1px solid var(--border-cosmic);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-6);
+  margin: var(--space-4) 0;
+  position: relative;
+  box-shadow: var(--shadow-stellar);
+}
+
+.alert::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+
+.alert-info::before {
+  background: var(--nebula-cyan-500);
+}
+
+.alert-success::before {
+  background: var(--stellar-emerald);
+}
+
+.alert-warning::before {
+  background: var(--stellar-amber);
+}
+
+.alert-danger::before {
+  background: var(--stellar-red);
+}
+
+.alert-title {
+  font-weight: 600;
+  color: var(--text-accent-bright);
+  margin-bottom: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.alert-content {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+// =============================================================================
+// 6. ADVANCED INTERACTIVE ELEMENTS
+// =============================================================================
+
+/* Advanced Button Variants */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  line-height: 1;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all var(--duration-200) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--gradient-button-nova);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-stellar);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: var(--shadow-cosmic), var(--shadow-glow-purple);
+}
+
+.btn-secondary {
+  background: var(--glass-cosmic);
+  backdrop-filter: var(--glass-blur-medium);
+  border: 1px solid var(--border-cosmic);
+  color: var(--text-accent);
+  box-shadow: var(--shadow-void);
+}
+
+.btn-secondary:hover {
+  background: var(--glass-nebula);
+  border-color: var(--nebula-purple-400);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-stellar);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-accent);
+  border: 1px solid var(--border-stellar);
+}
+
+.btn-ghost:hover {
+  background: var(--glass-cosmic);
+  color: var(--text-primary);
+  border-color: var(--border-cosmic);
+}
+
+.btn-sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+}
+
+.btn-lg {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--font-size-lg);
+}
+
+/* Advanced Modal System */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 15, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--duration-300) var(--ease-out);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: var(--glass-cosmic);
+  backdrop-filter: var(--glass-blur-intense);
+  border: 1px solid var(--border-cosmic);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8);
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-cosmic);
+  transform: scale(0.9) translateY(20px);
+  transition: all var(--duration-300) var(--ease-out);
+  position: relative;
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-void);
+}
+
+.modal-title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+  padding: var(--space-2);
+  border-radius: var(--radius);
+  transition: all var(--duration-200) var(--ease-out);
+}
+
+.modal-close:hover {
+  color: var(--text-primary);
+  background: var(--glass-nebula);
+}
+
+/* Advanced Dropdown System */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--glass-cosmic);
+  border: 1px solid var(--border-cosmic);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--duration-200) var(--ease-out);
+}
+
+.dropdown-toggle:hover {
+  background: var(--glass-nebula);
+  border-color: var(--nebula-purple-400);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background: var(--glass-cosmic);
+  backdrop-filter: var(--glass-blur-intense);
+  border: 1px solid var(--border-cosmic);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2);
+  margin-top: var(--space-2);
+  box-shadow: var(--shadow-cosmic);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--duration-200) var(--ease-out);
+  z-index: 1000;
+}
+
+.dropdown.active .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: all var(--duration-150) var(--ease-out);
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: var(--glass-nebula);
+  color: var(--text-primary);
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: var(--border-void);
+  margin: var(--space-2) 0;
+}
+
+// =============================================================================
+// 7. ADVANCED PARTICLE EFFECTS & ANIMATIONS
+// =============================================================================
+
+/* Enhanced Particle System */
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.cosmic-particle {
+  position: absolute;
+  background: var(--star-white);
+  border-radius: 50%;
+  opacity: 0;
+  animation: particle-float 15s linear infinite;
+}
+
+.cosmic-particle.small {
+  width: 2px;
+  height: 2px;
+}
+
+.cosmic-particle.medium {
+  width: 3px;
+  height: 3px;
+  box-shadow: 0 0 6px var(--nebula-cyan-400);
+}
+
+.cosmic-particle.large {
+  width: 4px;
+  height: 4px;
+  box-shadow: 0 0 12px var(--nebula-purple-400);
+}
+
+@keyframes particle-float {
+  0% {
+    transform: translateY(100vh) translateX(-10px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) translateX(10px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Galaxy Spiral Effect */
+.galaxy-spiral {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vw;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: -2;
+  opacity: 0.1;
+  animation: galaxy-rotate 60s linear infinite;
+}
+
+.galaxy-spiral::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-galaxy-spiral);
+  border-radius: 50%;
+  filter: blur(3px);
+}
+
+@keyframes galaxy-rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Cosmic Dust Effect */
+.cosmic-dust {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  background-image: 
+    radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.15), transparent),
+    radial-gradient(1px 1px at 40px 70px, rgba(79, 70, 229, 0.1), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(14, 165, 233, 0.1), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(139, 92, 246, 0.1), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: cosmic-drift 20s linear infinite;
+}
+
+@keyframes cosmic-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-200px);
+  }
+}
+
+// =============================================================================
+// 8. RESPONSIVE DESIGN & MOBILE OPTIMIZATION
+// =============================================================================
+
+/* Mobile First Responsive Design */
 @media (max-width: 768px) {
-  .content.cm-s-obsidian {
-    width: 95% !important;
-    padding: 1rem 2rem;
-    font-size: 1.05em;
+  :root {
+    --space-4: 0.75rem;
+    --space-6: 1rem;
+    --space-8: 1.5rem;
+    --font-size-5xl: 2.5rem;
+    --font-size-3xl: 1.5rem;
+  }
+
+  .content {
+    padding: var(--space-4);
+  }
+
+  .flashcard-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .cosmic-card {
+    padding: var(--space-4);
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .container,
+  .container-sm,
+  .container-lg {
+    padding: 0 var(--space-4);
+  }
+
+  .modal-content {
+    margin: var(--space-4);
+    padding: var(--space-6);
   }
 }
 
 @media (max-width: 480px) {
-  .content.cm-s-obsidian {
-    width: 98% !important;
-    padding: 1rem 1.5rem;
-    font-size: 1em;
+  .flashcard-image {
+    height: 150px;
+  }
+
+  .cosmic-card {
+    padding: var(--space-3);
+  }
+
+  .btn {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-size-sm);
   }
 }
 
-/* ===== FOCUS MODE STYLES (no font/header overrides) ===== */
-
-/* Fullscreen Button (unchanged) */
-.fullscreen-btn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: linear-gradient(135deg, var(--text-accent, #667eea) 0%, #764ba2 100%);
-  border: none;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  z-index: 1001;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-  }
-  &:active {
-    transform: translateY(0);
-  }
-  svg {
-    flex-shrink: 0;
-  }
-}
-
-/* Smooth transitions */
-.navbar,
-.filetree-sidebar,
-.sidebar,
-.content,
-.fullscreen-btn {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Focus Mode */
-body.fullscreen-mode {
-  /* 1. Hide UI elements */
-  .navbar,
-  .filetree-sidebar,
-  .sidebar,
-  .search-container,
-  .fullpage-overlay,
-  .galaxy-spiral-container {
-    opacity: 0;
-    pointer-events: none;
+/* Tablet Optimization */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .flashcard-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  /* 2. Tweak fullscreen button */
-  .fullscreen-btn {
-    background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
-    top: 30px;
-    right: 30px;
-    transform: scale(1.1);
-    z-index: 9999;
+  .grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  /* 3. Widen & center .content, but keep existing fonts/colors */
   .content {
-    max-width: 95vw !important;   /* fill ~95% of viewport width */
-    margin: 0 auto;
-    padding: 8vh 2vw;             /* vertical/horizontal padding */
-    min-height: 100vh;
+    padding: var(--space-6);
+  }
+}
 
-    display: block;               /* normal flow so embedded layouts remain intact */
-    /* No font-size overrides here: original theme fonts/colors apply */
+/* Desktop Optimization */
+@media (min-width: 1025px) {
+  .flashcard-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  /* 4. Ensure images & embeds fill the width of .content */
   .content {
-    img {
-      max-width: 100% !important;
-      height: auto !important;
-      display: block;
-      margin: 1rem auto;
-    }
-    figure img {
-      max-width: 100% !important;
-      height: auto !important;
-    }
-    iframe,
-    embed,
-    video {
-      max-width: 100% !important;
-      width: 100% !important;
-      height: auto !important;
-    }
-    /* Excalidraw override: replace selector if your embed wrapper differs */
-    .excalidraw-embed,
-    .excalidraw-container {
-      width: 100% !important;
-      min-height: 60vh; /* ensures visible; adjust if needed */
-    }
-    /* Flashcards override: replace with your actual wrapper class */
-    .flashcards-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      width: 100%;
-      max-width: none;
-      margin: 0 auto;
-    }
-    /* Other widget overrides, if any: diagrams/charts etc. */
-    .diagram-container,
-    .chart-container {
-      max-width: 100% !important;
-    }
-  }
-
-  /* 5. Optional cap on extremely wide screens */
-  @media (min-width: 2000px) {
-    .content {
-      max-width: 1600px !important;
-      margin: 0 auto;
-    }
-    /* If you have .cards-container or other wrappers: cap them similarly */
-    .flashcards-container,
-    .cards-container {
-      max-width: 1600px;
-      margin: 0 auto;
-    }
-  }
-
-  /* 6. Tablet adjustments */
-  @media (max-width: 1200px) {
-    .content {
-      max-width: 90vw !important;
-      padding: 6vh 3vw;
-    }
-  }
-  /* 7. Mobile adjustments */
-  @media (max-width: 768px) {
-    .content {
-      max-width: 90vw !important;
-      padding: 4vh 2vw;
-    }
-    .fullscreen-btn {
-      top: 15px;
-      right: 15px;
-      padding: 10px 16px;
-      font-size: 12px;
-    }
-    .flashcards-container {
-      grid-template-columns: 1fr;
-    }
+    padding: var(--space-8) var(--space-6);
   }
 }
 
-/* Fullscreen API support: if you use requestFullscreen() on .content */
-.content:fullscreen {
-  max-width: 95vw !important;
-  margin: 0 auto;
-  padding: 8vh 2vw;
-  display: block;
+/* Large Screen Optimization */
+@media (min-width: 1400px) {
+  .flashcard-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 
-  img, iframe, embed, video {
-    max-width: 100% !important;
-    width: 100% !important;
-    height: auto !important;
-  }
-  .excalidraw-embed,
-  .excalidraw-container {
-    width: 100% !important;
-    min-height: 60vh;
-  }
-  .flashcards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    width: 100%;
-    margin: 0 auto;
+  .container-lg {
+    max-width: 1600px;
   }
 }
-:fullscreen .content {
-  max-width: 95vw !important;
-  margin: 0 auto;
-  padding: 8vh 2vw;
-  display: block;
+
+// =============================================================================
+// 9. ACCESSIBILITY & PERFORMANCE OPTIMIZATIONS
+// =============================================================================
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --text-primary: #ffffff;
+    --text-secondary: #f0f0f0;
+    --border-cosmic: rgba(255, 255, 255, 0.5);
+    --glass-cosmic: rgba(0, 0, 0, 0.9);
+  }
 }
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .galaxy-spiral,
+  .cosmic-dust,
+  .particles-container {
+    display: none;
+  }
+}
+
+/* Focus Management */
+.focus-visible {
+  outline: 2px solid var(--nebula-purple-400);
+  outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+  body::before,
+  body::after,
+  .particles-container,
+  .galaxy-spiral,
+  .cosmic-dust {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .cosmic-card,
+  .flashcard {
+    background: white !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Performance Optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+// =============================================================================
+// 10. UTILITY CLASSES & HELPERS
+// =============================================================================
+
+/* Display Utilities */
+.hidden { display: none !important; }
+.block { display: block !important; }
+.inline-block { display: inline-block !important; }
+.inline { display: inline !important; }
+
+/* Position Utilities */
+.relative { position: relative !important; }
+.absolute { position: absolute !important; }
+.fixed { position: fixed !important; }
+.sticky { position: sticky !important; }
+
+/* Text Utilities */
+.text-left { text-align: left !important; }
+.text-center { text-align: center !important; }
+.text-right { text-align: right !important; }
+.text-uppercase { text-transform: uppercase !important; }
+.text-lowercase { text-transform: lowercase !important; }
+.text-capitalize { text-transform: capitalize !important; }
+
+/* Font Weight Utilities */
+.font-light { font-weight: 300 !important; }
+.font-normal { font-weight: 400 !important; }
+.font-medium { font-weight: 500 !important; }
+.font-semibold { font-weight: 600 !important; }
+.font-bold { font-weight: 700 !important; }
+
+/* Color Utilities */
+.text-primary { color: var(--text-primary) !important; }
+.text-secondary { color: var(--text-secondary) !important; }
+.text-accent { color: var(--text-accent) !important; }
+.text-muted { color: var(--text-muted) !important; }
+
+/* Background Utilities */
+.bg-transparent { background: transparent !important; }
+.bg-cosmic { background: var(--glass-cosmic) !important; }
+.bg-nebula { background: var(--glass-nebula) !important; }
+
+/* Border Radius Utilities */
+.rounded-none { border-radius: 0 !important; }
+.rounded-sm { border-radius: var(--radius-sm) !important; }
+.rounded { border-radius: var(--radius) !important; }
+.rounded-lg { border-radius: var(--radius-lg) !important; }
+.rounded-xl { border-radius: var(--radius-xl) !important; }
+.rounded-full { border-radius: var(--radius-full) !important; }
+
+/* Shadow Utilities */
+.shadow-none { box-shadow: none !important; }
+.shadow-cosmic { box-shadow: var(--shadow-cosmic) !important; }
+.shadow-stellar { box-shadow: var(--shadow-stellar) !important; }
+
+/* Overflow Utilities */
+.overflow-hidden { overflow: hidden !important; }
+.overflow-auto { overflow: auto !important; }
+.overflow-scroll { overflow: scroll !important; }
+
+/* Width & Height Utilities */
+.w-full { width: 100% !important; }
+.h-full { height: 100% !important; }
+.min-h-screen { min-height: 100vh !important; }
+
+/* Z-Index Utilities */
+.z-0 { z-index: 0 !important; }
+.z-10 { z-index: 10 !important; }
+.z-50 { z-index: 50 !important; }
+.z-100 { z-index: 100 !important; }
