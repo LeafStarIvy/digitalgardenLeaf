@@ -17,7 +17,6 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
   <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
 
-    <!-- Focus mode button (note-specific) -->
     <button class="fullscreen-btn" id="fullscreenBtn" aria-pressed="false" title="Toggle Focus Mode">
       <svg class="fs-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M16 3h3a2 2 0 0 1 2 2v3"/><path d="M8 21H5a2 2 0 0 1-2-2v-3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
       <span class="fs-label">Focus Mode</span>
@@ -33,19 +32,12 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
       {% include "components/searchContainer.njk" %}
     {% endif %}
 
-    <!-- Galaxy Skybox: now matches index with all nebula layers -->
-    <div class="galaxy-skybox" id="galaxySkyboxNote" aria-hidden="true">
+    <!-- Unified galaxy skybox (same as index) -->
+    <div class="galaxy-skybox" id="galaxySkybox" aria-hidden="true">
       <div class="nebula nebula--back"></div>
       <div class="nebula nebula--mid"></div>
       <div class="nebula nebula--front"></div>
-      <div id="shootingStarContainerNote" class="shooting-stars" aria-hidden="true"></div>
-
-      <!-- Note-specific background video -->
-      <div class="video-background">
-        <video autoplay muted loop playsinline preload="auto" class="bg-video">
-          <source src="/img/video/Astrogalaxy1.webm" type="video/webm">
-        </video>
-      </div>
+      <div id="shootingStarContainer" class="shooting-stars" aria-hidden="true"></div>
     </div>
 
     <main class="content cm-s-obsidian {{contentClasses}}">
@@ -67,7 +59,6 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
             </div>
           {% endif %}
 
-          <!-- Note-specific timestamps -->
           {%- if meta.timestampSettings.showCreated or meta.timestampSettings.showUpdated -%}
           <div class="timestamps">
             {%- if meta.timestampSettings.showCreated and created -%}
@@ -98,19 +89,15 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
     {% if settings.dgShowBacklinks === true or settings.dgShowLocalGraph === true or settings.dgShowToc === true %}
       {% include "components/sidebar.njk" %}
     {% endif %}
-
     {% if settings.dgLinkPreview === true %}
       {% include "components/linkPreview.njk" %}
     {% endif %}
-
     {% include "components/references.njk" %}
     {% include "components/timestamps.njk" %}
-
     {% for imp in dynamics.common.footer %}{% include imp %}{% endfor %}
     {% for imp in dynamics.notes.footer %}{% include imp %}{% endfor %}
     {% include "components/lucideIcons.njk" %}
 
-    {# Particles auto-detects skybox container (index or note) #}
     {% include "components/particlesScript.njk" %}
   </body>
 </html>
