@@ -1,247 +1,357 @@
 /*
- * ADVANCED GALAXY THEME - COMPLETE SITE TRANSFORMATION
- * Deep space exploration with cutting-edge design
+ * DEEP SPACE OCEANIC GALAXY DIGITAL GARDEN THEME
+ * Complete transformation with enhanced cosmic aesthetics,
+ * oceanic depths, and stellar visual effects
  */
 
-// =============================================================================
-// 1. ADVANCED GALAXY COLOR SYSTEM
-// =============================================================================
-
-:root {
-  /* Deep Space Foundation Colors */
-  --void-black: #000000;
-  --deep-void: #0a0a0f;
-  --cosmic-void: #0f0f1a;
-  --space-depths: #141425;
-  --nebula-dark: #1a1a2e;
-  --stellar-dark: #16213e;
-  --cosmic-navy: #0f1419;
-  --interstellar: #16181d;
+// ENHANCED DEEP SPACE OCEANIC COLOR SYSTEM
+// ------------------------------------------------------------------
+body {
+  /* === DEEP SPACE OCEANIC PALETTE === */
   
-  /* Galaxy Core Colors */
-  --galaxy-core-1: #16213e;
-  --galaxy-core-2: #1a2332;
-  --galaxy-core-3: #1e2a3a;
-  --galaxy-core-4: #233142;
-  --galaxy-core-5: #2a394a;
-  --galaxy-spiral: #2f4156;
+  /* Void & Abyss - The deepest reaches */
+  --void-absolute: #000406;          /* Absolute void */
+  --void-deep: #010A0F;              /* Deep void */
+  --abyss-deepest: #011419;          /* Ocean trench */
+  --abyss-deep: #021B23;             /* Deep abyss */
+  --abyss: #032A35;                  /* Abyss */
   
-  /* Stellar Light Spectrum */
-  --star-white: #f8fafc;
-  --star-blue-white: #e2e8f0;
-  --star-silver: #cbd5e1;
-  --cosmic-dust: #94a3b8;
-  --nebula-mist: #64748b;
-  --dark-matter: #475569;
-  --void-matter: #334155;
+  /* Deep Space Ocean - Primary foundation */
+  --space-deepest: #0A1B2E;          /* Deepest space ocean */
+  --space-deeper: #0F2440;           /* Deeper space ocean */
+  --space-deep: #142D52;             /* Deep space ocean */
+  --space: #1A3664;                  /* Space ocean */
+  --space-mid: #204076;              /* Mid space ocean */
+  --space-light: #264A88;            /* Light space ocean */
+  --space-lighter: #2C549A;          /* Lighter space ocean */
   
-  /* Advanced Nebula Palette */
-  --nebula-purple-900: #2d1b69;
-  --nebula-purple-800: #3730a3;
-  --nebula-purple-700: #4338ca;
-  --nebula-purple-600: #4f46e5;
-  --nebula-purple-500: #6366f1;
-  --nebula-purple-400: #818cf8;
-  --nebula-purple-300: #a5b4fc;
-  --nebula-purple-200: #c7d2fe;
-  --nebula-purple-100: #e0e7ff;
+  /* Twilight Ocean - Atmospheric layers */
+  --twilight-deepest: #1E4A6B;       /* Deepest twilight */
+  --twilight-deep: #25547C;          /* Deep twilight */
+  --twilight: #2C5E8D;               /* Twilight */
+  --twilight-mid: #33689E;           /* Mid twilight */
+  --twilight-light: #3A72AF;         /* Light twilight */
+  --twilight-bright: #417CC0;        /* Bright twilight */
   
-  --nebula-cyan-900: #0c4a6e;
-  --nebula-cyan-800: #075985;
-  --nebula-cyan-700: #0369a1;
-  --nebula-cyan-600: #0284c7;
-  --nebula-cyan-500: #0ea5e9;
-  --nebula-cyan-400: #38bdf8;
-  --nebula-cyan-300: #7dd3fc;
-  --nebula-cyan-200: #bae6fd;
-  --nebula-cyan-100: #e0f2fe;
+  /* Aurora Spectrum - Enhanced celestial lights */
   
-  --nebula-teal-900: #134e4a;
-  --nebula-teal-800: #115e59;
-  --nebula-teal-700: #0f766e;
-  --nebula-teal-600: #0d9488;
-  --nebula-teal-500: #14b8a6;
-  --nebula-teal-400: #2dd4bf;
-  --nebula-teal-300: #5eead4;
-  --nebula-teal-200: #99f6e4;
-  --nebula-teal-100: #ccfbf1;
+  /* Cyan-Teal Aurora Family */
+  --aurora-cyan-deepest: #003844;    /* Deep ocean cyan */
+  --aurora-cyan-deep: #004D5C;       /* Deep cyan */
+  --aurora-cyan: #006B7A;            /* Ocean cyan */
+  --aurora-cyan-bright: #00899A;     /* Bright cyan */
+  --aurora-cyan-light: #00A7BA;      /* Light cyan */
+  --aurora-cyan-luminous: #00C5DA;   /* Luminous cyan */
+  --aurora-cyan-electric: #00E3FA;   /* Electric cyan */
+  --aurora-cyan-ethereal: #33E8FF;   /* Ethereal cyan */
+  --aurora-cyan-glow: #66EDFF;       /* Glowing cyan */
+  --aurora-cyan-radiant: #99F2FF;    /* Radiant cyan */
+  --aurora-cyan-whisper: #CCF8FF;    /* Whisper cyan */
   
-  --nebula-violet-900: #4c1d95;
-  --nebula-violet-800: #5b21b6;
-  --nebula-violet-700: #6d28d9;
-  --nebula-violet-600: #7c3aed;
-  --nebula-violet-500: #8b5cf6;
-  --nebula-violet-400: #a78bfa;
-  --nebula-violet-300: #c4b5fd;
-  --nebula-violet-200: #ddd6fe;
-  --nebula-violet-100: #ede9fe;
+  /* Sapphire-Blue Aurora Family */
+  --aurora-sapphire-deepest: #001F3F; /* Deep sapphire */
+  --aurora-sapphire-deep: #003366;    /* Deep blue */
+  --aurora-sapphire: #0066CC;         /* Sapphire */
+  --aurora-sapphire-bright: #0080FF;  /* Bright sapphire */
+  --aurora-sapphire-light: #3399FF;   /* Light sapphire */
+  --aurora-sapphire-luminous: #66B3FF; /* Luminous sapphire */
+  --aurora-sapphire-electric: #80C7FF; /* Electric blue */
+  --aurora-sapphire-ethereal: #99D6FF; /* Ethereal blue */
+  --aurora-sapphire-glow: #B3E5FF;    /* Glowing blue */
+  --aurora-sapphire-radiant: #CCF2FF; /* Radiant blue */
   
-  --nebula-indigo-900: #312e81;
-  --nebula-indigo-800: #3730a3;
-  --nebula-indigo-700: #4338ca;
-  --nebula-indigo-600: #4f46e5;
-  --nebula-indigo-500: #6366f1;
-  --nebula-indigo-400: #818cf8;
-  --nebula-indigo-300: #a5b4fc;
-  --nebula-indigo-200: #c7d2fe;
-  --nebula-indigo-100: #e0e7ff;
+  /* Teal-Aquamarine Aurora Family */
+  --aurora-teal-deepest: #004040;     /* Deep teal */
+  --aurora-teal-deep: #005555;        /* Deep aqua teal */
+  --aurora-teal: #006A6B;             /* Ocean teal */
+  --aurora-teal-bright: #00A0A1;      /* Bright teal */
+  --aurora-teal-light: #00C7C8;       /* Light teal */
+  --aurora-teal-luminous: #1AD6D7;    /* Luminous teal */
+  --aurora-teal-electric: #4DE5E6;    /* Electric teal */
+  --aurora-teal-ethereal: #70EDF0;    /* Ethereal teal */
+  --aurora-teal-glow: #9AF5F7;        /* Glowing teal */
+  --aurora-teal-radiant: #C7FCFD;     /* Radiant teal */
   
-  --nebula-pink-900: #831843;
-  --nebula-pink-800: #be185d;
-  --nebula-pink-700: #c2185b;
-  --nebula-pink-600: #db2777;
-  --nebula-pink-500: #ec4899;
-  --nebula-pink-400: #f472b6;
-  --nebula-pink-300: #f9a8d4;
-  --nebula-pink-200: #fbcfe8;
-  --nebula-pink-100: #fce7f3;
+  /* Purple-Violet Nebula Family */
+  --nebula-purple-deepest: #1A0D2E;   /* Deep nebula purple */
+  --nebula-purple-deep: #2E1A47;      /* Deep purple */
+  --nebula-purple: #4A2C6A;           /* Purple */
+  --nebula-purple-bright: #6B4C9A;    /* Bright purple */
+  --nebula-purple-light: #8A6BC7;     /* Light purple */
+  --nebula-purple-luminous: #A68BF5;  /* Luminous purple */
+  --nebula-purple-electric: #C2AAFF;  /* Electric purple */
+  --nebula-purple-ethereal: #D4C2FF;  /* Ethereal purple */
+  --nebula-purple-glow: #E6DAFF;      /* Glowing purple */
+  --nebula-purple-radiant: #F0E8FF;   /* Radiant purple */
   
-  /* Stellar Energy Colors */
-  --stellar-gold: #fbbf24;
-  --stellar-amber: #f59e0b;
-  --stellar-orange: #ea580c;
-  --stellar-red: #dc2626;
-  --stellar-emerald: #10b981;
-  --stellar-lime: #84cc16;
+  /* Magenta-Pink Stellar Family */
+  --stellar-magenta-deepest: #2E0A2E; /* Deep stellar magenta */
+  --stellar-magenta-deep: #4A1A4A;    /* Deep magenta */
+  --stellar-magenta: #702070;         /* Magenta */
+  --stellar-magenta-bright: #A030A0;  /* Bright magenta */
+  --stellar-magenta-light: #C040C0;   /* Light magenta */
+  --stellar-magenta-luminous: #E050E0; /* Luminous magenta */
+  --stellar-magenta-electric: #F070F0; /* Electric magenta */
+  --stellar-magenta-ethereal: #F590F5; /* Ethereal magenta */
+  --stellar-magenta-glow: #FAB0FA;    /* Glowing magenta */
+  --stellar-magenta-radiant: #FDD0FD; /* Radiant magenta */
   
-  /* Advanced Gradient System */
-  --gradient-cosmic-dawn: linear-gradient(135deg, var(--deep-void) 0%, var(--nebula-dark) 30%, var(--galaxy-core-2) 70%, var(--nebula-purple-900) 100%);
-  --gradient-stellar-horizon: linear-gradient(90deg, var(--nebula-purple-800), var(--nebula-cyan-700), var(--nebula-teal-600));
-  --gradient-nebula-storm: linear-gradient(45deg, var(--nebula-violet-800), var(--nebula-purple-700), var(--nebula-indigo-800));
-  --gradient-galaxy-spiral: conic-gradient(from 45deg, var(--nebula-purple-600), var(--nebula-cyan-500), var(--nebula-violet-600), var(--nebula-purple-600));
-  --gradient-starfield: radial-gradient(circle at 30% 20%, var(--nebula-purple-800) 0%, transparent 50%), radial-gradient(circle at 70% 80%, var(--nebula-cyan-800) 0%, transparent 50%);
-  --gradient-aurora: linear-gradient(90deg, var(--nebula-purple-400), var(--nebula-cyan-300), var(--nebula-teal-400), var(--nebula-violet-400));
-  --gradient-cosmic-text: linear-gradient(90deg, var(--nebula-cyan-200), var(--nebula-purple-200), var(--nebula-violet-300));
-  --gradient-button-nova: linear-gradient(135deg, var(--nebula-purple-600), var(--nebula-cyan-600));
-  --gradient-card-cosmic: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(14, 165, 233, 0.05) 100%);
+  /* Emerald-Green Cosmic Family (for accents) */
+  --cosmic-emerald-deepest: #0A2E1A;  /* Deep cosmic emerald */
+  --cosmic-emerald-deep: #154730;     /* Deep emerald */
+  --cosmic-emerald: #20704A;          /* Cosmic emerald */
+  --cosmic-emerald-bright: #2BA063;   /* Bright emerald */
+  --cosmic-emerald-light: #36C77C;    /* Light emerald */
+  --cosmic-emerald-luminous: #4EE395; /* Luminous emerald */
+  --cosmic-emerald-electric: #66FFAE; /* Electric emerald */
+  --cosmic-emerald-ethereal: #99FFC7; /* Ethereal emerald */
+  --cosmic-emerald-glow: #CCFFE0;     /* Glowing emerald */
   
-  /* Background System */
-  --bg-primary: var(--deep-void);
-  --bg-secondary: var(--cosmic-void);
-  --bg-tertiary: var(--space-depths);
-  --bg-card: var(--nebula-dark);
-  --bg-surface: var(--stellar-dark);
-  --bg-overlay: rgba(10, 10, 15, 0.95);
+  /* Amber-Gold Stellar Family (for warmth) */
+  --stellar-amber-deepest: #2E1A0A;   /* Deep stellar amber */
+  --stellar-amber-deep: #4A3015;      /* Deep amber */
+  --stellar-amber: #704020;           /* Amber */
+  --stellar-amber-bright: #A0602B;    /* Bright amber */
+  --stellar-amber-light: #D08036;     /* Light amber */
+  --stellar-amber-luminous: #FFA041;  /* Luminous amber */
+  --stellar-amber-electric: #FFCC4C;  /* Electric amber */
+  --stellar-amber-ethereal: #FFE066;  /* Ethereal amber */
+  --stellar-amber-glow: #FFF299;      /* Glowing amber */
   
-  /* Glass Morphism System */
-  --glass-cosmic: rgba(22, 33, 62, 0.7);
-  --glass-nebula: rgba(29, 27, 105, 0.6);
-  --glass-stellar: rgba(16, 18, 29, 0.8);
-  --glass-void: rgba(10, 10, 15, 0.9);
+  /* === ADVANCED GRADIENT PALETTES === */
+  --gradient-deep-space: linear-gradient(135deg, var(--void-absolute), var(--abyss-deepest) 30%, var(--space-deepest) 70%, var(--space-deep));
+  --gradient-ocean-depths: linear-gradient(180deg, var(--space-deep), var(--twilight-deep) 50%, var(--twilight) 80%, var(--twilight-light));
+  --gradient-aurora-cascade: linear-gradient(90deg, var(--aurora-cyan-electric), var(--aurora-sapphire-luminous), var(--nebula-purple-bright), var(--stellar-magenta-light));
+  --gradient-stellar-horizon: linear-gradient(45deg, var(--aurora-teal-luminous), var(--aurora-cyan-electric), var(--aurora-sapphire-bright));
+  --gradient-nebula-swirl: conic-gradient(from 0deg, var(--nebula-purple-electric), var(--stellar-magenta-luminous), var(--aurora-cyan-luminous), var(--aurora-teal-electric), var(--nebula-purple-electric));
+  --gradient-cosmic-text: linear-gradient(120deg, var(--aurora-cyan-electric), var(--aurora-sapphire-luminous), var(--aurora-teal-luminous));
+  --gradient-ethereal-glow: radial-gradient(ellipse at center, var(--aurora-cyan-ethereal), var(--aurora-sapphire-ethereal), transparent 70%);
+  --gradient-card-shimmer: linear-gradient(135deg, rgba(0, 227, 250, 0.1), rgba(102, 179, 255, 0.05), rgba(166, 139, 245, 0.08), transparent);
+  --gradient-button-cosmic: linear-gradient(45deg, var(--aurora-cyan-bright), var(--aurora-sapphire-bright), var(--nebula-purple-bright));
+  --gradient-surface-depth: linear-gradient(135deg, rgba(255, 255, 255, 0.02), rgba(0, 227, 250, 0.05), rgba(255, 255, 255, 0.01));
+  
+  /* === ENHANCED BACKGROUND SYSTEM === */
+  --bg-void: var(--void-absolute);
+  --bg-abyss: var(--abyss-deepest);
+  --bg-primary: var(--space-deepest);
+  --bg-secondary: var(--space-deep);
+  --bg-tertiary: var(--space);
+  --bg-surface: var(--space-mid);
+  --bg-elevated: var(--twilight-deepest);
+  --bg-overlay: var(--twilight-deep);
+  
+  /* === GLASS MORPHISM SYSTEM === */
+  --glass-abyss: rgba(1, 20, 25, 0.85);
+  --glass-deep: rgba(10, 27, 46, 0.75);
+  --glass-medium: rgba(20, 54, 118, 0.65);
+  --glass-light: rgba(30, 74, 175, 0.55);
+  --glass-ethereal: rgba(40, 94, 200, 0.45);
+  --glass-whisper: rgba(50, 114, 225, 0.25);
+  
   --glass-blur-intense: blur(20px);
-  --glass-blur-medium: blur(12px);
+  --glass-blur-strong: blur(15px);
+  --glass-blur-medium: blur(10px);
   --glass-blur-light: blur(6px);
+  --glass-blur-subtle: blur(3px);
   
-  /* Text Hierarchy */
-  --text-primary: var(--star-white);
-  --text-secondary: var(--star-blue-white);
-  --text-tertiary: var(--star-silver);
-  --text-accent: var(--nebula-cyan-200);
-  --text-accent-bright: var(--nebula-purple-300);
-  --text-muted: var(--cosmic-dust);
-  --text-dim: var(--nebula-mist);
-  --text-highlight: var(--stellar-gold);
-  --text-success: var(--stellar-emerald);
-  --text-warning: var(--stellar-amber);
-  --text-danger: var(--stellar-red);
+  /* === ENHANCED TEXT SYSTEM === */
+  --text-ethereal: var(--aurora-cyan-whisper);
+  --text-radiant: var(--aurora-cyan-radiant);
+  --text-luminous: var(--aurora-cyan-electric);
+  --text-bright: var(--aurora-cyan-luminous);
+  --text-primary: var(--aurora-cyan-light);
+  --text-secondary: var(--aurora-sapphire-light);
+  --text-tertiary: var(--aurora-teal-light);
+  --text-accent: var(--nebula-purple-luminous);
+  --text-accent-bright: var(--nebula-purple-electric);
+  --text-muted: var(--twilight-light);
+  --text-dim: var(--twilight);
+  --text-subtle: var(--twilight-deep);
+  --text-heading: var(--aurora-cyan-electric);
+  --text-success: var(--cosmic-emerald-electric);
+  --text-warning: var(--stellar-amber-electric);
+  --text-error: var(--stellar-magenta-electric);
+  --text-info: var(--aurora-sapphire-electric);
   
-  /* Interactive States */
-  --link-primary: var(--nebula-cyan-400);
-  --link-hover: var(--nebula-cyan-200);
-  --link-active: var(--nebula-cyan-100);
-  --link-visited: var(--nebula-purple-400);
+  /* === INTERACTIVE SYSTEM === */
+  --link-default: var(--aurora-cyan-bright);
+  --link-hover: var(--aurora-cyan-electric);
+  --link-active: var(--aurora-cyan-ethereal);
+  --link-visited: var(--aurora-teal-bright);
+  --link-external: var(--nebula-purple-bright);
   
-  /* Border & Shadow System */
-  --border-cosmic: rgba(79, 70, 229, 0.3);
-  --border-nebula: rgba(14, 165, 233, 0.25);
-  --border-stellar: rgba(99, 102, 241, 0.2);
-  --border-void: rgba(248, 250, 252, 0.1);
+  --selection-bg: rgba(0, 227, 250, 0.25);
+  --selection-text: var(--aurora-cyan-whisper);
   
-  --shadow-cosmic: 0 25px 60px rgba(10, 10, 15, 0.6), 0 0 40px rgba(79, 70, 229, 0.15);
-  --shadow-nebula: 0 20px 40px rgba(10, 10, 15, 0.5), 0 0 30px rgba(14, 165, 233, 0.1);
-  --shadow-stellar: 0 15px 30px rgba(10, 10, 15, 0.4), 0 0 20px rgba(99, 102, 241, 0.08);
-  --shadow-void: inset 0 1px 0 rgba(248, 250, 252, 0.05);
-  --shadow-glow-purple: 0 0 30px rgba(139, 92, 246, 0.5);
-  --shadow-glow-cyan: 0 0 30px rgba(56, 189, 248, 0.5);
-  --shadow-glow-teal: 0 0 30px rgba(45, 212, 191, 0.5);
+  --highlight-bg: rgba(166, 139, 245, 0.15);
+  --highlight-border: var(--nebula-purple-electric);
+  --highlight-text: var(--nebula-purple-ethereal);
   
-  /* Advanced Typography */
-  --font-family-display: 'Orbitron', 'Space Grotesk', 'Inter', system-ui, sans-serif;
-  --font-family-body: 'Inter', 'SF Pro Text', system-ui, sans-serif;
-  --font-family-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  /* === ENHANCED TYPOGRAPHY SYSTEM === */
+  --font-family-primary: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+  --font-family-heading: 'Space Grotesk', 'Outfit', 'Montserrat', system-ui, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --font-family-display: 'Orbitron', 'Space Grotesk', system-ui, sans-serif;
   
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
-  --font-size-5xl: 3rem;
-  --font-size-6xl: 3.75rem;
-  --font-size-7xl: 4.5rem;
-  --font-size-8xl: 6rem;
+  /* === SPACING & LAYOUT === */
+  --space-2xs: 0.25rem;    /* 4px */
+  --space-xs: 0.5rem;      /* 8px */
+  --space-sm: 0.75rem;     /* 12px */
+  --space-md: 1rem;        /* 16px */
+  --space-lg: 1.5rem;      /* 24px */
+  --space-xl: 2rem;        /* 32px */
+  --space-2xl: 3rem;       /* 48px */
+  --space-3xl: 4rem;       /* 64px */
+  --space-4xl: 6rem;       /* 96px */
+  --space-5xl: 8rem;       /* 128px */
   
-  /* Spacing System */
-  --space-px: 1px;
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
-  --space-24: 6rem;
-  --space-32: 8rem;
+  --content-width: 750px;
+  --content-width-wide: 950px;
+  --content-width-full: 1200px;
+  --sidebar-width: 320px;
+  --navbar-height: 64px;
   
-  /* Border Radius System */
-  --radius-sm: 0.375rem;
-  --radius: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
-  --radius-2xl: 2rem;
-  --radius-3xl: 3rem;
-  --radius-full: 9999px;
+  /* === ENHANCED BORDER SYSTEM === */
+  --border-width-hairline: 0.5px;
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 4px;
   
-  /* Animation System */
-  --duration-75: 75ms;
-  --duration-100: 100ms;
-  --duration-150: 150ms;
-  --duration-200: 200ms;
-  --duration-300: 300ms;
-  --duration-500: 500ms;
-  --duration-700: 700ms;
-  --duration-1000: 1000ms;
+  --border-radius-2xs: 3px;
+  --border-radius-xs: 6px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 24px;
+  --border-radius-2xl: 32px;
+  --border-radius-full: 9999px;
+  
+  --border-ethereal: 1px solid rgba(0, 227, 250, 0.2);
+  --border-luminous: 1px solid rgba(0, 227, 250, 0.3);
+  --border-electric: 2px solid rgba(0, 227, 250, 0.5);
+  --border-nebula: 1px solid rgba(166, 139, 245, 0.3);
+  --border-stellar: 1px solid rgba(224, 80, 224, 0.3);
+  
+  /* === SHADOW & GLOW SYSTEM === */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.25), 0 8px 16px rgba(0, 0, 0, 0.2);
+  --shadow-2xl: 0 20px 40px rgba(0, 0, 0, 0.3), 0 16px 32px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  --glow-cyan-subtle: 0 0 10px rgba(0, 227, 250, 0.2);
+  --glow-cyan-medium: 0 0 20px rgba(0, 227, 250, 0.3);
+  --glow-cyan-strong: 0 0 30px rgba(0, 227, 250, 0.4);
+  --glow-sapphire-subtle: 0 0 10px rgba(102, 179, 255, 0.2);
+  --glow-sapphire-medium: 0 0 20px rgba(102, 179, 255, 0.3);
+  --glow-nebula-subtle: 0 0 10px rgba(166, 139, 245, 0.2);
+  --glow-nebula-medium: 0 0 20px rgba(166, 139, 245, 0.3);
+  --glow-stellar-subtle: 0 0 10px rgba(224, 80, 224, 0.2);
+  
+  /* === ANIMATION SYSTEM === */
+  --duration-instant: 0.1s;
+  --duration-fast: 0.2s;
+  --duration-medium: 0.3s;
+  --duration-slow: 0.5s;
+  --duration-slower: 0.8s;
   
   --ease-linear: linear;
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-// =============================================================================
-// 2. ADVANCED ANIMATED BACKGROUND SYSTEM
-// =============================================================================
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-family-body);
+  --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* === GLOBAL SETUP === */
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  line-height: 1.6;
   color: var(--text-primary);
-  background: var(--bg-primary);
-  position: relative;
-  overflow-x: hidden;
-  min-height: 100vh;
+  background: var(--gradient-deep-space);
+  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
+/* === ENHANCED COSMIC ANIMATIONS === */
+@keyframes aurora-flow {
+  0% { 
+    background-position: 0% 50%;
+    opacity: 0.3;
+  }
+  25% { 
+    background-position: 100% 0%;
+    opacity: 0.6;
+  }
+  50% { 
+    background-position: 200% 50%;
+    opacity: 0.4;
+  }
+  75% { 
+    background-position: 100% 100%;
+    opacity: 0.7;
+  }
+  100% { 
+    background-position: 0% 50%;
+    opacity: 0.3;
+  }
+}
+
+@keyframes stellar-pulse {
+  0%, 100% { 
+    box-shadow: var(--glow-cyan-subtle);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: var(--glow-cyan-medium);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes nebula-drift {
+  0% { 
+    transform: translateX(0) rotate(0deg);
+    opacity: 0.2;
+  }
+  33% { 
+    transform: translateX(30px) rotate(120deg);
+    opacity: 0.4;
+  }
+  66% { 
+    transform: translateX(-20px) rotate(240deg);
+    opacity: 0.3;
+  }
+  100% { 
+    transform: translateX(0) rotate(360deg);
+    opacity: 0.2;
+  }
+}
+
+@keyframes cosmic-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { 
+    filter: brightness(1) saturate(1);
+    text-shadow: 0 0 20px currentColor;
+  }
+  50% { 
+    filter: brightness(1.3) saturate(1.2);
+    text-shadow: 0 0 30px currentColor, 0 0 50px currentColor;
+  }
+}
+
+/* === COSMIC BACKGROUND EFFECTS === */
 body::before {
   content: '';
   position: fixed;
@@ -249,8 +359,14 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--gradient-cosmic-dawn);
-  z-index: -3;
+  background: 
+    radial-gradient(circle at 20% 30%, var(--aurora-cyan-deepest) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, var(--nebula-purple-deepest) 0%, transparent 50%),
+    radial-gradient(circle at 60% 10%, var(--aurora-sapphire-deepest) 0%, transparent 40%),
+    radial-gradient(circle at 30% 90%, var(--stellar-magenta-deepest) 0%, transparent 40%);
+  opacity: 0.6;
+  z-index: -2;
+  animation: aurora-flow 20s ease-in-out infinite;
 }
 
 body::after {
@@ -261,1422 +377,1080 @@ body::after {
   width: 100%;
   height: 100%;
   background-image: 
-    radial-gradient(circle at 20% 30%, rgba(79, 70, 229, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(14, 165, 233, 0.2) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
-    radial-gradient(circle at 90% 20%, rgba(45, 212, 191, 0.15) 0%, transparent 50%);
-  z-index: -2;
-  animation: nebula-drift 20s ease-in-out infinite;
-}
-
-/* Animated Starfield */
-.starfield {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+    radial-gradient(2px 2px at 20px 30px, var(--aurora-cyan-ethereal), transparent),
+    radial-gradient(2px 2px at 40px 70px, var(--aurora-sapphire-ethereal), transparent),
+    radial-gradient(1px 1px at 90px 40px, var(--nebula-purple-ethereal), transparent),
+    radial-gradient(1px 1px at 130px 80px, var(--aurora-teal-ethereal), transparent),
+    radial-gradient(2px 2px at 160px 30px, var(--stellar-magenta-ethereal), transparent);
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  opacity: 0.4;
   z-index: -1;
+  animation: nebula-drift 30s linear infinite;
 }
 
-.star {
-  position: absolute;
-  background: var(--star-white);
-  border-radius: 50%;
-  animation: twinkle 3s ease-in-out infinite;
-}
-
-.star:nth-child(odd) {
-  animation-delay: -1s;
-}
-
-.star:nth-child(3n) {
-  animation-delay: -2s;
-}
-
-.star.small {
-  width: 1px;
-  height: 1px;
-  opacity: 0.6;
-}
-
-.star.medium {
-  width: 2px;
-  height: 2px;
-  opacity: 0.8;
-}
-
-.star.large {
-  width: 3px;
-  height: 3px;
-  opacity: 1;
-  box-shadow: 0 0 10px var(--star-white);
-}
-
-// =============================================================================
-// 3. ADVANCED ANIMATIONS & EFFECTS
-// =============================================================================
-
-@keyframes nebula-drift {
-  0%, 100% {
-    transform: translateX(0) translateY(0) scale(1);
-  }
-  25% {
-    transform: translateX(10px) translateY(-20px) scale(1.05);
-  }
-  50% {
-    transform: translateX(-10px) translateY(10px) scale(0.95);
-  }
-  75% {
-    transform: translateX(20px) translateY(5px) scale(1.02);
-  }
-}
-
-@keyframes twinkle {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-}
-
-@keyframes cosmic-pulse {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(14, 165, 233, 0.6);
-  }
-}
-
-@keyframes aurora-flow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes float-cosmic {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  33% {
-    transform: translateY(-10px) rotate(2deg);
-  }
-  66% {
-    transform: translateY(-5px) rotate(-1deg);
-  }
-}
-
-@keyframes stellar-glow {
-  0%, 100% {
-    text-shadow: 
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 30px currentColor;
-  }
-  50% {
-    text-shadow: 
-      0 0 5px currentColor,
-      0 0 15px currentColor,
-      0 0 25px currentColor;
-  }
-}
-
-// =============================================================================
-// 4. ADVANCED COMPONENT SYSTEM
-// =============================================================================
-
-/* Glass Morphism Cards */
-.cosmic-card {
-  background: var(--glass-cosmic);
-  backdrop-filter: var(--glass-blur-medium);
-  border: 1px solid var(--border-cosmic);
-  border-radius: var(--radius-xl);
-  padding: var(--space-6);
-  box-shadow: var(--shadow-cosmic);
-  transition: all var(--duration-300) var(--ease-out);
-  position: relative;
-  overflow: hidden;
-}
-
-.cosmic-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: var(--gradient-aurora);
-  opacity: 0.6;
-}
-
-.cosmic-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-cosmic), var(--shadow-glow-purple);
-  border-color: var(--nebula-purple-400);
-}
-
-/* Advanced Typography */
-h1 {
-  font-family: var(--font-family-display);
-  font-size: var(--font-size-5xl);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  background: var(--gradient-cosmic-text);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: var(--text-primary);
-  margin-bottom: var(--space-6);
-  text-shadow: none;
-  animation: stellar-glow 4s ease-in-out infinite;
-}
-
-h2 {
-  font-family: var(--font-family-display);
-  font-size: var(--font-size-3xl);
-  font-weight: 600;
-  color: var(--text-accent-bright);
-  margin-bottom: var(--space-4);
-  position: relative;
-}
-
-h2::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 60px;
-  height: 3px;
-  background: var(--gradient-stellar-horizon);
-  border-radius: var(--radius-full);
-}
-
-h3 {
-  font-size: var(--font-size-xl);
-  font-weight: 600;
-  color: var(--text-accent);
-  margin-bottom: var(--space-3);
-}
-
-p {
-  font-size: var(--font-size-base);
-  line-height: 1.7;
-  color: var(--text-secondary);
-  margin-bottom: var(--space-4);
-}
-
-/* Advanced Link System */
-a {
-  color: var(--link-primary);
-  text-decoration: none;
-  position: relative;
-  transition: all var(--duration-200) var(--ease-out);
-}
-
-a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--gradient-stellar-horizon);
-  transition: width var(--duration-300) var(--ease-out);
-}
-
-a:hover {
-  color: var(--link-hover);
-  text-shadow: 0 0 10px currentColor;
-}
-
-a:hover::after {
-  width: 100%;
-}
-
-/* Cosmic Buttons */
-.btn-cosmic {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-6);
-  background: var(--gradient-button-nova);
-  border: none;
-  border-radius: var(--radius-full);
-  color: var(--text-primary);
-  font-weight: 600;
-  font-size: var(--font-size-base);
-  cursor: pointer;
-  transition: all var(--duration-200) var(--ease-out);
-  box-shadow: var(--shadow-stellar);
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-cosmic::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left var(--duration-500) var(--ease-out);
-}
-
-.btn-cosmic:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: var(--shadow-cosmic), var(--shadow-glow-cyan);
-}
-
-.btn-cosmic:hover::before {
-  left: 100%;
-}
-
-/* Navigation */
-.navbar {
-  background: var(--glass-void);
-  backdrop-filter: var(--glass-blur-intense);
-  border-bottom: 1px solid var(--border-void);
-  padding: var(--space-4) 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--space-6);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-logo {
-  font-family: var(--font-family-display);
-  font-size: var(--font-size-xl);
-  font-weight: 700;
-  color: var(--text-primary);
-  text-decoration: none;
-}
-
-.nav-links {
-  display: flex;
-  gap: var(--space-8);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-link {
-  color: var(--text-tertiary);
-  text-decoration: none;
-  font-weight: 500;
-  transition: all var(--duration-200) var(--ease-out);
-  position: relative;
-}
-
-.nav-link:hover {
-  color: var(--text-primary);
-  transform: translateY(-1px);
-}
-
-/* Content Areas */
-.content {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: var(--space-8) var(--space-6);
-  position: relative;
-  z-index: 1;
-}
-
-.sidebar {
-  background: var(--glass-stellar);
-  backdrop-filter: var(--glass-blur-medium);
-  border: 1px solid var(--border-stellar);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  opacity: 0.9;
-  transition: all var(--duration-300) var(--ease-out);
-}
-
-.sidebar:hover {
-  opacity: 1;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-nebula);
-}
-
-/* Table Styles */
-table {
-  width: 100%;
-  background: var(--glass-cosmic);
-  backdrop-filter: var(--glass-blur-light);
-  border: 1px solid var(--border-cosmic);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  margin: var(--space-6) 0;
-  box-shadow: var(--shadow-stellar);
-}
-
-thead {
-  background: var(--gradient-nebula-storm);
-}
-
-thead th {
-  padding: var(--space-4);
-  font-weight: 600;
-  color: var(--text-primary);
-  text-align: left;
-  font-size: var(--font-size-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-tbody td {
-  padding: var(--space-4);
-  color: var(--text-secondary);
-  border-top: 1px solid var(--border-void);
-}
-
-tbody tr:hover {
-  background: var(--glass-nebula);
-}
-
-/* Code Blocks */
-pre {
-  background: var(--cosmic-void);
-  border: 1px solid var(--border-stellar);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  overflow-x: auto;
-  box-shadow: var(--shadow-void);
-  position: relative;
-}
-
-pre::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--gradient-aurora);
-}
-
-code {
-  font-family: var(--font-family-mono);
-  color: var(--nebula-cyan-300);
-  font-size: var(--font-size-sm);
-}
-
-/* Blockquotes */
-blockquote {
-  background: var(--glass-cosmic);
-  backdrop-filter: var(--glass-blur-light);
-  border-left: 4px solid var(--nebula-purple-500);
-  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-  padding: var(--space-6);
-  margin: var(--space-6) 0;
-  font-style: italic;
-  color: var(--text-tertiary);
-  box-shadow: var(--shadow-stellar);
-  position: relative;
-}
-
-blockquote::before {
-  content: '"';
-  font-size: var(--font-size-6xl);
-  color: var(--nebula-purple-400);
-  position: absolute;
-  top: -10px;
-  left: var(--space-4);
-  line-height: 1;
-  font-family: serif;
-}
-
-/* Callouts */
-.callout {
-  background: var(--glass-cosmic);
-  backdrop-filter: var(--glass-blur-medium);
-  border: 1px solid var(--border-cosmic);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  margin: var(--space-6) 0;
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-stellar);
-}
-
-.callout::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 4px;
-  background: var(--gradient-stellar-horizon);
-}
-
-.callout.note {
-  border-left-color: var(--nebula-cyan-500);
-}
-
-.callout.warning {
-  border-left-color: var(--stellar-amber);
-}
-
-.callout.important {
-  border-left-color: var(--stellar-red);
-}
-
-.callout.tip {
-  border-left-color: var(--stellar-emerald);
-}
-
-/* Advanced Flashcard System */
-.flashcard-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-6);
-  margin: var(--space-8) 0;
-}
-
-.flashcard {
-  background: var(--glass-cosmic);
-  backdrop-filter: var(--glass-blur-medium);
-  border: 1px solid var(--border-cosmic);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  transition: all var(--duration-300) var(--ease-out);
-  box-shadow: var(--shadow-stellar);
-  position: relative;
-  animation: float-cosmic 6s ease-in-out infinite;
-}
-
-.flashcard:nth-child(even) {
-  animation-delay: -3s;
-}
-
-.flashcard:hover {
-  transform: translateY(-12px) scale(1.05);
-  box-shadow: var(--shadow-cosmic), var(--shadow-glow-purple);
-  border-color: var(--nebula-purple-400);
-}
-
-.flashcard-image {
-  height: 200px;
-  background: var(--gradient-starfield);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.flashcard-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--duration-500) var(--ease-out);
-}
-
-.flashcard:hover .flashcard-image img {
-  transform: scale(1.1);
-}
-
-.flashcard-content {
-  padding: var(--space-6);
-}
-
-.flashcard-content h3 {
-  margin: 0 0 var(--space-2) 0;
-  color: var(--text-accent-bright);
-  font-size: var(--font-size-lg);
-  font-weight: 600;
-}
-
-.flashcard-content p {
-  margin: 0;
-  color: var(--text-tertiary);
-  font-size: var(--font-size-sm);
-  line-height: 1.6;
-}
-
-/* Scrollbar Styling */
+/* === ENHANCED SCROLLBAR === */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--cosmic-void);
-  border-radius: var(--radius-full);
+  background: var(--glass-abyss);
+  border-radius: var(--border-radius-full);
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--gradient-stellar-horizon);
-  border-radius: var(--radius-full);
-  border: 2px solid var(--cosmic-void);
-  transition: all var(--duration-200) var(--ease-out);
+  border-radius: var(--border-radius-full);
+  border: 2px solid var(--glass-abyss);
+  
+  &:hover {
+    background: var(--gradient-aurora-cascade);
+    box-shadow: var(--glow-cyan-subtle);
+  }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--gradient-aurora);
-  box-shadow: var(--shadow-glow-cyan);
-}
-
-::-webkit-scrollbar-corner {
-  background: var(--cosmic-void);
-}
-
-/* Firefox Scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--nebula-purple-500) var(--cosmic-void);
+  scrollbar-color: var(--aurora-cyan-bright) var(--glass-abyss);
 }
 
-/* Selection Styling */
-::selection {
-  background: var(--nebula-purple-500);
-  color: var(--text-primary);
-  text-shadow: none;
-}
-
-::-moz-selection {
-  background: var(--nebula-purple-500);
-  color: var(--text-primary);
-  text-shadow: none;
-}
-
-// =============================================================================
-// 5. ADVANCED LAYOUT SYSTEM
-// =============================================================================
-
-/* Grid System */
-.grid {
-  display: grid;
-  gap: var(--space-6);
-}
-
-.grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
-.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
-.grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
-
-.col-span-1 { grid-column: span 1; }
-.col-span-2 { grid-column: span 2; }
-.col-span-3 { grid-column: span 3; }
-.col-span-4 { grid-column: span 4; }
-
-/* Flexbox Utilities */
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.flex-row { flex-direction: row; }
-.items-center { align-items: center; }
-.items-start { align-items: flex-start; }
-.items-end { align-items: flex-end; }
-.justify-center { justify-content: center; }
-.justify-between { justify-content: space-between; }
-.justify-around { justify-content: space-around; }
-.gap-2 { gap: var(--space-2); }
-.gap-4 { gap: var(--space-4); }
-.gap-6 { gap: var(--space-6); }
-.gap-8 { gap: var(--space-8); }
-
-/* Container System */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--space-6);
-}
-
-.container-sm {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 0 var(--space-4);
-}
-
-.container-lg {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 var(--space-8);
-}
-
-/* Spacing Utilities */
-.m-0 { margin: 0; }
-.m-2 { margin: var(--space-2); }
-.m-4 { margin: var(--space-4); }
-.m-6 { margin: var(--space-6); }
-.m-8 { margin: var(--space-8); }
-
-.mt-0 { margin-top: 0; }
-.mt-2 { margin-top: var(--space-2); }
-.mt-4 { margin-top: var(--space-4); }
-.mt-6 { margin-top: var(--space-6); }
-.mt-8 { margin-top: var(--space-8); }
-
-.mb-0 { margin-bottom: 0; }
-.mb-2 { margin-bottom: var(--space-2); }
-.mb-4 { margin-bottom: var(--space-4); }
-.mb-6 { margin-bottom: var(--space-6); }
-.mb-8 { margin-bottom: var(--space-8); }
-
-.p-0 { padding: 0; }
-.p-2 { padding: var(--space-2); }
-.p-4 { padding: var(--space-4); }
-.p-6 { padding: var(--space-6); }
-.p-8 { padding: var(--space-8); }
-
-/* Advanced Form Styling */
-.form-group {
-  margin-bottom: var(--space-6);
-}
-
-.form-label {
-  display: block;
-  font-weight: 600;
-  color: var(--text-accent);
-  margin-bottom: var(--space-2);
-  font-size: var(--font-size-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.form-input,
-.form-textarea,
-.form-select {
-  width: 100%;
-  padding: var(--space-3) var(--space-4);
-  background: var(--glass-cosmic);
-  backdrop-filter: var(--glass-blur-light);
-  border: 1px solid var(--border-cosmic);
-  border-radius: var(--radius);
-  color: var(--text-primary);
-  font-family: inherit;
-  font-size: var(--font-size-base);
-  transition: all var(--duration-200) var(--ease-out);
-  box-shadow: var(--shadow-void);
-}
-
-.form-input:focus,
-.form-textarea:focus,
-.form-select:focus {
-  outline: none;
-  border-color: var(--nebula-purple-400);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), var(--shadow-stellar);
-  background: var(--glass-nebula);
-}
-
-.form-input::placeholder,
-.form-textarea::placeholder {
-  color: var(--text-dim);
-}
-
-.form-textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-/* Advanced Badge System */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  padding: var(--space-1) var(--space-3);
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-radius: var(--radius-full);
-  border: 1px solid transparent;
-  transition: all var(--duration-200) var(--ease-out);
-}
-
-.badge-primary {
-  background: var(--nebula-purple-900);
-  color: var(--nebula-purple-200);
-  border-color: var(--nebula-purple-700);
-}
-
-.badge-secondary {
-  background: var(--nebula-cyan-900);
-  color: var(--nebula-cyan-200);
-  border-color: var(--nebula-cyan-700);
-}
-
-.badge-success {
-  background: var(--nebula-teal-900);
-  color: var(--nebula-teal-200);
-  border-color: var(--nebula-teal-700);
-}
-
-.badge-warning {
-  background: rgba(245, 158, 11, 0.2);
-  color: var(--stellar-amber);
-  border-color: rgba(245, 158, 11, 0.3);
-}
-
-.badge-danger {
-  background: rgba(220, 38, 38, 0.2);
-  color: var(--stellar-red);
-  border-color: rgba(220, 38, 38, 0.3);
-}
-
-/* Advanced Alert System */
-.alert {
-  background: var(--glass-cosmic);
-  backdrop-filter: var(--glass-blur-medium);
-  border: 1px solid var(--border-cosmic);
-  border-radius: var(--radius-lg);
-  padding: var(--space-4) var(--space-6);
-  margin: var(--space-4) 0;
+/* === ENHANCED LINK STYLES === */
+a {
+  color: var(--link-default);
+  text-decoration: none;
   position: relative;
-  box-shadow: var(--shadow-stellar);
+  transition: all var(--duration-medium) var(--ease-out);
+  border-bottom: 1px solid transparent;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-stellar-horizon);
+    transition: width var(--duration-medium) var(--ease-out);
+  }
+  
+  &:hover {
+    color: var(--link-hover);
+    text-shadow: var(--glow-cyan-subtle);
+    transform: translateY(-1px);
+    
+    &::before {
+      width: 100%;
+    }
+  }
+  
+  &:active {
+    color: var(--link-active);
+    transform: translateY(0);
+  }
+  
+  &.internal-link {
+    border-bottom: 1px dashed var(--aurora-cyan-bright);
+    opacity: 0.9;
+    
+    &:hover {
+      border-bottom-color: var(--aurora-cyan-electric);
+      opacity: 1;
+    }
+  }
+  
+  &.external-link {
+    color: var(--link-external);
+    
+    &::after {
+      content: '↗';
+      font-size: 0.8em;
+      margin-left: 0.2em;
+      opacity: 0.7;
+    }
+  }
 }
 
-.alert::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 4px;
-  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+/* === ENHANCED TYPOGRAPHY === */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+  color: var(--text-heading);
+  position: relative;
 }
 
-.alert-info::before {
-  background: var(--nebula-cyan-500);
+h1 {
+  font-size: 3rem;
+  background: var(--gradient-cosmic-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  animation: glow-pulse 4s ease-in-out infinite;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--gradient-stellar-horizon);
+    border-radius: var(--border-radius-full);
+  }
 }
 
-.alert-success::before {
-  background: var(--stellar-emerald);
+h2 {
+  font-size: 2.25rem;
+  color: var(--aurora-sapphire-electric);
+  position: relative;
+  
+  &::before {
+    content: '✦';
+    position: absolute;
+    left: -1.5em;
+    color: var(--nebula-purple-bright);
+    opacity: 0.7;
+  }
 }
 
-.alert-warning::before {
-  background: var(--stellar-amber);
+h3 {
+  font-size: 1.75rem;
+  color: var(--aurora-teal-electric);
+  
+  &::before {
+    content: '◆';
+    position: absolute;
+    left: -1.2em;
+    color: var(--aurora-cyan-bright);
+    opacity: 0.6;
+  }
 }
 
-.alert-danger::before {
-  background: var(--stellar-red);
+h4 {
+  font-size: 1.375rem;
+  color: var(--aurora-cyan-luminous);
 }
 
-.alert-title {
+h5 {
+  font-size: 1.125rem;
+  color: var(--text-bright);
+}
+
+h6 {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* === ENHANCED PARAGRAPH & TEXT === */
+p {
+  line-height: 1.7;
+  margin-bottom: 1.25em;
+  color: var(--text-primary);
+}
+
+strong {
+  color: var(--text-bright);
   font-weight: 600;
-  color: var(--text-accent-bright);
-  margin-bottom: var(--space-2);
+}
+
+em {
+  color: var(--text-accent);
+  font-style: italic;
+}
+
+code {
+  font-family: var(--font-family-mono);
+  background: var(--glass-deep);
+  color: var(--aurora-cyan-electric);
+  padding: 0.2em 0.4em;
+  border-radius: var(--border-radius-xs);
+  font-size: 0.9em;
+  border: var(--border-ethereal);
+}
+
+/* === ENHANCED BLOCKQUOTES === */
+blockquote {
+  background: var(--glass-medium);
+  border-left: 4px solid var(--aurora-cyan-electric);
+  margin: var(--space-xl) 0;
+  padding: var(--space-lg);
+  border-radius: var(--border-radius-md);
+  position: relative;
+  backdrop-filter: var(--glass-blur-light);
+  
+  &::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: var(--space-lg);
+    font-size: 3rem;
+    color: var(--aurora-cyan-bright);
+    opacity: 0.3;
+    font-family: serif;
+  }
+  
+  p {
+    margin-bottom: 0;
+    font-style: italic;
+    color: var(--text-bright);
+  }
+  
+  cite {
+    display: block;
+    margin-top: var(--space-md);
+    color: var(--text-muted);
+    font-size: 0.9em;
+    
+    &::before {
+      content: '— ';
+    }
+  }
+}
+
+/* === ENHANCED CODE BLOCKS === */
+pre {
+  background: var(--glass-abyss);
+  border: var(--border-ethereal);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-xl);
+  margin: var(--space-xl) 0;
+  overflow-x: auto;
+  position: relative;
+  backdrop-filter: var(--glass-blur-medium);
+  box-shadow: var(--shadow-lg), var(--glow-cyan-subtle);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gradient-stellar-horizon);
+  }
+  
+  code {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: var(--aurora-cyan-radiant);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+}
+
+.code-header {
+  background: var(--glass-deep);
+  padding: var(--space-md) var(--space-xl);
+  border-top-left-radius: var(--border-radius-lg);
+  border-top-right-radius: var(--border-radius-lg);
+  border: var(--border-ethereal);
+  border-bottom: none;
+  color: var(--text-muted);
+  font-family: var(--font-family-mono);
+  font-size: 0.8rem;
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-md);
+  
+  &::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--stellar-amber-electric);
+    box-shadow: 
+      16px 0 0 var(--cosmic-emerald-electric),
+      32px 0 0 var(--stellar-magenta-electric);
+  }
 }
 
-.alert-content {
-  color: var(--text-secondary);
-  line-height: 1.6;
+/* === ENHANCED LISTS === */
+ul, ol {
+  margin: var(--space-lg) 0;
+  padding-left: var(--space-xl);
 }
 
-// =============================================================================
-// 6. ADVANCED INTERACTIVE ELEMENTS
-// =============================================================================
-
-/* Advanced Button Variants */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-6);
-  font-weight: 600;
-  font-size: var(--font-size-base);
-  line-height: 1;
-  text-decoration: none;
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: all var(--duration-200) var(--ease-out);
+ul li {
   position: relative;
+  margin-bottom: var(--space-sm);
+  
+  &::before {
+    content: '◦';
+    position: absolute;
+    left: -1.2em;
+    color: var(--aurora-cyan-bright);
+    font-weight: bold;
+  }
+}
+
+ol li {
+  margin-bottom: var(--space-sm);
+  
+  &::marker {
+    color: var(--aurora-sapphire-bright);
+    font-weight: 600;
+  }
+}
+
+/* === ENHANCED TABLES === */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: var(--space-2xl) 0;
+  background: var(--glass-medium);
+  border-radius: var(--border-radius-lg);
   overflow: hidden;
-  white-space: nowrap;
-}
-
-.btn-primary {
-  background: var(--gradient-button-nova);
-  color: var(--text-primary);
-  box-shadow: var(--shadow-stellar);
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: var(--shadow-cosmic), var(--shadow-glow-purple);
-}
-
-.btn-secondary {
-  background: var(--glass-cosmic);
+  box-shadow: var(--shadow-xl), var(--glow-cyan-subtle);
   backdrop-filter: var(--glass-blur-medium);
-  border: 1px solid var(--border-cosmic);
-  color: var(--text-accent);
-  box-shadow: var(--shadow-void);
 }
 
-.btn-secondary:hover {
-  background: var(--glass-nebula);
-  border-color: var(--nebula-purple-400);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-stellar);
+thead {
+  background: var(--glass-deep);
+  
+  th {
+    padding: var(--space-lg) var(--space-xl);
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-heading);
+    border-bottom: 2px solid var(--aurora-cyan-bright);
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--gradient-stellar-horizon);
+    }
+  }
 }
 
-.btn-ghost {
-  background: transparent;
-  color: var(--text-accent);
-  border: 1px solid var(--border-stellar);
+tbody {
+  tr {
+    transition: all var(--duration-fast) var(--ease-out);
+    
+    &:nth-child(even) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    
+    &:hover {
+      background: var(--glass-light);
+      transform: scale(1.001);
+      box-shadow: inset 0 0 0 1px var(--aurora-cyan-bright);
+    }
+  }
+  
+  td {
+    padding: var(--space-md) var(--space-xl);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+  }
 }
 
-.btn-ghost:hover {
-  background: var(--glass-cosmic);
-  color: var(--text-primary);
-  border-color: var(--border-cosmic);
+/* === ENHANCED CALLOUTS === */
+.callout {
+  background: var(--glass-medium);
+  border: var(--border-ethereal);
+  border-left: 4px solid var(--aurora-cyan-electric);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-xl);
+  margin: var(--space-2xl) 0;
+  position: relative;
+  backdrop-filter: var(--glass-blur-medium);
+  box-shadow: var(--shadow-lg), var(--glow-cyan-subtle);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: var(--gradient-card-shimmer);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+  
+  .callout-title {
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+    color: var(--text-heading);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    
+    svg {
+      width: 1.2em;
+      height: 1.2em;
+    }
+  }
+  
+  &.note {
+    border-left-color: var(--aurora-sapphire-electric);
+    
+    .callout-title {
+      color: var(--aurora-sapphire-electric);
+    }
+  }
+  
+  &.warning {
+    border-left-color: var(--stellar-amber-electric);
+    
+    .callout-title {
+      color: var(--stellar-amber-electric);
+    }
+  }
+  
+  &.important {
+    border-left-color: var(--stellar-magenta-electric);
+    
+    .callout-title {
+      color: var(--stellar-magenta-electric);
+    }
+  }
+  
+  &.tip {
+    border-left-color: var(--cosmic-emerald-electric);
+    
+    .callout-title {
+      color: var(--cosmic-emerald-electric);
+    }
+  }
 }
 
-.btn-sm {
-  padding: var(--space-2) var(--space-4);
-  font-size: var(--font-size-sm);
-}
-
-.btn-lg {
-  padding: var(--space-4) var(--space-8);
-  font-size: var(--font-size-lg);
-}
-
-/* Advanced Modal System */
-.modal-overlay {
+/* === NAVBAR TRANSFORMATION === */
+.navbar {
+  background: var(--glass-abyss);
+  backdrop-filter: var(--glass-blur-strong);
+  border-bottom: var(--border-ethereal);
+  padding: var(--space-md) var(--space-xl);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background: rgba(10, 10, 15, 0.8);
-  backdrop-filter: blur(10px);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: all var(--duration-300) var(--ease-out);
-}
-
-.modal-overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal-content {
-  background: var(--glass-cosmic);
-  backdrop-filter: var(--glass-blur-intense);
-  border: 1px solid var(--border-cosmic);
-  border-radius: var(--radius-2xl);
-  padding: var(--space-8);
-  max-width: 500px;
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: var(--shadow-cosmic);
-  transform: scale(0.9) translateY(20px);
-  transition: all var(--duration-300) var(--ease-out);
-  position: relative;
-}
-
-.modal-overlay.active .modal-content {
-  transform: scale(1) translateY(0);
-}
-
-.modal-header {
+  z-index: 1000;
+  height: var(--navbar-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: var(--space-6);
-  padding-bottom: var(--space-4);
-  border-bottom: 1px solid var(--border-void);
-}
-
-.modal-title {
-  font-size: var(--font-size-xl);
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0;
-}
-
-.modal-close {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  font-size: var(--font-size-xl);
-  cursor: pointer;
-  padding: var(--space-2);
-  border-radius: var(--radius);
-  transition: all var(--duration-200) var(--ease-out);
-}
-
-.modal-close:hover {
-  color: var(--text-primary);
-  background: var(--glass-nebula);
-}
-
-/* Advanced Dropdown System */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-toggle {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-4);
-  background: var(--glass-cosmic);
-  border: 1px solid var(--border-cosmic);
-  border-radius: var(--radius);
-  color: var(--text-primary);
-  cursor: pointer;
-  transition: all var(--duration-200) var(--ease-out);
-}
-
-.dropdown-toggle:hover {
-  background: var(--glass-nebula);
-  border-color: var(--nebula-purple-400);
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  min-width: 200px;
-  background: var(--glass-cosmic);
-  backdrop-filter: var(--glass-blur-intense);
-  border: 1px solid var(--border-cosmic);
-  border-radius: var(--radius-lg);
-  padding: var(--space-2);
-  margin-top: var(--space-2);
-  box-shadow: var(--shadow-cosmic);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all var(--duration-200) var(--ease-out);
-  z-index: 1000;
-}
-
-.dropdown.active .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.dropdown-item {
-  display: block;
-  width: 100%;
-  padding: var(--space-3) var(--space-4);
-  color: var(--text-secondary);
-  text-decoration: none;
-  border-radius: var(--radius);
-  transition: all var(--duration-150) var(--ease-out);
-  border: none;
-  background: none;
-  text-align: left;
-  cursor: pointer;
-}
-
-.dropdown-item:hover {
-  background: var(--glass-nebula);
-  color: var(--text-primary);
-}
-
-.dropdown-divider {
-  height: 1px;
-  background: var(--border-void);
-  margin: var(--space-2) 0;
-}
-
-// =============================================================================
-// 7. ADVANCED PARTICLE EFFECTS & ANIMATIONS
-// =============================================================================
-
-/* Enhanced Particle System */
-.particles-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-  overflow: hidden;
-}
-
-.cosmic-particle {
-  position: absolute;
-  background: var(--star-white);
-  border-radius: 50%;
-  opacity: 0;
-  animation: particle-float 15s linear infinite;
-}
-
-.cosmic-particle.small {
-  width: 2px;
-  height: 2px;
-}
-
-.cosmic-particle.medium {
-  width: 3px;
-  height: 3px;
-  box-shadow: 0 0 6px var(--nebula-cyan-400);
-}
-
-.cosmic-particle.large {
-  width: 4px;
-  height: 4px;
-  box-shadow: 0 0 12px var(--nebula-purple-400);
-}
-
-@keyframes particle-float {
-  0% {
-    transform: translateY(100vh) translateX(-10px) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-10vh) translateX(10px) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-/* Galaxy Spiral Effect */
-.galaxy-spiral {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 100vw;
-  height: 100vw;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: -2;
-  opacity: 0.1;
-  animation: galaxy-rotate 60s linear infinite;
-}
-
-.galaxy-spiral::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--gradient-galaxy-spiral);
-  border-radius: 50%;
-  filter: blur(3px);
-}
-
-@keyframes galaxy-rotate {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-/* Cosmic Dust Effect */
-.cosmic-dust {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-  background-image: 
-    radial-gradient(1px 1px at 20px 30px, rgba(255,255,255,0.15), transparent),
-    radial-gradient(1px 1px at 40px 70px, rgba(79, 70, 229, 0.1), transparent),
-    radial-gradient(1px 1px at 90px 40px, rgba(14, 165, 233, 0.1), transparent),
-    radial-gradient(1px 1px at 130px 80px, rgba(139, 92, 246, 0.1), transparent);
-  background-repeat: repeat;
-  background-size: 200px 100px;
-  animation: cosmic-drift 20s linear infinite;
-}
-
-@keyframes cosmic-drift {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-200px);
-  }
-}
-
-// =============================================================================
-// 8. RESPONSIVE DESIGN & MOBILE OPTIMIZATION
-// =============================================================================
-
-/* Mobile First Responsive Design */
-@media (max-width: 768px) {
-  :root {
-    --space-4: 0.75rem;
-    --space-6: 1rem;
-    --space-8: 1.5rem;
-    --font-size-5xl: 2.5rem;
-    --font-size-3xl: 1.5rem;
-  }
-
-  .content {
-    padding: var(--space-4);
-  }
-
-  .flashcard-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .cosmic-card {
-    padding: var(--space-4);
-  }
-
-  .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .grid-cols-2,
-  .grid-cols-3,
-  .grid-cols-4 {
-    grid-template-columns: 1fr;
-  }
-
-  .container,
-  .container-sm,
-  .container-lg {
-    padding: 0 var(--space-4);
-  }
-
-  .modal-content {
-    margin: var(--space-4);
-    padding: var(--space-6);
-  }
-}
-
-@media (max-width: 480px) {
-  .flashcard-image {
-    height: 150px;
-  }
-
-  .cosmic-card {
-    padding: var(--space-3);
-  }
-
-  .btn {
-    padding: var(--space-2) var(--space-4);
-    font-size: var(--font-size-sm);
-  }
-}
-
-/* Tablet Optimization */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .flashcard-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .grid-cols-4 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .content {
-    padding: var(--space-6);
-  }
-}
-
-/* Desktop Optimization */
-@media (min-width: 1025px) {
-  .flashcard-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .content {
-    padding: var(--space-8) var(--space-6);
-  }
-}
-
-/* Large Screen Optimization */
-@media (min-width: 1400px) {
-  .flashcard-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .container-lg {
-    max-width: 1600px;
-  }
-}
-
-// =============================================================================
-// 9. ACCESSIBILITY & PERFORMANCE OPTIMIZATIONS
-// =============================================================================
-
-/* High Contrast Mode Support */
-@media (prefers-contrast: high) {
-  :root {
-    --text-primary: #ffffff;
-    --text-secondary: #f0f0f0;
-    --border-cosmic: rgba(255, 255, 255, 0.5);
-    --glass-cosmic: rgba(0, 0, 0, 0.9);
-  }
-}
-
-/* Reduced Motion Support */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  box-shadow: var(--shadow-lg), var(--glow-cyan-subtle);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gradient-stellar-horizon);
   }
   
-  .galaxy-spiral,
-  .cosmic-dust,
-  .particles-container {
-    display: none;
+  .navbar-brand {
+    font-family: var(--font-family-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    text-decoration: none;
+    background: var(--gradient-cosmic-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    
+    &:hover {
+      animation: glow-pulse 2s ease-in-out infinite;
+    }
+  }
+  
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    
+    a {
+      color: var(--text-secondary);
+      font-weight: 500;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--border-radius-md);
+      transition: all var(--duration-fast) var(--ease-out);
+      
+      &:hover {
+        color: var(--text-bright);
+        background: var(--glass-light);
+        box-shadow: var(--glow-cyan-subtle);
+        transform: translateY(-1px);
+      }
+    }
   }
 }
 
-/* Focus Management */
-.focus-visible {
-  outline: 2px solid var(--nebula-purple-400);
-  outline-offset: 2px;
-}
-
-/* Print Styles */
-@media print {
-  body::before,
-  body::after,
-  .particles-container,
-  .galaxy-spiral,
-  .cosmic-dust {
-    display: none !important;
+/* === SIDEBAR TRANSFORMATION === */
+.filetree-sidebar {
+  background: var(--glass-abyss);
+  backdrop-filter: var(--glass-blur-strong);
+  border-right: var(--border-ethereal);
+  width: var(--sidebar-width);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  overflow-y: auto;
+  padding: calc(var(--navbar-height) + var(--space-lg)) var(--space-lg) var(--space-lg);
+  box-shadow: var(--shadow-xl), var(--glow-cyan-subtle);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background: var(--gradient-stellar-horizon);
   }
-
-  body {
-    background: white !important;
-    color: black !important;
+  
+  h1 {
+    font-family: var(--font-family-display);
+    font-size: 1.25rem;
+    margin-bottom: var(--space-xl);
+    color: var(--text-heading);
+    position: relative;
+    margin-top: var(--title-header-gif-height, 120px);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: calc(-1 * var(--title-header-gif-height, 120px) - var(--space-md));
+      left: 0;
+      width: 100%;
+      height: var(--title-header-gif-height, 120px);
+      background-image: var(--title-header-gif, none);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: var(--border-radius-lg);
+      opacity: 0.8;
+    }
   }
-
-  .cosmic-card,
-  .flashcard {
-    background: white !important;
-    border: 1px solid #ccc !important;
-    box-shadow: none !important;
+  
+  .filetree {
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      
+      ul {
+        margin-left: var(--space-lg);
+        border-left: 1px solid rgba(0, 227, 250, 0.2);
+        padding-left: var(--space-md);
+      }
+    }
+    
+    li {
+      margin: var(--space-xs) 0;
+      position: relative;
+      
+      &::before {
+        display: none;
+      }
+    }
+    
+    a {
+      display: block;
+      padding: var(--space-sm) var(--space-md);
+      color: var(--text-secondary);
+      border-radius: var(--border-radius-sm);
+      transition: all var(--duration-fast) var(--ease-out);
+      font-size: 0.9rem;
+      
+      &:hover {
+        color: var(--text-bright);
+        background: var(--glass-light);
+        transform: translateX(4px);
+        box-shadow: var(--glow-cyan-subtle);
+      }
+      
+      &.active {
+        color: var(--text-heading);
+        background: var(--glass-medium);
+        border-left: 2px solid var(--aurora-cyan-electric);
+        box-shadow: var(--glow-cyan-medium);
+      }
+    }
+    
+    .folder-icon,
+    .file-icon {
+      margin-right: var(--space-sm);
+      opacity: 0.7;
+    }
+    
+    .folder-icon {
+      color: var(--aurora-sapphire-bright);
+    }
+    
+    .file-icon {
+      color: var(--aurora-teal-bright);
+    }
   }
 }
 
-/* Performance Optimizations */
-.will-change-transform {
-  will-change: transform;
+/* === RIGHT SIDEBAR TRANSFORMATION === */
+.sidebar {
+  background: var(--glass-abyss);
+  backdrop-filter: var(--glass-blur-strong);
+  border-left: var(--border-ethereal);
+  width: var(--sidebar-width);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  overflow-y: auto;
+  padding: calc(var(--navbar-height) + var(--space-lg)) var(--space-lg) var(--space-lg);
+  box-shadow: var(--shadow-xl), var(--glow-cyan-subtle);
+  opacity: var(--sidebar-opacity, 0.9);
+  transition: opacity var(--duration-medium) var(--ease-out);
+  
+  &:hover {
+    opacity: var(--sidebar-hover-opacity, 1);
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    background: var(--gradient-stellar-horizon);
+  }
+  
+  .sidebar-section {
+    margin-bottom: var(--space-2xl);
+    
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-heading);
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid rgba(0, 227, 250, 0.2);
+      
+      &::before {
+        display: none;
+      }
+    }
+  }
+  
+  .graph, .toc, .backlinks {
+    background: var(--glass-medium);
+    border: var(--border-ethereal);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-lg);
+    backdrop-filter: var(--glass-blur-light);
+    box-shadow: var(--shadow-md), var(--glow-cyan-subtle);
+    transition: all var(--duration-fast) var(--ease-out);
+    
+    &:hover {
+      box-shadow: var(--shadow-lg), var(--glow-cyan-medium);
+      transform: scale(1.01);
+    }
+  }
+  
+  .backlinks {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    li {
+      margin: var(--space-sm) 0;
+      
+      &::before {
+        display: none;
+      }
+    }
+    
+    a {
+      display: block;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--border-radius-sm);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      transition: all var(--duration-fast) var(--ease-out);
+      
+      &:hover {
+        color: var(--text-bright);
+        background: var(--glass-light);
+        transform: translateX(-4px);
+      }
+    }
+  }
 }
 
-.will-change-opacity {
-  will-change: opacity;
+/* === CONTENT TRANSFORMATION === */
+.content {
+  margin-left: var(--sidebar-width);
+  margin-right: var(--sidebar-width);
+  padding: calc(var(--navbar-height) + var(--space-2xl)) var(--space-2xl) var(--space-2xl);
+  max-width: var(--content-width);
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100vh;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50px;
+    right: -50px;
+    height: 100%;
+    background: var(--glass-whisper);
+    border-radius: var(--border-radius-2xl);
+    backdrop-filter: var(--glass-blur-subtle);
+    z-index: -1;
+  }
 }
 
-.gpu-accelerated {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
+/* === ENHANCED FLASHCARDS === */
+.flashcard-grid {
+  display: grid;
+  gap: var(--space-lg);
+  margin: var(--space-2xl) 0;
 }
 
-// =============================================================================
-// 10. UTILITY CLASSES & HELPERS
-// =============================================================================
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
 
-/* Display Utilities */
-.hidden { display: none !important; }
-.block { display: block !important; }
-.inline-block { display: inline-block !important; }
-.inline { display: inline !important; }
+@media (max-width: 1400px) {
+  .grid-4 { grid-template-columns: repeat(3, 1fr); }
+}
 
-/* Position Utilities */
-.relative { position: relative !important; }
-.absolute { position: absolute !important; }
-.fixed { position: fixed !important; }
-.sticky { position: sticky !important; }
+@media (max-width: 1000px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
 
-/* Text Utilities */
-.text-left { text-align: left !important; }
-.text-center { text-align: center !important; }
-.text-right { text-align: right !important; }
-.text-uppercase { text-transform: uppercase !important; }
-.text-lowercase { text-transform: lowercase !important; }
-.text-capitalize { text-transform: capitalize !important; }
+@media (max-width: 650px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
 
-/* Font Weight Utilities */
-.font-light { font-weight: 300 !important; }
-.font-normal { font-weight: 400 !important; }
-.font-medium { font-weight: 500 !important; }
-.font-semibold { font-weight: 600 !important; }
-.font-bold { font-weight: 700 !important; }
+.flashcard {
+  background: var(--glass-medium);
+  border: var(--border-ethereal);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg), var(--glow-cyan-subtle);
+  backdrop-filter: var(--glass-blur-medium);
+  transition: all var(--duration-medium) var(--ease-out);
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-card-shimmer);
+    opacity: 0;
+    transition: opacity var(--duration-medium) var(--ease-out);
+    pointer-events: none;
+  }
+  
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-2xl), var(--glow-cyan-medium);
+    border-color: var(--aurora-cyan-electric);
+    
+    &::before {
+      opacity: 1;
+    }
+  }
+  
+  a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+  
+  .flashcard-image {
+    background: var(--glass-deep);
+    padding: var(--space-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+    
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: var(--border-radius-sm);
+      transition: transform var(--duration-medium) var(--ease-out);
+      filter: drop-shadow(var(--glow-cyan-subtle));
+    }
+  }
+  
+  &:hover .flashcard-image img {
+    transform: scale(1.05);
+    filter: drop-shadow(var(--glow-cyan-medium));
+  }
+  
+  .flashcard-content {
+    padding: var(--space-lg);
+    flex-grow: 1;
+    
+    h3 {
+      margin: 0 0 var(--space-sm);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-heading);
+      
+      &::before {
+        display: none;
+      }
+    }
+    
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+  }
+}
 
-/* Color Utilities */
-.text-primary { color: var(--text-primary) !important; }
-.text-secondary { color: var(--text-secondary) !important; }
-.text-accent { color: var(--text-accent) !important; }
-.text-muted { color: var(--text-muted) !important; }
+/* === ROUND IMAGE UTILITIES === */
+.round-img {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--aurora-cyan-bright);
+  box-shadow: var(--glow-cyan-subtle);
+}
 
-/* Background Utilities */
-.bg-transparent { background: transparent !important; }
-.bg-cosmic { background: var(--glass-cosmic) !important; }
-.bg-nebula { background: var(--glass-nebula) !important; }
+.round-img-50 { width: 50px; height: 50px; }
+.round-img-100 { width: 100px; height: 100px; }
+.round-img-150 { width: 150px; height: 150px; }
+.round-img-200 { width: 200px; height: 200px; }
 
-/* Border Radius Utilities */
-.rounded-none { border-radius: 0 !important; }
-.rounded-sm { border-radius: var(--radius-sm) !important; }
-.rounded { border-radius: var(--radius) !important; }
-.rounded-lg { border-radius: var(--radius-lg) !important; }
-.rounded-xl { border-radius: var(--radius-xl) !important; }
-.rounded-full { border-radius: var(--radius-full) !important; }
+/* === DATETIME DISPLAY === */
+.datetime-container {
+  position: fixed;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  background: var(--glass-abyss);
+  backdrop-filter: var(--glass-blur-medium);
+  border: var(--border-ethereal);
+  border-radius: var(--border-radius-full);
+  padding: var(--space-sm) var(--space-lg);
+  font-family: var(--font-family-mono);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  z-index: 1001;
+  box-shadow: var(--shadow-md), var(--glow-cyan-subtle);
+  transition: all var(--duration-fast) var(--ease-out);
+  
+  &:hover {
+    background: var(--glass-medium);
+    color: var(--text-bright);
+    box-shadow: var(--shadow-lg), var(--glow-cyan-medium);
+    transform: scale(1.05);
+  }
+  
+  .datetime-toggle {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: var(--space-xs);
+    border-radius: var(--border-radius-sm);
+    transition: all var(--duration-fast) var(--ease-out);
+    
+    &:hover {
+      background: var(--glass-light);
+      color: var(--text-heading);
+    }
+  }
+}
 
-/* Shadow Utilities */
-.shadow-none { box-shadow: none !important; }
-.shadow-cosmic { box-shadow: var(--shadow-cosmic) !important; }
-.shadow-stellar { box-shadow: var(--shadow-stellar) !important; }
+/* === PARTICLES ENHANCEMENT === */
+.particles-js-canvas-el {
+  opacity: 0.3;
+  mix-blend-mode: screen;
+  filter: blur(1px);
+  animation: cosmic-pulse 15s infinite ease-in-out;
+}
 
-/* Overflow Utilities */
-.overflow-hidden { overflow: hidden !important; }
-.overflow-auto { overflow: auto !important; }
-.overflow-scroll { overflow: scroll !important; }
+@keyframes cosmic-pulse {
+  0%, 100% { 
+    opacity: 0.3; 
+    filter: blur(1px) brightness(1); 
+  }
+  50% { 
+    opacity: 0.5; 
+    filter: blur(2px) brightness(1.2); 
+  }
+}
 
-/* Width & Height Utilities */
-.w-full { width: 100% !important; }
-.h-full { height: 100% !important; }
-.min-h-screen { min-height: 100vh !important; }
+/* === FOCUS MODE ENHANCEMENT === */
+.fullscreen-btn {
+  position: fixed;
+  top: var(--space-lg);
+  right: calc(var(--space-lg) + 200px);
+  background: var(--gradient-button-cosmic);
+  border: none;
+  color: var(--text-ethereal);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--border-radius-full);
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  transition: all var(--duration-medium) var(--ease-bounce);
+  box-shadow: var(--shadow-lg), var(--glow-cyan-medium);
+  z-index: 1002;
+  backdrop-filter: var(--glass-blur-light);
+  
+  &:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: var(--shadow-xl), var(--glow-cyan-strong);
+    background: var(--gradient-aurora-cascade);
+  }
+  
+  &:active {
+    transform: translateY(0) scale(1);
+  }
+  
+  svg {
+    width: 1em;
+    height: 1em;
+  }
+}
 
-/* Z-Index Utilities */
-.z-0 { z-index: 0 !important; }
-.z-10 { z-index: 10 !important; }
-.z-50 { z-index: 50 !important; }
-.z-100 { z-index: 100 !important; }
+body.fullscreen-mode {
+  .navbar,
+  .filetree-sidebar,
+  .sidebar {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+  }
+  
+  .fullscreen-btn {
+    top: var(--space-xl);
+    right: var(--space-xl);
+    background: var(--gradient-stellar-horizon);
+    transform: scale(1.1);
+    animation: stellar-pulse 3s ease-in-out infinite;
+  }
+  
+  .content {
+    margin: 0;
+    max-width: 95vw;
+    padding: var(--space-4xl) var(--space-2xl);
+    
+    &::before {
+      left: -100px;
+      right: -100px;
+    }
+  }
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 1200px) {
+  :root {
+    --sidebar-width: 280px;
+  }
+  
+  .content {
+    padding-left: var(--space-xl);
+    padding-right: var(--space-xl);
+  }
+}
+
+@media (max-width: 900px) {
+  .filetree-sidebar,
+  .sidebar {
+    transform: translateX(-100%);
+    
+    &.open {
+      transform: translateX(0);
+    }
+  }
+  
+  .content {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .navbar {
+    padding: var(--space-sm) var(--space-md);
+    
+    .navbar-nav {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .content {
+    padding: calc(var(--navbar-height) + var(--space-lg)) var(--space-md) var(--space-lg);
+    
+    &::before {
+      left: -20px;
+      right: -20px;
+    }
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .flashcard-grid {
+    gap: var(--space-md);
+  }
+  
+  .datetime-container {
+    top: var(--space-sm);
+    right: var(--space-sm);
+    font-size: 0.75rem;
+    padding: var(--space-xs) var(--space-sm);
+  }
+  
+  .fullscreen-btn {
+    top: var(--space-sm);
+    right: calc(var(--space-sm) + 120px);
+    padding: var(--space-sm) var(--space-md);
+    font-size: 0.75rem;
+  }
+}
