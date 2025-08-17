@@ -1,758 +1,346 @@
 /*
- * GALAXY DIGITAL GARDEN THEME
- * Deep space aesthetic inspired by Super Mario Galaxy
- * Sophisticated color palette with stellar blues and cosmic grays
- */
+  galaxy-digital-garden.css
+  ---------------------------------
+  Complete, single-file CSS overhaul for an Obsidian Digital Garden
+  Theme: "Cosmic / Galaxy" (deep blues, aurora accents, Super Mario Galaxy vibe)
 
-// =============================================================================
-// 1. CORE GALAXY COLOR SYSTEM
-// =============================================================================
+  Notes:
+  - This file intentionally styles the core layout elements that the Obsidian "Digital Garden"
+    plugin typically provides: navbar, filetree, sidebar, content/note pages, graph, backlinks,
+    callouts, code blocks, tables, search, and particles canvas.
+  - Extra features you asked to remove are hidden (fullscreen button, site timer, flashcards).
+  - The content stays centered; note pages are slightly wider. Colors favor deep blues + aqua
+    highlights; accents (amber / mild purple) are used sparingly.
+  - No SCSS — pure CSS with custom properties for easy future edits.
 
-:root {
-  /* Deep Space Foundation */
-  --void-black: #000511;           /* Absolute void */
-  --space-deep: #0a0f1c;          /* Deep space */
-  --space-dark: #11192a;          /* Dark space */
-  --space-medium: #1a2332;        /* Medium space */
-  --space-light: #232d3f;         /* Light space */
-  --space-lighter: #2d384c;       /* Lighter space */
-  
-  /* Stellar Blue Spectrum */
-  --stellar-deep: #1e293b;        /* Deep stellar blue */
-  --stellar-medium: #334155;      /* Medium stellar blue */
-  --stellar-light: #475569;       /* Light stellar blue */
-  --stellar-bright: #64748b;      /* Bright stellar blue */
-  
-  /* Cosmic Blue Accents */
-  --cosmic-blue-900: #0c1b3d;     /* Deep cosmic blue */
-  --cosmic-blue-800: #1e2a5e;     /* Dark cosmic blue */
-  --cosmic-blue-700: #2d3a7f;     /* Medium cosmic blue */
-  --cosmic-blue-600: #3b4aa0;     /* Standard cosmic blue */
-  --cosmic-blue-500: #4959c1;     /* Bright cosmic blue */
-  --cosmic-blue-400: #6b7ee2;     /* Light cosmic blue */
-  --cosmic-blue-300: #8da3ff;     /* Lighter cosmic blue */
-  --cosmic-blue-200: #b3c5ff;     /* Very light cosmic blue */
-  --cosmic-blue-100: #d9e7ff;     /* Whisper cosmic blue */
-  
-  /* Galaxy Accent Colors */
-  --galaxy-cyan: #22d3ee;         /* Bright cyan star */
-  --galaxy-cyan-light: #67e8f9;   /* Light cyan */
-  --galaxy-cyan-soft: #a5f3fc;    /* Soft cyan */
-  
-  --galaxy-indigo: #6366f1;       /* Deep indigo */
-  --galaxy-indigo-light: #818cf8; /* Light indigo */
-  --galaxy-indigo-soft: #a5b4fc;  /* Soft indigo */
-  
-  --galaxy-violet: #8b5cf6;       /* Galaxy violet */
-  --galaxy-violet-light: #a78bfa; /* Light violet */
-  --galaxy-violet-soft: #c4b5fd;  /* Soft violet */
-  
-  /* Neutral Grays (Space Dust) */
-  --dust-900: #111827;            /* Dark dust */
-  --dust-800: #1f2937;            /* Medium dark dust */
-  --dust-700: #374151;            /* Medium dust */
-  --dust-600: #4b5563;            /* Light dust */
-  --dust-500: #6b7280;            /* Bright dust */
-  --dust-400: #9ca3af;            /* Very bright dust */
-  --dust-300: #d1d5db;            /* Light dust */
-  --dust-200: #e5e7eb;            /* Very light dust */
-  --dust-100: #f3f4f6;            /* Whisper dust */
-  
-  /* Text Colors */
-  --text-primary: #f1f5f9;        /* Primary text (bright) */
-  --text-secondary: #cbd5e1;      /* Secondary text */
-  --text-tertiary: #94a3b8;       /* Tertiary text */
-  --text-muted: #64748b;          /* Muted text */
-  --text-dim: #475569;            /* Dim text */
-  
-  /* Interactive Colors */
-  --link-primary: var(--galaxy-cyan);
-  --link-hover: var(--galaxy-cyan-light);
-  --link-active: var(--galaxy-cyan-soft);
-  --link-visited: var(--galaxy-indigo);
-  
-  /* Background System */
-  --bg-primary: var(--void-black);
-  --bg-secondary: var(--space-deep);
-  --bg-tertiary: var(--space-dark);
-  --bg-quaternary: var(--space-medium);
-  
-  /* Surface Colors (for cards, panels, etc.) */
-  --surface-1: rgba(26, 35, 50, 0.8);     /* Primary surface */
-  --surface-2: rgba(35, 45, 63, 0.7);     /* Secondary surface */
-  --surface-3: rgba(45, 56, 76, 0.6);     /* Tertiary surface */
-  --surface-glass: rgba(30, 41, 59, 0.4); /* Glass effect */
-  
-  /* Border Colors */
-  --border-primary: rgba(100, 116, 139, 0.2);
-  --border-secondary: rgba(148, 163, 184, 0.15);
-  --border-accent: rgba(34, 211, 238, 0.3);
-  --border-subtle: rgba(71, 85, 105, 0.1);
-  
-  /* Shadow System */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
-  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
-  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.2);
-  
-  /* Glow Effects */
-  --glow-cyan: 0 0 20px rgba(34, 211, 238, 0.3);
-  --glow-indigo: 0 0 20px rgba(99, 102, 241, 0.3);
-  --glow-violet: 0 0 20px rgba(139, 92, 246, 0.3);
-  
-  /* Typography */
-  --font-family-primary: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  --font-family-heading: 'Space Grotesk', 'Inter', sans-serif;
-  --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
-  
+  Authoring: created to be dropped into your existing styles folder (replace or import).
+*/
+
+:root{
+  /* --- Core cosmic palette --- */
+  --cosmic-void: #01040a;          /* almost-black */
+  --nebula-900: #041028;          /* deep midnight */
+  --nebula-800: #07213a;          /* deep ocean blue */
+  --nebula-700: #0b3350;          /* dusk navy */
+  --nebula-600: #114868;          /* classic deep blue */
+  --nebula-500: #1a5f88;          /* night sky blue */
+  --nebula-400: #2a7ab0;          /* lighter blue */
+  --sky-300:    #4daee0;          /* light cyan/blue (aurora) */
+  --aqua-500:   #06b6d4;          /* strong aqua accent */
+  --aqua-300:   #22d3ee;          /* bright aqua for glows */
+
+  /* Sparing accent colors (use rarely) */
+  --amber-500:  #f59e0b;          /* highlight/cta */
+  --soft-purple: #6b54d6;         /* mild purple accent - avoid pairing with pink */
+
+  /* Neutral / text */
+  --text-100: #eaf6ff;            /* primary body text, very light cyan */
+  --text-200: #bcd9f7;            /* secondary text */
+  --muted-300: #8f9db3;           /* muted labels */
+
+  /* Surface / glass */
+  --glass-900: rgba(4,8,16,0.78);
+  --glass-800: rgba(8,14,28,0.66);
+  --glass-700: rgba(14,24,42,0.5);
+  --card-bg: rgba(14,22,40,0.6);
+  --card-border: rgba(255,255,255,0.06);
+
   /* Layout */
-  --content-width: 800px;          /* Increased from 700px */
-  --content-width-wide: 1000px;    /* Increased from 900px */
-  --sidebar-width: 320px;
-  --header-height: 64px;
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 0.75rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-2xl: 3rem;
-  
-  /* Border Radius */
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  
-  /* Transitions */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-// =============================================================================
-// 2. BASE STYLES
-// =============================================================================
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-family-primary);
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--text-primary);
-  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--space-deep) 50%, var(--space-dark) 100%);
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-// =============================================================================
-// 3. SELECTION AND SCROLLBAR
-// =============================================================================
-
-::selection {
-  background-color: rgba(34, 211, 238, 0.2);
-  color: var(--text-primary);
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--space-dark);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, var(--galaxy-cyan) 0%, var(--galaxy-indigo) 100%);
-  border-radius: 4px;
-  border: 1px solid var(--space-medium);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, var(--galaxy-cyan-light) 0%, var(--galaxy-indigo-light) 100%);
-}
-
-// Firefox
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--galaxy-cyan) var(--space-dark);
-}
-
-// =============================================================================
-// 4. TYPOGRAPHY
-// =============================================================================
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-heading);
-  font-weight: 700;
-  line-height: 1.2;
-  margin: 0 0 var(--spacing-md) 0;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-}
-
-h1 {
-  font-size: 2.5rem;
-  background: linear-gradient(135deg, var(--galaxy-cyan) 0%, var(--galaxy-indigo) 50%, var(--galaxy-violet) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: var(--spacing-lg);
-}
-
-h2 {
-  font-size: 2rem;
-  color: var(--galaxy-cyan-light);
-  border-bottom: 2px solid var(--border-accent);
-  padding-bottom: var(--spacing-sm);
-  margin-top: var(--spacing-xl);
-}
-
-h3 {
-  font-size: 1.5rem;
-  color: var(--galaxy-indigo-light);
-  margin-top: var(--spacing-lg);
-}
-
-h4 {
-  font-size: 1.25rem;
-  color: var(--galaxy-violet-light);
-}
-
-h5 {
-  font-size: 1.125rem;
-  color: var(--text-secondary);
-}
-
-h6 {
-  font-size: 1rem;
-  color: var(--text-tertiary);
-}
-
-p {
-  margin: 0 0 var(--spacing-md) 0;
-  color: var(--text-secondary);
-  line-height: 1.7;
-}
-
-// =============================================================================
-// 5. LINKS
-// =============================================================================
-
-a {
-  color: var(--link-primary);
-  text-decoration: none;
-  transition: all var(--transition-fast);
-  position: relative;
-}
-
-a:hover {
-  color: var(--link-hover);
-  text-shadow: var(--glow-cyan);
-}
-
-a:visited {
-  color: var(--link-visited);
-}
-
-// Internal links with special styling
-.internal-link {
-  border-bottom: 1px dashed var(--border-accent);
-  padding-bottom: 1px;
-}
-
-.internal-link:hover {
-  border-bottom-color: var(--link-hover);
-  border-bottom-style: solid;
-}
-
-// =============================================================================
-// 6. LAYOUT STRUCTURE
-// =============================================================================
-
-.container {
-  max-width: var(--content-width);
-  margin: 0 auto;
-  padding: 0 var(--spacing-md);
-}
-
-.content {
-  max-width: var(--content-width);
-  margin: 0 auto;
-  padding: var(--spacing-xl) var(--spacing-md);
-  position: relative;
-  z-index: 1;
-}
-
-// Wider content for note pages
-.note-content {
-  max-width: var(--content-width-wide);
-}
-
-// =============================================================================
-// 7. NAVIGATION BAR
-// =============================================================================
-
-.navbar {
-  background: var(--surface-glass);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-primary);
-  padding: var(--spacing-md) 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: var(--shadow-md);
-}
-
-.navbar-content {
-  max-width: var(--content-width);
-  margin: 0 auto;
-  padding: 0 var(--spacing-md);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.navbar-brand {
-  font-family: var(--font-family-heading);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  text-decoration: none;
-  background: linear-gradient(135deg, var(--galaxy-cyan) 0%, var(--galaxy-indigo) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.navbar-nav {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  gap: var(--spacing-lg);
-}
-
-.navbar-nav a {
-  color: var(--text-secondary);
-  font-weight: 500;
-  transition: all var(--transition-fast);
-}
-
-.navbar-nav a:hover {
-  color: var(--galaxy-cyan-light);
-}
-
-// =============================================================================
-// 8. SIDEBAR STYLES
-// =============================================================================
-
-.sidebar {
-  width: var(--sidebar-width);
-  background: var(--surface-1);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--border-primary);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-lg);
-  box-shadow: var(--shadow-lg);
-  position: sticky;
-  top: calc(var(--header-height) + var(--spacing-md));
-  max-height: calc(100vh - var(--header-height) - var(--spacing-xl));
-  overflow-y: auto;
-}
-
-.sidebar h3 {
-  color: var(--galaxy-indigo-light);
-  font-size: 1.125rem;
-  margin-bottom: var(--spacing-md);
-  padding-bottom: var(--spacing-sm);
-  border-bottom: 1px solid var(--border-secondary);
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar li {
-  margin-bottom: var(--spacing-xs);
-}
-
-.sidebar a {
-  color: var(--text-tertiary);
-  display: block;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: var(--radius-sm);
-  transition: all var(--transition-fast);
-}
-
-.sidebar a:hover {
-  background: var(--surface-2);
-  color: var(--galaxy-cyan-light);
-}
-
-// File tree specific styles
-.filetree-sidebar {
-  .folder {
-    color: var(--galaxy-violet-light);
-    font-weight: 600;
-  }
-  
-  .file {
-    color: var(--text-tertiary);
-    padding-left: var(--spacing-md);
-  }
-  
-  .file:hover {
-    color: var(--galaxy-cyan);
-  }
-}
-
-// =============================================================================
-// 9. GRAPH STYLES
-// =============================================================================
-
-.graph-container {
-  background: var(--surface-1);
-  border: 1px solid var(--border-primary);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-}
-
-#link-graph {
-  background: var(--space-deep);
-  border-radius: var(--radius-lg);
-}
-
-// Graph nodes and edges (if customizable)
-.graph-node {
-  fill: var(--galaxy-indigo);
-  stroke: var(--galaxy-cyan);
-  stroke-width: 2px;
-}
-
-.graph-node:hover {
-  fill: var(--galaxy-cyan);
-  filter: drop-shadow(var(--glow-cyan));
-}
-
-.graph-edge {
-  stroke: var(--border-primary);
-  stroke-width: 1px;
-}
-
-// =============================================================================
-// 10. BACKLINKS & REFERENCES
-// =============================================================================
-
-.backlinks-container {
-  background: var(--surface-1);
-  border: 1px solid var(--border-primary);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-lg);
-  margin-top: var(--spacing-xl);
-  box-shadow: var(--shadow-md);
-}
-
-.backlinks-container h3 {
-  color: var(--galaxy-violet-light);
-  margin-bottom: var(--spacing-md);
-}
-
-.backlink-item {
-  padding: var(--spacing-sm);
-  border-left: 3px solid var(--galaxy-indigo);
-  background: var(--surface-2);
-  border-radius: var(--radius-sm);
-  margin-bottom: var(--spacing-sm);
-}
-
-.backlink-item:hover {
-  border-left-color: var(--galaxy-cyan);
-  background: var(--surface-3);
-}
-
-// =============================================================================
-// 11. TABLES
-// =============================================================================
-
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  background: var(--surface-1);
-  border: 1px solid var(--border-primary);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  margin: var(--spacing-xl) 0;
-}
-
-th {
-  background: var(--surface-2);
-  color: var(--text-primary);
-  font-weight: 600;
-  padding: var(--spacing-md);
-  text-align: left;
-  border-bottom: 2px solid var(--border-accent);
-}
-
-td {
-  padding: var(--spacing-md);
-  border-bottom: 1px solid var(--border-secondary);
-  color: var(--text-secondary);
-}
-
-tr:hover {
-  background: var(--surface-2);
-}
-
-tr:last-child td {
-  border-bottom: none;
-}
-
-// =============================================================================
-// 12. CODE BLOCKS
-// =============================================================================
-
-code {
-  font-family: var(--font-family-mono);
-  background: var(--surface-2);
-  color: var(--galaxy-cyan-light);
-  padding: 0.2em 0.4em;
-  border-radius: var(--radius-sm);
-  font-size: 0.9em;
-}
-
-pre {
-  background: var(--surface-1);
-  border: 1px solid var(--border-primary);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-lg);
-  overflow-x: auto;
-  margin: var(--spacing-xl) 0;
-  box-shadow: var(--shadow-md);
-}
-
-pre code {
-  background: none;
-  padding: 0;
-  color: var(--text-primary);
-  font-size: 0.9em;
-  line-height: 1.5;
-}
-
-// =============================================================================
-// 13. BLOCKQUOTES
-// =============================================================================
-
-blockquote {
-  margin: var(--spacing-xl) 0;
-  padding: var(--spacing-lg);
-  background: var(--surface-1);
-  border-left: 4px solid var(--galaxy-indigo);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  position: relative;
-}
-
-blockquote::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, var(--galaxy-indigo), transparent);
-}
-
-blockquote p {
-  color: var(--text-secondary);
-  font-style: italic;
-  margin: 0;
-}
-
-// =============================================================================
-// 14. CALLOUTS
-// =============================================================================
-
-.callout {
-  margin: var(--spacing-xl) 0;
-  padding: var(--spacing-lg);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  background: var(--surface-1);
-  border: 1px solid var(--border-primary);
-  position: relative;
-  overflow: hidden;
-}
-
-.callout::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 100%;
-  background: var(--galaxy-cyan);
-}
-
-.callout.note::before { background: var(--galaxy-cyan); }
-.callout.tip::before { background: var(--galaxy-indigo); }
-.callout.warning::before { background: #f59e0b; }
-.callout.danger::before { background: #ef4444; }
-.callout.info::before { background: var(--galaxy-violet); }
-
-.callout-title {
-  font-weight: 600;
-  margin-bottom: var(--spacing-sm);
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-}
-
-.callout-content p {
-  margin: 0;
-}
-
-// =============================================================================
-// 15. SEARCH
-// =============================================================================
-
-.search-container {
-  position: relative;
-  width: 100%;
-  max-width: 400px;
-}
-
-.search-input {
-  width: 100%;
-  background: var(--surface-2);
-  border: 1px solid var(--border-primary);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-sm) var(--spacing-md);
-  color: var(--text-primary);
-  font-size: 1rem;
-  transition: all var(--transition-fast);
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: var(--galaxy-cyan);
-  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
-}
-
-.search-input::placeholder {
-  color: var(--text-muted);
-}
-
-.search-results {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: var(--surface-1);
-  border: 1px solid var(--border-primary);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-xl);
-  max-height: 300px;
-  overflow-y: auto;
-  z-index: 1000;
-  margin-top: var(--spacing-xs);
-}
-
-.search-result-item {
-  padding: var(--spacing-md);
-  border-bottom: 1px solid var(--border-secondary);
-  transition: all var(--transition-fast);
-}
-
-.search-result-item:hover {
-  background: var(--surface-2);
-}
-
-.search-result-item:last-child {
-  border-bottom: none;
-}
-
-// =============================================================================
-// 16. RESPONSIVE DESIGN
-// =============================================================================
-
-@media (max-width: 1200px) {
-  :root {
-    --content-width: 750px;
-    --content-width-wide: 900px;
-  }
-}
-
-@media (max-width: 768px) {
-  :root {
-    --content-width: 100%;
-    --content-width-wide: 100%;
-    --spacing-md: 1rem;
-    --spacing-lg: 1.25rem;
-    --spacing-xl: 1.5rem;
-  }
-  
-  .container,
-  .content {
-    padding: 0 var(--spacing-md);
-  }
-  
-  .navbar-content {
-    padding: 0 var(--spacing-md);
-  }
-  
-  h1 {
-    font-size: 2rem;
-  }
-  
-  h2 {
-    font-size: 1.75rem;
-  }
-  
-  .sidebar {
-    position: relative;
-    width: 100%;
-    margin-bottom: var(--spacing-xl);
-  }
-}
-
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.75rem;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-  }
-  
-  .navbar-nav {
-    gap: var(--spacing-md);
-  }
-  
-  table {
-    font-size: 0.9rem;
-  }
-  
-  th, td {
-    padding: var(--spacing-sm);
-  }
-}
+  --site-max: 900px;              /* primary page width */
+  --note-max: 980px;              /* slightly wider for note pages */
+  --sidebar-w: 300px;             /* left file tree width */
+  --gutter: 22px;
+
+  /* Spacing & type */
+  --base-font: 16px;
+  --font-main: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --font-heading: "Space Grotesk", "Montserrat", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  /* Radii/shadows */
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --shadow-soft: 0 6px 18px rgba(2,6,14,0.5);
+  --glow-aqua: 0 0 22px rgba(34,211,238,0.12);
+  --glow-strong: 0 0 36px rgba(6,182,212,0.16);
+
+  /* Motion */
+  --ease: cubic-bezier(.2,.9,.2,1);
+  --fast: 180ms;
+  --med: 300ms;
+  --slow: 520ms;
+
+  /* Misc */
+  --border-weak: 1px solid var(--card-border);
+}
+
+/* ================== RESET & BASE ================== */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:var(--font-main);
+  font-size:var(--base-font);
+  color:var(--text-100);
+  background-color:var(--nebula-900);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.6;
+  letter-spacing:0.01em;
+  overflow-y:scroll; /* keep width consistent */
+  background-image:
+    radial-gradient(1200px 600px at 10% 10%, rgba(20,40,80,0.18), transparent 18%),
+    radial-gradient(900px 400px at 85% 70%, rgba(40,26,80,0.12), transparent 18%),
+    linear-gradient(180deg, var(--nebula-900) 0%, var(--nebula-800) 35%, var(--nebula-700) 100%);
+  background-attachment: fixed;
+}
+
+/* subtle starfield using pseudo-element - unobtrusive and scalable */
+body::before{
+  content:'';
+  position:fixed; inset:0; z-index:0;
+  pointer-events:none;
+  background-image: radial-gradient(rgba(255,255,255,0.9) 1px, transparent 1px);
+  background-size: 140px 140px;
+  opacity:0.04;
+  mix-blend-mode: screen;
+  transform: translateZ(0);
+  animation: star-drift 120s linear infinite;
+}
+@keyframes star-drift{from{background-position:0 0} to{background-position:10000px 20000px}}
+
+/* ensure main site content stacks above background */
+.site-wrapper{position:relative;z-index:1}
+
+/* ================== LAYOUT: NAVBAR / SIDEBAR / CONTENT ================== */
+/* Navbar */
+.navbar, .site-navbar, header.site-header{
+  width:100%;
+  position:sticky; top:0; z-index:1200;
+  display:flex; align-items:center; gap:12px; padding:10px 18px;
+  backdrop-filter:blur(8px);
+  background: linear-gradient(180deg, rgba(9,20,36,0.6), rgba(7,14,28,0.42));
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 6px 18px rgba(2,6,14,0.6);
+}
+.navbar .brand{display:flex;align-items:center;gap:12px}
+.navbar .brand img{height:36px;width:auto}
+.navbar .nav-links{display:flex;gap:10px;margin-left:auto}
+.navbar .nav-links a{
+  color:var(--text-200); text-decoration:none; padding:8px 12px; border-radius:10px;
+  transition:all var(--fast) var(--ease);
+  font-weight:600; font-size:0.95rem;
+}
+.navbar .nav-links a:hover{
+  color:var(--text-100); transform:translateY(-3px);
+  box-shadow:var(--glow-strong);
+}
+.navbar .nav-links a.active{
+  background: linear-gradient(90deg, rgba(34,211,238,0.06), rgba(107,84,214,0.04));
+  color:var(--text-100);
+  border:1px solid rgba(34,211,238,0.08);
+}
+
+/* Site grid - uses CSS grid to keep center content + sidebars flexible */
+.site-grid{
+  display:grid;
+  grid-template-columns: var(--sidebar-w) 1fr min(320px, 28%);
+  gap: var(--gutter);
+  max-width: calc(var(--site-max) + var(--sidebar-w) + 360px);
+  margin: 28px auto; padding: 0 var(--gutter);
+}
+
+/* If plugin uses a different wrapper, these classes should still help center content */
+.filetree-sidebar, .sidebar-left{background:transparent}
+.sidebar-right, .sidebar{background:transparent}
+
+/* Left file tree / folder panel */
+.filetree-sidebar, .filetree, .sidebar-left{
+  position:relative; padding:14px; border-radius:var(--r-md);
+  background: linear-gradient(180deg, rgba(12,18,32,0.45), rgba(8,12,22,0.24));
+  border: var(--border-weak); box-shadow: var(--shadow-soft);
+  height: calc(100vh - 120px); overflow:auto;
+}
+.filetree-sidebar h1, .sidebar h2{color:var(--text-100); font-family:var(--font-heading); font-size:1.05rem}
+.filetree-sidebar ul{list-style:none; margin:0;padding:0}
+.filetree-sidebar li{padding:6px 8px;border-radius:8px}
+.filetree-sidebar li a{display:flex;align-items:center;gap:8px;color:var(--text-200);text-decoration:none}
+.filetree-sidebar li a:hover{color:var(--text-100); background: rgba(255,255,255,0.02); box-shadow:var(--glow-aqua)}
+
+/* Right side: backlinks, graph container, toc */
+.sidebar, .sidebar-right{
+  position:relative; padding:14px; border-radius:var(--r-md);
+  background: linear-gradient(180deg, rgba(10,18,30,0.36), rgba(8,12,20,0.22));
+  border: var(--border-weak); box-shadow: var(--shadow-soft);
+  height: calc(100vh - 120px); overflow:auto;
+}
+.sidebar h3{margin-top:0;margin-bottom:.6rem;color:var(--text-200)}
+.sidebar .widget{margin-bottom:14px}
+
+/* Main content area */
+.content, main, .note-content, .page-content{
+  max-width: var(--site-max);
+  margin: 0 auto; padding: 18px;
+  background: transparent; position:relative; z-index:2;
+}
+
+/* Note pages slightly wider when .note wrapper present */
+.note .content, .page.note .content{
+  max-width: var(--note-max);
+}
+
+/* Ensure content is centered even if site-grid is not used */
+.container,.wrap{max-width:var(--site-max);margin:0 auto;padding:0 18px}
+
+/* ================== TYPOGRAPHY ================== */
+h1,h2,h3,h4,h5{font-family:var(--font-heading); color:var(--text-100); margin-top:1.4rem;margin-bottom:.6rem}
+h1{font-size:2.4rem; letter-spacing:-0.02em; background:linear-gradient(90deg,var(--sky-300), var(--aqua-500)); -webkit-background-clip:text; -webkit-text-fill-color:transparent}
+h2{font-size:1.8rem; color:var(--text-200)}
+h3{font-size:1.25rem; color:var(--text-100)}
+
+p,li{color:var(--text-100); font-size:1rem}
+small{color:var(--muted-300)}
+
+a{color:var(--sky-300); text-decoration:none; position:relative; transition:all var(--fast) var(--ease)}
+a:hover{color:var(--text-100); text-shadow:var(--glow-aqua)}
+
+/* animated underline / shooting star for links */
+a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:2px;background:linear-gradient(90deg,var(--aqua-500),var(--sky-300));transition:width var(--fast) var(--ease)}
+a:hover::after{width:100%}
+
+/* Tag chips */
+.tag, .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--text-200);font-weight:600;border:1px solid rgba(255,255,255,0.03)}
+.tag:hover{background:linear-gradient(90deg, rgba(34,211,238,0.04), rgba(107,84,214,0.03));color:var(--text-100)}
+
+/* ================== CALL OUTS / ADMONITIONS ================== */
+.callout, .admonition, .note-callout{display:block;padding:14px;border-radius:12px;margin:1rem 0;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));border-left:4px solid rgba(255,255,255,0.06)}
+.callout .callout-title{font-weight:700;margin-bottom:6px}
+.callout.note{border-left-color:var(--aqua-500);background:linear-gradient(180deg, rgba(6,182,212,0.02), rgba(8,12,20,0.02))}
+.callout.tip{border-left-color:var(--soft-purple);background:linear-gradient(180deg, rgba(107,84,214,0.02), rgba(10,14,25,0.02))}
+.callout.important{border-left-color:var(--amber-500);background:linear-gradient(180deg, rgba(245,158,11,0.02), rgba(10,14,25,0.02))}
+
+/* subtle shimmer overlay */
+.callout::after{content:'';position:absolute;left:0;top:0;right:0;bottom:0;border-radius:inherit;pointer-events:none;background:linear-gradient(90deg, transparent, rgba(255,255,255,0.01), transparent)}
+
+/* ================== TABLES ================== */
+table{width:100%;border-collapse:separate;border-spacing:0;margin:1.25rem 0;background:transparent;border-radius:8px;overflow:hidden}
+thead{background:linear-gradient(90deg, rgba(10,18,30,0.4), rgba(8,14,28,0.28));color:var(--text-100)}
+thead th{padding:10px 12px;text-align:left;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.04)}
+tbody td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.03);color:var(--text-200)}
+tbody tr:nth-child(even){background:linear-gradient(90deg, rgba(255,255,255,0.01), transparent)}
+
+/* ================== CODE BLOCKS & PRETTY CONSOLE ================== */
+pre, code, pre code{font-family:var(--font-mono);font-size:0.92rem}
+pre{background:linear-gradient(180deg, rgba(7,10,18,0.6), rgba(4,6,10,0.5));padding:14px;border-radius:10px;overflow:auto;border: 1px solid rgba(255,255,255,0.04);box-shadow:var(--shadow-soft)}
+code{background:rgba(255,255,255,0.02);padding:0.15em 0.35em;border-radius:6px}
+.code-header{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:rgba(255,255,255,0.02);border-radius:8px 8px 0 0;border-bottom:1px solid rgba(255,255,255,0.03);font-family:var(--font-mono);color:var(--muted-300);}
+
+/* language badges */
+.lang-badge{padding:4px 8px;border-radius:8px;background:rgba(255,255,255,0.02);font-weight:700;color:var(--muted-300)}
+
+/* line numbers (if present) */
+pre code .line-number{display:inline-block;width:46px;padding-right:12px;color:rgba(255,255,255,0.28)}
+
+/* ================== GRAPH / LINK GRAPH / NETWORK ================== */
+/* Common wrappers plugin uses: #link-graph, .graph, .graph-canvas */
+#link-graph, .graph, .graph-canvas{width:100%;height:360px;border-radius:12px;background:linear-gradient(180deg, rgba(8,12,22,0.36), rgba(6,10,18,0.24));border:var(--border-weak);position:relative;overflow:hidden}
+#link-graph svg, .graph svg{width:100%;height:100%;display:block}
+/* Try to style nodes/edges drawn by graph libraries */
+#link-graph circle, .graph circle{fill:var(--aqua-500);stroke:rgba(255,255,255,0.06);stroke-width:1.2px;filter:drop-shadow(0 6px 18px rgba(6,182,212,0.06))}
+#link-graph path, .graph path, #link-graph line, .graph line{stroke:rgba(255,255,255,0.06)}
+#link-graph text, .graph text{fill:var(--text-100);font-weight:600}
+#link-graph .node:hover circle, .graph .node:hover circle{transform:scale(1.06);transition:transform .18s var(--ease);filter:drop-shadow(0 8px 26px rgba(34,211,238,0.12))}
+
+/* Fullscreen graph wrapper - kept but not auto-activated */
+.graph-fs{position:fixed;inset:4vh;z-index:1500;background:rgba(3,6,12,0.92);padding:18px;border-radius:12px;box-shadow:0 30px 70px rgba(0,0,0,0.7)}
+
+/* ================== BACKLINKS / MENTIONS ================== */
+.backlinks, .mentions, .references{list-style:none;padding:0;margin:0}
+.backlinks li, .mentions li{padding:8px;border-radius:8px;margin-bottom:6px;background:rgba(255,255,255,0.01);display:flex;align-items:center;gap:10px}
+.backlinks li a{color:var(--text-200);text-decoration:none}
+.backlinks li:hover{background:linear-gradient(90deg, rgba(34,211,238,0.02), rgba(107,84,214,0.02));color:var(--text-100)}
+
+/* ================== SEARCH ================== */
+.search-container{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.02);padding:6px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+.search-container input[type="search"], .search-input{background:transparent;border:none;outline:none;color:var(--text-100);padding:8px 10px;width:100%;font-size:0.95rem}
+.search-button, .btn-search{background:linear-gradient(90deg,var(--aqua-500),var(--sky-300));padding:8px 12px;border-radius:10px;color:#041028;font-weight:800;border:none;cursor:pointer}
+
+/* search results */
+.search-results{background:linear-gradient(180deg, rgba(8,12,20,0.6), rgba(6,10,18,0.45));border:1px solid rgba(255,255,255,0.04);border-radius:10px;padding:10px}
+
+/* ================== IMAGES & FIGURES ================== */
+figure{margin:0 0 1.1rem}
+figure img{max-width:100%;height:auto;border-radius:10px;border:1px solid rgba(255,255,255,0.04);box-shadow:var(--shadow-soft)}
+.figure-caption{font-size:0.9rem;color:var(--muted-300);margin-top:6px}
+
+/* ================== BUTTONS / FORMS / UI CONTROLS ================== */
+.btn, button, .button{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;border:none;background:linear-gradient(90deg,var(--aqua-500),var(--sky-300));color:#041028;font-weight:700;cursor:pointer;transition:transform var(--fast) var(--ease), box-shadow var(--fast) var(--ease)}
+.btn:hover{transform:translateY(-3px);box-shadow:var(--glow-strong)}
+
+input[type="text"], input[type="search"], textarea, select{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);padding:8px 10px;border-radius:10px;color:var(--text-100)}
+input:focus, textarea:focus, select:focus{outline:none;box-shadow:0 0 12px rgba(34,211,238,0.08);border-color:rgba(34,211,238,0.18)}
+
+/* subtle badges */
+.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);color:var(--muted-300)}
+
+/* ================== SCROLLBAR (Webkit + Firefox) ================== */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--aqua-500),var(--soft-purple));border-radius:999px;border:2px solid transparent;background-clip:padding-box}
+html{scrollbar-color: linear-gradient(180deg,var(--aqua-500),var(--soft-purple)) transparent}
+
+/* ================== PARTICLES / CANVAS ELEMENT (if present) ================== */
+.particles-js-canvas-el, canvas.particles, .galaxy-canvas{mix-blend-mode:screen;opacity:0.6;filter:blur(.4px);pointer-events:none}
+.particles-js-canvas-el{animation: cosmic-pulse 12s infinite ease-in-out}
+@keyframes cosmic-pulse{0%{opacity:0.55;transform:translateY(0)}50%{opacity:0.72;transform:translateY(-6px)}100%{opacity:0.55;transform:translateY(0)}}
+
+/* ================== IMPLICIT ELEMENTS TO HIDE (extras you asked to remove) ================== */
+/* Hide things like timers, fullscreen button, flashcards (user will reimplement later) */
+.datetime-container, .datetime-toggle, .datetime-reset, .fullscreen-btn, .flashcard, .flashcards-container, .flashcard-grid{display:none !important}
+
+/* ================== RESPONSIVE ================== */
+@media (max-width:1200px){
+  .site-grid{grid-template-columns: 1fr; max-width: calc(var(--site-max) + 40px);}
+  .filetree-sidebar, .sidebar{height:auto;position:relative}
+  .site-grid > *{max-width:100%}
+  .navbar .nav-links{display:none}
+}
+
+@media (max-width:800px){
+  h1{font-size:1.8rem}
+  .navbar{padding:8px}
+  .site-grid{padding:0 12px;margin:18px auto}
+}
+
+/* ================== MISC UI POLISH & HELPERS ================== */
+.center{margin-left:auto;margin-right:auto;text-align:center}
+.kicker{font-size:.9rem;color:var(--muted-300);margin-bottom:.6rem}
+.lead{color:var(--text-200);font-size:1.05rem}
+.card{background:var(--card-bg);padding:16px;border-radius:var(--r-md);border:var(--border-weak);box-shadow:var(--shadow-soft)}
+
+/* subtle focus for keyboard users */
+:focus{outline:none}
+a:focus, button:focus, input:focus{box-shadow:0 0 0 4px rgba(34,211,238,0.06);border-radius:8px}
+
+/* ================== EXTRA: helpful fallbacks & plugin-specific tweaks ================== */
+/* Obsidian / Digital Garden plugin often uses certain classnames — apply friendly theming */
+.cm-s-obsidian, .markdown-preview-section, .obsidian-note, .garden-note{background:transparent;color:var(--text-100)}
+.cm-s-obsidian .CodeMirror-lines, .CodeMirror pre{background:transparent}
+.remarkable, .markdown-body{color:var(--text-100)}
+
+/* Graph / filetree link icons */
+.lucide, .icon{color:var(--aqua-300)}
+
+/* Tooltips */
+.tooltip{background:rgba(2,6,12,0.88);color:var(--text-100);padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03)}
+
+/* Smooth image loader */
+.lazyload{opacity:0;transform:scale(.995);transition:opacity .55s var(--ease), transform .55s var(--ease)}
+.lazyloaded{opacity:1;transform:none}
+
+/* ================== END FILE ================== */
+
+/* Small note: If you want further micro-tweaks (different note width, stronger glows, or
+   node-specific graph styles), tell me which elements / selectors your plugin actually
+   outputs (HTML snippets) and I will tighten the CSS to target them precisely. */
