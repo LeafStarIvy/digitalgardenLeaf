@@ -1,588 +1,333 @@
-<script>
-/*
-  Starfield — rewrite (2025)
-  - Transparent canvases (no background; you control CSS)
-  - Canvases attach to the provided wrapper and cover the wrapper content (so stars scroll with the page)
-  - Multi-layer: bg stars / mid twinkles / fg meteors & comet
-  - DPR-aware, ResizeObserver-backed, respects prefers-reduced-motion
-  - No explosions; realistic falling meteors/shower + comet
-  - Auto-mounts to: #galaxySkybox, #galaxySkyboxNote, [data-stars]
-  - API: window.Starfield -> { start(wrapper?), stop(wrapper?), destroy(wrapper?), setDensity(mult), setTheme({...}) }
-*/
+// 🌌 StarfieldParticles.js — Rewritten: realistic, beautiful, transparent starfield + meteors — fixed-to-viewport and parallax-aware
 (function(){
   'use strict';
 
-  // ---------- CONFIG ----------
+  /*
+    Key goals implemented in this rewrite:
+    - Transparent canvases (no forced background) so your CSS background shows through.
+    - Fixed-to-viewport overlay so the stars "go with the screen" and don't get clipped when you scroll.
+    - Layered canvases (bg/mid/fg) for depth and parallax, but only a single overlay instance for efficiency.
+    - Realistic twinkle, color variation, soft glow sprite, and graceful meteors (falling stars) with tapered trails.
+    - Respect prefers-reduced-motion and pause when tab is hidden.
+    - Small public API: mount(el), start(), stop(), destroy(), setDensity(mult), setTheme(obj)
+  */
+
   const DEFAULT = {
-    density: 1.0, // global density multiplier
-    starsPer100kPx: 8.8, // base star density per 100k px (area)
-    twinkleRatio: 0.36,
-    maxCanvasHeight: 8192, // prevents unbounded huge canvas heights; if your page is taller we tile (see notes)
-    meteor: {
-      windowMin: 2800, windowMax: 7000,
-      chancePerWindow: 0.85,
-      speedPxPerMs: [0.16, 0.45], // px per ms baseline: scaled with width
-      lengthPx: [140, 520],
-      headPx: [1.6, 5.0],
-      strokePx: [1.2, 4.0],
-      multicolorChance: 0.22,
-      accentPalettes: [
-        [45, 95, 58],   // warm gold
-        [185, 85, 56],  // cyan
-        [280, 80, 64]   // magenta
-      ],
+    density: 1.0, // 0.2..3.0
+    stars: { base: 420, twinkleRatio: 0.36 },
+    meteors: {
+      minInterval: 2400,
+      maxInterval: 7600,
+      chance: 0.82,
+      speedRange: [0.18, 0.45], // px/ms scaling
+      lengthRange: [140, 520],
+      headRange: [1.6, 5.0],
+      strokeRange: [1.0, 4.0],
+      multicolorChance: 0.26,
+      accentPalettes: [ [45,95,58], [185,85,56], [280,80,64] ],
       showerChance: 0.12,
       showerCount: [3,7],
-      showerSpacing: [90, 260]
+      showerSpacing: [90,220]
     },
-    comet: {
-      chancePerMin: 0.9,
-      speedPxPerMs: [0.06, 0.12],
-      lengthPx: [720, 1100],
-      headPx: [3.2, 6.8],
-      wobble: 0.00005
-    },
-    theme: {
-      starHue: 210, starSat: 72, starLight: 62,
-      cometHue: 195
-    }
+    visual: { starHue: 210, starSat: 70, starLight: 62, cometHue: 200 }
   };
 
-  const prefersReduced = (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const prefersReduced = (typeof window !== 'undefined') && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const TAU = Math.PI * 2;
   const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
   const rand = (a,b) => a + Math.random()*(b-a);
+  const isMobile = () => window.innerWidth <= 900;
+  const easeOut = t => 1 - Math.pow(1 - t, 3);
 
-  // global registry of mounted wrappers
-  const REG = new WeakMap();
-  const API = window.Starfield = window.Starfield || {};
+  // Single overlay instance for the page
+  let INSTANCE = null;
 
-  API.setDensity = (m=1)=> { DEFAULT.density = clamp(m,0.2,3); REG.forEach && []; /* no-op safe */ };
-  API.setTheme = (t={}) => Object.assign(DEFAULT.theme, t);
-  API.start = start; API.stop = stop; API.destroy = destroy; API.mount = mount;
+  // Public API
+  window.StarfieldParticles = window.StarfieldParticles || {
+    mount, start, stop, destroy, setDensity, setTheme
+  };
 
-  // Auto-mount on DOMContentLoaded
+  // Auto-mount on common selectors
   document.addEventListener('DOMContentLoaded', ()=>{
-    const sels = ['#galaxySkybox', '#galaxySkyboxNote', '[data-stars]'];
-    const nodes = sels.flatMap(s => Array.from(document.querySelectorAll(s)));
-    nodes.forEach(node => mount(node));
+    const targets = Array.from(document.querySelectorAll('#galaxySkybox, #galaxySkyboxNote, [data-stars]'));
+    if (targets.length) mount(targets[0]);
   });
 
-  // ----------------- MOUNT / LIFECYCLE -----------------
-  function mount(wrapper, opts = {}) {
-    if (!wrapper) return;
-    if (REG.has(wrapper)) return; // already mounted
+  function mount(wrapperEl){
+    if (INSTANCE) {
+      // register wrapper for parallax if provided
+      if (wrapperEl && !INSTANCE.targets.includes(wrapperEl)) INSTANCE.targets.push(wrapperEl);
+      return INSTANCE;
+    }
+    INSTANCE = new Overlay(wrapperEl || document.body);
+    return INSTANCE;
+  }
 
-    // DO NOT force a fixed position or background. Only make wrapper positioned if it's static.
-    const cs = getComputedStyle(wrapper);
-    if (cs.position === 'static') wrapper.style.position = 'relative';
-    wrapper.style.pointerEvents = 'none'; // let clicks through
+  function start(){ if (INSTANCE) INSTANCE.start(); }
+  function stop(){ if (INSTANCE) INSTANCE.stop(); }
+  function destroy(){ if (INSTANCE) { INSTANCE.destroy(); INSTANCE = null; } }
+  function setDensity(mult){ if (INSTANCE) { INSTANCE.options.density = clamp(mult,0.2,3.0); INSTANCE._generateStars(); } else DEFAULT.density = clamp(mult,0.2,3.0); }
+  function setTheme(obj){ Object.assign(DEFAULT.visual, obj || {}); if (INSTANCE) INSTANCE._regenSprites(); }
 
-    // Build state
-    const state = {
-      opts: mergeOpts(opts),
-      dpr: Math.max(1, window.devicePixelRatio || 1),
-      size: { w: Math.max(wrapper.clientWidth, 10), h: Math.max(wrapper.clientHeight, 10) },
-      wrapper,
-      canvases: {},
-      sprites: {},
-      particles: {
-        stars: [], twinkles: [], meteors: [], comet: null, rings: []
-      },
-      last: performance.now(),
-      raf: null,
-      nextMeteorWindow: performance.now() + rand(1200, 4000),
-      observers: {}
-    };
+  // ---------------- Overlay class ----------------
+  class Overlay {
+    constructor(wrapper){
+      this.targets = wrapper ? [wrapper] : [];
+      this.root = document.body; // canvases are appended to body and fixed so they always match viewport
 
-    // create canvases (we size them to the wrapper's content height so they scroll with page)
-    state.canvases.bg = makeCanvas('star-bg');
-    state.canvases.mid = makeCanvas('star-mid');
-    state.canvases.fg = makeCanvas('star-fg');
+      this.options = JSON.parse(JSON.stringify(DEFAULT));
 
-    // append in order (bg behind content if wrapper's z-index allows)
-    wrapper.appendChild(state.canvases.bg.canvas);
-    wrapper.appendChild(state.canvases.mid.canvas);
-    wrapper.appendChild(state.canvases.fg.canvas);
+      // layers
+      this.layers = {
+        bg: this._createCanvas('sf-bg'),
+        mid: this._createCanvas('sf-mid'),
+        fg: this._createCanvas('sf-fg')
+      };
+      Object.values(this.layers).forEach(L=> this.root.appendChild(L.canvas));
 
-    // create glow sprites
-    state.sprites.glow = makeGlowSprite(28, state.dpr);
-    state.sprites.cometGlow = makeGlowSprite(64, state.dpr);
+      // DPR + size
+      this.dpr = Math.max(1, window.devicePixelRatio || 1);
+      this.width = window.innerWidth; this.height = window.innerHeight;
 
-    // size properly (cover wrapper scrollHeight where possible)
-    resizeAll(wrapper, state);
+      // input & parallax
+      this.mx = 0; this.my = 0; this.scrollY = 0; this.parallaxX = 0; this.parallaxY = 0;
 
-    // init starfield
-    initStarfield(state);
+      // particles
+      this.stars = []; this.twinkles = []; this.meteors = []; this.rings = [];
 
-    // events & observers
-    const onPointerMove = e => handlePointer(e, state);
-    const onPointerDown = e => handlePointerDown(e, state);
-    window.addEventListener('pointermove', onPointerMove, { passive: true });
-    wrapper.addEventListener('pointerdown', onPointerDown, { passive: true });
+      // sprites
+      this.glow = this._makeGlowSprite(32);
+      this.cometGlow = this._makeGlowSprite(64);
 
-    // Resize observer for wrapper content changes
-    const ro = new ResizeObserver(() => scheduleResize(state));
-    ro.observe(wrapper);
-    state.observers.resize = ro;
+      // timers
+      this.last = performance.now(); this.raf = null; this.nextMeteorAt = this.last + rand(this.options.meteors.minInterval, this.options.meteors.maxInterval);
 
-    // MutationObserver to detect big content changes that may change scrollHeight (fallback)
-    const mo = new MutationObserver(() => scheduleResize(state));
-    mo.observe(wrapper, { childList: true, subtree: true, characterData: true });
-    state.observers.mutation = mo;
+      // events
+      this._onPointer = e => this._onPointerMove(e);
+      this._onResize = this._throttle(()=> this._resize(), 120);
+      this._onScroll = ()=> this.scrollY = window.scrollY || window.pageYOffset || 0;
+      this._onVis = ()=> { if (document.hidden) this._pause(); else this._resume(); };
 
-    // store state
-    REG.set(wrapper, state);
+      // attach
+      window.addEventListener('pointermove', this._onPointer, {passive:true});
+      window.addEventListener('resize', this._onResize, {passive:true});
+      window.addEventListener('scroll', this._onScroll, {passive:true});
+      document.addEventListener('visibilitychange', this._onVis);
 
-    // start animation loop
-    if (!prefersReduced) {
-      state.raf = requestAnimationFrame(now => frame(now, state));
-    } else {
-      // single draw for reduced motion
-      frame(performance.now(), state);
+      // initial populate
+      this._resize();
+      this._generateStars();
+
+      // start loop
+      if (!prefersReduced) this.start(); else this._renderOnce();
     }
 
-    return state;
-  }
-
-  function start(wrapper){
-    if (!wrapper) {
-      // start all
-      document.querySelectorAll('#galaxySkybox, #galaxySkyboxNote, [data-stars]').forEach(n => start(n));
-      return;
-    }
-    const s = REG.get(wrapper); if (!s) return;
-    if (s.raf) return;
-    s.last = performance.now();
-    s.raf = requestAnimationFrame(now => frame(now, s));
-  }
-
-  function stop(wrapper){
-    if (!wrapper) {
-      document.querySelectorAll('#galaxySkybox, #galaxySkyboxNote, [data-stars]').forEach(n => stop(n));
-      return;
-    }
-    const s = REG.get(wrapper); if (!s) return;
-    if (s.raf) cancelAnimationFrame(s.raf);
-    s.raf = null;
-  }
-
-  function destroy(wrapper){
-    if (!wrapper) {
-      document.querySelectorAll('#galaxySkybox, #galaxySkyboxNote, [data-stars]').forEach(n => destroy(n));
-      return;
-    }
-    const s = REG.get(wrapper); if (!s) return;
-    stop(wrapper);
-    // remove listeners & observers
-    s.observers.resize && s.observers.resize.disconnect();
-    s.observers.mutation && s.observers.mutation.disconnect();
-    window.removeEventListener('pointermove', handlePointer);
-    s.wrapper.removeEventListener('pointerdown', handlePointerDown);
-    // remove canvases
-    Object.values(s.canvases).forEach(L => { try { L.canvas.remove(); } catch(e){} });
-    REG.delete(wrapper);
-  }
-
-  // ---------- HELPERS ----------
-  function mergeOpts(o){ return Object.assign(JSON.parse(JSON.stringify(DEFAULT)), o || {}); }
-
-  function makeCanvas(cls) {
-    const c = document.createElement('canvas');
-    c.className = cls;
-    c.style.position = 'absolute';
-    c.style.left = '0';
-    c.style.top = '0';
-    c.style.width = '100%';
-    c.style.pointerEvents = 'none';
-    c.style.zIndex = '0';
-    c.style.mixBlendMode = 'screen';
-    // Transparent canvas (alpha true)
-    const ctx = c.getContext('2d', { alpha: true, desynchronized: true });
-    return { canvas: c, ctx };
-  }
-
-  function resizeCanvasLayer(layer, w, h, dpr) {
-    const c = layer.canvas;
-    // style height must be set to px so canvas internal buffer matches scroll area
-    c.style.height = h + 'px';
-    c.width = Math.round(Math.max(1, w) * dpr);
-    c.height = Math.round(Math.max(1, h) * dpr);
-    layer.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-
-  function makeGlowSprite(size = 32, dpr = 1) {
-    const s = Math.round(size * dpr);
-    const c = document.createElement('canvas');
-    c.width = c.height = s;
-    const ctx = c.getContext('2d');
-    const r = s/2;
-    const g = ctx.createRadialGradient(r,r,0,r,r,r);
-    g.addColorStop(0, 'rgba(255,255,255,0.98)');
-    g.addColorStop(0.12, 'rgba(255,255,255,0.86)');
-    g.addColorStop(0.38, 'rgba(160,180,255,0.22)');
-    g.addColorStop(0.82, 'rgba(70,120,220,0.06)');
-    g.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = g;
-    ctx.fillRect(0,0,s,s);
-    return c;
-  }
-
-  // schedule resize (debounced)
-  let _resizeTO = null;
-  function scheduleResize(state){
-    clearTimeout(_resizeTO);
-    _resizeTO = setTimeout(()=> resizeAll(state.wrapper, state), 160);
-  }
-
-  function resizeAll(wrapper, state) {
-    // wrapper's content height -> use scrollHeight (covers whole content so stars scroll)
-    const w = Math.max(wrapper.clientWidth, 10);
-    // use full content height, but clamp to maxCanvasHeight to avoid enormous canvases
-    const contentH = wrapper.scrollHeight || Math.max(wrapper.clientHeight, window.innerHeight);
-    const h = Math.min(contentH, state.opts.maxCanvasHeight);
-    state.size.w = w; state.size.h = h;
-    state.dpr = Math.max(1, window.devicePixelRatio || 1);
-    Object.values(state.canvases).forEach(layer => resizeCanvasLayer(layer, w, h, state.dpr));
-    // ensure canvases are visually placed at top-left of wrapper
-    Object.values(state.canvases).forEach(layer => {
-      layer.canvas.style.left = '0px';
-      layer.canvas.style.top = '0px';
-    });
-    // regenerate sprite sizes for new DPR if needed
-    state.sprites.glow = makeGlowSprite(28, state.dpr);
-    state.sprites.cometGlow = makeGlowSprite(64, state.dpr);
-
-    // reinitialize stars to new size but preserve relative positions where possible
-    initStarfield(state, true);
-  }
-
-  // ---------- STARFIELD INIT ----------
-  function initStarfield(state, preserve=false) {
-    const {w,h} = state.size;
-    const area = (w*h) / 100000; // units of 100k px
-    const desiredStars = Math.round(DEFAULT.starsPer100kPx * area * state.opts.density);
-    const twinkles = Math.round(desiredStars * state.opts.twinkleRatio);
-
-    // If preserving, rescale existing star coordinates proportionally
-    if (preserve && state.particles.stars && state.particles.stars.length) {
-      const old = state.particles;
-      // attempt to scale positions if prior size known; otherwise just regenerate
-      // For robust simplicity we regenerate (keeps code small & predictable)
+    _createCanvas(cls){
+      const c = document.createElement('canvas');
+      c.className = cls;
+      // Fixed overlay that covers viewport (so it "goes with the screen")
+      c.style.position = 'fixed';
+      c.style.top = '0'; c.style.left = '0';
+      c.style.width = '100%'; c.style.height = '100%';
+      c.style.pointerEvents = 'none';
+      c.style.zIndex = '-9999';
+      c.style.background = 'transparent';
+      const ctx = c.getContext('2d', { alpha: true, desynchronized: true });
+      return { canvas: c, ctx };
     }
 
-    state.particles.stars = Array.from({length: desiredStars}, ()=>({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      size: rand(0.18, 1.9),
-      baseA: rand(0.12, 0.85),
-      tw: Math.random() * TAU,
-      hueOff: Math.random() < 0.06 ? rand(-22, 22) : 0
-    }));
+    _resize(){
+      this.dpr = Math.max(1, window.devicePixelRatio || 1);
+      this.width = Math.max(window.innerWidth, 10);
+      this.height = Math.max(window.innerHeight, 10);
+      for (const L of Object.values(this.layers)){
+        L.canvas.style.width = this.width + 'px';
+        L.canvas.style.height = this.height + 'px';
+        L.canvas.width = Math.round(this.width * this.dpr);
+        L.canvas.height = Math.round(this.height * this.dpr);
+        L.ctx.setTransform(this.dpr,0,0,this.dpr,0,0);
+      }
+      // regenerate glow sprites at proper DPR
+      this._regenSprites();
+      // regenerate stars so distribution fits new size
+      this._generateStars();
+    }
 
-    state.particles.twinkles = Array.from({length: twinkles}, ()=>({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      size: rand(0.6, 2.2),
-      baseA: rand(0.22, 0.95),
-      tw: Math.random() * TAU,
-      orbit: Math.random() * TAU
-    }));
+    _regenSprites(){
+      this.glow = this._makeGlowSprite(Math.round(28 * this.dpr));
+      this.cometGlow = this._makeGlowSprite(Math.round(56 * this.dpr));
+    }
 
-    // clear meteors/comet/rings
-    state.particles.meteors = [];
-    state.particles.comet = null;
-    state.particles.rings = [];
-  }
+    _makeGlowSprite(size = 28){
+      const c = document.createElement('canvas'); c.width = c.height = size; const ctx = c.getContext('2d');
+      const r = size/2; const g = ctx.createRadialGradient(r,r,0,r,r,r);
+      g.addColorStop(0, 'rgba(255,255,255,0.96)');
+      g.addColorStop(0.14, 'rgba(255,255,255,0.82)');
+      g.addColorStop(0.36, 'rgba(160,180,255,0.24)');
+      g.addColorStop(0.74, 'rgba(70,120,220,0.06)');
+      g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = g; ctx.fillRect(0,0,size,size); return c;
+    }
 
-  // ---------- POINTERS ----------
-  function handlePointer(e, state) {
-    // We use pointer to create subtle parallax later (not to detach stars from page)
-    // optional: store pointer for parallax (not used for anchoring)
-    state._pointer = e.touches ? e.touches[0] : e;
-  }
+    _generateStars(){
+      const areaFactor = (isMobile() ? 0.6 : 1.0) * (this.options.density || 1);
+      const base = Math.round(this.options.stars.base * areaFactor);
+      const twinkles = Math.round(base * this.options.stars.twinkleRatio);
+      this.stars = new Array(base).fill(0).map(()=>({
+        x: Math.random()*this.width,
+        y: Math.random()*this.height,
+        z: Math.random(),
+        size: rand(0.28, 1.9),
+        baseA: rand(0.12, 0.85),
+        tw: Math.random()*TAU,
+        hueOff: Math.random() < 0.06 ? rand(-22,22) : 0
+      }));
+      this.twinkles = new Array(twinkles).fill(0).map(()=>({
+        x: Math.random()*this.width,
+        y: Math.random()*this.height,
+        size: rand(0.6, 2.2),
+        baseA: rand(0.22, 0.95),
+        tw: Math.random()*TAU, orbit: Math.random()*TAU
+      }));
+    }
 
-  function handlePointerDown(e, state) {
-    if (prefersReduced) return;
-    const rect = state.wrapper.getBoundingClientRect();
-    const x = (e.clientX - rect.left);
-    const y = (e.clientY - rect.top);
-    // subtle ping ring (non-explosive)
-    state.particles.rings.push({ x, y, life: 0, dur: 900 });
-    // spawn a meteor toward the click spot (small)
-    spawnMeteorToward(state, x, y, 0.28);
-  }
+    _onPointerMove(e){
+      const p = e.touches ? e.touches[0] : e;
+      this.mx = (p.clientX / this.width) - 0.5; // -0.5..0.5
+      this.my = (p.clientY / this.height) - 0.5;
+    }
 
-  // ---------- SPAWNING METEORS & COMET ----------
-  function spawnMeteor(state) {
-    if (prefersReduced) return;
-    const { w, h } = state.size;
-    const cfg = state.opts.meteor;
-    const startX = -rand(0.02*w, 0.18*w);
-    const startY = rand(0.03*h, 0.72*h);
-    const angleDeg = rand(18, 55);
-    const angle = angleDeg * (Math.PI/180);
-    const speedBase = rand(cfg.speedPxPerMs[0], cfg.speedPxPerMs[1]);
-    const speed = speedBase * (w / 1400); // scale with width
-    const length = rand(cfg.lengthPx[0], cfg.lengthPx[1]);
-    const head = rand(cfg.headPx[0], cfg.headPx[1]);
-    const stroke = rand(cfg.strokePx[0], cfg.strokePx[1]);
-    const isAccent = Math.random() < cfg.multicolorChance;
-    const accent = isAccent ? cfg.accentPalettes[(Math.random()*cfg.accentPalettes.length)|0] : null;
-    const dur = (w + h) / (speed*900) + rand(120, 520); // heuristic lifetime
+    start(){ if (!this.raf && !prefersReduced) { this.last = performance.now(); this.raf = requestAnimationFrame(t=>this._frame(t)); } }
+    stop(){ if (this.raf) { cancelAnimationFrame(this.raf); this.raf = null; } }
+    destroy(){ this.stop(); window.removeEventListener('pointermove', this._onPointer); window.removeEventListener('resize', this._onResize); window.removeEventListener('scroll', this._onScroll); document.removeEventListener('visibilitychange', this._onVis); Object.values(this.layers).forEach(L=>L.canvas.remove()); }
 
-    state.particles.meteors.push({
-      x: startX, y: startY, angle, speed, length, head, stroke, life: 0, dur,
-      isAccent, accent, curve: rand(-0.00005, 0.00005)
-    });
-  }
+    _pause(){ this.stop(); }
+    _resume(){ if (!this.raf && !prefersReduced) this.start(); }
 
-  function spawnMeteorToward(state, tx, ty, bias=0.25) {
-    const { w, h } = state.size; const cfg = state.opts.meteor;
-    const startX = -rand(0.02*w, 0.18*w);
-    const startY = rand(0.02*h, 0.72*h);
-    let angle = Math.atan2(ty - startY, tx - startX);
-    // clamp angle to reasonable downward-right
-    angle = clamp(angle, 18*(Math.PI/180), 80*(Math.PI/180));
-    angle = angle * bias + (rand(18,55)*(Math.PI/180)) * (1-bias);
-    const speedBase = rand(cfg.speedPxPerMs[0], cfg.speedPxPerMs[1]);
-    const speed = speedBase * (w / 1400);
-    const length = rand(cfg.lengthPx[0], cfg.lengthPx[1]);
-    const head = rand(cfg.headPx[0], cfg.headPx[1]);
-    const stroke = rand(cfg.strokePx[0], cfg.strokePx[1]);
-    const dur = (w + h) / (speed*900) + rand(60, 300);
-    state.particles.meteors.push({ x:startX, y:startY, angle, speed, length, head, stroke, life:0, dur, curve:rand(-0.00005, 0.00005), isAccent:false, accent:null });
-  }
+    _frame(now){
+      const dt = Math.min(50, now - this.last); this.last = now;
+      // small parallax based on pointer and scroll
+      this.parallaxX += (this.mx*22 - this.parallaxX) * 0.06;
+      const scrollFactor = clamp((this.scrollY / Math.max(800, document.body.scrollHeight)) * 1.3, -1, 1);
+      this.parallaxY += ((this.my*14 + scrollFactor*6) - this.parallaxY) * 0.06;
 
-  function maybeSpawnMeteorWindow(state, now) {
-    const cfg = state.opts.meteor;
-    if (now >= state.nextMeteorWindow) {
-      if (Math.random() < cfg.chancePerWindow) {
-        if (Math.random() < cfg.showerChance) {
-          // create a shower (small rapid sequence)
-          const n = Math.round(rand(cfg.showerCount[0], cfg.showerCount[1]));
-          let delay = 0;
-          for (let i=0;i<n;i++) {
-            setTimeout(()=> spawnMeteor(state), Math.round(delay));
-            delay += rand(cfg.showerSpacing[0], cfg.showerSpacing[1]);
-          }
+      // clear layers
+      for (const L of Object.values(this.layers)) L.ctx.clearRect(0,0,this.width,this.height);
+
+      // render
+      this._drawFar(now);
+      this._drawTwinkles(now);
+      this._updateMeteors(dt);
+      this._drawMeteors();
+      this._updateRings(dt);
+      this._drawRings();
+
+      // spawn logic
+      if (!prefersReduced && now > this.nextMeteorAt && Math.random() < this.options.meteors.chance){
+        // sometimes a brief shower
+        if (Math.random() < this.options.meteors.showerChance){
+          const c = Math.round(rand(this.options.meteors.showerCount[0], this.options.meteors.showerCount[1]));
+          let delay = 0; for (let i=0;i<c;i++){ setTimeout(()=> this._spawnMeteor(), delay); delay += rand(this.options.meteors.showerSpacing[0], this.options.meteors.showerSpacing[1]); }
+        } else this._spawnMeteor();
+        this.nextMeteorAt = now + rand(this.options.meteors.minInterval, this.options.meteors.maxInterval);
+      }
+
+      this.raf = requestAnimationFrame(t=>this._frame(t));
+    }
+
+    _drawFar(now){
+      const ctx = this.layers.bg.ctx; ctx.save(); ctx.globalCompositeOperation = 'source-over';
+      const driftX = Math.sin(now / 180000) * 14 + this.parallaxX * 0.6;
+      const driftY = Math.cos(now / 150000) * 9 + this.parallaxY * 0.6;
+      for (const s of this.stars){
+        const tw = prefersReduced ? 0 : Math.sin(now * (0.0009 + s.z*0.0009) + s.tw) * 0.36;
+        const a = clamp(s.baseA + tw * 0.85, 0.06, 1);
+        const scaled = s.size * (1 + s.z*0.66);
+        if (s.hueOff !== 0){
+          const h = DEFAULT.visual.starHue + s.hueOff;
+          ctx.fillStyle = `hsla(${h}, ${DEFAULT.visual.starSat}%, ${DEFAULT.visual.starLight - Math.abs(s.hueOff)}%, ${a})`;
+          ctx.beginPath(); ctx.arc(s.x + driftX*s.z, s.y + driftY*s.z, scaled*0.9, 0, TAU); ctx.fill();
         } else {
-          spawnMeteor(state);
+          ctx.drawImage(this.glow, Math.round(s.x + driftX*s.z - scaled*4), Math.round(s.y + driftY*s.z - scaled*4), scaled*8, scaled*8);
         }
       }
-      state.nextMeteorWindow = now + rand(cfg.windowMin, cfg.windowMax);
+      ctx.restore();
     }
-  }
 
-  function maybeSpawnComet(state, now) {
-    if (prefersReduced) return;
-    if (state.particles.comet) return;
-    // per ms chance based on chancePerMin
-    const msChance = state.opts.comet.chancePerMin / 60000;
-    if (Math.random() < msChance * (now - state.last)) {
-      const { w, h } = state.size;
-      const cCfg = state.opts.comet;
-      const startX = -rand(0.06*w, 0.26*w);
-      const startY = rand(0.02*h, 0.36*h);
-      const angle = rand(18, 30) * (Math.PI/180);
-      state.particles.comet = {
-        x: startX, y: startY, angle,
-        speed: rand(cCfg.speedPxPerMs[0], cCfg.speedPxPerMs[1]) * (w/1400),
-        length: rand(cCfg.lengthPx[0], cCfg.lengthPx[1]),
-        head: rand(cCfg.headPx[0], cCfg.headPx[1]),
-        life: 0, dur: 20000 + Math.random()*12000,
-        wobble: rand(-cCfg.wobble, cCfg.wobble)
-      };
+    _drawTwinkles(now){
+      const ctx = this.layers.mid.ctx; ctx.save(); ctx.globalCompositeOperation = 'lighter';
+      for (const s of this.twinkles){
+        const pulse = prefersReduced ? 0.0 : Math.sin(now * (0.0012 + 0.0005 * s.size) + s.tw) * 0.5;
+        const a = clamp(s.baseA + pulse, 0.1, 1);
+        const size = s.size * (1 + 0.12 * Math.sin(now / 600 + s.orbit));
+        const ox = this.parallaxX * 0.8, oy = this.parallaxY * 0.8;
+        ctx.globalAlpha = a; ctx.fillStyle = 'white';
+        ctx.beginPath(); ctx.arc(s.x + ox, s.y + oy, size, 0, TAU); ctx.fill();
+        ctx.drawImage(this.glow, Math.round(s.x - size*3.2 + ox), Math.round(s.y - size*3.2 + oy), size*6.4, size*6.4);
+      }
+      ctx.restore();
     }
-  }
 
-  // ---------- UPDATES & RENDER ----------
-  function frame(now, state) {
-    state.raf = null;
-    const dt = Math.min(60, now - state.last);
-    state.last = now;
+    _spawnMeteor(overrides){
+      const w = this.width, h = this.height, mCfg = this.options.meteors;
+      // start mostly from left edge, slight vertical random
+      const sx = -rand(0.02*w, 0.18*w); const sy = rand(0.02*h, 0.6*h);
+      const angle = rand(18, 55) * (Math.PI/180); // downward-right
+      const speed = rand(mCfg.speedRange[0], mCfg.speedRange[1]) * (w / 1400);
+      const length = rand(mCfg.lengthRange[0], mCfg.lengthRange[1]);
+      const head = rand(mCfg.headRange[0], mCfg.headRange[1]);
+      const stroke = rand(mCfg.strokeRange[0], mCfg.strokeRange[1]);
+      const isAccent = Math.random() < mCfg.multicolorChance;
+      const accent = isAccent ? mCfg.accentPalettes[Math.floor(Math.random()*mCfg.accentPalettes.length)] : null;
+      const curve = rand(-0.00006, 0.00006);
+      const dur = (w + h) / (speed * 900);
+      const meta = Object.assign({ x:sx,y:sy,angle,speed,length,head,stroke,life:0,dur,isAccent,accent,curve }, overrides || {});
+      this.meteors.push(meta);
+    }
 
-    // Clear canvases (transparent)
-    Object.values(state.canvases).forEach(L => L.ctx.clearRect(0,0,state.size.w, state.size.h));
-
-    // draw layers
-    drawBackgroundStars(now, state);
-    drawTwinkles(now, state);
-    updateMeteors(dt, state);
-    drawMeteors(state);
-    updateComet(dt, state);
-    drawComet(state);
-    updateRings(dt, state);
-    drawRings(state);
-
-    // spawn logic
-    if (!prefersReduced) maybeSpawnMeteorWindow(state, now);
-    if (!prefersReduced) maybeSpawnComet(state, now);
-
-    // schedule next
-    if (!prefersReduced) state.raf = requestAnimationFrame(n => frame(n, state));
-  }
-
-  // ---- Background stars ----
-  function drawBackgroundStars(now, state) {
-    const ctx = state.canvases.bg.ctx;
-    ctx.save();
-    ctx.globalCompositeOperation = 'source-over';
-    // tiny, slow drift for realism (very subtle)
-    const driftX = Math.sin(now/260000) * 6;
-    const driftY = Math.cos(now/210000) * 4;
-    for (const s of state.particles.stars) {
-      const tw = prefersReduced ? 0 : Math.sin(now * (0.0009 + s.size*0.0002) + s.tw) * 0.36;
-      const a = clamp(s.baseA + tw * 0.85, 0.05, 1);
-      const scaled = s.size * (1 + (s.size*0.66));
-      if (s.hueOff && Math.abs(s.hueOff) > 0.001) {
-        const h = DEFAULT.theme.starHue + s.hueOff;
-        ctx.fillStyle = `hsla(${h}, ${DEFAULT.theme.starSat}%, ${DEFAULT.theme.starLight - Math.abs(s.hueOff)}%, ${a})`;
-        ctx.beginPath();
-        ctx.arc(s.x + driftX, s.y + driftY, scaled*0.9, 0, TAU);
-        ctx.fill();
-      } else {
-        // soft glow sprite
-        ctx.drawImage(state.sprites.glow,
-          Math.round(s.x + driftX - scaled*4),
-          Math.round(s.y + driftY - scaled*4),
-          scaled*8, scaled*8);
+    _updateMeteors(dt){
+      for (let i = this.meteors.length - 1; i >= 0; i--){
+        const m = this.meteors[i]; m.life += dt; m.angle += m.curve * dt;
+        const vx = Math.cos(m.angle) * m.speed * dt * 16; const vy = Math.sin(m.angle) * m.speed * dt * 16;
+        m.x += vx; m.y += vy;
+        if (m.life > m.dur || m.x > this.width + this.width*0.4 || m.y > this.height + this.height*0.4) this.meteors.splice(i,1);
       }
     }
-    ctx.restore();
-  }
 
-  // ---- Twinkles ----
-  function drawTwinkles(now, state) {
-    const ctx = state.canvases.mid.ctx;
-    ctx.save(); ctx.globalCompositeOperation = 'lighter';
-    for (const s of state.particles.twinkles) {
-      const pulse = prefersReduced ? 0 : Math.sin(now*(0.0012 + 0.00045*s.size) + s.tw) * 0.56;
-      const a = clamp(s.baseA + pulse, 0.06, 1);
-      const size = s.size * (1 + 0.12 * Math.sin(now/560 + s.orbit));
-      ctx.globalAlpha = a;
-      ctx.beginPath(); ctx.arc(s.x, s.y, size, 0, TAU); ctx.fillStyle = 'white'; ctx.fill();
-      ctx.drawImage(state.sprites.glow, Math.round(s.x - size*3.2), Math.round(s.y - size*3.2), size*6.4, size*6.4);
-    }
-    ctx.restore();
-  }
+    _drawMeteors(){
+      const ctx = this.layers.fg.ctx; ctx.save(); ctx.globalCompositeOperation = 'lighter';
+      for (const m of this.meteors){
+        const hx = m.x, hy = m.y; const t = clamp(m.life / m.dur, 0, 1); const eased = easeOut(t);
+        const nx = Math.cos(m.angle), ny = Math.sin(m.angle);
+        const len = m.length * (0.28 + 0.72*(1 - eased));
+        const tx = hx - nx * len, ty = hy - ny * len;
 
-  // ---- Meteors ----
-  function updateMeteors(dt, state) {
-    const arr = state.particles.meteors;
-    for (let i = arr.length - 1; i >= 0; i--) {
-      const m = arr[i];
-      m.life += dt;
-      m.angle += m.curve * dt;
-      const vx = Math.cos(m.angle) * m.speed * dt * 16;
-      const vy = Math.sin(m.angle) * m.speed * dt * 16;
-      m.x += vx; m.y += vy;
-      // remove if out of bounds or life done
-      if (m.life > m.dur || m.x > state.size.w + state.size.w*0.3 || m.y > state.size.h + state.size.h*0.3) {
-        arr.splice(i, 1);
+        const grad = ctx.createLinearGradient(tx, ty, hx, hy);
+        if (m.isAccent && m.accent){ const [h,s,l] = m.accent; grad.addColorStop(0, 'rgba(255,255,255,0)'); grad.addColorStop(0.46, `hsla(${h}, ${s}%, ${l}%, 0.28)`); grad.addColorStop(0.88, 'rgba(255,255,255,0.55)'); grad.addColorStop(1, 'rgba(255,255,255,0.98)'); }
+        else { grad.addColorStop(0, 'rgba(255,255,255,0)'); grad.addColorStop(0.6, 'rgba(255,255,255,0.22)'); grad.addColorStop(1, 'rgba(255,255,255,0.98)'); }
+
+        ctx.strokeStyle = grad; ctx.lineWidth = m.stroke; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(hx, hy); ctx.stroke();
+
+        const halo = Math.max(18, m.head * 7);
+        ctx.drawImage(this.glow, hx - halo/2, hy - halo/2, halo, halo);
+        ctx.fillStyle = 'rgba(255,255,255,0.98)'; ctx.beginPath(); ctx.arc(hx, hy, m.head, 0, TAU); ctx.fill();
       }
+      ctx.restore();
+    }
+
+    _updateRings(dt){
+      for (let i = this.rings.length - 1; i >= 0; i--){ const r = this.rings[i]; r.life += dt; if (r.life > r.dur) this.rings.splice(i,1); }
+    }
+    _drawRings(){ const ctx = this.layers.fg.ctx; ctx.save(); ctx.globalCompositeOperation='lighter'; for (const r of this.rings){ const t = clamp(r.life/r.dur,0,1); const eased = easeOut(t); ctx.lineWidth = 1 + (1-eased)*1.4; ctx.strokeStyle = `rgba(255,255,255,${0.28*(1-eased)})`; ctx.beginPath(); ctx.arc(r.x + this.parallaxX*0.6, r.y + this.parallaxY*0.6, 6 + eased*40, 0, TAU); ctx.stroke(); } ctx.restore(); }
+
+    _renderOnce(){
+      // draw a single frame for reduced-motion users
+      const now = performance.now(); for (const L of Object.values(this.layers)) L.ctx.clearRect(0,0,this.width,this.height);
+      this._drawFar(now); this._drawTwinkles(now);
     }
   }
 
-  function drawMeteors(state) {
-    const ctx = state.canvases.fg.ctx;
-    ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.lineCap = 'round';
-    for (const m of state.particles.meteors) {
-      const hx = m.x, hy = m.y;
-      const t = clamp(m.life / m.dur, 0, 1);
-      const eased = 1 - Math.pow(1 - t, 3);
-      const nx = Math.cos(m.angle), ny = Math.sin(m.angle);
-      const len = m.length * (0.28 + 0.72*(1 - eased));
-      const tx = hx - nx * len, ty = hy - ny * len;
+  // Expose a mount helper if someone wants a programmatic instance for multiple wrappers
+  // (The overlay always uses fixed canvases appended to body so stars "go with the screen".)
 
-      const grad = ctx.createLinearGradient(tx, ty, hx, hy);
-      if (m.isAccent && m.accent) {
-        const [h,s,l] = m.accent;
-        grad.addColorStop(0.0, 'rgba(255,255,255,0)');
-        grad.addColorStop(0.45, `hsla(${h}, ${s}%, ${l}%, 0.26)`);
-        grad.addColorStop(0.88, 'rgba(255,255,255,0.55)');
-        grad.addColorStop(1.0, 'rgba(255,255,255,0.98)');
-      } else {
-        grad.addColorStop(0.0, 'rgba(255,255,255,0.0)');
-        grad.addColorStop(0.6, 'rgba(255,255,255,0.22)');
-        grad.addColorStop(1.0, 'rgba(255,255,255,0.98)');
-      }
-
-      ctx.strokeStyle = grad;
-      ctx.lineWidth = m.stroke;
-      ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(hx, hy); ctx.stroke();
-
-      // dispersion halo and head
-      const halo = Math.max(12, m.head * 7);
-      ctx.drawImage(state.sprites.glow, hx - halo/2, hy - halo/2, halo, halo);
-      ctx.fillStyle = 'rgba(255,255,255,0.96)';
-      ctx.beginPath(); ctx.arc(hx, hy, m.head, 0, TAU); ctx.fill();
-    }
-    ctx.restore();
-  }
-
-  // ---- Comet (single, long-lived) ----
-  function updateComet(dt, state) {
-    const c = state.particles.comet;
-    if (!c) return;
-    c.life += dt; c.angle += c.wobble * dt;
-    const vx = Math.cos(c.angle) * c.speed * dt * 12;
-    const vy = Math.sin(c.angle) * c.speed * dt * 12;
-    c.x += vx; c.y += vy;
-    if (c.life > c.dur || c.x > state.size.w + state.size.w*0.4 || c.y > state.size.h + state.size.h*0.4) state.particles.comet = null;
-  }
-
-  function drawComet(state) {
-    const c = state.particles.comet;
-    if (!c) return;
-    const ctx = state.canvases.fg.ctx;
-    const nx = Math.cos(c.angle), ny = Math.sin(c.angle);
-    const hx = c.x, hy = c.y; const tx = hx - nx * c.length, ty = hy - ny * c.length;
-    ctx.save(); ctx.globalCompositeOperation = 'lighter';
-    const hue1 = state.opts.theme.cometHue, hue2 = hue1 + 26;
-    const g1 = ctx.createLinearGradient(tx, ty, hx, hy);
-    g1.addColorStop(0.00, 'rgba(255,255,255,0.00)');
-    g1.addColorStop(0.55, `hsla(${hue1}, 70%, 60%, 0.18)`);
-    g1.addColorStop(1.00, 'rgba(255,255,255,0.9)');
-    const g2 = ctx.createLinearGradient(tx, ty, hx, hy);
-    g2.addColorStop(0.00, 'rgba(255,255,255,0.00)');
-    g2.addColorStop(0.75, `hsla(${hue2}, 80%, 70%, 0.12)`);
-    g2.addColorStop(1.00, 'rgba(255,255,255,0.7)');
-
-    ctx.lineCap = 'round';
-    ctx.strokeStyle = g1; ctx.lineWidth = 3.6; ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(hx, hy); ctx.stroke();
-    ctx.strokeStyle = g2; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(hx, hy); ctx.stroke();
-    const halo = Math.max(28, c.head * 10);
-    ctx.drawImage(state.sprites.cometGlow, hx - halo/2, hy - halo/2, halo, halo);
-    ctx.fillStyle = 'rgba(255,255,255,0.98)'; ctx.beginPath(); ctx.arc(hx, hy, c.head, 0, TAU); ctx.fill();
-    ctx.restore();
-  }
-
-  // ---- Rings (click ping) ----
-  function updateRings(dt, state) {
-    for (let i = state.particles.rings.length - 1; i >= 0; i--) {
-      const r = state.particles.rings[i]; r.life += dt; if (r.life > r.dur) state.particles.rings.splice(i,1);
-    }
-  }
-  function drawRings(state) {
-    const ctx = state.canvases.fg.ctx;
-    ctx.save(); ctx.globalCompositeOperation = 'lighter';
-    for (const r of state.particles.rings) {
-      const t = clamp(r.life / r.dur, 0, 1); const eased = 1 - Math.pow(1 - t, 3);
-      const radius = 6 + eased * 46; const alpha = 0.22 * (1 - eased);
-      ctx.lineWidth = 1 + (1 - eased) * 1.4; ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
-      ctx.beginPath(); ctx.arc(r.x, r.y, radius, 0, TAU); ctx.stroke();
-    }
-    ctx.restore();
-  }
-
-  // ---------- UTIL: spawn windows & events ----------
-  // Note: spawn logic handled in frame() via maybeSpawnMeteorWindow and maybeSpawnComet
-
-  // ---------- EXPORT ----------
-  // Keep API minimal — start/stop/destroy accessible via window.Starfield
-  // Done earlier (API object)
-
-  // ---------- END IIFE ----------
 })();
-</script>
