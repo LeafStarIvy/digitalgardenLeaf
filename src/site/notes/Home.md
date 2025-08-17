@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-11T17:13:21.307+02:00","updated":"2025-08-11T19:17:21.754+02:00"}
+{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-11T17:13:21.307+02:00","updated":"2025-08-17T19:03:49.834+02:00"}
 ---
 
 #                   ✨Main Page✨
@@ -29,7 +29,8 @@ Hallo ik ben
 
 { .block-language-dataview}
 
-f
+<iframe width="560" height="315" src="https://www.youtube.com/embed/S3cJ98r6Q84?si=xWG-emyVdlN2Qm0v" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 f
 f
 f
