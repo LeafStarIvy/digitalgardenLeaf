@@ -425,7 +425,7 @@ main.content,
   z-index: 300 !important;
 }
 
-/* Prevent stacking context traps from parentss */
+/* Prevent stacking context traps from parents */
 body,
 html {
   z-index: auto;
