@@ -63,7 +63,7 @@
 
     // Respect site CSS: do not force full-screen overlay or a background color
     // Only set minimal defaults so canvases position correctly inside the wrapper.
-    if (!wrapper.style.position) wrapper.style.position = 'relative';
+    if (!wrapper.style.position) wrapper.style.position = 'fixed';
     wrapper.style.pointerEvents = wrapper.style.pointerEvents || 'none';
 
     // create canvases (bg/mid/fg)
@@ -575,3 +575,4 @@
   }
 })();
 </script>
+
