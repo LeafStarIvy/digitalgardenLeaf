@@ -1,241 +1,161 @@
 /*
- * ENHANCED COSMIC DIGITAL GARDEN SCSS
- * Deep Space & Super Mario Galaxy Inspired Theme
- * Complete visual transformation with immersive cosmic elements
+ * SUPER MARIO GALAXY INSPIRED DIGITAL GARDEN
+ * Deep space theme with stellar dynamics, orbital mechanics,
+ * and immersive cosmic interactions
  */
 
-// 1. CORE VARIABLES & ENHANCED GALACTIC PALETTE
-// ------------------------------------------------------------------
+// ===================================================================
+// 1. GALAXY COLOR SYSTEM - Deep Space Mario Galaxy Inspired
+// ===================================================================
+
 body {
-  /* === DEEP SPACE GALACTIC PALETTE === */
+  /* Core Galaxy Palette - Deep Space Foundation */
+  --void-black: #000000;           /* Absolute void */
+  --space-black: #0a0a0f;          /* Deep space */
+  --cosmic-navy: #0f1419;          /* Cosmic navy */
+  --stellar-deep: #141922;         /* Deep stellar */
+  --nebula-dark: #1a202c;          /* Dark nebula */
+  --galaxy-core: #1e2832;          /* Galaxy core */
+  --star-field: #243447;           /* Star field */
+  --cosmic-blue: #2d4663;          /* Cosmic blue */
+  --orbital-blue: #385a7a;         /* Orbital blue */
+  --starlight-blue: #4a6fa5;       /* Starlight blue */
   
-  /* Void & Abyss - Deepest cosmic colors */
-  --cosmic-void: #000005;           /* Pure void */
-  --cosmic-abyss: #000611;          /* Deep abyss */
-  --cosmic-deep: #0a0e1a;           /* Deep space */
-  --cosmic-deeper: #0f1324;         /* Deeper space */
+  /* Mario Galaxy Blues - Signature celestial tones */
+  --galaxy-azure: #1e40af;         /* Galaxy azure */
+  --stellar-cyan: #0891b2;         /* Stellar cyan */
+  --cosmic-teal: #0d9488;          /* Cosmic teal */
+  --orbit-turquoise: #06b6d4;      /* Orbit turquoise */
+  --planet-aqua: #22d3ee;          /* Planet aqua */
+  --starshine-cyan: #67e8f9;       /* Starshine cyan */
+  --crystal-ice: #a5f3fc;          /* Crystal ice */
+  --moonbeam-white: #cffafe;       /* Moonbeam white */
   
-  /* Primary Space Scale - Enhanced depth */
-  --primary-950: #000005;           /* Absolute void */
-  --primary-900: #000611;           /* Void space */
-  --primary-850: #0a0e1a;           /* Deep void */
-  --primary-800: #0f1324;           /* Deep space */
-  --primary-750: #15192d;           /* Space depth */
-  --primary-700: #1a1f36;           /* Dark space */
-  --primary-650: #20253f;           /* Mid space */
-  --primary-600: #262c48;           /* Space */
-  --primary-550: #2c3251;           /* Light space */
-  --primary-500: #32385a;           /* Lighter space */
-  --primary-450: #383e63;           /* Cosmic blue */
-  --primary-400: #3e446c;           /* Blue space */
-  --primary-350: #444a75;           /* Light blue space */
-  --primary-300: #4a507e;           /* Stellar blue */
-  --primary-250: #505687;           /* Light stellar */
-  --primary-200: #565c90;           /* Dawn blue */
-  --primary-150: #5c6299;           /* Light dawn */
-  --primary-100: #6268a2;           /* Morning blue */
-  --primary-75: #686eab;            /* Light morning */
-  --primary-50: #6e74b4;            /* Sky blue */
-  --primary-25: #747abd;            /* Light sky */
+  /* Complementary Galaxy Accents */
+  --supernova-purple: #6366f1;     /* Supernova purple */
+  --nebula-violet: #8b5cf6;        /* Nebula violet */
+  --cosmic-magenta: #a855f7;       /* Cosmic magenta */
+  --pulsar-pink: #d946ef;          /* Pulsar pink */
+  --aurora-green: #10b981;         /* Aurora green */
+  --comet-emerald: #059669;        /* Comet emerald */
+  --solar-gold: #f59e0b;           /* Solar gold */
+  --star-amber: #d97706;           /* Star amber */
+  --mars-red: #dc2626;             /* Mars red */
+  --jupiter-orange: #ea580c;       /* Jupiter orange */
   
-  /* Galaxy Blue Spectrum - Mario Galaxy inspired */
-  --galaxy-blue-900: #0d1b2a;       /* Deep galaxy blue */
-  --galaxy-blue-800: #132a3f;       /* Dark galaxy */
-  --galaxy-blue-700: #1a3754;       /* Galaxy blue */
-  --galaxy-blue-600: #214469;       /* Mid galaxy */
-  --galaxy-blue-500: #28527e;       /* Light galaxy */
-  --galaxy-blue-400: #3a6ea5;       /* Bright galaxy */
-  --galaxy-blue-300: #4d8bc7;       /* Light bright galaxy */
-  --galaxy-blue-200: #6ba3d6;       /* Sky galaxy */
-  --galaxy-blue-100: #89bce5;       /* Light sky galaxy */
-  --galaxy-blue-50: #a7d5f4;        /* Ice galaxy */
+  /* Advanced Gradient Systems */
+  --gradient-galaxy-horizon: linear-gradient(135deg, var(--void-black) 0%, var(--cosmic-navy) 25%, var(--stellar-deep) 50%, var(--galaxy-core) 100%);
+  --gradient-stellar-sweep: linear-gradient(90deg, var(--galaxy-azure) 0%, var(--stellar-cyan) 33%, var(--cosmic-teal) 66%, var(--orbit-turquoise) 100%);
+  --gradient-cosmic-aurora: linear-gradient(135deg, var(--supernova-purple) 0%, var(--nebula-violet) 25%, var(--stellar-cyan) 50%, var(--planet-aqua) 75%, var(--aurora-green) 100%);
+  --gradient-orbital-ring: conic-gradient(from 0deg, var(--galaxy-azure), var(--stellar-cyan), var(--cosmic-teal), var(--orbit-turquoise), var(--galaxy-azure));
+  --gradient-nebula-cloud: radial-gradient(circle at center, var(--supernova-purple) 0%, var(--nebula-violet) 30%, var(--cosmic-navy) 70%, var(--void-black) 100%);
+  --gradient-starfield-depth: linear-gradient(180deg, var(--space-black) 0%, var(--stellar-deep) 40%, var(--galaxy-core) 80%, var(--star-field) 100%);
   
-  /* Cosmic Cyan - Aurora effects */
-  --cosmic-cyan-900: #003544;       /* Deep cosmic cyan */
-  --cosmic-cyan-800: #004a5c;       /* Dark cosmic cyan */
-  --cosmic-cyan-700: #006074;       /* Cosmic cyan */
-  --cosmic-cyan-600: #00758c;       /* Mid cosmic cyan */
-  --cosmic-cyan-500: #008ba4;       /* Light cosmic cyan */
-  --cosmic-cyan-400: #1aa0bc;       /* Bright cosmic cyan */
-  --cosmic-cyan-300: #34b5d4;       /* Aurora cyan */
-  --cosmic-cyan-200: #4ecaec;       /* Light aurora cyan */
-  --cosmic-cyan-100: #68dfff;       /* Ice aurora cyan */
-  --cosmic-cyan-50: #82f4ff;        /* Frost cyan */
+  /* Interactive State Gradients */
+  --gradient-hover-glow: radial-gradient(circle at center, var(--stellar-cyan) 0%, transparent 70%);
+  --gradient-active-pulse: radial-gradient(circle at center, var(--supernova-purple) 0%, var(--nebula-violet) 50%, transparent 100%);
+  --gradient-focus-orbit: linear-gradient(45deg, var(--cosmic-teal), var(--orbit-turquoise), var(--stellar-cyan), var(--cosmic-teal));
   
-  /* Stellar Purple - Nebula effects */
-  --stellar-purple-900: #2d1b69;    /* Deep stellar purple */
-  --stellar-purple-800: #3a2277;    /* Dark stellar */
-  --stellar-purple-700: #472a85;    /* Stellar purple */
-  --stellar-purple-600: #543293;    /* Mid stellar */
-  --stellar-purple-500: #6139a1;    /* Light stellar */
-  --stellar-purple-400: #7448af;    /* Bright stellar */
-  --stellar-purple-300: #8758bd;    /* Nebula purple */
-  --stellar-purple-200: #9a68cb;    /* Light nebula */
-  --stellar-purple-100: #ad78d9;    /* Ice nebula */
-  --stellar-purple-50: #c088e7;     /* Frost purple */
+  /* Background Layers */
+  --bg-primary: var(--space-black);
+  --bg-secondary: var(--cosmic-navy);
+  --bg-tertiary: var(--stellar-deep);
+  --bg-surface: var(--nebula-dark);
+  --bg-elevated: var(--galaxy-core);
   
-  /* Cosmic Pink - Energy effects */
-  --cosmic-pink-900: #4a1458;       /* Deep cosmic pink */
-  --cosmic-pink-800: #5c1b6b;       /* Dark cosmic pink */
-  --cosmic-pink-700: #6e227e;       /* Cosmic pink */
-  --cosmic-pink-600: #802991;       /* Mid cosmic pink */
-  --cosmic-pink-500: #9230a4;       /* Light cosmic pink */
-  --cosmic-pink-400: #a437b7;       /* Bright cosmic pink */
-  --cosmic-pink-300: #b63eca;       /* Energy pink */
-  --cosmic-pink-200: #c845dd;       /* Light energy pink */
-  --cosmic-pink-100: #da4cf0;       /* Ice energy pink */
-  --cosmic-pink-50: #ec53ff;        /* Frost pink */
+  /* Glass Morphism - Enhanced Cosmic Glass */
+  --glass-cosmic: rgba(30, 64, 175, 0.08);
+  --glass-stellar: rgba(8, 145, 178, 0.12);
+  --glass-nebula: rgba(99, 102, 241, 0.1);
+  --glass-aurora: rgba(16, 185, 129, 0.08);
+  --glass-void: rgba(0, 0, 0, 0.4);
+  --glass-deep: rgba(10, 10, 15, 0.6);
+  --glass-surface: rgba(26, 32, 44, 0.3);
   
-  /* Stardust Gold - Accent colors */
-  --stardust-gold-900: #332700;     /* Deep stardust */
-  --stardust-gold-800: #4d3a00;     /* Dark stardust */
-  --stardust-gold-700: #664d00;     /* Stardust gold */
-  --stardust-gold-600: #806000;     /* Mid stardust */
-  --stardust-gold-500: #997300;     /* Light stardust */
-  --stardust-gold-400: #b38600;     /* Bright stardust */
-  --stardust-gold-300: #cc9900;     /* Gold */
-  --stardust-gold-200: #e6ac00;     /* Light gold */
-  --stardust-gold-100: #ffbf00;     /* Bright gold */
-  --stardust-gold-50: #ffd633;      /* Ice gold */
+  /* Advanced Blur Effects */
+  --blur-soft: blur(8px);
+  --blur-medium: blur(16px);
+  --blur-strong: blur(24px);
+  --blur-cosmic: blur(32px);
   
-  /* Emerald Comet - Green accents */
-  --emerald-comet-700: #064e3b;     /* Deep emerald comet */
-  --emerald-comet-600: #059669;     /* Dark emerald comet */
-  --emerald-comet-500: #10b981;     /* Emerald comet */
-  --emerald-comet-400: #34d399;     /* Bright emerald comet */
-  --emerald-comet-300: #6ee7b7;     /* Light emerald comet */
-  --emerald-comet-200: #a7f3d0;     /* Ice emerald comet */
+  /* Typography Enhancements */
+  --font-family-galaxy: 'Space Grotesk', 'Orbitron', 'Exo 2', sans-serif;
+  --font-family-stellar: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+  --font-family-cosmic: 'JetBrains Mono', 'Fira Code', monospace;
   
-  /* === GRADIENT SYSTEMS === */
-  --gradient-cosmic-void: linear-gradient(135deg, var(--cosmic-void), var(--cosmic-abyss), var(--cosmic-deep));
-  --gradient-deep-space: linear-gradient(180deg, var(--cosmic-deep), var(--primary-800), var(--primary-700));
-  --gradient-galaxy-horizon: linear-gradient(135deg, var(--galaxy-blue-900), var(--galaxy-blue-700) 50%, var(--stellar-purple-800));
-  --gradient-cosmic-aurora: linear-gradient(90deg, var(--cosmic-cyan-500), var(--galaxy-blue-400), var(--stellar-purple-500));
-  --gradient-nebula-dream: linear-gradient(135deg, var(--stellar-purple-700), var(--cosmic-pink-600), var(--cosmic-cyan-700));
-  --gradient-stardust-trail: linear-gradient(60deg, var(--primary-900), var(--stardust-gold-900) 30%, var(--galaxy-blue-800) 70%);
-  --gradient-cosmic-text: linear-gradient(90deg, var(--cosmic-cyan-200), var(--galaxy-blue-100), var(--stellar-purple-200));
-  --gradient-button-energy: linear-gradient(45deg, var(--stellar-purple-500), var(--cosmic-cyan-500), var(--cosmic-pink-500));
-  --gradient-card-cosmic: linear-gradient(135deg, rgba(40, 82, 126, 0.15), rgba(100, 57, 161, 0.1), rgba(0, 139, 164, 0.05));
-  --gradient-nav-cosmic: linear-gradient(180deg, var(--primary-850), var(--primary-800));
-  --gradient-sidebar-cosmic: linear-gradient(90deg, var(--primary-900), var(--primary-850));
+  /* Text Colors - Galaxy Inspired */
+  --text-stellar: var(--moonbeam-white);
+  --text-cosmic: var(--starshine-cyan);
+  --text-nebula: var(--crystal-ice);
+  --text-aurora: var(--planet-aqua);
+  --text-galaxy: var(--orbit-turquoise);
+  --text-dim: var(--starlight-blue);
+  --text-muted: var(--cosmic-blue);
+  --text-accent: var(--supernova-purple);
+  --text-highlight: var(--solar-gold);
+  --text-success: var(--aurora-green);
+  --text-warning: var(--star-amber);
+  --text-danger: var(--mars-red);
   
-  /* === BACKGROUND SYSTEM === */
-  --background-void: var(--cosmic-void);
-  --background-primary: var(--primary-900);
-  --background-secondary: var(--primary-850);
-  --background-tertiary: var(--primary-800);
-  --background-quaternary: var(--primary-750);
-  --surface-deep: var(--primary-800);
-  --surface-mid: var(--primary-700);
-  --surface-light: var(--primary-600);
+  /* Interactive Elements */
+  --link-primary: var(--stellar-cyan);
+  --link-hover: var(--planet-aqua);
+  --link-active: var(--starshine-cyan);
+  --link-visited: var(--cosmic-teal);
   
-  /* === GLASS EFFECTS === */
-  --glass-cosmic: rgba(15, 19, 36, 0.85);
-  --glass-cosmic-light: rgba(21, 25, 45, 0.75);
-  --glass-cosmic-lighter: rgba(26, 31, 54, 0.65);
-  --glass-cosmic-dark: rgba(10, 14, 26, 0.95);
-  --glass-blur-cosmic: blur(16px);
-  --glass-blur-strong: blur(20px);
-  --glass-blur-medium: blur(12px);
-  --glass-blur-light: blur(8px);
+  /* Enhanced Shadow System */
+  --shadow-cosmic: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-stellar: 0 8px 40px rgba(30, 64, 175, 0.3);
+  --shadow-nebula: 0 12px 60px rgba(99, 102, 241, 0.25);
+  --shadow-void: 0 20px 80px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 20px var(--stellar-cyan);
+  --shadow-pulse: 0 0 40px var(--supernova-purple);
   
-  /* === TEXT SYSTEM === */
-  --text-cosmic-primary: var(--cosmic-cyan-50);
-  --text-cosmic-secondary: var(--galaxy-blue-100);
-  --text-cosmic-tertiary: var(--galaxy-blue-200);
-  --text-cosmic-accent: var(--stellar-purple-100);
-  --text-cosmic-bright: var(--cosmic-cyan-100);
-  --text-cosmic-muted: var(--primary-200);
-  --text-cosmic-dim: var(--primary-250);
-  --text-cosmic-highlight: var(--stardust-gold-100);
-  --text-cosmic-energy: var(--cosmic-pink-200);
-  --text-cosmic-success: var(--emerald-comet-300);
-  --text-cosmic-warning: var(--stardust-gold-200);
-  --text-cosmic-danger: var(--cosmic-pink-300);
+  /* Orbital Animation Variables */
+  --orbit-speed-fast: 20s;
+  --orbit-speed-medium: 40s;
+  --orbit-speed-slow: 60s;
+  --pulse-speed: 3s;
+  --glow-speed: 4s;
+  --float-speed: 6s;
   
-  /* === INTERACTIVE SYSTEM === */
-  --link-cosmic: var(--cosmic-cyan-300);
-  --link-cosmic-hover: var(--cosmic-cyan-100);
-  --link-cosmic-active: var(--cosmic-cyan-200);
-  --link-cosmic-visited: var(--stellar-purple-300);
-  --highlight-cosmic: var(--stellar-purple-300);
-  --highlight-cosmic-bright: var(--stellar-purple-200);
-  --highlight-cosmic-dim: var(--stellar-purple-500);
-  --highlight-cosmic-bg: rgba(97, 57, 161, 0.15);
-  --selection-cosmic-bg: rgba(0, 139, 164, 0.3);
-  --selection-cosmic-text: var(--cosmic-cyan-50);
+  /* Galaxy Specific Measurements */
+  --stellar-radius: 12px;
+  --orbital-radius: 24px;
+  --cosmic-radius: 32px;
+  --nebula-radius: 48px;
   
-  /* === ENHANCED TYPOGRAPHY === */
-  --font-family-cosmic: 'Inter Variable', 'SF Pro Display', -apple-system, system-ui, sans-serif;
-  --font-family-heading-cosmic: 'Space Grotesk', 'Orbitron', 'Exo 2', sans-serif;
-  --font-family-code-cosmic: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', monospace;
+  /* Z-Index Layers */
+  --z-background: 0;
+  --z-starfield: 1;
+  --z-nebula: 2;
+  --z-content: 10;
+  --z-navigation: 100;
+  --z-overlay: 1000;
+  --z-modal: 9999;
   
-  /* === LAYOUT SYSTEM === */
-  --content-width-cosmic: 800px;
-  --content-width-wide-cosmic: 1000px;
-  --sidebar-width-cosmic: 320px;
-  --navbar-height-cosmic: 70px;
-  --spacing-cosmic-xs: 8px;
-  --spacing-cosmic-sm: 16px;
-  --spacing-cosmic: 24px;
-  --spacing-cosmic-lg: 32px;
-  --spacing-cosmic-xl: 48px;
-  --spacing-cosmic-2xl: 64px;
-  
-  /* === BORDER SYSTEM === */
-  --border-radius-cosmic: 16px;
-  --border-radius-cosmic-sm: 12px;
-  --border-radius-cosmic-lg: 24px;
-  --border-radius-cosmic-xl: 32px;
-  --border-cosmic: 1px solid rgba(104, 223, 255, 0.15);
-  --border-cosmic-strong: 2px solid rgba(104, 223, 255, 0.25);
-  --border-cosmic-accent: 1px solid rgba(135, 88, 189, 0.2);
-  
-  /* === SHADOW & GLOW SYSTEM === */
-  --shadow-cosmic-sm: 0 4px 8px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
-  --shadow-cosmic: 0 8px 16px rgba(0, 0, 0, 0.4), 0 4px 8px rgba(0, 0, 0, 0.3);
-  --shadow-cosmic-lg: 0 16px 32px rgba(0, 0, 0, 0.5), 0 8px 16px rgba(0, 0, 0, 0.4);
-  --shadow-cosmic-xl: 0 24px 48px rgba(0, 0, 0, 0.6), 0 12px 24px rgba(0, 0, 0, 0.5);
-  
-  --glow-cosmic-cyan: 0 0 20px rgba(104, 223, 255, 0.3);
-  --glow-cosmic-purple: 0 0 20px rgba(135, 88, 189, 0.3);
-  --glow-cosmic-pink: 0 0 20px rgba(236, 83, 255, 0.3);
-  --glow-cosmic-gold: 0 0 20px rgba(255, 191, 0, 0.3);
-  --glow-cosmic-strong: 0 0 30px rgba(104, 223, 255, 0.4), 0 0 60px rgba(135, 88, 189, 0.2);
-  
-  /* === ANIMATION SYSTEM === */
-  --transition-cosmic: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --transition-cosmic-fast: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --transition-cosmic-slow: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --animation-duration-cosmic: 2s;
-  --animation-duration-cosmic-slow: 4s;
-  --animation-duration-cosmic-fast: 1s;
-  
-  /* === EFFECTS === */
-  --backdrop-blur-cosmic: blur(20px);
-  --backdrop-saturate-cosmic: saturate(180%);
-  --grain-opacity-cosmic: 0.03;
-  --starfield-opacity-cosmic: 0.7;
-  
-  /* Global setup with enhanced cosmic styling */
-  position: relative;
-  font-family: var(--font-family-cosmic);
-  color: var(--text-cosmic-primary);
-  background: var(--gradient-cosmic-void);
-  background-attachment: fixed;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Setup */
+  font-family: var(--font-family-stellar);
+  background: var(--gradient-starfield-depth);
+  color: var(--text-stellar);
   overflow-x: hidden;
+  position: relative;
   
-  /* Enhanced selection styling */
+  /* Enhanced scrollbar for galaxy theme */
+  scrollbar-width: thin;
+  scrollbar-color: var(--stellar-cyan) var(--cosmic-navy);
+  
   ::selection {
-    background-color: var(--selection-cosmic-bg);
-    color: var(--selection-cosmic-text);
-    text-shadow: 0 0 8px rgba(104, 223, 255, 0.5);
+    background: var(--glass-stellar);
+    color: var(--text-stellar);
   }
 }
 
-/* === COSMIC BACKGROUND EFFECTS === */
+// ===================================================================
+// 2. COSMIC BACKGROUND SYSTEM
+// ===================================================================
+
+/* Enhanced starfield background */
 body::before {
   content: '';
   position: fixed;
@@ -244,15 +164,16 @@ body::before {
   width: 100%;
   height: 100%;
   background: 
-    radial-gradient(circle at 20% 30%, rgba(135, 88, 189, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(0, 139, 164, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 40% 80%, rgba(236, 83, 255, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 90% 70%, rgba(255, 191, 0, 0.04) 0%, transparent 50%);
+    radial-gradient(circle at 20% 80%, var(--supernova-purple) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, var(--stellar-cyan) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, var(--cosmic-teal) 0%, transparent 50%),
+    var(--gradient-galaxy-horizon);
+  z-index: var(--z-background);
   pointer-events: none;
-  z-index: -2;
-  animation: cosmic-drift 20s ease-in-out infinite;
+  animation: cosmic-drift 120s ease-in-out infinite alternate;
 }
 
+/* Animated nebula overlay */
 body::after {
   content: '';
   position: fixed;
@@ -261,641 +182,127 @@ body::after {
   width: 100%;
   height: 100%;
   background: 
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(104, 223, 255, 0.01) 2px,
-      rgba(104, 223, 255, 0.01) 4px
-    );
+    radial-gradient(circle at 70% 30%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 30% 70%, rgba(8, 145, 178, 0.08) 0%, transparent 40%);
+  z-index: var(--z-nebula);
   pointer-events: none;
-  z-index: -1;
-  opacity: 0.3;
+  animation: nebula-flow 80s linear infinite;
 }
 
 @keyframes cosmic-drift {
-  0%, 100% { 
-    transform: translateY(0px) rotate(0deg);
-    filter: hue-rotate(0deg);
-  }
-  33% { 
-    transform: translateY(-10px) rotate(1deg);
-    filter: hue-rotate(60deg);
-  }
-  66% { 
-    transform: translateY(5px) rotate(-1deg);
-    filter: hue-rotate(-30deg);
-  }
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  50% { transform: translateY(-20px) scale(1.02); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 0.8; }
 }
 
-/* === ENHANCED LINK STYLES === */
-a {
-  color: var(--link-cosmic);
-  text-decoration: none;
-  position: relative;
-  transition: var(--transition-cosmic);
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--gradient-cosmic-aurora);
-    transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    border-radius: 2px;
-  }
-  
-  &:hover {
-    color: var(--link-cosmic-hover);
-    text-shadow: var(--glow-cosmic-cyan);
-    transform: translateY(-1px);
-  }
-  
-  &:hover::after {
-    width: 100%;
-    box-shadow: var(--glow-cosmic-cyan);
-  }
-  
-  &.internal-link {
-    border-bottom: 1px dashed rgba(104, 223, 255, 0.3);
-    
-    &:hover {
-      border-bottom: 1px dashed rgba(135, 88, 189, 0.5);
-    }
-  }
+@keyframes nebula-flow {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
 }
 
-/* === ENHANCED SCROLLBAR === */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
+// ===================================================================
+// 3. ENHANCED NAVIGATION SYSTEM
+// ===================================================================
 
-::-webkit-scrollbar-track {
-  background: var(--primary-900);
-  border-radius: 10px;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--gradient-cosmic-aurora);
-  border-radius: 10px;
-  border: 2px solid var(--primary-900);
-  box-shadow: var(--glow-cosmic-cyan);
-  
-  &:hover {
-    background: var(--gradient-nebula-dream);
-    box-shadow: var(--glow-cosmic-strong);
-  }
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--cosmic-cyan-400) var(--primary-900);
-}
-
-/* === ENHANCED TYPOGRAPHY === */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-heading-cosmic);
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin-top: 2em;
-  margin-bottom: 0.5em;
-  font-weight: 700;
-}
-
-h1 {
-  font-size: 3.2rem;
-  background: var(--gradient-cosmic-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 0 30px rgba(104, 223, 255, 0.3);
-  margin-bottom: 1.5rem;
-  position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: var(--gradient-cosmic-aurora);
-    border-radius: 2px;
-    box-shadow: var(--glow-cosmic-cyan);
-  }
-}
-
-h2 {
-  font-size: 2.4rem;
-  color: var(--text-cosmic-accent);
-  text-shadow: 0 0 20px rgba(135, 88, 189, 0.3);
-}
-
-h3 {
-  font-size: 1.8rem;
-  color: var(--text-cosmic-secondary);
-  text-shadow: 0 0 15px rgba(40, 82, 126, 0.3);
-}
-
-h4 {
-  font-size: 1.4rem;
-  color: var(--text-cosmic-tertiary);
-}
-
-/* === ENHANCED CALLOUTS === */
-.callout {
-  border-left: 3px solid var(--highlight-cosmic);
-  background: var(--glass-cosmic);
-  backdrop-filter: var(--backdrop-blur-cosmic);
-  padding: 1.5rem;
-  margin: 2rem 0;
-  border-radius: var(--border-radius-cosmic);
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-cosmic);
-  border: var(--border-cosmic);
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-card-cosmic);
-    pointer-events: none;
-    z-index: -1;
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(104, 223, 255, 0.05) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: -1;
-    animation: cosmic-pulse 6s ease-in-out infinite;
-  }
-  
-  &.note { 
-    border-left-color: var(--cosmic-cyan-400);
-    box-shadow: var(--shadow-cosmic), var(--glow-cosmic-cyan);
-  }
-  
-  &.warning { 
-    border-left-color: var(--stardust-gold-400);
-    box-shadow: var(--shadow-cosmic), var(--glow-cosmic-gold);
-  }
-  
-  &.important { 
-    border-left-color: var(--cosmic-pink-400);
-    box-shadow: var(--shadow-cosmic), var(--glow-cosmic-pink);
-  }
-  
-  &.tip { 
-    border-left-color: var(--emerald-comet-400);
-    box-shadow: var(--shadow-cosmic), 0 0 20px rgba(52, 211, 153, 0.3);
-  }
-  
-  .callout-title {
-    font-weight: 600;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    color: var(--text-cosmic-bright);
-    text-shadow: 0 0 10px rgba(104, 223, 255, 0.5);
-    
-    svg {
-      margin-right: 0.75rem;
-      filter: drop-shadow(0 0 5px currentColor);
-    }
-  }
-}
-
-@keyframes cosmic-pulse {
-  0%, 100% { opacity: 0.05; transform: scale(1); }
-  50% { opacity: 0.1; transform: scale(1.1); }
-}
-
-/* === ENHANCED TABLES === */
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  margin: 2rem 0;
-  overflow: hidden;
-  border-radius: var(--border-radius-cosmic);
-  box-shadow: var(--shadow-cosmic-lg);
-  background: var(--glass-cosmic);
-  backdrop-filter: var(--backdrop-blur-cosmic);
-  border: var(--border-cosmic);
-  
-  thead {
-    background: var(--gradient-nav-cosmic);
-    color: var(--text-cosmic-bright);
-    
-    th {
-      padding: 1.25rem;
-      text-align: left;
-      font-weight: 600;
-      border-bottom: 2px solid rgba(104, 223, 255, 0.2);
-      text-shadow: 0 0 10px rgba(104, 223, 255, 0.3);
-      position: relative;
-      
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background: var(--gradient-cosmic-aurora);
-      }
-    }
-  }
-  
-  tbody {
-    tr {
-      transition: var(--transition-cosmic-fast);
-      
-      &:nth-child(even) {
-        background: rgba(21, 25, 45, 0.3);
-      }
-      
-      &:hover {
-        background: rgba(104, 223, 255, 0.1);
-        transform: scale(1.01);
-        box-shadow: inset 0 0 20px rgba(104, 223, 255, 0.1);
-      }
-    }
-    
-    td {
-      padding: 1rem 1.25rem;
-      border-bottom: 1px solid rgba(104, 223, 255, 0.08);
-      transition: var(--transition-cosmic-fast);
-    }
-  }
-}
-
-/* === CODE BLOCKS === */
-pre, code {
-  font-family: var(--font-family-code-cosmic);
-  border-radius: var(--border-radius-cosmic-sm);
-}
-
-pre {
-  padding: 1.5rem;
-  overflow-x: auto;
-  background: var(--glass-cosmic-dark);
-  backdrop-filter: var(--backdrop-blur-cosmic);
-  border: var(--border-cosmic);
-  box-shadow: var(--shadow-cosmic);
-  position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--gradient-cosmic-aurora);
-  }
-}
-
-code {
-  background: rgba(21, 25, 45, 0.6);
-  padding: 0.3em 0.6em;
-  border: 1px solid rgba(104, 223, 255, 0.1);
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-pre code {
-  background: transparent;
-  padding: 0;
-  border: none;
-  box-shadow: none;
-}
-
-/* === NAVIGATION BAR === */
 .navbar {
-  background: var(--gradient-nav-cosmic);
-  backdrop-filter: var(--backdrop-blur-cosmic);
-  border-bottom: var(--border-cosmic-strong);
-  box-shadow: var(--shadow-cosmic-lg);
-  height: var(--navbar-height-cosmic);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  background: var(--glass-void);
+  backdrop-filter: var(--blur-medium);
+  border-bottom: 1px solid var(--glass-stellar);
+  position: relative;
+  z-index: var(--z-navigation);
   
-  .nav-content {
+  /* Orbital glow effect */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-stellar-sweep);
+    animation: orbital-sweep 8s linear infinite;
+  }
+  
+  .nav-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2rem;
-    height: 100%;
-    max-width: var(--content-width-wide-cosmic);
+    padding: 1rem 2rem;
+    max-width: 1400px;
     margin: 0 auto;
   }
   
-  .nav-title {
-    font-family: var(--font-family-heading-cosmic);
+  .nav-logo {
+    font-family: var(--font-family-galaxy);
     font-size: 1.5rem;
     font-weight: 700;
-    background: var(--gradient-cosmic-text);
+    background: var(--gradient-stellar-sweep);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 20px rgba(104, 223, 255, 0.3);
+    background-clip: text;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+      filter: drop-shadow(var(--shadow-glow));
+    }
   }
   
   .nav-links {
     display: flex;
     gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
     
     a {
-      color: var(--text-cosmic-secondary);
-      font-weight: 500;
+      color: var(--text-cosmic);
+      text-decoration: none;
       padding: 0.5rem 1rem;
-      border-radius: var(--border-radius-cosmic-sm);
-      transition: var(--transition-cosmic-fast);
+      border-radius: var(--stellar-radius);
+      transition: all 0.3s ease;
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: var(--gradient-hover-glow);
+        border-radius: var(--stellar-radius);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
       
       &:hover {
-        background: rgba(104, 223, 255, 0.1);
-        color: var(--text-cosmic-bright);
-        box-shadow: var(--glow-cosmic-cyan);
+        color: var(--text-stellar);
         transform: translateY(-2px);
-      }
-    }
-  }
-}
-
-/* === SIDEBAR ENHANCEMENTS === */
-.sidebar {
-  background: var(--gradient-sidebar-cosmic);
-  backdrop-filter: var(--backdrop-blur-cosmic);
-  border-left: var(--border-cosmic);
-  box-shadow: var(--shadow-cosmic-xl);
-  width: var(--sidebar-width-cosmic);
-  opacity: 0.95;
-  transition: var(--transition-cosmic);
-  
-  &:hover {
-    opacity: 1;
-    transform: translateX(-5px);
-    box-shadow: var(--shadow-cosmic-xl), var(--glow-cosmic-cyan);
-  }
-  
-  .sidebar-section {
-    padding: 1.5rem;
-    border-bottom: 1px solid rgba(104, 223, 255, 0.1);
-    position: relative;
-    
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--gradient-cosmic-aurora);
-      transition: width 0.4s ease;
-    }
-    
-    &:hover::after {
-      width: 100%;
-    }
-    
-    h3 {
-      color: var(--text-cosmic-accent);
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 10px rgba(135, 88, 189, 0.3);
-    }
-    
-    ul {
-      list-style: none;
-      padding: 0;
-      
-      li {
-        margin-bottom: 0.5rem;
         
-        a {
-          display: block;
-          padding: 0.5rem 0.75rem;
-          border-radius: var(--border-radius-cosmic-sm);
-          transition: var(--transition-cosmic-fast);
-          border-left: 2px solid transparent;
-          
-          &:hover {
-            background: rgba(104, 223, 255, 0.08);
-            border-left-color: var(--cosmic-cyan-400);
-            transform: translateX(5px);
-            box-shadow: inset 0 0 10px rgba(104, 223, 255, 0.1);
-          }
+        &::before {
+          opacity: 1;
         }
       }
     }
   }
 }
 
-/* === FILETREE SIDEBAR === */
+@keyframes orbital-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100vw); }
+}
+
+// ===================================================================
+// 4. SIDEBAR ENHANCEMENTS
+// ===================================================================
+
 .filetree-sidebar {
-  background: var(--gradient-sidebar-cosmic);
-  backdrop-filter: var(--backdrop-blur-cosmic);
-  border-right: var(--border-cosmic);
-  box-shadow: var(--shadow-cosmic-xl);
-  width: var(--sidebar-width-cosmic);
-  
-  h1 {
-    margin-top: 140px; /* Space for GIF */
-    position: relative;
-    text-align: center;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: -130px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 120px;
-      background-image: var(--title-header-gif);
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-      border-radius: 50%;
-      box-shadow: var(--glow-cosmic-strong);
-      animation: cosmic-rotate 20s linear infinite;
-    }
-  }
-  
-  .tree-item {
-    padding: 0.4rem 1rem;
-    cursor: pointer;
-    transition: var(--transition-cosmic-fast);
-    border-radius: var(--border-radius-cosmic-sm);
-    margin: 0.2rem 0.5rem;
-    border-left: 2px solid transparent;
-    
-    &:hover {
-      background: rgba(104, 223, 255, 0.1);
-      border-left-color: var(--cosmic-cyan-400);
-      transform: translateX(8px);
-      box-shadow: var(--glow-cosmic-cyan);
-    }
-    
-    &.active {
-      background: rgba(135, 88, 189, 0.15);
-      border-left-color: var(--stellar-purple-400);
-      color: var(--text-cosmic-bright);
-      box-shadow: var(--glow-cosmic-purple);
-    }
-    
-    .tree-icon {
-      margin-right: 0.75rem;
-      filter: drop-shadow(0 0 3px currentColor);
-    }
-  }
-}
-
-@keyframes cosmic-rotate {
-  from { transform: translateX(-50%) rotate(0deg); }
-  to { transform: translateX(-50%) rotate(360deg); }
-}
-
-/* === CONTENT AREA === */
-.content {
-  background: rgba(15, 19, 36, 0.3);
-  backdrop-filter: var(--backdrop-blur-cosmic);
-  border-radius: var(--border-radius-cosmic-lg);
-  box-shadow: var(--shadow-cosmic-lg);
-  border: var(--border-cosmic);
-  margin: 2rem;
-  padding: 3rem;
+  background: var(--glass-deep);
+  backdrop-filter: var(--blur-strong);
+  border-right: 1px solid var(--glass-stellar);
   position: relative;
-  overflow: hidden;
   
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-card-cosmic);
-    pointer-events: none;
-    z-index: -1;
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    top: -100%;
-    right: -100%;
-    width: 300%;
-    height: 300%;
-    background: radial-gradient(circle, rgba(104, 223, 255, 0.03) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: -1;
-    animation: cosmic-drift-slow 30s ease-in-out infinite;
-  }
-}
-
-@keyframes cosmic-drift-slow {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  33% { transform: translate(-20px, -30px) rotate(120deg); }
-  66% { transform: translate(20px, -10px) rotate(240deg); }
-}
-
-/* === SEARCH CONTAINER === */
-.search-container {
-  position: relative;
-  margin: 1rem 2rem;
-  
-  .search-input {
-    width: 100%;
-    padding: 1rem 1.5rem;
-    background: var(--glass-cosmic);
-    backdrop-filter: var(--backdrop-blur-cosmic);
-    border: var(--border-cosmic);
-    border-radius: var(--border-radius-cosmic);
-    color: var(--text-cosmic-primary);
-    font-size: 1rem;
-    box-shadow: var(--shadow-cosmic);
-    transition: var(--transition-cosmic);
-    
-    &::placeholder {
-      color: var(--text-cosmic-muted);
-    }
-    
-    &:focus {
-      outline: none;
-      border-color: var(--cosmic-cyan-400);
-      box-shadow: var(--shadow-cosmic), var(--glow-cosmic-cyan);
-      transform: scale(1.02);
-    }
-  }
-  
-  .search-results {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--glass-cosmic-dark);
-    backdrop-filter: var(--backdrop-blur-cosmic);
-    border: var(--border-cosmic);
-    border-top: none;
-    border-radius: 0 0 var(--border-radius-cosmic) var(--border-radius-cosmic);
-    box-shadow: var(--shadow-cosmic-lg);
-    max-height: 400px;
-    overflow-y: auto;
-    z-index: 1001;
-    
-    .search-result {
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid rgba(104, 223, 255, 0.1);
-      cursor: pointer;
-      transition: var(--transition-cosmic-fast);
-      
-      &:hover {
-        background: rgba(104, 223, 255, 0.1);
-        transform: translateX(5px);
-      }
-      
-      .result-title {
-        font-weight: 600;
-        color: var(--text-cosmic-bright);
-        margin-bottom: 0.25rem;
-      }
-      
-      .result-preview {
-        font-size: 0.9rem;
-        color: var(--text-cosmic-muted);
-        opacity: 0.8;
-      }
-    }
-  }
-}
-
-/* === GRAPH VISUALIZATION === */
-.graph-container {
-  background: var(--glass-cosmic-dark);
-  backdrop-filter: var(--backdrop-blur-cosmic);
-  border: var(--border-cosmic);
-  border-radius: var(--border-radius-cosmic);
-  box-shadow: var(--shadow-cosmic-lg);
-  padding: 1.5rem;
-  margin: 1rem 0;
-  position: relative;
-  overflow: hidden;
-  
+  /* Stellar particle effect */
   &::before {
     content: '';
     position: absolute;
@@ -904,47 +311,417 @@ pre code {
     width: 100%;
     height: 100%;
     background: 
-      radial-gradient(circle at 30% 70%, rgba(135, 88, 189, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 70% 30%, rgba(0, 139, 164, 0.08) 0%, transparent 50%);
+      radial-gradient(circle at 20% 20%, var(--stellar-cyan) 1px, transparent 1px),
+      radial-gradient(circle at 80% 80%, var(--cosmic-teal) 1px, transparent 1px);
+    background-size: 60px 60px, 80px 80px;
+    opacity: 0.1;
+    animation: stellar-drift 30s linear infinite;
     pointer-events: none;
-    z-index: -1;
   }
   
-  .graph-title {
-    color: var(--text-cosmic-accent);
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
+  h1 {
+    font-family: var(--font-family-galaxy);
+    background: var(--gradient-cosmic-aurora);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-align: center;
-    text-shadow: 0 0 15px rgba(135, 88, 189, 0.3);
+    padding: 2rem 1rem 1rem;
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    
+    &::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: var(--gradient-stellar-sweep);
+      margin: 1rem auto;
+      border-radius: 1px;
+    }
   }
   
-  #graph-canvas {
-    border-radius: var(--border-radius-cosmic-sm);
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+  .file-tree {
+    padding: 1rem;
+    
+    .folder,
+    .file {
+      padding: 0.5rem 1rem;
+      margin: 0.25rem 0;
+      border-radius: var(--stellar-radius);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      
+      &:hover {
+        background: var(--glass-stellar);
+        transform: translateX(4px);
+        box-shadow: var(--shadow-cosmic);
+        
+        &::before {
+          content: '';
+          position: absolute;
+          left: -4px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 3px;
+          height: 60%;
+          background: var(--gradient-stellar-sweep);
+          border-radius: 2px;
+        }
+      }
+      
+      &.active {
+        background: var(--glass-nebula);
+        color: var(--text-stellar);
+        box-shadow: var(--shadow-stellar);
+      }
+    }
   }
 }
 
-/* === FLASHCARD SYSTEM === */
+.sidebar {
+  background: var(--glass-deep);
+  backdrop-filter: var(--blur-strong);
+  border-left: 1px solid var(--glass-stellar);
+  
+  .graph,
+  .backlinks,
+  .toc {
+    background: var(--glass-surface);
+    border-radius: var(--orbital-radius);
+    margin: 1rem;
+    padding: 1.5rem;
+    border: 1px solid var(--glass-stellar);
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--gradient-stellar-sweep);
+      border-radius: var(--orbital-radius) var(--orbital-radius) 0 0;
+    }
+    
+    h3 {
+      font-family: var(--font-family-galaxy);
+      color: var(--text-galaxy);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+  }
+}
+
+@keyframes stellar-drift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-120px); }
+}
+
+// ===================================================================
+// 5. CONTENT AREA TRANSFORMATIONS
+// ===================================================================
+
+.content {
+  position: relative;
+  z-index: var(--z-content);
+  padding: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  
+  /* Cosmic content glow */
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, var(--glass-stellar) 0%, transparent 60%);
+    z-index: -1;
+    animation: content-glow var(--glow-speed) ease-in-out infinite alternate;
+  }
+}
+
+@keyframes content-glow {
+  0% { opacity: 0.3; transform: scale(1); }
+  100% { opacity: 0.1; transform: scale(1.1); }
+}
+
+// ===================================================================
+// 6. ENHANCED TYPOGRAPHY
+// ===================================================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-galaxy);
+  font-weight: 700;
+  margin: 2rem 0 1rem;
+  line-height: 1.2;
+  position: relative;
+}
+
+h1 {
+  font-size: 3rem;
+  background: var(--gradient-cosmic-aurora);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px var(--supernova-purple);
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: var(--gradient-stellar-sweep);
+    margin: 1rem 0;
+    border-radius: 2px;
+    animation: stellar-pulse var(--pulse-speed) ease-in-out infinite;
+  }
+}
+
+h2 {
+  font-size: 2.2rem;
+  color: var(--text-galaxy);
+  text-shadow: 0 0 20px var(--stellar-cyan);
+}
+
+h3 {
+  font-size: 1.8rem;
+  color: var(--text-cosmic);
+}
+
+@keyframes stellar-pulse {
+  0%, 100% { opacity: 1; transform: scaleX(1); }
+  50% { opacity: 0.7; transform: scaleX(1.1); }
+}
+
+// ===================================================================
+// 7. ENHANCED LINK SYSTEM
+// ===================================================================
+
+a {
+  color: var(--link-primary);
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-stellar-sweep);
+    transition: width 0.3s ease;
+    border-radius: 1px;
+  }
+  
+  &:hover {
+    color: var(--link-hover);
+    text-shadow: 0 0 10px var(--link-hover);
+    transform: translateY(-1px);
+    
+    &::before {
+      width: 100%;
+    }
+  }
+  
+  &:active {
+    color: var(--link-active);
+    transform: translateY(0);
+  }
+  
+  &.internal-link {
+    background: linear-gradient(90deg, transparent, var(--glass-stellar), transparent);
+    padding: 0.1em 0.3em;
+    border-radius: 4px;
+    border: 1px solid var(--glass-stellar);
+    
+    &:hover {
+      background: var(--glass-nebula);
+      box-shadow: var(--shadow-cosmic);
+    }
+  }
+}
+
+// ===================================================================
+// 8. ADVANCED CALLOUT SYSTEM
+// ===================================================================
+
+.callout {
+  background: var(--glass-surface);
+  backdrop-filter: var(--blur-medium);
+  border: 1px solid var(--glass-stellar);
+  border-radius: var(--orbital-radius);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient-stellar-sweep);
+    border-radius: 2px;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, var(--glass-stellar) 0%, transparent 70%);
+    animation: callout-shimmer 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+  
+  &.note::before { background: var(--stellar-cyan); }
+  &.warning::before { background: var(--star-amber); }
+  &.important::before { background: var(--mars-red); }
+  &.tip::before { background: var(--aurora-green); }
+  
+  .callout-title {
+    font-family: var(--font-family-galaxy);
+    font-weight: 600;
+    color: var(--text-galaxy);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+@keyframes callout-shimmer {
+  0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.1; }
+  50% { transform: rotate(180deg) scale(1.2); opacity: 0.3; }
+}
+
+// ===================================================================
+// 9. ENHANCED FLASHCARD SYSTEM
+// ===================================================================
+
 .flashcard-grid {
   display: grid;
   gap: 1.5rem;
-  margin: 2rem 0;
+  margin: 3rem 0;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
-.grid-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-3 { grid-template-columns: repeat(3, 1fr); }
-.grid-4 { grid-template-columns: repeat(4, 1fr); }
-
 .flashcard {
-  background: var(--glass-cosmic);
-  backdrop-filter: var(--backdrop-blur-cosmic);
-  border-radius: var(--border-radius-cosmic);
+  background: var(--glass-surface);
+  backdrop-filter: var(--blur-medium);
+  border: 1px solid var(--glass-stellar);
+  border-radius: var(--orbital-radius);
   overflow: hidden;
-  box-shadow: var(--shadow-cosmic);
-  border: var(--border-cosmic);
-  transition: var(--transition-cosmic);
-  display: flex;
-  flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-hover-glow);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+  
+  &:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-stellar);
+    border-color: var(--stellar-cyan);
+    
+    &::before {
+      opacity: 1;
+    }
+  }
+  
+  .flashcard-image {
+    background: var(--glass-void);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, transparent 30%, var(--glass-void) 100%);
+    }
+    
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: var(--stellar-radius);
+      transition: transform 0.4s ease;
+      position: relative;
+      z-index: 1;
+    }
+  }
+  
+  &:hover .flashcard-image img {
+    transform: scale(1.1) rotate(2deg);
+    filter: drop-shadow(0 8px 25px rgba(8, 145, 178, 0.4));
+  }
+  
+  .flashcard-content {
+    padding: 1.5rem;
+    
+    h3 {
+      margin: 0 0 1rem;
+      font-family: var(--font-family-galaxy);
+      color: var(--text-galaxy);
+      font-size: 1.3rem;
+    }
+    
+    p {
+      margin: 0;
+      color: var(--text-cosmic);
+      line-height: 1.6;
+    }
+  }
+  
+  a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    height: 100%;
+    
+    &::before {
+      display: none;
+    }
+  }
+}
+
+// ===================================================================
+// 10. CODE BLOCK ENHANCEMENTS
+// ===================================================================
+
+pre {
+  background: var(--glass-void);
+  backdrop-filter: var(--blur-medium);
+  border: 1px solid var(--glass-stellar);
+  border-radius: var(--orbital-radius);
+  padding: 2rem;
+  margin: 2rem 0;
+  overflow-x: auto;
   position: relative;
   
   &::before {
@@ -952,117 +729,502 @@ pre code {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-card-cosmic);
-    pointer-events: none;
-    z-index: -1;
-    opacity: 0;
-    transition: var(--transition-cosmic);
+    right: 0;
+    height: 3px;
+    background: var(--gradient-stellar-sweep);
+    border-radius: var(--orbital-radius) var(--orbital-radius) 0 0;
   }
   
-  &:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: var(--shadow-cosmic-xl), var(--glow-cosmic-cyan);
-    border-color: var(--cosmic-cyan-400);
-    
-    &::before {
-      opacity: 1;
-    }
+  code {
+    font-family: var(--font-family-cosmic);
+    color: var(--text-nebula);
+    background: transparent;
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
+}
+
+code {
+  font-family: var(--font-family-cosmic);
+  background: var(--glass-stellar);
+  color: var(--text-galaxy);
+  padding: 0.2em 0.5em;
+  border-radius: var(--stellar-radius);
+  font-size: 0.9em;
+  border: 1px solid var(--glass-stellar);
+}
+
+// ===================================================================
+// 11. TABLE ENHANCEMENTS
+// ===================================================================
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--glass-surface);
+  backdrop-filter: var(--blur-medium);
+  border-radius: var(--orbital-radius);
+  overflow: hidden;
+  margin: 2rem 0;
+  border: 1px solid var(--glass-stellar);
+  box-shadow: var(--shadow-cosmic);
   
-  a {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: inherit;
-    height: 100%;
+  thead {
+    background: var(--glass-nebula);
     
-    &::after {
-      display: none;
-    }
-  }
-  
-  .flashcard-image {
-    background: rgba(10, 14, 26, 0.8);
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-    
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: var(--gradient-cosmic-aurora);
-    }
-    
-    img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
-      transition: var(--transition-cosmic);
-      border-radius: var(--border-radius-cosmic-sm);
-    }
-  }
-  
-  &:hover .flashcard-image img {
-    transform: scale(1.08);
-    filter: drop-shadow(0 8px 16px rgba(104, 223, 255, 0.3));
-  }
-  
-  .flashcard-content {
-    padding: 1.5rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    
-    h3 {
-      margin: 0 0 1rem;
-      color: var(--text-cosmic-bright);
-      font-size: 1.2rem;
+    th {
+      padding: 1.5rem 1rem;
+      font-family: var(--font-family-galaxy);
       font-weight: 600;
-      text-shadow: 0 0 10px rgba(104, 223, 255, 0.3);
+      color: var(--text-galaxy);
+      text-align: left;
+      border-bottom: 2px solid var(--stellar-cyan);
+      
+      &:first-child {
+        border-top-left-radius: var(--orbital-radius);
+      }
+      
+      &:last-child {
+        border-top-right-radius: var(--orbital-radius);
+      }
+    }
+  }
+  
+  tbody {
+    tr {
+      transition: all 0.3s ease;
+      
+      &:nth-child(even) {
+        background: var(--glass-void);
+      }
+      
+      &:hover {
+        background: var(--glass-stellar);
+        transform: scale(1.01);
+        box-shadow: inset 0 0 20px var(--glass-stellar);
+      }
     }
     
-    p {
-      margin: 0;
-      color: var(--text-cosmic-secondary);
-      font-size: 0.9rem;
-      line-height: 1.5;
-      opacity: 0.9;
+    td {
+      padding: 1rem;
+      color: var(--text-cosmic);
+      border-bottom: 1px solid var(--glass-stellar);
     }
   }
 }
 
-/* === BLOCKQUOTES === */
+// ===================================================================
+// 12. ENHANCED SCROLLBAR
+// ===================================================================
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--glass-void);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-stellar-sweep);
+  border-radius: 10px;
+  border: 2px solid var(--cosmic-navy);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: var(--gradient-cosmic-aurora);
+    box-shadow: var(--shadow-glow);
+  }
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--glass-void);
+}
+
+// ===================================================================
+// 13. FOCUS MODE ENHANCEMENTS
+// ===================================================================
+
+.fullscreen-btn {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background: var(--gradient-stellar-sweep);
+  border: 2px solid var(--stellar-cyan);
+  color: var(--text-stellar);
+  padding: 1rem 1.5rem;
+  border-radius: var(--orbital-radius);
+  font-family: var(--font-family-galaxy);
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: var(--z-modal);
+  box-shadow: var(--shadow-stellar);
+  backdrop-filter: var(--blur-medium);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: var(--gradient-orbital-ring);
+    border-radius: var(--orbital-radius);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  &:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: var(--shadow-nebula);
+    
+    &::before {
+      opacity: 1;
+      animation: orbital-rotation 2s linear infinite;
+    }
+  }
+  
+  &:active {
+    transform: translateY(-2px) scale(1.02);
+  }
+}
+
+@keyframes orbital-rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+body.fullscreen-mode {
+  .navbar,
+  .filetree-sidebar,
+  .sidebar {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+  }
+  
+  .fullscreen-btn {
+    background: var(--gradient-cosmic-aurora);
+    border-color: var(--supernova-purple);
+    animation: cosmic-float var(--float-speed) ease-in-out infinite;
+  }
+  
+  .content {
+    max-width: 95vw !important;
+    margin: 0 auto;
+    padding: 4rem 3rem;
+    
+    &::before {
+      opacity: 0.5;
+      transform: scale(1.5);
+    }
+  }
+}
+
+@keyframes cosmic-float {
+  0%, 100% { transform: translateY(-4px) scale(1.05); }
+  50% { transform: translateY(-8px) scale(1.08); }
+}
+
+// ===================================================================
+// 14. PARTICLE SYSTEM ENHANCEMENTS
+// ===================================================================
+
+.particles-js-canvas-el {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: var(--z-starfield) !important;
+  opacity: 0.4;
+  mix-blend-mode: screen;
+  filter: blur(0.5px);
+  animation: particle-drift 60s ease-in-out infinite alternate;
+}
+
+@keyframes particle-drift {
+  0% { 
+    opacity: 0.4; 
+    filter: blur(0.5px) hue-rotate(0deg); 
+  }
+  50% { 
+    opacity: 0.6; 
+    filter: blur(1px) hue-rotate(30deg); 
+  }
+  100% { 
+    opacity: 0.4; 
+    filter: blur(0.5px) hue-rotate(0deg); 
+  }
+}
+
+// ===================================================================
+// 15. DATETIME DISPLAY ENHANCEMENTS
+// ===================================================================
+
+.datetime-container {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  background: var(--glass-void);
+  backdrop-filter: var(--blur-medium);
+  border: 1px solid var(--glass-stellar);
+  border-radius: var(--orbital-radius);
+  padding: 1rem 1.5rem;
+  font-family: var(--font-family-cosmic);
+  color: var(--text-cosmic);
+  z-index: var(--z-navigation);
+  transition: all 0.3s ease;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    height: 2px;
+    background: var(--gradient-stellar-sweep);
+    border-radius: var(--orbital-radius) var(--orbital-radius) 0 0;
+    animation: time-pulse var(--pulse-speed) ease-in-out infinite;
+  }
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-cosmic);
+    border-color: var(--stellar-cyan);
+  }
+  
+  .time {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-stellar);
+    text-shadow: 0 0 10px var(--stellar-cyan);
+  }
+  
+  .date {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 0.25rem;
+  }
+}
+
+@keyframes time-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+// ===================================================================
+// 16. SEARCH SYSTEM ENHANCEMENTS
+// ===================================================================
+
+.search-container {
+  position: relative;
+  
+  .search-button {
+    background: var(--glass-surface);
+    backdrop-filter: var(--blur-medium);
+    border: 1px solid var(--glass-stellar);
+    border-radius: var(--orbital-radius);
+    color: var(--text-cosmic);
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+    &:hover {
+      background: var(--glass-stellar);
+      border-color: var(--stellar-cyan);
+      transform: scale(1.02);
+      box-shadow: var(--shadow-cosmic);
+    }
+  }
+  
+  .search-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: var(--blur-strong);
+    z-index: var(--z-modal);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 20vh;
+    
+    .search-modal {
+      background: var(--glass-surface);
+      backdrop-filter: var(--blur-strong);
+      border: 2px solid var(--stellar-cyan);
+      border-radius: var(--cosmic-radius);
+      width: 90%;
+      max-width: 600px;
+      box-shadow: var(--shadow-void);
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        background: var(--gradient-orbital-ring);
+        border-radius: var(--cosmic-radius);
+        z-index: -1;
+        animation: search-glow 3s ease-in-out infinite;
+      }
+      
+      .search-input {
+        width: 100%;
+        padding: 1.5rem 2rem;
+        background: transparent;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--text-stellar);
+        font-family: var(--font-family-stellar);
+        
+        &::placeholder {
+          color: var(--text-muted);
+        }
+        
+        &:focus {
+          outline: none;
+        }
+      }
+      
+      .search-results {
+        max-height: 400px;
+        overflow-y: auto;
+        border-top: 1px solid var(--glass-stellar);
+        
+        .search-result {
+          padding: 1rem 2rem;
+          border-bottom: 1px solid var(--glass-stellar);
+          cursor: pointer;
+          transition: all 0.3s ease;
+          
+          &:hover {
+            background: var(--glass-stellar);
+            transform: translateX(8px);
+          }
+          
+          .result-title {
+            font-weight: 600;
+            color: var(--text-galaxy);
+            margin-bottom: 0.5rem;
+          }
+          
+          .result-excerpt {
+            color: var(--text-cosmic);
+            font-size: 0.9rem;
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes search-glow {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+// ===================================================================
+// 17. GRAPH VISUALIZATION ENHANCEMENTS
+// ===================================================================
+
+.graph {
+  position: relative;
+  background: var(--glass-void);
+  border-radius: var(--cosmic-radius);
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 30% 30%, var(--supernova-purple) 0%, transparent 50%),
+      radial-gradient(circle at 70% 70%, var(--stellar-cyan) 0%, transparent 50%);
+    opacity: 0.1;
+    animation: graph-aurora 20s linear infinite;
+  }
+  
+  canvas,
+  svg {
+    border-radius: var(--cosmic-radius);
+  }
+  
+  .graph-controls {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+    
+    button {
+      background: var(--glass-stellar);
+      backdrop-filter: var(--blur-medium);
+      border: 1px solid var(--glass-stellar);
+      border-radius: var(--stellar-radius);
+      color: var(--text-cosmic);
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background: var(--glass-nebula);
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+@keyframes graph-aurora {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// ===================================================================
+// 18. BLOCKQUOTE ENHANCEMENTS
+// ===================================================================
+
 blockquote {
-  border-left: 4px solid var(--stellar-purple-400);
-  padding: 1.5rem 2rem;
+  background: var(--glass-surface);
+  backdrop-filter: var(--blur-medium);
+  border-left: 4px solid var(--stellar-cyan);
+  border-radius: 0 var(--orbital-radius) var(--orbital-radius) 0;
+  padding: 2rem;
   margin: 2rem 0;
-  background: var(--glass-cosmic);
-  backdrop-filter: var(--backdrop-blur-cosmic);
-  border-radius: 0 var(--border-radius-cosmic) var(--border-radius-cosmic) 0;
-  box-shadow: var(--shadow-cosmic);
   position: relative;
   font-style: italic;
-  color: var(--text-cosmic-secondary);
+  color: var(--text-cosmic);
   
   &::before {
     content: '"';
     position: absolute;
-    top: -10px;
-    left: 20px;
+    top: -0.5rem;
+    left: 1rem;
     font-size: 4rem;
-    color: var(--stellar-purple-300);
+    color: var(--stellar-cyan);
     opacity: 0.3;
     font-family: serif;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient-stellar-sweep);
+    animation: quote-glow var(--glow-speed) ease-in-out infinite alternate;
   }
   
   p:last-child {
@@ -1070,244 +1232,144 @@ blockquote {
   }
 }
 
-/* === DATETIME CONTAINER === */
-.datetime-container {
-  position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
-  font-family: var(--font-family-cosmic);
-  font-size: 1rem;
-  color: var(--text-cosmic-muted);
-  background: var(--glass-cosmic);
-  backdrop-filter: var(--backdrop-blur-cosmic);
-  border: var(--border-cosmic);
-  border-radius: var(--border-radius-cosmic);
-  padding: 0.75rem 1.25rem;
-  box-shadow: var(--shadow-cosmic);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  opacity: 0.9;
-  transition: var(--transition-cosmic);
-  z-index: 1000;
+@keyframes quote-glow {
+  0% { opacity: 0.6; box-shadow: none; }
+  100% { opacity: 1; box-shadow: 0 0 20px var(--stellar-cyan); }
+}
+
+// ===================================================================
+// 19. LIST ENHANCEMENTS
+// ===================================================================
+
+ul, ol {
+  padding-left: 2rem;
+  margin: 1.5rem 0;
   
-  &:hover {
-    opacity: 1;
-    transform: scale(1.05);
-    box-shadow: var(--shadow-cosmic-lg), var(--glow-cosmic-cyan);
-  }
-  
-  .datetime-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.25rem;
-    color: var(--text-cosmic-muted);
-    opacity: 0.7;
-    transition: var(--transition-cosmic-fast);
-    border-radius: 50%;
+  li {
+    margin: 0.75rem 0;
+    position: relative;
+    line-height: 1.7;
+    
+    &::marker {
+      color: var(--stellar-cyan);
+    }
     
     &:hover {
-      opacity: 1;
-      background: rgba(104, 223, 255, 0.1);
-      transform: scale(1.1);
+      color: var(--text-stellar);
+      
+      &::before {
+        content: '';
+        position: absolute;
+        left: -1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 4px;
+        background: var(--stellar-cyan);
+        border-radius: 50%;
+        box-shadow: 0 0 10px var(--stellar-cyan);
+      }
     }
   }
 }
 
-/* === PARTICLES ENHANCEMENT === */
-.particles-js-canvas-el {
-  opacity: 0.8;
-  mix-blend-mode: screen;
-  filter: blur(0.5px);
-  animation: cosmic-particles 15s infinite ease-in-out;
+ul li::marker {
+  content: '◆ ';
+  color: var(--stellar-cyan);
 }
 
-@keyframes cosmic-particles {
-  0%, 100% { 
-    opacity: 0.8; 
-    filter: blur(0.5px) hue-rotate(0deg); 
-  }
-  25% { 
-    opacity: 0.9; 
-    filter: blur(1px) hue-rotate(90deg); 
-  }
-  50% { 
-    opacity: 0.7; 
-    filter: blur(0.8px) hue-rotate(180deg); 
-  }
-  75% { 
-    opacity: 0.85; 
-    filter: blur(0.3px) hue-rotate(270deg); 
-  }
-}
-
-/* === FULLSCREEN BUTTON === */
-.fullscreen-btn {
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
-  background: var(--gradient-button-energy);
-  border: var(--border-cosmic);
-  color: var(--text-cosmic-bright);
-  padding: 1rem 1.5rem;
-  border-radius: var(--border-radius-cosmic);
-  cursor: pointer;
-  font-size: 0.9rem;
+ol li::marker {
+  color: var(--stellar-cyan);
   font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: var(--transition-cosmic);
-  box-shadow: var(--shadow-cosmic);
-  z-index: 1002;
-  backdrop-filter: var(--backdrop-blur-cosmic);
-  
-  &:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: var(--shadow-cosmic-lg), var(--glow-cosmic-strong);
-    background: var(--gradient-nebula-dream);
-  }
-  
-  &:active {
-    transform: translateY(-1px) scale(1.02);
-  }
-  
-  svg {
-    filter: drop-shadow(0 0 5px currentColor);
-  }
 }
 
-/* === FOCUS MODE === */
-body.fullscreen-mode {
-  .navbar,
-  .filetree-sidebar,
-  .sidebar,
-  .search-container,
-  .fullpage-overlay,
-  .galaxy-spiral-container {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0.95);
-  }
-  
-  .fullscreen-btn {
-    background: var(--gradient-stardust-trail);
-    top: 2.5rem;
-    right: 2.5rem;
-    transform: scale(1.1);
-    z-index: 9999;
-    box-shadow: var(--shadow-cosmic-xl), var(--glow-cosmic-gold);
-  }
-  
-  .content {
-    max-width: 95vw !important;
-    margin: 0 auto;
-    padding: 8vh 3vw;
-    min-height: 100vh;
-    border-radius: var(--border-radius-cosmic-xl);
-    box-shadow: var(--shadow-cosmic-2xl), var(--glow-cosmic-strong);
-    
-    &::after {
-      animation: cosmic-drift-fullscreen 20s ease-in-out infinite;
-    }
-  }
-}
+// ===================================================================
+// 20. RESPONSIVE DESIGN ENHANCEMENTS
+// ===================================================================
 
-@keyframes cosmic-drift-fullscreen {
-  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-  25% { transform: translate(-30px, -40px) rotate(90deg) scale(1.1); }
-  50% { transform: translate(30px, -20px) rotate(180deg) scale(0.9); }
-  75% { transform: translate(-20px, 30px) rotate(270deg) scale(1.05); }
-}
-
-/* === RESPONSIVE DESIGN === */
 @media (max-width: 1400px) {
-  .grid-4 { grid-template-columns: repeat(3, 1fr); }
-  .sidebar { width: 280px; }
-  .filetree-sidebar { width: 280px; }
+  .content {
+    max-width: 800px;
+    padding: 1.5rem;
+  }
+  
+  .navbar .nav-container {
+    padding: 1rem;
+  }
+  
+  .flashcard-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
 }
 
 @media (max-width: 1000px) {
-  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
-  .sidebar, .filetree-sidebar { width: 250px; }
-  
   .navbar .nav-links {
-    gap: 1rem;
+    display: none;
+  }
+  
+  .filetree-sidebar,
+  .sidebar {
+    position: fixed;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: var(--z-navigation);
     
-    a {
-      padding: 0.4rem 0.8rem;
-      font-size: 0.9rem;
+    &.mobile-open {
+      transform: translateX(0);
     }
   }
-}
-
-@media (max-width: 768px) {
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   
   .content {
-    margin: 1rem;
-    padding: 2rem;
-    border-radius: var(--border-radius-cosmic);
+    margin-left: 0;
+    margin-right: 0;
   }
   
-  .navbar {
-    height: 60px;
-    
-    .nav-content {
-      padding: 0 1rem;
-    }
-    
-    .nav-title {
-      font-size: 1.2rem;
-    }
-    
-    .nav-links {
-      gap: 0.5rem;
-    }
-  }
-  
-  .sidebar, .filetree-sidebar {
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: -100%;
-    height: 100vh;
-    z-index: 2000;
-    transition: left 0.3s ease;
-    
-    &.open {
-      left: 0;
-    }
+  .flashcard-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
   
   .datetime-container {
     top: 1rem;
-    right: 1rem;
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
+    left: 1rem;
+    padding: 0.75rem 1rem;
+    
+    .time {
+      font-size: 1rem;
+    }
   }
   
   .fullscreen-btn {
     top: 1rem;
     right: 1rem;
-    padding: 0.8rem 1.2rem;
-    font-size: 0.8rem;
-  }
-  
-  body.fullscreen-mode .content {
-    max-width: 95vw !important;
-    padding: 4vh 2vw;
+    padding: 0.75rem 1rem;
   }
 }
 
-@media (max-width: 480px) {
-  h1 { font-size: 2.4rem; }
-  h2 { font-size: 1.8rem; }
-  h3 { font-size: 1.4rem; }
+@media (max-width: 768px) {
+  body {
+    font-size: 0.9rem;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  h3 {
+    font-size: 1.6rem;
+  }
   
   .content {
-    padding: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .flashcard-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
   .callout {
@@ -1315,78 +1377,262 @@ body.fullscreen-mode {
     margin: 1rem 0;
   }
   
-  .flashcard {
-    .flashcard-content {
-      padding: 1rem;
-      
-      h3 {
-        font-size: 1rem;
-      }
-      
-      p {
-        font-size: 0.85rem;
-      }
+  pre {
+    padding: 1rem;
+    font-size: 0.8rem;
+  }
+  
+  table {
+    font-size: 0.85rem;
+    
+    th, td {
+      padding: 0.75rem 0.5rem;
+    }
+  }
+  
+  .search-overlay .search-modal {
+    width: 95%;
+    margin: 0 auto;
+    
+    .search-input {
+      padding: 1rem 1.5rem;
+      font-size: 1.2rem;
+    }
+  }
+  
+  blockquote {
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    
+    &::before {
+      font-size: 3rem;
+      top: -0.25rem;
     }
   }
 }
 
-/* === LOADING ANIMATIONS === */
-@keyframes cosmic-loading {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes cosmic-glow {
-  0%, 100% { box-shadow: 0 0 5px rgba(104, 223, 255, 0.5); }
-  50% { box-shadow: 0 0 20px rgba(104, 223, 255, 0.8), 0 0 30px rgba(135, 88, 189, 0.4); }
-}
-
-.loading {
-  animation: cosmic-loading 2s linear infinite, cosmic-glow 3s ease-in-out infinite;
-}
-
-/* === UTILITY CLASSES === */
-.cosmic-glow {
-  box-shadow: var(--glow-cosmic-cyan);
-}
-
-.cosmic-glow-purple {
-  box-shadow: var(--glow-cosmic-purple);
-}
-
-.cosmic-text-gradient {
-  background: var(--gradient-cosmic-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.cosmic-bg-gradient {
-  background: var(--gradient-cosmic-aurora);
-}
-
-.cosmic-border {
-  border: var(--border-cosmic);
-}
-
-.cosmic-glass {
-  background: var(--glass-cosmic);
-  backdrop-filter: var(--backdrop-blur-cosmic);
-}
-
-/* === PRINT STYLES === */
-@media print {
-  body::before,
-  body::after,
-  .particles-js-canvas-el,
-  .fullscreen-btn,
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
   .datetime-container {
+    position: static;
+    margin: 1rem;
+    display: inline-block;
+  }
+  
+  .fullscreen-btn {
+    position: static;
+    margin: 1rem;
+    display: inline-block;
+  }
+}
+
+// ===================================================================
+// 21. ACCESSIBILITY ENHANCEMENTS
+// ===================================================================
+
+/* Focus indicators */
+button:focus,
+a:focus,
+input:focus,
+[tabindex]:focus {
+  outline: 2px solid var(--stellar-cyan);
+  outline-offset: 2px;
+  border-radius: var(--stellar-radius);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --text-stellar: #ffffff;
+    --text-cosmic: #e0e0e0;
+    --stellar-cyan: #00ffff;
+    --supernova-purple: #ff00ff;
+    --glass-stellar: rgba(255, 255, 255, 0.2);
+  }
+}
+
+// ===================================================================
+// 22. PRINT STYLES
+// ===================================================================
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  body::before,
+  body::after {
+    display: none !important;
+  }
+  
+  .navbar,
+  .sidebar,
+  .filetree-sidebar,
+  .fullscreen-btn,
+  .datetime-container,
+  .particles-js-canvas-el {
     display: none !important;
   }
   
   .content {
-    background: white !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  a {
     color: black !important;
-    box-shadow: none !important;
-    border: 1px solid #ccc !important;
+    text-decoration: underline !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: black !important;
+    page-break-after: avoid;
+  }
+  
+  .callout,
+  .flashcard {
+    border: 1px solid black !important;
+    background: white !important;
+    page-break-inside: avoid;
+  }
+}
+
+// ===================================================================
+// 23. ADVANCED ANIMATIONS & MICRO-INTERACTIONS
+// ===================================================================
+
+/* Stellar constellation effect on hover */
+.constellation-effect {
+  position: relative;
+  
+  &:hover::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, var(--stellar-cyan) 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: constellation-twinkle 2s ease-in-out;
+    pointer-events: none;
+  }
+}
+
+@keyframes constellation-twinkle {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
+}
+
+/* Orbital loading animation */
+.orbital-loader {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin: 2rem auto;
+  
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    border: 2px solid var(--stellar-cyan);
+    border-radius: 50%;
+    animation: orbital-spin var(--orbit-speed-fast) linear infinite;
+  }
+  
+  &::before {
+    width: 60px;
+    height: 60px;
+    border-color: var(--stellar-cyan) transparent transparent transparent;
+  }
+  
+  &::after {
+    width: 40px;
+    height: 40px;
+    top: 10px;
+    left: 10px;
+    border-color: var(--supernova-purple) transparent transparent transparent;
+    animation-direction: reverse;
+    animation-duration: var(--orbit-speed-medium);
+  }
+}
+
+@keyframes orbital-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Galaxy spiral background animation */
+.galaxy-spiral-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200vw;
+  height: 200vh;
+  pointer-events: none;
+  z-index: var(--z-background);
+  opacity: 0.03;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      var(--stellar-cyan) 10deg,
+      transparent 20deg,
+      transparent 180deg,
+      var(--supernova-purple) 190deg,
+      transparent 200deg
+    );
+    animation: galaxy-rotation 200s linear infinite;
+  }
+}
+
+@keyframes galaxy-rotation {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Final cosmic enhancement - breathing effect for the entire page */
+body {
+  animation: cosmic-breath 60s ease-in-out infinite;
+}
+
+@keyframes cosmic-breath {
+  0%, 100% { 
+    filter: brightness(1) contrast(1) saturate(1); 
+  }
+  50% { 
+    filter: brightness(1.05) contrast(1.1) saturate(1.1); 
   }
 }
