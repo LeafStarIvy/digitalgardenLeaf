@@ -1,12 +1,10 @@
-/* components/particlesScript.njk — Refined cosmic particles
-   • Removes any forced opaque/black background (transparent canvases)
-   • Removes "exploding" cluster bursts (no more explosion pieces)
-   • Keeps gentle cluster drifts and multicolor shooting stars
-   • Adds continuous gentle falling for the starfield (wraps to top)
-   • Ensures the skybox is fixed to the viewport (so the effect stays with the screen)
-   • DPR-aware, respects prefers-reduced-motion
-
-   Replace the previous <script> block with this content in your component file.
+{# components/particlesScript.njk - FINAL: Multi-color streaks + cluster bursts + drifts #}
+<script>
+/* Cosmic Particles - layered canvas starfield with:
+   • multicolor shooting stars
+   • cluster explosion bursts
+   • cluster drifts (groups spawned off-screen)
+   • performant, DPR-aware, respects prefers-reduced-motion
 */
 (function(){
   'use strict';
@@ -15,29 +13,37 @@
     stars: { desktop: 420, mobile: 120 },
     starbits: { desktop: 120, mobile: 36 },
     shooting: {
-      minInterval: 2200,
-      maxInterval: 5800,
-      chancePerInterval: 0.8,
-      minDuration: 1100,
-      maxDuration: 3800,
-      multicolorChance: 0.28,
-      accentPalettes: [ [45,95,58], [280,80,64], [185,85,56] ]
+      minInterval: 3000,
+      maxInterval: 7000,
+      chancePerInterval: 0.75,
+      minDuration: 1400,
+      maxDuration: 4200,
+      multicolorChance: 0.25,        // percent of shooting stars that are multicolor
+      accentPalettes: [
+        [45, 95, 58],   // gold
+        [280, 80, 64],  // magenta
+        [185, 85, 56]   // cyan
+      ]
     },
     cluster: {
-      // bursts (explosive particles) intentionally disabled for a calmer look
-      burstEnabled: false,
-      driftCount: { min: 3, max: 7 },
+      chance: 0.06,        // chance per interval to spawn a cluster burst
+      pieces: { min: 9, max: 18 },
+      burstDuration: 900,  // ms for explosion expansion
+      driftCount: { min: 3, max: 7 }, // leftover drifters spawned after burst
       driftLifetime: 9000
     },
     starTwinkleScale: 0.85
   };
 
   const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Utilities
   const rand = (a,b) => a + Math.random()*(b-a);
   const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
   const isMobile = () => window.innerWidth <= 900;
   const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
 
+  // Start on DOM ready
   document.addEventListener('DOMContentLoaded', () => {
     ['galaxySkybox','galaxySkyboxNote'].forEach(id=>{
       const el = document.getElementById(id);
@@ -45,41 +51,38 @@
     });
   });
 
-  function initSkybox(wrapper){
+  function initSkybox(wrapper) {
     if (!wrapper || wrapper._pgInit) return;
     wrapper._pgInit = true;
 
-    // force the skybox to be a full-viewport, transparent overlay that stays with the screen
-    wrapper.style.position = 'fixed';
-    wrapper.style.inset = '0';
+    // Ensure wrapper is positioned for canvases
+    wrapper.style.position = wrapper.style.position || 'fixed';
+    wrapper.style.inset = wrapper.style.inset || '0';
     wrapper.style.pointerEvents = 'none';
-    wrapper.style.background = 'transparent';
-    wrapper.setAttribute('aria-hidden','true');
 
-    // canvases (background / mid / foreground)
+    // create canvases (bg/mid/fg)
     const layers = {
       bg: createCanvas('pg-canvas pg-canvas--bg'),
       mid: createCanvas('pg-canvas pg-canvas--mid'),
       fg: createCanvas('pg-canvas pg-canvas--fg')
     };
-
     wrapper.appendChild(layers.bg.canvas);
     wrapper.appendChild(layers.mid.canvas);
     wrapper.appendChild(layers.fg.canvas);
 
-    // optional nebula elements for extra parallax (kept as before)
+    // nebula nodes for parallax if present
     const nebBack = wrapper.querySelector('.nebula--back');
     const nebMid  = wrapper.querySelector('.nebula--mid');
     const nebFront= wrapper.querySelector('.nebula--front');
 
-    // small glow sprite used throughout
+    // offscreen glow sprite
     let glowSprite = makeGlowSprite();
 
-    // particle pools
+    // particle arrays
     let farStars = [], twinkleStars = [], starbits = [];
-    let shootingStars = [], clusterDrifts = [];
+    let shootingStars = [], clusterBursts = [], clusterDrifts = [];
 
-    // sizing / DPR
+    // sizing
     let w = Math.max(wrapper.clientWidth || window.innerWidth, 800);
     let h = Math.max(wrapper.clientHeight || window.innerHeight, 400);
     let DPR = Math.max(1, window.devicePixelRatio || 1);
@@ -99,29 +102,19 @@
       const starCount = isMobile() ? CONFIG.stars.mobile : CONFIG.stars.desktop;
       const bitCount  = isMobile() ? CONFIG.starbits.mobile : CONFIG.starbits.desktop;
 
-      // far stars: now with gentle downward velocity to create a subtle "falling" effect
       farStars = Array.from({length: starCount}, ()=>({
-        x: Math.random()*w,
-        y: Math.random()*h,
-        z: Math.random(),
-        size: rand(0.28,1.9),
-        baseA: rand(0.12,0.85),
+        x: Math.random()*w, y: Math.random()*h, z: Math.random(),
+        size: rand(0.28,1.9), baseA: rand(0.12,0.85),
         twPhase: Math.random()*Math.PI*2,
-        hueOffset: Math.random() < 0.06 ? rand(-22,22) : 0,
-        // falling speed in px per millisecond (keeps independent of viewport height)
-        vy: rand(0.02, 0.12),
-        vx: rand(-0.01, 0.01)
+        hueOffset: Math.random() < 0.06 ? rand(-22,22) : 0
       }));
 
-      // twinkle stars: slightly larger, also falling
       twinkleStars = Array.from({length: Math.round(starCount*0.36)}, ()=>({
         x: Math.random()*w, y: Math.random()*h,
         size: rand(0.6,2.2), baseA: rand(0.22,0.95),
-        twPhase: Math.random()*Math.PI*2, orbitPhase: Math.random()*Math.PI*2,
-        vy: rand(0.03,0.10), vx: rand(-0.02,0.02)
+        twPhase: Math.random()*Math.PI*2, orbitPhase: Math.random()*Math.PI*2
       }));
 
-      // starbits (local orbiting clusters)
       starbits = Array.from({length: bitCount}, ()=>({
         cx: rand(w*0.18, w*0.82),
         cy: rand(h*0.12, h*0.64),
@@ -135,6 +128,7 @@
       }));
     }
 
+    // glow sprite
     function makeGlowSprite(size=30){
       const c = document.createElement('canvas');
       c.width = c.height = size;
@@ -145,38 +139,30 @@
       g.addColorStop(0.14, 'rgba(255,255,255,0.84)');
       g.addColorStop(0.36, 'rgba(140,170,255,0.28)');
       g.addColorStop(0.68, 'rgba(70,120,220,0.06)');
-      // final stop is fully transparent so sprite doesn't paint an opaque backdrop
       g.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = g;
       ctx.fillRect(0,0,size,size);
       return c;
     }
 
-    // draw far stars (with falling motion updated separately)
-    function drawFar(now, ctx, pxParallax, pyParallax){
+    // DRAW FUNCTIONS
+    function drawFar(now, ctx){
       ctx.save();
       ctx.globalCompositeOperation = 'source-over';
-
+      const driftX = Math.sin(now / 180000) * 14;
+      const driftY = Math.cos(now / 150000) * 9;
       for (let s of farStars){
-        // small independent twinkle + parallax offset
         const tw = prefersReduced ? 0 : Math.sin(now * (0.0009 + s.z*0.0009) + s.twPhase) * 0.36;
         const a = clamp(s.baseA + tw * CONFIG.starTwinkleScale, 0.06, 1);
         const scaled = s.size * (1 + s.z * 0.66);
-
-        // parallax: deeper stars move less with pointer
-        const parX = pxParallax * (8 * (1 - s.z));
-        const parY = pyParallax * (4 * (1 - s.z));
-
         if (s.hueOffset !== 0){
           const h = 210 + s.hueOffset;
           ctx.fillStyle = `hsla(${h},75%,${60-Math.abs(s.hueOffset)}%,${a})`;
           ctx.beginPath();
-          ctx.arc(s.x + parX, s.y + parY, scaled*0.9, 0, Math.PI*2);
+          ctx.arc(s.x + driftX, s.y + driftY, scaled*0.9, 0, Math.PI*2);
           ctx.fill();
         } else {
-          ctx.globalAlpha = a;
-          ctx.drawImage(glowSprite, Math.round(s.x + parX - scaled*4), Math.round(s.y + parY - scaled*4), scaled*8, scaled*8);
-          ctx.globalAlpha = 1;
+          ctx.drawImage(glowSprite, Math.round(s.x + driftX - scaled*4), Math.round(s.y + driftY - scaled*4), scaled*8, scaled*8);
         }
       }
       ctx.restore();
@@ -190,12 +176,11 @@
         const a = clamp(s.baseA + pulse, 0.1, 1);
         const size = s.size * (1 + 0.12 * Math.sin(now / 600 + s.orbitPhase));
         ctx.globalAlpha = a;
+        ctx.fillStyle = 'white';
         ctx.beginPath();
         ctx.arc(s.x, s.y, size, 0, Math.PI*2);
-        ctx.fillStyle = 'white';
         ctx.fill();
         ctx.drawImage(glowSprite, Math.round(s.x - size*3.2), Math.round(s.y - size*3.2), size*6.4, size*6.4);
-        ctx.globalAlpha = 1;
       }
       ctx.restore();
     }
@@ -209,6 +194,7 @@
         const py = b.cy + Math.sin(b.angle * 0.9) * b.orbit * 0.6 + Math.cos(now / 1400 + b.extraPulse) * b.wobble * 6;
         const pulse = prefersReduced ? 0.6 : (0.6 + Math.sin(now / 480 + b.extraPulse) * 0.35);
         const size = b.size * pulse;
+
         const hueArr = b.hue;
         const fill = `hsla(${hueArr[0]}, ${hueArr[1]}%, ${hueArr[2]}%, 1)`;
 
@@ -232,9 +218,10 @@
       ctx.restore();
     }
 
-    // Shooting stars
+    // SHOOTING STARS (fg canvas) - now with multicolor gradient
     function spawnShooting(){
       if (prefersReduced) return;
+
       const startX = -rand(0.05*w, 0.18*w);
       const startY = rand(0.03*h, 0.6*h);
       const angleDeg = rand(18,55);
@@ -244,6 +231,7 @@
       const endY = startY + Math.tan(angle) * dx;
       const duration = clamp(rand(CONFIG.shooting.minDuration, CONFIG.shooting.maxDuration), CONFIG.shooting.minDuration, CONFIG.shooting.maxDuration);
 
+      // color type
       const isAccent = Math.random() < CONFIG.shooting.multicolorChance;
       const accent = isAccent ? CONFIG.shooting.accentPalettes[Math.floor(Math.random()*CONFIG.shooting.accentPalettes.length)] : null;
 
@@ -253,7 +241,8 @@
         headSize: rand(1.8,5.2),
         length: rand(120,450),
         stroke: clamp(rand(1.2,4.2),1.0,6.0),
-        accent, isAccent
+        accent,
+        isAccent
       });
     }
 
@@ -268,7 +257,6 @@
     function drawShooting(ctx){
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
-
       for (const s of shootingStars){
         const progress = clamp(s.life / s.duration, 0, 1);
         const eased = easeOutCubic(progress);
@@ -281,9 +269,9 @@
         const tailX = hx - nx * s.length * (0.28 + 0.72*(1 - eased));
         const tailY = hy - ny * s.length * (0.28 + 0.72*(1 - eased));
 
-        // gradient trail
+        // gradient: transparent -> accent-ish (if accent) -> white head
         const grad = ctx.createLinearGradient(tailX, tailY, hx, hy);
-        if (s.isAccent && s.accent){
+        if (s.isAccent && s.accent) {
           const [h,sat,l] = s.accent;
           const col = `hsla(${h}, ${sat}%, ${l}%, 0.28)`;
           grad.addColorStop(0.0, 'rgba(255,255,255,0.0)');
@@ -304,44 +292,78 @@
         ctx.lineTo(hx, hy);
         ctx.stroke();
 
-        // add a few faint, soft blobs behind the head to enhance motion blur (cheap and pretty)
-        for (let j=0;j<3;j++){
-          const off = s.length * (0.22 + j * 0.14) * (1 - eased);
-          const bx = hx - nx * off;
-          const by = hy - ny * off;
-          ctx.globalAlpha = 0.08 * (1 - j*0.35);
+        // head: if accent, draw faint colored halo plus white core
+        if (s.isAccent && s.accent) {
+          const [h,sat,l] = s.accent;
+          ctx.fillStyle = `hsla(${h}, ${sat}%, ${l}%, 0.95)`;
           ctx.beginPath();
-          ctx.arc(bx, by, s.headSize * (1.2 - j*0.35), 0, Math.PI*2);
-          ctx.fillStyle = 'white';
+          ctx.arc(hx, hy, s.headSize * 1.1, 0, Math.PI*2);
           ctx.fill();
-        }
-        ctx.globalAlpha = 1;
-
-        // head: colored halo + white core if accent, otherwise white core
-        if (s.isAccent && s.accent){
-          const [hue,sat,lum] = s.accent;
-          ctx.fillStyle = `hsla(${hue}, ${sat}%, ${lum}%, 0.95)`;
-          ctx.beginPath(); ctx.arc(hx, hy, s.headSize * 1.1, 0, Math.PI*2); ctx.fill();
-          ctx.fillStyle = 'rgba(255,255,255,0.96)'; ctx.beginPath(); ctx.arc(hx, hy, s.headSize * 0.6, 0, Math.PI*2); ctx.fill();
+          // white core
+          ctx.fillStyle = 'rgba(255,255,255,0.96)';
+          ctx.beginPath();
+          ctx.arc(hx, hy, s.headSize * 0.6, 0, Math.PI*2);
+          ctx.fill();
         } else {
-          ctx.fillStyle = 'rgba(255,255,255,0.96)'; ctx.beginPath(); ctx.arc(hx, hy, s.headSize, 0, Math.PI*2); ctx.fill();
+          ctx.fillStyle = 'rgba(255,255,255,0.96)';
+          ctx.beginPath();
+          ctx.arc(hx, hy, s.headSize, 0, Math.PI*2);
+          ctx.fill();
         }
 
         // sprite glow
         const gs = Math.max(18, s.headSize * 7);
         ctx.drawImage(glowSprite, hx - gs/2, hy - gs/2, gs, gs);
       }
-
       ctx.restore();
     }
 
-    // cluster drifts (gentle groups that travel across) — kept, but calmer
+    // CLUSTER BURSTS: explosion + drifters
+    function spawnClusterBurst() {
+      if (prefersReduced) return;
+      // center on-screen region
+      const cx = rand(w*0.2, w*0.78);
+      const cy = rand(h*0.12, h*0.6);
+      const pieces = Math.floor(rand(CONFIG.cluster.pieces.min, CONFIG.cluster.pieces.max + 1));
+      const burst = {
+        x: cx, y: cy,
+        pieces: [],
+        start: performance.now(),
+        duration: CONFIG.cluster.burstDuration
+      };
+
+      for (let i=0;i<pieces;i++){
+        const angle = Math.random()*Math.PI*2;
+        const speed = rand(0.75, 3.6) * (w/1400);
+        const life = rand(600, 1600);
+        const size = rand(1.2, 4.0);
+        const accent = Math.random() < 0.45 ? CONFIG.shooting.accentPalettes[Math.floor(Math.random()*CONFIG.shooting.accentPalettes.length)] : [210,70,62];
+        burst.pieces.push({
+          x: cx, y: cy,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          life: 0, duration: life,
+          size, hue: accent
+        });
+      }
+
+      clusterBursts.push(burst);
+
+      // schedule cluster drifts (leftover groups that travel across) - spawn after a short delay
+      const drifts = Math.floor(rand(CONFIG.cluster.driftCount.min, CONFIG.cluster.driftCount.max+1));
+      setTimeout(()=> spawnClusterDriftsFrom(cx, cy, drifts), 420 + Math.random()*800);
+    }
+
     function spawnClusterDriftsFrom(bx, by, count){
+      // spawn small groups off-screen to the left that will move roughly in same direction as burst pieces
       for (let g=0; g<count; g++){
+        // pick a leader direction roughly downward-right
         const angle = rand(18, 50) * (Math.PI/180);
-        const speed = rand(0.06, 0.28);
+        const speed = rand(0.12, 0.45) * (w/1400);
+        // start left of screen (off-screen)
         const startX = -rand(0.06*w, 0.18*w);
         const startY = clamp(by + rand(-60, 60), 0, h);
+        // group of bits travelling closely
         const groupSize = Math.floor(rand(3,7));
         const members = [];
         for (let i=0;i<groupSize;i++){
@@ -359,6 +381,21 @@
     }
 
     function updateClusters(delta){
+      // bursts: move pieces, fade and remove when done
+      for (let i = clusterBursts.length - 1; i >= 0; i--){
+        const burst = clusterBursts[i];
+        burst.pieces.forEach(p => {
+          p.x += p.vx * (delta/16);
+          p.y += p.vy * (delta/16);
+          p.life += delta;
+        });
+        // remove pieces that exceed duration
+        burst.pieces = burst.pieces.filter(p => p.life < p.duration);
+        // if no pieces left, remove burst
+        if (burst.pieces.length === 0) clusterBursts.splice(i,1);
+      }
+
+      // drifts: update each group's members
       for (let i = clusterDrifts.length - 1; i >= 0; i--){
         const g = clusterDrifts[i];
         for (let m of g.members){
@@ -366,6 +403,7 @@
           m.y += m.vy * (delta/16);
           m.life += delta;
         }
+        // remove members out of bounds or expired
         g.members = g.members.filter(m => m.life < m.duration && m.x < w + 0.4*w && m.y > -0.4*h && m.y < h + 0.4*h);
         if (g.members.length === 0) clusterDrifts.splice(i,1);
       }
@@ -374,39 +412,36 @@
     function drawClusters(ctx){
       ctx.save();
       ctx.globalCompositeOperation = 'lighter';
+
+      // bursts: draw small radial particles with glow
+      for (const burst of clusterBursts){
+        for (const p of burst.pieces){
+          const t = p.life / p.duration;
+          const alpha = clamp(1 - t, 0, 1);
+          const size = p.size * (1 + 0.6*(1 - t));
+          ctx.fillStyle = `hsla(${p.hue[0]}, ${p.hue[1]}%, ${p.hue[2]}%, ${alpha})`;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, size, 0, Math.PI*2);
+          ctx.fill();
+          // small glow
+          ctx.drawImage(glowSprite, p.x - size*3.6, p.y - size*3.6, size*7.2, size*7.2);
+        }
+      }
+
+      // drifts: draw grouped bits that gently glow and travel
       for (const g of clusterDrifts){
         for (const m of g.members){
           const t = m.life / m.duration;
           const alpha = clamp(1 - t*0.9, 0.06, 1);
           ctx.fillStyle = `hsla(${m.hue[0]}, ${m.hue[1]}%, ${m.hue[2]}%, ${alpha})`;
-          ctx.beginPath(); ctx.arc(m.x, m.y, m.size, 0, Math.PI*2); ctx.fill();
+          ctx.beginPath();
+          ctx.arc(m.x, m.y, m.size, 0, Math.PI*2);
+          ctx.fill();
           ctx.drawImage(glowSprite, m.x - m.size*3.8, m.y - m.size*3.8, m.size*7.6, m.size*7.6);
         }
       }
+
       ctx.restore();
-    }
-
-    // update falling positions for far & twinkle stars
-    function updateFalling(delta){
-      for (let s of farStars){
-        s.y += s.vy * delta;
-        s.x += s.vx * delta + Math.sin(performance.now()*0.00012 + s.twPhase) * 0.02;
-        // wrap to top when below screen
-        if (s.y > h + 24) { s.y = -rand(8, 120); s.x = Math.random()*w; }
-        if (s.x < -48) s.x = w + rand(4,48);
-        if (s.x > w + 48) s.x = -rand(4,48);
-      }
-      for (let s of twinkleStars){
-        s.y += s.vy * delta;
-        s.x += s.vx * delta + Math.sin(performance.now()*0.0009 + s.twPhase) * 0.02;
-        if (s.y > h + 24) { s.y = -rand(8,120); s.x = Math.random()*w; }
-      }
-
-      // drift the orbital starbits slowly downward so clusters feel cohesive with the fall
-      for (let b of starbits){
-        b.cy += 0.00002 * delta * (1 + b.orbit*0.002);
-        if (b.cy > h + 200) b.cy = -rand(20,200);
-      }
     }
 
     // frame loop
@@ -419,18 +454,12 @@
       const delta = Math.min(40, now - last);
       last = now;
 
+      // clear canvases
       layers.bg.ctx.clearRect(0,0,w,h);
       layers.mid.ctx.clearRect(0,0,w,h);
       layers.fg.ctx.clearRect(0,0,w,h);
 
-      // compute a small parallax offset from pointer for nice depth
-      const pxParallax = px * 1.0; // scaled below in drawFar
-      const pyParallax = py * 1.0;
-
-      // update falling stars
-      updateFalling(delta);
-
-      drawFar(now, layers.bg.ctx, pxParallax, pyParallax);
+      drawFar(now, layers.bg.ctx);
       drawTwinkles(now, layers.mid.ctx);
       drawStarbits(now, layers.mid.ctx);
 
@@ -438,24 +467,35 @@
       updateShooting(delta);
       drawShooting(layers.fg.ctx);
 
-      // update clusters/drifts
+      // update clusters
       updateClusters(delta);
       drawClusters(layers.fg.ctx);
 
-      // spawn logic: only shooting stars (no explosion bursts)
-      if (!prefersReduced && (now - lastSpawn > nextSpawn)){
-        if (Math.random() < CONFIG.shooting.chancePerInterval) spawnShooting();
+      // spawn logic: shooting stars & cluster bursts & cluster drifts
+      if (!prefersReduced && (now - lastSpawn > nextSpawn)) {
+        // possibly spawn multicolor shooting
+        if (Math.random() < CONFIG.shooting.chancePerInterval) {
+          // sometimes spawn cluster bursts instead of single shooting star
+          if (Math.random() < CONFIG.cluster.chance) {
+            spawnClusterBurst();
+          } else {
+            spawnShooting();
+          }
+        }
         lastSpawn = now;
         nextSpawn = rand(CONFIG.shooting.minInterval, CONFIG.shooting.maxInterval);
       }
 
-      // occasional gentle drift groups
-      if (!prefersReduced && Math.random() < 0.006) spawnClusterDriftsFrom(rand(0,w), rand(0,h), Math.floor(rand(2,5)));
+      // also maintain occasional gentle cluster drifts (background)
+      if (!prefersReduced && Math.random() < 0.006) {
+        // spawn a passive drift group occasionally
+        spawnClusterDriftsFrom(rand(0,w), rand(0,h), Math.floor(rand(2,5)));
+      }
 
       rafId = requestAnimationFrame(frame);
     }
 
-    // small parallax pointer handling (keeps nebula elements moving subtly)
+    // Parallax pointer-based
     let tx = 0, ty = 0, px = 0, py = 0;
     function onPointer(e){
       const cx = e.touches ? e.touches[0].clientX : e.clientX;
@@ -472,8 +512,8 @@
       requestAnimationFrame(parallaxLoop);
     }
 
-    // clicking spawns a small local sparkle cluster
-    wrapper.addEventListener('pointerdown', (e)=>{
+    // interactivity: click -> small burst of starbits
+    wrapper.addEventListener('pointerdown', (e)=> {
       if (prefersReduced) return;
       const rect = wrapper.getBoundingClientRect();
       const cx = e.clientX - rect.left, cy = e.clientY - rect.top;
@@ -481,8 +521,11 @@
         starbits.push({
           cx: cx + rand(-26,26),
           cy: cy + rand(-26,26),
-          orbit: rand(8,48), angle: Math.random()*Math.PI*2,
-          speed: rand(0.002,0.01), size: rand(0.9,3.2), wobble: rand(0.05,0.5),
+          orbit: rand(8,48),
+          angle: Math.random()*Math.PI*2,
+          speed: rand(0.002,0.01),
+          size: rand(0.9,3.2),
+          wobble: rand(0.05,0.5),
           hue: CONFIG.shooting.accentPalettes[Math.floor(Math.random()*CONFIG.shooting.accentPalettes.length)],
           extraPulse: Math.random()*Math.PI*2
         });
@@ -490,44 +533,46 @@
       if (starbits.length > (CONFIG.starbits.desktop*3)) starbits.splice(0,18);
     }, {passive:true});
 
-    // start/stop housekeeping
+    // start/stop and housekeeping
     function start(){
       resizeAll();
       initParticles();
       last = performance.now();
-      if (!prefersReduced){
+      if (!prefersReduced) {
         rafId = requestAnimationFrame(frame);
         window.addEventListener('pointermove', onPointer, {passive:true});
         parallaxLoop();
       } else {
-        // render a single static frame for reduced motion
         frame(performance.now());
       }
-
+      // fallback periodic spawn (in case RAF isn't precise)
       if (!prefersReduced) wrapper._shootTimer = setInterval(()=>{
-        if (Math.random() < CONFIG.shooting.chancePerInterval) spawnShooting();
+        if (Math.random() < CONFIG.shooting.chancePerInterval) {
+          if (Math.random() < CONFIG.cluster.chance) spawnClusterBurst(); else spawnShooting();
+        }
       }, 4200);
     }
 
-    window.addEventListener('resize', ()=>{
+    window.addEventListener('resize', ()=> {
       clearTimeout(wrapper._resizeTO);
       wrapper._resizeTO = setTimeout(()=> resizeAll(), 140);
     });
 
-    document.addEventListener('visibilitychange', ()=>{
-      if (document.hidden){
+    document.addEventListener('visibilitychange', ()=> {
+      if (document.hidden) {
         if (rafId) cancelAnimationFrame(rafId); rafId = null;
       } else {
         if (!prefersReduced && !rafId) { last = performance.now(); rafId = requestAnimationFrame(frame); }
       }
     });
 
-    window.addEventListener('beforeunload', ()=>{
+    window.addEventListener('beforeunload', ()=> {
       if (rafId) cancelAnimationFrame(rafId);
       if (wrapper._shootTimer) clearInterval(wrapper._shootTimer);
       window.removeEventListener('pointermove', onPointer);
     });
 
+    // helpers: canvas creation & resize
     function createCanvas(cls){
       const c = document.createElement('canvas');
       c.className = cls;
@@ -537,13 +582,10 @@
       c.style.width = '100%';
       c.style.height = '100%';
       c.style.pointerEvents = 'none';
-      c.style.background = 'transparent';
-      c.setAttribute('aria-hidden','true');
       const ctx = c.getContext('2d', { alpha: true });
       return { canvas: c, ctx };
     }
-
-    function resizeCanvas(layer,width,height,dpr){
+    function resizeCanvas(layer, width, height, dpr){
       const canvas = layer.canvas;
       canvas.style.width = width + 'px';
       canvas.style.height = height + 'px';
@@ -552,7 +594,8 @@
       layer.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
-    // kick things off
+    // run
     start();
   }
 })();
+</script>
