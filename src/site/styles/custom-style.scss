@@ -900,20 +900,20 @@ img {
   bottom: 20px;
   left: 20px;
   display: flex;
-  flex-direction: column; /* stack vertically */
-  gap: 10px; /* spacing between buttons */
-  z-index: 9999; /* stay above other content */
+  flex-direction: row; /* inline, side by side */
+  gap: 12px; /* space between buttons */
+  z-index: 9999;
 }
 
 .floating-buttons img {
-  width: 40px;
-  height: 40px;
+  width: 32px;   /* smaller size */
+  height: 32px;
   cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  border-radius: 8px; /* soft rounded corners (optional) */
+  transition: transform 0.25s ease, filter 0.25s ease;
 }
 
 .floating-buttons img:hover {
-  transform: scale(1.1);
-  opacity: 0.8;
+  transform: scale(1.2) rotate(-3deg); /* grow + slight tilt */
+  filter: brightness(1.2); /* subtle glow effect */
 }
-
