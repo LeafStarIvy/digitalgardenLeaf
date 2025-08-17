@@ -1,333 +1,558 @@
-// 🌌 StarfieldParticles.js — Rewritten: realistic, beautiful, transparent starfield + meteors — fixed-to-viewport and parallax-aware
+/* components/particlesScript.njk — Refined cosmic particles
+   • Removes any forced opaque/black background (transparent canvases)
+   • Removes "exploding" cluster bursts (no more explosion pieces)
+   • Keeps gentle cluster drifts and multicolor shooting stars
+   • Adds continuous gentle falling for the starfield (wraps to top)
+   • Ensures the skybox is fixed to the viewport (so the effect stays with the screen)
+   • DPR-aware, respects prefers-reduced-motion
+
+   Replace the previous <script> block with this content in your component file.
+*/
 (function(){
   'use strict';
 
-  /*
-    Key goals implemented in this rewrite:
-    - Transparent canvases (no forced background) so your CSS background shows through.
-    - Fixed-to-viewport overlay so the stars "go with the screen" and don't get clipped when you scroll.
-    - Layered canvases (bg/mid/fg) for depth and parallax, but only a single overlay instance for efficiency.
-    - Realistic twinkle, color variation, soft glow sprite, and graceful meteors (falling stars) with tapered trails.
-    - Respect prefers-reduced-motion and pause when tab is hidden.
-    - Small public API: mount(el), start(), stop(), destroy(), setDensity(mult), setTheme(obj)
-  */
-
-  const DEFAULT = {
-    density: 1.0, // 0.2..3.0
-    stars: { base: 420, twinkleRatio: 0.36 },
-    meteors: {
-      minInterval: 2400,
-      maxInterval: 7600,
-      chance: 0.82,
-      speedRange: [0.18, 0.45], // px/ms scaling
-      lengthRange: [140, 520],
-      headRange: [1.6, 5.0],
-      strokeRange: [1.0, 4.0],
-      multicolorChance: 0.26,
-      accentPalettes: [ [45,95,58], [185,85,56], [280,80,64] ],
-      showerChance: 0.12,
-      showerCount: [3,7],
-      showerSpacing: [90,220]
+  const CONFIG = {
+    stars: { desktop: 420, mobile: 120 },
+    starbits: { desktop: 120, mobile: 36 },
+    shooting: {
+      minInterval: 2200,
+      maxInterval: 5800,
+      chancePerInterval: 0.8,
+      minDuration: 1100,
+      maxDuration: 3800,
+      multicolorChance: 0.28,
+      accentPalettes: [ [45,95,58], [280,80,64], [185,85,56] ]
     },
-    visual: { starHue: 210, starSat: 70, starLight: 62, cometHue: 200 }
+    cluster: {
+      // bursts (explosive particles) intentionally disabled for a calmer look
+      burstEnabled: false,
+      driftCount: { min: 3, max: 7 },
+      driftLifetime: 9000
+    },
+    starTwinkleScale: 0.85
   };
 
-  const prefersReduced = (typeof window !== 'undefined') && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const TAU = Math.PI * 2;
-  const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
+  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const rand = (a,b) => a + Math.random()*(b-a);
+  const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
   const isMobile = () => window.innerWidth <= 900;
-  const easeOut = t => 1 - Math.pow(1 - t, 3);
+  const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
 
-  // Single overlay instance for the page
-  let INSTANCE = null;
-
-  // Public API
-  window.StarfieldParticles = window.StarfieldParticles || {
-    mount, start, stop, destroy, setDensity, setTheme
-  };
-
-  // Auto-mount on common selectors
-  document.addEventListener('DOMContentLoaded', ()=>{
-    const targets = Array.from(document.querySelectorAll('#galaxySkybox, #galaxySkyboxNote, [data-stars]'));
-    if (targets.length) mount(targets[0]);
+  document.addEventListener('DOMContentLoaded', () => {
+    ['galaxySkybox','galaxySkyboxNote'].forEach(id=>{
+      const el = document.getElementById(id);
+      if (el) initSkybox(el);
+    });
   });
 
-  function mount(wrapperEl){
-    if (INSTANCE) {
-      // register wrapper for parallax if provided
-      if (wrapperEl && !INSTANCE.targets.includes(wrapperEl)) INSTANCE.targets.push(wrapperEl);
-      return INSTANCE;
-    }
-    INSTANCE = new Overlay(wrapperEl || document.body);
-    return INSTANCE;
-  }
+  function initSkybox(wrapper){
+    if (!wrapper || wrapper._pgInit) return;
+    wrapper._pgInit = true;
 
-  function start(){ if (INSTANCE) INSTANCE.start(); }
-  function stop(){ if (INSTANCE) INSTANCE.stop(); }
-  function destroy(){ if (INSTANCE) { INSTANCE.destroy(); INSTANCE = null; } }
-  function setDensity(mult){ if (INSTANCE) { INSTANCE.options.density = clamp(mult,0.2,3.0); INSTANCE._generateStars(); } else DEFAULT.density = clamp(mult,0.2,3.0); }
-  function setTheme(obj){ Object.assign(DEFAULT.visual, obj || {}); if (INSTANCE) INSTANCE._regenSprites(); }
+    // force the skybox to be a full-viewport, transparent overlay that stays with the screen
+    wrapper.style.position = 'fixed';
+    wrapper.style.inset = '0';
+    wrapper.style.pointerEvents = 'none';
+    wrapper.style.background = 'transparent';
+    wrapper.setAttribute('aria-hidden','true');
 
-  // ---------------- Overlay class ----------------
-  class Overlay {
-    constructor(wrapper){
-      this.targets = wrapper ? [wrapper] : [];
-      this.root = document.body; // canvases are appended to body and fixed so they always match viewport
+    // canvases (background / mid / foreground)
+    const layers = {
+      bg: createCanvas('pg-canvas pg-canvas--bg'),
+      mid: createCanvas('pg-canvas pg-canvas--mid'),
+      fg: createCanvas('pg-canvas pg-canvas--fg')
+    };
 
-      this.options = JSON.parse(JSON.stringify(DEFAULT));
+    wrapper.appendChild(layers.bg.canvas);
+    wrapper.appendChild(layers.mid.canvas);
+    wrapper.appendChild(layers.fg.canvas);
 
-      // layers
-      this.layers = {
-        bg: this._createCanvas('sf-bg'),
-        mid: this._createCanvas('sf-mid'),
-        fg: this._createCanvas('sf-fg')
-      };
-      Object.values(this.layers).forEach(L=> this.root.appendChild(L.canvas));
+    // optional nebula elements for extra parallax (kept as before)
+    const nebBack = wrapper.querySelector('.nebula--back');
+    const nebMid  = wrapper.querySelector('.nebula--mid');
+    const nebFront= wrapper.querySelector('.nebula--front');
 
-      // DPR + size
-      this.dpr = Math.max(1, window.devicePixelRatio || 1);
-      this.width = window.innerWidth; this.height = window.innerHeight;
+    // small glow sprite used throughout
+    let glowSprite = makeGlowSprite();
 
-      // input & parallax
-      this.mx = 0; this.my = 0; this.scrollY = 0; this.parallaxX = 0; this.parallaxY = 0;
+    // particle pools
+    let farStars = [], twinkleStars = [], starbits = [];
+    let shootingStars = [], clusterDrifts = [];
 
-      // particles
-      this.stars = []; this.twinkles = []; this.meteors = []; this.rings = [];
+    // sizing / DPR
+    let w = Math.max(wrapper.clientWidth || window.innerWidth, 800);
+    let h = Math.max(wrapper.clientHeight || window.innerHeight, 400);
+    let DPR = Math.max(1, window.devicePixelRatio || 1);
 
-      // sprites
-      this.glow = this._makeGlowSprite(32);
-      this.cometGlow = this._makeGlowSprite(64);
-
-      // timers
-      this.last = performance.now(); this.raf = null; this.nextMeteorAt = this.last + rand(this.options.meteors.minInterval, this.options.meteors.maxInterval);
-
-      // events
-      this._onPointer = e => this._onPointerMove(e);
-      this._onResize = this._throttle(()=> this._resize(), 120);
-      this._onScroll = ()=> this.scrollY = window.scrollY || window.pageYOffset || 0;
-      this._onVis = ()=> { if (document.hidden) this._pause(); else this._resume(); };
-
-      // attach
-      window.addEventListener('pointermove', this._onPointer, {passive:true});
-      window.addEventListener('resize', this._onResize, {passive:true});
-      window.addEventListener('scroll', this._onScroll, {passive:true});
-      document.addEventListener('visibilitychange', this._onVis);
-
-      // initial populate
-      this._resize();
-      this._generateStars();
-
-      // start loop
-      if (!prefersReduced) this.start(); else this._renderOnce();
+    function resizeAll(){
+      w = Math.max(wrapper.clientWidth || window.innerWidth, 800);
+      h = Math.max(wrapper.clientHeight || window.innerHeight, 400);
+      DPR = Math.max(1, window.devicePixelRatio || 1);
+      resizeCanvas(layers.bg, w, h, DPR);
+      resizeCanvas(layers.mid, w, h, DPR);
+      resizeCanvas(layers.fg, w, h, DPR);
+      glowSprite = makeGlowSprite(Math.round(30 * DPR));
+      initParticles();
     }
 
-    _createCanvas(cls){
-      const c = document.createElement('canvas');
-      c.className = cls;
-      // Fixed overlay that covers viewport (so it "goes with the screen")
-      c.style.position = 'fixed';
-      c.style.top = '0'; c.style.left = '0';
-      c.style.width = '100%'; c.style.height = '100%';
-      c.style.pointerEvents = 'none';
-      c.style.zIndex = '-9999';
-      c.style.background = 'transparent';
-      const ctx = c.getContext('2d', { alpha: true, desynchronized: true });
-      return { canvas: c, ctx };
-    }
+    function initParticles(){
+      const starCount = isMobile() ? CONFIG.stars.mobile : CONFIG.stars.desktop;
+      const bitCount  = isMobile() ? CONFIG.starbits.mobile : CONFIG.starbits.desktop;
 
-    _resize(){
-      this.dpr = Math.max(1, window.devicePixelRatio || 1);
-      this.width = Math.max(window.innerWidth, 10);
-      this.height = Math.max(window.innerHeight, 10);
-      for (const L of Object.values(this.layers)){
-        L.canvas.style.width = this.width + 'px';
-        L.canvas.style.height = this.height + 'px';
-        L.canvas.width = Math.round(this.width * this.dpr);
-        L.canvas.height = Math.round(this.height * this.dpr);
-        L.ctx.setTransform(this.dpr,0,0,this.dpr,0,0);
-      }
-      // regenerate glow sprites at proper DPR
-      this._regenSprites();
-      // regenerate stars so distribution fits new size
-      this._generateStars();
-    }
-
-    _regenSprites(){
-      this.glow = this._makeGlowSprite(Math.round(28 * this.dpr));
-      this.cometGlow = this._makeGlowSprite(Math.round(56 * this.dpr));
-    }
-
-    _makeGlowSprite(size = 28){
-      const c = document.createElement('canvas'); c.width = c.height = size; const ctx = c.getContext('2d');
-      const r = size/2; const g = ctx.createRadialGradient(r,r,0,r,r,r);
-      g.addColorStop(0, 'rgba(255,255,255,0.96)');
-      g.addColorStop(0.14, 'rgba(255,255,255,0.82)');
-      g.addColorStop(0.36, 'rgba(160,180,255,0.24)');
-      g.addColorStop(0.74, 'rgba(70,120,220,0.06)');
-      g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = g; ctx.fillRect(0,0,size,size); return c;
-    }
-
-    _generateStars(){
-      const areaFactor = (isMobile() ? 0.6 : 1.0) * (this.options.density || 1);
-      const base = Math.round(this.options.stars.base * areaFactor);
-      const twinkles = Math.round(base * this.options.stars.twinkleRatio);
-      this.stars = new Array(base).fill(0).map(()=>({
-        x: Math.random()*this.width,
-        y: Math.random()*this.height,
+      // far stars: now with gentle downward velocity to create a subtle "falling" effect
+      farStars = Array.from({length: starCount}, ()=>({
+        x: Math.random()*w,
+        y: Math.random()*h,
         z: Math.random(),
-        size: rand(0.28, 1.9),
-        baseA: rand(0.12, 0.85),
-        tw: Math.random()*TAU,
-        hueOff: Math.random() < 0.06 ? rand(-22,22) : 0
+        size: rand(0.28,1.9),
+        baseA: rand(0.12,0.85),
+        twPhase: Math.random()*Math.PI*2,
+        hueOffset: Math.random() < 0.06 ? rand(-22,22) : 0,
+        // falling speed in px per millisecond (keeps independent of viewport height)
+        vy: rand(0.02, 0.12),
+        vx: rand(-0.01, 0.01)
       }));
-      this.twinkles = new Array(twinkles).fill(0).map(()=>({
-        x: Math.random()*this.width,
-        y: Math.random()*this.height,
-        size: rand(0.6, 2.2),
-        baseA: rand(0.22, 0.95),
-        tw: Math.random()*TAU, orbit: Math.random()*TAU
+
+      // twinkle stars: slightly larger, also falling
+      twinkleStars = Array.from({length: Math.round(starCount*0.36)}, ()=>({
+        x: Math.random()*w, y: Math.random()*h,
+        size: rand(0.6,2.2), baseA: rand(0.22,0.95),
+        twPhase: Math.random()*Math.PI*2, orbitPhase: Math.random()*Math.PI*2,
+        vy: rand(0.03,0.10), vx: rand(-0.02,0.02)
+      }));
+
+      // starbits (local orbiting clusters)
+      starbits = Array.from({length: bitCount}, ()=>({
+        cx: rand(w*0.18, w*0.82),
+        cy: rand(h*0.12, h*0.64),
+        orbit: rand(18,170),
+        angle: Math.random()*Math.PI*2,
+        speed: rand(0.0006,0.0026),
+        size: rand(0.9,3.6),
+        wobble: rand(0.05,0.9),
+        hue: Math.random() < 0.12 ? CONFIG.shooting.accentPalettes[Math.floor(Math.random()*CONFIG.shooting.accentPalettes.length)] : [210,70,62],
+        extraPulse: Math.random()*Math.PI*2
       }));
     }
 
-    _onPointerMove(e){
-      const p = e.touches ? e.touches[0] : e;
-      this.mx = (p.clientX / this.width) - 0.5; // -0.5..0.5
-      this.my = (p.clientY / this.height) - 0.5;
+    function makeGlowSprite(size=30){
+      const c = document.createElement('canvas');
+      c.width = c.height = size;
+      const ctx = c.getContext('2d');
+      const r = size/2;
+      const g = ctx.createRadialGradient(r,r,0,r,r,r);
+      g.addColorStop(0, 'rgba(255,255,255,0.98)');
+      g.addColorStop(0.14, 'rgba(255,255,255,0.84)');
+      g.addColorStop(0.36, 'rgba(140,170,255,0.28)');
+      g.addColorStop(0.68, 'rgba(70,120,220,0.06)');
+      // final stop is fully transparent so sprite doesn't paint an opaque backdrop
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0,0,size,size);
+      return c;
     }
 
-    start(){ if (!this.raf && !prefersReduced) { this.last = performance.now(); this.raf = requestAnimationFrame(t=>this._frame(t)); } }
-    stop(){ if (this.raf) { cancelAnimationFrame(this.raf); this.raf = null; } }
-    destroy(){ this.stop(); window.removeEventListener('pointermove', this._onPointer); window.removeEventListener('resize', this._onResize); window.removeEventListener('scroll', this._onScroll); document.removeEventListener('visibilitychange', this._onVis); Object.values(this.layers).forEach(L=>L.canvas.remove()); }
+    // draw far stars (with falling motion updated separately)
+    function drawFar(now, ctx, pxParallax, pyParallax){
+      ctx.save();
+      ctx.globalCompositeOperation = 'source-over';
 
-    _pause(){ this.stop(); }
-    _resume(){ if (!this.raf && !prefersReduced) this.start(); }
+      for (let s of farStars){
+        // small independent twinkle + parallax offset
+        const tw = prefersReduced ? 0 : Math.sin(now * (0.0009 + s.z*0.0009) + s.twPhase) * 0.36;
+        const a = clamp(s.baseA + tw * CONFIG.starTwinkleScale, 0.06, 1);
+        const scaled = s.size * (1 + s.z * 0.66);
 
-    _frame(now){
-      const dt = Math.min(50, now - this.last); this.last = now;
-      // small parallax based on pointer and scroll
-      this.parallaxX += (this.mx*22 - this.parallaxX) * 0.06;
-      const scrollFactor = clamp((this.scrollY / Math.max(800, document.body.scrollHeight)) * 1.3, -1, 1);
-      this.parallaxY += ((this.my*14 + scrollFactor*6) - this.parallaxY) * 0.06;
+        // parallax: deeper stars move less with pointer
+        const parX = pxParallax * (8 * (1 - s.z));
+        const parY = pyParallax * (4 * (1 - s.z));
 
-      // clear layers
-      for (const L of Object.values(this.layers)) L.ctx.clearRect(0,0,this.width,this.height);
-
-      // render
-      this._drawFar(now);
-      this._drawTwinkles(now);
-      this._updateMeteors(dt);
-      this._drawMeteors();
-      this._updateRings(dt);
-      this._drawRings();
-
-      // spawn logic
-      if (!prefersReduced && now > this.nextMeteorAt && Math.random() < this.options.meteors.chance){
-        // sometimes a brief shower
-        if (Math.random() < this.options.meteors.showerChance){
-          const c = Math.round(rand(this.options.meteors.showerCount[0], this.options.meteors.showerCount[1]));
-          let delay = 0; for (let i=0;i<c;i++){ setTimeout(()=> this._spawnMeteor(), delay); delay += rand(this.options.meteors.showerSpacing[0], this.options.meteors.showerSpacing[1]); }
-        } else this._spawnMeteor();
-        this.nextMeteorAt = now + rand(this.options.meteors.minInterval, this.options.meteors.maxInterval);
-      }
-
-      this.raf = requestAnimationFrame(t=>this._frame(t));
-    }
-
-    _drawFar(now){
-      const ctx = this.layers.bg.ctx; ctx.save(); ctx.globalCompositeOperation = 'source-over';
-      const driftX = Math.sin(now / 180000) * 14 + this.parallaxX * 0.6;
-      const driftY = Math.cos(now / 150000) * 9 + this.parallaxY * 0.6;
-      for (const s of this.stars){
-        const tw = prefersReduced ? 0 : Math.sin(now * (0.0009 + s.z*0.0009) + s.tw) * 0.36;
-        const a = clamp(s.baseA + tw * 0.85, 0.06, 1);
-        const scaled = s.size * (1 + s.z*0.66);
-        if (s.hueOff !== 0){
-          const h = DEFAULT.visual.starHue + s.hueOff;
-          ctx.fillStyle = `hsla(${h}, ${DEFAULT.visual.starSat}%, ${DEFAULT.visual.starLight - Math.abs(s.hueOff)}%, ${a})`;
-          ctx.beginPath(); ctx.arc(s.x + driftX*s.z, s.y + driftY*s.z, scaled*0.9, 0, TAU); ctx.fill();
+        if (s.hueOffset !== 0){
+          const h = 210 + s.hueOffset;
+          ctx.fillStyle = `hsla(${h},75%,${60-Math.abs(s.hueOffset)}%,${a})`;
+          ctx.beginPath();
+          ctx.arc(s.x + parX, s.y + parY, scaled*0.9, 0, Math.PI*2);
+          ctx.fill();
         } else {
-          ctx.drawImage(this.glow, Math.round(s.x + driftX*s.z - scaled*4), Math.round(s.y + driftY*s.z - scaled*4), scaled*8, scaled*8);
+          ctx.globalAlpha = a;
+          ctx.drawImage(glowSprite, Math.round(s.x + parX - scaled*4), Math.round(s.y + parY - scaled*4), scaled*8, scaled*8);
+          ctx.globalAlpha = 1;
         }
       }
       ctx.restore();
     }
 
-    _drawTwinkles(now){
-      const ctx = this.layers.mid.ctx; ctx.save(); ctx.globalCompositeOperation = 'lighter';
-      for (const s of this.twinkles){
-        const pulse = prefersReduced ? 0.0 : Math.sin(now * (0.0012 + 0.0005 * s.size) + s.tw) * 0.5;
+    function drawTwinkles(now, ctx){
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      for (const s of twinkleStars){
+        const pulse = prefersReduced ? 0 : Math.sin(now * (0.0012 + 0.0005 * s.size) + s.twPhase) * 0.5;
         const a = clamp(s.baseA + pulse, 0.1, 1);
-        const size = s.size * (1 + 0.12 * Math.sin(now / 600 + s.orbit));
-        const ox = this.parallaxX * 0.8, oy = this.parallaxY * 0.8;
-        ctx.globalAlpha = a; ctx.fillStyle = 'white';
-        ctx.beginPath(); ctx.arc(s.x + ox, s.y + oy, size, 0, TAU); ctx.fill();
-        ctx.drawImage(this.glow, Math.round(s.x - size*3.2 + ox), Math.round(s.y - size*3.2 + oy), size*6.4, size*6.4);
+        const size = s.size * (1 + 0.12 * Math.sin(now / 600 + s.orbitPhase));
+        ctx.globalAlpha = a;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, size, 0, Math.PI*2);
+        ctx.fillStyle = 'white';
+        ctx.fill();
+        ctx.drawImage(glowSprite, Math.round(s.x - size*3.2), Math.round(s.y - size*3.2), size*6.4, size*6.4);
+        ctx.globalAlpha = 1;
       }
       ctx.restore();
     }
 
-    _spawnMeteor(overrides){
-      const w = this.width, h = this.height, mCfg = this.options.meteors;
-      // start mostly from left edge, slight vertical random
-      const sx = -rand(0.02*w, 0.18*w); const sy = rand(0.02*h, 0.6*h);
-      const angle = rand(18, 55) * (Math.PI/180); // downward-right
-      const speed = rand(mCfg.speedRange[0], mCfg.speedRange[1]) * (w / 1400);
-      const length = rand(mCfg.lengthRange[0], mCfg.lengthRange[1]);
-      const head = rand(mCfg.headRange[0], mCfg.headRange[1]);
-      const stroke = rand(mCfg.strokeRange[0], mCfg.strokeRange[1]);
-      const isAccent = Math.random() < mCfg.multicolorChance;
-      const accent = isAccent ? mCfg.accentPalettes[Math.floor(Math.random()*mCfg.accentPalettes.length)] : null;
-      const curve = rand(-0.00006, 0.00006);
-      const dur = (w + h) / (speed * 900);
-      const meta = Object.assign({ x:sx,y:sy,angle,speed,length,head,stroke,life:0,dur,isAccent,accent,curve }, overrides || {});
-      this.meteors.push(meta);
-    }
+    function drawStarbits(now, ctx){
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      for (const b of starbits){
+        b.angle += b.speed * (prefersReduced ? 0.2 : 1.0);
+        const px = b.cx + Math.cos(b.angle) * b.orbit + Math.sin(now / 2000 + b.extraPulse) * b.wobble * 6;
+        const py = b.cy + Math.sin(b.angle * 0.9) * b.orbit * 0.6 + Math.cos(now / 1400 + b.extraPulse) * b.wobble * 6;
+        const pulse = prefersReduced ? 0.6 : (0.6 + Math.sin(now / 480 + b.extraPulse) * 0.35);
+        const size = b.size * pulse;
+        const hueArr = b.hue;
+        const fill = `hsla(${hueArr[0]}, ${hueArr[1]}%, ${hueArr[2]}%, 1)`;
 
-    _updateMeteors(dt){
-      for (let i = this.meteors.length - 1; i >= 0; i--){
-        const m = this.meteors[i]; m.life += dt; m.angle += m.curve * dt;
-        const vx = Math.cos(m.angle) * m.speed * dt * 16; const vy = Math.sin(m.angle) * m.speed * dt * 16;
-        m.x += vx; m.y += vy;
-        if (m.life > m.dur || m.x > this.width + this.width*0.4 || m.y > this.height + this.height*0.4) this.meteors.splice(i,1);
-      }
-    }
-
-    _drawMeteors(){
-      const ctx = this.layers.fg.ctx; ctx.save(); ctx.globalCompositeOperation = 'lighter';
-      for (const m of this.meteors){
-        const hx = m.x, hy = m.y; const t = clamp(m.life / m.dur, 0, 1); const eased = easeOut(t);
-        const nx = Math.cos(m.angle), ny = Math.sin(m.angle);
-        const len = m.length * (0.28 + 0.72*(1 - eased));
-        const tx = hx - nx * len, ty = hy - ny * len;
-
-        const grad = ctx.createLinearGradient(tx, ty, hx, hy);
-        if (m.isAccent && m.accent){ const [h,s,l] = m.accent; grad.addColorStop(0, 'rgba(255,255,255,0)'); grad.addColorStop(0.46, `hsla(${h}, ${s}%, ${l}%, 0.28)`); grad.addColorStop(0.88, 'rgba(255,255,255,0.55)'); grad.addColorStop(1, 'rgba(255,255,255,0.98)'); }
-        else { grad.addColorStop(0, 'rgba(255,255,255,0)'); grad.addColorStop(0.6, 'rgba(255,255,255,0.22)'); grad.addColorStop(1, 'rgba(255,255,255,0.98)'); }
-
-        ctx.strokeStyle = grad; ctx.lineWidth = m.stroke; ctx.lineCap = 'round';
-        ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(hx, hy); ctx.stroke();
-
-        const halo = Math.max(18, m.head * 7);
-        ctx.drawImage(this.glow, hx - halo/2, hy - halo/2, halo, halo);
-        ctx.fillStyle = 'rgba(255,255,255,0.98)'; ctx.beginPath(); ctx.arc(hx, hy, m.head, 0, TAU); ctx.fill();
+        ctx.save();
+        ctx.translate(px, py);
+        ctx.rotate((now/8000 + b.angle) % (Math.PI*2));
+        ctx.beginPath();
+        ctx.moveTo(0, -size);
+        ctx.lineTo(size*0.6, 0);
+        ctx.lineTo(0, size);
+        ctx.lineTo(-size*0.6, 0);
+        ctx.closePath();
+        ctx.fillStyle = fill;
+        ctx.fill();
+        ctx.lineWidth = 0.5;
+        ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+        ctx.stroke();
+        ctx.drawImage(glowSprite, -size*4.4, -size*4.4, size*8.8, size*8.8);
+        ctx.restore();
       }
       ctx.restore();
     }
 
-    _updateRings(dt){
-      for (let i = this.rings.length - 1; i >= 0; i--){ const r = this.rings[i]; r.life += dt; if (r.life > r.dur) this.rings.splice(i,1); }
-    }
-    _drawRings(){ const ctx = this.layers.fg.ctx; ctx.save(); ctx.globalCompositeOperation='lighter'; for (const r of this.rings){ const t = clamp(r.life/r.dur,0,1); const eased = easeOut(t); ctx.lineWidth = 1 + (1-eased)*1.4; ctx.strokeStyle = `rgba(255,255,255,${0.28*(1-eased)})`; ctx.beginPath(); ctx.arc(r.x + this.parallaxX*0.6, r.y + this.parallaxY*0.6, 6 + eased*40, 0, TAU); ctx.stroke(); } ctx.restore(); }
+    // Shooting stars
+    function spawnShooting(){
+      if (prefersReduced) return;
+      const startX = -rand(0.05*w, 0.18*w);
+      const startY = rand(0.03*h, 0.6*h);
+      const angleDeg = rand(18,55);
+      const angle = angleDeg * (Math.PI/180);
+      const endX = w + rand(0.05*w, 0.25*w);
+      const dx = endX - startX;
+      const endY = startY + Math.tan(angle) * dx;
+      const duration = clamp(rand(CONFIG.shooting.minDuration, CONFIG.shooting.maxDuration), CONFIG.shooting.minDuration, CONFIG.shooting.maxDuration);
 
-    _renderOnce(){
-      // draw a single frame for reduced-motion users
-      const now = performance.now(); for (const L of Object.values(this.layers)) L.ctx.clearRect(0,0,this.width,this.height);
-      this._drawFar(now); this._drawTwinkles(now);
+      const isAccent = Math.random() < CONFIG.shooting.multicolorChance;
+      const accent = isAccent ? CONFIG.shooting.accentPalettes[Math.floor(Math.random()*CONFIG.shooting.accentPalettes.length)] : null;
+
+      shootingStars.push({
+        sx: startX, sy: startY, ex: endX, ey: endY,
+        life: 0, duration,
+        headSize: rand(1.8,5.2),
+        length: rand(120,450),
+        stroke: clamp(rand(1.2,4.2),1.0,6.0),
+        accent, isAccent
+      });
     }
+
+    function updateShooting(delta){
+      for (let i = shootingStars.length-1; i>=0; i--){
+        const s = shootingStars[i];
+        s.life += delta;
+        if (s.life > s.duration * 1.12) shootingStars.splice(i,1);
+      }
+    }
+
+    function drawShooting(ctx){
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+
+      for (const s of shootingStars){
+        const progress = clamp(s.life / s.duration, 0, 1);
+        const eased = easeOutCubic(progress);
+        const hx = s.sx + (s.ex - s.sx) * eased;
+        const hy = s.sy + (s.ey - s.sy) * eased;
+
+        const dirX = hx - s.sx, dirY = hy - s.sy;
+        const len = Math.hypot(dirX, dirY) || 1;
+        const nx = dirX / len, ny = dirY / len;
+        const tailX = hx - nx * s.length * (0.28 + 0.72*(1 - eased));
+        const tailY = hy - ny * s.length * (0.28 + 0.72*(1 - eased));
+
+        // gradient trail
+        const grad = ctx.createLinearGradient(tailX, tailY, hx, hy);
+        if (s.isAccent && s.accent){
+          const [h,sat,l] = s.accent;
+          const col = `hsla(${h}, ${sat}%, ${l}%, 0.28)`;
+          grad.addColorStop(0.0, 'rgba(255,255,255,0.0)');
+          grad.addColorStop(0.48, col);
+          grad.addColorStop(0.88, 'rgba(255,255,255,0.55)');
+          grad.addColorStop(1.0, 'rgba(255,255,255,0.98)');
+        } else {
+          grad.addColorStop(0.0, 'rgba(255,255,255,0.0)');
+          grad.addColorStop(0.6, 'rgba(255,255,255,0.22)');
+          grad.addColorStop(1.0, 'rgba(255,255,255,0.98)');
+        }
+
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = s.stroke;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(tailX, tailY);
+        ctx.lineTo(hx, hy);
+        ctx.stroke();
+
+        // add a few faint, soft blobs behind the head to enhance motion blur (cheap and pretty)
+        for (let j=0;j<3;j++){
+          const off = s.length * (0.22 + j * 0.14) * (1 - eased);
+          const bx = hx - nx * off;
+          const by = hy - ny * off;
+          ctx.globalAlpha = 0.08 * (1 - j*0.35);
+          ctx.beginPath();
+          ctx.arc(bx, by, s.headSize * (1.2 - j*0.35), 0, Math.PI*2);
+          ctx.fillStyle = 'white';
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+
+        // head: colored halo + white core if accent, otherwise white core
+        if (s.isAccent && s.accent){
+          const [hue,sat,lum] = s.accent;
+          ctx.fillStyle = `hsla(${hue}, ${sat}%, ${lum}%, 0.95)`;
+          ctx.beginPath(); ctx.arc(hx, hy, s.headSize * 1.1, 0, Math.PI*2); ctx.fill();
+          ctx.fillStyle = 'rgba(255,255,255,0.96)'; ctx.beginPath(); ctx.arc(hx, hy, s.headSize * 0.6, 0, Math.PI*2); ctx.fill();
+        } else {
+          ctx.fillStyle = 'rgba(255,255,255,0.96)'; ctx.beginPath(); ctx.arc(hx, hy, s.headSize, 0, Math.PI*2); ctx.fill();
+        }
+
+        // sprite glow
+        const gs = Math.max(18, s.headSize * 7);
+        ctx.drawImage(glowSprite, hx - gs/2, hy - gs/2, gs, gs);
+      }
+
+      ctx.restore();
+    }
+
+    // cluster drifts (gentle groups that travel across) — kept, but calmer
+    function spawnClusterDriftsFrom(bx, by, count){
+      for (let g=0; g<count; g++){
+        const angle = rand(18, 50) * (Math.PI/180);
+        const speed = rand(0.06, 0.28);
+        const startX = -rand(0.06*w, 0.18*w);
+        const startY = clamp(by + rand(-60, 60), 0, h);
+        const groupSize = Math.floor(rand(3,7));
+        const members = [];
+        for (let i=0;i<groupSize;i++){
+          members.push({
+            x: startX - rand(0, 80), y: startY + rand(-24,24),
+            vx: Math.cos(angle) * speed * (1 + rand(-0.18,0.18)),
+            vy: Math.sin(angle) * speed * (1 + rand(-0.18,0.18)),
+            size: rand(0.9,2.6),
+            hue: CONFIG.shooting.accentPalettes[Math.floor(Math.random()*CONFIG.shooting.accentPalettes.length)],
+            life: 0, duration: CONFIG.cluster.driftLifetime * (0.9 + Math.random()*0.4)
+          });
+        }
+        clusterDrifts.push({ members });
+      }
+    }
+
+    function updateClusters(delta){
+      for (let i = clusterDrifts.length - 1; i >= 0; i--){
+        const g = clusterDrifts[i];
+        for (let m of g.members){
+          m.x += m.vx * (delta/16);
+          m.y += m.vy * (delta/16);
+          m.life += delta;
+        }
+        g.members = g.members.filter(m => m.life < m.duration && m.x < w + 0.4*w && m.y > -0.4*h && m.y < h + 0.4*h);
+        if (g.members.length === 0) clusterDrifts.splice(i,1);
+      }
+    }
+
+    function drawClusters(ctx){
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      for (const g of clusterDrifts){
+        for (const m of g.members){
+          const t = m.life / m.duration;
+          const alpha = clamp(1 - t*0.9, 0.06, 1);
+          ctx.fillStyle = `hsla(${m.hue[0]}, ${m.hue[1]}%, ${m.hue[2]}%, ${alpha})`;
+          ctx.beginPath(); ctx.arc(m.x, m.y, m.size, 0, Math.PI*2); ctx.fill();
+          ctx.drawImage(glowSprite, m.x - m.size*3.8, m.y - m.size*3.8, m.size*7.6, m.size*7.6);
+        }
+      }
+      ctx.restore();
+    }
+
+    // update falling positions for far & twinkle stars
+    function updateFalling(delta){
+      for (let s of farStars){
+        s.y += s.vy * delta;
+        s.x += s.vx * delta + Math.sin(performance.now()*0.00012 + s.twPhase) * 0.02;
+        // wrap to top when below screen
+        if (s.y > h + 24) { s.y = -rand(8, 120); s.x = Math.random()*w; }
+        if (s.x < -48) s.x = w + rand(4,48);
+        if (s.x > w + 48) s.x = -rand(4,48);
+      }
+      for (let s of twinkleStars){
+        s.y += s.vy * delta;
+        s.x += s.vx * delta + Math.sin(performance.now()*0.0009 + s.twPhase) * 0.02;
+        if (s.y > h + 24) { s.y = -rand(8,120); s.x = Math.random()*w; }
+      }
+
+      // drift the orbital starbits slowly downward so clusters feel cohesive with the fall
+      for (let b of starbits){
+        b.cy += 0.00002 * delta * (1 + b.orbit*0.002);
+        if (b.cy > h + 200) b.cy = -rand(20,200);
+      }
+    }
+
+    // frame loop
+    let last = performance.now();
+    let rafId = null;
+    let lastSpawn = performance.now();
+    let nextSpawn = rand(CONFIG.shooting.minInterval, CONFIG.shooting.maxInterval);
+
+    function frame(now){
+      const delta = Math.min(40, now - last);
+      last = now;
+
+      layers.bg.ctx.clearRect(0,0,w,h);
+      layers.mid.ctx.clearRect(0,0,w,h);
+      layers.fg.ctx.clearRect(0,0,w,h);
+
+      // compute a small parallax offset from pointer for nice depth
+      const pxParallax = px * 1.0; // scaled below in drawFar
+      const pyParallax = py * 1.0;
+
+      // update falling stars
+      updateFalling(delta);
+
+      drawFar(now, layers.bg.ctx, pxParallax, pyParallax);
+      drawTwinkles(now, layers.mid.ctx);
+      drawStarbits(now, layers.mid.ctx);
+
+      // update & draw shooting
+      updateShooting(delta);
+      drawShooting(layers.fg.ctx);
+
+      // update clusters/drifts
+      updateClusters(delta);
+      drawClusters(layers.fg.ctx);
+
+      // spawn logic: only shooting stars (no explosion bursts)
+      if (!prefersReduced && (now - lastSpawn > nextSpawn)){
+        if (Math.random() < CONFIG.shooting.chancePerInterval) spawnShooting();
+        lastSpawn = now;
+        nextSpawn = rand(CONFIG.shooting.minInterval, CONFIG.shooting.maxInterval);
+      }
+
+      // occasional gentle drift groups
+      if (!prefersReduced && Math.random() < 0.006) spawnClusterDriftsFrom(rand(0,w), rand(0,h), Math.floor(rand(2,5)));
+
+      rafId = requestAnimationFrame(frame);
+    }
+
+    // small parallax pointer handling (keeps nebula elements moving subtly)
+    let tx = 0, ty = 0, px = 0, py = 0;
+    function onPointer(e){
+      const cx = e.touches ? e.touches[0].clientX : e.clientX;
+      const cy = e.touches ? e.touches[0].clientY : e.clientY;
+      tx = (cx / window.innerWidth - 0.5) * 2;
+      ty = (cy / window.innerHeight - 0.5) * 2;
+    }
+    function parallaxLoop(){
+      px += (tx - px) * 0.06;
+      py += (ty - py) * 0.06;
+      if (nebBack) nebBack.style.transform = `translate(${px*8}px, ${py*4}px) scale(1.04)`;
+      if (nebMid)  nebMid.style.transform  = `translate(${px*14}px, ${py*7}px) scale(1.02)`;
+      if (nebFront) nebFront.style.transform = `translate(${px*22}px, ${py*10}px) scale(1.01)`;
+      requestAnimationFrame(parallaxLoop);
+    }
+
+    // clicking spawns a small local sparkle cluster
+    wrapper.addEventListener('pointerdown', (e)=>{
+      if (prefersReduced) return;
+      const rect = wrapper.getBoundingClientRect();
+      const cx = e.clientX - rect.left, cy = e.clientY - rect.top;
+      for (let i=0;i<6;i++){
+        starbits.push({
+          cx: cx + rand(-26,26),
+          cy: cy + rand(-26,26),
+          orbit: rand(8,48), angle: Math.random()*Math.PI*2,
+          speed: rand(0.002,0.01), size: rand(0.9,3.2), wobble: rand(0.05,0.5),
+          hue: CONFIG.shooting.accentPalettes[Math.floor(Math.random()*CONFIG.shooting.accentPalettes.length)],
+          extraPulse: Math.random()*Math.PI*2
+        });
+      }
+      if (starbits.length > (CONFIG.starbits.desktop*3)) starbits.splice(0,18);
+    }, {passive:true});
+
+    // start/stop housekeeping
+    function start(){
+      resizeAll();
+      initParticles();
+      last = performance.now();
+      if (!prefersReduced){
+        rafId = requestAnimationFrame(frame);
+        window.addEventListener('pointermove', onPointer, {passive:true});
+        parallaxLoop();
+      } else {
+        // render a single static frame for reduced motion
+        frame(performance.now());
+      }
+
+      if (!prefersReduced) wrapper._shootTimer = setInterval(()=>{
+        if (Math.random() < CONFIG.shooting.chancePerInterval) spawnShooting();
+      }, 4200);
+    }
+
+    window.addEventListener('resize', ()=>{
+      clearTimeout(wrapper._resizeTO);
+      wrapper._resizeTO = setTimeout(()=> resizeAll(), 140);
+    });
+
+    document.addEventListener('visibilitychange', ()=>{
+      if (document.hidden){
+        if (rafId) cancelAnimationFrame(rafId); rafId = null;
+      } else {
+        if (!prefersReduced && !rafId) { last = performance.now(); rafId = requestAnimationFrame(frame); }
+      }
+    });
+
+    window.addEventListener('beforeunload', ()=>{
+      if (rafId) cancelAnimationFrame(rafId);
+      if (wrapper._shootTimer) clearInterval(wrapper._shootTimer);
+      window.removeEventListener('pointermove', onPointer);
+    });
+
+    function createCanvas(cls){
+      const c = document.createElement('canvas');
+      c.className = cls;
+      c.style.position = 'absolute';
+      c.style.left = '0';
+      c.style.top = '0';
+      c.style.width = '100%';
+      c.style.height = '100%';
+      c.style.pointerEvents = 'none';
+      c.style.background = 'transparent';
+      c.setAttribute('aria-hidden','true');
+      const ctx = c.getContext('2d', { alpha: true });
+      return { canvas: c, ctx };
+    }
+
+    function resizeCanvas(layer,width,height,dpr){
+      const canvas = layer.canvas;
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      layer.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    // kick things off
+    start();
   }
-
-  // Expose a mount helper if someone wants a programmatic instance for multiple wrappers
-  // (The overlay always uses fixed canvases appended to body so stars "go with the screen".)
-
 })();
