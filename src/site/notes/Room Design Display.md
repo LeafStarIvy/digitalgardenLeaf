@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/room-design-display/","noteIcon":"","created":"2025-05-18T15:20:01.078+02:00","updated":"2025-08-17T12:34:55.572+02:00"}
+{"dg-publish":true,"permalink":"/room-design-display/","noteIcon":"","created":"2025-05-18T15:20:01.078+02:00","updated":"2025-08-17T13:32:09.340+02:00"}
 ---
 
 
@@ -11,7 +11,8 @@
 
 Test:
 
-![[444lOp3UafvCs4ZU.mp4]]
+
+https://www.youtube.com/watch?v=Z91LpBQFhIY&t=12s
 
 
 
