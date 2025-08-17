@@ -1,401 +1,408 @@
 /*
- * SUPER MARIO GALAXY INSPIRED DIGITAL GARDEN
- * Deep space theme with stellar dynamics, orbital mechanics,
- * and immersive cosmic interactions
+ * COSMIC DIGITAL GARDEN - DEEP SPACE THEME
+ * Inspired by Super Mario Galaxy and deep space aesthetics
+ * Enhanced with stellar navigation, cosmic particles, and galaxy-grade visuals
  */
 
-// ===================================================================
-// 1. GALAXY COLOR SYSTEM - Deep Space Mario Galaxy Inspired
-// ===================================================================
+// ===== 1. CORE COSMIC COLOR PALETTE =====
+:root {
+  /* Deep Space Foundation */
+  --void-black: #000000;
+  --space-deepest: #0A0A15;
+  --space-deep: #0F0F23;
+  --space-mid: #151530;
+  --space-light: #1A1A3D;
+  --space-lighter: #20204A;
+  
+  /* Stellar Blues - Primary Palette */
+  --stellar-midnight: #1B2951;
+  --stellar-deep: #243B6B;
+  --stellar-medium: #2E4D85;
+  --stellar-bright: #3B5F9F;
+  --stellar-light: #4A71B9;
+  --stellar-lightest: #5983D3;
+  
+  /* Galaxy Accent Colors */
+  --galaxy-ice: #8FCDFF;      /* Light stellar blue */
+  --galaxy-crystal: #B4E1FF;  /* Crystalline blue */
+  --galaxy-powder: #D4F1FF;   /* Powder blue */
+  --galaxy-whisper: #E8F7FF;  /* Whisper blue */
+  
+  /* Cosmic Highlights */
+  --cosmic-gold: #FFD700;      /* Star gold */
+  --cosmic-amber: #FFAB40;     /* Warm amber */
+  --cosmic-pearl: #F0F4FF;     /* Pearl white */
+  --cosmic-silver: #C5D3E8;    /* Silver blue */
+  
+  /* Nebula Accents (Used sparingly) */
+  --nebula-violet: #6366F1;    /* Subtle violet */
+  --nebula-indigo: #4F46E5;    /* Deep indigo */
+  --nebula-lavender: #8B85FF;  /* Light lavender */
+  
+  /* Status Colors (Cosmic themed) */
+  --status-success: #10B981;   /* Emerald green */
+  --status-warning: #F59E0B;   /* Cosmic amber */
+  --status-error: #EF4444;     /* Solar red */
+  --status-info: var(--galaxy-ice);
+  
+  /* Opacity Levels */
+  --alpha-subtle: 0.03;
+  --alpha-faint: 0.06;
+  --alpha-light: 0.1;
+  --alpha-medium: 0.15;
+  --alpha-strong: 0.25;
+  --alpha-bold: 0.4;
+  
+  /* Gradient Definitions */
+  --gradient-space: linear-gradient(135deg, var(--void-black) 0%, var(--space-deep) 35%, var(--space-mid) 100%);
+  --gradient-stellar: linear-gradient(135deg, var(--stellar-deep) 0%, var(--stellar-medium) 50%, var(--stellar-bright) 100%);
+  --gradient-galaxy: linear-gradient(90deg, var(--galaxy-ice) 0%, var(--stellar-lightest) 50%, var(--galaxy-crystal) 100%);
+  --gradient-cosmic-text: linear-gradient(135deg, var(--galaxy-ice) 0%, var(--cosmic-silver) 100%);
+  --gradient-stellar-glow: radial-gradient(circle, rgba(143, 205, 255, 0.2) 0%, transparent 70%);
+  
+  /* Surface Colors */
+  --surface-primary: rgba(15, 15, 35, 0.95);
+  --surface-secondary: rgba(21, 21, 48, 0.9);
+  --surface-tertiary: rgba(27, 41, 81, 0.85);
+  --surface-overlay: rgba(0, 0, 0, 0.6);
+  
+  /* Glass Effects */
+  --glass-primary: rgba(27, 41, 81, 0.2);
+  --glass-secondary: rgba(36, 59, 107, 0.15);
+  --glass-highlight: rgba(143, 205, 255, 0.1);
+  --glass-border: rgba(143, 205, 255, 0.2);
+  
+  /* Typography System */
+  --font-family-primary: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-family-heading: 'Space Grotesk', 'Inter', sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  
+  --text-primary: var(--galaxy-ice);
+  --text-secondary: var(--cosmic-silver);
+  --text-tertiary: var(--stellar-lightest);
+  --text-muted: var(--stellar-bright);
+  --text-accent: var(--cosmic-gold);
+  --text-link: var(--galaxy-crystal);
+  --text-link-hover: var(--cosmic-gold);
+  
+  /* Spacing & Layout */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+  
+  /* Shadows & Effects */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 24px rgba(143, 205, 255, 0.3);
+  --shadow-stellar: 0 0 40px rgba(143, 205, 255, 0.2);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --transition-bounce: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+// ===== 2. GLOBAL BASE STYLES =====
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
 
 body {
-  /* Core Galaxy Palette - Deep Space Foundation */
-  --void-black: #000000;           /* Absolute void */
-  --space-black: #0a0a0f;          /* Deep space */
-  --cosmic-navy: #0f1419;          /* Cosmic navy */
-  --stellar-deep: #141922;         /* Deep stellar */
-  --nebula-dark: #1a202c;          /* Dark nebula */
-  --galaxy-core: #1e2832;          /* Galaxy core */
-  --star-field: #243447;           /* Star field */
-  --cosmic-blue: #2d4663;          /* Cosmic blue */
-  --orbital-blue: #385a7a;         /* Orbital blue */
-  --starlight-blue: #4a6fa5;       /* Starlight blue */
-  
-  /* Mario Galaxy Blues - Signature celestial tones */
-  --galaxy-azure: #1e40af;         /* Galaxy azure */
-  --stellar-cyan: #0891b2;         /* Stellar cyan */
-  --cosmic-teal: #0d9488;          /* Cosmic teal */
-  --orbit-turquoise: #06b6d4;      /* Orbit turquoise */
-  --planet-aqua: #22d3ee;          /* Planet aqua */
-  --starshine-cyan: #67e8f9;       /* Starshine cyan */
-  --crystal-ice: #a5f3fc;          /* Crystal ice */
-  --moonbeam-white: #cffafe;       /* Moonbeam white */
-  
-  /* Complementary Galaxy Accents */
-  --supernova-purple: #6366f1;     /* Supernova purple */
-  --nebula-violet: #8b5cf6;        /* Nebula violet */
-  --cosmic-magenta: #a855f7;       /* Cosmic magenta */
-  --pulsar-pink: #d946ef;          /* Pulsar pink */
-  --aurora-green: #10b981;         /* Aurora green */
-  --comet-emerald: #059669;        /* Comet emerald */
-  --solar-gold: #f59e0b;           /* Solar gold */
-  --star-amber: #d97706;           /* Star amber */
-  --mars-red: #dc2626;             /* Mars red */
-  --jupiter-orange: #ea580c;       /* Jupiter orange */
-  
-  /* Advanced Gradient Systems */
-  --gradient-galaxy-horizon: linear-gradient(135deg, var(--void-black) 0%, var(--cosmic-navy) 25%, var(--stellar-deep) 50%, var(--galaxy-core) 100%);
-  --gradient-stellar-sweep: linear-gradient(90deg, var(--galaxy-azure) 0%, var(--stellar-cyan) 33%, var(--cosmic-teal) 66%, var(--orbit-turquoise) 100%);
-  --gradient-cosmic-aurora: linear-gradient(135deg, var(--supernova-purple) 0%, var(--nebula-violet) 25%, var(--stellar-cyan) 50%, var(--planet-aqua) 75%, var(--aurora-green) 100%);
-  --gradient-orbital-ring: conic-gradient(from 0deg, var(--galaxy-azure), var(--stellar-cyan), var(--cosmic-teal), var(--orbit-turquoise), var(--galaxy-azure));
-  --gradient-nebula-cloud: radial-gradient(circle at center, var(--supernova-purple) 0%, var(--nebula-violet) 30%, var(--cosmic-navy) 70%, var(--void-black) 100%);
-  --gradient-starfield-depth: linear-gradient(180deg, var(--space-black) 0%, var(--stellar-deep) 40%, var(--galaxy-core) 80%, var(--star-field) 100%);
-  
-  /* Interactive State Gradients */
-  --gradient-hover-glow: radial-gradient(circle at center, var(--stellar-cyan) 0%, transparent 70%);
-  --gradient-active-pulse: radial-gradient(circle at center, var(--supernova-purple) 0%, var(--nebula-violet) 50%, transparent 100%);
-  --gradient-focus-orbit: linear-gradient(45deg, var(--cosmic-teal), var(--orbit-turquoise), var(--stellar-cyan), var(--cosmic-teal));
-  
-  /* Background Layers */
-  --bg-primary: var(--space-black);
-  --bg-secondary: var(--cosmic-navy);
-  --bg-tertiary: var(--stellar-deep);
-  --bg-surface: var(--nebula-dark);
-  --bg-elevated: var(--galaxy-core);
-  
-  /* Glass Morphism - Enhanced Cosmic Glass */
-  --glass-cosmic: rgba(30, 64, 175, 0.08);
-  --glass-stellar: rgba(8, 145, 178, 0.12);
-  --glass-nebula: rgba(99, 102, 241, 0.1);
-  --glass-aurora: rgba(16, 185, 129, 0.08);
-  --glass-void: rgba(0, 0, 0, 0.4);
-  --glass-deep: rgba(10, 10, 15, 0.6);
-  --glass-surface: rgba(26, 32, 44, 0.3);
-  
-  /* Advanced Blur Effects */
-  --blur-soft: blur(8px);
-  --blur-medium: blur(16px);
-  --blur-strong: blur(24px);
-  --blur-cosmic: blur(32px);
-  
-  /* Typography Enhancements */
-  --font-family-galaxy: 'Space Grotesk', 'Orbitron', 'Exo 2', sans-serif;
-  --font-family-stellar: 'Inter', 'SF Pro Display', system-ui, sans-serif;
-  --font-family-cosmic: 'JetBrains Mono', 'Fira Code', monospace;
-  
-  /* Text Colors - Galaxy Inspired */
-  --text-stellar: var(--moonbeam-white);
-  --text-cosmic: var(--starshine-cyan);
-  --text-nebula: var(--crystal-ice);
-  --text-aurora: var(--planet-aqua);
-  --text-galaxy: var(--orbit-turquoise);
-  --text-dim: var(--starlight-blue);
-  --text-muted: var(--cosmic-blue);
-  --text-accent: var(--supernova-purple);
-  --text-highlight: var(--solar-gold);
-  --text-success: var(--aurora-green);
-  --text-warning: var(--star-amber);
-  --text-danger: var(--mars-red);
-  
-  /* Interactive Elements */
-  --link-primary: var(--stellar-cyan);
-  --link-hover: var(--planet-aqua);
-  --link-active: var(--starshine-cyan);
-  --link-visited: var(--cosmic-teal);
-  
-  /* Enhanced Shadow System */
-  --shadow-cosmic: 0 4px 20px rgba(0, 0, 0, 0.4);
-  --shadow-stellar: 0 8px 40px rgba(30, 64, 175, 0.3);
-  --shadow-nebula: 0 12px 60px rgba(99, 102, 241, 0.25);
-  --shadow-void: 0 20px 80px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 0 20px var(--stellar-cyan);
-  --shadow-pulse: 0 0 40px var(--supernova-purple);
-  
-  /* Orbital Animation Variables */
-  --orbit-speed-fast: 20s;
-  --orbit-speed-medium: 40s;
-  --orbit-speed-slow: 60s;
-  --pulse-speed: 3s;
-  --glow-speed: 4s;
-  --float-speed: 6s;
-  
-  /* Galaxy Specific Measurements */
-  --stellar-radius: 12px;
-  --orbital-radius: 24px;
-  --cosmic-radius: 32px;
-  --nebula-radius: 48px;
-  
-  /* Z-Index Layers */
-  --z-background: 0;
-  --z-starfield: 1;
-  --z-nebula: 2;
-  --z-content: 10;
-  --z-navigation: 100;
-  --z-overlay: 1000;
-  --z-modal: 9999;
-  
-  /* Setup */
-  font-family: var(--font-family-stellar);
-  background: var(--gradient-starfield-depth);
-  color: var(--text-stellar);
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--gradient-space);
+  min-height: 100vh;
+  position: relative;
   overflow-x: hidden;
-  position: relative;
   
-  /* Enhanced scrollbar for galaxy theme */
-  scrollbar-width: thin;
-  scrollbar-color: var(--stellar-cyan) var(--cosmic-navy);
-  
-  ::selection {
-    background: var(--glass-stellar);
-    color: var(--text-stellar);
-  }
-}
-
-// ===================================================================
-// 2. COSMIC BACKGROUND SYSTEM
-// ===================================================================
-
-/* Enhanced starfield background */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 20% 80%, var(--supernova-purple) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, var(--stellar-cyan) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, var(--cosmic-teal) 0%, transparent 50%),
-    var(--gradient-galaxy-horizon);
-  z-index: var(--z-background);
-  pointer-events: none;
-  animation: cosmic-drift 120s ease-in-out infinite alternate;
-}
-
-/* Animated nebula overlay */
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 70% 30%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
-    radial-gradient(circle at 30% 70%, rgba(8, 145, 178, 0.08) 0%, transparent 40%);
-  z-index: var(--z-nebula);
-  pointer-events: none;
-  animation: nebula-flow 80s linear infinite;
-}
-
-@keyframes cosmic-drift {
-  0% { transform: translateY(0) scale(1); opacity: 0.8; }
-  50% { transform: translateY(-20px) scale(1.02); opacity: 1; }
-  100% { transform: translateY(0) scale(1); opacity: 0.8; }
-}
-
-@keyframes nebula-flow {
-  0% { transform: rotate(0deg) scale(1); }
-  50% { transform: rotate(180deg) scale(1.1); }
-  100% { transform: rotate(360deg) scale(1); }
-}
-
-// ===================================================================
-// 3. ENHANCED NAVIGATION SYSTEM
-// ===================================================================
-
-.navbar {
-  background: var(--glass-void);
-  backdrop-filter: var(--blur-medium);
-  border-bottom: 1px solid var(--glass-stellar);
-  position: relative;
-  z-index: var(--z-navigation);
-  
-  /* Orbital glow effect */
+  /* Cosmic background pattern */
   &::before {
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--gradient-stellar-sweep);
-    animation: orbital-sweep 8s linear infinite;
-  }
-  
-  .nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  
-  .nav-logo {
-    font-family: var(--font-family-galaxy);
-    font-size: 1.5rem;
-    font-weight: 700;
-    background: var(--gradient-stellar-sweep);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    
-    &:hover {
-      transform: scale(1.05);
-      filter: drop-shadow(var(--shadow-glow));
-    }
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    
-    a {
-      color: var(--text-cosmic);
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      border-radius: var(--stellar-radius);
-      transition: all 0.3s ease;
-      position: relative;
-      
-      &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: var(--gradient-hover-glow);
-        border-radius: var(--stellar-radius);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-      
-      &:hover {
-        color: var(--text-stellar);
-        transform: translateY(-2px);
-        
-        &::before {
-          opacity: 1;
-        }
-      }
-    }
-  }
-}
-
-@keyframes orbital-sweep {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100vw); }
-}
-
-// ===================================================================
-// 4. SIDEBAR ENHANCEMENTS
-// ===================================================================
-
-.filetree-sidebar {
-  background: var(--glass-deep);
-  backdrop-filter: var(--blur-strong);
-  border-right: 1px solid var(--glass-stellar);
-  position: relative;
-  
-  /* Stellar particle effect */
-  &::before {
-    content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-      radial-gradient(circle at 20% 20%, var(--stellar-cyan) 1px, transparent 1px),
-      radial-gradient(circle at 80% 80%, var(--cosmic-teal) 1px, transparent 1px);
-    background-size: 60px 60px, 80px 80px;
-    opacity: 0.1;
-    animation: stellar-drift 30s linear infinite;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(143, 205, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(143, 205, 255, 0.05) 0%, transparent 50%);
     pointer-events: none;
+    z-index: -1;
   }
   
-  h1 {
-    font-family: var(--font-family-galaxy);
-    background: var(--gradient-cosmic-aurora);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-align: center;
-    padding: 2rem 1rem 1rem;
-    margin: 0;
-    font-size: 1.8rem;
-    font-weight: 800;
-    letter-spacing: 0.02em;
+  /* Stellar dust overlay */
+  &::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238FCDFF' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+::selection {
+  background-color: rgba(143, 205, 255, 0.3);
+  color: var(--galaxy-whisper);
+}
+
+// ===== 3. TYPOGRAPHY =====
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: var(--space-lg);
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-size: 2.5rem;
+  background: var(--gradient-cosmic-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(143, 205, 255, 0.5);
+  margin-bottom: var(--space-xl);
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--cosmic-gold);
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: var(--galaxy-crystal);
+}
+
+h4 {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+}
+
+h5, h6 {
+  font-size: 1rem;
+  color: var(--text-tertiary);
+}
+
+p {
+  margin-bottom: var(--space-lg);
+  color: var(--text-secondary);
+}
+
+// ===== 4. LINKS =====
+a {
+  color: var(--text-link);
+  text-decoration: none;
+  position: relative;
+  transition: var(--transition-normal);
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, var(--text-link), var(--cosmic-gold));
+    transition: var(--transition-normal);
+  }
+  
+  &:hover {
+    color: var(--text-link-hover);
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
     
     &::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 2px;
-      background: var(--gradient-stellar-sweep);
-      margin: 1rem auto;
-      border-radius: 1px;
+      width: 100%;
     }
   }
   
-  .file-tree {
-    padding: 1rem;
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+// ===== 5. NAVIGATION BAR =====
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: rgba(10, 10, 21, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(143, 205, 255, 0.2);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-lg);
+  box-shadow: var(--shadow-md);
+  
+  .nav-brand {
+    font-family: var(--font-family-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--cosmic-gold);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
     
-    .folder,
-    .file {
-      padding: 0.5rem 1rem;
-      margin: 0.25rem 0;
-      border-radius: var(--stellar-radius);
-      transition: all 0.3s ease;
-      cursor: pointer;
-      position: relative;
+    &:hover {
+      text-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+    }
+  }
+  
+  .nav-links {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    
+    a {
+      color: var(--text-secondary);
+      font-weight: 500;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-md);
+      transition: var(--transition-normal);
       
       &:hover {
-        background: var(--glass-stellar);
-        transform: translateX(4px);
-        box-shadow: var(--shadow-cosmic);
-        
-        &::before {
-          content: '';
-          position: absolute;
-          left: -4px;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 3px;
-          height: 60%;
-          background: var(--gradient-stellar-sweep);
-          border-radius: 2px;
-        }
-      }
-      
-      &.active {
-        background: var(--glass-nebula);
-        color: var(--text-stellar);
-        box-shadow: var(--shadow-stellar);
+        color: var(--galaxy-crystal);
+        background: var(--glass-highlight);
+        box-shadow: var(--shadow-glow);
       }
     }
   }
 }
 
-.sidebar {
-  background: var(--glass-deep);
-  backdrop-filter: var(--blur-strong);
-  border-left: 1px solid var(--glass-stellar);
+// ===== 6. SIDEBAR (File Tree) =====
+.filetree-sidebar {
+  position: fixed;
+  left: 0;
+  top: 60px;
+  width: 280px;
+  height: calc(100vh - 60px);
+  background: var(--surface-primary);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid var(--glass-border);
+  overflow-y: auto;
+  z-index: 999;
+  padding: var(--space-lg);
   
-  .graph,
-  .backlinks,
-  .toc {
-    background: var(--glass-surface);
-    border-radius: var(--orbital-radius);
-    margin: 1rem;
-    padding: 1.5rem;
-    border: 1px solid var(--glass-stellar);
+  /* Custom scrollbar */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--stellar-medium);
+    border-radius: var(--radius-full);
+    
+    &:hover {
+      background: var(--stellar-bright);
+    }
+  }
+  
+  .sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--cosmic-gold);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--glass-border);
+  }
+  
+  .file-tree {
+    .folder, .file {
+      display: block;
+      padding: var(--space-sm) var(--space-md);
+      margin-bottom: var(--space-xs);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      transition: var(--transition-normal);
+      position: relative;
+      
+      &:hover {
+        background: var(--glass-highlight);
+        color: var(--galaxy-crystal);
+        transform: translateX(4px);
+      }
+      
+      &.active {
+        background: var(--glass-secondary);
+        color: var(--cosmic-gold);
+        box-shadow: var(--shadow-glow);
+        
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 3px;
+          background: var(--cosmic-gold);
+          border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        }
+      }
+    }
+    
+    .folder-icon, .file-icon {
+      margin-right: var(--space-sm);
+      opacity: 0.7;
+    }
+  }
+}
+
+// ===== 7. MAIN CONTENT =====
+.content {
+  margin-left: 280px;
+  margin-top: 60px;
+  padding: var(--space-2xl);
+  max-width: 800px;
+  min-height: calc(100vh - 60px);
+  
+  /* Content cards for better organization */
+  .note-content {
+    background: var(--glass-primary);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2xl);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-lg);
+    margin-bottom: var(--space-2xl);
     position: relative;
+    overflow: hidden;
     
     &::before {
       content: '';
@@ -404,324 +411,216 @@ body::after {
       left: 0;
       right: 0;
       height: 1px;
-      background: var(--gradient-stellar-sweep);
-      border-radius: var(--orbital-radius) var(--orbital-radius) 0 0;
+      background: linear-gradient(90deg, transparent, var(--galaxy-ice), transparent);
+      opacity: 0.5;
     }
+  }
+}
+
+// ===== 8. RIGHT SIDEBAR =====
+.sidebar {
+  position: fixed;
+  right: 0;
+  top: 60px;
+  width: 300px;
+  height: calc(100vh - 60px);
+  background: var(--surface-primary);
+  backdrop-filter: blur(20px);
+  border-left: 1px solid var(--glass-border);
+  padding: var(--space-lg);
+  overflow-y: auto;
+  z-index: 998;
+  
+  .sidebar-section {
+    margin-bottom: var(--space-2xl);
     
-    h3 {
-      font-family: var(--font-family-galaxy);
-      color: var(--text-galaxy);
-      margin-bottom: 1rem;
-      font-size: 1.1rem;
+    .section-title {
+      font-size: 1rem;
       font-weight: 600;
+      color: var(--cosmic-gold);
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--glass-border);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  }
+  
+  /* Table of Contents */
+  .toc {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+      li {
+        margin-bottom: var(--space-sm);
+        
+        a {
+          color: var(--text-secondary);
+          padding: var(--space-xs) var(--space-sm);
+          display: block;
+          border-radius: var(--radius-sm);
+          transition: var(--transition-normal);
+          font-size: 0.9rem;
+          
+          &:hover {
+            background: var(--glass-highlight);
+            color: var(--galaxy-crystal);
+            padding-left: var(--space-md);
+          }
+          
+          &.active {
+            color: var(--cosmic-gold);
+            background: var(--glass-secondary);
+          }
+        }
+      }
+    }
+  }
+  
+  /* Backlinks */
+  .backlinks {
+    .backlink-item {
+      padding: var(--space-md);
+      background: var(--glass-secondary);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-md);
+      border: 1px solid var(--glass-border);
+      transition: var(--transition-normal);
+      
+      &:hover {
+        background: var(--glass-highlight);
+        box-shadow: var(--shadow-glow);
+      }
+      
+      .backlink-title {
+        font-weight: 600;
+        color: var(--galaxy-crystal);
+        margin-bottom: var(--space-xs);
+      }
+      
+      .backlink-context {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        opacity: 0.8;
+      }
     }
   }
 }
 
-@keyframes stellar-drift {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-120px); }
-}
-
-// ===================================================================
-// 5. CONTENT AREA TRANSFORMATIONS
-// ===================================================================
-
-.content {
-  position: relative;
-  z-index: var(--z-content);
-  padding: 2rem;
-  max-width: 900px;
-  margin: 0 auto;
-  
-  /* Cosmic content glow */
-  &::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center, var(--glass-stellar) 0%, transparent 60%);
-    z-index: -1;
-    animation: content-glow var(--glow-speed) ease-in-out infinite alternate;
-  }
-}
-
-@keyframes content-glow {
-  0% { opacity: 0.3; transform: scale(1); }
-  100% { opacity: 0.1; transform: scale(1.1); }
-}
-
-// ===================================================================
-// 6. ENHANCED TYPOGRAPHY
-// ===================================================================
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-family-galaxy);
-  font-weight: 700;
-  margin: 2rem 0 1rem;
-  line-height: 1.2;
-  position: relative;
-}
-
-h1 {
-  font-size: 3rem;
-  background: var(--gradient-cosmic-aurora);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 0 30px var(--supernova-purple);
-  
-  &::after {
-    content: '';
-    display: block;
-    width: 100px;
-    height: 3px;
-    background: var(--gradient-stellar-sweep);
-    margin: 1rem 0;
-    border-radius: 2px;
-    animation: stellar-pulse var(--pulse-speed) ease-in-out infinite;
-  }
-}
-
-h2 {
-  font-size: 2.2rem;
-  color: var(--text-galaxy);
-  text-shadow: 0 0 20px var(--stellar-cyan);
-}
-
-h3 {
-  font-size: 1.8rem;
-  color: var(--text-cosmic);
-}
-
-@keyframes stellar-pulse {
-  0%, 100% { opacity: 1; transform: scaleX(1); }
-  50% { opacity: 0.7; transform: scaleX(1.1); }
-}
-
-// ===================================================================
-// 7. ENHANCED LINK SYSTEM
-// ===================================================================
-
-a {
-  color: var(--link-primary);
-  text-decoration: none;
-  position: relative;
-  transition: all 0.3s ease;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--gradient-stellar-sweep);
-    transition: width 0.3s ease;
-    border-radius: 1px;
-  }
-  
-  &:hover {
-    color: var(--link-hover);
-    text-shadow: 0 0 10px var(--link-hover);
-    transform: translateY(-1px);
-    
-    &::before {
-      width: 100%;
-    }
-  }
-  
-  &:active {
-    color: var(--link-active);
-    transform: translateY(0);
-  }
-  
-  &.internal-link {
-    background: linear-gradient(90deg, transparent, var(--glass-stellar), transparent);
-    padding: 0.1em 0.3em;
-    border-radius: 4px;
-    border: 1px solid var(--glass-stellar);
-    
-    &:hover {
-      background: var(--glass-nebula);
-      box-shadow: var(--shadow-cosmic);
-    }
-  }
-}
-
-// ===================================================================
-// 8. ADVANCED CALLOUT SYSTEM
-// ===================================================================
-
-.callout {
-  background: var(--glass-surface);
-  backdrop-filter: var(--blur-medium);
-  border: 1px solid var(--glass-stellar);
-  border-radius: var(--orbital-radius);
-  padding: 1.5rem;
-  margin: 2rem 0;
-  position: relative;
+// ===== 9. GRAPH VIEW =====
+.graph-container {
+  background: var(--surface-primary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
   overflow: hidden;
+  height: 300px;
+  position: relative;
   
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--gradient-stellar-sweep);
-    border-radius: 2px;
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
+  #graph-canvas {
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, var(--glass-stellar) 0%, transparent 70%);
-    animation: callout-shimmer 6s ease-in-out infinite;
-    pointer-events: none;
+    background: radial-gradient(circle at center, var(--space-deep) 0%, var(--void-black) 100%);
   }
   
-  &.note::before { background: var(--stellar-cyan); }
-  &.warning::before { background: var(--star-amber); }
-  &.important::before { background: var(--mars-red); }
-  &.tip::before { background: var(--aurora-green); }
-  
-  .callout-title {
-    font-family: var(--font-family-galaxy);
-    font-weight: 600;
-    color: var(--text-galaxy);
-    margin-bottom: 1rem;
+  /* Graph controls */
+  .graph-controls {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-sm);
+    
+    button {
+      background: var(--glass-primary);
+      border: 1px solid var(--glass-border);
+      color: var(--text-secondary);
+      padding: var(--space-sm);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition-normal);
+      
+      &:hover {
+        background: var(--glass-highlight);
+        color: var(--galaxy-crystal);
+      }
+    }
   }
 }
 
-@keyframes callout-shimmer {
-  0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.1; }
-  50% { transform: rotate(180deg) scale(1.2); opacity: 0.3; }
-}
-
-// ===================================================================
-// 9. ENHANCED FLASHCARD SYSTEM
-// ===================================================================
-
-.flashcard-grid {
-  display: grid;
-  gap: 1.5rem;
-  margin: 3rem 0;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-.flashcard {
-  background: var(--glass-surface);
-  backdrop-filter: var(--blur-medium);
-  border: 1px solid var(--glass-stellar);
-  border-radius: var(--orbital-radius);
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+// ===== 10. SEARCH =====
+.search-container {
   position: relative;
   
-  &::before {
-    content: '';
+  .search-input {
+    width: 100%;
+    padding: var(--space-md) var(--space-lg);
+    background: var(--glass-primary);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: var(--transition-normal);
+    
+    &:focus {
+      outline: none;
+      border-color: var(--cosmic-gold);
+      box-shadow: var(--shadow-glow);
+    }
+    
+    &::placeholder {
+      color: var(--text-muted);
+    }
+  }
+  
+  .search-results {
     position: absolute;
-    inset: 0;
-    background: var(--gradient-hover-glow);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-  }
-  
-  &:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: var(--shadow-stellar);
-    border-color: var(--stellar-cyan);
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--surface-primary);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    margin-top: var(--space-sm);
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1001;
+    box-shadow: var(--shadow-lg);
     
-    &::before {
-      opacity: 1;
-    }
-  }
-  
-  .flashcard-image {
-    background: var(--glass-void);
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 200px;
-    position: relative;
-    
-    &::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, transparent 30%, var(--glass-void) 100%);
-    }
-    
-    img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      border-radius: var(--stellar-radius);
-      transition: transform 0.4s ease;
-      position: relative;
-      z-index: 1;
-    }
-  }
-  
-  &:hover .flashcard-image img {
-    transform: scale(1.1) rotate(2deg);
-    filter: drop-shadow(0 8px 25px rgba(8, 145, 178, 0.4));
-  }
-  
-  .flashcard-content {
-    padding: 1.5rem;
-    
-    h3 {
-      margin: 0 0 1rem;
-      font-family: var(--font-family-galaxy);
-      color: var(--text-galaxy);
-      font-size: 1.3rem;
-    }
-    
-    p {
-      margin: 0;
-      color: var(--text-cosmic);
-      line-height: 1.6;
-    }
-  }
-  
-  a {
-    display: block;
-    color: inherit;
-    text-decoration: none;
-    height: 100%;
-    
-    &::before {
-      display: none;
+    .search-result {
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--glass-border);
+      cursor: pointer;
+      transition: var(--transition-normal);
+      
+      &:hover {
+        background: var(--glass-highlight);
+      }
+      
+      .result-title {
+        font-weight: 600;
+        color: var(--galaxy-crystal);
+        margin-bottom: var(--space-xs);
+      }
+      
+      .result-excerpt {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        line-height: 1.4;
+      }
     }
   }
 }
 
-// ===================================================================
-// 10. CODE BLOCK ENHANCEMENTS
-// ===================================================================
-
-pre {
-  background: var(--glass-void);
-  backdrop-filter: var(--blur-medium);
-  border: 1px solid var(--glass-stellar);
-  border-radius: var(--orbital-radius);
-  padding: 2rem;
-  margin: 2rem 0;
-  overflow-x: auto;
+// ===== 11. CALLOUTS =====
+.callout {
+  background: var(--glass-secondary);
+  border-left: 4px solid var(--cosmic-gold);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  margin: var(--space-lg) 0;
+  border: 1px solid var(--glass-border);
   position: relative;
   
   &::before {
@@ -730,728 +629,694 @@ pre {
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: var(--gradient-stellar-sweep);
-    border-radius: var(--orbital-radius) var(--orbital-radius) 0 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cosmic-gold), transparent);
+    opacity: 0.3;
+  }
+  
+  .callout-title {
+    font-weight: 600;
+    color: var(--cosmic-gold);
+    margin-bottom: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+  
+  .callout-content {
+    color: var(--text-secondary);
+  }
+  
+  /* Callout variants */
+  &.note {
+    border-left-color: var(--status-info);
+    
+    .callout-title {
+      color: var(--status-info);
+    }
+  }
+  
+  &.warning {
+    border-left-color: var(--status-warning);
+    
+    .callout-title {
+      color: var(--status-warning);
+    }
+  }
+  
+  &.error {
+    border-left-color: var(--status-error);
+    
+    .callout-title {
+      color: var(--status-error);
+    }
+  }
+  
+  &.success {
+    border-left-color: var(--status-success);
+    
+    .callout-title {
+      color: var(--status-success);
+    }
+  }
+}
+
+// ===== 12. CODE BLOCKS =====
+pre, code {
+  font-family: var(--font-family-mono);
+  border-radius: var(--radius-sm);
+}
+
+pre {
+  background: var(--space-deepest);
+  border: 1px solid var(--stellar-deep);
+  padding: var(--space-lg);
+  overflow-x: auto;
+  margin: var(--space-lg) 0;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--stellar-bright), transparent);
+    opacity: 0.5;
   }
   
   code {
-    font-family: var(--font-family-cosmic);
-    color: var(--text-nebula);
     background: transparent;
-    font-size: 0.9rem;
-    line-height: 1.6;
+    padding: 0;
+    color: var(--galaxy-crystal);
   }
 }
 
 code {
-  font-family: var(--font-family-cosmic);
-  background: var(--glass-stellar);
-  color: var(--text-galaxy);
-  padding: 0.2em 0.5em;
-  border-radius: var(--stellar-radius);
+  background: var(--space-deep);
+  padding: var(--space-xs) var(--space-sm);
+  color: var(--cosmic-gold);
   font-size: 0.9em;
-  border: 1px solid var(--glass-stellar);
 }
 
-// ===================================================================
-// 11. TABLE ENHANCEMENTS
-// ===================================================================
-
+// ===== 13. TABLES =====
 table {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  background: var(--glass-surface);
-  backdrop-filter: var(--blur-medium);
-  border-radius: var(--orbital-radius);
+  border-collapse: collapse;
+  margin: var(--space-lg) 0;
+  background: var(--glass-primary);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  margin: 2rem 0;
-  border: 1px solid var(--glass-stellar);
-  box-shadow: var(--shadow-cosmic);
+  border: 1px solid var(--glass-border);
   
   thead {
-    background: var(--glass-nebula);
+    background: var(--stellar-deep);
     
     th {
-      padding: 1.5rem 1rem;
-      font-family: var(--font-family-galaxy);
-      font-weight: 600;
-      color: var(--text-galaxy);
+      padding: var(--space-lg);
       text-align: left;
-      border-bottom: 2px solid var(--stellar-cyan);
-      
-      &:first-child {
-        border-top-left-radius: var(--orbital-radius);
-      }
-      
-      &:last-child {
-        border-top-right-radius: var(--orbital-radius);
-      }
+      font-weight: 600;
+      color: var(--cosmic-gold);
+      border-bottom: 2px solid var(--glass-border);
     }
   }
   
   tbody {
     tr {
-      transition: all 0.3s ease;
-      
-      &:nth-child(even) {
-        background: var(--glass-void);
-      }
+      border-bottom: 1px solid var(--glass-border);
+      transition: var(--transition-normal);
       
       &:hover {
-        background: var(--glass-stellar);
-        transform: scale(1.01);
-        box-shadow: inset 0 0 20px var(--glass-stellar);
+        background: var(--glass-highlight);
+      }
+      
+      &:nth-child(even) {
+        background: rgba(0, 0, 0, 0.1);
       }
     }
     
     td {
-      padding: 1rem;
-      color: var(--text-cosmic);
-      border-bottom: 1px solid var(--glass-stellar);
+      padding: var(--space-md) var(--space-lg);
+      color: var(--text-secondary);
     }
   }
 }
 
-// ===================================================================
-// 12. ENHANCED SCROLLBAR
-// ===================================================================
-
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--glass-void);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--gradient-stellar-sweep);
-  border-radius: 10px;
-  border: 2px solid var(--cosmic-navy);
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: var(--gradient-cosmic-aurora);
-    box-shadow: var(--shadow-glow);
-  }
-}
-
-::-webkit-scrollbar-corner {
-  background: var(--glass-void);
-}
-
-// ===================================================================
-// 13. FOCUS MODE ENHANCEMENTS
-// ===================================================================
-
-.fullscreen-btn {
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
-  background: var(--gradient-stellar-sweep);
-  border: 2px solid var(--stellar-cyan);
-  color: var(--text-stellar);
-  padding: 1rem 1.5rem;
-  border-radius: var(--orbital-radius);
-  font-family: var(--font-family-galaxy);
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: var(--z-modal);
-  box-shadow: var(--shadow-stellar);
-  backdrop-filter: var(--blur-medium);
-  
-  &::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    background: var(--gradient-orbital-ring);
-    border-radius: var(--orbital-radius);
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  
-  &:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: var(--shadow-nebula);
-    
-    &::before {
-      opacity: 1;
-      animation: orbital-rotation 2s linear infinite;
-    }
-  }
-  
-  &:active {
-    transform: translateY(-2px) scale(1.02);
-  }
-}
-
-@keyframes orbital-rotation {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-body.fullscreen-mode {
-  .navbar,
-  .filetree-sidebar,
-  .sidebar {
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-20px);
-  }
-  
-  .fullscreen-btn {
-    background: var(--gradient-cosmic-aurora);
-    border-color: var(--supernova-purple);
-    animation: cosmic-float var(--float-speed) ease-in-out infinite;
-  }
-  
-  .content {
-    max-width: 95vw !important;
-    margin: 0 auto;
-    padding: 4rem 3rem;
-    
-    &::before {
-      opacity: 0.5;
-      transform: scale(1.5);
-    }
-  }
-}
-
-@keyframes cosmic-float {
-  0%, 100% { transform: translateY(-4px) scale(1.05); }
-  50% { transform: translateY(-8px) scale(1.08); }
-}
-
-// ===================================================================
-// 14. PARTICLE SYSTEM ENHANCEMENTS
-// ===================================================================
-
-.particles-js-canvas-el {
-  position: fixed !important;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
-  z-index: var(--z-starfield) !important;
-  opacity: 0.4;
-  mix-blend-mode: screen;
-  filter: blur(0.5px);
-  animation: particle-drift 60s ease-in-out infinite alternate;
-}
-
-@keyframes particle-drift {
-  0% { 
-    opacity: 0.4; 
-    filter: blur(0.5px) hue-rotate(0deg); 
-  }
-  50% { 
-    opacity: 0.6; 
-    filter: blur(1px) hue-rotate(30deg); 
-  }
-  100% { 
-    opacity: 0.4; 
-    filter: blur(0.5px) hue-rotate(0deg); 
-  }
-}
-
-// ===================================================================
-// 15. DATETIME DISPLAY ENHANCEMENTS
-// ===================================================================
-
-.datetime-container {
-  position: fixed;
-  top: 2rem;
-  left: 2rem;
-  background: var(--glass-void);
-  backdrop-filter: var(--blur-medium);
-  border: 1px solid var(--glass-stellar);
-  border-radius: var(--orbital-radius);
-  padding: 1rem 1.5rem;
-  font-family: var(--font-family-cosmic);
-  color: var(--text-cosmic);
-  z-index: var(--z-navigation);
-  transition: all 0.3s ease;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    right: -1px;
-    height: 2px;
-    background: var(--gradient-stellar-sweep);
-    border-radius: var(--orbital-radius) var(--orbital-radius) 0 0;
-    animation: time-pulse var(--pulse-speed) ease-in-out infinite;
-  }
-  
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: var(--shadow-cosmic);
-    border-color: var(--stellar-cyan);
-  }
-  
-  .time {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--text-stellar);
-    text-shadow: 0 0 10px var(--stellar-cyan);
-  }
-  
-  .date {
-    font-size: 0.9rem;
-    opacity: 0.8;
-    margin-top: 0.25rem;
-  }
-}
-
-@keyframes time-pulse {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
-}
-
-// ===================================================================
-// 16. SEARCH SYSTEM ENHANCEMENTS
-// ===================================================================
-
-.search-container {
-  position: relative;
-  
-  .search-button {
-    background: var(--glass-surface);
-    backdrop-filter: var(--blur-medium);
-    border: 1px solid var(--glass-stellar);
-    border-radius: var(--orbital-radius);
-    color: var(--text-cosmic);
-    padding: 0.8rem 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    
-    &:hover {
-      background: var(--glass-stellar);
-      border-color: var(--stellar-cyan);
-      transform: scale(1.02);
-      box-shadow: var(--shadow-cosmic);
-    }
-  }
-  
-  .search-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: var(--blur-strong);
-    z-index: var(--z-modal);
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 20vh;
-    
-    .search-modal {
-      background: var(--glass-surface);
-      backdrop-filter: var(--blur-strong);
-      border: 2px solid var(--stellar-cyan);
-      border-radius: var(--cosmic-radius);
-      width: 90%;
-      max-width: 600px;
-      box-shadow: var(--shadow-void);
-      position: relative;
-      
-      &::before {
-        content: '';
-        position: absolute;
-        inset: -2px;
-        background: var(--gradient-orbital-ring);
-        border-radius: var(--cosmic-radius);
-        z-index: -1;
-        animation: search-glow 3s ease-in-out infinite;
-      }
-      
-      .search-input {
-        width: 100%;
-        padding: 1.5rem 2rem;
-        background: transparent;
-        border: none;
-        font-size: 1.5rem;
-        color: var(--text-stellar);
-        font-family: var(--font-family-stellar);
-        
-        &::placeholder {
-          color: var(--text-muted);
-        }
-        
-        &:focus {
-          outline: none;
-        }
-      }
-      
-      .search-results {
-        max-height: 400px;
-        overflow-y: auto;
-        border-top: 1px solid var(--glass-stellar);
-        
-        .search-result {
-          padding: 1rem 2rem;
-          border-bottom: 1px solid var(--glass-stellar);
-          cursor: pointer;
-          transition: all 0.3s ease;
-          
-          &:hover {
-            background: var(--glass-stellar);
-            transform: translateX(8px);
-          }
-          
-          .result-title {
-            font-weight: 600;
-            color: var(--text-galaxy);
-            margin-bottom: 0.5rem;
-          }
-          
-          .result-excerpt {
-            color: var(--text-cosmic);
-            font-size: 0.9rem;
-            opacity: 0.8;
-          }
-        }
-      }
-    }
-  }
-}
-
-@keyframes search-glow {
-  0%, 100% { opacity: 0.8; }
-  50% { opacity: 1; }
-}
-
-// ===================================================================
-// 17. GRAPH VISUALIZATION ENHANCEMENTS
-// ===================================================================
-
-.graph {
-  position: relative;
-  background: var(--glass-void);
-  border-radius: var(--cosmic-radius);
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: 
-      radial-gradient(circle at 30% 30%, var(--supernova-purple) 0%, transparent 50%),
-      radial-gradient(circle at 70% 70%, var(--stellar-cyan) 0%, transparent 50%);
-    opacity: 0.1;
-    animation: graph-aurora 20s linear infinite;
-  }
-  
-  canvas,
-  svg {
-    border-radius: var(--cosmic-radius);
-  }
-  
-  .graph-controls {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    display: flex;
-    gap: 0.5rem;
-    z-index: 10;
-    
-    button {
-      background: var(--glass-stellar);
-      backdrop-filter: var(--blur-medium);
-      border: 1px solid var(--glass-stellar);
-      border-radius: var(--stellar-radius);
-      color: var(--text-cosmic);
-      padding: 0.5rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      
-      &:hover {
-        background: var(--glass-nebula);
-        transform: scale(1.1);
-      }
-    }
-  }
-}
-
-@keyframes graph-aurora {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-// ===================================================================
-// 18. BLOCKQUOTE ENHANCEMENTS
-// ===================================================================
-
+// ===== 14. BLOCKQUOTES =====
 blockquote {
-  background: var(--glass-surface);
-  backdrop-filter: var(--blur-medium);
-  border-left: 4px solid var(--stellar-cyan);
-  border-radius: 0 var(--orbital-radius) var(--orbital-radius) 0;
-  padding: 2rem;
-  margin: 2rem 0;
-  position: relative;
+  border-left: 3px solid var(--nebula-violet);
+  padding-left: var(--space-lg);
+  margin: var(--space-lg) 0;
   font-style: italic;
-  color: var(--text-cosmic);
+  color: var(--text-muted);
+  position: relative;
   
   &::before {
     content: '"';
-    position: absolute;
-    top: -0.5rem;
-    left: 1rem;
     font-size: 4rem;
-    color: var(--stellar-cyan);
+    color: var(--nebula-violet);
+    position: absolute;
+    left: -10px;
+    top: -20px;
     opacity: 0.3;
     font-family: serif;
   }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--gradient-stellar-sweep);
-    animation: quote-glow var(--glow-speed) ease-in-out infinite alternate;
-  }
-  
-  p:last-child {
-    margin-bottom: 0;
-  }
 }
 
-@keyframes quote-glow {
-  0% { opacity: 0.6; box-shadow: none; }
-  100% { opacity: 1; box-shadow: 0 0 20px var(--stellar-cyan); }
-}
-
-// ===================================================================
-// 19. LIST ENHANCEMENTS
-// ===================================================================
-
+// ===== 15. LISTS =====
 ul, ol {
-  padding-left: 2rem;
-  margin: 1.5rem 0;
+  padding-left: var(--space-lg);
   
   li {
-    margin: 0.75rem 0;
-    position: relative;
-    line-height: 1.7;
+    margin-bottom: var(--space-sm);
+    color: var(--text-secondary);
     
     &::marker {
-      color: var(--stellar-cyan);
+      color: var(--cosmic-gold);
     }
+  }
+}
+
+ul {
+  li {
+    list-style: none;
+    position: relative;
     
-    &:hover {
-      color: var(--text-stellar);
-      
-      &::before {
-        content: '';
-        position: absolute;
-        left: -1.5rem;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 4px;
-        height: 4px;
-        background: var(--stellar-cyan);
-        border-radius: 50%;
-        box-shadow: 0 0 10px var(--stellar-cyan);
-      }
+    &::before {
+      content: '•';
+      color: var(--cosmic-gold);
+      position: absolute;
+      left: -var(--space-lg);
+      font-size: 1.2em;
     }
   }
 }
 
-ul li::marker {
-  content: '◆ ';
-  color: var(--stellar-cyan);
-}
-
-ol li::marker {
-  color: var(--stellar-cyan);
-  font-weight: 600;
-}
-
-// ===================================================================
-// 20. RESPONSIVE DESIGN ENHANCEMENTS
-// ===================================================================
-
-@media (max-width: 1400px) {
-  .content {
-    max-width: 800px;
-    padding: 1.5rem;
-  }
-  
-  .navbar .nav-container {
-    padding: 1rem;
-  }
-  
-  .flashcard-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.25rem;
-  }
-}
-
-@media (max-width: 1000px) {
-  .navbar .nav-links {
-    display: none;
-  }
-  
-  .filetree-sidebar,
+// ===== 16. RESPONSIVE DESIGN =====
+@media (max-width: 1200px) {
   .sidebar {
-    position: fixed;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    z-index: var(--z-navigation);
+    transform: translateX(100%);
+    transition: var(--transition-normal);
     
-    &.mobile-open {
+    &.open {
+      transform: translateX(0);
+    }
+  }
+  
+  .content {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .filetree-sidebar {
+    transform: translateX(-100%);
+    transition: var(--transition-normal);
+    
+    &.open {
       transform: translateX(0);
     }
   }
   
   .content {
     margin-left: 0;
-    margin-right: 0;
+    padding: var(--space-lg);
   }
   
-  .flashcard-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  }
-  
-  .datetime-container {
-    top: 1rem;
-    left: 1rem;
-    padding: 0.75rem 1rem;
+  .navbar {
+    padding: 0 var(--space-md);
     
-    .time {
-      font-size: 1rem;
+    .nav-links {
+      display: none;
     }
   }
   
-  .fullscreen-btn {
-    top: 1rem;
-    right: 1rem;
-    padding: 0.75rem 1rem;
-  }
-}
-
-@media (max-width: 768px) {
-  body {
-    font-size: 0.9rem;
-  }
-  
   h1 {
-    font-size: 2.5rem;
-  }
-  
-  h2 {
     font-size: 2rem;
   }
   
-  h3 {
-    font-size: 1.6rem;
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+// ===== 17. UTILITY CLASSES =====
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--space-sm); }
+.mt-2 { margin-top: var(--space-md); }
+.mt-3 { margin-top: var(--space-lg); }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--space-sm); }
+.mb-2 { margin-bottom: var(--space-md); }
+.mb-3 { margin-bottom: var(--space-lg); }
+
+.opacity-50 { opacity: 0.5; }
+.opacity-75 { opacity: 0.75; }
+
+.cosmic-glow {
+  box-shadow: var(--shadow-stellar);
+  animation: subtle-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes subtle-glow {
+  from {
+    box-shadow: var(--shadow-stellar);
+  }
+  to {
+    box-shadow: 0 0 60px rgba(143, 205, 255, 0.4);
+  }
+}
+
+// ===== 18. CUSTOM SCROLLBAR =====
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--stellar-medium) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--stellar-medium), var(--stellar-bright));
+  border-radius: var(--radius-full);
+  border: 1px solid var(--glass-border);
+  
+  &:hover {
+    background: linear-gradient(180deg, var(--stellar-bright), var(--galaxy-ice));
+    box-shadow: var(--shadow-glow);
+  }
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+// ===== 19. ANIMATIONS & EFFECTS =====
+@keyframes stellar-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-15px) rotate(-1deg);
+  }
+}
+
+@keyframes cosmic-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes aurora-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.floating-element {
+  animation: stellar-float 6s ease-in-out infinite;
+}
+
+.pulsing-element {
+  animation: cosmic-pulse 4s ease-in-out infinite;
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    45deg,
+    var(--galaxy-ice) 0%,
+    var(--cosmic-gold) 25%,
+    var(--galaxy-crystal) 50%,
+    var(--cosmic-gold) 75%,
+    var(--galaxy-ice) 100%
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: aurora-shimmer 3s ease-in-out infinite;
+}
+
+// ===== 20. FOCUS STATES & ACCESSIBILITY =====
+button, input, select, textarea, a {
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--cosmic-gold);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--cosmic-gold);
+    outline-offset: 2px;
+  }
+}
+
+// ===== 21. BUTTONS & INTERACTIVE ELEMENTS =====
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--glass-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(143, 205, 255, 0.2),
+      transparent
+    );
+    transition: var(--transition-normal);
+  }
+  
+  &:hover {
+    background: var(--glass-highlight);
+    border-color: var(--cosmic-gold);
+    color: var(--galaxy-crystal);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+    
+    &::before {
+      left: 100%;
+    }
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &.btn-primary {
+    background: linear-gradient(135deg, var(--stellar-medium), var(--stellar-bright));
+    border-color: var(--stellar-bright);
+    color: var(--cosmic-pearl);
+    
+    &:hover {
+      background: linear-gradient(135deg, var(--stellar-bright), var(--galaxy-ice));
+      box-shadow: var(--shadow-stellar);
+    }
+  }
+  
+  &.btn-accent {
+    background: linear-gradient(135deg, var(--cosmic-gold), var(--cosmic-amber));
+    border-color: var(--cosmic-gold);
+    color: var(--space-deepest);
+    
+    &:hover {
+      background: linear-gradient(135deg, var(--cosmic-amber), var(--cosmic-gold));
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+    }
+  }
+}
+
+// ===== 22. SPECIAL PAGE ELEMENTS =====
+.page-header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+  padding: var(--space-2xl) 0;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--cosmic-gold),
+      transparent
+    );
+  }
+  
+  .page-title {
+    font-size: 3rem;
+    margin-bottom: var(--space-md);
+    background: linear-gradient(
+      135deg,
+      var(--galaxy-ice) 0%,
+      var(--cosmic-gold) 50%,
+      var(--galaxy-crystal) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .page-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+}
+
+.note-metadata {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--glass-primary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  
+  .metadata-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    
+    .icon {
+      color: var(--cosmic-gold);
+    }
+  }
+}
+
+// ===== 23. TAG SYSTEM =====
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-xs) var(--space-md);
+  background: var(--glass-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  color: var(--galaxy-crystal);
+  text-decoration: none;
+  transition: var(--transition-normal);
+  margin: 0 var(--space-xs) var(--space-sm) 0;
+  
+  &:hover {
+    background: var(--glass-highlight);
+    border-color: var(--cosmic-gold);
+    color: var(--cosmic-gold);
+    box-shadow: var(--shadow-glow);
+  }
+  
+  &::before {
+    content: '#';
+    margin-right: var(--space-xs);
+    opacity: 0.7;
+  }
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: var(--space-lg) 0;
+}
+
+// ===== 24. BREADCRUMB NAVIGATION =====
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    
+    &:not(:last-child)::after {
+      content: '/';
+      margin: 0 var(--space-sm);
+      color: var(--stellar-bright);
+    }
+    
+    a {
+      color: var(--text-muted);
+      transition: var(--transition-normal);
+      
+      &:hover {
+        color: var(--galaxy-crystal);
+      }
+    }
+    
+    &.active {
+      color: var(--cosmic-gold);
+      font-weight: 500;
+    }
+  }
+}
+
+// ===== 25. IMAGE STYLING =====
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  margin: var(--space-lg) 0;
+  
+  &:hover {
+    box-shadow: var(--shadow-lg);
+    transform: scale(1.02);
+    transition: var(--transition-normal);
+  }
+}
+
+figure {
+  margin: var(--space-2xl) 0;
+  text-align: center;
+  
+  img {
+    margin-bottom: var(--space-md);
+  }
+  
+  figcaption {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+}
+
+// ===== 26. LOADING STATES =====
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--glass-border);
+  border-radius: 50%;
+  border-top-color: var(--cosmic-gold);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--glass-primary) 25%,
+    var(--glass-secondary) 50%,
+    var(--glass-primary) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// ===== 27. PRINT STYLES =====
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .navbar,
+  .filetree-sidebar,
+  .sidebar {
+    display: none !important;
   }
   
   .content {
-    padding: 1rem;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
   }
   
-  .flashcard-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  a {
+    color: black !important;
+    text-decoration: underline !important;
   }
   
-  .callout {
-    padding: 1rem;
-    margin: 1rem 0;
-  }
-  
-  pre {
-    padding: 1rem;
-    font-size: 0.8rem;
-  }
-  
-  table {
-    font-size: 0.85rem;
-    
-    th, td {
-      padding: 0.75rem 0.5rem;
-    }
-  }
-  
-  .search-overlay .search-modal {
-    width: 95%;
-    margin: 0 auto;
-    
-    .search-input {
-      padding: 1rem 1.5rem;
-      font-size: 1.2rem;
-    }
-  }
-  
-  blockquote {
-    padding: 1rem 1.5rem;
-    margin: 1rem 0;
-    
-    &::before {
-      font-size: 3rem;
-      top: -0.25rem;
-    }
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
   }
 }
 
-@media (max-width: 480px) {
-  h1 {
-    font-size: 2rem;
-  }
-  
-  h2 {
-    font-size: 1.75rem;
-  }
-  
-  h3 {
-    font-size: 1.5rem;
-  }
-  
-  .datetime-container {
-    position: static;
-    margin: 1rem;
-    display: inline-block;
-  }
-  
-  .fullscreen-btn {
-    position: static;
-    margin: 1rem;
-    display: inline-block;
+// ===== 28. HIGH CONTRAST MODE =====
+@media (prefers-contrast: high) {
+  :root {
+    --text-primary: #ffffff;
+    --text-secondary: #e0e0e0;
+    --text-muted: #c0c0c0;
+    --cosmic-gold: #ffff00;
+    --galaxy-ice: #00ffff;
+    --glass-border: rgba(255, 255, 255, 0.5);
   }
 }
 
-// ===================================================================
-// 21. ACCESSIBILITY ENHANCEMENTS
-// ===================================================================
-
-/* Focus indicators */
-button:focus,
-a:focus,
-input:focus,
-[tabindex]:focus {
-  outline: 2px solid var(--stellar-cyan);
-  outline-offset: 2px;
-  border-radius: var(--stellar-radius);
-}
-
-/* Reduced motion support */
+// ===== 29. REDUCED MOTION =====
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1462,177 +1327,27 @@ input:focus,
   }
 }
 
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  :root {
-    --text-stellar: #ffffff;
-    --text-cosmic: #e0e0e0;
-    --stellar-cyan: #00ffff;
-    --supernova-purple: #ff00ff;
-    --glass-stellar: rgba(255, 255, 255, 0.2);
-  }
-}
-
-// ===================================================================
-// 22. PRINT STYLES
-// ===================================================================
-
-@media print {
-  body {
-    background: white !important;
-    color: black !important;
-  }
-  
-  body::before,
-  body::after {
-    display: none !important;
-  }
-  
-  .navbar,
-  .sidebar,
-  .filetree-sidebar,
-  .fullscreen-btn,
-  .datetime-container,
-  .particles-js-canvas-el {
-    display: none !important;
-  }
-  
-  .content {
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  
-  a {
-    color: black !important;
-    text-decoration: underline !important;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    color: black !important;
-    page-break-after: avoid;
-  }
-  
-  .callout,
-  .flashcard {
-    border: 1px solid black !important;
-    background: white !important;
-    page-break-inside: avoid;
-  }
-}
-
-// ===================================================================
-// 23. ADVANCED ANIMATIONS & MICRO-INTERACTIONS
-// ===================================================================
-
-/* Stellar constellation effect on hover */
-.constellation-effect {
-  position: relative;
-  
-  &:hover::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(circle, var(--stellar-cyan) 1px, transparent 1px);
-    background-size: 20px 20px;
-    animation: constellation-twinkle 2s ease-in-out;
-    pointer-events: none;
-  }
-}
-
-@keyframes constellation-twinkle {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
-  50% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
-}
-
-/* Orbital loading animation */
-.orbital-loader {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  margin: 2rem auto;
-  
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    border: 2px solid var(--stellar-cyan);
-    border-radius: 50%;
-    animation: orbital-spin var(--orbit-speed-fast) linear infinite;
-  }
-  
-  &::before {
-    width: 60px;
-    height: 60px;
-    border-color: var(--stellar-cyan) transparent transparent transparent;
-  }
-  
-  &::after {
-    width: 40px;
-    height: 40px;
-    top: 10px;
-    left: 10px;
-    border-color: var(--supernova-purple) transparent transparent transparent;
-    animation-direction: reverse;
-    animation-duration: var(--orbit-speed-medium);
-  }
-}
-
-@keyframes orbital-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Galaxy spiral background animation */
-.galaxy-spiral-container {
+// ===== 30. DARK MODE TOGGLE (if needed) =====
+.theme-toggle {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200vw;
-  height: 200vh;
-  pointer-events: none;
-  z-index: var(--z-background);
-  opacity: 0.03;
+  bottom: var(--space-lg);
+  left: var(--space-lg);
+  background: var(--glass-primary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  padding: var(--space-md);
+  cursor: pointer;
+  transition: var(--transition-normal);
+  z-index: 1000;
   
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: conic-gradient(
-      from 0deg,
-      transparent 0deg,
-      var(--stellar-cyan) 10deg,
-      transparent 20deg,
-      transparent 180deg,
-      var(--supernova-purple) 190deg,
-      transparent 200deg
-    );
-    animation: galaxy-rotation 200s linear infinite;
+  &:hover {
+    background: var(--glass-highlight);
+    box-shadow: var(--shadow-glow);
   }
-}
-
-@keyframes galaxy-rotation {
-  0% { transform: rotate(0deg) scale(1); }
-  50% { transform: rotate(180deg) scale(1.1); }
-  100% { transform: rotate(360deg) scale(1); }
-}
-
-/* Final cosmic enhancement - breathing effect for the entire page */
-body {
-  animation: cosmic-breath 60s ease-in-out infinite;
-}
-
-@keyframes cosmic-breath {
-  0%, 100% { 
-    filter: brightness(1) contrast(1) saturate(1); 
-  }
-  50% { 
-    filter: brightness(1.05) contrast(1.1) saturate(1.1); 
+  
+  .theme-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--cosmic-gold);
   }
 }
