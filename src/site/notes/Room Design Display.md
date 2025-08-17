@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/room-design-display/","noteIcon":"","created":"2025-05-18T15:20:01.078+02:00","updated":"2025-08-17T13:32:37.281+02:00"}
+{"dg-publish":true,"permalink":"/room-design-display/","noteIcon":"","created":"2025-05-18T15:20:01.078+02:00","updated":"2025-08-17T13:32:54.193+02:00"}
 ---
 
 
@@ -18,6 +18,7 @@ https://www.youtube.com/watch?v=Z91LpBQFhIY&t=12s
 https://youtu.be/Z91LpBQFhIY?si=0-Jm-NkmlT5LrxAX
 
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Z91LpBQFhIY?si=0-Jm-NkmlT5LrxAX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 
 
