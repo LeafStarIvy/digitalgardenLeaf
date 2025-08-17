@@ -1,333 +1,433 @@
-// 🌌 StarfieldParticles.js — Rewritten: realistic, beautiful, transparent starfield + meteors — fixed-to-viewport and parallax-aware
-(function(){
-  'use strict';
+/* =========================================================
+   COSMIC DIGITAL GARDEN — custom.css (revamped for Mario Galaxy vibe)
+   - Save to /styles/custom.css
+   ========================================================= */
 
-  /*
-    Key goals implemented in this rewrite:
-    - Transparent canvases (no forced background) so your CSS background shows through.
-    - Fixed-to-viewport overlay so the stars "go with the screen" and don't get clipped when you scroll.
-    - Layered canvases (bg/mid/fg) for depth and parallax, but only a single overlay instance for efficiency.
-    - Realistic twinkle, color variation, soft glow sprite, and graceful meteors (falling stars) with tapered trails.
-    - Respect prefers-reduced-motion and pause when tab is hidden.
-    - Small public API: mount(el), start(), stop(), destroy(), setDensity(mult), setTheme(obj)
-  */
+/* ---------- Palette & variables ---------- */
+:root {
+  --bg-deep: #040619;
+  --bg-mid:  #0d1232;
+  --nebula-1: rgba(45, 85, 255, 0.25);
+  --nebula-2: rgba(124, 58, 237, 0.25);
+  --nebula-3: rgba(6, 182, 212, 0.12);
+  --accent-aurora: #7dd3fc;
+  --accent-gold: #ffcb6b;
+  --text: #e9f2ff;
+  --muted: #9fb0d6;
+  --glass: rgba(12,18,30,0.56);
+  --glass-border: rgba(120,160,255,0.08);
+  --max-width: 1180px;
+  --radius-lg: 16px;
+  --shadow-deep: 0 14px 50px rgba(2,6,18,0.75);
+}
 
-  const DEFAULT = {
-    density: 1.0, // 0.2..3.0
-    stars: { base: 420, twinkleRatio: 0.36 },
-    meteors: {
-      minInterval: 2400,
-      maxInterval: 7600,
-      chance: 0.82,
-      speedRange: [0.18, 0.45], // px/ms scaling
-      lengthRange: [140, 520],
-      headRange: [1.6, 5.0],
-      strokeRange: [1.0, 4.0],
-      multicolorChance: 0.26,
-      accentPalettes: [ [45,95,58], [185,85,56], [280,80,64] ],
-      showerChance: 0.12,
-      showerCount: [3,7],
-      showerSpacing: [90,220]
-    },
-    visual: { starHue: 210, starSat: 70, starLight: 62, cometHue: 200 }
-  };
+/* ---------- reset & base ---------- */
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background: var(--bg-deep);
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  background: none; /* Remove old gradients, replaced by skybox */
+  overflow-x: hidden;
+}
 
-  const prefersReduced = (typeof window !== 'undefined') && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const TAU = Math.PI * 2;
-  const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
-  const rand = (a,b) => a + Math.random()*(b-a);
-  const isMobile = () => window.innerWidth <= 900;
-  const easeOut = t => 1 - Math.pow(1 - t, 3);
+/* ---------- SKYBOX WRAPPER (fixed, full screen) ---------- */
+.galaxy-skybox {
+  position: fixed;
+  inset: 0;
+  z-index: -100;
+  pointer-events: none;
+  overflow: visible;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  background: radial-gradient(ellipse at center, #020315 0%, #000011 100%);
+  filter: saturate(1.15) contrast(1.1);
+}
 
-  // Single overlay instance for the page
-  let INSTANCE = null;
+/* ---------- Cosmic Bodies (big glowing spheres) ---------- */
+.cosmic-body {
+  position: absolute;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 30px var(--accent-aurora));
+  will-change: transform;
+  opacity: 0.7;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  mix-blend-mode: screen;
+}
 
-  // Public API
-  window.StarfieldParticles = window.StarfieldParticles || {
-    mount, start, stop, destroy, setDensity, setTheme
-  };
+/* Large glowing planet 1 */
+.cosmic-body.planet-1 {
+  width: 600px;
+  height: 600px;
+  top: 10%;
+  left: 15%;
+  background: radial-gradient(circle at 40% 40%, #2d55ff, transparent 70%);
+  animation-name: floatSlow1;
+  animation-duration: 40s;
+}
 
-  // Auto-mount on common selectors
-  document.addEventListener('DOMContentLoaded', ()=>{
-    const targets = Array.from(document.querySelectorAll('#galaxySkybox, #galaxySkyboxNote, [data-stars]'));
-    if (targets.length) mount(targets[0]);
-  });
+/* Large glowing planet 2 */
+.cosmic-body.planet-2 {
+  width: 500px;
+  height: 500px;
+  top: 60%;
+  left: 70%;
+  background: radial-gradient(circle at 30% 30%, #7c3aed, transparent 80%);
+  animation-name: floatSlow2;
+  animation-duration: 35s;
+}
 
-  function mount(wrapperEl){
-    if (INSTANCE) {
-      // register wrapper for parallax if provided
-      if (wrapperEl && !INSTANCE.targets.includes(wrapperEl)) INSTANCE.targets.push(wrapperEl);
-      return INSTANCE;
-    }
-    INSTANCE = new Overlay(wrapperEl || document.body);
-    return INSTANCE;
+/* Smaller glowing nebula 3 */
+.cosmic-body.nebula-3 {
+  width: 400px;
+  height: 400px;
+  top: 35%;
+  left: 50%;
+  background: radial-gradient(circle at 50% 50%, #06b6d4, transparent 75%);
+  animation-name: floatSlow3;
+  animation-duration: 30s;
+  opacity: 0.45;
+}
+
+/* Animations for subtle floating */
+@keyframes floatSlow1 {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  100% { transform: translate3d(10px, 15px, 0) rotate(3deg) scale(1.05); }
+}
+@keyframes floatSlow2 {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  100% { transform: translate3d(-15px, 12px, 0) rotate(-4deg) scale(1.1); }
+}
+@keyframes floatSlow3 {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  100% { transform: translate3d(12px, -10px, 0) rotate(2deg) scale(1.08); }
+}
+
+/* ---------- Nebula Layers for depth & parallax ---------- */
+.nebula {
+  position: absolute;
+  left: -25%;
+  top: -25%;
+  width: 150%;
+  height: 150%;
+  border-radius: 50%;
+  filter: blur(80px) saturate(180%);
+  pointer-events: none;
+  will-change: transform, opacity;
+  mix-blend-mode: screen;
+}
+
+.nebula--back {
+  background: radial-gradient(
+      700px 420px at 18% 32%,
+      rgba(10, 28, 60, 0.85),
+      transparent 35%
+    ),
+    radial-gradient(480px 300px at 82% 72%, var(--nebula-2), transparent 32%);
+  opacity: 0.65;
+  transform: translate(-8%, -5%) scale(1.1);
+  animation: nebulaFloat 50s ease-in-out infinite alternate;
+}
+
+.nebula--mid {
+  background: radial-gradient(
+      480px 260px at 62% 32%,
+      var(--nebula-1),
+      transparent 38%
+    ),
+    radial-gradient(420px 230px at 22% 70%, var(--nebula-2), transparent 36%);
+  opacity: 0.55;
+  transform: translate(3%, 3%) scale(1.05);
+  animation: nebulaFloat 45s ease-in-out infinite alternate-reverse;
+}
+
+.nebula--front {
+  background: radial-gradient(
+      280px 180px at 32% 32%,
+      var(--nebula-3),
+      transparent 45%
+    ),
+    radial-gradient(320px 220px at 72% 72%, rgba(255, 255, 255, 0.03), transparent 45%);
+  opacity: 0.4;
+  transform: translate(-3%, 7%) scale(1.03);
+  animation: nebulaFloat 40s ease-in-out infinite alternate;
+}
+
+@keyframes nebulaFloat {
+  0% {
+    transform: translate(0%, 0%) scale(1);
   }
-
-  function start(){ if (INSTANCE) INSTANCE.start(); }
-  function stop(){ if (INSTANCE) INSTANCE.stop(); }
-  function destroy(){ if (INSTANCE) { INSTANCE.destroy(); INSTANCE = null; } }
-  function setDensity(mult){ if (INSTANCE) { INSTANCE.options.density = clamp(mult,0.2,3.0); INSTANCE._generateStars(); } else DEFAULT.density = clamp(mult,0.2,3.0); }
-  function setTheme(obj){ Object.assign(DEFAULT.visual, obj || {}); if (INSTANCE) INSTANCE._regenSprites(); }
-
-  // ---------------- Overlay class ----------------
-  class Overlay {
-    constructor(wrapper){
-      this.targets = wrapper ? [wrapper] : [];
-      this.root = document.body; // canvases are appended to body and fixed so they always match viewport
-
-      this.options = JSON.parse(JSON.stringify(DEFAULT));
-
-      // layers
-      this.layers = {
-        bg: this._createCanvas('sf-bg'),
-        mid: this._createCanvas('sf-mid'),
-        fg: this._createCanvas('sf-fg')
-      };
-      Object.values(this.layers).forEach(L=> this.root.appendChild(L.canvas));
-
-      // DPR + size
-      this.dpr = Math.max(1, window.devicePixelRatio || 1);
-      this.width = window.innerWidth; this.height = window.innerHeight;
-
-      // input & parallax
-      this.mx = 0; this.my = 0; this.scrollY = 0; this.parallaxX = 0; this.parallaxY = 0;
-
-      // particles
-      this.stars = []; this.twinkles = []; this.meteors = []; this.rings = [];
-
-      // sprites
-      this.glow = this._makeGlowSprite(32);
-      this.cometGlow = this._makeGlowSprite(64);
-
-      // timers
-      this.last = performance.now(); this.raf = null; this.nextMeteorAt = this.last + rand(this.options.meteors.minInterval, this.options.meteors.maxInterval);
-
-      // events
-      this._onPointer = e => this._onPointerMove(e);
-      this._onResize = this._throttle(()=> this._resize(), 120);
-      this._onScroll = ()=> this.scrollY = window.scrollY || window.pageYOffset || 0;
-      this._onVis = ()=> { if (document.hidden) this._pause(); else this._resume(); };
-
-      // attach
-      window.addEventListener('pointermove', this._onPointer, {passive:true});
-      window.addEventListener('resize', this._onResize, {passive:true});
-      window.addEventListener('scroll', this._onScroll, {passive:true});
-      document.addEventListener('visibilitychange', this._onVis);
-
-      // initial populate
-      this._resize();
-      this._generateStars();
-
-      // start loop
-      if (!prefersReduced) this.start(); else this._renderOnce();
-    }
-
-    _createCanvas(cls){
-      const c = document.createElement('canvas');
-      c.className = cls;
-      // Fixed overlay that covers viewport (so it "goes with the screen")
-      c.style.position = 'fixed';
-      c.style.top = '0'; c.style.left = '0';
-      c.style.width = '100%'; c.style.height = '100%';
-      c.style.pointerEvents = 'none';
-      c.style.zIndex = '-9999';
-      c.style.background = 'transparent';
-      const ctx = c.getContext('2d', { alpha: true, desynchronized: true });
-      return { canvas: c, ctx };
-    }
-
-    _resize(){
-      this.dpr = Math.max(1, window.devicePixelRatio || 1);
-      this.width = Math.max(window.innerWidth, 10);
-      this.height = Math.max(window.innerHeight, 10);
-      for (const L of Object.values(this.layers)){
-        L.canvas.style.width = this.width + 'px';
-        L.canvas.style.height = this.height + 'px';
-        L.canvas.width = Math.round(this.width * this.dpr);
-        L.canvas.height = Math.round(this.height * this.dpr);
-        L.ctx.setTransform(this.dpr,0,0,this.dpr,0,0);
-      }
-      // regenerate glow sprites at proper DPR
-      this._regenSprites();
-      // regenerate stars so distribution fits new size
-      this._generateStars();
-    }
-
-    _regenSprites(){
-      this.glow = this._makeGlowSprite(Math.round(28 * this.dpr));
-      this.cometGlow = this._makeGlowSprite(Math.round(56 * this.dpr));
-    }
-
-    _makeGlowSprite(size = 28){
-      const c = document.createElement('canvas'); c.width = c.height = size; const ctx = c.getContext('2d');
-      const r = size/2; const g = ctx.createRadialGradient(r,r,0,r,r,r);
-      g.addColorStop(0, 'rgba(255,255,255,0.96)');
-      g.addColorStop(0.14, 'rgba(255,255,255,0.82)');
-      g.addColorStop(0.36, 'rgba(160,180,255,0.24)');
-      g.addColorStop(0.74, 'rgba(70,120,220,0.06)');
-      g.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = g; ctx.fillRect(0,0,size,size); return c;
-    }
-
-    _generateStars(){
-      const areaFactor = (isMobile() ? 0.6 : 1.0) * (this.options.density || 1);
-      const base = Math.round(this.options.stars.base * areaFactor);
-      const twinkles = Math.round(base * this.options.stars.twinkleRatio);
-      this.stars = new Array(base).fill(0).map(()=>({
-        x: Math.random()*this.width,
-        y: Math.random()*this.height,
-        z: Math.random(),
-        size: rand(0.28, 1.9),
-        baseA: rand(0.12, 0.85),
-        tw: Math.random()*TAU,
-        hueOff: Math.random() < 0.06 ? rand(-22,22) : 0
-      }));
-      this.twinkles = new Array(twinkles).fill(0).map(()=>({
-        x: Math.random()*this.width,
-        y: Math.random()*this.height,
-        size: rand(0.6, 2.2),
-        baseA: rand(0.22, 0.95),
-        tw: Math.random()*TAU, orbit: Math.random()*TAU
-      }));
-    }
-
-    _onPointerMove(e){
-      const p = e.touches ? e.touches[0] : e;
-      this.mx = (p.clientX / this.width) - 0.5; // -0.5..0.5
-      this.my = (p.clientY / this.height) - 0.5;
-    }
-
-    start(){ if (!this.raf && !prefersReduced) { this.last = performance.now(); this.raf = requestAnimationFrame(t=>this._frame(t)); } }
-    stop(){ if (this.raf) { cancelAnimationFrame(this.raf); this.raf = null; } }
-    destroy(){ this.stop(); window.removeEventListener('pointermove', this._onPointer); window.removeEventListener('resize', this._onResize); window.removeEventListener('scroll', this._onScroll); document.removeEventListener('visibilitychange', this._onVis); Object.values(this.layers).forEach(L=>L.canvas.remove()); }
-
-    _pause(){ this.stop(); }
-    _resume(){ if (!this.raf && !prefersReduced) this.start(); }
-
-    _frame(now){
-      const dt = Math.min(50, now - this.last); this.last = now;
-      // small parallax based on pointer and scroll
-      this.parallaxX += (this.mx*22 - this.parallaxX) * 0.06;
-      const scrollFactor = clamp((this.scrollY / Math.max(800, document.body.scrollHeight)) * 1.3, -1, 1);
-      this.parallaxY += ((this.my*14 + scrollFactor*6) - this.parallaxY) * 0.06;
-
-      // clear layers
-      for (const L of Object.values(this.layers)) L.ctx.clearRect(0,0,this.width,this.height);
-
-      // render
-      this._drawFar(now);
-      this._drawTwinkles(now);
-      this._updateMeteors(dt);
-      this._drawMeteors();
-      this._updateRings(dt);
-      this._drawRings();
-
-      // spawn logic
-      if (!prefersReduced && now > this.nextMeteorAt && Math.random() < this.options.meteors.chance){
-        // sometimes a brief shower
-        if (Math.random() < this.options.meteors.showerChance){
-          const c = Math.round(rand(this.options.meteors.showerCount[0], this.options.meteors.showerCount[1]));
-          let delay = 0; for (let i=0;i<c;i++){ setTimeout(()=> this._spawnMeteor(), delay); delay += rand(this.options.meteors.showerSpacing[0], this.options.meteors.showerSpacing[1]); }
-        } else this._spawnMeteor();
-        this.nextMeteorAt = now + rand(this.options.meteors.minInterval, this.options.meteors.maxInterval);
-      }
-
-      this.raf = requestAnimationFrame(t=>this._frame(t));
-    }
-
-    _drawFar(now){
-      const ctx = this.layers.bg.ctx; ctx.save(); ctx.globalCompositeOperation = 'source-over';
-      const driftX = Math.sin(now / 180000) * 14 + this.parallaxX * 0.6;
-      const driftY = Math.cos(now / 150000) * 9 + this.parallaxY * 0.6;
-      for (const s of this.stars){
-        const tw = prefersReduced ? 0 : Math.sin(now * (0.0009 + s.z*0.0009) + s.tw) * 0.36;
-        const a = clamp(s.baseA + tw * 0.85, 0.06, 1);
-        const scaled = s.size * (1 + s.z*0.66);
-        if (s.hueOff !== 0){
-          const h = DEFAULT.visual.starHue + s.hueOff;
-          ctx.fillStyle = `hsla(${h}, ${DEFAULT.visual.starSat}%, ${DEFAULT.visual.starLight - Math.abs(s.hueOff)}%, ${a})`;
-          ctx.beginPath(); ctx.arc(s.x + driftX*s.z, s.y + driftY*s.z, scaled*0.9, 0, TAU); ctx.fill();
-        } else {
-          ctx.drawImage(this.glow, Math.round(s.x + driftX*s.z - scaled*4), Math.round(s.y + driftY*s.z - scaled*4), scaled*8, scaled*8);
-        }
-      }
-      ctx.restore();
-    }
-
-    _drawTwinkles(now){
-      const ctx = this.layers.mid.ctx; ctx.save(); ctx.globalCompositeOperation = 'lighter';
-      for (const s of this.twinkles){
-        const pulse = prefersReduced ? 0.0 : Math.sin(now * (0.0012 + 0.0005 * s.size) + s.tw) * 0.5;
-        const a = clamp(s.baseA + pulse, 0.1, 1);
-        const size = s.size * (1 + 0.12 * Math.sin(now / 600 + s.orbit));
-        const ox = this.parallaxX * 0.8, oy = this.parallaxY * 0.8;
-        ctx.globalAlpha = a; ctx.fillStyle = 'white';
-        ctx.beginPath(); ctx.arc(s.x + ox, s.y + oy, size, 0, TAU); ctx.fill();
-        ctx.drawImage(this.glow, Math.round(s.x - size*3.2 + ox), Math.round(s.y - size*3.2 + oy), size*6.4, size*6.4);
-      }
-      ctx.restore();
-    }
-
-    _spawnMeteor(overrides){
-      const w = this.width, h = this.height, mCfg = this.options.meteors;
-      // start mostly from left edge, slight vertical random
-      const sx = -rand(0.02*w, 0.18*w); const sy = rand(0.02*h, 0.6*h);
-      const angle = rand(18, 55) * (Math.PI/180); // downward-right
-      const speed = rand(mCfg.speedRange[0], mCfg.speedRange[1]) * (w / 1400);
-      const length = rand(mCfg.lengthRange[0], mCfg.lengthRange[1]);
-      const head = rand(mCfg.headRange[0], mCfg.headRange[1]);
-      const stroke = rand(mCfg.strokeRange[0], mCfg.strokeRange[1]);
-      const isAccent = Math.random() < mCfg.multicolorChance;
-      const accent = isAccent ? mCfg.accentPalettes[Math.floor(Math.random()*mCfg.accentPalettes.length)] : null;
-      const curve = rand(-0.00006, 0.00006);
-      const dur = (w + h) / (speed * 900);
-      const meta = Object.assign({ x:sx,y:sy,angle,speed,length,head,stroke,life:0,dur,isAccent,accent,curve }, overrides || {});
-      this.meteors.push(meta);
-    }
-
-    _updateMeteors(dt){
-      for (let i = this.meteors.length - 1; i >= 0; i--){
-        const m = this.meteors[i]; m.life += dt; m.angle += m.curve * dt;
-        const vx = Math.cos(m.angle) * m.speed * dt * 16; const vy = Math.sin(m.angle) * m.speed * dt * 16;
-        m.x += vx; m.y += vy;
-        if (m.life > m.dur || m.x > this.width + this.width*0.4 || m.y > this.height + this.height*0.4) this.meteors.splice(i,1);
-      }
-    }
-
-    _drawMeteors(){
-      const ctx = this.layers.fg.ctx; ctx.save(); ctx.globalCompositeOperation = 'lighter';
-      for (const m of this.meteors){
-        const hx = m.x, hy = m.y; const t = clamp(m.life / m.dur, 0, 1); const eased = easeOut(t);
-        const nx = Math.cos(m.angle), ny = Math.sin(m.angle);
-        const len = m.length * (0.28 + 0.72*(1 - eased));
-        const tx = hx - nx * len, ty = hy - ny * len;
-
-        const grad = ctx.createLinearGradient(tx, ty, hx, hy);
-        if (m.isAccent && m.accent){ const [h,s,l] = m.accent; grad.addColorStop(0, 'rgba(255,255,255,0)'); grad.addColorStop(0.46, `hsla(${h}, ${s}%, ${l}%, 0.28)`); grad.addColorStop(0.88, 'rgba(255,255,255,0.55)'); grad.addColorStop(1, 'rgba(255,255,255,0.98)'); }
-        else { grad.addColorStop(0, 'rgba(255,255,255,0)'); grad.addColorStop(0.6, 'rgba(255,255,255,0.22)'); grad.addColorStop(1, 'rgba(255,255,255,0.98)'); }
-
-        ctx.strokeStyle = grad; ctx.lineWidth = m.stroke; ctx.lineCap = 'round';
-        ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(hx, hy); ctx.stroke();
-
-        const halo = Math.max(18, m.head * 7);
-        ctx.drawImage(this.glow, hx - halo/2, hy - halo/2, halo, halo);
-        ctx.fillStyle = 'rgba(255,255,255,0.98)'; ctx.beginPath(); ctx.arc(hx, hy, m.head, 0, TAU); ctx.fill();
-      }
-      ctx.restore();
-    }
-
-    _updateRings(dt){
-      for (let i = this.rings.length - 1; i >= 0; i--){ const r = this.rings[i]; r.life += dt; if (r.life > r.dur) this.rings.splice(i,1); }
-    }
-    _drawRings(){ const ctx = this.layers.fg.ctx; ctx.save(); ctx.globalCompositeOperation='lighter'; for (const r of this.rings){ const t = clamp(r.life/r.dur,0,1); const eased = easeOut(t); ctx.lineWidth = 1 + (1-eased)*1.4; ctx.strokeStyle = `rgba(255,255,255,${0.28*(1-eased)})`; ctx.beginPath(); ctx.arc(r.x + this.parallaxX*0.6, r.y + this.parallaxY*0.6, 6 + eased*40, 0, TAU); ctx.stroke(); } ctx.restore(); }
-
-    _renderOnce(){
-      // draw a single frame for reduced-motion users
-      const now = performance.now(); for (const L of Object.values(this.layers)) L.ctx.clearRect(0,0,this.width,this.height);
-      this._drawFar(now); this._drawTwinkles(now);
-    }
+  100% {
+    transform: translate(3%, 4%) scale(1.03);
   }
+}
 
-  // Expose a mount helper if someone wants a programmatic instance for multiple wrappers
-  // (The overlay always uses fixed canvases appended to body so stars "go with the screen".)
+/* ---------- Stars: keep particles.js canvas layering ---------- */
+.pg-canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  filter: brightness(1.05) contrast(1.1);
+}
 
-})();
+.pg-canvas--bg {
+  z-index: 0;
+  opacity: 0.8;
+}
+
+.pg-canvas--mid {
+  z-index: 2;
+  opacity: 0.9;
+}
+
+.pg-canvas--fg {
+  z-index: 3;
+  opacity: 1;
+}
+
+/* ---------- Shooting stars container ---------- */
+.shooting-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ---------- Main content container (above skybox) ---------- */
+.container,
+main,
+.content,
+.app-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 4rem 1.2rem;
+  position: relative;
+  z-index: 10; /* above skybox */
+  backdrop-filter: saturate(140%) blur(12px);
+  background: rgba(10, 15, 40, 0.3);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-deep);
+}
+
+/* Garden article styling */
+.garden-article {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px) saturate(130%);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-deep);
+  color: var(--text);
+  margin-bottom: 2.4rem;
+  position: relative;
+  z-index: 15;
+}
+
+/* Spotlight behind content to emulate Mario Galaxy stage */
+.garden-article::before {
+  content: "";
+  position: absolute;
+  inset: -40px -60px auto -60px;
+  height: 460px;
+  background: radial-gradient(
+    900px 300px at 50% 12%,
+    rgba(125, 211, 252, 0.12),
+    rgba(0, 0, 0, 0)
+  );
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(42px);
+}
+
+/* ---------- Headers & tags ---------- */
+.site-header {
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+.site-title {
+  font-size: clamp(1.8rem, 4vw, 3.4rem);
+  margin: 0 0 0.6rem 0;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  background: linear-gradient(
+    90deg,
+    #7dd3fc,
+    #b692ff,
+    #ffd16b,
+    #7dd3fc
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 280% 280%;
+  animation: titleGradient 10s ease-in-out infinite;
+}
+
+@keyframes titleGradient {
+  to {
+    background-position: 100% 0;
+  }
+}
+
+.header-meta {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  color: var(--muted);
+}
+
+.header-tags .tag {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.header-tags .tag:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(12, 20, 40, 0.7);
+}
+
+/* Links & code blocks */
+a {
+  color: var(--accent-aurora);
+  text-decoration: none;
+}
+
+pre {
+  background: rgba(8, 12, 20, 0.56);
+  padding: 1rem;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+/* Focus mode */
+.fullscreen-mode .content {
+  max-width: 100%;
+  padding: 3.5rem 2rem;
+}
+
+.fullscreen-btn {
+  position: fixed;
+  right: 1rem;
+  bottom: 1.2rem;
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+}
+
+/* Respect reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .nebula,
+  .pg-canvas,
+  .site-title,
+  .cosmic-body {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .container,
+  main,
+  .content {
+    padding: 2rem 1rem;
+  }
+  .garden-article {
+    padding: 1.4rem;
+    border-radius: 12px;
+  }
+}
+
+/* ---------- Fix ---------- */
+
+/* --- Background Layers --- */
+.galaxy-skybox,
+.galaxy-skybox * {
+  position: absolute;
+  z-index: -100 !important; /* stays behind all content */
+}
+
+/* --- Main content (note pages) --- */
+main.content,
+.garden-article,
+.container,
+.content,
+.app-container {
+  position: relative;
+  z-index: 5 !important; /* lower than graph/search layers */
+}
+
+/* --- Graph / World View --- */
+#graph-container,
+.graph-view,
+.worldview-container {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 200 !important; /* guaranteed above main note */
+}
+
+/* --- Search modal and overlays --- */
+.search-modal,
+.search-container,
+.modal {
+  position: fixed !important;
+  z-index: 300 !important;
+}
+
+/* Prevent stacking context traps from parents */
+body,
+html {
+  z-index: auto;
+  position: static;
+}
