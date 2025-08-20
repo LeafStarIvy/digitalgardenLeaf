@@ -100,39 +100,123 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
     {% include "components/particlesScript.njk" %}
 
-<header class="site-header">
-  <div class="site-header-inner">
-    <h1 class="site-title"><a href="/">My Garden</a></h1>
-    <button id="theater-toggle" class="theater-btn">🎬 Theater</button>
-  </div>
-</header>
+{# ------------------------
+  THEATER MODE (note.njk)
+  Paste this near the top of note.njk (above the note content)
+  ------------------------- #}
+
+<!-- fixed top button and backdrop/close controls -->
+<button id="theater-toggle" class="theater-toggle" aria-pressed="false" aria-label="Enter theater mode">🎬</button>
+<div id="theater-backdrop" aria-hidden="true" tabindex="-1"></div>
+<button id="theater-close" class="theater-close" aria-hidden="true" title="Exit theater">✖</button>
+
+<article id="note-root" class="note-root">
+  {{ content | safe }}
+</article>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
-  const toggleBtn = document.getElementById("theater-toggle");
+  const toggle = document.getElementById('theater-toggle');
+  const closeBtn = document.getElementById('theater-close');
+  const backdrop = document.getElementById('theater-backdrop');
+  const note = document.getElementById('note-root');
 
-  // Create exit button dynamically (appears only in theater)
-  const exitBtn = document.createElement("button");
-  exitBtn.id = "theater-exit";
-  exitBtn.textContent = "✖";
-  exitBtn.setAttribute("aria-label", "Exit theater mode");
-  document.body.appendChild(exitBtn);
+  if (!toggle || !closeBtn || !backdrop || !note) return;
 
-  toggleBtn.addEventListener("click", () => {
-    body.classList.add("theater-active");
-  });
+  let isOpen = false;
+  let prevTransform = '';
+  let prevTransition = '';
 
-  exitBtn.addEventListener("click", () => {
-    body.classList.remove("theater-active");
-  });
+  // Open with a smooth translate + scale (no DOM moves, no cloning)
+  function openTheater() {
+    if (isOpen) return;
+    isOpen = true;
+    toggle.setAttribute('aria-pressed', 'true');
 
-  // ESC key exits
-  window.addEventListener("keydown", e => {
-    if (e.key === "Escape") body.classList.remove("theater-active");
+    // measured geometry
+    const rect = note.getBoundingClientRect();
+    const vw = document.documentElement.clientWidth;
+    const vh = document.documentElement.clientHeight;
+
+    // target size (screen-centered "movie screen")
+    const targetWidth = Math.min(Math.round(vw * 0.92), 1400);
+    const scale = targetWidth / rect.width;
+
+    // compute translation to move note center to viewport center
+    const noteCenterX = rect.left + rect.width / 2;
+    const noteCenterY = rect.top + rect.height / 2;
+    const viewportCenterX = vw / 2;
+    const viewportCenterY = vh / 2;
+    const translateX = Math.round(viewportCenterX - noteCenterX);
+    const translateY = Math.round(viewportCenterY - noteCenterY);
+
+    // save previous inline styles to restore later
+    prevTransform = note.style.transform || '';
+    prevTransition = note.style.transition || '';
+
+    // prepare animation
+    note.style.transition = 'transform 680ms cubic-bezier(.16,.84,.28,1), box-shadow 420ms ease';
+    note.style.transformOrigin = 'center center';
+    note.style.willChange = 'transform, box-shadow';
+    note.style.zIndex = 21000; // above backdrop and sidebars
+
+    // force reflow then animate
+    void note.getBoundingClientRect();
+
+    // Apply global theater class (fades/dims everything else)
+    body.classList.add('theater-active');
+
+    // lock page scroll while in theater
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    document.documentElement.style.top = `-${scrollY}px`;
+    document.documentElement.style.position = 'relative';
+    document.documentElement.style.overflow = 'hidden';
+
+    // run transform on the next frame so CSS transition animates
+    requestAnimationFrame(() => {
+      note.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+      note.style.boxShadow = '0 60px 140px rgba(0,0,0,0.95), 0 14px 40px rgba(0,0,0,0.6), inset 0 0 90px rgba(255,255,255,0.02)';
+      closeBtn.removeAttribute('aria-hidden');
+      backdrop.removeAttribute('aria-hidden');
+    });
+  }
+
+  function closeTheater() {
+    if (!isOpen) return;
+    isOpen = false;
+    toggle.setAttribute('aria-pressed', 'false');
+
+    // reverse animation
+    note.style.transform = prevTransform || '';
+    note.style.boxShadow = '';
+
+    // allow backdrop fade/other transitions to play
+    body.classList.remove('theater-active');
+
+    // restore scroll after transition ends (give some margin)
+    setTimeout(() => {
+      document.documentElement.style.position = '';
+      document.documentElement.style.top = '';
+      document.documentElement.style.overflow = '';
+      note.style.transition = prevTransition;
+      note.style.willChange = '';
+      note.style.zIndex = '';
+      closeBtn.setAttribute('aria-hidden', 'true');
+      backdrop.setAttribute('aria-hidden', 'true');
+    }, 720);
+  }
+
+  // events
+  toggle.addEventListener('click', openTheater);
+  closeBtn.addEventListener('click', closeTheater);
+  backdrop.addEventListener('click', closeTheater);
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeTheater();
   });
 });
 </script>
+
 
 
   </body>
