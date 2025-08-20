@@ -104,5 +104,20 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
   <button id="theater-toggle" class="theater-button">🎬 Theater Mode</button>
 </div>
 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.getElementById("theater-toggle");
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("theater-mode");
+        toggleBtn.textContent = 
+          document.body.classList.contains("theater-mode") 
+            ? "❌ Exit Theater Mode" 
+            : "🎬 Theater Mode";
+      });
+    }
+  });
+</script>
+
   </body>
 </html>
