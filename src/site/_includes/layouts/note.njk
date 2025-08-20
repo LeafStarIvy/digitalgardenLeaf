@@ -101,85 +101,104 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
     {% include "components/particlesScript.njk" %}
 
 {# ------------------------
-  THEATER MODE (note.njk)
-  Paste this near the top of note.njk (above the note content)
+  THEATER MODE (paste into note.njk ABOVE {{ content }})
+  - Single-file JS. No DOM moves/cloning.
   ------------------------- #}
 
-<!-- fixed top button and backdrop/close controls -->
-<button id="theater-toggle" class="theater-toggle" aria-pressed="false" aria-label="Enter theater mode">🎬</button>
-<div id="theater-backdrop" aria-hidden="true" tabindex="-1"></div>
-<button id="theater-close" class="theater-close" aria-hidden="true" title="Exit theater">✖</button>
+<!-- fixed toggle and backdrop/exit controls -->
+<button id="tg-toggle" class="tg-toggle" aria-pressed="false" aria-label="Enter theater mode">🎬</button>
+<div id="tg-backdrop" class="tg-backdrop" aria-hidden="true"></div>
+<button id="tg-exit" class="tg-exit" aria-hidden="true" aria-label="Exit theater mode">✖</button>
 
+<!-- note content (keep exactly as you already have it) -->
 <article id="note-root" class="note-root">
   {{ content | safe }}
 </article>
 
 <script>
+/* THEATER MODE - plain, defensive JS */
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
-  const toggle = document.getElementById('theater-toggle');
-  const closeBtn = document.getElementById('theater-close');
-  const backdrop = document.getElementById('theater-backdrop');
+  const toggle = document.getElementById('tg-toggle');
+  const exitBtn = document.getElementById('tg-exit');
+  const backdrop = document.getElementById('tg-backdrop');
   const note = document.getElementById('note-root');
-
-  if (!toggle || !closeBtn || !backdrop || !note) return;
+  if (!toggle || !exitBtn || !backdrop || !note) return;
 
   let isOpen = false;
-  let prevTransform = '';
-  let prevTransition = '';
+  let saved = { transform: '', transition: '', position: '', zIndex: '' };
 
-  // Open with a smooth translate + scale (no DOM moves, no cloning)
+  // helper to compute transform to center & scale
+  function computeTransformForCenter(rect) {
+    const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+    // target width for the "movie screen" (clamped)
+    const targetWidth = Math.min(Math.round(vw * 0.92), 1400);
+    const minScale = 0.6;
+    const scale = Math.max(minScale, targetWidth / Math.max(rect.width, 1));
+
+    const noteCenterX = rect.left + rect.width / 2;
+    const noteCenterY = rect.top + rect.height / 2;
+    const viewportCenterX = vw / 2;
+    const viewportCenterY = vh / 2;
+
+    const translateX = Math.round(viewportCenterX - noteCenterX);
+    const translateY = Math.round(viewportCenterY - noteCenterY);
+
+    return { translateX, translateY, scale };
+  }
+
   function openTheater() {
     if (isOpen) return;
     isOpen = true;
     toggle.setAttribute('aria-pressed', 'true');
 
-    // measured geometry
+    // Save original inline styles to restore later
+    saved.transform = note.style.transform || '';
+    saved.transition = note.style.transition || '';
+    saved.position = note.style.position || '';
+    saved.zIndex = note.style.zIndex || '';
+
+    // Ensure we measure the element in its natural position (no transform)
+    note.style.transition = 'none';
+    note.style.transform = saved.transform || '';
+    // force reflow
     const rect = note.getBoundingClientRect();
-    const vw = document.documentElement.clientWidth;
-    const vh = document.documentElement.clientHeight;
 
-    // target size (screen-centered "movie screen")
-    const targetWidth = Math.min(Math.round(vw * 0.92), 1400);
-    const scale = targetWidth / rect.width;
+    // compute desired transform
+    const { translateX, translateY, scale } = computeTransformForCenter(rect);
 
-    // compute translation to move note center to viewport center
-    const noteCenterX = rect.left + rect.width / 2;
-    const noteCenterY = rect.top + rect.height / 2;
-    const viewportCenterX = vw / 2;
-    const viewportCenterY = vh / 2;
-    const translateX = Math.round(viewportCenterX - noteCenterX);
-    const translateY = Math.round(viewportCenterY - noteCenterY);
-
-    // save previous inline styles to restore later
-    prevTransform = note.style.transform || '';
-    prevTransition = note.style.transition || '';
-
-    // prepare animation
-    note.style.transition = 'transform 680ms cubic-bezier(.16,.84,.28,1), box-shadow 420ms ease';
-    note.style.transformOrigin = 'center center';
+    // prepare visual changes (no DOM moves or cloning)
     note.style.willChange = 'transform, box-shadow';
-    note.style.zIndex = 21000; // above backdrop and sidebars
+    // z-index must be above the backdrop; position: relative ensures z-index applies
+    note.style.position = 'relative';
+    note.style.zIndex = '10002';
+    note.style.pointerEvents = 'auto';
 
-    // force reflow then animate
-    void note.getBoundingClientRect();
+    // enable backdrop and exit button
+    backdrop.removeAttribute('aria-hidden');
+    exitBtn.removeAttribute('aria-hidden');
 
-    // Apply global theater class (fades/dims everything else)
-    body.classList.add('theater-active');
-
-    // lock page scroll while in theater
-    const scrollY = window.scrollY || document.documentElement.scrollTop;
-    document.documentElement.style.top = `-${scrollY}px`;
-    document.documentElement.style.position = 'relative';
+    // lock scrolling (simple and stable)
     document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
 
-    // run transform on the next frame so CSS transition animates
+    // animate transform on next frame
     requestAnimationFrame(() => {
+      note.style.transition = 'transform 680ms cubic-bezier(.2,.9,.28,1), box-shadow 420ms ease';
+      note.style.transformOrigin = 'center center';
+      // the transform visually recenters and scales the current element
       note.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+      // cinematic shadow
       note.style.boxShadow = '0 60px 140px rgba(0,0,0,0.95), 0 14px 40px rgba(0,0,0,0.6), inset 0 0 90px rgba(255,255,255,0.02)';
-      closeBtn.removeAttribute('aria-hidden');
-      backdrop.removeAttribute('aria-hidden');
+      // body-level class triggers backdrop, fading out UI
+      body.classList.add('tg-active');
     });
+
+    // attach resize handler to keep centered (debounced)
+    window.addEventListener('resize', onResize);
+    window.addEventListener('orientationchange', onResize);
   }
 
   function closeTheater() {
@@ -187,36 +206,73 @@ document.addEventListener('DOMContentLoaded', () => {
     isOpen = false;
     toggle.setAttribute('aria-pressed', 'false');
 
-    // reverse animation
-    note.style.transform = prevTransform || '';
+    // reverse visual changes
+    note.style.transform = saved.transform || '';
     note.style.boxShadow = '';
 
-    // allow backdrop fade/other transitions to play
-    body.classList.remove('theater-active');
+    // remove body class so backdrop fades
+    body.classList.remove('tg-active');
 
-    // restore scroll after transition ends (give some margin)
+    // hide backdrop & exit
+    backdrop.setAttribute('aria-hidden', 'true');
+    exitBtn.setAttribute('aria-hidden', 'true');
+
+    // restore scrolling & inline styles after the animation completes
     setTimeout(() => {
-      document.documentElement.style.position = '';
-      document.documentElement.style.top = '';
       document.documentElement.style.overflow = '';
-      note.style.transition = prevTransition;
+      document.body.style.overflow = '';
+
+      note.style.transition = saved.transition || '';
       note.style.willChange = '';
-      note.style.zIndex = '';
-      closeBtn.setAttribute('aria-hidden', 'true');
-      backdrop.setAttribute('aria-hidden', 'true');
+      note.style.position = saved.position || '';
+      note.style.zIndex = saved.zIndex || '';
     }, 720);
+
+    window.removeEventListener('resize', onResize);
+    window.removeEventListener('orientationchange', onResize);
+  }
+
+  // simple debounced resize -> recompute transform using natural rect
+  let _resizeTimer = null;
+  function onResize() {
+    if (!isOpen) return;
+    clearTimeout(_resizeTimer);
+    _resizeTimer = setTimeout(() => {
+      // measure natural rect (temporarily disable transition & transform to measure position)
+      const prevTransition = note.style.transition;
+      const prevTransform = note.style.transform;
+      note.style.transition = 'none';
+      note.style.transform = prevTransform || ''; // ensure transformed state is present but measure natural layout
+      // To get natural (untransformed) layout we temporarily clear transform:
+      note.style.transform = '';
+      // force reflow
+      const rect = note.getBoundingClientRect();
+      const { translateX, translateY, scale } = computeTransformForCenter(rect);
+
+      // reapply transform with a shorter animation to recenter smoothly
+      requestAnimationFrame(() => {
+        note.style.transition = 'transform 360ms cubic-bezier(.2,.9,.28,1)';
+        note.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+      });
+
+      // restore transition variable after a short delay
+      setTimeout(() => {
+        note.style.transition = prevTransition || '';
+      }, 480);
+    }, 120);
   }
 
   // events
-  toggle.addEventListener('click', openTheater);
-  closeBtn.addEventListener('click', closeTheater);
+  toggle.addEventListener('click', () => (isOpen ? closeTheater() : openTheater()));
+  exitBtn.addEventListener('click', closeTheater);
   backdrop.addEventListener('click', closeTheater);
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeTheater();
-  });
+  window.addEventListener('keyup', (ev) => { if (ev.key === 'Escape') closeTheater(); });
+
+  // Accessibility: if user tabs to exit, keep focus usable
+  toggle.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') toggle.click(); });
+
 });
 </script>
-
 
 
   </body>
