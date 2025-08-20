@@ -922,198 +922,85 @@ img {
 // 15. Theater Mode — Base tokens
 // =====================================================================
 
-:root {
-  --theater-backdrop: rgba(0, 0, 0, 0.92); /* main dim */
-  --theater-note-bg: #111;                 /* note surface */
-  --theater-radius: 16px;
-  --theater-pad: clamp(12px, 1.4vw, 24px);
-  --theater-max-w: min(92vw, 1320px);
-  --theater-max-h: min(92vh, 980px);
-  --theater-dur: 420ms;
-  --theater-ease: cubic-bezier(.22,.61,.36,1); /* smooth in/out */
-}
+/* Theater Mode Styles */
 
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  :root { --theater-dur: 1ms; }
-}
-
-/* Prevent background scrolling while active */
-.scroll-lock {
-  position: fixed;
-  width: 100%;
-}
-
-/* ===========================
-   Overlay / Backdrop
-   =========================== */
-#theater-root {
+#theater-overlay {
   position: fixed;
   inset: 0;
-  z-index: 9999;
   display: grid;
-  grid-template-rows: 1fr;
-  pointer-events: none; /* backplane off */
+  place-items: center;
+  z-index: 10000;
+  pointer-events: none;
   opacity: 0;
-  transition: opacity var(--theater-dur) var(--theater-ease);
+  transition: opacity 360ms ease;
 }
 
-/* When active, entire layer becomes interactive */
-#theater-root[data-active="true"] {
+body.theater-active #theater-overlay {
   pointer-events: auto;
   opacity: 1;
 }
 
-/* Backdrop with subtle side lights (vignette) */
-#theater-backdrop {
+/* Dark backdrop with fade-in */
+#theater-bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(120% 80% at 0% 50%, rgba(255,255,255,0.07), transparent 60%),
-    radial-gradient(120% 80% at 100% 50%, rgba(255,255,255,0.07), transparent 60%),
-    var(--theater-backdrop);
-  filter: saturate(0.9) blur(0.2px);
-  opacity: 0;
-  transition: opacity var(--theater-dur) var(--theater-ease);
+  background: rgba(0, 0, 0, 0.88);
+  transition: background 360ms ease;
 }
 
-#theater-root[data-active="true"] #theater-backdrop {
+/* Container for the focused note */
+#theater-container {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 80vw;
+  height: auto;
+  padding: 1rem;
+  background: #111;
+  border-radius: 12px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.8);
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform 360ms ease, opacity 360ms ease;
+  overflow: auto;
+}
+
+/* Animate theater container in */
+body.theater-active #theater-container {
+  transform: scale(1);
   opacity: 1;
 }
 
-/* Stage centers the note */
-#theater-stage {
-  position: relative;
-  display: grid;
-  place-items: center;
-  padding: clamp(12px, 2vw, 28px);
-  width: 100%;
-  height: 100%;
+/* Exit button inside overlay */
+.theater-exit-btn {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 1;
+}
+.theater-exit-btn:hover {
+  background: #444;
+}
+
+/* Hide the rest of the page */
+body.theater-active .sidebar,
+body.theater-active .graph,
+body.theater-active header,
+body.theater-active footer,
+body.theater-active nav,
+body.theater-active .search,
+body.theater-active main {
+  opacity: 0;
+  transition: opacity 360ms ease;
   pointer-events: none;
 }
 
-/* ===========================
-   The note in theater
-   =========================== */
-.theater-note {
-  /* lift above backdrop and center */
-  pointer-events: auto;
-  background: var(--theater-note-bg);
-  border-radius: var(--theater-radius);
-  width: var(--theater-max-w);
-  max-width: var(--theater-max-w);
-  max-height: var(--theater-max-h);
-  height: auto;
-  overflow: auto;
+/* Toolbar stays visible initially so the user can click the button */
 
-  /* slight inner glow + outside lift */
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,0.06),
-    0 40px 120px rgba(0,0,0,0.85),
-    inset 0 0 120px rgba(255,255,255,0.04);
-
-  padding: var(--theater-pad);
-
-  /* entrance animation */
-  transform: translateY(10px) scale(0.985);
-  opacity: 0;
-  transition:
-    transform var(--theater-dur) var(--theater-ease),
-    opacity var(--theater-dur) var(--theater-ease),
-    box-shadow var(--theater-dur) var(--theater-ease);
-}
-
-/* Animate in once the overlay is active */
-#theater-root[data-active="true"] .theater-note {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-}
-
-/* Make embedded media comfy in theater */
-.theater-note iframe,
-.theater-note video {
-  width: 100%;
-  height: min(78vh, 56vw); /* keeps 16:9-ish without fixed aspect */
-  border: 0;
-  border-radius: calc(var(--theater-radius) - 4px);
-  display: block;
-}
-
-/* ===========================
-   Fade-away of the rest of the UI
-   (works regardless of exact theme structure)
-   =========================== */
-
-/* Common containers to fade/disable when theater is open.
-   Because we physically move the note into #theater-stage,
-   it WON'T be targeted by these rules. */
-.theater-open header,
-.theater-open nav,
-.theater-open aside,
-.theater-open .sidebar,
-.theater-open .left-sidebar,
-.theater-open .right-sidebar,
-.theater-open .dashboard,
-.theater-open .graph,
-.theater-open .graph-container,
-.theater-open .search,
-.theater-open .search-bar,
-.theater-open footer,
-.theater-open main,
-.theater-open .app,
-.theater-open .container,
-.theater-open .page,
-.theater-open .content {
-  transition: opacity var(--theater-dur) var(--theater-ease),
-              filter var(--theater-dur) var(--theater-ease);
-  opacity: 0;
-  filter: blur(6px);
-  pointer-events: none !important;
-}
-
-/* Ensure the overlay stays fully interactive */
-.theater-open #theater-root,
-#theater-root * {
-  pointer-events: auto;
-}
-
-/* ===========================
-   Toggle button styling
-   =========================== */
-.theater-btn {
-  appearance: none;
-  border: 0;
-  border-radius: 10px;
-  padding: 0.5rem 0.8rem;
-  background: #222;
-  color: #fff;
-  font: inherit;
-  cursor: pointer;
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 6px 24px rgba(0,0,0,0.3);
-  transition: transform 140ms ease, background 140ms ease;
-}
-.theater-btn:hover { background: #2e2e2e; transform: translateY(-1px); }
-.theater-btn:active { transform: translateY(0); }
-
-/* Toolbar placement – adjust to taste */
-.note-toolbar {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-/* ===========================
-   Nice default for 16:9 YouTube
-   =========================== */
-.note-content .yt-16x9 {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-}
-.note-content .yt-16x9 iframe {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  border: 0;
-  border-radius: 12px;
-}
