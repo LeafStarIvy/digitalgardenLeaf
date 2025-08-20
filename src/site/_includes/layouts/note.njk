@@ -95,21 +95,96 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
     {% include "components/particlesScript.njk" %}
 
-<button class="fullscreen-btn" id="fullscreen-toggle">
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-    <path d="M1 1h5v2H3v3H1V1zm9 0h5v5h-2V3h-3V1zm5 9v5h-5v-2h3v-3h2zm-9 5H1v-5h2v3h3v2z"/>
-  </svg>
-  Fullscreen
-</button>
+{# ===== Overlays for Theatre ===== #}
+<div class="dg-vignette" aria-hidden="true"></div>
+<div class="dg-grain" aria-hidden="true"></div>
+<div class="dg-cinema-light left" aria-hidden="true"></div>
+<div class="dg-cinema-light right" aria-hidden="true"></div>
 
-<button class="fullscreen-btn" id="theatre-toggle" style="display:none; top:70px;">
-  🎥 Theatre
-</button>
+{# ===== Floating View Controls ===== #}
+<div class="dg-viewbar" id="dg-viewbar" role="group" aria-label="View controls">
+  <button id="dg-fullscreen-toggle"
+          class="dg-btn dg-btn--fullscreen"
+          type="button"
+          aria-pressed="false"
+          title="Fullscreen (F)">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 3h4v2H9v2H7V3Zm10 0v4h-2V5h-2V3h4ZM7 17v4h4v-2H9v-2H7Zm8 2v2h4v-4h-2v2h-2Z"/>
+    </svg>
+    <span>Fullscreen</span>
+  </button>
 
-<div class="theatre-vignette" aria-hidden="true"></div>
+  <button id="dg-theatre-toggle"
+          class="dg-btn dg-btn--theatre"
+          type="button"
+          aria-pressed="false"
+          title="Theatre (T)">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm1 2v8h14V8H5Z"/>
+    </svg>
+    <span>Theatre</span>
+  </button>
+</div>
 
 <script>
-document.addEventListener("DOMContentLoaded", ()
+(() => {
+  const body = document.body;
+  const fsBtn = document.getElementById('dg-fullscreen-toggle');
+  const thBtn = document.getElementById('dg-theatre-toggle');
+
+  const isFS = () => body.classList.contains('dg-fullscreen');
+  const isTH = () => body.classList.contains('dg-theatre');
+
+  function applyState() {
+    fsBtn.setAttribute('aria-pressed', isFS());
+    thBtn.setAttribute('aria-pressed', isTH());
+    thBtn.style.display = isFS() ? '' : 'none';
+  }
+
+  async function enterBrowserFS() {
+    try {
+      const el = document.documentElement;
+      if (!document.fullscreenElement && el.requestFullscreen) {
+        await el.requestFullscreen({ navigationUI: 'hide' });
+      }
+    } catch {}
+  }
+  async function exitBrowserFS() {
+    try {
+      if (document.fullscreenElement && document.exitFullscreen) {
+        await document.exitFullscreen();
+      }
+    } catch {}
+  }
+
+  function toggleFS() {
+    body.classList.toggle('dg-fullscreen');
+    if (isFS()) enterBrowserFS(); else exitBrowserFS();
+    if (!isFS() && isTH()) body.classList.remove('dg-theatre');
+    applyState();
+  }
+  function toggleTH() {
+    if (!isFS()) return;
+    body.classList.toggle('dg-theatre');
+    applyState();
+  }
+
+  fsBtn.addEventListener('click', toggleFS);
+  thBtn.addEventListener('click', toggleTH);
+
+  document.addEventListener('keydown', (e) => {
+    if (/input|textarea|select/i.test(e.target.tagName)) return;
+    if (e.key.toLowerCase() === 'f') { e.preventDefault(); toggleFS(); }
+    if (e.key.toLowerCase() === 't') { e.preventDefault(); toggleTH(); }
+    if (e.key === 'Escape') {
+      body.classList.remove('dg-fullscreen', 'dg-theatre');
+      applyState(); exitBrowserFS();
+    }
+  });
+
+  applyState();
+})();
+</script>
 
 
   </body>
