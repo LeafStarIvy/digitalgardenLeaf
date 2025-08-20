@@ -95,162 +95,109 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
     {% include "components/particlesScript.njk" %}
 
-{% extends "layouts/base.njk" %}
-{% block content %}
-<main class="content cm-s-obsidian {{contentClasses}}">
-  {{ content | safe }}
-</main>
-
-{# Controls (top-right) - full replacements of previous implementations #}
-<button id="fullscreen-toggle" class="fullscreen-btn" title="Toggle fullscreen (F)">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h6v2H5v4H3V3zm18 0v6h-2V5h-4V3h6zM3 21v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6z"/></svg>
+{# ===== Floating buttons (top-right) ===== #}
+<button id="fullscreen-toggle" class="fullscreen-btn" aria-pressed="false" title="Toggle fullscreen (F)">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 3H3v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 9V3h-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 21h6v-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 15v6h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
   Fullscreen
 </button>
 
-<button id="theatre-toggle" class="fullscreen-btn theatre-toggle" title="Toggle theatre (T)" aria-hidden="true" style="display:none;">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M7 4v16"/><path d="M17 4v16"/></svg>
-  Theatre
+<button id="theatre-toggle-btn" aria-pressed="false" title="Toggle theatre (T)">
+  🎥 Theatre
 </button>
 
-{# Theatre overlays (only visible when theatre-mode is on) #}
-<div class="theatre-vignette" aria-hidden="true" style="display:none;"></div>
-<div class="theatre-grain" aria-hidden="true" style="display:none;"></div>
+{# ===== Theatre overlays (in DOM but visually inactive until theatre-mode) ===== #}
+<div class="theatre-side-light left" aria-hidden="true"></div>
+<div class="theatre-side-light right" aria-hidden="true"></div>
+<div class="theatre-vignette" aria-hidden="true"></div>
+<div class="theatre-grain" aria-hidden="true"></div>
 
-{% endblock %}
-
-{% block scripts %}
-{{ super() }}
 <script>
-(function () {
-  // Helpers and state
+(() => {
   const body = document.body;
   const fsBtn = document.getElementById('fullscreen-toggle');
-  const thBtn = document.getElementById('theatre-toggle');
-  const vignette = document.querySelector('.theatre-vignette');
-  const grain = document.querySelector('.theatre-grain');
+  const thBtn = document.getElementById('theatre-toggle-btn');
 
-  // Toggle helpers
-  function setFSControls() {
-    const isFS = body.classList.contains('fullscreen-mode');
-    thBtn.style.display = isFS ? 'inline-flex' : 'none';
-    if (!isFS) {
-      body.classList.remove('theatre-mode');
-      if (vignette) vignette.style.display = 'none';
-      if (grain) grain.style.display = 'none';
-    }
+  // Helpers for state
+  const isFS = () => body.classList.contains('fullscreen-mode');
+  const isTH = () => body.classList.contains('theatre-mode');
+
+  function applyUI() {
+    fsBtn.setAttribute('aria-pressed', String(isFS()));
+    thBtn.setAttribute('aria-pressed', String(isTH()));
+    // theatre toggle only visible when fullscreen-mode is active
+    thBtn.style.display = isFS() ? '' : 'none';
+    if (!isFS() && isTH()) body.classList.remove('theatre-mode'); // disable theatre if fullscreen turned off
   }
 
-  function setTHOverlay() {
-    const isTH = body.classList.contains('theatre-mode');
-    if (vignette) vignette.style.display = isTH ? 'block' : 'none';
-    if (grain) grain.style.display = isTH ? 'block' : 'none';
-  }
-
-  // Wrap YouTube iframes in .video-wrapper if necessary (fallback for browsers without aspect-ratio support
-  // or if iframe has inline height limiting styling). Only target YouTube (or youtu.be) to be safe.
-  function makeEmbedsResponsive() {
-    const root = document.querySelector('main.content') || document;
-    if (!root) return;
-
-    const iframes = Array.from(root.querySelectorAll('iframe')).filter(i => {
-      if (!i.src) return false;
-      const src = i.src.toLowerCase();
-      // Skip if Excalidraw or other known embed containers (class or data attr)
-      const skipSelector = i.closest('.excalidraw-embed, .excalidraw-container, .mermaid, .diagram-container');
-      if (skipSelector) return false;
-      // Target YouTube frames + common embed providers where aspect matters
-      return src.includes('youtube.com') || src.includes('youtu.be') || src.includes('youtube-nocookie');
-    });
-
-    iframes.forEach(iframe => {
-      // If already inside our wrapper, ensure styles present and return
-      if (iframe.closest('.video-wrapper')) {
-        // ensure the iframe has allowfullscreen
-        iframe.setAttribute('allowfullscreen', '');
-        return;
-      }
-
-      // If the iframe already has a sensible CSS aspect-ratio (and no inline height), prefer CSS-only
-      const inlineHeight = iframe.getAttribute('height');
-      const inlineWidth = iframe.getAttribute('width');
-
-      // if the browser supports CSS aspect-ratio, our CSS in custom-style.scss will fix it.
-      // But many sites still inline width/height attributes — to be robust, wrap them.
-      try {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'video-wrapper';
-        const parent = iframe.parentNode;
-        if (!parent) return;
-        parent.insertBefore(wrapper, iframe);
-        wrapper.appendChild(iframe);
-        iframe.setAttribute('allowfullscreen', '');
-        iframe.style.border = iframe.style.border || '0';
-      } catch (err) {
-        // swallow errors, leave iframe unchanged
-        console.warn('Responsive embed wrap failed', err);
-      }
-    });
-  }
-
-  // Keyboard shortcuts
-  document.addEventListener('keydown', (e) => {
-    if (['INPUT','TEXTAREA','SELECT'].includes((e.target && e.target.tagName) || '')) return;
-    if (e.key.toLowerCase() === 'f') {
-      e.preventDefault();
-      fsBtn.click();
-    }
-    if (e.key.toLowerCase() === 't') {
-      if (!body.classList.contains('fullscreen-mode')) return;
-      e.preventDefault();
-      thBtn.click();
-    }
-    if (e.key === 'Escape') {
-      body.classList.remove('fullscreen-mode', 'theatre-mode');
-      setFSControls(); setTHOverlay();
-    }
-  });
-
-  // Button handlers
+  // Toggle fullscreen-mode class (not the browser fullscreen API)
   fsBtn.addEventListener('click', () => {
     body.classList.toggle('fullscreen-mode');
-    setFSControls();
-    // run embed fix after toggling (some themes reflow differently in fullscreen)
-    requestAnimationFrame(makeEmbedsResponsive);
+    applyUI();
   });
 
+  // Toggle theatre (only when fullscreen active)
   thBtn.addEventListener('click', () => {
-    // Theatre implies fullscreen; ensure fullscreen is on
-    if (!body.classList.contains('fullscreen-mode')) body.classList.add('fullscreen-mode');
+    if (!isFS()) return;
     body.classList.toggle('theatre-mode');
-    setFSControls();
-    setTHOverlay();
-    // reflow to ensure video wrappers recalculate sizes
-    requestAnimationFrame(makeEmbedsResponsive);
+    applyUI();
   });
 
-  // Run on DOM ready + when Turbolinks-like nav if applicable
-  document.addEventListener('DOMContentLoaded', () => {
-    makeEmbedsResponsive();
-    setFSControls();
-    setTHOverlay();
+  // keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    // ignore typing in inputs/areas
+    if (e.target && /input|textarea|select/i.test(e.target.tagName)) return;
+    if (e.key === 'f' || e.key === 'F') { e.preventDefault(); fsBtn.click(); }
+    if (e.key === 't' || e.key === 'T') { e.preventDefault(); thBtn.click(); }
+    if (e.key === 'Escape') {
+      body.classList.remove('theatre-mode', 'fullscreen-mode');
+      applyUI();
+    }
   });
 
-  // If your site uses client-side navigation, observe for new iframes
+  // On load: ensure theatre button visibility state
+  applyUI();
+
+  /* Extra: Fix for YouTube iframe embeds served with a fixed height attribute:
+     - Some embeds include height attributes in HTML. The CSS uses aspect-ratio
+       to restore correct proportions. But if you embed via markdown with width/height
+       attributes inlined, browsers may still respect them. We remove height attributes
+       on iframes inside .content to be safe (only for this project).
+  */
+  function sanitizeIframes() {
+    try {
+      const root = document.querySelector('.content') || document.querySelector('main');
+      if (!root) return;
+      const iframes = root.querySelectorAll('iframe');
+      iframes.forEach(iframe => {
+        // only touch external-media iframes (youtube/vimeo/etc.)
+        const src = iframe.getAttribute('src') || '';
+        if (src.includes('youtube') || src.includes('vimeo') || src.includes('player')) {
+          iframe.removeAttribute('height');
+          iframe.style.height = 'auto';
+          iframe.style.width = '100%';
+          iframe.style.maxWidth = '100%';
+          // modern browsers: add aspect-ratio if not present
+          if (!iframe.style.aspectRatio && !iframe.getAttribute('style')?.includes('aspect-ratio')) {
+            iframe.style.aspectRatio = '16 / 9';
+          }
+        }
+      });
+    } catch (e) { /* silent */ }
+  }
+
+  // Run sanitize now and again after images/media lazy-load
+  sanitizeIframes();
+  window.addEventListener('load', sanitizeIframes);
+  // for dynamic content (if your site hydrates) - observe mutations lightly
   const observer = new MutationObserver((mutations) => {
-    let added = false;
-    for (const m of mutations) {
-      if (m.addedNodes && m.addedNodes.length) { added = true; break; }
-    }
-    if (added) {
-      // small debounce
-      setTimeout(() => makeEmbedsResponsive(), 80);
-    }
+    let changed = false;
+    for (const m of mutations) if (m.addedNodes && m.addedNodes.length) { changed = true; break; }
+    if (changed) sanitizeIframes();
   });
-  observer.observe(document.body, { childList: true, subtree: true });
-
+  const croot = document.querySelector('.content') || document.querySelector('main');
+  if (croot) observer.observe(croot, { childList: true, subtree: true });
 })();
 </script>
-{% endblock %}
 
 
   </body>
