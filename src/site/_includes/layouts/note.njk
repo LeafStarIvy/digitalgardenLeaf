@@ -100,39 +100,36 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
     {% include "components/particlesScript.njk" %}
 
-<div class="note-toolbar">
-  <button id="theater-toggle" class="theater-btn">🎬 Theater</button>
-</div>
-
-<article id="note-root" class="note-root">
-  {{ content | safe }}
-</article>
+<header class="site-header">
+  <div class="site-header-inner">
+    <h1 class="site-title"><a href="/">My Garden</a></h1>
+    <button id="theater-toggle" class="theater-btn">🎬 Theater</button>
+  </div>
+</header>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
   const toggleBtn = document.getElementById("theater-toggle");
 
-  // Create exit button dynamically
+  // Create exit button dynamically (appears only in theater)
   const exitBtn = document.createElement("button");
   exitBtn.id = "theater-exit";
   exitBtn.textContent = "✖";
   exitBtn.setAttribute("aria-label", "Exit theater mode");
   document.body.appendChild(exitBtn);
 
-  exitBtn.addEventListener("click", () => {
-    body.classList.remove("theater-active");
-  });
-
   toggleBtn.addEventListener("click", () => {
     body.classList.add("theater-active");
   });
 
-  // Allow ESC key to exit
+  exitBtn.addEventListener("click", () => {
+    body.classList.remove("theater-active");
+  });
+
+  // ESC key exits
   window.addEventListener("keydown", e => {
-    if (e.key === "Escape") {
-      body.classList.remove("theater-active");
-    }
+    if (e.key === "Escape") body.classList.remove("theater-active");
   });
 });
 </script>
