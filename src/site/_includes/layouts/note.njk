@@ -95,42 +95,162 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
     {% include "components/particlesScript.njk" %}
 
-{# Fullscreen & Theatre Buttons #}
-<button class="fullscreen-btn" id="fullscreen-toggle">
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-    <path d="M1 1h5v2H3v3H1V1zm9 0h5v5h-2V3h-3V1zm5 9v5h-5v-2h3v-3h2zm-9 5H1v-5h2v3h3v2z"/>
-  </svg>
+{% extends "layouts/base.njk" %}
+{% block content %}
+<main class="content cm-s-obsidian {{contentClasses}}">
+  {{ content | safe }}
+</main>
+
+{# Controls (top-right) - full replacements of previous implementations #}
+<button id="fullscreen-toggle" class="fullscreen-btn" title="Toggle fullscreen (F)">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h6v2H5v4H3V3zm18 0v6h-2V5h-4V3h6zM3 21v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6z"/></svg>
   Fullscreen
 </button>
 
-<button class="fullscreen-btn" id="theatre-toggle" style="display: none; top: 70px;">
-  🎥 Theatre
+<button id="theatre-toggle" class="fullscreen-btn theatre-toggle" title="Toggle theatre (T)" aria-hidden="true" style="display:none;">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M7 4v16"/><path d="M17 4v16"/></svg>
+  Theatre
 </button>
 
-{# Theatre vignette overlay #}
-<div class="theatre-vignette" aria-hidden="true"></div>
+{# Theatre overlays (only visible when theatre-mode is on) #}
+<div class="theatre-vignette" aria-hidden="true" style="display:none;"></div>
+<div class="theatre-grain" aria-hidden="true" style="display:none;"></div>
 
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+(function () {
+  // Helpers and state
   const body = document.body;
-  const fullscreenBtn = document.getElementById("fullscreen-toggle");
-  const theatreBtn = document.getElementById("theatre-toggle");
+  const fsBtn = document.getElementById('fullscreen-toggle');
+  const thBtn = document.getElementById('theatre-toggle');
+  const vignette = document.querySelector('.theatre-vignette');
+  const grain = document.querySelector('.theatre-grain');
 
-  fullscreenBtn.addEventListener("click", () => {
-    body.classList.toggle("fullscreen-mode");
-    if (body.classList.contains("fullscreen-mode")) {
-      theatreBtn.style.display = "flex";
-    } else {
-      theatreBtn.style.display = "none";
-      body.classList.remove("theatre-mode");
+  // Toggle helpers
+  function setFSControls() {
+    const isFS = body.classList.contains('fullscreen-mode');
+    thBtn.style.display = isFS ? 'inline-flex' : 'none';
+    if (!isFS) {
+      body.classList.remove('theatre-mode');
+      if (vignette) vignette.style.display = 'none';
+      if (grain) grain.style.display = 'none';
+    }
+  }
+
+  function setTHOverlay() {
+    const isTH = body.classList.contains('theatre-mode');
+    if (vignette) vignette.style.display = isTH ? 'block' : 'none';
+    if (grain) grain.style.display = isTH ? 'block' : 'none';
+  }
+
+  // Wrap YouTube iframes in .video-wrapper if necessary (fallback for browsers without aspect-ratio support
+  // or if iframe has inline height limiting styling). Only target YouTube (or youtu.be) to be safe.
+  function makeEmbedsResponsive() {
+    const root = document.querySelector('main.content') || document;
+    if (!root) return;
+
+    const iframes = Array.from(root.querySelectorAll('iframe')).filter(i => {
+      if (!i.src) return false;
+      const src = i.src.toLowerCase();
+      // Skip if Excalidraw or other known embed containers (class or data attr)
+      const skipSelector = i.closest('.excalidraw-embed, .excalidraw-container, .mermaid, .diagram-container');
+      if (skipSelector) return false;
+      // Target YouTube frames + common embed providers where aspect matters
+      return src.includes('youtube.com') || src.includes('youtu.be') || src.includes('youtube-nocookie');
+    });
+
+    iframes.forEach(iframe => {
+      // If already inside our wrapper, ensure styles present and return
+      if (iframe.closest('.video-wrapper')) {
+        // ensure the iframe has allowfullscreen
+        iframe.setAttribute('allowfullscreen', '');
+        return;
+      }
+
+      // If the iframe already has a sensible CSS aspect-ratio (and no inline height), prefer CSS-only
+      const inlineHeight = iframe.getAttribute('height');
+      const inlineWidth = iframe.getAttribute('width');
+
+      // if the browser supports CSS aspect-ratio, our CSS in custom-style.scss will fix it.
+      // But many sites still inline width/height attributes — to be robust, wrap them.
+      try {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'video-wrapper';
+        const parent = iframe.parentNode;
+        if (!parent) return;
+        parent.insertBefore(wrapper, iframe);
+        wrapper.appendChild(iframe);
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.style.border = iframe.style.border || '0';
+      } catch (err) {
+        // swallow errors, leave iframe unchanged
+        console.warn('Responsive embed wrap failed', err);
+      }
+    });
+  }
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    if (['INPUT','TEXTAREA','SELECT'].includes((e.target && e.target.tagName) || '')) return;
+    if (e.key.toLowerCase() === 'f') {
+      e.preventDefault();
+      fsBtn.click();
+    }
+    if (e.key.toLowerCase() === 't') {
+      if (!body.classList.contains('fullscreen-mode')) return;
+      e.preventDefault();
+      thBtn.click();
+    }
+    if (e.key === 'Escape') {
+      body.classList.remove('fullscreen-mode', 'theatre-mode');
+      setFSControls(); setTHOverlay();
     }
   });
 
-  theatreBtn.addEventListener("click", () => {
-    body.classList.toggle("theatre-mode");
+  // Button handlers
+  fsBtn.addEventListener('click', () => {
+    body.classList.toggle('fullscreen-mode');
+    setFSControls();
+    // run embed fix after toggling (some themes reflow differently in fullscreen)
+    requestAnimationFrame(makeEmbedsResponsive);
   });
-});
+
+  thBtn.addEventListener('click', () => {
+    // Theatre implies fullscreen; ensure fullscreen is on
+    if (!body.classList.contains('fullscreen-mode')) body.classList.add('fullscreen-mode');
+    body.classList.toggle('theatre-mode');
+    setFSControls();
+    setTHOverlay();
+    // reflow to ensure video wrappers recalculate sizes
+    requestAnimationFrame(makeEmbedsResponsive);
+  });
+
+  // Run on DOM ready + when Turbolinks-like nav if applicable
+  document.addEventListener('DOMContentLoaded', () => {
+    makeEmbedsResponsive();
+    setFSControls();
+    setTHOverlay();
+  });
+
+  // If your site uses client-side navigation, observe for new iframes
+  const observer = new MutationObserver((mutations) => {
+    let added = false;
+    for (const m of mutations) {
+      if (m.addedNodes && m.addedNodes.length) { added = true; break; }
+    }
+    if (added) {
+      // small debounce
+      setTimeout(() => makeEmbedsResponsive(), 80);
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+
+})();
 </script>
+{% endblock %}
 
 
   </body>
