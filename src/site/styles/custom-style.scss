@@ -919,50 +919,201 @@ img {
 }
 
 // =====================================================================
-// 15. Theather mode design 
+// 15. Theater Mode — Base tokens
 // =====================================================================
 
-/* Default state (normal site) */
-body.theater-mode {
-  background-color: #000 !important; /* dark background */
-  overflow: hidden; /* remove scrollbars if needed */
+:root {
+  --theater-backdrop: rgba(0, 0, 0, 0.92); /* main dim */
+  --theater-note-bg: #111;                 /* note surface */
+  --theater-radius: 16px;
+  --theater-pad: clamp(12px, 1.4vw, 24px);
+  --theater-max-w: min(92vw, 1320px);
+  --theater-max-h: min(92vh, 980px);
+  --theater-dur: 420ms;
+  --theater-ease: cubic-bezier(.22,.61,.36,1); /* smooth in/out */
 }
 
-body.theater-mode .note {
-  max-width: 90vw;
-  max-height: 90vh;
-  margin: auto;
-  padding: 1rem;
-  background: #111;
-  border-radius: 12px;
-  box-shadow: 0 0 30px rgba(0,0,0,0.8);
-  z-index: 9999;
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  :root { --theater-dur: 1ms; }
 }
 
-body.theater-mode .note iframe {
+/* Prevent background scrolling while active */
+.scroll-lock {
+  position: fixed;
   width: 100%;
-  height: 80vh; /* YouTube embed fills most of the viewport */
 }
 
-/* Hide other elements */
-body.theater-mode .dashboard,
-body.theater-mode .graph,
-body.theater-mode .sidebar,
-body.theater-mode header,
-body.theater-mode footer {
-  display: none !important;
+/* ===========================
+   Overlay / Backdrop
+   =========================== */
+#theater-root {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  grid-template-rows: 1fr;
+  pointer-events: none; /* backplane off */
+  opacity: 0;
+  transition: opacity var(--theater-dur) var(--theater-ease);
 }
 
-/* Style the toggle button */
-.theater-button {
+/* When active, entire layer becomes interactive */
+#theater-root[data-active="true"] {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/* Backdrop with subtle side lights (vignette) */
+#theater-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 80% at 0% 50%, rgba(255,255,255,0.07), transparent 60%),
+    radial-gradient(120% 80% at 100% 50%, rgba(255,255,255,0.07), transparent 60%),
+    var(--theater-backdrop);
+  filter: saturate(0.9) blur(0.2px);
+  opacity: 0;
+  transition: opacity var(--theater-dur) var(--theater-ease);
+}
+
+#theater-root[data-active="true"] #theater-backdrop {
+  opacity: 1;
+}
+
+/* Stage centers the note */
+#theater-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: clamp(12px, 2vw, 28px);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ===========================
+   The note in theater
+   =========================== */
+.theater-note {
+  /* lift above backdrop and center */
+  pointer-events: auto;
+  background: var(--theater-note-bg);
+  border-radius: var(--theater-radius);
+  width: var(--theater-max-w);
+  max-width: var(--theater-max-w);
+  max-height: var(--theater-max-h);
+  height: auto;
+  overflow: auto;
+
+  /* slight inner glow + outside lift */
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06),
+    0 40px 120px rgba(0,0,0,0.85),
+    inset 0 0 120px rgba(255,255,255,0.04);
+
+  padding: var(--theater-pad);
+
+  /* entrance animation */
+  transform: translateY(10px) scale(0.985);
+  opacity: 0;
+  transition:
+    transform var(--theater-dur) var(--theater-ease),
+    opacity var(--theater-dur) var(--theater-ease),
+    box-shadow var(--theater-dur) var(--theater-ease);
+}
+
+/* Animate in once the overlay is active */
+#theater-root[data-active="true"] .theater-note {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* Make embedded media comfy in theater */
+.theater-note iframe,
+.theater-note video {
+  width: 100%;
+  height: min(78vh, 56vw); /* keeps 16:9-ish without fixed aspect */
+  border: 0;
+  border-radius: calc(var(--theater-radius) - 4px);
+  display: block;
+}
+
+/* ===========================
+   Fade-away of the rest of the UI
+   (works regardless of exact theme structure)
+   =========================== */
+
+/* Common containers to fade/disable when theater is open.
+   Because we physically move the note into #theater-stage,
+   it WON'T be targeted by these rules. */
+.theater-open header,
+.theater-open nav,
+.theater-open aside,
+.theater-open .sidebar,
+.theater-open .left-sidebar,
+.theater-open .right-sidebar,
+.theater-open .dashboard,
+.theater-open .graph,
+.theater-open .graph-container,
+.theater-open .search,
+.theater-open .search-bar,
+.theater-open footer,
+.theater-open main,
+.theater-open .app,
+.theater-open .container,
+.theater-open .page,
+.theater-open .content {
+  transition: opacity var(--theater-dur) var(--theater-ease),
+              filter var(--theater-dur) var(--theater-ease);
+  opacity: 0;
+  filter: blur(6px);
+  pointer-events: none !important;
+}
+
+/* Ensure the overlay stays fully interactive */
+.theater-open #theater-root,
+#theater-root * {
+  pointer-events: auto;
+}
+
+/* ===========================
+   Toggle button styling
+   =========================== */
+.theater-btn {
+  appearance: none;
+  border: 0;
+  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
   background: #222;
   color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
+  font: inherit;
   cursor: pointer;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 6px 24px rgba(0,0,0,0.3);
+  transition: transform 140ms ease, background 140ms ease;
+}
+.theater-btn:hover { background: #2e2e2e; transform: translateY(-1px); }
+.theater-btn:active { transform: translateY(0); }
+
+/* Toolbar placement – adjust to taste */
+.note-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
-.theater-button:hover {
-  background: #444;
+/* ===========================
+   Nice default for 16:9 YouTube
+   =========================== */
+.note-content .yt-16x9 {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+.note-content .yt-16x9 iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: 0;
+  border-radius: 12px;
 }
