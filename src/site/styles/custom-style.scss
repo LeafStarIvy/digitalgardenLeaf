@@ -919,19 +919,16 @@ img {
 }
 
 // =====================================================================
-// 15. Theater Mode — Base tokens
+// 15. Digital Garden — Fullscreen & Theatre Mode
 // =====================================================================
 
-/* ========= Digital Garden — Fullscreen & Theatre Mode ========= */
-/* Config */
 :root {
   --dg-fs-duration: 320ms;
   --dg-fs-ease: cubic-bezier(.2,.7,.2,1);
   --dg-fs-pad-x: 4vw;
   --dg-fs-pad-y: 3.5rem;
-  --dg-fs-max: 96vw;         /* how wide the note becomes in fullscreen */
-  --dg-fs-max-ch: 160ch;     /* additional fallback cap */
-  --dg-theatre-max: 78vw;    /* how wide in theatre */
+  --dg-fs-max: 120ch;     /* bigger notes in fullscreen */
+  --dg-theatre-max: 88vw; /* wide "screen" in theatre */
 }
 
 /* Floating Viewbar (top-right controls) */
@@ -977,8 +974,7 @@ img {
 body.dg-fullscreen .dg-btn--theatre { display: inline-flex; }
 
 /* -------- Fullscreen layout -------- */
-/* Hide “chrome”: file tree, graphs, backlinks, toc, etc. 
-   (Covers default template + common community variants.) */
+/* Hide “chrome”: sidebars, nav, search, graphs, backlinks, etc. */
 body.dg-fullscreen nav[aria-label="Filetree"],
 body.dg-fullscreen .filetree,
 body.dg-fullscreen [id*="filetree"],
@@ -992,7 +988,17 @@ body.dg-fullscreen .table-of-contents,
 body.dg-fullscreen nav.toc,
 body.dg-fullscreen aside,
 body.dg-fullscreen .right-sidebar,
-body.dg-fullscreen .left-sidebar {
+body.dg-fullscreen .left-sidebar,
+body.dg-fullscreen .sidebar,
+body.dg-fullscreen #sidebar,
+body.dg-fullscreen .site-nav,
+body.dg-fullscreen nav.site-nav,
+body.dg-fullscreen .search,
+body.dg-fullscreen #search,
+body.dg-fullscreen .site-header,
+body.dg-fullscreen .left-panel,
+body.dg-fullscreen .nav-bar,
+body.dg-fullscreen .nav-container {
   display: none !important;
 }
 
@@ -1009,35 +1015,22 @@ body.dg-fullscreen .note-content,
 body.dg-fullscreen .prose,
 body.dg-fullscreen .markdown-body,
 body.dg-fullscreen .markdown-preview-view {
-  max-width: min(var(--dg-fs-max), var(--dg-fs-max-ch));
-  width: min(100%, var(--dg-fs-max));
+  max-width: var(--dg-fs-max) !important;
   margin-inline: auto !important;
   padding: var(--dg-fs-pad-y) var(--dg-fs-pad-x) !important;
   background: transparent;
+  font-size: clamp(20px, 1rem + 1.2vw, 28px);
+  line-height: 1.9;
   transition:
     max-width var(--dg-fs-duration) var(--dg-fs-ease),
     padding var(--dg-fs-duration) var(--dg-fs-ease),
     transform var(--dg-fs-duration) var(--dg-fs-ease);
 }
 
-/* Make note text comfortably larger in fullscreen */
-body.dg-fullscreen main,
-body.dg-fullscreen .content,
-body.dg-fullscreen article,
-body.dg-fullscreen .note-content,
-body.dg-fullscreen .prose {
-  font-size: clamp(18px, 1rem + .8vw, 22px);
-  line-height: 1.75;
-}
-
-/* Subtle “lifting” animation when toggling */
-body.dg-fullscreen .note-content,
-body.dg-fullscreen .prose,
-body.dg-fullscreen article { transform: translateZ(0); }
-
 /* -------- Theatre mode -------- */
 body.dg-theatre {
-  background: #000 !important;
+  overflow-y: auto;
+  background: transparent !important; /* let particles.js stars show */
 }
 
 /* Letterboxing */
@@ -1046,69 +1039,87 @@ body.dg-theatre::after {
   content: "";
   position: fixed;
   left: 0; right: 0;
-  height: 10vh;
-  z-index: 9990;
+  height: 12vh;
+  z-index: 9991;
   pointer-events: none;
 }
 body.dg-theatre::before {
   top: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,.95), rgba(0,0,0,.55), transparent);
+  background: linear-gradient(to bottom, rgba(0,0,0,.95), rgba(0,0,0,.6), transparent 70%);
 }
 body.dg-theatre::after {
   bottom: 0;
-  background: linear-gradient(to top, rgba(0,0,0,.95), rgba(0,0,0,.55), transparent);
+  background: linear-gradient(to top, rgba(0,0,0,.95), rgba(0,0,0,.6), transparent 70%);
 }
 
-/* Narrow the “screen”, add glow + rounded edges */
+/* The "screen" itself */
 body.dg-theatre main,
 body.dg-theatre .content,
 body.dg-theatre article,
 body.dg-theatre .note-content,
 body.dg-theatre .prose {
   max-width: var(--dg-theatre-max) !important;
-  background: rgba(0,0,0,.20);
-  border-radius: 16px;
+  padding: 4rem 6rem;
+  background: #111;
+  border-radius: 12px;
   box-shadow:
-    0 20px 80px rgba(0,0,0,.65),
-    0 0 0 1px rgba(255,255,255,.06) inset;
+    0 0 60px rgba(0,0,0,.9),
+    0 0 180px rgba(0,0,0,.85);
+  color: #eee;
+  transition: all 400ms ease;
 }
 
-/* Cinema vibe: gentle warmth & grain */
-body.dg-theatre .dg-vignette {
+/* Ambient light glow (atmosphere above stars, below notes) */
+.dg-ambient {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9989;
-  background:
-    radial-gradient(1200px 800px at 50% 15%, rgba(255,194,118,.06), transparent 40%) /* warm spotlight */,
-    radial-gradient(1200px 800px at 50% 85%, rgba(255,194,118,.03), transparent 40%); /* bottom warmth */
+  background: radial-gradient(circle at 50% 50%, rgba(200,80,120,.25), transparent 60%),
+              radial-gradient(circle at 80% 30%, rgba(80,160,255,.25), transparent 70%),
+              radial-gradient(circle at 20% 70%, rgba(255,220,120,.25), transparent 60%);
   mix-blend-mode: screen;
+  animation: dg-ambient-shift 12s ease-in-out infinite alternate;
+  opacity: .6;
 }
-body.dg-theatre .dg-grain {
+@keyframes dg-ambient-shift {
+  0%   { filter: hue-rotate(0deg) brightness(1); }
+  50%  { filter: hue-rotate(40deg) brightness(1.2); }
+  100% { filter: hue-rotate(-40deg) brightness(.9); }
+}
+
+/* Cinema vignette */
+.dg-vignette {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 9988;
-  opacity: .06;
+  z-index: 9990;
+  background: radial-gradient(ellipse at center, transparent 70%, rgba(0,0,0,.85) 100%);
+}
+
+/* Subtle film grain */
+.dg-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9992;
+  opacity: .04;
   background-image:
     repeating-linear-gradient(0deg, rgba(255,255,255,.4) 0 1px, transparent 1px 2px),
     repeating-linear-gradient(90deg, rgba(255,255,255,.25) 0 1px, transparent 1px 2px);
-  animation: dg-grain 1.2s steps(6) infinite;
+  animation: dg-grain 1.3s steps(6) infinite;
 }
 @keyframes dg-grain {
   0% { transform: translate(0,0); }
-  100% { transform: translate(2px, -1px); }
+  100% { transform: translate(2px,-1px); }
 }
 
-/* Ensure scrolling remains natural in theatre */
-body.dg-theatre { overflow-y: auto; }
-
-/* Respect print */
+/* Print safety */
 @media print {
   .dg-viewbar,
   body.dg-theatre::before,
   body.dg-theatre::after,
-  body.dg-theatre .dg-vignette,
-  body.dg-theatre .dg-grain { display: none !important; }
+  .dg-ambient,
+  .dg-vignette,
+  .dg-grain { display: none !important; }
 }
-
