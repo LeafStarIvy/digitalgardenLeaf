@@ -100,107 +100,134 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
     {% include "components/particlesScript.njk" %}
 
-{# ===== Overlays for Theatre mode ===== #}
-<div class="dg-ambient" aria-hidden="true"></div>
-<div class="dg-vignette" aria-hidden="true"></div>
-<div class="dg-grain" aria-hidden="true"></div>
+{% extends "layouts/base.njk" %}
+{% block content %}
+<main class="content cm-s-obsidian {{contentClasses}}">
+  {{ content | safe }}
+</main>
 
-{# ===== View controls (top-right) ===== #}
-<div class="dg-viewbar" id="dg-viewbar" role="group" aria-label="View controls">
-  <button id="dg-fullscreen-toggle"
-          class="dg-btn dg-btn--fullscreen"
-          type="button"
-          aria-pressed="false"
-          title="Fullscreen (F)">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M7 3h4v2H9v2H7V3Zm10 0v4h-2V5h-2V3h4ZM7 17v4h4v-2H9v-2H7Zm8 2v2h4v-4h-2v2h-2Z"/>
-    </svg>
-    <span>Fullscreen</span>
+{# --- Immersive UI (always in DOM, only visible when active) --- #}
+<div class="dg-controls" aria-label="Display controls">
+  <button id="dg-toggle-fs" class="dg-btn dg-btn--fullscreen" aria-pressed="false" aria-label="Toggle fullscreen">
+    <span class="label">Fullscreen</span>
+    <!-- inline lucide: maximize-2 -->
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6"/><path d="M21 3l-7 7"/><path d="M9 21H3v-6"/><path d="M3 21l7-7"/></svg>
   </button>
 
-  <button id="dg-theatre-toggle"
-          class="dg-btn dg-btn--theatre"
-          type="button"
-          aria-pressed="false"
-          title="Theatre mode (T)">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm1 2v8h14V8H5Z"/>
-    </svg>
-    <span>Theatre</span>
+  <button id="dg-toggle-theatre" class="dg-btn dg-btn--theatre" aria-pressed="false" aria-label="Toggle theatre" hidden>
+    <span class="label">Theatre</span>
+    <!-- inline lucide: film -->
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 4v16"/><path d="M17 4v16"/><path d="M2 8h20"/><path d="M2 16h20"/></svg>
   </button>
 </div>
 
+<!-- Cinematic overlays (behind content, above stars/background) -->
+<div class="dg-ambient" aria-hidden="true"></div>
+<div class="dg-vignette" aria-hidden="true"></div>
+<div class="dg-curtains" aria-hidden="true"></div>
+<div class="dg-noise" aria-hidden="true"></div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
 <script>
-(() => {
+(function(){
   const body = document.body;
-  const fsBtn = document.getElementById('dg-fullscreen-toggle');
-  const thBtn = document.getElementById('dg-theatre-toggle');
+  const fsBtn = document.getElementById('dg-toggle-fs');
+  const thBtn = document.getElementById('dg-toggle-theatre');
+  const ambientRoot = document.documentElement;
 
-  const isFS = () => body.classList.contains('dg-fullscreen');
-  const isTH = () => body.classList.contains('dg-theatre');
-
-  function applyState(fromStorage = false) {
-    fsBtn?.setAttribute('aria-pressed', String(isFS()));
-    thBtn?.setAttribute('aria-pressed', String(isTH()));
-    thBtn.style.display = isFS() ? '' : 'none';
-    if (!fromStorage) {
-      try { localStorage.setItem('dg:view', JSON.stringify({ fs: isFS(), th: isTH() })); } catch {}
-    }
+  function updateButtons(){
+    const isFS = body.classList.contains('dg-fullscreen');
+    const isTH = body.classList.contains('dg-theatre');
+    fsBtn.setAttribute('aria-pressed', String(isFS));
+    thBtn.setAttribute('aria-pressed', String(isTH));
+    thBtn.hidden = !isFS;
+    // Swap fullscreen icon
+    fsBtn.querySelector('svg').innerHTML = isFS
+      ? '<path d="M9 3H3v6"/><path d="M3 3l7 7"/><path d="M15 21h6v-6"/><path d="M21 21l-7-7"/>'
+      : '<path d="M15 3h6v6"/><path d="M21 3l-7 7"/><path d="M9 21H3v-6"/><path d="M3 21l7-7"/>';
   }
 
-  async function enterBrowserFullscreen() {
+  function setAmbientFromMedia(el){
+    // Try to estimate ambient color from a <video> or <img>
     try {
-      const el = document.documentElement;
-      if (!document.fullscreenElement && el.requestFullscreen) {
-        await el.requestFullscreen({ navigationUI: 'hide' });
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      if (!ctx) return;
+
+      const sample = () => {
+        const w = 64, h = 36; // tiny sample
+        canvas.width = w; canvas.height = h;
+        ctx.drawImage(el, 0, 0, w, h);
+        const { data } = ctx.getImageData(0, 0, w, h);
+        let r=0,g=0,b=0, count=0;
+        for (let i=0; i<data.length; i+=4) {
+          const R=data[i], G=data[i+1], B=data[i+2];
+          // light bias to avoid dark frames dominating
+          const lum = 0.2126*R + 0.7152*G + 0.0722*B;
+          if (lum > 24) { r+=R; g+=G; b+=B; count++; }
+        }
+        if (count) {
+          r=Math.round(r/count); g=Math.round(g/count); b=Math.round(b/count);
+          ambientRoot.style.setProperty('--dg-ambient-rgb', `${r},${g},${b}`);
+        }
+      };
+
+      if (el.tagName === 'VIDEO') {
+        // video frames can be CORS-tainted — ignore errors gracefully
+        const go = () => { try { sample(); } catch(_){} };
+        if (el.readyState >= 2) go(); else el.addEventListener('loadeddata', go, { once:true });
+      } else if (el.complete) {
+        sample();
+      } else {
+        el.addEventListener('load', sample, { once:true });
       }
-    } catch {}
-  }
-  async function exitBrowserFullscreen() {
-    try {
-      if (document.fullscreenElement && document.exitFullscreen) {
-        await document.exitFullscreen();
-      }
-    } catch {}
+    } catch (_) { /* keep default */ }
   }
 
-  function toggleFullscreen() {
+  function computeAmbientColor(){
+    // Prefer a prominent <video>, else first content image
+    const root = document.querySelector('main.content') || document.querySelector('main');
+    if (!root) return;
+    const vid = root.querySelector('video');
+    const img = root.querySelector('img');
+    setAmbientFromMedia(vid || img || {});
+  }
+
+  // Toggle handlers
+  fsBtn.addEventListener('click', () => {
     body.classList.toggle('dg-fullscreen');
-    if (isFS()) enterBrowserFullscreen(); else exitBrowserFullscreen();
-    if (!isFS() && isTH()) body.classList.remove('dg-theatre');
-    applyState();
-  }
-  function toggleTheatre() {
-    if (!isFS()) return;
+    if (!body.classList.contains('dg-fullscreen')) {
+      body.classList.remove('dg-theatre');
+    }
+    updateButtons();
+  });
+
+  thBtn.addEventListener('click', () => {
+    body.classList.add('dg-fullscreen'); // theatre implies fullscreen
     body.classList.toggle('dg-theatre');
-    applyState();
-  }
+    if (body.classList.contains('dg-theatre')) {
+      computeAmbientColor();
+    }
+    updateButtons();
+  });
 
-  fsBtn?.addEventListener('click', toggleFullscreen);
-  thBtn?.addEventListener('click', toggleTheatre);
-
-  document.addEventListener('keydown', (e) => {
-    if (e.target && /input|textarea|select/i.test(e.target.tagName)) return;
-    if (e.key.toLowerCase() === 'f') { e.preventDefault(); toggleFullscreen(); }
-    if (e.key.toLowerCase() === 't') { e.preventDefault(); toggleTheatre(); }
-    if (e.key === 'Escape') {
-      body.classList.remove('dg-theatre', 'dg-fullscreen');
-      applyState();
-      exitBrowserFullscreen();
+  // Keyboard shortcuts: f = fullscreen, t = theatre (if fs)
+  window.addEventListener('keydown', (e) => {
+    if (['INPUT','TEXTAREA'].includes((e.target && e.target.tagName) || '')) return;
+    if (e.key.toLowerCase() === 'f') { e.preventDefault(); fsBtn.click(); }
+    if (e.key.toLowerCase() === 't') {
+      if (!body.classList.contains('dg-fullscreen')) return;
+      e.preventDefault(); thBtn.click();
     }
   });
 
-  try {
-    const saved = JSON.parse(localStorage.getItem('dg:view') || '{}');
-    if (saved.fs) body.classList.add('dg-fullscreen');
-    if (saved.th) body.classList.add('dg-theatre');
-    if (saved.fs) enterBrowserFullscreen();
-  } catch {}
-
-  applyState(true);
+  // First paint
+  updateButtons();
 })();
 </script>
-
+{% endblock %}
 
 
   </body>
