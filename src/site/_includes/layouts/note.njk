@@ -100,7 +100,8 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
     {% include "components/particlesScript.njk" %}
 
-{# ===== Vignette & Grain overlays for Theatre mode (kept outside content) ===== #}
+{# ===== Overlays for Theatre mode ===== #}
+<div class="dg-ambient" aria-hidden="true"></div>
 <div class="dg-vignette" aria-hidden="true"></div>
 <div class="dg-grain" aria-hidden="true"></div>
 
@@ -141,7 +142,6 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
   function applyState(fromStorage = false) {
     fsBtn?.setAttribute('aria-pressed', String(isFS()));
     thBtn?.setAttribute('aria-pressed', String(isTH()));
-    // Only show theatre button in fullscreen (CSS also enforces this)
     thBtn.style.display = isFS() ? '' : 'none';
     if (!fromStorage) {
       try { localStorage.setItem('dg:view', JSON.stringify({ fs: isFS(), th: isTH() })); } catch {}
@@ -154,24 +154,24 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
       if (!document.fullscreenElement && el.requestFullscreen) {
         await el.requestFullscreen({ navigationUI: 'hide' });
       }
-    } catch { /* ignore */ }
+    } catch {}
   }
   async function exitBrowserFullscreen() {
     try {
       if (document.fullscreenElement && document.exitFullscreen) {
         await document.exitFullscreen();
       }
-    } catch { /* ignore */ }
+    } catch {}
   }
 
   function toggleFullscreen() {
     body.classList.toggle('dg-fullscreen');
     if (isFS()) enterBrowserFullscreen(); else exitBrowserFullscreen();
-    if (!isFS() && isTH()) body.classList.remove('dg-theatre'); // leaving FS also disables Theatre
+    if (!isFS() && isTH()) body.classList.remove('dg-theatre');
     applyState();
   }
   function toggleTheatre() {
-    if (!isFS()) return; // theatre only in fullscreen
+    if (!isFS()) return;
     body.classList.toggle('dg-theatre');
     applyState();
   }
@@ -179,7 +179,6 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
   fsBtn?.addEventListener('click', toggleFullscreen);
   thBtn?.addEventListener('click', toggleTheatre);
 
-  // Keyboard shortcuts: F = fullscreen, T = theatre, ESC = exit all
   document.addEventListener('keydown', (e) => {
     if (e.target && /input|textarea|select/i.test(e.target.tagName)) return;
     if (e.key.toLowerCase() === 'f') { e.preventDefault(); toggleFullscreen(); }
@@ -191,7 +190,6 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
     }
   });
 
-  // Restore last state (optional nicety)
   try {
     const saved = JSON.parse(localStorage.getItem('dg:view') || '{}');
     if (saved.fs) body.classList.add('dg-fullscreen');
@@ -202,6 +200,7 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
   applyState(true);
 })();
 </script>
+
 
 
   </body>
