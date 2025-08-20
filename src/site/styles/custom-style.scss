@@ -922,140 +922,193 @@ img {
 // 15. Theater Mode — Base tokens
 // =====================================================================
 
-/* =========================
-   THEATER MODE - CUSTOM.CSS
-   ========================= */
-
-/* --- Toggle in top-right (always above other UI) --- */
-.tg-toggle {
-  position: fixed;
-  top: 12px;
-  right: 14px;
-  z-index: 10005;                 /* highest so it's always clickable */
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
-  display: inline-grid;
-  place-items: center;
-  border: 0;
-  background: linear-gradient(180deg,#1f1f1f,#0f0f0f);
-  color: #fff;
-  font-size: 18px;
-  cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+/* ========= Digital Garden — Fullscreen & Theatre Mode ========= */
+/* Config */
+:root {
+  --dg-fs-duration: 320ms;
+  --dg-fs-ease: cubic-bezier(.2,.7,.2,1);
+  --dg-fs-pad-x: 4vw;
+  --dg-fs-pad-y: 3.5rem;
+  --dg-fs-max: 96vw;         /* how wide the note becomes in fullscreen */
+  --dg-fs-max-ch: 160ch;     /* additional fallback cap */
+  --dg-theatre-max: 78vw;    /* how wide in theatre */
 }
-.tg-toggle:hover { transform: translateY(-3px); }
-.tg-toggle:active { transform: translateY(-1px); }
-.tg-toggle:focus { outline: none; box-shadow: 0 0 0 4px rgba(80,110,255,0.12); }
 
-/* --- Exit button - becomes visible only during theater */
-.tg-exit {
+/* Floating Viewbar (top-right controls) */
+.dg-viewbar {
   position: fixed;
-  top: 12px;
-  right: 72px;                    /* left of toggle */
-  z-index: 10006;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 0;
-  background: rgba(20,20,20,0.85);
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  display: flex;
+  gap: .5rem;
+  align-items: center;
   opacity: 0;
+  transform: translateY(-8px);
   pointer-events: none;
-  transition: opacity 260ms ease, transform 260ms ease;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  animation: dg-fade-slide-in var(--dg-fs-duration) var(--dg-fs-ease) .15s forwards;
 }
-.tg-exit:hover { background: rgba(36,36,36,0.98); }
-body.tg-active .tg-exit {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
+@keyframes dg-fade-slide-in {
+  to { opacity: 1; transform: none; pointer-events: auto; }
+}
+.dg-btn {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  background: rgba(20,20,20,.45);
+  border: 1px solid rgba(255,255,255,.14);
+  padding: .6rem .7rem;
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  transition: transform 160ms var(--dg-fs-ease), background 160ms var(--dg-fs-ease), opacity 160ms;
+  color: #fff;
+  font: 500 13px/1 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
+}
+.dg-btn:hover { transform: translateY(-1px) scale(1.02); background: rgba(30,30,30,.55); }
+.dg-btn:active { transform: translateY(0) scale(.98); }
+.dg-btn[aria-pressed="true"] { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.22); }
+.dg-btn svg { width: 18px; height: 18px; display:block; }
+
+/* Show Theatre button only when fullscreen is active */
+.dg-btn--theatre { display: none; }
+body.dg-fullscreen .dg-btn--theatre { display: inline-flex; }
+
+/* -------- Fullscreen layout -------- */
+/* Hide “chrome”: file tree, graphs, backlinks, toc, etc. 
+   (Covers default template + common community variants.) */
+body.dg-fullscreen nav[aria-label="Filetree"],
+body.dg-fullscreen .filetree,
+body.dg-fullscreen [id*="filetree"],
+body.dg-fullscreen .local-graph,
+body.dg-fullscreen .global-graph,
+body.dg-fullscreen .graph,
+body.dg-fullscreen [id*="graph"],
+body.dg-fullscreen .backlinks,
+body.dg-fullscreen [id*="backlinks"],
+body.dg-fullscreen .table-of-contents,
+body.dg-fullscreen nav.toc,
+body.dg-fullscreen aside,
+body.dg-fullscreen .right-sidebar,
+body.dg-fullscreen .left-sidebar {
+  display: none !important;
 }
 
-/* --- Backdrop / cinematic vignette (behind the note) --- */
-.tg-backdrop {
+/* Let the main content take the full stage */
+body.dg-fullscreen {
+  background: radial-gradient(1200px 800px at 50% -10%, rgba(0,0,0,.08), transparent 60%) fixed,
+              var(--site-background, #0b0b0b) repeat;
+}
+
+body.dg-fullscreen main,
+body.dg-fullscreen .content,
+body.dg-fullscreen article,
+body.dg-fullscreen .note-content,
+body.dg-fullscreen .prose,
+body.dg-fullscreen .markdown-body,
+body.dg-fullscreen .markdown-preview-view {
+  max-width: min(var(--dg-fs-max), var(--dg-fs-max-ch));
+  width: min(100%, var(--dg-fs-max));
+  margin-inline: auto !important;
+  padding: var(--dg-fs-pad-y) var(--dg-fs-pad-x) !important;
+  background: transparent;
+  transition:
+    max-width var(--dg-fs-duration) var(--dg-fs-ease),
+    padding var(--dg-fs-duration) var(--dg-fs-ease),
+    transform var(--dg-fs-duration) var(--dg-fs-ease);
+}
+
+/* Make note text comfortably larger in fullscreen */
+body.dg-fullscreen main,
+body.dg-fullscreen .content,
+body.dg-fullscreen article,
+body.dg-fullscreen .note-content,
+body.dg-fullscreen .prose {
+  font-size: clamp(18px, 1rem + .8vw, 22px);
+  line-height: 1.75;
+}
+
+/* Subtle “lifting” animation when toggling */
+body.dg-fullscreen .note-content,
+body.dg-fullscreen .prose,
+body.dg-fullscreen article { transform: translateZ(0); }
+
+/* -------- Theatre mode -------- */
+body.dg-theatre {
+  background: #000 !important;
+}
+
+/* Letterboxing */
+body.dg-theatre::before,
+body.dg-theatre::after {
+  content: "";
+  position: fixed;
+  left: 0; right: 0;
+  height: 10vh;
+  z-index: 9990;
+  pointer-events: none;
+}
+body.dg-theatre::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.95), rgba(0,0,0,.55), transparent);
+}
+body.dg-theatre::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.95), rgba(0,0,0,.55), transparent);
+}
+
+/* Narrow the “screen”, add glow + rounded edges */
+body.dg-theatre main,
+body.dg-theatre .content,
+body.dg-theatre article,
+body.dg-theatre .note-content,
+body.dg-theatre .prose {
+  max-width: var(--dg-theatre-max) !important;
+  background: rgba(0,0,0,.20);
+  border-radius: 16px;
+  box-shadow:
+    0 20px 80px rgba(0,0,0,.65),
+    0 0 0 1px rgba(255,255,255,.06) inset;
+}
+
+/* Cinema vibe: gentle warmth & grain */
+body.dg-theatre .dg-vignette {
   position: fixed;
   inset: 0;
-  z-index: 10000;                 /* below note but above page chrome */
-  pointer-events: none;           /* clicks pass through except when active */
-  opacity: 0;
-  transition: opacity 540ms cubic-bezier(.16,.84,.28,1), background 560ms ease;
-  background: transparent;
-}
-
-/* Active: heavy darkening with subtle side lights */
-body.tg-active .tg-backdrop {
-  opacity: 1;
-  pointer-events: auto; /* allow click to close */
+  pointer-events: none;
+  z-index: 9989;
   background:
-    radial-gradient(1000px 420px at 6% 50%, rgba(255,255,255,0.03), transparent 12%),
-    radial-gradient(1000px 420px at 94% 50%, rgba(255,255,255,0.03), transparent 12%),
-    linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.98));
-  backdrop-filter: blur(1.8px) saturate(0.95);
+    radial-gradient(1200px 800px at 50% 15%, rgba(255,194,118,.06), transparent 40%) /* warm spotlight */,
+    radial-gradient(1200px 800px at 50% 85%, rgba(255,194,118,.03), transparent 40%); /* bottom warmth */
+  mix-blend-mode: screen;
+}
+body.dg-theatre .dg-grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9988;
+  opacity: .06;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.4) 0 1px, transparent 1px 2px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.25) 0 1px, transparent 1px 2px);
+  animation: dg-grain 1.2s steps(6) infinite;
+}
+@keyframes dg-grain {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(2px, -1px); }
 }
 
-/* --- Fade / hide UI chrome but not the note --- */
-/* Broad fade list to cover common site chrome; keep #note-root out of it */
-body.tg-active header,
-body.tg-active nav,
-body.tg-active footer,
-body.tg-active aside,
-body.tg-active .sidebar,
-body.tg-active .left-sidebar,
-body.tg-active .right-sidebar,
-body.tg-active .graph,
-body.tg-active .graph-container,
-body.tg-active .search,
-body.tg-active .page-controls,
-body.tg-active .dashboard,
-body.tg-active .toc,
-body.tg-active .site-footer,
-body.tg-active .site-header,
-body.tg-active .site-nav {
-  transition: opacity 420ms ease, transform 420ms ease, filter 420ms ease;
-  opacity: 0.02 !important;      /* almost fully hidden visually */
-  filter: blur(5px) !important;
-  transform: translateY(-8px);
-  pointer-events: none !important;
+/* Ensure scrolling remains natural in theatre */
+body.dg-theatre { overflow-y: auto; }
+
+/* Respect print */
+@media print {
+  .dg-viewbar,
+  body.dg-theatre::before,
+  body.dg-theatre::after,
+  body.dg-theatre .dg-vignette,
+  body.dg-theatre .dg-grain { display: none !important; }
 }
 
-/* Ensure the note remains bright and interactive */
-#note-root {
-  transition: transform 680ms cubic-bezier(.2,.9,.28,1), box-shadow 420ms ease;
-  transform-origin: center center;
-  will-change: transform, box-shadow;
-  z-index: 1; /* this will be overridden inline to be above backdrop during theater */
-  /* keep default layout in normal pages */
-}
-
-/* When active we style the note visually (highlight, gentle rounded edge) */
-/* Note: we do NOT darken the note content; we only change background/outline so videos and links stay bright */
-body.tg-active #note-root {
-  border-radius: 14px;
-  background: linear-gradient(180deg, rgba(14,14,15,0.98), rgba(6,6,7,0.95));
-  padding: clamp(16px, 1.6vw, 28px);
-  color: #fff;
-  outline: none;
-  box-shadow: 0 40px 120px rgba(0,0,0,0.85), 0 6px 30px rgba(0,0,0,0.6), inset 0 0 80px rgba(255,255,255,0.02);
-}
-
-/* small nicety: lighten links/buttons INSIDE the note so they're visible on the darker bg */
-body.tg-active #note-root a,
-body.tg-active #note-root .button,
-body.tg-active #note-root .btn {
-  color: #9ecbff;
-  text-decoration: underline;
-}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .tg-toggle, .tg-exit, .tg-backdrop, #note-root { transition: none !important; }
-}
-
-/* Defensive: ensure our elements are visually above the rest of UI even if theme uses high z-indexes */
-.tg-toggle, .tg-exit { position: fixed; }
-
-/* end of theater CSS */
