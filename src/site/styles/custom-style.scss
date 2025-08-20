@@ -924,6 +924,9 @@ img {
 
 /* ============================================================
    FULLSCREEN + THEATRE MODE (Digital Garden)
+   - Fixed YouTube embed proportions
+   - Dark overlay only in theatre mode
+   - No Excalidraw breakage
    ============================================================ */
 
 /* ===== Fullscreen Button ===== */
@@ -946,7 +949,10 @@ img {
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
   z-index: 1001;
 
-  &:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(102,126,234,0.4); }
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  }
   &:active { transform: translateY(0); }
   svg { flex-shrink: 0; }
 }
@@ -956,20 +962,31 @@ img {
 .filetree-sidebar,
 .sidebar,
 .content,
-.fullscreen-btn { transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
+.fullscreen-btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 /* ============================================================
    FULLSCREEN MODE
    ============================================================ */
 body.fullscreen-mode {
   /* Hide UI */
-  .navbar, .filetree-sidebar, .sidebar, .search-container, .site-header, .site-nav, .graph-container {
+  .navbar,
+  .filetree-sidebar,
+  .sidebar,
+  .search-container,
+  .site-header,
+  .site-nav,
+  .left-panel,
+  .nav-bar,
+  .nav-container,
+  .graph-container {
     opacity: 0 !important;
     pointer-events: none !important;
     display: none !important;
   }
 
-  /* Fullscreen button adjustments */
+  /* Fullscreen button tweaks */
   .fullscreen-btn {
     background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
     top: 30px;
@@ -978,7 +995,7 @@ body.fullscreen-mode {
     z-index: 9999;
   }
 
-  /* Content widening */
+  /* Widen content */
   .content {
     max-width: 95vw !important;
     margin: 0 auto;
@@ -987,83 +1004,153 @@ body.fullscreen-mode {
     display: block;
   }
 
-  /* Media & embeds */
+  /* Media Embeds */
   .content {
-    img, video, iframe, embed {
+    img, embed, video {
       max-width: 100% !important;
       height: auto !important;
       display: block;
       margin: 1rem auto;
     }
 
-    .excalidraw-embed,
-    .excalidraw-container { width: 100% !important; min-height: 60vh; }
+    figure img {
+      max-width: 100% !important;
+      height: auto !important;
+    }
 
+    /* Excalidraw stays intact */
+    .excalidraw-embed,
+    .excalidraw-container {
+      width: 100% !important;
+      min-height: 60vh;
+    }
+
+    /* Flashcards */
     .flashcards-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 1rem;
       width: 100%;
       margin: 0 auto;
     }
 
+    /* YouTube iframe fix */
+    iframe[src*="youtube.com"], iframe[src*="youtu.be"] {
+      width: 100% !important;
+      aspect-ratio: 16/9 !important;
+      height: auto !important;
+      display: block;
+      margin: 1rem auto;
+    }
+
+    /* Diagrams/Charts */
     .diagram-container,
-    .chart-container { max-width: 100% !important; }
+    .chart-container {
+      max-width: 100% !important;
+    }
   }
 
-  /* Very wide screens cap */
+  /* Very wide screen cap */
   @media (min-width: 2000px) {
-    .content, .flashcards-container, .cards-container { max-width: 1600px; margin: 0 auto; }
+    .content {
+      max-width: 1600px !important;
+      margin: 0 auto;
+    }
+    .flashcards-container,
+    .cards-container {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
   }
 
-  /* Tablet */
-  @media (max-width: 1200px) { .content { max-width: 90vw !important; padding: 6vh 3vw; } }
+  /* Tablet tweaks */
+  @media (max-width: 1200px) {
+    .content {
+      max-width: 90vw !important;
+      padding: 6vh 3vw;
+    }
+  }
 
-  /* Mobile */
+  /* Mobile tweaks */
   @media (max-width: 768px) {
-    .content { max-width: 90vw !important; padding: 4vh 2vw; }
-    .fullscreen-btn { top: 15px; right: 15px; padding: 10px 16px; font-size: 12px; }
-    .flashcards-container { grid-template-columns: 1fr; }
+    .content {
+      max-width: 90vw !important;
+      padding: 4vh 2vw;
+    }
+    .fullscreen-btn {
+      top: 15px;
+      right: 15px;
+      padding: 10px 16px;
+      font-size: 12px;
+    }
+    .flashcards-container {
+      grid-template-columns: 1fr;
+    }
   }
 }
 
-/* Fullscreen API */
+/* Fullscreen API support */
 .content:fullscreen,
 :fullscreen .content {
-  max-width: 95vw !important; margin:0 auto; padding:8vh 2vw; display:block;
+  max-width: 95vw !important;
+  margin: 0 auto;
+  padding: 8vh 2vw;
+  display: block;
 
-  img, video, embed, iframe {
-    max-width: 100% !important; width:100% !important; height:auto !important;
+  img, iframe, embed, video {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
   }
+
+  /* Excalidraw */
   .excalidraw-embed,
-  .excalidraw-container { width:100% !important; min-height:60vh; }
-  .flashcards-container { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1rem; width:100%; margin:0 auto; }
+  .excalidraw-container {
+    width: 100% !important;
+    min-height: 60vh;
+  }
+
+  .flashcards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    width: 100%;
+    margin: 0 auto;
+  }
 }
 
 /* ============================================================
-   THEATRE MODE
+   THEATRE MODE (Cinematic)
    ============================================================ */
 body.theatre-mode {
-  background: #000 !important; 
+  background: #000 !important;
   overflow-y: auto;
 
   /* Side cinema lights */
-  &::before, &::after {
+  &::before,
+  &::after {
     content: "";
-    position: fixed; top:0; bottom:0; width:15vw; z-index:998;
-    pointer-events:none;
-    background: radial-gradient(circle at center, rgba(255,100,50,0.15) 0%, rgba(0,0,0,0.9) 70%);
+    position: fixed;
+    top: 0; bottom: 0;
+    width: 15vw;
+    z-index: 998;
+    pointer-events: none;
+    background: radial-gradient(circle at center,
+      rgba(255, 100, 50, 0.15) 0%,
+      rgba(0, 0, 0, 0.9) 70%);
     filter: blur(80px);
   }
-  &::before { left:0; }
-  &::after { right:0; }
+  &::before { left: 0; }
+  &::after { right: 0; }
 
-  /* Central content focus */
+  /* Content focus */
   .content {
     background: #111;
     border-radius: 12px;
     padding: 4rem 6rem;
-    box-shadow: 0 0 80px rgba(0,0,0,1), 0 0 120px rgba(0,0,0,0.9);
+    box-shadow:
+      0 0 80px rgba(0, 0, 0, 1),
+      0 0 120px rgba(0, 0, 0, .9);
     color: #eee;
     max-width: 90vw !important;
     margin: 5vh auto;
@@ -1071,21 +1158,14 @@ body.theatre-mode {
   }
 
   /* Vignette overlay */
-  .theatre-vignette { 
-    display:block; /* only visible in theatre mode */
-    position: fixed; inset:0; pointer-events:none;
-    background: radial-gradient(ellipse at center, rgba(0,0,0,0) 70%, rgba(0,0,0,0.9) 100%);
+  .theatre-vignette {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center,
+      rgba(0,0,0,0) 70%,
+      rgba(0,0,0,0.9) 100%);
     z-index: 999;
   }
 }
 
-/* Hide vignette by default */
-.theatre-vignette { display:none; }
-
-/* Responsive YouTube / Video wrapper */
-.video-wrapper { position: relative; width: 100%; padding-top: 56.25%; /*16:9*/ }
-.video-wrapper iframe,
-.video-wrapper embed,
-.video-wrapper video {
-  position: absolute; top:0; left:0; width:100%; height:100%;
-}
