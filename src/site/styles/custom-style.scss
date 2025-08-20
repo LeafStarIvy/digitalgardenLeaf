@@ -922,240 +922,291 @@ img {
 // 15. Digital Garden — Fullscreen & Theatre Mode
 // =====================================================================
 
-/* ============================================================
-   FULL REPLACEMENT: Fullscreen (focus) + Theatre (cinema)
-   - Responsive YouTube embed fixes (CSS + .video-wrapper)
-   - Theatre darkening only when active
-   - Does not alter fonts/headers outside fullscreen
-   ============================================================ */
+/* ======================
+   Full replacement: Fullscreen + Theatre (project only)
+   - Uses body.fullscreen-mode and body.theatre-mode
+   - Keeps all normal theme styles untouched unless those classes are active
+   - Fixes: sidebar hiding, youtube embed proportions, excalidraw safety,
+     theatre overlays only active while theatre-mode ON
+   ====================== */
 
-/* -------------------------
-   Button (top-right)
-   ------------------------- */
-.fullscreen-btn {
+/* --- Floating buttons (top-right) --- */
+.fullscreen-btn,
+#theatre-toggle-btn {
   position: fixed;
   top: 20px;
   right: 20px;
-  background: linear-gradient(135deg, var(--text-accent, #667eea) 0%, #764ba2 100%);
-  border: none;
-  color: white;
-  padding: 12px 18px;
-  border-radius: 24px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
+  z-index: 10010; /* above most site elements */
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: all 0.28s cubic-bezier(0.4,0,0.2,1);
-  box-shadow: 0 6px 24px rgba(0,0,0,.28);
-  z-index: 10010;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, var(--text-accent, #667eea) 0%, #764ba2 100%);
+  box-shadow: 0 8px 30px rgba(0,0,0,.45);
+  transition: transform .18s cubic-bezier(.2,.8,.2,1), opacity .18s;
 }
-.fullscreen-btn:hover { transform: translateY(-2px); }
-.fullscreen-btn svg { width: 18px; height: 18px; }
+#theatre-toggle-btn { top: 72px; right: 20px; display: none; } /* only shown when fullscreen active */
+.fullscreen-btn:hover,
+#theatre-toggle-btn:hover { transform: translateY(-3px); }
 
-/* duplicate-style for second button (theatre) but hidden until fullscreen */
-.fullscreen-btn.theatre-toggle { top: 64px; display: none; }
-
-/* -------------------------
-   Generic transition targets
-   ------------------------- */
-.navbar, .filetree-sidebar, .sidebar, .content, .fullscreen-btn {
-  transition: all 0.32s cubic-bezier(0.4,0,0.2,1);
+/* --- Keep transitions smooth for main UI elements only when toggling --- */
+.navbar,
+.filetree-sidebar,
+.sidebar,
+.content,
+.fullscreen-btn {
+  transition: all 0.28s cubic-bezier(.2,.8,.2,1);
 }
 
 /* ============================================================
-   FULLSCREEN MODE — scoped to body.fullscreen-mode
-   (does NOT change fonts/headers outside fullscreen)
+   FULLSCREEN / FOCUS MODE
+   - Class toggled on <body>: .fullscreen-mode
+   - PRESERVES fonts/colors; only reflows/layouts content and hides UI
    ============================================================ */
 body.fullscreen-mode {
-  /* Hide side UI elements comprehensively */
-  nav, header, footer, aside,
-  .navbar, .filetree-sidebar, .sidebar, .site-sidebar, .left-panel,
-  .search-container, .site-nav, .graph-container, .local-graph, .global-graph,
-  .toc, .table-of-contents, .backlinks, .file-tree {
+  /* 1) Hide non-content UI aggressively but safely */
+  .navbar,
+  .filetree-sidebar,
+  .sidebar,
+  .search-container,
+  .site-header,
+  .site-nav,
+  .left-panel,
+  .nav-bar,
+  .nav-container,
+  .graph-container,
+  .local-graph,
+  .global-graph,
+  [id*="filetree"],
+  [class*="filetree"],
+  [id*="sidebar"],
+  [class*="sidebar"] {
     opacity: 0 !important;
     pointer-events: none !important;
     display: none !important;
   }
 
-  /* Button tweak for visual prominence */
-  .fullscreen-btn {
-    top: 28px;
-    right: 28px;
-    transform: scale(1.05);
-    z-index: 10010;
-  }
-  .fullscreen-btn.theatre-toggle { display: inline-flex; }
+  /* show theatre toggle button when fullscreen active */
+  #theatre-toggle-btn { display: inline-flex !important; }
 
-  /* Widen & center note content while preserving vertical proportions */
-  .content {
-    max-width: 95vw !important;
+  /* 2) Widen and center the reading column; keep the vertical proportions */
+  .content,
+  main.content,
+  main {
+    max-width: 95vw !important;   /* fills ~95% width */
     margin: 0 auto !important;
-    padding: 8vh 2.5vw !important;
+    padding: 8vh 2vw !important;
     min-height: 100vh;
-    display: block;
+    display: block; /* keep normal flow so heights remain natural */
     box-sizing: border-box;
   }
 
-  /* Keep typography as-is (no forcing fonts) but scale sensible base size */
-  .content, .content p, .content li {
-    font-size: clamp(16px, 0.9vw + 14px, 20px);
-    line-height: 1.65;
-  }
+  /* 3) Do not change font sizes globally (keeps your theme) — only minor visual tweak */
+  /* No font-size overrides here by design. */
 
-  /* Media and embeds scale to use full width */
+  /* 4) Media: make responsive but preserve aspect ratio (YouTube fix) */
   .content img,
+  .content picture,
   .content video,
-  .content embed,
   .content iframe,
-  .content .markdown-embed,
-  .content .embed,
-  .content .embed-iframe {
+  .content embed {
     max-width: 100% !important;
     width: 100% !important;
     height: auto !important;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 1rem auto;
   }
 
-  /* Excalidraw / canvas embeds: keep minimum heights to avoid collapse */
+  /* Ensure iframe-based embeds (YouTube) keep 16:9 ratio using modern browsers' aspect-ratio */
+  .content iframe[src*="youtube"],
+  .content iframe[src*="youtube-nocookie"],
+  .content iframe.youtube-embed,
+  .content .video-embed iframe {
+    width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+    height: auto !important;
+    max-height: calc(95vh - 160px) !important; /* avoid extremely tall videos pushing page offscreen */
+  }
+
+  /* For older embed wrappers that set fixed height on a parent, try to normalize:
+     If you have wrapper .embed-responsive then ensure it uses aspect-ratio */
+  .content .embed-responsive,
+  .content .video-wrapper {
+    width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+    height: auto !important;
+  }
+
+  /* 5) Excalidraw: don't break interactive min-height, just allow it to scale width */
   .content .excalidraw-embed,
   .content .excalidraw-container {
     width: 100% !important;
-    min-height: 60vh !important;
+    min-height: 60vh; /* keep editing/viewing area usable */
+  }
+
+  /* 6) Widgets like flashcards/diagrams */
+  .content .flashcards-container,
+  .content .diagram-container,
+  .content .chart-container {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* 7) Large-screen cap */
+  @media (min-width: 2000px) {
+    .content { max-width: 1600px !important; }
+    .content .flashcards-container,
+    .content .cards-container { max-width: 1600px; margin: 0 auto; }
+  }
+
+  /* 8) Tablet + mobile adjustments */
+  @media (max-width: 1200px) {
+    .content { padding: 6vh 3vw !important; max-width: 90vw !important; }
+  }
+  @media (max-width: 768px) {
+    .content { padding: 4vh 2vw !important; max-width: 92vw !important; }
+    .fullscreen-btn { top: 12px; right: 12px; padding: 9px 12px; font-size: 13px; }
+    #theatre-toggle-btn { top: 56px !important; right: 12px; }
   }
 }
 
-/* Fullscreen API support (when using requestFullscreen on .content) */
+/* Support for Fullscreen API if content is requested fullscreen */
 .content:fullscreen,
 :fullscreen .content {
   max-width: 95vw !important;
   margin: 0 auto;
   padding: 8vh 2vw;
+  img, iframe, embed, video { width: 100% !important; height: auto !important; }
+  .excalidraw-embed, .excalidraw-container { width: 100% !important; min-height: 60vh; }
 }
 
 /* ============================================================
-   RESPONSIVE YOUTUBE / IFRAME FIXES
-   - primary solution: CSS aspect-ratio
-   - fallback: JS wraps YouTube iframes into .video-wrapper (see note.njk)
-   ============================================================ */
-
-/* Preferred: if browser supports aspect-ratio — keep it simple */
-.content iframe[src*="youtube.com"],
-.content iframe[src*="youtu.be"],
-.content iframe[src*="youtube-nocookie"] {
-  width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-  aspect-ratio: 16 / 9;
-  display: block;
-  border: 0;
-  border-radius: 12px;
-}
-
-/* Also ensure markdown-embed containers don't constrain height */
-.content .markdown-embed,
-.content .embed {
-  width: 100% !important;
-  max-width: 100% !important;
-}
-
-/* Classic fallback wrapper styling (used by JS if needed) */
-.video-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 100%;
-  padding-top: 56.25%; /* 16:9 ratio */
-  height: 0;
-  overflow: hidden;
-  border-radius: 12px;
-}
-.video-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
-  border: 0;
-  display: block;
-}
-
-/* Ensure youtube picture-in-picture or fullscreen controls still work */
-.content iframe[allowfullscreen] { /* no-op, but explicit for readability */ }
-
-/* ============================================================
-   THEATRE MODE — applied strictly when body.theatre-mode exists
-   - fully black background (hides particles/starfield)
-   - cinematic side lights that are purely decorative
-   - vignette + grain optional
+   THEATRE MODE (CINEMATIC)
+   - Class toggled on <body>: .theatre-mode (should only be added while in fullscreen)
+   - All theatre-only overlays and darkening are scoped to .theatre-mode
    ============================================================ */
 body.theatre-mode {
-  background: #000 !important;
-  overflow-y: auto;
+  background: #000 !important; /* kill underlying visuals when theatre is active */
 }
 
-/* Side cinematic glow: only present when theatre-mode enabled */
+/* Hide site background and particle canvases while in theatre-mode (common selectors) */
+body.theatre-mode .particles-js,
+body.theatre-mode #particles-js,
+body.theatre-mode .bg-canvas,
+body.theatre-mode canvas.bg,
+body.theatre-mode .galaxy-spiral-container {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Letterbox / top and bottom */
 body.theatre-mode::before,
 body.theatre-mode::after {
   content: "";
   position: fixed;
-  top: 0; bottom: 0;
-  width: 18vw;
-  z-index: 998;
+  left: 0; right: 0;
+  height: 10vh;
+  z-index: 10005;
   pointer-events: none;
-  background: radial-gradient(circle at 40% 50%,
-    rgba(255,180,120,0.12) 0%,
-    rgba(0,0,0,0) 50%),
-    radial-gradient(circle at 60% 50%,
-    rgba(140,180,255,0.06) 0%,
-    rgba(0,0,0,0) 60%);
-  filter: blur(56px);
-  transition: opacity 420ms ease;
-  opacity: 1;
+  background: linear-gradient(to bottom, #000 0%, rgba(0,0,0,0) 80%);
 }
-body.theatre-mode::before { left: 0; }
-body.theatre-mode::after  { right: 0; }
+body.theatre-mode::after { bottom: 0; background: linear-gradient(to top, #000 0%, rgba(0,0,0,0) 80%); }
 
-/* Screen focus (the note) in theatre mode */
-body.theatre-mode .content {
-  max-width: 86vw !important;
-  margin: 4vh auto !important;
-  background: #0f0f10;
-  border-radius: 12px;
-  padding: 3.5rem 4.5rem;
-  color: #eaeaea;
-  box-shadow:
-    0 40px 120px rgba(0,0,0,0.95),
-    0 0 140px rgba(0,0,0,0.9) inset;
-  transition: all 420ms ease;
+/* Side cinema lights (left + right) — only visible in theatre-mode */
+.theatre-side-light {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 22vw;
+  z-index: 10003;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(60px);
+  opacity: 0;
+  transition: opacity 520ms ease;
 }
+/* Start off-screen so they wrap around edges softly */
+.theatre-side-light.left { left: -6vw;
+  background: radial-gradient(40% 80% at 20% 50%, rgba(255,170,90,.18), rgba(0,0,0,0) 55%);
+}
+.theatre-side-light.right { right: -6vw;
+  background: radial-gradient(40% 80% at 80% 50%, rgba(90,150,255,.14), rgba(0,0,0,0) 55%);
+}
+body.theatre-mode .theatre-side-light { opacity: 1; }
 
-/* subtle vignette and film grain: only visible in theatre mode */
+/* Vignette only while in theatre-mode */
 .theatre-vignette {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 999;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0) 68%, rgba(0,0,0,0.9) 100%);
-  opacity: 1;
+  position: fixed; inset: 0; z-index: 10004; pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0) 65%, rgba(0,0,0,.95) 100%);
+  opacity: 0; transition: opacity 520ms ease;
 }
+body.theatre-mode .theatre-vignette { opacity: 1; }
+
+/* Grain only while theatre-mode */
 .theatre-grain {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
+  position: fixed; inset: 0; z-index: 10006; pointer-events: none;
+  opacity: 0; transition: opacity 520ms ease;
   background-image:
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.35) 0 1px, transparent 1px 2px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 2px);
+    repeating-linear-gradient(0deg, rgba(255,255,255,.28) 0 1px, transparent 1px 2px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.18) 0 1px, transparent 1px 2px);
   mix-blend-mode: overlay;
-  opacity: 0.03;
+  animation: theatre-grain 1.3s steps(6) infinite;
 }
+@keyframes theatre-grain { 0% { transform: translate(0,0);} 100% { transform: translate(2px,-1px); } }
+body.theatre-mode .theatre-grain { opacity: .03; }
+
+/* Screen look for the note in theatre (centered, framed, scrollable) */
+body.theatre-mode .content,
+body.theatre-mode main,
+body.theatre-mode article {
+  max-width: 86vw !important;
+  margin: 6vh auto !important;
+  background: #0f0f10;
+  color: #efefef;
+  padding: 3.2rem 4rem !important;
+  border-radius: 10px;
+  box-shadow: 0 40px 140px rgba(0,0,0,.95), 0 0 140px rgba(0,0,0,.7) inset;
+  transition: all 420ms ease;
+  z-index: 10007;
+}
+
+/* Make sure media inside theatre mode keep aspect ratio and don't overflow viewport */
+body.theatre-mode .content img,
+body.theatre-mode .content picture,
+body.theatre-mode .content video,
+body.theatre-mode .content iframe,
+body.theatre-mode .content embed {
+  max-width: 100% !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* Again enforce 16:9 for iframes like youtube in theatre */
+body.theatre-mode .content iframe[src*="youtube"],
+body.theatre-mode .content iframe[src*="youtube-nocookie"] {
+  aspect-ratio: 16 / 9 !important;
+  height: auto !important;
+  max-height: calc(86vh - 200px) !important;
+}
+
+/* Keep excalidraw usable */
+body.theatre-mode .content .excalidraw-embed,
+body.theatre-mode .content .excalidraw-container {
+  min-height: 60vh !important;
+  width: 100% !important;
+}
+
+/* Ensure overlays don't capture pointer events */
+.theatre-side-light, .theatre-vignette, .theatre-grain { pointer-events: none !important; }
 
 /* Print safety */
 @media print {
-  .fullscreen-btn, .theatre-vignette, .theatre-grain, body.theatre-mode::before, body.theatre-mode::after {
-    display: none !important;
-  }
+  .fullscreen-btn, #theatre-toggle-btn,
+  .theatre-side-light, .theatre-vignette, .theatre-grain { display: none !important; }
 }
