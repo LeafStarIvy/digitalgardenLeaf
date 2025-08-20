@@ -100,54 +100,43 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
     {% include "components/particlesScript.njk" %}
 
-{# Theater Mode toggle button #}
 <div class="note-toolbar">
-  <button id="enter-theater" aria-label="Enter theater mode" class="theater-btn">🎬 Theater</button>
+  <button id="theater-toggle" class="theater-btn">🎬 Theater</button>
 </div>
 
-{# Note content wrapper #}
 <article id="note-root" class="note-root">
   {{ content | safe }}
 </article>
 
-{# Overlay for theater mode #}
-<div id="theater-overlay" hidden>
-  <div id="theater-bg"></div>
-  <div id="theater-container">
-    <button id="exit-theater" aria-label="Exit theater mode" class="theater-exit-btn">✖</button>
-    <!-- We'll move #note-root here -->
-  </div>
-</div>
-
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const enterBtn = document.getElementById('enter-theater');
-  const exitBtn = document.getElementById('exit-theater');
-  const overlay = document.getElementById('theater-overlay');
-  const note = document.getElementById('note-root');
-  const originalParent = note.parentNode;
-  const placeholder = document.createElement('div');
-  placeholder.id = 'note-placeholder';
-  originalParent.insertBefore(placeholder, note);
+document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
+  const toggleBtn = document.getElementById("theater-toggle");
 
-  function openTheater() {
-    overlay.hidden = false;
-    document.body.classList.add('theater-active');
-    document.getElementById('theater-container').appendChild(note);
-    enterBtn.disabled = true;
-  }
+  // Create exit button dynamically
+  const exitBtn = document.createElement("button");
+  exitBtn.id = "theater-exit";
+  exitBtn.textContent = "✖";
+  exitBtn.setAttribute("aria-label", "Exit theater mode");
+  document.body.appendChild(exitBtn);
 
-  function closeTheater() {
-    document.body.classList.remove('theater-active');
-    originalParent.insertBefore(note, placeholder);
-    overlay.hidden = true;
-    enterBtn.disabled = false;
-  }
+  exitBtn.addEventListener("click", () => {
+    body.classList.remove("theater-active");
+  });
 
-  enterBtn.addEventListener('click', openTheater);
-  exitBtn.addEventListener('click', closeTheater);
+  toggleBtn.addEventListener("click", () => {
+    body.classList.add("theater-active");
+  });
+
+  // Allow ESC key to exit
+  window.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+      body.classList.remove("theater-active");
+    }
+  });
 });
 </script>
+
 
   </body>
 </html>
