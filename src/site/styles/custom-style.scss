@@ -922,85 +922,87 @@ img {
 // 15. Theater Mode — Base tokens
 // =====================================================================
 
-/* Theater Mode Styles */
+/* ===== Theater Mode ===== */
+body.theater-active {
+  overflow: hidden;
+}
 
-#theater-overlay {
+/* Dark backdrop */
+body.theater-active::before {
+  content: "";
   position: fixed;
   inset: 0;
-  display: grid;
-  place-items: center;
-  z-index: 10000;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 360ms ease;
-}
-
-body.theater-active #theater-overlay {
-  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 9998;
   opacity: 1;
+  transition: opacity 0.4s ease;
 }
 
-/* Dark backdrop with fade-in */
-#theater-bg {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.88);
-  transition: background 360ms ease;
-}
-
-/* Container for the focused note */
-#theater-container {
-  position: relative;
+/* Focused note */
+body.theater-active #note-root {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.05);
+  z-index: 9999;
   max-width: 90vw;
   max-height: 90vh;
-  width: 80vw;
-  height: auto;
-  padding: 1rem;
+  overflow: auto;
   background: #111;
   border-radius: 12px;
+  padding: 1.5rem;
   box-shadow: 0 0 40px rgba(0,0,0,0.8);
-  transform: scale(0.95);
-  opacity: 0;
-  transition: transform 360ms ease, opacity 360ms ease;
-  overflow: auto;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-/* Animate theater container in */
-body.theater-active #theater-container {
-  transform: scale(1);
-  opacity: 1;
-}
-
-/* Exit button inside overlay */
-.theater-exit-btn {
-  position: absolute;
-  top: 0.6rem;
-  right: 0.6rem;
-  background: #222;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  padding: 0.4rem 0.6rem;
-  font-size: 1rem;
-  cursor: pointer;
-  z-index: 1;
-}
-.theater-exit-btn:hover {
-  background: #444;
-}
-
-/* Hide the rest of the page */
+/* Smooth fade for the rest of the UI */
 body.theater-active .sidebar,
 body.theater-active .graph,
 body.theater-active header,
 body.theater-active footer,
 body.theater-active nav,
 body.theater-active .search,
-body.theater-active main {
+body.theater-active .right-sidebar,
+body.theater-active .left-sidebar {
   opacity: 0;
-  transition: opacity 360ms ease;
   pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
-/* Toolbar stays visible initially so the user can click the button */
+/* Toggle button (always visible, above everything else) */
+.theater-btn {
+  position: relative;
+  z-index: 10000;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+}
+.theater-btn:hover {
+  background: #444;
+}
+
+/* Exit button inside theater */
+#theater-exit {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10001;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 0.5rem 0.7rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: none;
+}
+body.theater-active #theater-exit {
+  display: block;
+}
+#theater-exit:hover {
+  background: #555;
+}
 
