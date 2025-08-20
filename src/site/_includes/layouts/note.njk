@@ -100,23 +100,116 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
     {% include "components/particlesScript.njk" %}
 
-<div class="note-header">
-  <button id="theater-toggle" class="theater-button">🎬 Theater Mode</button>
+{# --- Note header (optional) --- #}
+<div class="note-toolbar">
+  <button id="theater-toggle"
+          class="theater-btn"
+          aria-pressed="false"
+          aria-label="Enter theater mode"
+          title="Theater mode">
+    🎬 Theater
+  </button>
+</div>
+
+{# --- Wrap your note content in a stable container --- #}
+<article id="note-content" class="note-content" data-note-id="{{ page.url | urlencode }}">
+  {{ content | safe }}
+</article>
+
+{# --- Theater root (overlay) gets injected once per page --- #}
+<div id="theater-root" aria-hidden="true" hidden>
+  <div id="theater-backdrop"></div>
+  <div id="theater-stage" role="dialog" aria-modal="true" aria-label="Theater view">
+    <!-- we will move #note-content here while theater is active -->
+  </div>
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const toggleBtn = document.getElementById("theater-toggle");
-    if (toggleBtn) {
-      toggleBtn.addEventListener("click", () => {
-        document.body.classList.toggle("theater-mode");
-        toggleBtn.textContent = 
-          document.body.classList.contains("theater-mode") 
-            ? "❌ Exit Theater Mode" 
-            : "🎬 Theater Mode";
-      });
-    }
+(function () {
+  const btn = document.getElementById('theater-toggle');
+  const note = document.getElementById('note-content');
+  const root = document.getElementById('theater-root');
+  const stage = document.getElementById('theater-stage');
+  const backdrop = document.getElementById('theater-backdrop');
+
+  if (!btn || !note || !root || !stage || !backdrop) return;
+
+  // Keep the spot where the note originally lives
+  const placeholder = document.createElement('div');
+  placeholder.id = 'note-return-anchor';
+  note.after(placeholder);
+
+  let lastFocused = null;
+
+  function enterTheater() {
+    if (root.dataset.active === 'true') return;
+
+    lastFocused = document.activeElement;
+
+    // Reveal overlay
+    root.hidden = false;
+    root.dataset.active = 'true';
+    document.body.classList.add('theater-open');
+    document.documentElement.classList.add('theater-open');
+    root.setAttribute('aria-hidden', 'false');
+    btn.setAttribute('aria-pressed', 'true');
+
+    // Move the note into the stage
+    note.classList.add('theater-note');
+    stage.appendChild(note);
+
+    // Focus management
+    stage.setAttribute('tabindex', '-1');
+    stage.focus({ preventScroll: true });
+
+    // Prevent page scroll behind overlay
+    document.body.dataset.scrollY = window.scrollY;
+    document.body.style.top = `-${window.scrollY}px`;
+    document.body.classList.add('scroll-lock');
+
+    // Close handlers
+    window.addEventListener('keydown', onKeyDown);
+    backdrop.addEventListener('click', exitTheater, { once: true });
+  }
+
+  function exitTheater() {
+    if (root.dataset.active !== 'true') return;
+
+    // Return the note to its original spot
+    placeholder.before(note);
+    note.classList.remove('theater-note');
+
+    // Hide overlay
+    root.dataset.active = 'false';
+    root.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('theater-open');
+    document.documentElement.classList.remove('theater-open');
+    btn.setAttribute('aria-pressed', 'false');
+
+    // Unlock scroll and restore
+    document.body.classList.remove('scroll-lock');
+    const y = parseInt(document.body.dataset.scrollY || '0', 10);
+    document.body.style.top = '';
+    window.scrollTo(0, y);
+
+    // Return focus to trigger
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+
+    // Give CSS time to fade out, then hide root to avoid tab stops
+    setTimeout(() => { root.hidden = true; }, 300);
+
+    window.removeEventListener('keydown', onKeyDown);
+  }
+
+  function onKeyDown(e) {
+    if (e.key === 'Escape') exitTheater();
+  }
+
+  btn.addEventListener('click', () => {
+    if (root.dataset.active === 'true') exitTheater();
+    else enterTheater();
   });
+})();
 </script>
 
   </body>
