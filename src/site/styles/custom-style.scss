@@ -922,69 +922,25 @@ img {
 // 15. Theater Mode — Base tokens
 // =====================================================================
 
-/* ===== Theater Mode ===== */
-body.theater-active {
-  overflow: hidden;
-}
+/* ===== Theater Mode Cinematic Experience ===== */
 
-/* Dark backdrop */
-body.theater-active::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.92);
-  z-index: 9998;
-  opacity: 1;
-  transition: opacity 0.4s ease;
-}
-
-/* Focused note */
-body.theater-active #note-root {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1.05);
-  z-index: 9999;
-  max-width: 90vw;
-  max-height: 90vh;
-  overflow: auto;
-  background: #111;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 0 40px rgba(0,0,0,0.8);
-  transition: transform 0.4s ease, opacity 0.4s ease;
-}
-
-/* Smooth fade for the rest of the UI */
-body.theater-active .sidebar,
-body.theater-active .graph,
-body.theater-active header,
-body.theater-active footer,
-body.theater-active nav,
-body.theater-active .search,
-body.theater-active .right-sidebar,
-body.theater-active .left-sidebar {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-/* Toggle button (always visible, above everything else) */
+/* Button in header */
 .theater-btn {
-  position: relative;
-  z-index: 10000;
   background: #222;
   color: #fff;
   border: none;
   border-radius: 8px;
   padding: 0.4rem 0.8rem;
   cursor: pointer;
+  font-size: 0.95rem;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  transition: background 0.25s ease;
 }
 .theater-btn:hover {
   background: #444;
 }
 
-/* Exit button inside theater */
+/* Exit button (only visible in theater mode) */
 #theater-exit {
   position: fixed;
   top: 1rem;
@@ -998,11 +954,70 @@ body.theater-active .left-sidebar {
   font-size: 1.2rem;
   cursor: pointer;
   display: none;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  transition: background 0.25s ease;
+}
+#theater-exit:hover {
+  background: #555;
 }
 body.theater-active #theater-exit {
   display: block;
 }
-#theater-exit:hover {
-  background: #555;
+
+/* Dark backdrop with cinematic glow */
+body.theater-active::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.92) 70%, rgba(0,0,0,1) 100%);
+  z-index: 9998;
+  opacity: 0;
+  animation: fadeInBackdrop 0.6s ease forwards;
+}
+
+/* Smooth zoom effect for the note */
+body.theater-active #note-root {
+  position: relative;
+  z-index: 9999;
+  transform: scale(0.95) translateY(20px);
+  opacity: 0;
+  animation: zoomInNote 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  max-width: 90vw;
+  margin: auto;
+  background: #111;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 0 50px rgba(0,0,0,0.85);
+}
+
+/* Hide the rest of the UI when in theater */
+body.theater-active header,
+body.theater-active footer,
+body.theater-active nav,
+body.theater-active .sidebar,
+body.theater-active .graph,
+body.theater-active .search,
+body.theater-active .right-sidebar,
+body.theater-active .left-sidebar {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInBackdrop {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomInNote {
+  from {
+    transform: scale(0.8) translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
 }
 
