@@ -922,7 +922,9 @@ img {
 // 15. Digital Garden — Fullscreen & Theatre Mode
 // =====================================================================
 
-/* Fullscreen Button */
+/* ===== FULLSCREEN & THEATRE STYLES ===== */
+
+/* Fullscreen & Theatre Buttons */
 .fullscreen-btn {
   position: fixed;
   top: 20px;
@@ -946,32 +948,24 @@ img {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
   }
-  &:active {
-    transform: translateY(0);
-  }
-  svg {
-    flex-shrink: 0;
-  }
+  &:active { transform: translateY(0); }
+  svg { flex-shrink: 0; }
 }
 
-/* Fullscreen Mode */
+/* General transition for smoothness */
+.navbar, .filetree-sidebar, .sidebar, .content, .fullscreen-btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== FULLSCREEN MODE ===== */
 body.fullscreen-mode {
-  .navbar,
-  .filetree-sidebar,
-  .sidebar,
-  .search-container,
-  .site-header,
-  .site-nav,
-  .left-panel,
-  .nav-bar,
-  .nav-container,
-  .graph-container {
+  .navbar, .filetree-sidebar, .sidebar, .search-container {
     opacity: 0 !important;
     pointer-events: none !important;
     display: none !important;
   }
 
-  .fullscreen-btn {
+  .fullscreen-btn { 
     background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
     top: 30px;
     right: 30px;
@@ -1017,47 +1011,39 @@ body.fullscreen-mode {
   }
 
   @media (min-width: 2000px) {
-    .content {
-      max-width: 1600px !important;
-      margin: 0 auto;
-    }
-    .flashcards-container,
-    .cards-container {
-      max-width: 1600px;
-      margin: 0 auto;
-    }
+    .content { max-width: 1600px !important; margin: 0 auto; }
+    .flashcards-container, .cards-container { max-width: 1600px; margin: 0 auto; }
   }
 
   @media (max-width: 1200px) {
-    .content {
-      max-width: 90vw !important;
-      padding: 6vh 3vw;
-    }
+    .content { max-width: 90vw !important; padding: 6vh 3vw; }
   }
 
   @media (max-width: 768px) {
-    .content {
-      max-width: 90vw !important;
-      padding: 4vh 2vw;
-    }
-    .fullscreen-btn {
-      top: 15px;
-      right: 15px;
-      padding: 10px 16px;
-      font-size: 12px;
-    }
-    .flashcards-container {
-      grid-template-columns: 1fr;
-    }
+    .content { max-width: 90vw !important; padding: 4vh 2vw; }
+    .fullscreen-btn { top: 15px; right: 15px; padding: 10px 16px; font-size: 12px; }
+    .flashcards-container { grid-template-columns: 1fr; }
   }
 }
 
-/* Theatre Mode */
+/* ===== THEATRE MODE ===== */
 body.theatre-mode {
   background: #000 !important;
   overflow-y: auto;
 }
 
+body.theatre-mode .content {
+  background: #111;
+  border-radius: 12px;
+  padding: 4rem 6rem;
+  box-shadow: 0 0 80px rgba(0,0,0,1), 0 0 120px rgba(0,0,0,.9);
+  color: #eee;
+  max-width: 90vw !important;
+  margin: 5vh auto;
+  transition: all 0.5s ease;
+}
+
+/* Cinema lights on sides */
 body.theatre-mode::before,
 body.theatre-mode::after {
   content: "";
@@ -1067,32 +1053,28 @@ body.theatre-mode::after {
   width: 15vw;
   z-index: 998;
   pointer-events: none;
-  background: radial-gradient(circle at center,
-    rgba(255, 100, 50, 0.15) 0%,
-    rgba(0, 0, 0, 0.9) 70%);
+  background: radial-gradient(circle at center, rgba(255,100,50,0.15) 0%, rgba(0,0,0,0.9) 70%);
   filter: blur(80px);
 }
 
-body.theatre-mode .content {
-  background: #111;
-  border-radius: 12px;
-  padding: 4rem 6rem;
-  box-shadow:
-    0 0 80px rgba(0, 0, 0, 1),
-    0 0 120px rgba(0, 0, 0, .9);
-  color: #eee;
-  max-width: 90vw !important;
-  margin: 5vh auto;
-  transition: all 0.5s ease;
+/* ===== RESPONSIVE YOUTUBE / VIDEO FIX ===== */
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  margin: 1rem 0;
 }
 
-.theatre-vignette {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(ellipse at center,
-    rgba(0,0,0,0) 70%,
-    rgba(0,0,0,0.9) 100%);
-  z-index: 999;
+.video-container iframe,
+.video-container embed,
+.video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
