@@ -95,122 +95,37 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
     {% include "components/particlesScript.njk" %}
 
-{# --- View controls (top-right) ---}
-<div class="dg-viewbar" id="dg-viewbar" role="group" aria-label="View controls">
-  <button id="dg-fullscreen-toggle" class="dg-btn" aria-pressed="false" title="Fullscreen (F)">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h4v2H9v2H7V3Zm10 0v4h-2V5h-2V3h4ZM7 17v4h4v-2H9v-2H7Zm8 2v2h4v-4h-2v2h-2Z"/></svg>
-  </button>
+  <div class="dg-controls">
+    <button class="fullscreen-btn" id="fullscreenToggle">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+        <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zm-3-12v2h3v3h2V5h-5z"/>
+      </svg>
+      Fullscreen
+    </button>
+    <button class="theatre-btn" id="theatreToggle" style="display:none;">
+      🎬 Theatre
+    </button>
+  </div>
 
-  <button id="dg-theatre-toggle" class="dg-btn dg-btn--theatre" aria-pressed="false" title="Theatre (T)" hidden>
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm1 2v8h14V8H5Z"/></svg>
-  </button>
-</div>
+  <div class="note-content">
+    {{ content | safe }}
+  </div>
+{% endblock %}
 
-{# --- Theatre overlays (kept in DOM but inactive until theater toggled) ---}
-<div class="theatre-vignette" aria-hidden="true"></div>
-<div class="theatre-side-light--left" aria-hidden="true"></div>
-<div class="theatre-side-light--right" aria-hidden="true"></div>
-<div class="theatre-grain" aria-hidden="true"></div>
-
-<script>
-(function() {
-  const body = document.body;
-  const fsBtn = document.getElementById('dg-fullscreen-toggle');
-  const thBtn = document.getElementById('dg-theatre-toggle');
-
-  function setButtonState() {
-    const isFS = body.classList.contains('fullscreen-mode');
-    const isTH = body.classList.contains('theatre-mode');
-    fsBtn.setAttribute('aria-pressed', String(isFS));
-    thBtn.setAttribute('aria-pressed', String(isTH));
-    thBtn.hidden = !isFS;
-  }
-
-  function makeEmbedsResponsive() {
-    // Find iframes that are likely YouTube or other video embeds and
-    // remove inline height attributes that break aspect ratio.
-    // Then set style attributes that keep them 16:9 and width:100%.
-    try {
-      const root = document.querySelector('main.content') || document.querySelector('main') || document.body;
-      const iframes = Array.from(root.querySelectorAll('iframe, embed, object, video'));
-      iframes.forEach((el) => {
-        // Do not touch excalidraw containers or elements with class we explicitly want to preserve
-        if (el.classList.contains('excalidraw-embed') || el.classList.contains('excalidraw-container')) return;
-        // If element is an iframe to youtube or likely a video, normalize it
-        const src = (el.getAttribute && el.getAttribute('src')) || '';
-        const isVideoEmbed = /youtube\.com|youtu\.be|vimeo\.com|player\.vimeo|wistia|jwplayer|plyr/i.test(src) || el.tagName.toLowerCase() === 'video';
-        if (isVideoEmbed) {
-          // remove inline height attributes that cause distortion
-          try { el.removeAttribute('height'); } catch(e) {}
-          // apply style directly as an extra-safety fallback
-          el.style.width = '100%';
-          el.style.height = 'auto';
-          el.style.maxWidth = '100%';
-          // browsers honor aspect-ratio; this helps avoid broken heights
-          el.style.aspectRatio = '16/9';
-          el.style.objectFit = 'cover';
-          el.style.display = 'block';
-          el.style.margin = '1rem auto';
-        }
-      });
-    } catch (err) {
-      // fail silently — nothing catastrophic if this doesn't run
-      console.warn('embed resize failed', err);
-    }
-  }
-
-  function toggleFullscreen() {
-    body.classList.toggle('fullscreen-mode');
-    // When entering fullscreen, ensure theatre is off (until user toggles)
-    if (!body.classList.contains('fullscreen-mode')) body.classList.remove('theatre-mode');
-    // Make embedded videos responsive immediately after toggling
-    makeEmbedsResponsive();
-    setButtonState();
-  }
-
-  function toggleTheatre() {
-    // Only allow theatre when we are in fullscreen
-    if (!body.classList.contains('fullscreen-mode')) return;
-    body.classList.toggle('theatre-mode');
-    setButtonState();
-    // Ensure embeds still correct
-    makeEmbedsResponsive();
-  }
-
-  fsBtn.addEventListener('click', toggleFullscreen);
-  thBtn.addEventListener('click', toggleTheatre);
-
-  // Keyboard: F = fullscreen, T = theatre (only when FS), Esc clears both
-  document.addEventListener('keydown', function(e) {
-    if (e.target && /input|textarea|select/i.test(e.target.tagName)) return;
-    const key = (e.key || '').toLowerCase();
-    if (key === 'f') { e.preventDefault(); toggleFullscreen(); }
-    if (key === 't') { e.preventDefault(); toggleTheatre(); }
-    if (e.key === 'Escape') {
-      body.classList.remove('theatre-mode');
-      body.classList.remove('fullscreen-mode');
-      setButtonState();
-    }
-  });
-
-  // Initial run to ensure any existing embeds are normalized on page load
-  document.addEventListener('DOMContentLoaded', function() {
-    setButtonState();
-    makeEmbedsResponsive();
-  });
-
-  // Also run mutation observer to catch lazy-loaded embeds (optional)
-  const root = document.querySelector('main.content') || document.querySelector('main') || document.body;
-  if (root) {
-    const mo = new MutationObserver((mutations) => {
-      // small debounce by batch-processing
-      makeEmbedsResponsive();
+{% block scripts %}
+  <script>
+    const fsBtn = document.getElementById('fullscreenToggle');
+    const theatreBtn = document.getElementById('theatreToggle');
+    fsBtn.addEventListener('click', () => {
+      document.body.classList.toggle('fullscreen-mode');
+      theatreBtn.style.display = document.body.classList.contains('fullscreen-mode') ? 'inline-flex' : 'none';
+      document.body.classList.remove('theatre-mode');
     });
-    mo.observe(root, { childList: true, subtree: true });
-  }
-})();
-</script>
-
+    theatreBtn.addEventListener('click', () => {
+      document.body.classList.toggle('theatre-mode');
+    });
+  </script>
+{% endblock %}
 
   </body>
 </html>
