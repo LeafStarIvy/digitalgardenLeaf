@@ -923,142 +923,139 @@ img {
 // =====================================================================
 
 /* =========================
-   Cinematic Theater Mode
-   (custom.css)
+   THEATER MODE - CUSTOM.CSS
    ========================= */
 
-/* --- Top-right fixed toggle (above everything) --- */
-.theater-toggle {
+/* --- Toggle in top-right (always above other UI) --- */
+.tg-toggle {
   position: fixed;
   top: 12px;
   right: 14px;
-  z-index: 24000;            /* very high so it's never hidden */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 8px;
+  z-index: 10005;                 /* highest so it's always clickable */
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: inline-grid;
+  place-items: center;
   border: 0;
-  background: linear-gradient(180deg,#222,#161616);
+  background: linear-gradient(180deg,#1f1f1f,#0f0f0f);
   color: #fff;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,0.02) inset;
-  cursor: pointer;
   font-size: 18px;
-  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
 }
-.theater-toggle:hover { transform: translateY(-3px); background: linear-gradient(180deg,#2b2b2b,#171717); }
-.theater-toggle:active { transform: translateY(-1px); }
+.tg-toggle:hover { transform: translateY(-3px); }
+.tg-toggle:active { transform: translateY(-1px); }
+.tg-toggle:focus { outline: none; box-shadow: 0 0 0 4px rgba(80,110,255,0.12); }
 
-/* --- Close button that appears in theater --- */
-.theater-close {
+/* --- Exit button - becomes visible only during theater */
+.tg-exit {
   position: fixed;
   top: 12px;
-  right: 72px;              /* sits to the left of the toggle when open */
-  z-index: 24001;
+  right: 72px;                    /* left of toggle */
+  z-index: 10006;
   width: 44px;
   height: 44px;
   border-radius: 50%;
   border: 0;
-  background: rgba(18,18,18,0.85);
+  background: rgba(20,20,20,0.85);
   color: #fff;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
-  cursor: pointer;
   font-size: 16px;
+  cursor: pointer;
   opacity: 0;
   pointer-events: none;
   transition: opacity 260ms ease, transform 260ms ease;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
 }
-body.theater-active .theater-close {
+.tg-exit:hover { background: rgba(36,36,36,0.98); }
+body.tg-active .tg-exit {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
 }
-.theater-close:hover { background: rgba(34,34,34,0.95); }
 
-/* --- Backdrop / vignette for the cinematic look --- */
-#theater-backdrop {
+/* --- Backdrop / cinematic vignette (behind the note) --- */
+.tg-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 19990; /* below note (note gets 21000 inline) but above everything else */
-  pointer-events: none;
-  background: transparent;
-  transition: background 720ms cubic-bezier(.16,.84,.28,1), opacity 720ms ease;
+  z-index: 10000;                 /* below note but above page chrome */
+  pointer-events: none;           /* clicks pass through except when active */
   opacity: 0;
+  transition: opacity 540ms cubic-bezier(.16,.84,.28,1), background 560ms ease;
+  background: transparent;
 }
 
-/* when active, heavy darkening with soft side lights and subtle film-gain */
-body.theater-active #theater-backdrop {
-  pointer-events: auto;
+/* Active: heavy darkening with subtle side lights */
+body.tg-active .tg-backdrop {
   opacity: 1;
+  pointer-events: auto; /* allow click to close */
   background:
-    radial-gradient(1000px 420px at 6% 50%, rgba(255,255,255,0.03), transparent 18%),
-    radial-gradient(1000px 420px at 94% 50%, rgba(255,255,255,0.03), transparent 18%),
+    radial-gradient(1000px 420px at 6% 50%, rgba(255,255,255,0.03), transparent 12%),
+    radial-gradient(1000px 420px at 94% 50%, rgba(255,255,255,0.03), transparent 12%),
     linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.98));
-  backdrop-filter: blur(2px) saturate(0.9);
+  backdrop-filter: blur(1.8px) saturate(0.95);
 }
 
-/* --- Dim / fade / blur everything except the note --- */
-/* Use a broad selector list so most common site chrome is covered */
-body.theater-active header,
-body.theater-active nav,
-body.theater-active footer,
-body.theater-active aside,
-body.theater-active .sidebar,
-body.theater-active .left-sidebar,
-body.theater-active .right-sidebar,
-body.theater-active .graph,
-body.theater-active .graph-container,
-body.theater-active .search,
-body.theater-active .page-controls,
-body.theater-active .dashboard,
-body.theater-active .toc,
-body.theater-active .site-footer,
-body.theater-active .site-header,
-body.theater-active .site-nav {
-  transition: opacity 420ms ease, filter 420ms ease, transform 420ms ease;
-  opacity: 0.03 !important;      /* almost invisible but still accessible for screen readers */
-  filter: blur(6px) !important;
+/* --- Fade / hide UI chrome but not the note --- */
+/* Broad fade list to cover common site chrome; keep #note-root out of it */
+body.tg-active header,
+body.tg-active nav,
+body.tg-active footer,
+body.tg-active aside,
+body.tg-active .sidebar,
+body.tg-active .left-sidebar,
+body.tg-active .right-sidebar,
+body.tg-active .graph,
+body.tg-active .graph-container,
+body.tg-active .search,
+body.tg-active .page-controls,
+body.tg-active .dashboard,
+body.tg-active .toc,
+body.tg-active .site-footer,
+body.tg-active .site-header,
+body.tg-active .site-nav {
+  transition: opacity 420ms ease, transform 420ms ease, filter 420ms ease;
+  opacity: 0.02 !important;      /* almost fully hidden visually */
+  filter: blur(5px) !important;
+  transform: translateY(-8px);
   pointer-events: none !important;
-  transform: translateY(-6px);
 }
 
-/* Make sure images/iframes inside the note still render cleanly on top */
-#note-root,
-#note-root * {
-  -webkit-font-smoothing: antialiased;
-}
-
-/* allow the note to animate via inline transform set by JS */
+/* Ensure the note remains bright and interactive */
 #note-root {
-  transition: transform 680ms cubic-bezier(.16,.84,.28,1), box-shadow 420ms ease;
+  transition: transform 680ms cubic-bezier(.2,.9,.28,1), box-shadow 420ms ease;
   transform-origin: center center;
   will-change: transform, box-shadow;
-  z-index: 1;
-  /* keep normal flow until theater opens; JS will set z-index inline when opening */
+  z-index: 1; /* this will be overridden inline to be above backdrop during theater */
+  /* keep default layout in normal pages */
 }
 
-/* Make sure the note looks good in theater (applies while scaled up) */
-body.theater-active #note-root {
-  border-radius: 12px;
-  background: linear-gradient(180deg,#0f0f10, #0b0b0c);
+/* When active we style the note visually (highlight, gentle rounded edge) */
+/* Note: we do NOT darken the note content; we only change background/outline so videos and links stay bright */
+body.tg-active #note-root {
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(14,14,15,0.98), rgba(6,6,7,0.95));
   padding: clamp(16px, 1.6vw, 28px);
   color: #fff;
   outline: none;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.85), 0 6px 30px rgba(0,0,0,0.6), inset 0 0 80px rgba(255,255,255,0.02);
 }
 
-/* Subtle cinematic sheen around the note while active */
-body.theater-active #note-root {
-  box-shadow: 0 40px 120px rgba(0,0,0,0.85), 0 8px 30px rgba(0,0,0,0.55);
+/* small nicety: lighten links/buttons INSIDE the note so they're visible on the darker bg */
+body.tg-active #note-root a,
+body.tg-active #note-root .button,
+body.tg-active #note-root .btn {
+  color: #9ecbff;
+  text-decoration: underline;
 }
 
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  #note-root { transition: none !important; }
-  #theater-backdrop { transition: none !important; }
+  .tg-toggle, .tg-exit, .tg-backdrop, #note-root { transition: none !important; }
 }
 
-/* Accessibility visual focus for the toggle */
-.theater-toggle:focus { box-shadow: 0 0 0 4px rgba(100,120,255,0.12); outline: none; }
-.theater-close:focus { box-shadow: 0 0 0 4px rgba(100,120,255,0.12); outline: none; }
+/* Defensive: ensure our elements are visually above the rest of UI even if theme uses high z-indexes */
+.tg-toggle, .tg-exit { position: fixed; }
 
+/* end of theater CSS */
