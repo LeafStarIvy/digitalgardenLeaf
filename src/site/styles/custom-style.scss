@@ -917,3 +917,52 @@ img {
   transform: scale(1.2) rotate(-3deg); /* grow + slight tilt */
   filter: brightness(1.2); /* subtle glow effect */
 }
+
+// =====================================================================
+// 15. Theather mode design 
+// =====================================================================
+
+/* Default state (normal site) */
+body.theater-mode {
+  background-color: #000 !important; /* dark background */
+  overflow: hidden; /* remove scrollbars if needed */
+}
+
+body.theater-mode .note {
+  max-width: 90vw;
+  max-height: 90vh;
+  margin: auto;
+  padding: 1rem;
+  background: #111;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.8);
+  z-index: 9999;
+}
+
+body.theater-mode .note iframe {
+  width: 100%;
+  height: 80vh; /* YouTube embed fills most of the viewport */
+}
+
+/* Hide other elements */
+body.theater-mode .dashboard,
+body.theater-mode .graph,
+body.theater-mode .sidebar,
+body.theater-mode header,
+body.theater-mode footer {
+  display: none !important;
+}
+
+/* Style the toggle button */
+.theater-button {
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.theater-button:hover {
+  background: #444;
+}
