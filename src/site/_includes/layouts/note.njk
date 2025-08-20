@@ -100,178 +100,107 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
     {% include "components/particlesScript.njk" %}
 
-{# ------------------------
-  THEATER MODE (paste into note.njk ABOVE {{ content }})
-  - Single-file JS. No DOM moves/cloning.
-  ------------------------- #}
+{# ===== Vignette & Grain overlays for Theatre mode (kept outside content) ===== #}
+<div class="dg-vignette" aria-hidden="true"></div>
+<div class="dg-grain" aria-hidden="true"></div>
 
-<!-- fixed toggle and backdrop/exit controls -->
-<button id="tg-toggle" class="tg-toggle" aria-pressed="false" aria-label="Enter theater mode">🎬</button>
-<div id="tg-backdrop" class="tg-backdrop" aria-hidden="true"></div>
-<button id="tg-exit" class="tg-exit" aria-hidden="true" aria-label="Exit theater mode">✖</button>
+{# ===== View controls (top-right) ===== #}
+<div class="dg-viewbar" id="dg-viewbar" role="group" aria-label="View controls">
+  <button id="dg-fullscreen-toggle"
+          class="dg-btn dg-btn--fullscreen"
+          type="button"
+          aria-pressed="false"
+          title="Fullscreen (F)">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7 3h4v2H9v2H7V3Zm10 0v4h-2V5h-2V3h4ZM7 17v4h4v-2H9v-2H7Zm8 2v2h4v-4h-2v2h-2Z"/>
+    </svg>
+    <span>Fullscreen</span>
+  </button>
 
-<!-- note content (keep exactly as you already have it) -->
-<article id="note-root" class="note-root">
-  {{ content | safe }}
-</article>
+  <button id="dg-theatre-toggle"
+          class="dg-btn dg-btn--theatre"
+          type="button"
+          aria-pressed="false"
+          title="Theatre mode (T)">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm1 2v8h14V8H5Z"/>
+    </svg>
+    <span>Theatre</span>
+  </button>
+</div>
 
 <script>
-/* THEATER MODE - plain, defensive JS */
-document.addEventListener('DOMContentLoaded', () => {
+(() => {
   const body = document.body;
-  const toggle = document.getElementById('tg-toggle');
-  const exitBtn = document.getElementById('tg-exit');
-  const backdrop = document.getElementById('tg-backdrop');
-  const note = document.getElementById('note-root');
-  if (!toggle || !exitBtn || !backdrop || !note) return;
+  const fsBtn = document.getElementById('dg-fullscreen-toggle');
+  const thBtn = document.getElementById('dg-theatre-toggle');
 
-  let isOpen = false;
-  let saved = { transform: '', transition: '', position: '', zIndex: '' };
+  const isFS = () => body.classList.contains('dg-fullscreen');
+  const isTH = () => body.classList.contains('dg-theatre');
 
-  // helper to compute transform to center & scale
-  function computeTransformForCenter(rect) {
-    const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-
-    // target width for the "movie screen" (clamped)
-    const targetWidth = Math.min(Math.round(vw * 0.92), 1400);
-    const minScale = 0.6;
-    const scale = Math.max(minScale, targetWidth / Math.max(rect.width, 1));
-
-    const noteCenterX = rect.left + rect.width / 2;
-    const noteCenterY = rect.top + rect.height / 2;
-    const viewportCenterX = vw / 2;
-    const viewportCenterY = vh / 2;
-
-    const translateX = Math.round(viewportCenterX - noteCenterX);
-    const translateY = Math.round(viewportCenterY - noteCenterY);
-
-    return { translateX, translateY, scale };
+  function applyState(fromStorage = false) {
+    fsBtn?.setAttribute('aria-pressed', String(isFS()));
+    thBtn?.setAttribute('aria-pressed', String(isTH()));
+    // Only show theatre button in fullscreen (CSS also enforces this)
+    thBtn.style.display = isFS() ? '' : 'none';
+    if (!fromStorage) {
+      try { localStorage.setItem('dg:view', JSON.stringify({ fs: isFS(), th: isTH() })); } catch {}
+    }
   }
 
-  function openTheater() {
-    if (isOpen) return;
-    isOpen = true;
-    toggle.setAttribute('aria-pressed', 'true');
-
-    // Save original inline styles to restore later
-    saved.transform = note.style.transform || '';
-    saved.transition = note.style.transition || '';
-    saved.position = note.style.position || '';
-    saved.zIndex = note.style.zIndex || '';
-
-    // Ensure we measure the element in its natural position (no transform)
-    note.style.transition = 'none';
-    note.style.transform = saved.transform || '';
-    // force reflow
-    const rect = note.getBoundingClientRect();
-
-    // compute desired transform
-    const { translateX, translateY, scale } = computeTransformForCenter(rect);
-
-    // prepare visual changes (no DOM moves or cloning)
-    note.style.willChange = 'transform, box-shadow';
-    // z-index must be above the backdrop; position: relative ensures z-index applies
-    note.style.position = 'relative';
-    note.style.zIndex = '10002';
-    note.style.pointerEvents = 'auto';
-
-    // enable backdrop and exit button
-    backdrop.removeAttribute('aria-hidden');
-    exitBtn.removeAttribute('aria-hidden');
-
-    // lock scrolling (simple and stable)
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-
-    // animate transform on next frame
-    requestAnimationFrame(() => {
-      note.style.transition = 'transform 680ms cubic-bezier(.2,.9,.28,1), box-shadow 420ms ease';
-      note.style.transformOrigin = 'center center';
-      // the transform visually recenters and scales the current element
-      note.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-      // cinematic shadow
-      note.style.boxShadow = '0 60px 140px rgba(0,0,0,0.95), 0 14px 40px rgba(0,0,0,0.6), inset 0 0 90px rgba(255,255,255,0.02)';
-      // body-level class triggers backdrop, fading out UI
-      body.classList.add('tg-active');
-    });
-
-    // attach resize handler to keep centered (debounced)
-    window.addEventListener('resize', onResize);
-    window.addEventListener('orientationchange', onResize);
+  async function enterBrowserFullscreen() {
+    try {
+      const el = document.documentElement;
+      if (!document.fullscreenElement && el.requestFullscreen) {
+        await el.requestFullscreen({ navigationUI: 'hide' });
+      }
+    } catch { /* ignore */ }
+  }
+  async function exitBrowserFullscreen() {
+    try {
+      if (document.fullscreenElement && document.exitFullscreen) {
+        await document.exitFullscreen();
+      }
+    } catch { /* ignore */ }
   }
 
-  function closeTheater() {
-    if (!isOpen) return;
-    isOpen = false;
-    toggle.setAttribute('aria-pressed', 'false');
-
-    // reverse visual changes
-    note.style.transform = saved.transform || '';
-    note.style.boxShadow = '';
-
-    // remove body class so backdrop fades
-    body.classList.remove('tg-active');
-
-    // hide backdrop & exit
-    backdrop.setAttribute('aria-hidden', 'true');
-    exitBtn.setAttribute('aria-hidden', 'true');
-
-    // restore scrolling & inline styles after the animation completes
-    setTimeout(() => {
-      document.documentElement.style.overflow = '';
-      document.body.style.overflow = '';
-
-      note.style.transition = saved.transition || '';
-      note.style.willChange = '';
-      note.style.position = saved.position || '';
-      note.style.zIndex = saved.zIndex || '';
-    }, 720);
-
-    window.removeEventListener('resize', onResize);
-    window.removeEventListener('orientationchange', onResize);
+  function toggleFullscreen() {
+    body.classList.toggle('dg-fullscreen');
+    if (isFS()) enterBrowserFullscreen(); else exitBrowserFullscreen();
+    if (!isFS() && isTH()) body.classList.remove('dg-theatre'); // leaving FS also disables Theatre
+    applyState();
+  }
+  function toggleTheatre() {
+    if (!isFS()) return; // theatre only in fullscreen
+    body.classList.toggle('dg-theatre');
+    applyState();
   }
 
-  // simple debounced resize -> recompute transform using natural rect
-  let _resizeTimer = null;
-  function onResize() {
-    if (!isOpen) return;
-    clearTimeout(_resizeTimer);
-    _resizeTimer = setTimeout(() => {
-      // measure natural rect (temporarily disable transition & transform to measure position)
-      const prevTransition = note.style.transition;
-      const prevTransform = note.style.transform;
-      note.style.transition = 'none';
-      note.style.transform = prevTransform || ''; // ensure transformed state is present but measure natural layout
-      // To get natural (untransformed) layout we temporarily clear transform:
-      note.style.transform = '';
-      // force reflow
-      const rect = note.getBoundingClientRect();
-      const { translateX, translateY, scale } = computeTransformForCenter(rect);
+  fsBtn?.addEventListener('click', toggleFullscreen);
+  thBtn?.addEventListener('click', toggleTheatre);
 
-      // reapply transform with a shorter animation to recenter smoothly
-      requestAnimationFrame(() => {
-        note.style.transition = 'transform 360ms cubic-bezier(.2,.9,.28,1)';
-        note.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-      });
+  // Keyboard shortcuts: F = fullscreen, T = theatre, ESC = exit all
+  document.addEventListener('keydown', (e) => {
+    if (e.target && /input|textarea|select/i.test(e.target.tagName)) return;
+    if (e.key.toLowerCase() === 'f') { e.preventDefault(); toggleFullscreen(); }
+    if (e.key.toLowerCase() === 't') { e.preventDefault(); toggleTheatre(); }
+    if (e.key === 'Escape') {
+      body.classList.remove('dg-theatre', 'dg-fullscreen');
+      applyState();
+      exitBrowserFullscreen();
+    }
+  });
 
-      // restore transition variable after a short delay
-      setTimeout(() => {
-        note.style.transition = prevTransition || '';
-      }, 480);
-    }, 120);
-  }
+  // Restore last state (optional nicety)
+  try {
+    const saved = JSON.parse(localStorage.getItem('dg:view') || '{}');
+    if (saved.fs) body.classList.add('dg-fullscreen');
+    if (saved.th) body.classList.add('dg-theatre');
+    if (saved.fs) enterBrowserFullscreen();
+  } catch {}
 
-  // events
-  toggle.addEventListener('click', () => (isOpen ? closeTheater() : openTheater()));
-  exitBtn.addEventListener('click', closeTheater);
-  backdrop.addEventListener('click', closeTheater);
-  window.addEventListener('keyup', (ev) => { if (ev.key === 'Escape') closeTheater(); });
-
-  // Accessibility: if user tabs to exit, keep focus usable
-  toggle.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') toggle.click(); });
-
-});
+  applyState(true);
+})();
 </script>
 
 
