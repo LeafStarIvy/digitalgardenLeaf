@@ -95,6 +95,7 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
     {% include "components/particlesScript.njk" %}
 
+{% block content %}
   <div class="dg-controls">
     <button class="fullscreen-btn" id="fullscreenToggle">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
@@ -116,13 +117,25 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
   <script>
     const fsBtn = document.getElementById('fullscreenToggle');
     const theatreBtn = document.getElementById('theatreToggle');
+
     fsBtn.addEventListener('click', () => {
       document.body.classList.toggle('fullscreen-mode');
       theatreBtn.style.display = document.body.classList.contains('fullscreen-mode') ? 'inline-flex' : 'none';
       document.body.classList.remove('theatre-mode');
     });
+
     theatreBtn.addEventListener('click', () => {
       document.body.classList.toggle('theatre-mode');
+    });
+
+    // Auto-wrap YouTube iframes for aspect ratio
+    document.querySelectorAll('iframe[src*="youtube.com"], iframe[src*="youtu.be"]').forEach(iframe => {
+      if (!iframe.parentElement.classList.contains('video-wrapper')) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'video-wrapper';
+        iframe.parentNode.insertBefore(wrapper, iframe);
+        wrapper.appendChild(iframe);
+      }
     });
   </script>
 {% endblock %}
