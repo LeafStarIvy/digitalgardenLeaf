@@ -17,11 +17,6 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
   <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
 
-    <button class="fullscreen-btn" id="fullscreenBtn" aria-pressed="false" title="Toggle Focus Mode">
-      <svg class="fs-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M16 3h3a2 2 0 0 1 2 2v3"/><path d="M8 21H5a2 2 0 0 1-2-2v-3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
-      <span class="fs-label">Focus Mode</span>
-    </button>
-
     {% include "components/notegrowthhistory.njk" %}
     {% if settings.dgShowFileTree !== true %}
       {% include "components/navbar.njk" %}
