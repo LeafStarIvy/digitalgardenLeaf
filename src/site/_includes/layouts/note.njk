@@ -95,130 +95,43 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
 
     {% include "components/particlesScript.njk" %}
 
-{# ===== Project UI: controls + theatre overlays (replace previous snippet) ===== #}
-<div class="dg-controls" aria-hidden="false">
-  <button class="fullscreen-btn" id="fullscreenToggle" aria-pressed="false" title="Toggle fullscreen (F)">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 14H5v5h5v-2H7v-3zM5 10h2V7h3V5H5v5zM19 19h-3v2h5v-5h-2v3zM15 3v2h3v3h2V3h-5z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Fullscreen
-  </button>
+{# Fullscreen & Theatre Buttons #}
+<button class="fullscreen-btn" id="fullscreen-toggle">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M1 1h5v2H3v3H1V1zm9 0h5v5h-2V3h-3V1zm5 9v5h-5v-2h3v-3h2zm-9 5H1v-5h2v3h3v2z"/>
+  </svg>
+  Fullscreen
+</button>
 
-  <button class="theatre-btn" id="theatreToggle" aria-pressed="false" title="Toggle theatre (T)" style="display:none;">
-    🎬 Theatre
-  </button>
-</div>
+<button class="fullscreen-btn" id="theatre-toggle" style="display: none; top: 70px;">
+  🎥 Theatre
+</button>
 
-{# Overlays for theatre (kept in DOM but hidden unless theatre is active) #}
-<div class="theatre-overlays" aria-hidden="true" hidden>
-  <div class="vignette" aria-hidden="true"></div>
-  <div class="side-light left" aria-hidden="true"></div>
-  <div class="side-light right" aria-hidden="true"></div>
-  <div class="grain" aria-hidden="true"></div>
-</div>
+{# Theatre vignette overlay #}
+<div class="theatre-vignette" aria-hidden="true"></div>
 
 <script>
-/* Toggle fullscreen/class states and wrap YouTube iframes into a .video-wrapper
-   - Only wraps YouTube iframes (youtube.com, youtu.be, youtube-nocookie)
-   - If iframe is inside a <figure>, wrap the whole figure to preserve captions
-   - Theatre button is visible only when fullscreen-mode is active
-*/
-(function () {
+document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
-  const fsBtn = document.getElementById('fullscreenToggle');
-  const thBtn = document.getElementById('theatreToggle');
-  const overlayContainer = document.querySelector('.theatre-overlays');
+  const fullscreenBtn = document.getElementById("fullscreen-toggle");
+  const theatreBtn = document.getElementById("theatre-toggle");
 
-  function setButtonState() {
-    const isFS = body.classList.contains('fullscreen-mode');
-    const isTH = body.classList.contains('theatre-mode');
-    fsBtn.setAttribute('aria-pressed', String(isFS));
-    thBtn.setAttribute('aria-pressed', String(isTH));
-    thBtn.style.display = isFS ? 'inline-flex' : 'none';
-    // manage overlay hidden attribute for accessibility
-    if (isFS && isTH) overlayContainer.hidden = false;
-    else overlayContainer.hidden = true;
-  }
-
-  function toggleFullscreenMode() {
-    body.classList.toggle('fullscreen-mode');
-    // turning off fullscreen also turns off theatre
-    if (!body.classList.contains('fullscreen-mode')) body.classList.remove('theatre-mode');
-    setButtonState();
-  }
-
-  function toggleTheatreMode() {
-    if (!body.classList.contains('fullscreen-mode')) return;
-    body.classList.toggle('theatre-mode');
-    setButtonState();
-  }
-
-  fsBtn.addEventListener('click', toggleFullscreenMode);
-  thBtn.addEventListener('click', toggleTheatreMode);
-
-  // keyboard shortcuts: F => fullscreen, T => theatre (only when fullscreen), Esc => exit both
-  document.addEventListener('keydown', (ev) => {
-    if (ev.target && /input|textarea|select/i.test(ev.target.tagName)) return;
-    if (ev.key.toLowerCase() === 'f') { ev.preventDefault(); toggleFullscreenMode(); }
-    if (ev.key.toLowerCase() === 't') { ev.preventDefault(); toggleTheatreMode(); }
-    if (ev.key === 'Escape') {
-      body.classList.remove('theatre-mode'); body.classList.remove('fullscreen-mode');
-      setButtonState();
+  fullscreenBtn.addEventListener("click", () => {
+    body.classList.toggle("fullscreen-mode");
+    if (body.classList.contains("fullscreen-mode")) {
+      theatreBtn.style.display = "flex";
+    } else {
+      theatreBtn.style.display = "none";
+      body.classList.remove("theatre-mode");
     }
   });
 
-  /* Wrap YouTube iframes in a .video-wrapper for correct 16:9 scaling.
-     If iframe is inside a <figure>, wrap the whole <figure> so captions remain.
-  */
-  function wrapYouTubeIframes() {
-    const selectors = [
-      'iframe[src*="youtube.com"]',
-      'iframe[src*="youtu.be"]',
-      'iframe[src*="youtube-nocookie"]'
-    ].join(',');
-
-    const frames = Array.from(document.querySelectorAll(selectors));
-    frames.forEach((iframe) => {
-      if (!iframe || iframe.closest('.video-wrapper')) return; // already wrapped
-      // avoid wrapping inside known non-video containers (defensive)
-      const topAnchor = iframe.closest('figure') || iframe.parentElement;
-      if (!topAnchor || topAnchor.classList.contains('video-wrapper')) return;
-
-      const wrapper = document.createElement('div');
-      wrapper.className = 'video-wrapper';
-
-      // Insert wrapper before topAnchor then move topAnchor into wrapper
-      try {
-        topAnchor.parentNode.insertBefore(wrapper, topAnchor);
-        wrapper.appendChild(topAnchor);
-      } catch (e) {
-        // fallback: if insertion fails, just wrap the iframe
-        if (iframe.parentNode) {
-          iframe.parentNode.insertBefore(wrapper, iframe);
-          wrapper.appendChild(iframe);
-        }
-      }
-    });
-  }
-
-  // Run on DOM ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => { wrapYouTubeIframes(); setButtonState(); });
-  } else {
-    wrapYouTubeIframes(); setButtonState();
-  }
-
-  // If your site dynamically adds content, uncomment a MutationObserver (left commented as conservative)
-  /*
-  const observer = new MutationObserver((mutations) => {
-    for (const m of mutations) {
-      if (m.addedNodes && m.addedNodes.length) {
-        wrapYouTubeIframes();
-      }
-    }
+  theatreBtn.addEventListener("click", () => {
+    body.classList.toggle("theatre-mode");
   });
-  observer.observe(document.body, { childList: true, subtree: true });
-  */
-})();
+});
 </script>
+
 
   </body>
 </html>
