@@ -1,1188 +1,489 @@
-/*
- * COSMIC DIGITAL GARDEN - DEEP SPACE THEME
- * Inspired by Super Mario Galaxy and deep space aesthetics
- * Color palette: Deep space blues, stellar grays, cosmic whites
- */
+/* ==========================================================================
+   COSMIC DIGITAL GARDEN — REMASTER 2025
+   - Same concepts preserved (variables, gradients, starfield, fullscreen,
+     theatre), but proportions, accessibility, and visual hierarchy improved.
+   - Palette: deep teal / slate + warm amber accent for legibility & contrast.
+   ========================================================================== */
 
-// =====================================================================
-// 1. CORE VARIABLES - COSMIC BLUE & GRAY PALETTE
-// =====================================================================
-body {
-  /* === DEEP SPACE COLOR SYSTEM === */
-  
-  /* Primary Deep Space Scale */
-  --cosmic-void: #000511;           /* Absolute void */
-  --cosmic-abyss: #001122;          /* Deep abyss */
-  --space-deep: #002244;            /* Deepest space */
-  --space-darker: #003366;          /* Darker space */
-  --space-dark: #004488;            /* Dark space */
-  --space-medium: #0066AA;          /* Medium space */
-  --space-light: #0088CC;           /* Light space */
-  --space-lighter: #33AADD;         /* Lighter space */
-  --space-lightest: #66CCEE;        /* Lightest space */
-  
-  /* Stellar Gray Scale */
-  --stellar-void: #0A0A0F;          /* Void gray */
-  --stellar-deep: #151520;          /* Deep stellar */
-  --stellar-dark: #222233;          /* Dark stellar */
-  --stellar-medium: #333344;        /* Medium stellar */
-  --stellar-light: #556677;         /* Light stellar */
-  --stellar-lighter: #778899;       /* Lighter stellar */
-  --stellar-bright: #99AABB;        /* Bright stellar */
-  --stellar-lightest: #BBCCDD;      /* Lightest stellar */
-  
-  /* Cosmic Accent Colors */
-  --cosmic-ice: #E6F3FF;            /* Ice blue */
-  --cosmic-frost: #CCE7FF;          /* Frost blue */
-  --cosmic-crystal: #B3DAFF;        /* Crystal blue */
-  --cosmic-glow: #80CCFF;           /* Glow blue */
-  --cosmic-energy: #4DB8FF;         /* Energy blue */
-  --cosmic-plasma: #1AA3FF;         /* Plasma blue */
-  
-  /* Neutral Space Tones */
-  --space-silver: #C5D1E0;          /* Silver tone */
-  --space-mist: #A8B8CC;           /* Space mist */
-  --space-dust: #8A9BB5;           /* Space dust */
-  --space-nebula: #6D8099;         /* Nebula tone */
-  
-  /* Alert & Status Colors (space-themed) */
-  --alert-danger: #FF6B6B;          /* Supernova red */
-  --alert-warning: #FFD93D;         /* Solar flare yellow */
-  --alert-success: #6BCF7F;         /* Nebula green */
-  --alert-info: var(--cosmic-energy);/* Info blue */
-  
-  /* === BACKGROUND SYSTEM === */
-  --bg-primary: var(--cosmic-void);
-  --bg-secondary: var(--cosmic-abyss);
-  --bg-tertiary: var(--space-deep);
-  --bg-quaternary: var(--space-darker);
-  --bg-overlay: rgba(0, 17, 34, 0.85);
-  --bg-overlay-light: rgba(0, 34, 68, 0.75);
-  --bg-glass: rgba(0, 68, 136, 0.15);
-  --bg-glass-strong: rgba(0, 68, 136, 0.25);
-  
-  /* === TEXT SYSTEM === */
-  --text-primary: var(--cosmic-ice);
-  --text-secondary: var(--space-silver);
-  --text-tertiary: var(--space-mist);
-  --text-accent: var(--cosmic-glow);
-  --text-muted: var(--space-dust);
-  --text-dim: var(--stellar-light);
-  --text-bright: #FFFFFF;
-  --text-link: var(--cosmic-energy);
-  --text-link-hover: var(--cosmic-glow);
-  --text-heading: var(--cosmic-frost);
-  
-  /* === BORDER SYSTEM === */
-  --border-primary: rgba(128, 204, 255, 0.2);
-  --border-secondary: rgba(128, 204, 255, 0.15);
-  --border-accent: rgba(128, 204, 255, 0.4);
-  --border-subtle: rgba(85, 102, 119, 0.3);
-  --border-strong: rgba(128, 204, 255, 0.6);
-  
-  /* === SHADOW SYSTEM === */
-  --shadow-sm: 0 2px 8px rgba(0, 5, 17, 0.3);
-  --shadow-md: 0 4px 16px rgba(0, 5, 17, 0.4);
-  --shadow-lg: 0 8px 32px rgba(0, 5, 17, 0.5);
-  --shadow-xl: 0 16px 48px rgba(0, 5, 17, 0.6);
-  --shadow-glow: 0 0 24px rgba(128, 204, 255, 0.2);
-  --shadow-glow-strong: 0 0 32px rgba(128, 204, 255, 0.3);
-  
-  /* === GRADIENTS === */
-  --gradient-cosmic: linear-gradient(135deg, var(--cosmic-void) 0%, var(--space-deep) 50%, var(--space-darker) 100%);
-  --gradient-stellar: linear-gradient(180deg, var(--stellar-void) 0%, var(--stellar-dark) 100%);
-  --gradient-nebula: radial-gradient(ellipse at center, var(--space-darker) 0%, var(--cosmic-void) 70%);
-  --gradient-aurora: linear-gradient(90deg, var(--cosmic-energy) 0%, var(--cosmic-glow) 50%, var(--cosmic-crystal) 100%);
-  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-  
-  /* === TYPOGRAPHY === */
-  --font-primary: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-heading: 'Space Grotesk', 'Segoe UI', sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-  
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-md: 1.125rem;
-  --font-size-lg: 1.25rem;
-  --font-size-xl: 1.5rem;
-  --font-size-2xl: 2rem;
-  --font-size-3xl: 2.5rem;
-  --font-size-4xl: 3rem;
-  
-  --line-height-tight: 1.25;
-  --line-height-base: 1.6;
-  --line-height-loose: 1.8;
-  
-  --font-weight-light: 300;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  
-  /* === SPACING & LAYOUT === */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
+/* ==========================================================================
+   0. ROOT VARIABLES (global scope for Obsidian compatibility)
+   ========================================================================== */
+:root{
+  /* --------------------
+     Core palette (teal + amber)
+     --------------------*/
+  --cosmic-void: #04121A;        /* near-black deep ocean */
+  --cosmic-abyss: #05232B;
+  --space-deep:   #083B44;
+  --space-mid:    #0B5F5B;
+  --space-surf:   #14968E;
+  --space-light:  #2AC7B7;
+
+  --stellar-900: #0B1020;
+  --stellar-800: #17202A;
+  --stellar-700: #24343D;
+  --stellar-500: #4A6366;
+  --stellar-300: #91A9A6;
+  --stellar-100: #D8EAEA;
+
+  /* Accent */
+  --accent-amber: #FFB86B;      /* warm accent */
+  --accent-amber-2:#FF9B3C;
+  --accent-cool: #7CE3D0;
+
+  /* Status */
+  --alert-danger: #FF6B6B;
+  --alert-warning:#FFD166;
+  --alert-success:#6BCF7F;
+  --alert-info:   var(--accent-cool);
+
+  /* --------------------
+     Background / surfaces
+     --------------------*/
+  --bg-primary:  linear-gradient(180deg,var(--cosmic-void) 0%, var(--space-deep) 100%);
+  --bg-overlay:  rgba(5,35,40,0.6);
+  --bg-glass:    rgba(12,30,33,0.36);
+  --bg-glass-strong: rgba(12,30,33,0.55);
+
+  /* --------------------
+     Text system
+     --------------------*/
+  --text-primary: #E6F9F5;
+  --text-secondary: #B6DCD6;
+  --text-muted: #93B7B3;
+  --text-dim: #6F8B89;
+  --text-heading: #CFF6EE;
+  --link: var(--space-surf);
+  --link-hover: var(--accent-amber);
+
+  /* --------------------
+     Borders & shadows
+     --------------------*/
+  --border-subtle: rgba(255,255,255,0.04);
+  --border-ghost: rgba(124,198,190,0.12);
+  --shadow-sm: 0 4px 12px rgba(2,8,10,0.35);
+  --shadow-md: 0 10px 30px rgba(2,8,10,0.45);
+  --glow: 0 0 18px rgba(124,198,190,0.11);
+
+  /* --------------------
+     Typography
+     --------------------*/
+  --font-base: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: "Space Grotesk", Inter, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+
+  --fs-xs: 0.78rem;
+  --fs-sm: 0.9rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 1.875rem;
+  --fs-3xl: 2.4rem;
+
+  --lh-tight: 1.28;
+  --lh-base: 1.6;
+  --lh-loose: 1.9;
+
+  /* --------------------
+     Layout + spacing
+     --------------------*/
+  --content-max: 900px;       /* balanced reading line length */
+  --content-wide: 1200px;
+  --sidebar-w: 260px;        /* slightly narrower for better proportions */
+  --navbar-h: 56px;
+
+  --space-xxs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
   --space-md: 1rem;
   --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
-  
-  --content-width: 800px;        /* Wider content as requested */
-  --content-width-wide: 1000px;
-  --sidebar-width: 280px;
-  --navbar-height: 64px;
-  
-  /* === BORDER RADIUS === */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --radius-full: 50px;
-  
-  /* === TRANSITIONS === */
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  
-  /* === BACKDROP FILTERS === */
-  --blur-sm: blur(4px);
-  --blur-md: blur(8px);
-  --blur-lg: blur(12px);
-  --blur-xl: blur(16px);
+  --space-xl: 2.25rem;
+  --space-2xl: 3.5rem;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+
+  --trans-fast: 160ms;
+  --trans: 280ms;
+  --trans-slow: 420ms;
+
+  /* gradients */
+  --grad-aurora: linear-gradient(90deg,var(--space-surf), var(--accent-cool));
+  --grad-deep: linear-gradient(180deg,var(--cosmic-void), var(--space-deep));
+  --grad-glass: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
 }
 
-// =====================================================================
-// 2. GLOBAL RESET & BASE STYLES
-// =====================================================================
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* ==========================================================================
+   1. RESET & base
+   ========================================================================== */
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  font-family:var(--font-base);
+  font-size:var(--fs-base);
+  line-height:var(--lh-base);
+  color:var(--text-primary);
+  background:var(--bg-primary);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+  position:relative;
 }
 
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
+/* Subtle fixed nebula + stars layers (kept but lighter & optimized) */
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-2;
+}
+body::before{
+  background: radial-gradient(1000px 600px at 10% 20%, rgba(20,120,110,0.08), transparent 10%),
+              radial-gradient(800px 500px at 80% 80%, rgba(15,90,96,0.06), transparent 12%);
+  opacity:0.9;
+  mix-blend-mode:screen;
+}
+body::after{
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 21%, rgba(124,198,190,0.9), transparent),
+    radial-gradient(1.2px 1.2px at 44% 72%, rgba(255,184,107,0.85), transparent),
+    radial-gradient(1px 1px at 80% 40%, rgba(190,238,230,0.7), transparent);
+  background-size:900px 900px;
+  opacity:0.55;
+  animation: dg-stars 80s linear infinite;
+}
+@keyframes dg-stars{
+  from{transform:translate(0,0)}
+  to{transform:translate(-600px,-400px)}
 }
 
-body {
-  font-family: var(--font-primary);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-base);
-  color: var(--text-primary);
-  background: var(--gradient-cosmic);
-  background-attachment: fixed;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-  
-  &::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-nebula);
-    z-index: -2;
-  }
-  
-  &::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-      radial-gradient(2px 2px at 20% 30%, var(--cosmic-glow), transparent),
-      radial-gradient(2px 2px at 40% 70%, var(--cosmic-energy), transparent),
-      radial-gradient(1px 1px at 90% 40%, var(--cosmic-crystal), transparent),
-      radial-gradient(1px 1px at 60% 10%, var(--space-silver), transparent);
-    background-size: 800px 800px;
-    animation: starfield 120s linear infinite;
-    opacity: 0.6;
-    z-index: -1;
-  }
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  body::after{animation:none}
+  *{transition:none!important}
 }
 
-@keyframes starfield {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(-800px, -800px); }
+/* selection */
+::selection{background:rgba(28,90,83,0.6);color:var(--text-primary)}
+
+/* focus outline for keyboard users */
+:focus{outline:3px solid rgba(255,184,107,0.12);outline-offset:3px;border-radius:6px}
+
+/* ==========================================================================
+   2. TYPOGRAPHY
+   ========================================================================== */
+h1,h2,h3,h4,h5,h6{
+  font-family:var(--font-heading);
+  color:var(--text-heading);
+  line-height:var(--lh-tight);
+  letter-spacing:-0.01em;
+  margin:0 0 var(--space-md) 0;
+}
+h1{font-size:var(--fs-3xl); background:var(--grad-aurora); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 8px 34px rgba(16,48,46,0.18)}
+h2{font-size:var(--fs-2xl); color:var(--text-primary)}
+h3{font-size:var(--fs-xl)}
+p{margin:0 0 var(--space-md) 0; color:var(--text-secondary); line-height:var(--lh-loose)}
+small{font-size:var(--fs-sm); color:var(--text-dim)}
+
+/* strong / emphasis */
+strong{color:var(--accent-amber);font-weight:600}
+em{color:var(--text-secondary);font-style:italic}
+
+/* ==========================================================================
+   3. LINKS
+   ========================================================================== */
+a{color:var(--link);text-decoration:none;position:relative;transition:color var(--trans),transform var(--trans)}
+a::after{content:"";position:absolute;left:0;bottom:-3px;height:2px;width:0;background:linear-gradient(90deg,var(--accent-amber),var(--accent-cool));transition:width var(--trans)}
+a:hover{color:var(--link-hover);transform:translateY(-1px)}
+a:hover::after{width:100%}
+
+/* better keyboard-visible links */
+a:focus{box-shadow:0 4px 20px rgba(124,198,190,0.14)}
+
+/* internal links standout */
+a.internal-link{color:var(--accent-cool)}
+a.internal-link:hover{color:var(--accent-amber)}
+
+/* ==========================================================================
+   4. GLOBAL LAYOUT
+   ========================================================================== */
+.app-root{display:flex;min-height:100vh;max-width:100%} /* safe general wrapper */
+
+/* container to be used for the main layout */
+.container{
+  display:flex;
+  width:100%;
+  min-height:100vh;
 }
 
-::selection {
-  background: var(--bg-glass-strong);
-  color: var(--text-bright);
+/* ==========================================================================
+   5. NAVBAR
+   ========================================================================== */
+.navbar{
+  position:fixed;top:0;left:0;right:0;height:var(--navbar-h);
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(4,18,20,0.48);backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--border-subtle);z-index:1200;
+}
+.navbar .navbar-inner{
+  width:100%;max-width:var(--content-wide);display:flex;align-items:center;justify-content:space-between;padding:0 var(--space-md);
+}
+.navbar .brand{font-family:var(--font-heading);font-weight:700;color:var(--accent-cool);font-size:var(--fs-md)}
+.navbar .nav{display:flex;gap:var(--space-md);align-items:center}
+.navbar .nav a{padding:0.45rem 0.75rem;border-radius:10px;color:var(--text-secondary);font-weight:600}
+.navbar .nav a:hover{background:var(--bg-glass);color:var(--text-primary);box-shadow:var(--glow)}
+
+/* small screens - compact navbar */
+@media (max-width:640px){
+  .navbar .navbar-inner{padding:0 0.6rem}
+  .nav{display:none}
 }
 
-// =====================================================================
-// 3. TYPOGRAPHY
-// =====================================================================
+/* ==========================================================================
+   6. SIDEBAR (left file tree)
+   ========================================================================== */
+.filetree-sidebar{
+  position:fixed;top:var(--navbar-h);left:0;height:calc(100vh - var(--navbar-h));width:var(--sidebar-w);
+  padding:var(--space-lg);
+  background:linear-gradient(180deg, rgba(7,18,19,0.72), rgba(8,28,31,0.6));
+  border-right:1px solid var(--border-subtle);overflow:auto;z-index:110;
+  transition:transform var(--trans),opacity var(--trans);
+}
+.filetree-sidebar h1{font-size:var(--fs-md);margin-bottom:var(--space-md);color:var(--text-primary);padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.02)}
+.filetree{font-size:var(--fs-sm);color:var(--text-secondary)}
+.filetree ul{list-style:none;padding-left:0}
+.filetree li{padding:0.25rem 0}
+.filetree a{display:block;padding:0.35rem 0.6rem;border-radius:8px;color:var(--text-secondary);transition:all var(--trans)}
+.filetree a:hover{background:var(--bg-glass);color:var(--text-primary);transform:translateX(4px)}
+.filetree a.active, .filetree a[aria-current="page"]{background:var(--bg-glass-strong);color:var(--accent-cool);box-shadow:var(--glow)}
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
-  color: var(--text-heading);
-  margin-bottom: var(--space-md);
-  letter-spacing: -0.025em;
+/* folder marker */
+.filetree .folder::before{content:"📁";margin-right:0.5rem}
+
+/* responsive hide */
+@media (max-width:968px){
+  .filetree-sidebar{transform:translateX(-110%);position:fixed}
+  .filetree-sidebar.active{transform:translateX(0)}
 }
 
-h1 {
-  font-size: var(--font-size-3xl);
-  background: var(--gradient-aurora);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 0 30px rgba(128, 204, 255, 0.5);
-  margin-bottom: var(--space-lg);
+/* ==========================================================================
+   7. RIGHT SIDEBAR (toc, backlinks, graph)
+   ========================================================================== */
+.sidebar{
+  position:fixed;top:var(--navbar-h);right:0;height:calc(100vh - var(--navbar-h));width:var(--sidebar-w);
+  padding:var(--space-lg);background:linear-gradient(180deg, rgba(8,25,25,0.6), rgba(6,20,22,0.52));
+  border-left:1px solid var(--border-subtle);overflow:auto;z-index:110;transition:transform var(--trans)
+}
+.sidebar .sidebar-section{margin-bottom:var(--space-2xl)}
+.sidebar h3{font-size:var(--fs-sm);color:var(--text-heading);margin-bottom:var(--space-sm);padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.02)}
+.toc ul{list-style:none;padding-left:0}
+.toc a{display:block;padding:0.35rem 0.5rem;border-radius:8px;color:var(--text-muted);font-size:var(--fs-sm)}
+.toc a:hover{background:var(--bg-glass);color:var(--text-primary)}
+.backlinks .backlink-item{padding:0.6rem;margin-bottom:0.5rem;background:var(--bg-glass);border-radius:12px;border:1px solid var(--border-ghost)}
+.backlinks .backlink-item a{color:var(--accent-amber);font-weight:600}
+
+/* graph placeholder */
+#link-graph{width:100%;height:280px;border-radius:14px;background:linear-gradient(180deg, rgba(15,40,40,0.25), rgba(5,18,20,0.2));border:1px solid var(--border-subtle)}
+
+/* responsive hide */
+@media (max-width:968px){
+  .sidebar{transform:translateX(110%)}
+  .sidebar.active{transform:translateX(0)}
 }
 
-h2 {
-  font-size: var(--font-size-2xl);
-  color: var(--cosmic-frost);
-  margin-top: var(--space-2xl);
+/* ==========================================================================
+   8. CONTENT AREA (center) — restored proportions & reading comfort
+   ========================================================================== */
+.content{
+  margin-top:var(--navbar-h);
+  margin-left:var(--sidebar-w);
+  margin-right:var(--sidebar-w);
+  padding:calc(var(--space-2xl)) var(--space-lg);
+  min-height:calc(100vh - var(--navbar-h));
+  width:100%;
+}
+.content-inner{max-width:var(--content-max);margin:0 auto}
+
+/* article-like content improvements */
+.content h1, .content h2, .content h3{margin-top:var(--space-lg);margin-bottom:var(--space-md)}
+.content p{font-size:var(--fs-base);color:var(--text-secondary)}
+
+/* images & media */
+.content img, .content video, .content iframe{max-width:100%;height:auto;border-radius:12px;box-shadow:var(--shadow-sm);display:block;margin:var(--space-md) auto}
+
+/* code blocks */
+pre{background:linear-gradient(180deg, rgba(8,14,16,0.55), rgba(6,10,12,0.45));padding:1rem;border-radius:12px;overflow:auto;border:1px solid rgba(255,255,255,0.02);box-shadow:var(--shadow-sm)}
+code{font-family:var(--font-mono);font-size:0.95em;background:rgba(15,28,28,0.22);padding:0.12rem 0.4rem;border-radius:8px;color:var(--text-primary);border:1px solid rgba(255,255,255,0.02)}
+
+/* tables */
+table{width:100%;border-collapse:collapse;background:linear-gradient(180deg, rgba(12,26,26,0.32), rgba(6,15,16,0.22));border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.02)}
+th,td{padding:0.8rem 1rem;text-align:left;border-bottom:1px solid rgba(255,255,255,0.02);color:var(--text-secondary)}
+thead th{background:rgba(255,255,255,0.02);color:var(--text-primary);font-weight:700}
+
+/* blockquote */
+blockquote{padding:1rem 1.2rem;margin:1.1rem 0;background:linear-gradient(90deg, rgba(20,90,86,0.06), rgba(10,20,20,0.02));border-left:4px solid var(--accent-cool);border-radius:10px;color:var(--text-secondary);font-style:italic}
+
+/* callouts (note/warn/tip) */
+.callout{position:relative;padding:1rem;border-radius:12px;margin:1rem 0;background:var(--bg-glass);backdrop-filter:blur(6px);border-left:4px solid var(--accent-cool)}
+.callout.note{border-left-color:var(--accent-cool)}
+.callout.warning{border-left-color:var(--alert-warning)}
+.callout.important{border-left-color:var(--alert-danger)}
+.callout.tip{border-left-color:var(--alert-success)}
+.callout .callout-title{font-weight:700;color:var(--text-primary);margin-bottom:0.35rem}
+
+/* lists */
+ul,ol{margin:0 0 var(--space-md) var(--space-lg);color:var(--text-secondary)}
+ul li, ol li{margin-bottom:0.5rem;line-height:var(--lh-base)}
+
+/* images in content */
+.content img{display:block;margin:var(--space-md) auto;border-radius:12px}
+
+/* ==========================================================================
+   9. SEARCH
+   ========================================================================== */
+.search-container{position:relative}
+.search-input{
+  width:100%;padding:0.75rem 1rem;border-radius:14px;background:var(--bg-glass);
+  border:1px solid var(--border-subtle);font-size:var(--fs-md);color:var(--text-primary);backdrop-filter:blur(6px)
+}
+.search-input::placeholder{color:var(--text-dim)}
+.search-input:focus{outline:none;box-shadow:var(--glow);border-color:rgba(124,198,190,0.24)}
+.search-results{
+  position:absolute;left:0;right:0;top:calc(100% + 0.5rem);background:linear-gradient(180deg, rgba(6,18,18,0.7), rgba(6,18,18,0.58));
+  border:1px solid var(--border-subtle);border-radius:12px;padding:0.5rem;max-height:420px;overflow:auto;z-index:1300
+}
+.search-result{padding:0.6rem;border-bottom:1px solid rgba(255,255,255,0.02)}
+.search-result:last-child{border-bottom:none}
+.search-result .result-title{font-weight:600;color:var(--accent-amber)}
+.search-result .result-excerpt{font-size:var(--fs-sm);color:var(--text-muted)}
+
+/* ==========================================================================
+   10. SCROLLBARS (subtle)
+   ========================================================================== */
+/* Webkit */
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent;border-radius:100px}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--space-surf),var(--accent-cool));border-radius:100px;border:3px solid rgba(0,0,0,0)}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--accent-amber),var(--accent-cool))}
+
+/* firefox */
+*{scrollbar-width:thin;scrollbar-color:var(--space-surf) rgba(255,255,255,0.03)}
+
+/* ==========================================================================
+   11. FLOATING SHORTCUTS
+   ========================================================================== */
+.floating-buttons{position:fixed;bottom:20px;left:20px;display:flex;gap:12px;z-index:1400}
+.floating-buttons img{width:36px;height:36px;border-radius:10px;cursor:pointer;transition:transform var(--trans),filter var(--trans)}
+.floating-buttons img:hover{transform:scale(1.12) translateY(-3px);filter:brightness(1.08)}
+
+/* ==========================================================================
+   12. FULLSCREEN & THEATRE MODE (preserve functionality; tighten spacing)
+   ========================================================================== */
+
+/* fullscreen trigger button */
+.fullscreen-btn{
+  position:fixed;top:18px;right:18px;z-index:1401;padding:10px 14px;border-radius:20px;border:none;
+  background:linear-gradient(135deg,var(--space-surf),var(--accent-amber));color:#042423;font-weight:700;
+  box-shadow:0 8px 30px rgba(10,30,28,0.26);cursor:pointer;display:flex;align-items:center;gap:8px;transition:transform var(--trans);
+}
+.fullscreen-btn:hover{transform:translateY(-3px)}
+.fullscreen-btn:active{transform:translateY(0)}
+
+/* smooth transitions for key regions */
+.navbar,.filetree-sidebar,.sidebar,.content,.fullscreen-btn{transition:transform var(--trans),opacity var(--trans),filter var(--trans)}
+
+/* body.fullscreen-mode -> hide peripheral UI and center content */
+body.fullscreen-mode{
+  overflow:hidden;background:linear-gradient(180deg,#020607,#04121A) !important;
+}
+body.fullscreen-mode .navbar,
+body.fullscreen-mode .filetree-sidebar,
+body.fullscreen-mode .sidebar,
+body.fullscreen-mode .search-container,
+body.fullscreen-mode .site-header,
+body.fullscreen-mode .site-nav,
+body.fullscreen-mode .left-panel{opacity:0;pointer-events:none;transform:translateY(-6px);display:none}
+
+/* fullscreen content layout */
+body.fullscreen-mode .content{
+  margin-left:0;margin-right:0;max-width:95vw !important;padding:8vh 4vw;min-height:100vh;
 }
 
-h3 {
-  font-size: var(--font-size-xl);
-  color: var(--cosmic-crystal);
-  margin-top: var(--space-xl);
+/* ensure media scales nicely in fullscreen */
+body.fullscreen-mode .content img,
+body.fullscreen-mode .content iframe,
+body.fullscreen-mode .content embed,
+body.fullscreen-mode .content video{max-width:100%!important;height:auto!important;display:block;margin:1rem auto}
+
+/* Fullscreen API support selectors */
+.content:fullscreen,:fullscreen .content{max-width:95vw;padding:8vh 4vw;display:block}
+.content:fullscreen img, :fullscreen img{width:100%!important; height:auto!important}
+
+/* theatre mode: cinematic focus */
+body.theatre-mode{background:#000 !important;overflow-y:auto}
+body.theatre-mode::before, body.theatre-mode::after{
+  content:"";position:fixed;top:0;bottom:0;width:12vw;pointer-events:none;z-index:1298;
+  background:radial-gradient(circle at center, rgba(255,170,80,0.06), rgba(0,0,0,0.9) 65%);filter:blur(56px)
+}
+body.theatre-mode::before{left:0}
+body.theatre-mode::after{right:0}
+
+/* focus content like a screen */
+body.theatre-mode .content{
+  background:linear-gradient(180deg,#0b0f10,#0a1112);border-radius:14px;padding:3.5rem 4.5rem;margin:6vh auto;color:#EAF9F3;
+  box-shadow:0 30px 120px rgba(0,0,0,0.85);
+  max-width:90vw !important;transition:all 420ms ease;
 }
 
-h4 {
-  font-size: var(--font-size-lg);
-  color: var(--space-silver);
+/* dark vignette overlay helper (use by script if needed) */
+.theatre-vignette{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center, rgba(0,0,0,0) 70%, rgba(0,0,0,0.85) 100%);z-index:1299}
+
+/* ==========================================================================
+   13. RESPONSIVE & TWEAKS
+   ========================================================================== */
+/* content sizing for medium screens */
+@media (max-width:1200px){
+  .content{margin-right:var(--sidebar-w);max-width:calc(100vw - var(--sidebar-w))}
 }
 
-p {
-  margin-bottom: var(--space-md);
-  line-height: var(--line-height-loose);
+/* tablet & mobile simplifications */
+@media (max-width:968px){
+  .content{margin-left:0;margin-right:0;padding:var(--space-xl) var(--space-md)}
+  .filetree-sidebar,.sidebar{position:fixed;top:var(--navbar-h);height:calc(100vh - var(--navbar-h))}
+  .filetree-sidebar{left:0}
+  .sidebar{right:0}
+  .navbar .brand{font-size:var(--fs-sm)}
 }
 
-strong {
-  color: var(--cosmic-glow);
-  font-weight: var(--font-weight-semibold);
+/* mobile */
+@media (max-width:640px){
+  .content{padding:1.25rem}
+  h1{font-size:1.45rem}
+  h2{font-size:1.15rem}
+  .filetree-sidebar,.sidebar{display:none}
+  .floating-buttons{left:12px;bottom:12px}
+  .fullscreen-btn{top:12px;right:12px;padding:8px 10px}
 }
 
-em {
-  color: var(--space-silver);
-  font-style: italic;
+/* very large screens — cap widths for readability */
+@media (min-width:2000px){
+  .content-inner{max-width:var(--content-wide)}
+  .content{padding:6vh 6vw}
 }
 
-// =====================================================================
-// 4. LINKS
-// =====================================================================
+/* ==========================================================================
+   14. Small utilities (useful in Obsidian context)
+   ========================================================================== */
+.u-hidden{display:none!important}
+.u-center{text-align:center}
+.u-muted{color:var(--text-dim)}
+.kbd{display:inline-block;padding:0.08rem 0.45rem;border-radius:6px;background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.02);font-family:var(--font-mono);font-size:0.85em}
 
-a {
-  color: var(--text-link);
-  text-decoration: none;
-  position: relative;
-  transition: all var(--transition-base);
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--cosmic-energy), var(--cosmic-glow));
-    transition: width var(--transition-base);
-  }
-  
-  &:hover {
-    color: var(--text-link-hover);
-    text-shadow: 0 0 8px rgba(128, 204, 255, 0.4);
-    
-    &::after {
-      width: 100%;
-    }
-  }
-  
-  &.internal-link {
-    color: var(--cosmic-glow);
-    
-    &:hover {
-      color: var(--cosmic-crystal);
-    }
-  }
-}
-
-// =====================================================================
-// 5. MAIN LAYOUT
-// =====================================================================
-
-.container {
-  display: flex;
-  min-height: 100vh;
-  max-width: 100%;
-}
-
-// =====================================================================
-// 6. NAVBAR
-// =====================================================================
-
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--navbar-height);
-  background: var(--bg-overlay);
-  backdrop-filter: var(--blur-lg);
-  border-bottom: 1px solid var(--border-secondary);
-  z-index: 1000;
-  
-  .navbar-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    padding: 0 var(--space-lg);
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  
-  .navbar-brand {
-    font-family: var(--font-heading);
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-bold);
-    color: var(--cosmic-glow);
-    text-decoration: none;
-    
-    &:hover {
-      color: var(--cosmic-crystal);
-      text-shadow: 0 0 12px rgba(128, 204, 255, 0.4);
-    }
-  }
-  
-  .navbar-nav {
-    display: flex;
-    align-items: center;
-    gap: var(--space-lg);
-    
-    a {
-      color: var(--text-secondary);
-      font-weight: var(--font-weight-medium);
-      padding: var(--space-sm) var(--space-md);
-      border-radius: var(--radius-md);
-      transition: all var(--transition-base);
-      
-      &:hover {
-        background: var(--bg-glass);
-        color: var(--text-primary);
-        box-shadow: var(--shadow-glow);
-      }
-      
-      &::after {
-        display: none;
-      }
-    }
-  }
-}
-
-// =====================================================================
-// 7. SIDEBAR (FILE TREE)
-// =====================================================================
-
-.filetree-sidebar {
-  position: fixed;
-  top: var(--navbar-height);
-  left: 0;
-  width: var(--sidebar-width);
-  height: calc(100vh - var(--navbar-height));
-  background: var(--bg-overlay);
-  backdrop-filter: var(--blur-md);
-  border-right: 1px solid var(--border-secondary);
-  overflow-y: auto;
-  z-index: 100;
-  padding: var(--space-lg);
-  
-  h1 {
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--space-lg);
-    padding-bottom: var(--space-md);
-    border-bottom: 1px solid var(--border-subtle);
-  }
-  
-  .filetree {
-    ul {
-      list-style: none;
-      padding-left: var(--space-md);
-    }
-    
-    li {
-      margin-bottom: var(--space-sm);
-      
-      &:first-child {
-        padding-left: 0;
-      }
-    }
-    
-    a {
-      display: block;
-      padding: var(--space-xs) var(--space-sm);
-      border-radius: var(--radius-sm);
-      color: var(--text-tertiary);
-      font-size: var(--font-size-sm);
-      transition: all var(--transition-fast);
-      
-      &:hover {
-        background: var(--bg-glass);
-        color: var(--text-primary);
-        transform: translateX(4px);
-      }
-      
-      &.active,
-      &[aria-current="page"] {
-        background: var(--bg-glass-strong);
-        color: var(--cosmic-glow);
-        box-shadow: var(--shadow-glow);
-      }
-      
-      &::after {
-        display: none;
-      }
-    }
-    
-    .folder {
-      font-weight: var(--font-weight-medium);
-      color: var(--text-secondary);
-      margin-bottom: var(--space-sm);
-      
-      &::before {
-        content: '📁 ';
-        margin-right: var(--space-xs);
-      }
-    }
-  }
-}
-
-// =====================================================================
-// 8. CONTENT AREA
-// =====================================================================
-
-.content {
-  margin-left: var(--sidebar-width);
-  margin-top: var(--navbar-height);
-  padding: var(--space-2xl) var(--space-xl);
-  max-width: calc(var(--content-width) + var(--sidebar-width));
-  width: 100%;
-  min-height: calc(100vh - var(--navbar-height));
-  
-  // Center the content within its container
-  .content-inner {
-    max-width: var(--content-width);
-    margin: 0 auto;
-  }
-}
-
-// =====================================================================
-// 9. RIGHT SIDEBAR (GRAPH, BACKLINKS, TOC)
-// =====================================================================
-
-.sidebar {
-  position: fixed;
-  top: var(--navbar-height);
-  right: 0;
-  width: var(--sidebar-width);
-  height: calc(100vh - var(--navbar-height));
-  background: var(--bg-overlay);
-  backdrop-filter: var(--blur-md);
-  border-left: 1px solid var(--border-secondary);
-  padding: var(--space-lg);
-  overflow-y: auto;
-  z-index: 100;
-  
-  .sidebar-section {
-    margin-bottom: var(--space-2xl);
-    
-    h3 {
-      font-size: var(--font-size-md);
-      color: var(--text-heading);
-      margin-bottom: var(--space-md);
-      padding-bottom: var(--space-sm);
-      border-bottom: 1px solid var(--border-subtle);
-    }
-  }
-  
-  .toc {
-    ul {
-      list-style: none;
-      padding-left: var(--space-md);
-    }
-    
-    a {
-      display: block;
-      padding: var(--space-xs) var(--space-sm);
-      font-size: var(--font-size-sm);
-      color: var(--text-muted);
-      border-radius: var(--radius-sm);
-      
-      &:hover {
-        background: var(--bg-glass);
-        color: var(--text-primary);
-      }
-      
-      &::after {
-        display: none;
-      }
-    }
-  }
-  
-  .backlinks {
-    .backlink-item {
-      padding: var(--space-sm);
-      margin-bottom: var(--space-sm);
-      background: var(--bg-glass);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-subtle);
-      
-      a {
-        font-weight: var(--font-weight-medium);
-        color: var(--cosmic-energy);
-        
-        &:hover {
-          color: var(--cosmic-glow);
-        }
-      }
-      
-      .context {
-        font-size: var(--font-size-xs);
-        color: var(--text-muted);
-        margin-top: var(--space-xs);
-      }
-    }
-  }
-  
-  .graph {
-    #link-graph {
-      width: 100%;
-      height: 300px;
-      border-radius: var(--radius-lg);
-      background: var(--bg-glass);
-      border: 1px solid var(--border-secondary);
-    }
-  }
-}
-
-// =====================================================================
-// 10. SEARCH
-// =====================================================================
-
-.search-container {
-  position: relative;
-  
-  .search-input {
-    width: 100%;
-    padding: var(--space-md);
-    background: var(--bg-glass);
-    border: 1px solid var(--border-secondary);
-    border-radius: var(--radius-lg);
-    color: var(--text-primary);
-    font-size: var(--font-size-md);
-    backdrop-filter: var(--blur-md);
-    
-    &::placeholder {
-      color: var(--text-muted);
-    }
-    
-    &:focus {
-      outline: none;
-      border-color: var(--border-accent);
-      box-shadow: var(--shadow-glow);
-    }
-  }
-  
-  .search-results {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: var(--bg-overlay);
-    backdrop-filter: var(--blur-lg);
-    border: 1px solid var(--border-secondary);
-    border-radius: var(--radius-lg);
-    margin-top: var(--space-xs);
-    max-height: 400px;
-    overflow-y: auto;
-    z-index: 1000;
-    
-    .search-result {
-      padding: var(--space-md);
-      border-bottom: 1px solid var(--border-subtle);
-      
-      &:hover {
-        background: var(--bg-glass);
-      }
-      
-      &:last-child {
-        border-bottom: none;
-      }
-      
-      .result-title {
-        font-weight: var(--font-weight-medium);
-        color: var(--cosmic-glow);
-        margin-bottom: var(--space-xs);
-      }
-      
-      .result-excerpt {
-        font-size: var(--font-size-sm);
-        color: var(--text-tertiary);
-      }
-    }
-  }
-}
-
-// =====================================================================
-// 11. CONTENT ELEMENTS
-// =====================================================================
-
-// Blockquotes
-blockquote {
-  padding: var(--space-lg);
-  margin: var(--space-lg) 0;
-  background: var(--bg-glass);
-  border-left: 4px solid var(--cosmic-energy);
-  border-radius: var(--radius-md);
-  font-style: italic;
-  color: var(--text-secondary);
-  backdrop-filter: var(--blur-sm);
-  
-  p:last-child {
-    margin-bottom: 0;
-  }
-}
-
-// Lists
-ul, ol {
-  padding-left: var(--space-xl);
-  margin-bottom: var(--space-lg);
-  
-  li {
-    margin-bottom: var(--space-sm);
-    line-height: var(--line-height-loose);
-    
-    &::marker {
-      color: var(--cosmic-glow);
-    }
-  }
-}
-
-// Code
-code {
-  font-family: var(--font-mono);
-  font-size: 0.9em;
-  background: var(--stellar-dark);
-  color: var(--cosmic-ice);
-  padding: var(--space-xs) var(--space-sm);
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-subtle);
-}
-
-pre {
-  background: var(--stellar-void);
-  color: var(--cosmic-ice);
-  padding: var(--space-lg);
-  border-radius: var(--radius-lg);
-  overflow-x: auto;
-  margin: var(--space-lg) 0;
-  border: 1px solid var(--border-secondary);
-  box-shadow: var(--shadow-md);
-  
-  code {
-    background: transparent;
-    padding: 0;
-    border: none;
-  }
-}
-
-// Tables
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  margin: var(--space-lg) 0;
-  background: var(--bg-glass);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  backdrop-filter: var(--blur-sm);
-  
-  th, td {
-    padding: var(--space-md);
-    text-align: left;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-  
-  thead {
-    th {
-      background: var(--bg-glass-strong);
-      font-weight: var(--font-weight-semibold);
-      color: var(--text-heading);
-      border-bottom: 2px solid var(--border-accent);
-    }
-  }
-  
-  tbody {
-    tr {
-      &:hover {
-        background: var(--bg-glass);
-      }
-      
-      &:last-child {
-        td {
-          border-bottom: none;
-        }
-      }
-    }
-  }
-}
-
-// Images
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
-  margin: var(--space-lg) 0;
-}
-
-// Callouts
-.callout {
-  padding: var(--space-lg);
-  margin: var(--space-lg) 0;
-  background: var(--bg-glass);
-  backdrop-filter: var(--blur-sm);
-  border-radius: var(--radius-lg);
-  border-left: 4px solid var(--cosmic-energy);
-  position: relative;
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--gradient-glass);
-    pointer-events: none;
-  }
-  
-  .callout-title {
-    font-weight: var(--font-weight-semibold);
-    color: var(--text-heading);
-    margin-bottom: var(--space-sm);
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-  }
-  
-  &.note {
-    border-left-color: var(--cosmic-energy);
-  }
-  
-  &.warning {
-    border-left-color: var(--alert-warning);
-  }
-  
-  &.important {
-    border-left-color: var(--alert-danger);
-  }
-  
-  &.tip {
-    border-left-color: var(--alert-success);
-  }
-}
-
-// =====================================================================
-// 12. SCROLLBAR
-// =====================================================================
-
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
-  border-radius: var(--radius-full);
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--cosmic-energy), var(--cosmic-glow));
-  border-radius: var(--radius-full);
-  border: 2px solid var(--bg-secondary);
-  
-  &:hover {
-    background: linear-gradient(180deg, var(--cosmic-glow), var(--cosmic-crystal));
-  }
-}
-
-// Firefox scrollbar
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--cosmic-energy) var(--bg-secondary);
-}
-
-// =====================================================================
-// 13. RESPONSIVE DESIGN
-// =====================================================================
-
-@media (max-width: 1200px) {
-  .content {
-    margin-right: var(--sidebar-width);
-    max-width: calc(100vw - var(--sidebar-width) * 2);
-  }
-}
-
-@media (max-width: 968px) {
-  .filetree-sidebar,
-  .sidebar {
-    transform: translateX(-100%);
-    transition: transform var(--transition-base);
-    
-    &.active {
-      transform: translateX(0);
-    }
-  }
-  
-  .sidebar {
-    transform: translateX(100%);
-  }
-  
-  .content {
-    margin-left: 0;
-    margin-right: 0;
-    max-width: 100%;
-    padding: var(--space-xl) var(--space-lg);
-    
-    .content-inner {
-      max-width: none;
-    }
-  }
-  
-  .navbar-nav {
-    display: none;
-  }
-}
-
-@media (max-width: 640px) {
-  .content {
-    padding: var(--space-lg) var(--space-md);
-  }
-  
-  .navbar {
-    .navbar-inner {
-      padding: 0 var(--space-md);
-    }
-  }
-  
-  h1 {
-    font-size: var(--font-size-2xl);
-  }
-  
-  h2 {
-    font-size: var(--font-size-xl);
-  }
-}
-// =====================================================================
-// 14. Floating shortcut buttons
-// =====================================================================
-.floating-buttons {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  display: flex;
-  flex-direction: row; /* inline, side by side */
-  gap: 12px; /* space between buttons */
-  z-index: 9999;
-}
-
-.floating-buttons img {
-  width: 32px;   /* smaller size */
-  height: 32px;
-  cursor: pointer;
-  border-radius: 8px; /* soft rounded corners (optional) */
-  transition: transform 0.25s ease, filter 0.25s ease;
-}
-
-.floating-buttons img:hover {
-  transform: scale(1.2) rotate(-3deg); /* grow + slight tilt */
-  filter: brightness(1.2); /* subtle glow effect */
-}
-
-// =====================================================================
-// 15. Digital Garden — Fullscreen & Theatre Mode
-// =====================================================================
-
-/* ============================================================
-   FULLSCREEN + THEATRE MODE (Digital Garden)
-   - Keeps default styling outside of fullscreen
-   - Hides all sidebars/search correctly
-   - Adds immersive cinema-style theatre mode
-   ============================================================ */
-
-/* ===== Fullscreen Button ===== */
-.fullscreen-btn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: linear-gradient(135deg, var(--text-accent, #667eea) 0%, #764ba2 100%);
-  border: none;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  z-index: 1001;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-  }
-  &:active {
-    transform: translateY(0);
-  }
-  svg {
-    flex-shrink: 0;
-  }
-}
-
-/* ===== Smooth transitions ===== */
-.navbar,
-.filetree-sidebar,
-.sidebar,
-.content,
-.fullscreen-btn {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* ============================================================
-   FULLSCREEN MODE (Focus mode for notes)
-   ============================================================ */
-body.fullscreen-mode {
-  /* 1. Hide ALL side UI elements */
-  .navbar,
-  .filetree-sidebar,
-  .sidebar,
-  .search-container,
-  .site-header,
-  .site-nav,
-  .left-panel,
-  .nav-bar,
-  .nav-container,
-  .graph-container {
-    opacity: 0 !important;
-    pointer-events: none !important;
-    display: none !important;
-  }
-
-  /* 2. Update fullscreen button */
-  .fullscreen-btn {
-    background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
-    top: 30px;
-    right: 30px;
-    transform: scale(1.1);
-    z-index: 9999;
-  }
-
-  /* 3. Widen & center content (preserve proportions) */
-  .content {
-    max-width: 95vw !important;   /* nearly full screen */
-    margin: 0 auto;
-    padding: 8vh 2vw;
-    min-height: 100vh;
-    display: block;
-  }
-
-  /* 4. Media Embeds */
-  .content {
-    img, iframe, embed, video {
-      max-width: 100% !important;
-      height: auto !important;
-      display: block;
-      margin: 1rem auto;
-    }
-    figure img {
-      max-width: 100% !important;
-      height: auto !important;
-    }
-    .excalidraw-embed,
-    .excalidraw-container {
-      width: 100% !important;
-      min-height: 60vh;
-    }
-    .flashcards-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-      width: 100%;
-      margin: 0 auto;
-    }
-    .diagram-container,
-    .chart-container {
-      max-width: 100% !important;
-    }
-  }
-
-  /* 5. Very wide screen cap */
-  @media (min-width: 2000px) {
-    .content {
-      max-width: 1600px !important;
-      margin: 0 auto;
-    }
-    .flashcards-container,
-    .cards-container {
-      max-width: 1600px;
-      margin: 0 auto;
-    }
-  }
-
-  /* 6. Tablet tweaks */
-  @media (max-width: 1200px) {
-    .content {
-      max-width: 90vw !important;
-      padding: 6vh 3vw;
-    }
-  }
-
-  /* 7. Mobile tweaks */
-  @media (max-width: 768px) {
-    .content {
-      max-width: 90vw !important;
-      padding: 4vh 2vw;
-    }
-    .fullscreen-btn {
-      top: 15px;
-      right: 15px;
-      padding: 10px 16px;
-      font-size: 12px;
-    }
-    .flashcards-container {
-      grid-template-columns: 1fr;
-    }
-  }
-}
-
-/* ===== Fullscreen API support ===== */
-.content:fullscreen,
-:fullscreen .content {
-  max-width: 95vw !important;
-  margin: 0 auto;
-  padding: 8vh 2vw;
-  display: block;
-
-  img, iframe, embed, video {
-    max-width: 100% !important;
-    width: 100% !important;
-    height: auto !important;
-  }
-  .excalidraw-embed,
-  .excalidraw-container {
-    width: 100% !important;
-    min-height: 60vh;
-  }
-  .flashcards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    width: 100%;
-    margin: 0 auto;
-  }
-}
-
-/* ============================================================
-   THEATRE MODE (Cinematic atmosphere)
-   ============================================================ */
-body.theatre-mode {
-  background: #000 !important; /* fully black background */
-  overflow-y: auto;
-}
-
-/* Dark fade on sides (cinema side lights) */
-body.theatre-mode::before,
-body.theatre-mode::after {
-  content: "";
-  position: fixed;
-  top: 0; bottom: 0;
-  width: 15vw;
-  z-index: 998;
-  pointer-events: none;
-  background: radial-gradient(circle at center,
-    rgba(255, 100, 50, 0.15) 0%,
-    rgba(0, 0, 0, 0.9) 70%);
-  filter: blur(80px);
-}
-body.theatre-mode::before { left: 0; }
-body.theatre-mode::after { right: 0; }
-
-/* Focus on note (like cinema screen) */
-body.theatre-mode .content {
-  background: #111;
-  border-radius: 12px;
-  padding: 4rem 6rem;
-  box-shadow:
-    0 0 80px rgba(0, 0, 0, 1),
-    0 0 120px rgba(0, 0, 0, .9);
-  color: #eee;
-  max-width: 90vw !important;
-  margin: 5vh auto;
-  transition: all 0.5s ease;
-}
-
-/* Subtle vignette overlay */
-.theatre-vignette {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(ellipse at center,
-    rgba(0,0,0,0) 70%,
-    rgba(0,0,0,0.9) 100%);
-  z-index: 999;
-}
-
-
-#toggleParticlesBtn {
-  position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  width: 50px;
-  height: 50px;
-  background: gold;
-  clip-path: polygon(
-    50% 0%,  /* top */
-    65% 35%, /* top-right */
-    100% 50%,/* right */
-    65% 65%, /* bottom-right */
-    50% 100%,/* bottom */
-    35% 65%, /* bottom-left */
-    0% 50%,  /* left */
-    35% 35%  /* top-left */
-  );
-  border: none;
-  cursor: pointer;
-  z-index: 1000;
-  transition: transform 0.2s, background 0.2s;
-}
-
-#toggleParticlesBtn:hover {
-  transform: scale(1.1) rotate(5deg);
-  background: orange;
-}
-
-#toggleParticlesBtn.off {
-  background: gray;
-}
+/* ==========================================================================
+   END — enjoy!
+   ========================================================================== */
