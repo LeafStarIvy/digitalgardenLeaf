@@ -80,7 +80,62 @@
     {% include "components/lucideIcons.njk" %}
 
     {# THIS is the single include that owns all sky particles & falling stars #}
-    {% include "components/particlesScript.njk" %}
+<!-- Particles.js + Toggle Script -->
+<script src="/scripts/particles.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("toggleParticlesBtn");
+    const skyboxId = "galaxySkybox";
+
+    // Load particles config
+    function initParticles() {
+      particlesJS.load(skyboxId, "/scripts/particles.json", () => {
+        console.log("Particles initialized");
+      });
+    }
+
+    function enableParticles() {
+      if (!window.pJSDom || window.pJSDom.length === 0) {
+        initParticles();
+      }
+      btn.classList.remove("off");
+      localStorage.setItem("particlesEnabled", "true");
+    }
+
+    function disableParticles() {
+      if (window.pJSDom && window.pJSDom.length) {
+        window.pJSDom.forEach(p => p.pJS.fn.vendors.destroypJS());
+        window.pJSDom = [];
+        console.log("Particles destroyed");
+      }
+      btn.classList.add("off");
+      localStorage.setItem("particlesEnabled", "false");
+    }
+
+    // Initialize based on saved preference
+    let particlesEnabled = localStorage.getItem("particlesEnabled");
+    if (particlesEnabled === null) {
+      particlesEnabled = "true"; // default ON
+      localStorage.setItem("particlesEnabled", "true");
+    }
+
+    if (particlesEnabled === "true") {
+      enableParticles();
+    } else {
+      disableParticles();
+    }
+
+    // Button toggle
+    btn.addEventListener("click", () => {
+      if (window.pJSDom && window.pJSDom.length) {
+        disableParticles();
+      } else {
+        enableParticles();
+      }
+    });
+  });
+</script>
+
 
 <button id="toggleParticlesBtn" aria-label="Toggle galaxy background"></button>
 
