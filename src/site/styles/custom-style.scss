@@ -849,21 +849,3 @@ p {
   }
 }
 
-/* ============================================================
-   CONTENT ELEMENTS STYLING
-   ============================================================ */
-
-/* Links */
-a {
-  color: var(--glow-jade);
-  text-decoration: none;
-  position: relative;
-  transition: color var(--transition-fast);
-  
-  &:hover {
-    color: var(--glow-emerald);
-  }
-  
-  &.internal-link {
-    color: var(--glow-mint);
-    padding: 0 2px;
