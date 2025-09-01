@@ -1153,3 +1153,36 @@ body.theatre-mode .content {
     rgba(0,0,0,0.9) 100%);
   z-index: 999;
 }
+
+
+#toggleParticlesBtn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 50px;
+  height: 50px;
+  background: gold;
+  clip-path: polygon(
+    50% 0%,  /* top */
+    65% 35%, /* top-right */
+    100% 50%,/* right */
+    65% 65%, /* bottom-right */
+    50% 100%,/* bottom */
+    35% 65%, /* bottom-left */
+    0% 50%,  /* left */
+    35% 35%  /* top-left */
+  );
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.2s, background 0.2s;
+}
+
+#toggleParticlesBtn:hover {
+  transform: scale(1.1) rotate(5deg);
+  background: orange;
+}
+
+#toggleParticlesBtn.off {
+  background: gray;
+}
