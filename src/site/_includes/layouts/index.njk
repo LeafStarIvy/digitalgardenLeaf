@@ -79,62 +79,97 @@
     {% for imp in dynamics.index.footer %}{% include imp %}{% endfor %}
     {% include "components/lucideIcons.njk" %}
 
-    {# THIS is the single include that owns all sky particles & falling stars #}
-<!-- Particles.js + Toggle Script -->
-<script src="/scripts/particles.min.js"></script>
+{% include "components/particlesScript.njk" %}
+
+<!-- Toggle Particles Button -->
+<button id="toggleParticlesBtn" aria-label="Toggle galaxy background"></button>
+
+<style>
+  #toggleParticlesBtn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 50px;
+    height: 50px;
+    background: gold;
+    clip-path: polygon(
+      50% 0%,  /* top */
+      65% 35%, /* top-right */
+      100% 50%,/* right */
+      65% 65%, /* bottom-right */
+      50% 100%,/* bottom */
+      35% 65%, /* bottom-left */
+      0% 50%,  /* left */
+      35% 35%  /* top-left */
+    );
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  #toggleParticlesBtn:hover {
+    transform: scale(1.1) rotate(5deg);
+    background: orange;
+  }
+
+  #toggleParticlesBtn.off {
+    background: gray;
+  }
+</style>
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const btn = document.getElementById("toggleParticlesBtn");
-    const skyboxId = "galaxySkybox";
 
-    // Load particles config
-    function initParticles() {
-      particlesJS.load(skyboxId, "/scripts/particles.json", () => {
-        console.log("Particles initialized");
-      });
+    // Read stored preference (default = on)
+    let particlesEnabled = localStorage.getItem("particlesEnabled");
+    if (particlesEnabled === null) {
+      particlesEnabled = "true"; // default
+      localStorage.setItem("particlesEnabled", particlesEnabled);
     }
 
+    // Enable Particles (re-initialize if destroyed)
     function enableParticles() {
       if (!window.pJSDom || window.pJSDom.length === 0) {
-        initParticles();
+        // Adjust path to your particles config JSON if needed
+        particlesJS.load("galaxySkybox", "/path/to/particles.json", () => {
+          console.log("Particles enabled");
+        });
       }
       btn.classList.remove("off");
       localStorage.setItem("particlesEnabled", "true");
     }
 
+    // Disable Particles (fully stop animation & free CPU)
     function disableParticles() {
       if (window.pJSDom && window.pJSDom.length) {
         window.pJSDom.forEach(p => p.pJS.fn.vendors.destroypJS());
         window.pJSDom = [];
-        console.log("Particles destroyed");
+        console.log("Particles disabled");
       }
       btn.classList.add("off");
       localStorage.setItem("particlesEnabled", "false");
     }
 
-    // Initialize based on saved preference
-    let particlesEnabled = localStorage.getItem("particlesEnabled");
-    if (particlesEnabled === null) {
-      particlesEnabled = "true"; // default ON
-      localStorage.setItem("particlesEnabled", "true");
-    }
-
+    // Apply stored preference on load
     if (particlesEnabled === "true") {
       enableParticles();
     } else {
       disableParticles();
     }
 
-    // Button toggle
+    // Toggle on button click
     btn.addEventListener("click", () => {
-      if (window.pJSDom && window.pJSDom.length) {
-        disableParticles();
-      } else {
+      if (!window.pJSDom || window.pJSDom.length === 0) {
         enableParticles();
+      } else {
+        disableParticles();
       }
     });
   });
 </script>
+
 
 
 <div class="floating-buttons">
