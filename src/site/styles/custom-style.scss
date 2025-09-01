@@ -1,314 +1,329 @@
-/***
- * ETHEREAL FOREST - Digital Garden Theme
- * A living, breathing design that grows with your knowledge
- * Design Philosophy: Organic, layered, atmospheric
- ***/
+/* 
+ * LEAF'S DIGITAL GARDEN - LIVING ECOSYSTEM THEME
+ * A true digital garden where ideas grow like plants
+ * Version: 2.0 Complete Remaster
+ * Author: Designed for Leaf
+ */
 
-/* ============================================================
-   FOUNDATIONAL LAYER: CSS CUSTOM PROPERTIES
-   Carefully crafted color system inspired by twilight forests
-   ============================================================ */
+/* ============================================
+   FOUNDATION: ROOT VARIABLES & COLOR SYSTEM
+   ============================================ */
 
 :root {
-  /* Core Color Palette - Twilight Forest */
-  --forest-void: #0a0e0f;
-  --forest-depths: #111918;
-  --forest-shadow: #1a2422;
-  --forest-dark: #243330;
-  --forest-medium: #2e453c;
-  --forest-light: #3a5749;
-  --forest-bright: #4a6b57;
+  /* === BOTANICAL COLOR PALETTE === */
+  /* Earth & Soil Tones */
+  --soil-deepest: #1a1513;
+  --soil-deep: #2d2520;
+  --soil-rich: #3d332b;
+  --soil-medium: #4a3f36;
+  --soil-light: #5d4e45;
+  --earth-warm: #6b5d54;
   
-  /* Ethereal Mist Tones */
-  --mist-darkest: #2a3f3c;
-  --mist-dark: #405854;
-  --mist-medium: #5a7570;
-  --mist-light: #7a9590;
-  --mist-lighter: #9fb8b0;
-  --mist-lightest: #c5ded6;
-  --mist-white: #e8f4f0;
+  /* Foliage Greens */
+  --leaf-darkest: #1e3a1e;
+  --leaf-shadow: #2d5016;
+  --leaf-deep: #3e6b24;
+  --leaf-forest: #4a7c2e;
+  --leaf-vibrant: #5fa239;
+  --leaf-fresh: #72b043;
+  --leaf-spring: #8bc34a;
+  --leaf-lime: #9ccc65;
+  --leaf-pale: #aed581;
   
-  /* Bioluminescent Accents */
-  --glow-emerald: #00ff88;
-  --glow-jade: #00cc99;
-  --glow-mint: #66ffcc;
-  --glow-lime: #88ff00;
-  --glow-amber: #ffcc00;
-  --glow-coral: #ff6b6b;
+  /* Botanical Accents */
+  --moss-deep: #3e5641;
+  --moss-soft: #5d7260;
+  --fern-green: #7a9a7e;
+  --sage-muted: #95a99c;
+  --mint-fresh: #a8d5ba;
   
-  /* Atmospheric Effects */
-  --aurora-green: linear-gradient(135deg, #00ff88 0%, #00cc99 50%, #0099cc 100%);
-  --aurora-blue: linear-gradient(135deg, #0099cc 0%, #6666ff 50%, #9933ff 100%);
-  --aurora-sunset: linear-gradient(135deg, #ff6b6b 0%, #ffcc00 50%, #ff9900 100%);
+  /* Flower & Accent Colors */
+  --petal-rose: #d4708a;
+  --petal-coral: #ff9b85;
+  --petal-golden: #ffd97d;
+  --petal-lavender: #b8a9c9;
+  --petal-sky: #87ceeb;
+  --berry-deep: #8b3a62;
+  --berry-bright: #c85a7a;
   
-  /* Functional Colors */
-  --bg-primary: var(--forest-void);
-  --bg-secondary: var(--forest-depths);
-  --bg-tertiary: var(--forest-shadow);
-  --bg-elevated: rgba(26, 36, 34, 0.95);
-  --bg-overlay: rgba(10, 14, 15, 0.85);
-  --bg-glass: rgba(42, 63, 60, 0.1);
-  --bg-glass-thick: rgba(42, 63, 60, 0.2);
+  /* Sky & Light */
+  --sky-dawn: #fef3e2;
+  --sky-morning: #fff9ed;
+  --sky-noon: #fffdf8;
+  --cloud-soft: #f5f2ed;
+  --mist-light: #e8e5df;
+  --fog-medium: #d4d0c9;
   
-  --text-primary: var(--mist-white);
-  --text-secondary: var(--mist-lightest);
-  --text-tertiary: var(--mist-light);
-  --text-muted: var(--mist-medium);
-  --text-accent: var(--glow-emerald);
-  --text-highlight: var(--glow-mint);
+  /* Wood & Bark */
+  --bark-darkest: #2c1810;
+  --bark-deep: #3e2418;
+  --bark-medium: #5a3825;
+  --bark-light: #7a5436;
+  --wood-warm: #9b7653;
   
-  /* Typography Scale - Golden Ratio */
-  --text-xs: 0.694rem;
-  --text-sm: 0.833rem;
-  --text-base: 1rem;
-  --text-md: 1.2rem;
-  --text-lg: 1.44rem;
-  --text-xl: 1.728rem;
-  --text-2xl: 2.074rem;
-  --text-3xl: 2.488rem;
-  --text-4xl: 2.986rem;
-  --text-5xl: 3.583rem;
+  /* === FUNCTIONAL VARIABLES === */
+  --garden-bg-primary: var(--soil-deepest);
+  --garden-bg-secondary: var(--soil-deep);
+  --garden-bg-tertiary: var(--soil-rich);
+  --garden-surface: var(--soil-medium);
+  --garden-surface-elevated: var(--earth-warm);
   
-  /* Spacing System - Fibonacci Sequence */
-  --space-1: 0.125rem;
-  --space-2: 0.25rem;
-  --space-3: 0.5rem;
-  --space-5: 0.75rem;
-  --space-8: 1.25rem;
-  --space-13: 2rem;
-  --space-21: 3.25rem;
-  --space-34: 5.25rem;
-  --space-55: 8.5rem;
+  --text-primary: var(--sky-dawn);
+  --text-secondary: var(--cloud-soft);
+  --text-muted: var(--fog-medium);
+  --text-dim: var(--moss-soft);
+  --text-accent: var(--leaf-vibrant);
+  --text-highlight: var(--petal-golden);
   
-  /* Layout Dimensions */
-  --content-width: 900px;
+  --link-rest: var(--leaf-spring);
+  --link-hover: var(--leaf-lime);
+  --link-visited: var(--moss-soft);
+  
+  /* Borders with organic feel */
+  --border-subtle: rgba(143, 188, 143, 0.15);
+  --border-medium: rgba(143, 188, 143, 0.25);
+  --border-strong: rgba(143, 188, 143, 0.4);
+  --border-accent: var(--leaf-vibrant);
+  
+  /* Natural shadows */
+  --shadow-shallow: 0 2px 8px rgba(26, 21, 19, 0.3);
+  --shadow-medium: 0 4px 16px rgba(26, 21, 19, 0.4);
+  --shadow-deep: 0 8px 32px rgba(26, 21, 19, 0.5);
+  --shadow-float: 0 12px 48px rgba(26, 21, 19, 0.6);
+  --glow-leaf: 0 0 20px rgba(95, 162, 57, 0.3);
+  --glow-flower: 0 0 24px rgba(255, 217, 125, 0.2);
+  
+  /* Typography */
+  --font-display: 'Playfair Display', 'Crimson Text', Georgia, serif;
+  --font-body: 'Merriweather', 'Source Serif Pro', Georgia, serif;
+  --font-ui: 'Karla', 'Inter', -apple-system, system-ui, sans-serif;
+  --font-mono: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
+  
+  /* Spacing (Golden ratio inspired) */
+  --space-xs: 0.382rem;
+  --space-sm: 0.618rem;
+  --space-md: 1rem;
+  --space-lg: 1.618rem;
+  --space-xl: 2.618rem;
+  --space-2xl: 4.236rem;
+  --space-3xl: 6.854rem;
+  
+  /* Layout dimensions */
+  --content-width: 850px;
   --sidebar-width: 320px;
   --navbar-height: 72px;
   
-  /* Border Radius - Organic Curves */
-  --radius-xs: 4px;
+  /* Border radius (organic shapes) */
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-xl: 32px;
-  --radius-full: 9999px;
+  --radius-organic: 47% 53% 61% 39% / 45% 51% 49% 55%;
   
-  /* Shadows - Layered Depth */
-  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  --shadow-sm: 0 3px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
-  --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.10);
-  --shadow-lg: 0 15px 25px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
-  --shadow-glow: 0 0 20px rgba(0, 255, 136, 0.3);
-  --shadow-glow-intense: 0 0 40px rgba(0, 255, 136, 0.5);
-  
-  /* Animations */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slower: 500ms cubic-bezier(0.4, 0, 0.2, 1);
-  
-  /* Blur Effects */
-  --blur-sm: blur(4px);
-  --blur-md: blur(8px);
-  --blur-lg: blur(16px);
-  --blur-xl: blur(24px);
+  /* Transitions (natural motion) */
+  --transition-growth: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-bloom: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --transition-gentle: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-quick: 0.2s ease-out;
 }
 
-/* ============================================================
+/* Dark/Light mode adaptations */
+@media (prefers-color-scheme: light) {
+  :root {
+    --garden-bg-primary: var(--sky-morning);
+    --garden-bg-secondary: var(--sky-dawn);
+    --garden-bg-tertiary: var(--cloud-soft);
+    --text-primary: var(--soil-deepest);
+    --text-secondary: var(--bark-deep);
+    --text-muted: var(--bark-medium);
+  }
+}
+
+/* ============================================
    GLOBAL RESET & BASE STYLES
-   ============================================================ */
+   ============================================ */
 
 *, *::before, *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
   font-size: 18px;
   scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: var(--text-base);
+  font-family: var(--font-body);
   line-height: 1.7;
   color: var(--text-primary);
-  background: var(--bg-primary);
-  overflow-x: hidden;
-  position: relative;
+  background: var(--garden-bg-primary);
   min-height: 100vh;
-  
-  /* Animated background gradient */
-  &::before {
-    content: '';
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(
-      ellipse at center,
-      var(--forest-shadow) 0%,
-      var(--forest-depths) 25%,
-      var(--forest-void) 50%,
-      var(--forest-void) 100%
-    );
-    animation: breathe 20s ease-in-out infinite;
-    z-index: -2;
-  }
-  
-  /* Particle effect overlay */
-  &::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-      radial-gradient(2px 2px at 20% 30%, var(--glow-emerald), transparent),
-      radial-gradient(2px 2px at 40% 70%, var(--glow-jade), transparent),
-      radial-gradient(1px 1px at 50% 50%, var(--glow-mint), transparent),
-      radial-gradient(1px 1px at 80% 10%, var(--mist-light), transparent);
-    background-size: 500px 500px;
-    animation: float 60s linear infinite;
-    opacity: 0.3;
-    z-index: -1;
-  }
+  position: relative;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@keyframes breathe {
-  0%, 100% { transform: rotate(0deg) scale(1); }
-  25% { transform: rotate(90deg) scale(1.1); }
-  50% { transform: rotate(180deg) scale(1); }
-  75% { transform: rotate(270deg) scale(1.1); }
+/* Garden background with organic patterns */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 20% 30%, var(--leaf-shadow) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 70%, var(--moss-deep) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, var(--soil-deep) 0%, transparent 70%),
+    linear-gradient(180deg, var(--soil-deepest) 0%, var(--soil-rich) 100%);
+  z-index: -2;
 }
 
-@keyframes float {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(-500px, -500px); }
+/* Animated organic shapes floating in background */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, var(--leaf-vibrant) 0%, transparent 1%),
+    radial-gradient(circle at 60% 20%, var(--petal-golden) 0%, transparent 1%),
+    radial-gradient(circle at 85% 60%, var(--petal-rose) 0%, transparent 1%);
+  background-size: 100% 100%;
+  opacity: 0.1;
+  animation: floatingSeeds 30s ease-in-out infinite;
+  z-index: -1;
 }
 
-/* ============================================================
-   TYPOGRAPHY HIERARCHY
-   ============================================================ */
+@keyframes floatingSeeds {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-20px, -30px) scale(1.1); }
+  66% { transform: translate(20px, -20px) scale(0.9); }
+}
+
+/* ============================================
+   TYPOGRAPHY SYSTEM
+   ============================================ */
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Crimson Pro', 'Georgia', serif;
+  font-family: var(--font-display);
   font-weight: 700;
-  line-height: 1.2;
-  margin-top: 0;
-  margin-bottom: var(--space-8);
+  line-height: 1.3;
   color: var(--text-primary);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-lg);
   position: relative;
 }
 
 h1 {
-  font-size: var(--text-4xl);
-  margin-bottom: var(--space-21);
-  background: var(--aurora-green);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  background: linear-gradient(135deg, var(--leaf-vibrant), var(--leaf-spring), var(--petal-golden));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
+  text-shadow: 0 2px 20px rgba(95, 162, 57, 0.2);
+  letter-spacing: -0.02em;
+  
+  /* Decorative leaf after title */
+  &::after {
+    content: '🌿';
+    position: absolute;
+    right: -40px;
+    top: 0;
+    font-size: 0.5em;
+    animation: swayLeaf 3s ease-in-out infinite;
+  }
+}
+
+@keyframes swayLeaf {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  color: var(--leaf-forest);
+  border-bottom: 2px solid var(--border-subtle);
+  padding-bottom: var(--space-sm);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  color: var(--leaf-vibrant);
+}
+
+h4 {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  color: var(--moss-soft);
+}
+
+p {
+  margin-bottom: var(--space-lg);
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Links with growing underline */
+a {
+  color: var(--link-rest);
+  text-decoration: none;
+  position: relative;
+  transition: color var(--transition-gentle);
   
   &::after {
     content: '';
     position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100px;
-    height: 3px;
-    background: var(--aurora-green);
-    border-radius: var(--radius-full);
-    animation: pulse 2s ease-in-out infinite;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--leaf-vibrant), var(--leaf-spring));
+    transition: all var(--transition-bloom);
+    transform: translateX(-50%);
+  }
+  
+  &:hover {
+    color: var(--link-hover);
+    
+    &::after {
+      width: 100%;
+    }
+  }
+  
+  &:visited {
+    color: var(--link-visited);
   }
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; width: 100px; }
-  50% { opacity: 0.7; width: 150px; }
-}
-
-h2 {
-  font-size: var(--text-3xl);
-  color: var(--glow-mint);
-  margin-top: var(--space-34);
-}
-
-h3 {
-  font-size: var(--text-2xl);
-  color: var(--mist-lightest);
-  margin-top: var(--space-21);
-}
-
-h4 {
-  font-size: var(--text-xl);
-  color: var(--mist-light);
-}
-
-h5 {
-  font-size: var(--text-lg);
-  color: var(--mist-medium);
-}
-
-h6 {
-  font-size: var(--text-md);
-  color: var(--mist-medium);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-p {
-  margin-bottom: var(--space-13);
-  line-height: 1.8;
-}
-
-/* ============================================================
-   MAIN CONTENT AREA
-   ============================================================ */
+/* ============================================
+   MAIN LAYOUT STRUCTURE
+   ============================================ */
 
 .content {
   max-width: var(--content-width);
   margin: 0 auto;
-  padding: var(--space-55) var(--space-21);
-  margin-top: calc(var(--navbar-height) + var(--space-21));
+  padding: calc(var(--navbar-height) + var(--space-2xl)) var(--space-xl) var(--space-3xl);
+  min-height: 100vh;
   position: relative;
-  font-size: 1.1rem;
   
-  /* Glass morphism container */
-  background: var(--bg-glass);
-  backdrop-filter: var(--blur-md);
-  border-radius: var(--radius-xl);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: var(--shadow-xl);
-  
-  /* Content glow effect on hover */
-  transition: all var(--transition-slow);
-  
-  &:hover {
-    background: var(--bg-glass-thick);
-    box-shadow: var(--shadow-xl), var(--shadow-glow);
-  }
+  /* Organic paper-like background for content */
+  background: 
+    linear-gradient(135deg, transparent 0%, rgba(255, 249, 237, 0.03) 50%, transparent 100%),
+    radial-gradient(ellipse at top right, rgba(143, 188, 143, 0.05) 0%, transparent 50%);
+  border-radius: var(--radius-organic);
   
   @media (max-width: 1200px) {
-    margin-top: calc(var(--navbar-height) + var(--space-55));
-    max-width: 90%;
+    padding: calc(var(--navbar-height) + var(--space-xl)) var(--space-lg);
   }
   
   @media (max-width: 768px) {
-    padding: var(--space-21) var(--space-13);
-    margin-top: calc(var(--navbar-height) + var(--space-21));
-    border-radius: var(--radius-lg);
+    padding: calc(var(--navbar-height) + var(--space-lg)) var(--space-md);
   }
 }
 
-/* ============================================================
-   NAVBAR - Floating Forest Canopy
-   ============================================================ */
+/* ============================================
+   NAVIGATION BAR - Garden Path
+   ============================================ */
 
 .navbar {
   position: fixed;
@@ -316,44 +331,72 @@ p {
   left: 0;
   right: 0;
   height: var(--navbar-height);
-  background: var(--bg-overlay);
-  backdrop-filter: var(--blur-lg) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(29, 37, 32, 0.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border-subtle);
   z-index: 1000;
-  transition: all var(--transition-base);
+  box-shadow: var(--shadow-medium);
+}
+
+.navbar-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-xl);
+}
+
+.navbar h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
   
-  &.scrolled {
-    height: 60px;
-    background: rgba(10, 14, 15, 0.95);
-    box-shadow: var(--shadow-lg);
+  &::before {
+    content: '🌱';
+    font-size: 1.2em;
+    animation: growPlant 2s ease-in-out infinite alternate;
   }
   
-  .navbar-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 var(--space-21);
-    
-    h1 {
-      font-size: var(--text-xl);
-      margin: 0;
-      cursor: pointer;
-      transition: all var(--transition-base);
-      
-      &:hover {
-        transform: translateY(-2px);
-        filter: brightness(1.2);
-      }
-    }
+  &::after {
+    display: none;
   }
 }
 
-/* ============================================================
-   SIDEBAR - Living File Tree
-   ============================================================ */
+@keyframes growPlant {
+  from { transform: scale(1) rotate(0deg); }
+  to { transform: scale(1.1) rotate(3deg); }
+}
+
+.navbar-nav {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.navbar-nav a {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-gentle);
+  font-family: var(--font-ui);
+  font-weight: 500;
+  
+  &:hover {
+    background: var(--leaf-shadow);
+    transform: translateY(-2px);
+    box-shadow: var(--glow-leaf);
+  }
+  
+  &::after {
+    display: none;
+  }
+}
+
+/* ============================================
+   SIDEBAR - Garden Map (File Tree)
+   ============================================ */
 
 .filetree-sidebar {
   position: fixed;
@@ -361,139 +404,118 @@ p {
   left: 0;
   width: var(--sidebar-width);
   height: calc(100vh - var(--navbar-height));
-  background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-secondary) 100%);
-  backdrop-filter: var(--blur-md);
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
-  padding: var(--space-21);
+  background: rgba(46, 56, 46, 0.95);
+  backdrop-filter: blur(16px);
+  border-right: 1px solid var(--border-medium);
+  padding: var(--space-xl);
   overflow-y: auto;
   z-index: 100;
-  transition: transform var(--transition-base);
   
   /* Custom scrollbar */
   &::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
   }
   
   &::-webkit-scrollbar-track {
-    background: var(--bg-glass);
-    border-radius: var(--radius-full);
+    background: var(--soil-rich);
+    border-radius: 10px;
   }
   
   &::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--glow-emerald), var(--glow-jade));
-    border-radius: var(--radius-full);
-  }
-  
-  h1 {
-    font-size: var(--text-lg);
-    margin-bottom: var(--space-21);
-    padding-bottom: var(--space-13);
-    border-bottom: 2px solid var(--bg-glass-thick);
-  }
-  
-  /* Folder structure with organic feel */
-  .folder-container {
-    margin-bottom: var(--space-8);
-    
-    .folder {
-      display: flex;
-      align-items: center;
-      padding: var(--space-5) var(--space-8);
-      margin-bottom: var(--space-3);
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      position: relative;
-      
-      &::before {
-        content: '🌿';
-        margin-right: var(--space-5);
-        filter: hue-rotate(0deg);
-        transition: filter var(--transition-base);
-      }
-      
-      &:hover {
-        background: var(--bg-glass);
-        transform: translateX(4px);
-        
-        &::before {
-          filter: hue-rotate(45deg);
-        }
-      }
-      
-      &.open::before {
-        content: '🌱';
-      }
-    }
-  }
-  
-  /* Note links as leaves */
-  .notelink {
-    display: flex;
-    align-items: center;
-    padding: var(--space-5) var(--space-8) var(--space-5) var(--space-21);
-    margin: var(--space-2) 0;
-    border-radius: var(--radius-sm);
-    transition: all var(--transition-fast);
-    position: relative;
-    
-    &::before {
-      content: '🍃';
-      position: absolute;
-      left: var(--space-8);
-      opacity: 0.5;
-      font-size: 0.8em;
-      transition: all var(--transition-base);
-    }
-    
-    a {
-      color: var(--text-tertiary);
-      text-decoration: none;
-      font-size: var(--text-sm);
-      
-      &:hover {
-        color: var(--text-primary);
-      }
-    }
+    background: linear-gradient(180deg, var(--leaf-forest), var(--leaf-vibrant));
+    border-radius: 10px;
     
     &:hover {
-      background: var(--bg-glass);
-      
-      &::before {
-        opacity: 1;
-        transform: rotate(-10deg);
-      }
-    }
-    
-    &.active-note {
-      background: linear-gradient(90deg, var(--bg-glass-thick) 0%, transparent 100%);
-      border-left: 3px solid var(--glow-emerald);
-      
-      a {
-        color: var(--text-accent);
-        font-weight: 600;
-      }
-      
-      &::before {
-        content: '🌟';
-        opacity: 1;
-      }
-    }
-  }
-  
-  @media (max-width: 1024px) {
-    transform: translateX(-100%);
-    
-    &.open {
-      transform: translateX(0);
-      box-shadow: var(--shadow-xl);
+      background: linear-gradient(180deg, var(--leaf-vibrant), var(--leaf-spring));
     }
   }
 }
 
-/* ============================================================
-   RIGHT SIDEBAR - Knowledge Garden
-   ============================================================ */
+.filetree-sidebar h1 {
+  font-size: 1.25rem;
+  color: var(--leaf-spring);
+  border-bottom: 2px solid var(--border-subtle);
+  padding-bottom: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+/* File tree styling - growing branches */
+.notelink {
+  padding: var(--space-sm) var(--space-sm) var(--space-sm) var(--space-lg);
+  margin: var(--space-xs) 0;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-gentle);
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    width: 4px;
+    height: 4px;
+    background: var(--leaf-vibrant);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    transition: all var(--transition-bloom);
+  }
+  
+  &:hover {
+    background: rgba(143, 188, 143, 0.1);
+    transform: translateX(4px);
+    
+    &::before {
+      width: 8px;
+      height: 8px;
+      box-shadow: var(--glow-leaf);
+    }
+  }
+  
+  &.active-note {
+    background: linear-gradient(135deg, rgba(95, 162, 57, 0.2), rgba(140, 195, 74, 0.1));
+    border-left: 3px solid var(--leaf-vibrant);
+    
+    &::before {
+      width: 12px;
+      height: 12px;
+      background: var(--petal-golden);
+      box-shadow: var(--glow-flower);
+    }
+  }
+}
+
+.foldername-wrapper {
+  cursor: pointer;
+  padding: var(--space-sm);
+  margin: var(--space-sm) 0;
+  font-weight: 600;
+  color: var(--leaf-forest);
+  position: relative;
+  
+  &::before {
+    content: '📁';
+    margin-right: var(--space-sm);
+    transition: transform var(--transition-gentle);
+  }
+  
+  &:hover::before {
+    transform: scale(1.2);
+  }
+  
+  &.open::before {
+    content: '📂';
+  }
+}
+
+.inner-folder {
+  padding-left: var(--space-lg);
+  border-left: 2px dotted var(--border-subtle);
+  margin-left: var(--space-md);
+}
+
+/* ============================================
+   RIGHT SIDEBAR - Garden Info
+   ============================================ */
 
 .sidebar {
   position: fixed;
@@ -501,351 +523,328 @@ p {
   right: 0;
   width: var(--sidebar-width);
   height: calc(100vh - var(--navbar-height));
-  background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-secondary) 100%);
-  backdrop-filter: var(--blur-md);
-  border-left: 1px solid rgba(255, 255, 255, 0.05);
-  padding: var(--space-21);
+  background: rgba(46, 56, 46, 0.95);
+  backdrop-filter: blur(16px);
+  border-left: 1px solid var(--border-medium);
+  padding: var(--space-xl);
   overflow-y: auto;
   z-index: 100;
+}
+
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+/* Table of Contents - Garden Path */
+.toc {
+  background: rgba(62, 107, 36, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border: 1px solid var(--border-subtle);
+}
+
+.toc-title {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--leaf-vibrant);
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
   
-  .sidebar-container {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-21);
-  }
-  
-  /* Table of Contents */
-  .toc {
-    background: var(--bg-glass);
-    border-radius: var(--radius-lg);
-    padding: var(--space-13);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    
-    .toc-title {
-      font-size: var(--text-md);
-      font-weight: 600;
-      color: var(--glow-mint);
-      margin-bottom: var(--space-8);
-      display: flex;
-      align-items: center;
-      
-      &::before {
-        content: '📚';
-        margin-right: var(--space-5);
-      }
-    }
-    
-    .toc-container {
-      max-height: 300px;
-      overflow-y: auto;
-      
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        
-        li {
-          margin-bottom: var(--space-3);
-          padding-left: var(--space-8);
-          border-left: 2px solid transparent;
-          transition: all var(--transition-fast);
-          
-          &:hover {
-            border-left-color: var(--glow-emerald);
-            padding-left: var(--space-13);
-          }
-          
-          a {
-            color: var(--text-tertiary);
-            text-decoration: none;
-            font-size: var(--text-sm);
-            
-            &:hover {
-              color: var(--text-primary);
-            }
-          }
-        }
-      }
-    }
-  }
-  
-  /* Backlinks */
-  .backlinks {
-    background: var(--bg-glass);
-    border-radius: var(--radius-lg);
-    padding: var(--space-13);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    
-    .backlink-title {
-      font-size: var(--text-md);
-      font-weight: 600;
-      color: var(--glow-mint);
-      margin-bottom: var(--space-8);
-      display: flex;
-      align-items: center;
-      
-      &::before {
-        content: '🔗';
-        margin-right: var(--space-5);
-      }
-    }
-    
-    .backlink-list {
-      max-height: 250px;
-      overflow-y: auto;
-      
-      .backlink-card {
-        padding: var(--space-8);
-        margin-bottom: var(--space-5);
-        background: var(--bg-glass);
-        border-radius: var(--radius-md);
-        border: 1px solid rgba(255, 255, 255, 0.03);
-        transition: all var(--transition-fast);
-        
-        &:hover {
-          background: var(--bg-glass-thick);
-          transform: translateX(-4px);
-          box-shadow: var(--shadow-sm);
-        }
-        
-        .backlink {
-          color: var(--glow-jade);
-          text-decoration: none;
-          font-weight: 500;
-          
-          &:hover {
-            color: var(--glow-emerald);
-          }
-        }
-      }
-    }
-    
-    .no-backlinks-message {
-      color: var(--text-muted);
-      font-size: var(--text-sm);
-      font-style: italic;
-      text-align: center;
-      padding: var(--space-13);
-    }
-  }
-  
-  /* Graph View */
-  .graph {
-    background: var(--bg-glass);
-    border-radius: var(--radius-lg);
-    padding: var(--space-13);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    
-    .graph-title {
-      font-size: var(--text-md);
-      font-weight: 600;
-      color: var(--glow-mint);
-      margin-bottom: var(--space-8);
-      display: flex;
-      align-items: center;
-      
-      &::before {
-        content: '🌐';
-        margin-right: var(--space-5);
-      }
-    }
-    
-    #link-graph {
-      width: 100%;
-      height: 280px;
-      background: radial-gradient(ellipse at center, var(--bg-glass-thick) 0%, transparent 70%);
-      border-radius: var(--radius-md);
-      position: relative;
-      overflow: hidden;
-      
-      /* Graph nodes and edges styling via CSS variables for D3 */
-      --graph-main: var(--glow-emerald);
-      --graph-muted: var(--mist-medium);
-      --graph-node: var(--glow-jade);
-      --graph-active: var(--glow-mint);
-    }
-    
-    #graph-controls {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: var(--space-8);
-      padding-top: var(--space-8);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      
-      button {
-        background: var(--bg-glass);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: var(--text-tertiary);
-        padding: var(--space-3) var(--space-8);
-        border-radius: var(--radius-sm);
-        cursor: pointer;
-        transition: all var(--transition-fast);
-        
-        &:hover {
-          background: var(--bg-glass-thick);
-          color: var(--text-primary);
-          transform: translateY(-2px);
-        }
-      }
-    }
-  }
-  
-  @media (max-width: 1400px) {
-    position: relative;
-    width: 100%;
-    max-width: var(--content-width);
-    margin: var(--space-21) auto;
-    border: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: var(--radius-xl);
-    
-    .sidebar-container {
-      flex-direction: row;
-      flex-wrap: wrap;
-      
-      > * {
-        flex: 1 1 300px;
-      }
-    }
+  &::before {
+    content: '🗺️';
   }
 }
 
-/* ============================================================
-   SEARCH FUNCTIONALITY
-   ============================================================ */
+.toc-container ul {
+  list-style: none;
+  padding-left: var(--space-md);
+}
 
-.search-button {
-  background: var(--bg-glass-thick);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.toc-container li {
+  margin: var(--space-sm) 0;
+  position: relative;
+  
+  &::before {
+    content: '•';
+    position: absolute;
+    left: -var(--space-md);
+    color: var(--leaf-spring);
+  }
+}
+
+.toc-container a {
   color: var(--text-secondary);
-  padding: var(--space-5) var(--space-13);
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  gap: var(--space-5);
-  cursor: pointer;
-  transition: all var(--transition-base);
-  min-width: 200px;
+  font-size: 0.9rem;
   
   &:hover {
-    background: var(--bg-glass);
-    border-color: var(--glow-emerald);
-    color: var(--text-primary);
+    color: var(--leaf-spring);
+  }
+}
+
+/* Backlinks - Connected Growth */
+.backlinks {
+  background: rgba(62, 107, 36, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border: 1px solid var(--border-subtle);
+}
+
+.backlink-title {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--leaf-vibrant);
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  
+  &::before {
+    content: '🔗';
+  }
+}
+
+.backlink-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.backlink-card {
+  background: rgba(255, 255, 255, 0.02);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  transition: all var(--transition-gentle);
+  
+  &:hover {
+    background: rgba(143, 188, 143, 0.1);
+    border-color: var(--leaf-vibrant);
+    transform: translateX(-4px);
+  }
+}
+
+/* Graph View - Garden Map */
+.graph {
+  background: rgba(62, 107, 36, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border: 1px solid var(--border-subtle);
+}
+
+.graph-title {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--leaf-vibrant);
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  
+  &::before {
+    content: '🕸️';
+  }
+}
+
+#link-graph {
+  width: 100%;
+  height: 280px;
+  background: radial-gradient(ellipse at center, rgba(95, 162, 57, 0.05) 0%, transparent 70%);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+/* ============================================
+   SEARCH - Garden Explorer
+   ============================================ */
+
+.search-button {
+  background: linear-gradient(135deg, var(--leaf-forest), var(--leaf-vibrant));
+  color: var(--sky-dawn);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-xl);
+  border: none;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-bloom);
+  box-shadow: var(--shadow-medium);
+  
+  &:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-glow);
+    box-shadow: var(--shadow-deep), var(--glow-leaf);
   }
   
-  .search-icon {
-    font-size: var(--text-md);
-  }
-  
-  .search-text {
-    font-size: var(--text-sm);
+  &:active {
+    transform: translateY(0);
   }
 }
 
 .search-container {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(10, 14, 15, 0.95);
-  backdrop-filter: var(--blur-xl);
-  z-index: 2000;
+  inset: 0;
+  background: rgba(26, 21, 19, 0.9);
+  backdrop-filter: blur(10px);
   display: none;
+  align-items: center;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: var(--space-55);
+  z-index: 2000;
   
   &.active {
     display: flex;
-    animation: fadeIn var(--transition-base);
   }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 
 .search-box {
-  background: var(--bg-elevated);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-xl);
-  padding: var(--space-21);
+  background: var(--garden-bg-secondary);
   width: 90%;
-  max-width: 700px;
-  box-shadow: var(--shadow-xl);
-  animation: slideDown var(--transition-slow);
+  max-width: 600px;
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-float);
+  border: 2px solid var(--leaf-vibrant);
+}
+
+.search-box input {
+  width: 100%;
+  padding: var(--space-md);
+  background: var(--soil-rich);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  font-family: var(--font-ui);
   
-  input {
-    width: 100%;
-    background: var(--bg-glass);
-    border: 2px solid transparent;
-    border-radius: var(--radius-md);
-    padding: var(--space-13) var(--space-21);
-    font-size: var(--text-xl);
-    color: var(--text-primary);
-    transition: all var(--transition-base);
-    
-    &::placeholder {
-      color: var(--text-muted);
-    }
-    
-    &:focus {
-      outline: none;
-      border-color: var(--glow-emerald);
-      background: var(--bg-glass-thick);
-      box-shadow: var(--shadow-glow);
-    }
+  &::placeholder {
+    color: var(--text-muted);
   }
   
-  #search-results {
-    margin-top: var(--space-21);
-    max-height: 400px;
-    overflow-y: auto;
-    
-    .searchresult {
-      padding: var(--space-13);
-      margin-bottom: var(--space-8);
-      background: var(--bg-glass);
-      border-radius: var(--radius-md);
-      border: 1px solid transparent;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      
-      &:hover,
-      &.active {
-        background: var(--bg-glass-thick);
-        border-color: var(--glow-emerald);
-        transform: translateX(8px);
-      }
-      
-      .search-link {
-        color: var(--glow-jade);
-        font-weight: 600;
-        margin-bottom: var(--space-3);
-      }
-      
-      .search-excerpt {
-        color: var(--text-tertiary);
-        font-size: var(--text-sm);
-        line-height: 1.6;
-      }
-    }
+  &:focus {
+    outline: none;
+    border-color: var(--leaf-vibrant);
+    box-shadow: var(--glow-leaf);
   }
 }
 
-@keyframes slideDown {
-  from { 
-    opacity: 0;
-    transform: translateY(-20px);
+#search-results {
+  margin-top: var(--space-lg);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.searchresult {
+  background: var(--soil-medium);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all var(--transition-gentle);
+  
+  &:hover {
+    background: var(--earth-warm);
+    border-color: var(--leaf-vibrant);
+    transform: translateX(-4px);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  
+  &.active {
+    border-color: var(--petal-golden);
+    box-shadow: var(--glow-flower);
+  }
+}
+
+/* ============================================
+   CONTENT ELEMENTS - Garden Features
+   ============================================ */
+
+/* Blockquotes - Wisdom Stones */
+blockquote {
+  position: relative;
+  padding: var(--space-xl);
+  margin: var(--space-xl) 0;
+  background: linear-gradient(135deg, rgba(143, 188, 143, 0.1), rgba(255, 217, 125, 0.05));
+  border-left: 4px solid var(--leaf-vibrant);
+  border-radius: var(--radius-md);
+  font-style: italic;
+  font-family: var(--font-display);
+  
+  &::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-size: 4rem;
+    color: var(--leaf-vibrant);
+    opacity: 0.3;
+  }
+}
+
+/* Lists - Growing Branches */
+ul, ol {
+  padding-left: var(--space-xl);
+  margin-bottom: var(--space-lg);
+}
+
+ul li {
+  position: relative;
+  padding-left: var(--space-md);
+  
+  &::before {
+    content: '🌿';
+    position: absolute;
+    left: -var(--space-lg);
+  }
+}
+
+ol li {
+  padding-left: var(--space-sm);
+  
+  &::marker {
+    color: var(--leaf-vibrant);
+    font-weight: 600;
+  }
+}
+
+/* Code - Seeds of Logic */
+code {
+  font-family: var(--font-mono);
+  background: linear-gradient(135deg, var(--soil-rich), var(--soil-medium));
+  color: var(--leaf-lime);
+  padding: 0.2em 0.4em;
+  border-radius: var(--radius-sm);
+  font-size: 0.9em;
+  border: 1px solid var(--border-subtle);
+}
+
+pre {
+  background: linear-gradient(135deg, var(--soil-deep), var(--soil-rich));
+  color: var(--sky-dawn);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+  margin: var(--space-xl) 0;
+  border: 1px solid var(--border-medium);
+  box-shadow: var(--shadow-deep);
+  position: relative;
+  
+  &::before {
+    content: 'CODE';
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-md);
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    color: var(--leaf-vibrant);
+    opacity: 0.5;
+  }
+  
+  code {
+    background: transparent;
+    padding: 0;
+    border: none;
   }
 }
 
