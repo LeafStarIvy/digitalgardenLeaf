@@ -576,3 +576,46 @@
 })();
 </script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("toggleParticlesBtn");
+    const skybox = document.getElementById("galaxySkybox");
+
+    // Read stored preference (default = on)
+    let particlesEnabled = localStorage.getItem("particlesEnabled");
+    if (particlesEnabled === null) {
+      particlesEnabled = "true"; // default
+      localStorage.setItem("particlesEnabled", particlesEnabled);
+    }
+
+    function enableParticles() {
+      skybox.style.display = "block";
+      btn.classList.remove("off");
+      localStorage.setItem("particlesEnabled", "true");
+    }
+
+    function disableParticles() {
+      skybox.style.display = "none";
+      btn.classList.add("off");
+      localStorage.setItem("particlesEnabled", "false");
+    }
+
+    // Apply stored preference
+    if (particlesEnabled === "true") {
+      enableParticles();
+    } else {
+      disableParticles();
+    }
+
+    // Toggle on button click
+    btn.addEventListener("click", () => {
+      if (skybox.style.display === "none") {
+        enableParticles();
+      } else {
+        disableParticles();
+      }
+    });
+  });
+</script>
+
+
