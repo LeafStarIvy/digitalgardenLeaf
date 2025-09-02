@@ -351,19 +351,65 @@ h1::after {
   background: var(--glass-bg) !important;
 }
 
-#link-graph {
+#link-graph, 
+#graph-fs,
+#full-graph {
   border-radius: 10px !important;
   background: var(--glass-bg-medium) !important;
   padding: 10px !important;
+  position: relative !important;
 }
 
-/* Graph nodes and edges colors */
-.graph-view.color-fill {
-  color: var(--glass-accent) !important;
+/* Canvas element inside graph */
+#link-graph canvas,
+#graph-fs canvas,
+#full-graph canvas {
+  border-radius: 10px !important;
+  background: transparent !important;
 }
 
-.graph-view.color-line {
-  color: var(--glass-border) !important;
+/* Graph View D3 Elements - Node colors */
+.graph-view circle.node,
+.graph-view .node {
+  fill: var(--glass-accent) !important;
+  stroke: var(--glass-border) !important;
+  stroke-width: 1px !important;
+}
+
+.graph-view circle.node:hover,
+.graph-view .node:hover {
+  fill: var(--text-primary) !important;
+  stroke: var(--glass-accent) !important;
+  stroke-width: 2px !important;
+}
+
+/* Graph View D3 Elements - Link lines */
+.graph-view line.link,
+.graph-view .link,
+.graph-view path {
+  stroke: var(--glass-border) !important;
+  stroke-opacity: 0.5 !important;
+  fill: none !important;
+}
+
+.graph-view line.link:hover,
+.graph-view .link:hover {
+  stroke: var(--glass-accent) !important;
+  stroke-opacity: 1 !important;
+}
+
+/* Graph text labels */
+.graph-view text,
+.graph-view .node-label {
+  fill: var(--text-primary) !important;
+  font-size: 12px !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Fix for graph view container */
+.graph-view-container {
+  background: transparent !important;
+  border: none !important;
 }
 
 /* ============================================
