@@ -1,31 +1,48 @@
-:root {
-  --bg: #F7F8FA;           /* soft paper */
-  --surface: rgba(255,255,255,0.7);
-  --text: #0B1220;
-  --muted: #58607A;
 
-  --accent: #FFB86B;       /* warm amber/gold */
-  --accent-2: #9A7CFF;     /* soft violet, cosmic */
-  --accent-3: #2AA198;     /* teal, optional secondary */
+/* ===== Content-First Palette — Violet Velvet Accent (accessible) =====
+   Place in src/site/styles/user/
+   Violet is slightly more 'cosmic' but desaturated to avoid clashing with photos.
+*/
+:root{
+  --bg: #F6F7FA;
+  --surface: #FFFFFF;
+  --text: #0D1218;
+  --muted: #646D7B;
+  --border: rgba(11,17,24,0.06);
 
-  --border: rgba(0,0,0,0.08);
-  --glass-blur: 20px;
+  --accent: #7E5BEF;
+  --accent-contrast: #7E5BEF; /* already accessible for white text */
+  --accent-2: #C2A7FF;
+  --accent-3: #FFC58F;
 
-  --font-display: 'Playfair Display', 'Georgia', serif;
-  --font-body: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --radius: 12px;
+  --shadow: 0 12px 30px rgba(11,17,24,0.06);
 }
 
-.theme-dark, [data-theme="dark"] {
-  --bg: #071026;           /* deep navy */
-  --surface: rgba(11,18,32,0.7);
-  --text: #EAF2FF;
-  --muted: #9AA7C8;
+html[data-theme="dark"], .theme-dark {
+  --bg: #070814;
+  --surface: #0E1016;
+  --text: #EAF1FF;
+  --muted: #98A3B8;
+  --border: rgba(255,255,255,0.06);
 
-  --accent: #FFB86B;
-  --accent-2: #9A7CFF;
-  --accent-3: #2AA198;
-
-  --border: rgba(255,255,255,0.08);
-  --glass-blur: 20px;
+  --accent: #7E5BEF;
+  --accent-contrast: #7E5BEF;
+  --accent-2: #C2A7FF;
+  --accent-3: #FFC58F;
 }
+
+body{ background:var(--bg); color:var(--text); font-family:Inter, system-ui, -apple-system; margin:0; padding:0; }
+.card{ background:var(--surface); border-radius:12px; padding:18px; border:1px solid var(--border); box-shadow:var(--shadow); }
+.media{ background:var(--surface); border-radius:10px; overflow:hidden; border:1px solid var(--border); }
+
+a{ color:var(--accent); font-weight:600; text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+.btn-primary{ background:var(--accent-contrast); color:#FFFFFF; padding:.6rem .9rem; border-radius:10px; border:none; font-weight:600; }
+.btn-outline{ border:1px solid var(--accent); color:var(--text); padding:.5rem .8rem; border-radius:10px; background:transparent; }
+
+.badge{ padding:.25rem .5rem; border-radius:999px; background: linear-gradient(90deg, rgba(126,91,239,0.08), rgba(194,167,255,0.03)); border:1px solid var(--border); color:var(--text); }
+
+.sep{ height:1px; background:var(--border); margin:14px 0; }
+:focus{ outline:3px solid color-mix(in srgb, var(--accent) 20%, transparent); outline-offset:3px; }
