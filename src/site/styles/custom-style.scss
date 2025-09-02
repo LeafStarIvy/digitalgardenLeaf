@@ -1,159 +1,258 @@
-/* ------------------------------
-   Digital Garden: Glass + Theme + Bg switch
-   Append to custom-style.scss
-   ------------------------------*/
+/* ==========================================================================
+   CUSTOM GLASS THEME (custom-style.scss)
+   - Place this file into your theme pipeline / custom-style.scss
+   - Sections are prefixed with comments so you can understand and tweak
+   ========================================================================== */
 
-/* Theme override area (user-managed) */
+/* ----------------------
+   0) Default CSS variables (fallbacks)
+   ---------------------- */
 :root {
-  /* background image variable (JS will update this) */
-  --dg-bg-image: none;
-  --dg-bg-opacity: 1;
-  --dg-bg-filter: none;
+  /* Site background image variable (updated by JS) */
+  --site-bg-url: none;
+  --site-bg-overlay: linear-gradient(rgba(0,0,0,0.08), rgba(0,0,0,0.06));
+  --site-bg-dim: 0.08; /* global dimming when image is present */
 
-  /* Glass settings (tune one place) */
-  --dg-glass-blur: 8px;
-  --dg-glass-opacity: 0.66; /* opaque glass */
-  --dg-glass-border: rgba(255,255,255,0.08);
-  --dg-glass-elev-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  /* Glass defaults */
+  --glass-blur: 12px;
+  --glass-saturate: 140%;
+  --glass-radius: 14px;
+  --glass-border-alpha: 0.08;
+  --glass-shadow-alpha: 0.18;
 
-  /* Transition speeds */
-  --dg-transition-fast: 180ms;
-  --dg-transition-med: 320ms;
+  /* Generic text/accents (will be overridden per theme) */
+  --text-primary: #111111;
+  --text-secondary: #4b5563;
+  --text-accent: #0b7cff;
+  --text-muted: #6b7280;
+
+  --background-primary: rgba(255,255,255,0.45);
+  --background-secondary: rgba(255,255,255,0.30);
+
+  /* Graph colors (used by your graph JS/CSS) */
+  --graph-main: var(--text-accent);
+  --graph-muted: var(--text-muted);
+
+  /* Fallback list if manifest fetch fails (use public URLs or relative assets) */
+  --fallback-light-list: '"/assets/bg-light-01.jpg","/assets/bg-light-02.jpg"';
+  --fallback-dark-list: '"/assets/bg-dark-01.jpg","/assets/bg-dark-02.jpg"';
 }
 
-/* full-page background layer (behind everything) */
+/* ----------------------
+   1) Theme palettes (light + dark)
+   - These set the variables your base theme expects (so minimal changes needed)
+   ---------------------- */
+
+body.theme-light {
+  --text-primary: #0f1724;
+  --text-secondary: #475569;
+  --text-accent: #0b75ff;
+  --text-muted: #6b7280;
+
+  --background-primary: rgba(255,255,255,0.42);   /* used behind content */
+  --background-secondary: rgba(255,255,255,0.28);
+
+  /* glass color base (rgb) for sheen/border usage */
+  --glass-rgb: 255,255,255;
+  --glass-border-rgb: 255,255,255;
+  --glass-shadow-rgb: 2,6,23;
+
+  --graph-main: var(--text-accent);
+  --graph-muted: #9aa6bf;
+}
+
+body.theme-dark {
+  --text-primary: #e6eef8;
+  --text-secondary: #9fb0c6;
+  --text-accent: #6cc6ff;
+  --text-muted: #95a5b8;
+
+  --background-primary: rgba(10,12,16,0.36);
+  --background-secondary: rgba(10,12,16,0.24);
+
+  --glass-rgb: 18,20,26;
+  --glass-border-rgb: 255,255,255;
+  --glass-shadow-rgb: 0,0,0;
+
+  --graph-main: var(--text-accent);
+  --graph-muted: #6e889c;
+}
+
+/* ----------------------
+   2) Site background layer
+   - We use body::before to show the site background image (so everything else can be transparent glass)
+   - JS sets --site-bg-url to "url('...')" when the user cycles backgrounds
+   ---------------------- */
 body::before {
   content: "";
-  pointer-events: none;
   position: fixed;
   inset: 0;
-  z-index: -999; /* behind all page content */
-  background-image: var(--dg-bg-image);
+  z-index: -3;
+  pointer-events: none;
+  background-image: var(--site-bg-url);
   background-size: cover;
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
-  opacity: var(--dg-bg-opacity);
-  filter: var(--dg-bg-filter);
-  transition: opacity var(--dg-transition-med), filter var(--dg-transition-med), transform var(--dg-transition-med);
+  transition: filter 450ms ease, opacity 450ms ease;
+  opacity: 1;
+
+  /* subtle dim layer to keep text readable */
+  background-blend-mode: overlay;
+  mix-blend-mode: normal;
+  filter: saturate(1.05) contrast(1.02);
 }
 
-/* Glass card class to apply across UI blocks */
-.ui-glass {
-  background: rgba(255,255,255,var(--dg-glass-opacity)); /* default; overridden in dark mode */
-  -webkit-backdrop-filter: blur(var(--dg-glass-blur)) saturate(1.05);
-  backdrop-filter: blur(var(--dg-glass-blur)) saturate(1.05);
-  border: 1px solid var(--dg-glass-border);
-  border-radius: 14px;
-  box-shadow: var(--dg-glass-elev-shadow);
-  transition: background var(--dg-transition-fast), border var(--dg-transition-fast), color var(--dg-transition-fast);
-  color: var(--text-primary); /* will pick from theme variables */
+/* a global "tint" overlay to keep readability */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: linear-gradient(rgba(0,0,0,var(--site-bg-dim)), rgba(0,0,0,var(--site-bg-dim)));
+  transition: opacity 350ms ease;
+  opacity: calc(var(--site-bg-url) == none ? 0 : 1);
 }
 
-/* More opaque variant for "opaque professional glass" */
-.ui-glass--opaque {
-  --dg-glass-opacity: 0.78;
-  border-radius: 16px;
-  padding: 0.6rem;
+/* ----------------------
+   3) Reusable glass component
+   - Use the .glass class on any container (content, sidebar, notes, callouts, modals)
+   - We include a glossy highlight using ::before
+   ---------------------- */
+.glass {
+  position: relative;
+  border-radius: var(--glass-radius);
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(var(--glass-rgb), 0.055), rgba(var(--glass-rgb), 0.03));
+  border: 1px solid rgba(var(--glass-border-rgb), var(--glass-border-alpha));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow: 0 12px 30px rgba(var(--glass-shadow-rgb), var(--glass-shadow-alpha));
+  transition: background 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
 }
 
-/* Example: apply .ui-glass to major containers */
-.navbar,
-.filetree-sidebar,
+/* glossy top sheen — keeps it delicate on mobile */
+.glass::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 40%;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+  transform: translateY(-10%);
+  opacity: 0.8;
+  mix-blend-mode: overlay;
+}
+
+/* subtle inner border to reinforce clarity */
+.glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+/* ----------------------
+   4) Apply glass to key parts of the template
+   - Keep selectors targeted so we don't rewrite everything in your base CSS
+   ---------------------- */
+.cm-s-obsidian > header,
+.content,
 .sidebar,
+.filetree-sidebar,
+.navbar,
+.search-box,
 .backlinks,
 .toc,
-.search-box,
+.table-view-table > tbody > tr,
+.backlink-card,
+#link-graph,
 #full-graph,
-.graph-fs {
-  @extend .ui-glass;
+#full-graph-container {
+  @extend .glass;
 }
 
-/* Buttons for theme controls */
-.dg-theme-controls {
-  display: flex;
-  gap: 8px;
+/* The content should be a tad more opaque so longform text is readable */
+.content {
+  background: linear-gradient(180deg, rgba(var(--glass-rgb),0.07), rgba(var(--glass-rgb),0.035));
+  padding: 28px;
+  border-radius: 14px;
+  color: var(--text-primary);
+}
+
+/* Graph / mermaid fallback so graphs remain readable with the glass */
+#link-graph,
+#full-graph-container,
+.mermaid {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Ensure contrast for links & headings */
+.content a, .backlink, .notelink a {
+  color: var(--text-accent);
+  text-decoration: underline dotted;
+}
+
+/* small utilities */
+.btn-dg {
+  display: inline-flex;
   align-items: center;
-  margin-left: auto;
-}
-
-.dg-theme-controls .dg-btn {
-  background: transparent;
-  border: 1px solid transparent;
+  gap: 8px;
   padding: 6px 10px;
   border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: linear-gradient(180deg, rgba(var(--glass-rgb),0.03), rgba(var(--glass-rgb),0.02));
   cursor: pointer;
   font-size: 0.95rem;
-  transition: background var(--dg-transition-fast), border-color var(--dg-transition-fast), transform var(--dg-transition-fast);
-}
-.dg-theme-controls .dg-btn:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(100,120,255,0.12);
-}
-.dg-theme-controls .dg-btn:hover { transform: translateY(-1px); }
-
-/* Hide the background-cycle button when not in light theme by default.
-   JS will toggle the 'dg-theme-light' / 'dg-theme-dark' classes on body */
-body:not(.dg-theme-light) .dg-btn--bg-cycle { display: none; }
-
-/* Theme variable defaults — sensible light theme (will be overridden by theme class) */
-:root {
-  --dg-text-primary: #0f1724;
-  --dg-text-muted: #4b5563;
-  --dg-background-primary: rgba(255,255,255,0.55);
-  --dg-background-secondary: rgba(255,255,255,0.45);
-  --text-primary: var(--dg-text-primary);
-  --text-muted: var(--dg-text-muted);
-
-  --graph-main: #0066cc;
-  --graph-muted: #7b8aa2;
 }
 
-/* Light theme explicit class (applied by JS) */
-body.dg-theme-light {
-  --dg-text-primary: #0f1724;
-  --dg-text-muted: #475569;
-  --dg-background-primary: rgba(255,255,255,0.62);
-  --dg-background-secondary: rgba(255,255,255,0.42);
-  --dg-glass-border: rgba(15,23,36,0.06);
-  --text-primary: var(--dg-text-primary);
-  --text-muted: var(--dg-text-muted);
-  --graph-main: #0066cc;
-  --graph-muted: #7b8aa2;
-  color: var(--text-primary);
+.btn-dg:focus { outline: 2px solid color-mix(in srgb, var(--text-accent) 35%, transparent); outline-offset: 2px; }
+
+/* ----------------------
+   5) Theme-specific tweaks (contrast & small details)
+   ---------------------- */
+body.theme-light {
+  --site-bg-dim: 0.08;
+  --glass-blur: 10px;
+  --glass-saturate: 135%;
+  --glass-border-alpha: 0.12;
+  --glass-shadow-alpha: 0.12;
 }
 
-/* Dark theme explicit class */
-body.dg-theme-dark {
-  --dg-text-primary: #e6eef8;
-  --dg-text-muted: #9aa6b2;
-  --dg-background-primary: rgba(10,12,17,0.45);
-  --dg-background-secondary: rgba(10,12,17,0.3);
-  --dg-glass-border: rgba(255,255,255,0.06);
-  --dg-glass-opacity: 0.20;
-  --dg-glass-elev-shadow: 0 8px 30px rgba(0,0,0,0.55);
-  --text-primary: var(--dg-text-primary);
-  --text-muted: var(--dg-text-muted);
-  --graph-main: #6ad1ff;
-  --graph-muted: #7f9bad;
-  color: var(--text-primary);
+body.theme-dark {
+  --site-bg-dim: 0.14;
+  --glass-blur: 14px;
+  --glass-saturate: 155%;
+  --glass-border-alpha: 0.06;
+  --glass-shadow-alpha: 0.22;
+
+  /* make sheen darker in dark theme to avoid glare */
+  .glass::before { background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); }
 }
 
-/* Ensure content uses glass look where appropriate (use .ui-glass on elements) */
-.content {
-  background: transparent; /* content is inside glass cards, keep transparent */
+/* ----------------------
+   6) Fallbacks & progressive enhancement
+   - If backdrop-filter isn't supported, we fall back to stronger semi-opaque backgrounds
+   ---------------------- */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .glass {
+    background: linear-gradient(180deg, rgba(var(--glass-rgb), 0.88), rgba(var(--glass-rgb), 0.84));
+    border: 1px solid rgba(var(--glass-border-rgb), 0.06);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  }
+  body::before { filter: blur(4px) grayscale(0.02); }
 }
 
-/* Mermaid / Graph boxes (adjust to theme) */
-.markdown-preview-view pre.mermaid,
-#link-graph,
-.dataview-result-list-ul,
-.backlinks,
-.toc {
-  background-color: var(--dg-background-secondary);
+/* ----------------------
+   7) Small responsive improvements (so glass reads well on mobile)
+   ---------------------- */
+@media (max-width: 800px) {
+  .content { padding: 18px; font-size: 17px; }
+  .navbar { padding-left: 14px; padding-right: 14px; }
+  .sidebar { display: none; } /* mobile: keep main focus */
 }
-
-/* Accessibility helpers */
-a, a:visited { color: var(--text-accent, var(--graph-main)); }
-code, pre { font-family: var(--font-monospace); }
-
-/* Performance tip: keep number of glass elements reasonable to limit GPU usage */
