@@ -1,39 +1,40 @@
 
-/* ===== Content-First Palette — Violet Velvet Accent (accessible) =====
+/* ===== Content-First Palette — Warm Ember Accent (accessible) =====
    Place in src/site/styles/user/
-   Violet is slightly more 'cosmic' but desaturated to avoid clashing with photos.
+   Warm-but-muted accent; accessible filled variant (--accent-contrast) computed for white text.
 */
 :root{
-  --bg: #F6F7FA;
+  --bg: #F6F5F3;
   --surface: #FFFFFF;
-  --text: #0D1218;
-  --muted: #646D7B;
-  --border: rgba(11,17,24,0.06);
+  --text: #0B0D0E;
+  --muted: #5B6164;
+  --border: rgba(11,13,14,0.06);
 
-  --accent: #7E5BEF;
-  --accent-contrast: #7E5BEF; /* already accessible for white text */
-  --accent-2: #C2A7FF;
-  --accent-3: #FFC58F;
+  --accent: #D77A3A;        /* decorative link / outline */
+  --accent-contrast: #B45F25; /* darker variant for filled buttons */
+  --accent-2: #FFB86B;
+  --accent-3: #6E8B6E;
 
   --radius: 12px;
-  --shadow: 0 12px 30px rgba(11,17,24,0.06);
+  --shadow: 0 12px 30px rgba(11,13,14,0.06);
 }
 
 html[data-theme="dark"], .theme-dark {
-  --bg: #070814;
-  --surface: #0E1016;
-  --text: #EAF1FF;
-  --muted: #98A3B8;
+  --bg: #0C0B0A;
+  --surface: #121212;
+  --text: #F0EFED;
+  --muted: #9A9A96;
   --border: rgba(255,255,255,0.06);
 
-  --accent: #7E5BEF;
-  --accent-contrast: #7E5BEF;
-  --accent-2: #C2A7FF;
-  --accent-3: #FFC58F;
+  --accent: #D77A3A;
+  --accent-contrast: #B45F25;
+  --accent-2: #FFB86B;
+  --accent-3: #6E8B6E;
 }
 
+/* core */
 body{ background:var(--bg); color:var(--text); font-family:Inter, system-ui, -apple-system; margin:0; padding:0; }
-.card{ background:var(--surface); border-radius:12px; padding:18px; border:1px solid var(--border); box-shadow:var(--shadow); }
+.card{ background:var(--surface); border-radius:var(--radius); padding:18px; border:1px solid var(--border); box-shadow:var(--shadow); }
 .media{ background:var(--surface); border-radius:10px; overflow:hidden; border:1px solid var(--border); }
 
 a{ color:var(--accent); font-weight:600; text-decoration:none; }
@@ -42,7 +43,7 @@ a:hover{ text-decoration:underline; }
 .btn-primary{ background:var(--accent-contrast); color:#FFFFFF; padding:.6rem .9rem; border-radius:10px; border:none; font-weight:600; }
 .btn-outline{ border:1px solid var(--accent); color:var(--text); padding:.5rem .8rem; border-radius:10px; background:transparent; }
 
-.badge{ padding:.25rem .5rem; border-radius:999px; background: linear-gradient(90deg, rgba(126,91,239,0.08), rgba(194,167,255,0.03)); border:1px solid var(--border); color:var(--text); }
+.badge{ padding:.25rem .5rem; border-radius:999px; background: linear-gradient(90deg, rgba(183,122,58,0.08), rgba(180,95,37,0.03)); border:1px solid var(--border); color:var(--text); }
 
 .sep{ height:1px; background:var(--border); margin:14px 0; }
 :focus{ outline:3px solid color-mix(in srgb, var(--accent) 20%, transparent); outline-offset:3px; }
