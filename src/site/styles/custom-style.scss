@@ -1,1 +1,372 @@
+/* src/site/styles/user/custom-style.scss
+   Glassy / transparent redesign for Obsidian Digital Garden
+   Drop this file into src/site/styles/user/custom-style.scss
+*/
 
+/* ---------------------------
+   Design tokens (simple & tweakable)
+   --------------------------- */
+:root {
+  /* Glass settings */
+  --glass-radius: 14px;
+  --glass-blur: 10px;
+  --glass-elevation: 0 10px 30px rgba(0,0,0,0.18);
+  --glass-border: rgba(255,255,255,0.08);
+  --glass-surface: rgba(255,255,255,0.04); /* dark-mode default */
+  --glass-surface-strong: rgba(255,255,255,0.06);
+
+  /* Accent and text tokens (will use theme variables as primary fallback) */
+  --accent: var(--text-accent, #58a6ff);
+  --text-on-glass: var(--text-primary, rgba(255,255,255,0.95));
+  --muted-on-glass: var(--text-muted, rgba(255,255,255,0.65));
+
+  /* layout tokens */
+  --sidebar-width: 280px;
+  --filetree-width: 250px;
+  --global-padding: 20px;
+}
+
+/* Light-mode tweak for glass (keeps readability on light themes) */
+@media (prefers-color-scheme: light) {
+  :root {
+    --glass-surface: rgba(255,255,255,0.72);
+    --glass-surface-strong: rgba(255,255,255,0.84);
+    --glass-border: rgba(0,0,0,0.06);
+    --glass-elevation: 0 8px 24px rgba(20,20,20,0.06);
+    --text-on-glass: var(--text-primary, #0b0b0b);
+    --muted-on-glass: var(--text-muted, rgba(0,0,0,0.6));
+  }
+}
+
+/* ---------------------------
+   Base overrides: make whole page transparent
+   --------------------------- */
+/* ensure the page is transparent so user can set a background image on <body> or <html> */
+html, body {
+  background: transparent !important;
+  color: var(--text-on-glass);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-default, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial);
+}
+
+/* ---------------------------
+   Glass utility / mixin class
+   --------------------------- */
+.glass {
+  background-color: var(--glass-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--glass-radius);
+  box-shadow: var(--glass-elevation);
+  backdrop-filter: blur(var(--glass-blur)) saturate(120%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(120%);
+  color: var(--text-on-glass);
+}
+
+/* Reduced motion / older browsers */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .glass {
+    background-color: rgba(0,0,0,0.45); /* fallback */
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+}
+
+/* ---------------------------
+   Navbar
+   --------------------------- */
+.navbar {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  z-index: 60;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+
+  .navbar-inner { display:flex; align-items:center; gap:12px; }
+
+  /* glass look */
+  &.glass-navbar, & {
+    @extend .glass;
+    padding: 12px 18px;
+    border-radius: calc(var(--glass-radius) * 0.9);
+    background-clip: padding-box;
+    backdrop-filter: blur(8px) saturate(120%);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    color: var(--text-on-glass);
+  }
+
+  .search-button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    transition: transform 120ms ease, box-shadow 120ms ease;
+    &:focus { outline: 2px solid color-mix(in srgb, var(--accent) 50%, transparent); }
+    &:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+  }
+
+  .search-text { color: var(--muted-on-glass); }
+}
+
+/* ---------------------------
+   Filetree sidebar (left) and right sidebar controls
+   --------------------------- */
+.filetree-sidebar {
+  background: transparent;
+  backdrop-filter: none;
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  width: var(--filetree-width);
+  max-width: 42vw;
+  height: calc(100% - 28px);
+  padding: 14px;
+  z-index: 40;
+
+  /* wrap the content in glass */
+  > .filetree-inner {
+    @extend .glass;
+    padding: 14px;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  h1 { font-size: 1.4rem; color: var(--text-on-glass); }
+}
+
+/* Right-side helper sidebar (graph, toc, backlinks) */
+.sidebar {
+  position: fixed;
+  top: 80px;
+  right: 18px;
+  width: var(--sidebar-width);
+  max-width: 38vw;
+  z-index: 40;
+  .sidebar-inner {
+    @extend .glass;
+    padding: 12px;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+  }
+
+  .toc, .backlinks {
+    background: transparent;
+    border: none;
+    padding: 10px;
+  }
+}
+
+/* When viewport small, make sidebars relative and flow below header */
+@media (max-width: 1400px) {
+  .sidebar { position: relative; right: auto; margin: 18px auto; width: auto; max-width: 900px; }
+  .filetree-sidebar { position: relative; left: auto; width: auto; margin: 12px auto; max-width: 900px; }
+}
+
+/* ---------------------------
+   Main content area
+   --------------------------- */
+.content {
+  max-width: 900px; /* slightly wider for roomy layout */
+  margin: auto;
+  margin-top: 110px;
+  padding: var(--global-padding);
+  position: relative;
+
+  /* wrap main page content in a subtle glass card so note body is readable */
+  .page-card {
+    @extend .glass;
+    padding: 28px;
+    border-radius: calc(var(--glass-radius) + 4px);
+  }
+
+  /* Note hero (title + meta) */
+  .note-hero {
+    margin-bottom: 20px;
+    padding: 22px;
+    border-radius: calc(var(--glass-radius) + 2px);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    h1 {
+      margin: 0;
+      font-size: 2.1rem;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      color: var(--text-on-glass);
+    }
+
+    .meta {
+      display:flex;
+      gap:12px;
+      color: var(--muted-on-glass);
+      font-size: 0.95rem;
+      align-items:center;
+    }
+  }
+
+  /* Content body: keep standard markdown width but on glass */
+  .markdown-preview-view {
+    margin-top: 18px;
+    /* ensure background shows through inside content blocks */
+    > * {
+      background: transparent;
+    }
+  }
+
+  /* Transclusions & callouts get a smaller glass surface */
+  .callout, div.transclusion, pre.mermaid {
+    @extend .glass;
+    padding: 12px;
+    border-radius: 12px;
+    margin: 12px 0;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+
+  /* Code blocks: darker glass for contrast */
+  pre, code, .cm-s-obsidian {
+    background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.45));
+    border-radius: 10px;
+    padding: 12px;
+    overflow-x: auto;
+    color: #f6f8fa;
+  }
+
+  /* Mermaid diagrams keep transparent but enclosed */
+  .markdown-preview-view pre.mermaid {
+    background: transparent;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+}
+
+/* ---------------------------
+   Index / note grid and cards
+   --------------------------- */
+.note-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+
+  .note-card {
+    @extend .glass;
+    padding: 18px;
+    min-height: 140px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+    cursor: pointer;
+
+    h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      color: var(--text-on-glass);
+    }
+
+    p.excerpt {
+      margin: 0;
+      color: var(--muted-on-glass);
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+      border-color: color-mix(in srgb, var(--accent) 35%, var(--glass-border));
+    }
+
+    .meta {
+      margin-top: auto;
+      display:flex;
+      justify-content:space-between;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--muted-on-glass);
+    }
+  }
+}
+
+/* ---------------------------
+   Backlinks, ToC tweaks
+   --------------------------- */
+.toc-container, .backlinks, .backlink-card {
+  border-radius: 10px;
+  padding: 10px;
+  background: transparent;
+  border: none;
+}
+
+/* backlink list items: subtle left accent */
+.backlink-card {
+  margin-left: 8px;
+  padding-left: 10px;
+  border-left: 2px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  color: var(--text-on-glass);
+}
+
+/* ---------------------------
+   Search modal and overlay
+   --------------------------- */
+.search-container.active {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.search-box {
+  @extend .glass;
+  width: min(900px, 92%);
+  padding: 18px;
+  border-radius: 18px;
+
+  input {
+    width:100%;
+    font-size: 1.4rem;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.04);
+    background: transparent;
+    color: var(--text-on-glass);
+  }
+}
+
+/* ---------------------------
+   Accessibility: focus & reduced motion
+   --------------------------- */
+:focus {
+  outline: 3px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* ---------------------------
+   Small screens: stacking & padding reductions
+   --------------------------- */
+@media (max-width: 800px) {
+  .content { margin-top: 80px; padding: 12px; }
+  .note-hero h1 { font-size: 1.6rem; }
+  .filetree-sidebar, .sidebar { display: none; }
+  .navbar { left: 8px; right: 8px; top: 8px; }
+}
