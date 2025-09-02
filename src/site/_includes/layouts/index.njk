@@ -1,96 +1,79 @@
 <!DOCTYPE html>
 <html lang="{{ meta.mainLanguage }}">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
-
-    {% include "components/pageheader.njk" %}
-    {% for imp in dynamics.common.head %}{% include imp %}{% endfor %}
-    {% for imp in dynamics.index.head %}{% include imp %}{% endfor %}
-
-    <link rel="stylesheet" href="/styles/custom.css">
+    {%include "components/pageheader.njk"%}
+    {% for imp in dynamics.common.head %}
+      {% include imp %}
+    {% endfor %}
+    {% for imp in dynamics.index.head %}
+      {% include imp %}
+    {% endfor %}
   </head>
-
   <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
-
-    <!-- Galaxy Skybox: the particle script will create canvases inside this -->
-    <div class="galaxy-skybox" id="galaxySkybox" aria-hidden="true">
-      <!-- decorative nebula layers for parallax (pure CSS; moved visually behind content) -->
-      <div class="nebula nebula--back"></div>
-      <div class="nebula nebula--mid"></div>
-      <div class="nebula nebula--front"></div>
-      <!-- container for DOM shooting-star elements (script will append) -->
-      <div id="shootingStarContainer" class="shooting-stars" aria-hidden="true"></div>
-    </div>
-
-    {% include "components/notegrowthhistory.njk" %}
+    {%include "components/notegrowthhistory.njk"%}
     {% if settings.dgShowFileTree !== true %}
-      {% include "components/navbar.njk" %}
-    {% else %}
-      {% include "components/filetree.njk" %}
+      {%include "components/navbar.njk"%}
+    {%else%}
+      {%include "components/filetree.njk"%}
     {% endif %}
     {% if settings.dgEnableSearch === true %}
-      {% include "components/searchContainer.njk" %}
+      {%include "components/searchContainer.njk"%}
     {% endif %}
-
     <main class="content cm-s-obsidian {{contentClasses}}">
-      <header class="site-header">
-        {% if settings.dgShowInlineTitle === true %}
-          <h1 class="site-title">{{ noteTitle }}</h1>
+      <header>
+      {% if settings.dgShowInlineTitle === true %}
+        <h1>{{ noteTitle  }}</h1>
+      {% endif %}
+
+      <div class="header-meta">
+        {% if settings.dgShowTags === true and tags %}
+          <div class="header-tags">
+            {% for tag in tags %}
+              {% if tag != 'gardenEntry' and tag !='note' %}
+                <a class="tag" onclick="toggleTagSearch(this)">
+                  #{{tag}}
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
         {% endif %}
-
-        <div class="header-meta">
-          {% if settings.dgShowTags === true and tags %}
-            <div class="header-tags">
-              {% for tag in tags %}
-                {% if tag != 'gardenEntry' and tag != 'note' %}
-                  <a class="tag" onclick="toggleTagSearch(this)">#{{tag}}</a>
-                {% endif %}
-              {% endfor %}
-            </div>
-          {% endif %}
-        </div>
-
-        {% for imp in dynamics.common.header %}{% include imp %}{% endfor %}
-        {% for imp in dynamics.index.header %}{% include imp %}{% endfor %}
+      </div>
+      {% for imp in dynamics.common.header %}
+        {% include imp %}
+      {% endfor %}
+      {% for imp in dynamics.index.header %}
+        {% include imp %}
+      {% endfor %}
       </header>
-
-      {% for imp in dynamics.common.beforeContent %}{% include imp %}{% endfor %}
-      {% for imp in dynamics.index.beforeContent %}{% include imp %}{% endfor %}
-
-      <article class="garden-article">
-        {{ content | hideDataview | taggify | link | safe }}
-      </article>
-
-      {% for imp in dynamics.common.afterContent %}{% include imp %}{% endfor %}
-      {% for imp in dynamics.index.afterContent %}{% include imp %}{% endfor %}
+      {% for imp in dynamics.common.beforeContent %}
+        {% include imp %}
+      {% endfor %}
+      {% for imp in dynamics.index.beforeContent %}
+        {% include imp %}
+      {% endfor %}
+      {{ content | hideDataview | taggify | link | safe}}
+      {% for imp in dynamics.common.afterContent %}
+        {% include imp %}
+      {% endfor %}
+      {% for imp in dynamics.index.afterContent %}
+        {% include imp %}
+      {% endfor %}
     </main>
 
-    {% if settings.dgShowBacklinks === true or settings.dgShowLocalGraph === true or settings.dgShowToc === true %}
-      {% include "components/sidebar.njk" %}
-    {% endif %}
+    {% if settings.dgShowBacklinks === true or settings.dgShowLocalGraph === true or settings.dgShowToc === true%}
+      {%include "components/sidebar.njk" %}
+    {%endif%}
 
     {% if settings.dgLinkPreview === true %}
-      {% include "components/linkPreview.njk" %}
+      {%include "components/linkPreview.njk"%}
     {% endif %}
-
-    {% for imp in dynamics.common.footer %}{% include imp %}{% endfor %}
-    {% for imp in dynamics.index.footer %}{% include imp %}{% endfor %}
-    {% include "components/lucideIcons.njk" %}
-
-
-<div class="floating-buttons">
-  <a href="https://chat.openai.com" target="_blank" title="ChatGPT">
-    <img src="/img/icons/chatgpt.png" alt="ChatGPT">
-  </a>
-  <a href="https://claude.ai" target="_blank" title="Claude">
-    <img src="/img/icons/claude.png" alt="Claude">
-  </a>
-  <a href="https://youtube.com" target="_blank" title="YouTube">
-    <img src="/img/icons/youtube.png" alt="YouTube">
-  </a>
-</div>
-
-  </body>
-</html>
+    {% for imp in dynamics.common.footer %}
+      {% include imp %}
+    {% endfor %}
+    {% for imp in dynamics.index.footer %}
+      {% include imp %}
+    {% endfor %}
+    {%include "components/lucideIcons.njk"%}
+    </body>
+  </html>
