@@ -1,258 +1,691 @@
-/* ==========================================================================
-   CUSTOM GLASS THEME (custom-style.scss)
-   - Place this file into your theme pipeline / custom-style.scss
-   - Sections are prefixed with comments so you can understand and tweak
-   ========================================================================== */
+/* ============================================
+   GLASS MORPHISM DIGITAL GARDEN THEME
+   Complete Custom Styling System
+   ============================================ */
 
-/* ----------------------
-   0) Default CSS variables (fallbacks)
-   ---------------------- */
+/* ============================================
+   SECTION 1: CSS VARIABLES & THEME SETUP
+   ============================================ */
+
 :root {
-  /* Site background image variable (updated by JS) */
-  --site-bg-url: none;
-  --site-bg-overlay: linear-gradient(rgba(0,0,0,0.08), rgba(0,0,0,0.06));
-  --site-bg-dim: 0.08; /* global dimming when image is present */
-
-  /* Glass defaults */
-  --glass-blur: 12px;
-  --glass-saturate: 140%;
-  --glass-radius: 14px;
-  --glass-border-alpha: 0.08;
-  --glass-shadow-alpha: 0.18;
-
-  /* Generic text/accents (will be overridden per theme) */
-  --text-primary: #111111;
-  --text-secondary: #4b5563;
-  --text-accent: #0b7cff;
-  --text-muted: #6b7280;
-
-  --background-primary: rgba(255,255,255,0.45);
-  --background-secondary: rgba(255,255,255,0.30);
-
-  /* Graph colors (used by your graph JS/CSS) */
-  --graph-main: var(--text-accent);
-  --graph-muted: var(--text-muted);
-
-  /* Fallback list if manifest fetch fails (use public URLs or relative assets) */
-  --fallback-light-list: '"/assets/bg-light-01.jpg","/assets/bg-light-02.jpg"';
-  --fallback-dark-list: '"/assets/bg-dark-01.jpg","/assets/bg-dark-02.jpg"';
+  /* Glass Properties - Light Mode */
+  --glass-bg-light: rgba(255, 255, 255, 0.1);
+  --glass-bg-medium-light: rgba(255, 255, 255, 0.15);
+  --glass-bg-heavy-light: rgba(255, 255, 255, 0.25);
+  --glass-border-light: rgba(255, 255, 255, 0.18);
+  --glass-shadow-light: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  --glass-text-primary-light: rgba(0, 0, 0, 0.9);
+  --glass-text-secondary-light: rgba(0, 0, 0, 0.7);
+  --glass-text-muted-light: rgba(0, 0, 0, 0.5);
+  --glass-accent-light: rgba(70, 130, 180, 0.8);
+  
+  /* Glass Properties - Dark Mode */
+  --glass-bg-dark: rgba(0, 0, 0, 0.3);
+  --glass-bg-medium-dark: rgba(0, 0, 0, 0.4);
+  --glass-bg-heavy-dark: rgba(0, 0, 0, 0.5);
+  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  --glass-shadow-dark: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --glass-text-primary-dark: rgba(255, 255, 255, 0.95);
+  --glass-text-secondary-dark: rgba(255, 255, 255, 0.8);
+  --glass-text-muted-dark: rgba(255, 255, 255, 0.6);
+  --glass-accent-dark: rgba(100, 200, 255, 0.9);
+  
+  /* Blur and Animation Properties */
+  --glass-blur: blur(10px);
+  --glass-blur-heavy: blur(20px);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-float: float 6s ease-in-out infinite;
+  
+  /* Background Image Variables */
+  --current-bg-image: url('');
+  --bg-overlay-opacity: 0.4;
 }
 
-/* ----------------------
-   1) Theme palettes (light + dark)
-   - These set the variables your base theme expects (so minimal changes needed)
-   ---------------------- */
+/* ============================================
+   SECTION 2: THEME MODE CLASSES
+   ============================================ */
 
+/* Light Mode Configuration */
 body.theme-light {
-  --text-primary: #0f1724;
-  --text-secondary: #475569;
-  --text-accent: #0b75ff;
-  --text-muted: #6b7280;
-
-  --background-primary: rgba(255,255,255,0.42);   /* used behind content */
-  --background-secondary: rgba(255,255,255,0.28);
-
-  /* glass color base (rgb) for sheen/border usage */
-  --glass-rgb: 255,255,255;
-  --glass-border-rgb: 255,255,255;
-  --glass-shadow-rgb: 2,6,23;
-
-  --graph-main: var(--text-accent);
-  --graph-muted: #9aa6bf;
+  --glass-bg: var(--glass-bg-light);
+  --glass-bg-medium: var(--glass-bg-medium-light);
+  --glass-bg-heavy: var(--glass-bg-heavy-light);
+  --glass-border: var(--glass-border-light);
+  --glass-shadow: var(--glass-shadow-light);
+  --text-primary: var(--glass-text-primary-light);
+  --text-normal: var(--glass-text-primary-light);
+  --text-muted: var(--glass-text-muted-light);
+  --text-accent: var(--glass-accent-light);
+  --background-primary: transparent;
+  --background-secondary: transparent;
+  --background-primary-alt: transparent;
+  --background-secondary-alt: transparent;
+  --h1-color: var(--glass-text-primary-light);
+  --h2-color: var(--glass-text-primary-light);
+  --h3-color: var(--glass-text-primary-light);
+  --h4-color: var(--glass-text-primary-light);
+  --h5-color: var(--glass-text-primary-light);
+  --h6-color: var(--glass-text-secondary-light);
+  --link-color: var(--glass-accent-light);
+  --link-color-hover: var(--glass-accent-light);
 }
 
+/* Dark Mode Configuration */
 body.theme-dark {
-  --text-primary: #e6eef8;
-  --text-secondary: #9fb0c6;
-  --text-accent: #6cc6ff;
-  --text-muted: #95a5b8;
-
-  --background-primary: rgba(10,12,16,0.36);
-  --background-secondary: rgba(10,12,16,0.24);
-
-  --glass-rgb: 18,20,26;
-  --glass-border-rgb: 255,255,255;
-  --glass-shadow-rgb: 0,0,0;
-
-  --graph-main: var(--text-accent);
-  --graph-muted: #6e889c;
+  --glass-bg: var(--glass-bg-dark);
+  --glass-bg-medium: var(--glass-bg-medium-dark);
+  --glass-bg-heavy: var(--glass-bg-heavy-dark);
+  --glass-border: var(--glass-border-dark);
+  --glass-shadow: var(--glass-shadow-dark);
+  --text-primary: var(--glass-text-primary-dark);
+  --text-normal: var(--glass-text-primary-dark);
+  --text-muted: var(--glass-text-muted-dark);
+  --text-accent: var(--glass-accent-dark);
+  --background-primary: transparent;
+  --background-secondary: transparent;
+  --background-primary-alt: transparent;
+  --background-secondary-alt: transparent;
+  --h1-color: var(--glass-text-primary-dark);
+  --h2-color: var(--glass-text-primary-dark);
+  --h3-color: var(--glass-text-primary-dark);
+  --h4-color: var(--glass-text-primary-dark);
+  --h5-color: var(--glass-text-primary-dark);
+  --h6-color: var(--glass-text-secondary-dark);
+  --link-color: var(--glass-accent-dark);
+  --link-color-hover: var(--glass-accent-dark);
 }
 
-/* ----------------------
-   2) Site background layer
-   - We use body::before to show the site background image (so everything else can be transparent glass)
-   - JS sets --site-bg-url to "url('...')" when the user cycles backgrounds
-   ---------------------- */
+/* ============================================
+   SECTION 3: BACKGROUND SYSTEM
+   ============================================ */
+
+/* Background Container */
 body::before {
-  content: "";
+  content: '';
   position: fixed;
-  inset: 0;
-  z-index: -3;
-  pointer-events: none;
-  background-image: var(--site-bg-url);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: var(--current-bg-image);
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  transition: filter 450ms ease, opacity 450ms ease;
-  opacity: 1;
-
-  /* subtle dim layer to keep text readable */
-  background-blend-mode: overlay;
-  mix-blend-mode: normal;
-  filter: saturate(1.05) contrast(1.02);
-}
-
-/* a global "tint" overlay to keep readability */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
+  background-attachment: fixed;
   z-index: -2;
-  pointer-events: none;
-  background: linear-gradient(rgba(0,0,0,var(--site-bg-dim)), rgba(0,0,0,var(--site-bg-dim)));
-  transition: opacity 350ms ease;
-  opacity: calc(var(--site-bg-url) == none ? 0 : 1);
+  transition: background-image 0.5s ease-in-out;
 }
 
-/* ----------------------
-   3) Reusable glass component
-   - Use the .glass class on any container (content, sidebar, notes, callouts, modals)
-   - We include a glossy highlight using ::before
-   ---------------------- */
-.glass {
-  position: relative;
-  border-radius: var(--glass-radius);
-  overflow: hidden;
-  background: linear-gradient(180deg, rgba(var(--glass-rgb), 0.055), rgba(var(--glass-rgb), 0.03));
-  border: 1px solid rgba(var(--glass-border-rgb), var(--glass-border-alpha));
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-  box-shadow: 0 12px 30px rgba(var(--glass-shadow-rgb), var(--glass-shadow-alpha));
-  transition: background 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
-}
-
-/* glossy top sheen — keeps it delicate on mobile */
-.glass::before {
-  content: "";
-  position: absolute;
-  left: 0;
+/* Overlay for better text readability */
+body::after {
+  content: '';
+  position: fixed;
   top: 0;
-  width: 100%;
-  height: 40%;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
-  transform: translateY(-10%);
-  opacity: 0.8;
-  mix-blend-mode: overlay;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, var(--bg-overlay-opacity)) 0%,
+    rgba(0, 0, 0, calc(var(--bg-overlay-opacity) * 0.7)) 100%
+  );
+  z-index: -1;
 }
 
-/* subtle inner border to reinforce clarity */
-.glass::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: inherit;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
-}
+/* ============================================
+   SECTION 4: GLASS MORPHISM MIXINS
+   ============================================ */
 
-/* ----------------------
-   4) Apply glass to key parts of the template
-   - Keep selectors targeted so we don't rewrite everything in your base CSS
-   ---------------------- */
-.cm-s-obsidian > header,
+/* Main Glass Effect */
+.glass-morphism,
 .content,
-.sidebar,
-.filetree-sidebar,
 .navbar,
-.search-box,
-.backlinks,
+.sidebar-container,
 .toc,
-.table-view-table > tbody > tr,
-.backlink-card,
-#link-graph,
-#full-graph,
-#full-graph-container {
-  @extend .glass;
+.backlinks,
+.graph,
+.search-box,
+.filetree-sidebar,
+div.transclusion,
+.callout,
+.dataview-result-list-ul,
+.table-view-table {
+  background: var(--glass-bg) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
+  transition: var(--transition-smooth);
 }
 
-/* The content should be a tad more opaque so longform text is readable */
-.content {
-  background: linear-gradient(180deg, rgba(var(--glass-rgb),0.07), rgba(var(--glass-rgb),0.035));
-  padding: 28px;
-  border-radius: 14px;
+/* Medium Glass Effect */
+.glass-morphism-medium,
+.search-button,
+.notelink.active-note,
+.searchresult.active,
+#link-graph,
+.graph-fs,
+#full-graph,
+.referred {
+  background: var(--glass-bg-medium) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  -webkit-backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
+}
+
+/* Heavy Glass Effect */
+.glass-morphism-heavy,
+.search-container.active,
+.fullpage-overlay {
+  background: var(--glass-bg-heavy) !important;
+  backdrop-filter: var(--glass-blur-heavy) !important;
+  -webkit-backdrop-filter: var(--glass-blur-heavy) !important;
+}
+
+/* ============================================
+   SECTION 5: THEME TOGGLE CONTROLS
+   ============================================ */
+
+/* Theme Toggle Container */
+.theme-toggle-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Theme Toggle Buttons */
+.theme-toggle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--glass-bg-medium);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
   color: var(--text-primary);
 }
 
-/* Graph / mermaid fallback so graphs remain readable with the glass */
-#link-graph,
-#full-graph-container,
-.mermaid {
-  background: transparent !important;
-  border: none !important;
+.theme-toggle-btn:hover {
+  background: var(--glass-bg-heavy);
+  transform: scale(1.1);
 }
 
-/* Ensure contrast for links & headings */
-.content a, .backlink, .notelink a {
-  color: var(--text-accent);
-  text-decoration: underline dotted;
+.theme-toggle-btn.active {
+  background: var(--glass-accent);
+  color: white;
 }
 
-/* small utilities */
-.btn-dg {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 10px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.06);
-  background: linear-gradient(180deg, rgba(var(--glass-rgb),0.03), rgba(var(--glass-rgb),0.02));
+/* Background Cycling Button */
+.bg-cycle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--glass-bg-medium);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
   cursor: pointer;
-  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+  color: var(--text-primary);
 }
 
-.btn-dg:focus { outline: 2px solid color-mix(in srgb, var(--text-accent) 35%, transparent); outline-offset: 2px; }
-
-/* ----------------------
-   5) Theme-specific tweaks (contrast & small details)
-   ---------------------- */
-body.theme-light {
-  --site-bg-dim: 0.08;
-  --glass-blur: 10px;
-  --glass-saturate: 135%;
-  --glass-border-alpha: 0.12;
-  --glass-shadow-alpha: 0.12;
+.bg-cycle-btn:hover {
+  background: var(--glass-bg-heavy);
+  transform: rotate(180deg);
 }
 
-body.theme-dark {
-  --site-bg-dim: 0.14;
-  --glass-blur: 14px;
-  --glass-saturate: 155%;
-  --glass-border-alpha: 0.06;
-  --glass-shadow-alpha: 0.22;
+/* ============================================
+   SECTION 6: MAIN CONTENT STYLING
+   ============================================ */
 
-  /* make sheen darker in dark theme to avoid glare */
-  .glass::before { background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); }
+/* Content Container */
+.content {
+  border-radius: 20px !important;
+  padding: 30px !important;
+  margin-top: 100px !important;
+  margin-bottom: 30px !important;
+  position: relative;
+  animation: fadeInUp 0.6s ease-out;
 }
 
-/* ----------------------
-   6) Fallbacks & progressive enhancement
-   - If backdrop-filter isn't supported, we fall back to stronger semi-opaque backgrounds
-   ---------------------- */
-@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .glass {
-    background: linear-gradient(180deg, rgba(var(--glass-rgb), 0.88), rgba(var(--glass-rgb), 0.84));
-    border: 1px solid rgba(var(--glass-border-rgb), 0.06);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+/* Headers Glass Enhancement */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1em;
+  position: relative;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--glass-accent), transparent);
+  border-radius: 2px;
+}
+
+/* ============================================
+   SECTION 7: NAVIGATION & SIDEBAR
+   ============================================ */
+
+/* Navbar Glass */
+.navbar {
+  border-radius: 0 0 20px 20px !important;
+  padding: 15px 30px !important;
+  position: fixed !important;
+  top: 0 !important;
+}
+
+/* Sidebar Components */
+.sidebar {
+  right: 30px !important;
+  top: 100px !important;
+}
+
+.sidebar-container {
+  border-radius: 20px !important;
+  padding: 20px !important;
+  background: var(--glass-bg) !important;
+}
+
+/* TOC Glass Enhancement */
+.toc {
+  border-radius: 15px !important;
+  margin-bottom: 20px !important;
+  padding: 15px !important;
+}
+
+.toc-container {
+  max-height: 300px !important;
+  padding-right: 10px !important;
+}
+
+.toc-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.toc-container::-webkit-scrollbar-track {
+  background: var(--glass-bg);
+  border-radius: 3px;
+}
+
+.toc-container::-webkit-scrollbar-thumb {
+  background: var(--glass-accent);
+  border-radius: 3px;
+}
+
+/* Backlinks Glass */
+.backlinks {
+  border-radius: 15px !important;
+  padding: 15px !important;
+}
+
+.backlink-list {
+  border-left: 2px solid var(--glass-accent) !important;
+  padding-left: 15px !important;
+}
+
+/* ============================================
+   SECTION 8: GRAPH VIEW STYLING
+   ============================================ */
+
+/* Graph Container */
+.graph {
+  border-radius: 15px !important;
+  padding: 10px !important;
+  background: var(--glass-bg) !important;
+}
+
+#link-graph {
+  border-radius: 10px !important;
+  background: var(--glass-bg-medium) !important;
+  padding: 10px !important;
+}
+
+/* Graph nodes and edges colors */
+.graph-view.color-fill {
+  color: var(--glass-accent) !important;
+}
+
+.graph-view.color-line {
+  color: var(--glass-border) !important;
+}
+
+/* ============================================
+   SECTION 9: FILE TREE STYLING
+   ============================================ */
+
+.filetree-sidebar {
+  border-radius: 0 20px 20px 0 !important;
+  padding: 20px !important;
+  width: 280px !important;
+  background: var(--glass-bg) !important;
+}
+
+.notelink {
+  border-radius: 10px !important;
+  margin: 5px 0 !important;
+  padding: 8px 15px !important;
+  transition: var(--transition-smooth);
+}
+
+.notelink:hover {
+  background: var(--glass-bg-medium) !important;
+  transform: translateX(5px);
+}
+
+.notelink.active-note {
+  background: var(--glass-bg-heavy) !important;
+  border-left: 3px solid var(--glass-accent) !important;
+}
+
+/* ============================================
+   SECTION 10: SEARCH INTERFACE
+   ============================================ */
+
+.search-container {
+  background: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(5px) !important;
+}
+
+.search-box {
+  background: var(--glass-bg-heavy) !important;
+  border-radius: 25px !important;
+  padding: 25px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+}
+
+.search-box input {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 15px !important;
+  padding: 15px 20px !important;
+  color: var(--text-primary) !important;
+}
+
+.searchresult {
+  background: var(--glass-bg) !important;
+  border-radius: 12px !important;
+  padding: 15px !important;
+  margin: 10px 0 !important;
+  transition: var(--transition-smooth);
+}
+
+.searchresult:hover {
+  background: var(--glass-bg-medium) !important;
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   SECTION 11: BUTTONS & INTERACTIVE ELEMENTS
+   ============================================ */
+
+/* All Buttons Glass Style */
+button,
+.button,
+.search-button,
+.mod-cta {
+  background: var(--glass-bg-medium) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  padding: 8px 16px !important;
+  color: var(--text-primary) !important;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+button:hover,
+.button:hover,
+.search-button:hover {
+  background: var(--glass-bg-heavy) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ============================================
+   SECTION 12: LINKS & TEXT ELEMENTS
+   ============================================ */
+
+a {
+  color: var(--glass-accent) !important;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  position: relative;
+}
+
+a:hover {
+  color: var(--text-primary) !important;
+  text-shadow: 0 0 8px var(--glass-accent);
+}
+
+/* Internal links special effect */
+a.internal-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--glass-accent);
+  transition: width 0.3s ease;
+}
+
+a.internal-link:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   SECTION 13: CODE BLOCKS & TABLES
+   ============================================ */
+
+/* Code blocks */
+pre,
+code {
+  background: var(--glass-bg-medium) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 8px !important;
+  color: var(--text-primary) !important;
+}
+
+pre {
+  padding: 15px !important;
+  backdrop-filter: var(--glass-blur) !important;
+}
+
+/* Tables */
+table {
+  background: var(--glass-bg) !important;
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+
+th {
+  background: var(--glass-bg-medium) !important;
+  padding: 12px !important;
+  border-bottom: 2px solid var(--glass-accent) !important;
+}
+
+td {
+  padding: 10px !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+}
+
+tr:hover {
+  background: var(--glass-bg-medium) !important;
+}
+
+/* ============================================
+   SECTION 14: SCROLLBARS
+   ============================================ */
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--glass-bg);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--glass-accent);
+  border-radius: 5px;
+  border: 1px solid var(--glass-border);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--glass-bg-heavy);
+}
+
+/* ============================================
+   SECTION 15: ANIMATIONS
+   ============================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
-  body::before { filter: blur(4px) grayscale(0.02); }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* ----------------------
-   7) Small responsive improvements (so glass reads well on mobile)
-   ---------------------- */
-@media (max-width: 800px) {
-  .content { padding: 18px; font-size: 17px; }
-  .navbar { padding-left: 14px; padding-right: 14px; }
-  .sidebar { display: none; } /* mobile: keep main focus */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Hover animations for various elements */
+.content,
+.sidebar-container,
+.search-box {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* ============================================
+   SECTION 16: RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1400px) {
+  .sidebar {
+    position: relative !important;
+    right: auto !important;
+    max-width: 100% !important;
+    margin: 30px auto !important;
+  }
+  
+  .content {
+    margin-top: 80px !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .theme-toggle-container {
+    top: 10px;
+    right: 10px;
+  }
+  
+  .theme-toggle-btn,
+  .bg-cycle-btn {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .content {
+    padding: 20px !important;
+    margin: 70px 10px 20px 10px !important;
+  }
+  
+  .filetree-sidebar {
+    width: 100% !important;
+    border-radius: 0 !important;
+  }
+}
+
+/* ============================================
+   SECTION 17: SPECIAL EFFECTS
+   ============================================ */
+
+/* Shimmer effect for loading */
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--glass-bg) 0%,
+    var(--glass-bg-medium) 50%,
+    var(--glass-bg) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Glow effect for important elements */
+.glow {
+  box-shadow: 
+    0 0 20px var(--glass-accent),
+    inset 0 0 20px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ============================================
+   SECTION 18: UTILITY CLASSES
+   ============================================ */
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 15px 0;
+}
+
+.glass-badge {
+  background: var(--glass-bg-medium);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 5px 15px;
+  display: inline-block;
+  font-size: 0.9em;
+}
+
+.no-glass {
+  backdrop-filter: none !important;
+  background: var(--glass-bg-heavy) !important;
+}
+
+/* ============================================
+   END OF CUSTOM STYLES
+   ============================================ */
