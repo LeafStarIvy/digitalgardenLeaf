@@ -566,7 +566,8 @@ h1::after {
 
 /* CSS Variable for easy adjustment */
 :root {
-  --content-left-offset: 120px; /* CHANGE THIS VALUE TO ADJUST MAIN CONTENT POSITION */
+  --content-left-offset: 120px; /* Distance from left edge */
+  --content-right-offset: 380px; /* Distance from right edge (accounts for sidebar) */
 }
 
 /* Sidebar indicator dots */
@@ -650,16 +651,33 @@ h1::after {
 }
 
 /* Responsive adjustments */
+@media (max-width: 1400px) {
+  :root {
+    --content-left-offset: 100px;
+    --content-right-offset: 320px; /* Smaller right margin on smaller screens */
+  }
+}
+
 @media (max-width: 1200px) {
   :root {
     --content-left-offset: 80px;
+    --content-right-offset: 280px;
+  }
+}
+
+@media (max-width: 1000px) {
+  :root {
+    --content-left-offset: 60px;
+    --content-right-offset: 30px; /* No right sidebar on medium screens */
   }
 }
 
 @media (max-width: 800px) {
-  :root {
-    --content-left-offset: 20px;
+  .content {
+    margin: 60px 15px 20px 15px !important; /* Simple margins on mobile */
+    min-height: calc(100vh - 100px) !important;
   }
+}
   
   .content {
     position: relative !important;
@@ -667,6 +685,26 @@ h1::after {
     right: auto !important;
     margin: 70px 10px 20px 10px !important;
   }
+   /* Dynamic right margin based on sidebar presence */
+body:has(.sidebar:not(:empty)) .content {
+  margin-right: var(--content-right-offset) !important;
+}
+
+body:not(:has(.sidebar:not(:empty))) .content {
+  margin-right: 30px !important;
+}
+
+/* Fallback for browsers that don't support :has() */
+@supports not (selector(:has(*))) {
+  .content {
+    margin-right: var(--content-right-offset) !important;
+  }
+  
+  /* Add this class to body when sidebar is hidden via JavaScript */
+  .no-right-sidebar .content {
+    margin-right: 30px !important;
+  }
+}
   
   .sidebar-trigger-zone {
     width: 40px;
