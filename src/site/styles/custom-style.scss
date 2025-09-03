@@ -263,22 +263,28 @@ div.transclusion,
    SECTION 6: MAIN CONTENT STYLING
    ============================================ */
 
-/* Content Container */
-/* Content Container */
+/* Main content with proper boundaries */
 .content {
   border-radius: 20px !important;
   padding: 30px !important;
-  margin-top: 100px !important;
-  margin-bottom: 30px !important;
-  position: relative;
-  animation: fadeInUp 0.6s ease-out;
+  position: relative !important;
   
-  /* Main note positioning and sizing */
-  max-width: none !important;
-  width: calc(100vw - 350px) !important; /* Full width minus sidebar space */
-  margin-left: 320px !important; /* Offset to the right of file tree */
+  /* Proper positioning that respects navbar and sidebar */
+  margin-top: 80px !important; /* Reduced to go closer to top */
+  margin-bottom: 30px !important;
+  margin-left: var(--content-left-offset, 120px) !important;
+  margin-right: var(--content-right-offset, 380px) !important; /* Space for right sidebar */
+  
+  width: auto !important;
+  min-height: calc(100vh - 140px) !important; /* Adjusted for new top margin */
+  
+  transition: none !important;
+  overflow-y: visible !important;
+}
+
+/* When right sidebar components are hidden, reduce right margin */
+.content:not(.has-right-sidebar) {
   margin-right: 30px !important;
-  min-height: calc(100vh - 160px) !important; /* Almost full height */
 }
 
 /* When file tree is hidden, center the content */
