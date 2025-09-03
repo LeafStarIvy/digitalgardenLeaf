@@ -322,5 +322,44 @@ function updateBackground() {
       }, 30000);
       */
     </script>
+
+<!-- Sidebar Toggle Script -->
+<script>
+let sidebarTimer;
+const sidebar = document.querySelector('.filetree-sidebar');
+const triggerZone = document.querySelector('.sidebar-trigger-zone');
+
+if (sidebar && triggerZone) {
+  // Show sidebar on hover
+  function showSidebar() {
+    clearTimeout(sidebarTimer);
+    sidebar.classList.add('sidebar-visible');
+  }
+
+  // Hide sidebar with delay
+  function hideSidebar() {
+    sidebarTimer = setTimeout(() => {
+      sidebar.classList.remove('sidebar-visible');
+    }, 300); // 300ms delay before hiding
+  }
+
+  // Event listeners
+  triggerZone.addEventListener('mouseenter', showSidebar);
+  triggerZone.addEventListener('mouseleave', hideSidebar);
+  sidebar.addEventListener('mouseenter', showSidebar);
+  sidebar.addEventListener('mouseleave', hideSidebar);
+
+  // Touch support for mobile
+  triggerZone.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    if (sidebar.classList.contains('sidebar-visible')) {
+      sidebar.classList.remove('sidebar-visible');
+    } else {
+      showSidebar();
+    }
+  });
+}
+</script>
+
   </body>
 </html>
