@@ -150,24 +150,30 @@
         ]
       };
       
-      // State management
-      let currentTheme = localStorage.getItem('theme') || 'dark';
-      let currentBgIndex = {
-        light: parseInt(localStorage.getItem('bgIndexLight')) || 0,
-        dark: parseInt(localStorage.getItem('bgIndexDark')) || 0
-      };
+// State management
+let currentTheme = localStorage.getItem('theme') || 'light'; // Changed default to 'light'
+let currentBgIndex = {
+  light: 0, // Will be set properly in initTheme()
+  dark: 0   // Will be set properly in initTheme()
+};
       
-      // Initialize theme on page load
-      function initTheme() {
-        setTheme(currentTheme, false);
-        
-        // Check if custom backgrounds exist, otherwise use defaults
-        if (backgrounds.light[0].includes('yourusername')) {
-          console.log('Please update the background URLs in the script with your GitHub repository information');
-          // Use default backgrounds if not configured
-          Object.assign(backgrounds, defaultBackgrounds);
-        }
-      }
+ // Initialize theme on page load
+function initTheme() {
+  // Check if custom backgrounds exist, otherwise use defaults
+  if (backgrounds.light[0].includes('yourusername')) {
+    console.log('Please update the background URLs in the script with your GitHub repository information');
+    // Use default backgrounds if not configured
+    Object.assign(backgrounds, defaultBackgrounds);
+  }
+  
+  // Restore background indices from localStorage or set defaults
+  currentBgIndex.light = parseInt(localStorage.getItem('bgIndexLight')) || 0;
+  currentBgIndex.dark = parseInt(localStorage.getItem('bgIndexDark')) || 0;
+  
+  // Set theme and ensure background is applied
+  setTheme(currentTheme, false);
+  updateBackground(); // Explicitly call updateBackground to ensure it's set
+}
       
       // Set theme function
       function setTheme(theme, updateStorage = true) {
@@ -195,45 +201,47 @@
         updateBackground();
       }
       
-      // Cycle through backgrounds
-      function cycleBackground() {
-        const bgArray = backgrounds[currentTheme];
-        if (bgArray && bgArray.length > 0) {
-          currentBgIndex[currentTheme] = (currentBgIndex[currentTheme] + 1) % bgArray.length;
-          localStorage.setItem(`bgIndex${currentTheme.charAt(0).toUpperCase() + currentTheme.slice(1)}`, 
-                              currentBgIndex[currentTheme].toString());
-          updateBackground();
-          
-          // Add rotation animation to button
-          const btn = document.querySelector('.bg-cycle-btn');
-          btn.style.transform = 'rotate(360deg)';
-          setTimeout(() => {
-            btn.style.transform = 'rotate(0deg)';
-          }, 300);
-        }
-      }
+// Cycle through backgrounds
+function cycleBackground() {
+  const bgArray = backgrounds[currentTheme];
+  if (bgArray && bgArray.length > 0) {
+    currentBgIndex[currentTheme] = (currentBgIndex[currentTheme] + 1) % bgArray.length;
+    updateBackground(); // updateBackground now handles localStorage saving
+    
+    // Add rotation animation to button
+    const btn = document.querySelector('.bg-cycle-btn');
+    btn.style.transform = 'rotate(360deg)';
+    setTimeout(() => {
+      btn.style.transform = 'rotate(0deg)';
+    }, 300);
+  }
+}
       
-      // Update background image
-      function updateBackground() {
-        const bgArray = backgrounds[currentTheme];
-        if (bgArray && bgArray.length > 0) {
-          const bgUrl = bgArray[currentBgIndex[currentTheme]];
-          document.documentElement.style.setProperty('--current-bg-image', `url('${bgUrl}')`);
-          
-          // Preload next image for smooth transitions
-          if (bgArray.length > 1) {
-            const nextIndex = (currentBgIndex[currentTheme] + 1) % bgArray.length;
-            const img = new Image();
-            img.src = bgArray[nextIndex];
-          }
-        } else {
-          // Fallback gradient if no images are available
-          const fallbackGradient = currentTheme === 'light' 
-            ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-            : 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
-          document.documentElement.style.setProperty('--current-bg-image', fallbackGradient);
-        }
-      }
+    // Update background image
+function updateBackground() {
+  const bgArray = backgrounds[currentTheme];
+  if (bgArray && bgArray.length > 0) {
+    const bgUrl = bgArray[currentBgIndex[currentTheme]];
+    document.documentElement.style.setProperty('--current-bg-image', `url('${bgUrl}')`);
+    
+    // Save current background index to localStorage
+    localStorage.setItem(`bgIndex${currentTheme.charAt(0).toUpperCase() + currentTheme.slice(1)}`, 
+                          currentBgIndex[currentTheme].toString());
+    
+    // Preload next image for smooth transitions
+    if (bgArray.length > 1) {
+      const nextIndex = (currentBgIndex[currentTheme] + 1) % bgArray.length;
+      const img = new Image();
+      img.src = bgArray[nextIndex];
+    }
+  } else {
+    // Fallback gradient if no images are available
+    const fallbackGradient = currentTheme === 'light' 
+      ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+      : 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
+    document.documentElement.style.setProperty('--current-bg-image', fallbackGradient);
+  }
+}
       
       // Keyboard shortcuts
       document.addEventListener('keydown', function(e) {
