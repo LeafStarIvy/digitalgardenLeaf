@@ -11,6 +11,36 @@
     {% endfor %}
   </head>
   <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {{meta.bodyClasses}}">
+    
+    <!-- Theme Toggle Controls -->
+    <div class="theme-toggle-container">
+      <button class="theme-toggle-btn light-mode-btn" onclick="setTheme('light')" title="Light Mode">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+      <button class="theme-toggle-btn dark-mode-btn" onclick="setTheme('dark')" title="Dark Mode">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+      <button class="bg-cycle-btn" onclick="cycleBackground()" title="Change Background">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <circle cx="8.5" cy="8.5" r="1.5"></circle>
+          <polyline points="21 15 16 10 5 21"></polyline>
+        </svg>
+      </button>
+    </div>
+    
     {%include "components/notegrowthhistory.njk"%}
     {% if settings.dgShowFileTree !== true %}
       {%include "components/navbar.njk"%}
@@ -20,7 +50,8 @@
     {% if settings.dgEnableSearch === true %}
       {%include "components/searchContainer.njk"%}
     {% endif %}
-    <main class="content cm-s-obsidian {{contentClasses}}">
+    
+    <main class="content glass-morphism cm-s-obsidian {{contentClasses}}">
       <header>
       {% if settings.dgShowInlineTitle === true %}
         <h1>{{ noteTitle  }}</h1>
@@ -31,7 +62,7 @@
           <div class="header-tags">
             {% for tag in tags %}
               {% if tag != 'gardenEntry' and tag !='note' %}
-                <a class="tag" onclick="toggleTagSearch(this)">
+                <a class="tag glass-badge" onclick="toggleTagSearch(this)">
                   #{{tag}}
                 </a>
               {% endif %}
@@ -75,5 +106,180 @@
       {% include imp %}
     {% endfor %}
     {%include "components/lucideIcons.njk"%}
-    </body>
-  </html>
+    
+    <!-- Theme and Background Management Script -->
+    <script>
+      // Configuration for backgrounds
+      // IMPORTANT: Replace 'yourusername' and 'yourrepo' with your actual GitHub username and repository name
+      // Upload your background images to your repository in the following structure:
+      // /backgrounds/light/image1.jpg, image2.jpg, etc.
+      // /backgrounds/dark/image1.jpg, image2.jpg, etc.
+      
+      const backgrounds = {
+        light: [
+          'https://raw.githubusercontent.com/yourusername/yourrepo/main/backgrounds/light/forest-light.jpg',
+          'https://raw.githubusercontent.com/yourusername/yourrepo/main/backgrounds/light/ocean-light.jpg',
+          'https://raw.githubusercontent.com/yourusername/yourrepo/main/backgrounds/light/mountain-light.jpg',
+          'https://raw.githubusercontent.com/yourusername/yourrepo/main/backgrounds/light/abstract-light.jpg',
+          'https://raw.githubusercontent.com/yourusername/yourrepo/main/backgrounds/light/gradient-light.jpg'
+          // Add more light backgrounds as needed
+        ],
+        dark: [
+          'https://raw.githubusercontent.com/yourusername/yourrepo/main/backgrounds/dark/space-dark.jpg',
+          'https://raw.githubusercontent.com/yourusername/yourrepo/main/backgrounds/dark/forest-dark.jpg',
+          'https://raw.githubusercontent.com/yourusername/yourrepo/main/backgrounds/dark/city-dark.jpg',
+          'https://raw.githubusercontent.com/yourusername/yourrepo/main/backgrounds/dark/abstract-dark.jpg',
+          'https://raw.githubusercontent.com/yourusername/yourrepo/main/backgrounds/dark/gradient-dark.jpg'
+          // Add more dark backgrounds as needed
+        ]
+      };
+      
+      // Alternative: Use Unsplash or other CDN images as placeholders
+      const defaultBackgrounds = {
+        light: [
+          'https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=80&w=2000',
+          'https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?q=80&w=2000',
+          'https://images.unsplash.com/photo-1557682260-96773eb01377?q=80&w=2000',
+          'https://images.unsplash.com/photo-1556075798-4825dfaaf498?q=80&w=2000'
+        ],
+        dark: [
+          'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2000',
+          'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2000',
+          'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?q=80&w=2000',
+          'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?q=80&w=2000'
+        ]
+      };
+      
+// State management
+let currentTheme = localStorage.getItem('theme') || 'light'; // Changed default to 'light'
+let currentBgIndex = {
+  light: 0, // Will be set properly in initTheme()
+  dark: 0   // Will be set properly in initTheme()
+};
+      
+ // Initialize theme on page load
+function initTheme() {
+  // Check if custom backgrounds exist, otherwise use defaults
+  if (backgrounds.light[0].includes('yourusername')) {
+    console.log('Please update the background URLs in the script with your GitHub repository information');
+    // Use default backgrounds if not configured
+    Object.assign(backgrounds, defaultBackgrounds);
+  }
+  
+  // Restore background indices from localStorage or set defaults
+  currentBgIndex.light = parseInt(localStorage.getItem('bgIndexLight')) || 0;
+  currentBgIndex.dark = parseInt(localStorage.getItem('bgIndexDark')) || 0;
+  
+  // Set theme and ensure background is applied
+  setTheme(currentTheme, false);
+  updateBackground(); // Explicitly call updateBackground to ensure it's set
+}
+      
+      // Set theme function
+      function setTheme(theme, updateStorage = true) {
+        currentTheme = theme;
+        
+        // Update body class
+        document.body.className = document.body.className.replace(/theme-\w+/, `theme-${theme}`);
+        
+        // Update active button states
+        document.querySelectorAll('.theme-toggle-btn').forEach(btn => btn.classList.remove('active'));
+        if (theme === 'light') {
+          document.querySelector('.light-mode-btn').classList.add('active');
+          document.documentElement.style.setProperty('--bg-overlay-opacity', '0.2');
+        } else {
+          document.querySelector('.dark-mode-btn').classList.add('active');
+          document.documentElement.style.setProperty('--bg-overlay-opacity', '0.4');
+        }
+        
+        // Save to localStorage
+        if (updateStorage) {
+          localStorage.setItem('theme', theme);
+        }
+        
+        // Update background
+        updateBackground();
+      }
+      
+// Cycle through backgrounds
+function cycleBackground() {
+  const bgArray = backgrounds[currentTheme];
+  if (bgArray && bgArray.length > 0) {
+    currentBgIndex[currentTheme] = (currentBgIndex[currentTheme] + 1) % bgArray.length;
+    updateBackground(); // updateBackground now handles localStorage saving
+    
+    // Add rotation animation to button
+    const btn = document.querySelector('.bg-cycle-btn');
+    btn.style.transform = 'rotate(360deg)';
+    setTimeout(() => {
+      btn.style.transform = 'rotate(0deg)';
+    }, 300);
+  }
+}
+      
+    // Update background image
+function updateBackground() {
+  const bgArray = backgrounds[currentTheme];
+  if (bgArray && bgArray.length > 0) {
+    const bgUrl = bgArray[currentBgIndex[currentTheme]];
+    document.documentElement.style.setProperty('--current-bg-image', `url('${bgUrl}')`);
+    
+    // Save current background index to localStorage
+    localStorage.setItem(`bgIndex${currentTheme.charAt(0).toUpperCase() + currentTheme.slice(1)}`, 
+                          currentBgIndex[currentTheme].toString());
+    
+    // Preload next image for smooth transitions
+    if (bgArray.length > 1) {
+      const nextIndex = (currentBgIndex[currentTheme] + 1) % bgArray.length;
+      const img = new Image();
+      img.src = bgArray[nextIndex];
+    }
+  } else {
+    // Fallback gradient if no images are available
+    const fallbackGradient = currentTheme === 'light' 
+      ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+      : 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
+    document.documentElement.style.setProperty('--current-bg-image', fallbackGradient);
+  }
+}
+      
+      // Keyboard shortcuts
+      document.addEventListener('keydown', function(e) {
+        // Alt + T: Toggle theme
+        if (e.altKey && e.key === 't') {
+          setTheme(currentTheme === 'light' ? 'dark' : 'light');
+        }
+        // Alt + B: Cycle background
+        if (e.altKey && e.key === 'b') {
+          cycleBackground();
+        }
+      });
+      
+      // Initialize on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        initTheme();
+        
+        // Add smooth transitions after initial load
+        setTimeout(() => {
+          document.body.style.transition = 'background 0.5s ease-in-out';
+        }, 100);
+      });
+      
+      // Handle tag search toggle
+      function toggleTagSearch(element) {
+        const tagText = element.innerText.replace('#', '');
+        if (window.toggleTagSearch) {
+          window.toggleTagSearch(tagText);
+        }
+      }
+      
+      // Optional: Auto-cycle backgrounds
+      // Uncomment the following to automatically change backgrounds every 30 seconds
+      /*
+      setInterval(() => {
+        cycleBackground();
+      }, 30000);
+      */
+    </script>
+  </body>
+</html>
