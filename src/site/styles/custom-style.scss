@@ -488,148 +488,187 @@ h1::after {
    SECTION 9A: AUTO-HIDE SIDEBAR SYSTEM
    ============================================ */
 
-/* Hover trigger zone - invisible area on left side of screen */
+/* Hover trigger zone with visual darkening */
 .sidebar-trigger-zone {
   position: fixed;
   left: 0;
   top: 0;
-  width: 50px;
+  width: 60px;
   height: 100vh;
   z-index: 999;
-  background: transparent;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.08) 70%,
+    transparent 100%
+  );
+  backdrop-filter: blur(2px);
+  transition: all 0.3s ease;
   cursor: pointer;
+}
+
+.sidebar-trigger-zone:hover {
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.12) 70%,
+    transparent 100%
+  );
+  width: 80px;
 }
 
 /* File tree sidebar - initially hidden */
 .filetree-sidebar {
   position: fixed !important;
-  left: -280px !important; /* Hidden by default */
+  left: -320px !important;
   top: 0 !important;
-  width: 280px !important;
+  width: 320px !important;
   height: 100vh !important;
-  z-index: 998;
-  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  border-radius: 0 20px 20px 0 !important;
-  padding: 20px !important;
+  z-index: 1000;
+  transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  border-radius: 0 25px 25px 0 !important;
+  padding: 25px !important;
   background: var(--glass-bg) !important;
   overflow-y: auto;
-  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 0 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: var(--glass-blur-heavy) !important;
 }
 
-/* Show sidebar when hovering trigger zone or sidebar itself */
-.sidebar-trigger-zone:hover + .filetree-sidebar,
-.filetree-sidebar:hover {
+/* Sidebar visible state */
+.filetree-sidebar.sidebar-visible {
   left: 0 !important;
 }
 
-/* Main content adjustments */
+/* Main content with customizable left offset */
 .content {
   border-radius: 20px !important;
   padding: 30px !important;
   margin-top: 100px !important;
   margin-bottom: 30px !important;
-  position: relative;
-  animation: fadeInUp 0.6s ease-out;
+  position: fixed !important;
   
-  /* Default positioning when sidebar is hidden */
-  margin-left: 30px !important;
-  margin-right: 30px !important;
-  width: calc(100vw - 60px) !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  /* Customizable positioning - Change these values as needed */
+  left: var(--content-left-offset, 100px) !important; /* YOU CAN CHANGE THIS VALUE */
+  right: 30px !important;
+  width: auto !important;
+  
+  transition: none !important; /* No transition so sidebar doesn't affect position */
   min-height: calc(100vh - 160px) !important;
+  overflow-y: auto;
+  max-height: calc(100vh - 130px) !important;
 }
 
-/* Content adjustments when sidebar is visible */
-.sidebar-trigger-zone:hover ~ main .content,
-.filetree-sidebar:hover ~ main .content {
-  margin-left: 320px !important;
-  width: calc(100vw - 350px) !important;
+/* CSS Variable for easy adjustment */
+:root {
+  --content-left-offset: 120px; /* CHANGE THIS VALUE TO ADJUST MAIN CONTENT POSITION */
 }
 
-/* Sidebar indicator - subtle hint that sidebar exists */
+/* Sidebar indicator dots */
 .sidebar-indicator {
   position: fixed;
-  left: 10px;
+  left: 15px;
   top: 50%;
   transform: translateY(-50%);
-  width: 4px;
-  height: 60px;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    var(--glass-accent),
-    transparent
-  );
-  border-radius: 2px;
-  z-index: 997;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
+  z-index: 998;
+  pointer-events: none;
 }
 
-.sidebar-indicator:hover {
-  opacity: 1;
+.sidebar-indicator::before,
+.sidebar-indicator::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--glass-accent);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.sidebar-indicator::before {
+  top: -15px;
+  animation: pulse 2s infinite;
+}
+
+.sidebar-indicator::after {
+  top: 15px;
+  animation: pulse 2s infinite 1s;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
 }
 
 /* Hide indicator when sidebar is visible */
-.sidebar-trigger-zone:hover ~ .sidebar-indicator,
-.filetree-sidebar:hover ~ .sidebar-indicator {
+.filetree-sidebar.sidebar-visible ~ .sidebar-indicator {
   opacity: 0;
 }
 
-/* Enhanced file tree styling for the auto-hide version */
+/* Enhanced scrollbar for sidebar */
+.filetree-sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.filetree-sidebar::-webkit-scrollbar-track {
+  background: var(--glass-bg);
+  border-radius: 4px;
+}
+
+.filetree-sidebar::-webkit-scrollbar-thumb {
+  background: var(--glass-accent);
+  border-radius: 4px;
+  opacity: 0.7;
+}
+
+/* File tree items styling */
 .filetree-sidebar .notelink {
-  border-radius: 10px !important;
-  margin: 5px 0 !important;
-  padding: 8px 15px !important;
+  border-radius: 12px !important;
+  margin: 6px 0 !important;
+  padding: 12px 18px !important;
   transition: all 0.2s ease !important;
-  opacity: 0.8;
+  opacity: 0.85;
+  border: 1px solid transparent !important;
 }
 
 .filetree-sidebar .notelink:hover {
   background: var(--glass-bg-medium) !important;
-  transform: translateX(5px);
+  transform: translateX(8px);
   opacity: 1;
+  border: 1px solid var(--glass-border) !important;
 }
 
 .filetree-sidebar .notelink.active-note {
   background: var(--glass-bg-heavy) !important;
-  border-left: 3px solid var(--glass-accent) !important;
+  border-left: 4px solid var(--glass-accent) !important;
   opacity: 1;
 }
 
 /* Responsive adjustments */
 @media (max-width: 1200px) {
-  .sidebar-trigger-zone:hover ~ main .content,
-  .filetree-sidebar:hover ~ main .content {
-    margin-left: 300px !important;
-    width: calc(100vw - 320px) !important;
-  }
-}
-
-@media (max-width: 1000px) {
-  .filetree-sidebar {
-    width: 250px !important;
-    left: -250px !important;
-  }
-  
-  .sidebar-trigger-zone:hover ~ main .content,
-  .filetree-sidebar:hover ~ main .content {
-    margin-left: 270px !important;
-    width: calc(100vw - 290px) !important;
+  :root {
+    --content-left-offset: 80px;
   }
 }
 
 @media (max-width: 800px) {
-  /* On mobile, make sidebar overlay instead of pushing content */
-  .sidebar-trigger-zone:hover ~ main .content,
-  .filetree-sidebar:hover ~ main .content {
-    margin-left: 30px !important;
-    width: calc(100vw - 60px) !important;
+  :root {
+    --content-left-offset: 20px;
+  }
+  
+  .content {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    margin: 70px 10px 20px 10px !important;
+  }
+  
+  .sidebar-trigger-zone {
+    width: 40px;
   }
   
   .filetree-sidebar {
-    z-index: 1001;
-    box-shadow: 2px 0 30px rgba(0, 0, 0, 0.3);
+    width: 280px !important;
+    left: -280px !important;
   }
 }
 
