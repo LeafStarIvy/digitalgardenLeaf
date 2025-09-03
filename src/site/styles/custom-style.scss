@@ -273,9 +273,7 @@ div.transclusion,
   animation: fadeInUp 0.6s ease-out;
 
        /* Main note positioning and sizing */
-  max-width: none !important;
-  width: calc(100vw - 250px) !important; /* Full width minus sidebar space */
-  margin-left: 220px !important; /* Offset to the right of file tree */
+  max-width: 220px !important;
   margin-right: 120px !important;
   min-height: calc(100vh - 160px) !important; /* Almost full height */
 }
