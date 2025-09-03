@@ -467,13 +467,6 @@ h1::after {
    SECTION 9: FILE TREE STYLING
    ============================================ */
 
-.filetree-sidebar {
-  border-radius: 0 20px 20px 0 !important;
-  padding: 20px !important;
-  width: 280px !important;
-  background: var(--glass-bg) !important;
-}
-
 .notelink {
   border-radius: 10px !important;
   margin: 5px 0 !important;
@@ -489,6 +482,155 @@ h1::after {
 .notelink.active-note {
   background: var(--glass-bg-heavy) !important;
   border-left: 3px solid var(--glass-accent) !important;
+}
+
+/* ============================================
+   SECTION 9A: AUTO-HIDE SIDEBAR SYSTEM
+   ============================================ */
+
+/* Hover trigger zone - invisible area on left side of screen */
+.sidebar-trigger-zone {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 50px;
+  height: 100vh;
+  z-index: 999;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* File tree sidebar - initially hidden */
+.filetree-sidebar {
+  position: fixed !important;
+  left: -280px !important; /* Hidden by default */
+  top: 0 !important;
+  width: 280px !important;
+  height: 100vh !important;
+  z-index: 998;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-radius: 0 20px 20px 0 !important;
+  padding: 20px !important;
+  background: var(--glass-bg) !important;
+  overflow-y: auto;
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Show sidebar when hovering trigger zone or sidebar itself */
+.sidebar-trigger-zone:hover + .filetree-sidebar,
+.filetree-sidebar:hover {
+  left: 0 !important;
+}
+
+/* Main content adjustments */
+.content {
+  border-radius: 20px !important;
+  padding: 30px !important;
+  margin-top: 100px !important;
+  margin-bottom: 30px !important;
+  position: relative;
+  animation: fadeInUp 0.6s ease-out;
+  
+  /* Default positioning when sidebar is hidden */
+  margin-left: 30px !important;
+  margin-right: 30px !important;
+  width: calc(100vw - 60px) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  min-height: calc(100vh - 160px) !important;
+}
+
+/* Content adjustments when sidebar is visible */
+.sidebar-trigger-zone:hover ~ main .content,
+.filetree-sidebar:hover ~ main .content {
+  margin-left: 320px !important;
+  width: calc(100vw - 350px) !important;
+}
+
+/* Sidebar indicator - subtle hint that sidebar exists */
+.sidebar-indicator {
+  position: fixed;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--glass-accent),
+    transparent
+  );
+  border-radius: 2px;
+  z-index: 997;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-indicator:hover {
+  opacity: 1;
+}
+
+/* Hide indicator when sidebar is visible */
+.sidebar-trigger-zone:hover ~ .sidebar-indicator,
+.filetree-sidebar:hover ~ .sidebar-indicator {
+  opacity: 0;
+}
+
+/* Enhanced file tree styling for the auto-hide version */
+.filetree-sidebar .notelink {
+  border-radius: 10px !important;
+  margin: 5px 0 !important;
+  padding: 8px 15px !important;
+  transition: all 0.2s ease !important;
+  opacity: 0.8;
+}
+
+.filetree-sidebar .notelink:hover {
+  background: var(--glass-bg-medium) !important;
+  transform: translateX(5px);
+  opacity: 1;
+}
+
+.filetree-sidebar .notelink.active-note {
+  background: var(--glass-bg-heavy) !important;
+  border-left: 3px solid var(--glass-accent) !important;
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .sidebar-trigger-zone:hover ~ main .content,
+  .filetree-sidebar:hover ~ main .content {
+    margin-left: 300px !important;
+    width: calc(100vw - 320px) !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .filetree-sidebar {
+    width: 250px !important;
+    left: -250px !important;
+  }
+  
+  .sidebar-trigger-zone:hover ~ main .content,
+  .filetree-sidebar:hover ~ main .content {
+    margin-left: 270px !important;
+    width: calc(100vw - 290px) !important;
+  }
+}
+
+@media (max-width: 800px) {
+  /* On mobile, make sidebar overlay instead of pushing content */
+  .sidebar-trigger-zone:hover ~ main .content,
+  .filetree-sidebar:hover ~ main .content {
+    margin-left: 30px !important;
+    width: calc(100vw - 60px) !important;
+  }
+  
+  .filetree-sidebar {
+    z-index: 1001;
+    box-shadow: 2px 0 30px rgba(0, 0, 0, 0.3);
+  }
 }
 
 /* ============================================
