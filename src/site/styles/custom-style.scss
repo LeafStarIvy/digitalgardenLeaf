@@ -265,7 +265,7 @@ div.transclusion,
 
 /* Content Container */
 .content {
-  border-radius: 20px !important;
+  border-radius: 80px !important;
   padding: 30px !important;
   margin-top: 20px !important;
   margin-bottom: 20px !important;
@@ -278,6 +278,13 @@ div.transclusion,
   margin-left: 320px !important; /* Offset to the right of file tree */
   margin-right: 30px !important;
   min-height: calc(100vh - 160px) !important; /* Almost full height */
+}
+
+/* When file tree is hidden, center the content */
+body:not(.has-filetree) .content {
+  width: calc(100vw - 60px) !important;
+  margin-left: 30px !important;
+  margin-right: 30px !important;
 }
 
 /* Content Responsive Adjustments */
