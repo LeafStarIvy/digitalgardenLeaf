@@ -110,12 +110,22 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: var(--current-bg-image);
+  background-image: var(--current-bg-image, var(--default-dark-bg)); /* Fallback to default */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   z-index: -2;
   transition: background-image 0.5s ease-in-out;
+}
+
+/* Light theme default background */
+body.theme-light::before {
+  background-image: var(--current-bg-image, var(--default-light-bg));
+}
+
+/* Dark theme default background */
+body.theme-dark::before {
+  background-image: var(--current-bg-image, var(--default-dark-bg));
 }
 
 /* Overlay for better text readability */
