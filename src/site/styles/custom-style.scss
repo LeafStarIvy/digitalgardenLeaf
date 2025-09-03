@@ -280,12 +280,6 @@ div.transclusion,
   min-height: calc(100vh - 160px) !important; /* Almost full height */
 }
 
-/* When file tree is hidden, center the content */
-body:not(.has-filetree) .content {
-  width: calc(100vw - 60px) !important;
-  margin-left: 30px !important;
-  margin-right: 30px !important;
-}
 /* Content Responsive Adjustments */
 @media (max-width: 1200px) {
   .content {
