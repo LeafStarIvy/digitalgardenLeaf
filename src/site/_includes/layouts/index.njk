@@ -80,11 +80,14 @@
     </div>
     
     {%include "components/notegrowthhistory.njk"%}
-    {% if settings.dgShowFileTree !== true %}
-      {%include "components/navbar.njk"%}
-    {%else%}
-      {%include "components/filetree.njk"%}
-    {% endif %}
+{% if settings.dgShowFileTree !== true %}
+  {%include "components/navbar.njk"%}
+{%else%}
+  <!-- Auto-hide sidebar system -->
+  <div class="sidebar-trigger-zone"></div>
+  {%include "components/filetree.njk"%}
+  <div class="sidebar-indicator"></div>
+{% endif %}
     {% if settings.dgEnableSearch === true %}
       {%include "components/searchContainer.njk"%}
     {% endif %}
