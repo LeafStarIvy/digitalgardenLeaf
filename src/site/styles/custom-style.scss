@@ -273,7 +273,7 @@ div.transclusion,
   animation: fadeInUp 0.6s ease-out;
 
        /* Main note positioning and sizing */
-  max-width: 1200px !important;
+  max-width: 1100px !important;
   margin-right: 120px !important;
   min-height: calc(100vh - 160px) !important; /* Almost full height */
 }
@@ -281,7 +281,7 @@ div.transclusion,
 /* When file tree is hidden, center the content */
 body:not(.has-filetree) .content {
   width: calc(100vw - 60px) !important;
-  margin-left: 30px !important;
+  margin-left: 60px !important;
   margin-right: 30px !important;
 }
 
