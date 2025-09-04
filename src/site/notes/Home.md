@@ -1,15 +1,11 @@
 ---
-{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-04T16:26:04.533+02:00"}
+{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-04T16:28:11.269+02:00"}
 ---
 
 #                   ✨Main Page✨
 
 > [!INFO]  
 > Welcome to my **Personal Vault**—this is the place where I store all information I collect and preserve. Things could get eddited or dissapear, this is for personal storage and for others too see and look into. I hope you find something that interests you or that you enjoy. 
-
----
-
-<!-- Full-width nebula background -->  
 
 ---
 
