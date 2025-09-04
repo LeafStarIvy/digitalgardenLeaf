@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artists/ganja-white-night/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.475+02:00","updated":"2025-04-28T17:20:28.450+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artists/ganja-white-night/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-08-28T23:54:20.654+02:00","updated":"2025-04-28T17:20:28.450+02:00"}
 ---
 
 

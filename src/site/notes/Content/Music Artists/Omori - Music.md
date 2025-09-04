@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artists/omori-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.519+02:00","updated":"2025-04-28T17:19:41.479+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artists/omori-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-08-28T23:54:14.155+02:00","updated":"2025-04-28T17:19:41.479+02:00"}
 ---
 
 

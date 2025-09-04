@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artists/satisfactory-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.525+02:00","updated":"2025-04-28T17:19:34.701+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artists/satisfactory-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-08-28T23:54:22.035+02:00","updated":"2025-04-28T17:19:34.701+02:00"}
 ---
 
 

@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/tools/image-to-svg-converter/","noteIcon":"","created":"2025-04-21T13:40:25.463+02:00","updated":"2025-04-21T16:42:00.096+02:00"}
+{"dg-publish":true,"permalink":"/tools/image-to-svg-converter/","noteIcon":"","created":"2025-08-28T23:54:14.326+02:00","updated":"2025-04-21T16:42:00.096+02:00"}
 ---
 
 <!DOCTYPE html>

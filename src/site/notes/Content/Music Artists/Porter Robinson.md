@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artists/porter-robinson/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-29T07:37:51.457+02:00","updated":"2025-04-29T07:48:42.320+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artists/porter-robinson/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-08-28T23:54:14.424+02:00","updated":"2025-04-29T07:48:42.320+02:00"}
 ---
 
 

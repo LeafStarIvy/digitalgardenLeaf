@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artists/skylanders-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.532+02:00","updated":"2025-04-28T17:19:30.594+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artists/skylanders-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-08-28T23:54:14.200+02:00","updated":"2025-04-28T17:19:30.594+02:00"}
 ---
 
 

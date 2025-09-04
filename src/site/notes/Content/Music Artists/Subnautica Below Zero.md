@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artists/subnautica-below-zero/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T17:32:59.728+02:00","updated":"2025-04-28T17:34:12.084+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artists/subnautica-below-zero/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-08-28T23:54:14.196+02:00","updated":"2025-04-28T17:34:12.084+02:00"}
 ---
 
 

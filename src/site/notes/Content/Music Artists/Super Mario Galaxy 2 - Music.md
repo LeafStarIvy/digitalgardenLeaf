@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artists/super-mario-galaxy-2-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.364+02:00","updated":"2025-04-28T17:19:19.801+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artists/super-mario-galaxy-2-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-08-28T23:54:14.437+02:00","updated":"2025-04-28T17:19:19.801+02:00"}
 ---
 
 

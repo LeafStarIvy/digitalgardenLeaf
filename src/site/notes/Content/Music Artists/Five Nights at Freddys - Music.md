@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artists/five-nights-at-freddys-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.471+02:00","updated":"2025-04-28T17:20:31.856+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artists/five-nights-at-freddys-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-08-28T23:54:14.171+02:00","updated":"2025-04-28T17:20:31.856+02:00"}
 ---
 
 

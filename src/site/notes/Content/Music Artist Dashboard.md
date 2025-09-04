@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artist-dashboard/","tags":["#dashboard"],"noteIcon":"","created":"2025-04-23T07:19:07.644+02:00","updated":"2025-04-29T07:45:30.244+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artist-dashboard/","tags":["#dashboard"],"noteIcon":"","created":"2025-08-28T23:54:14.334+02:00","updated":"2025-04-29T07:45:30.244+02:00"}
 ---
 
 

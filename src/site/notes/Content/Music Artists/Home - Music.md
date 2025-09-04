@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/content/music-artists/home-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-04-28T16:45:25.488+02:00","updated":"2025-04-28T17:20:19.052+02:00"}
+{"dg-publish":true,"permalink":"/content/music-artists/home-music/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-08-28T23:54:14.138+02:00","updated":"2025-04-28T17:20:19.052+02:00"}
 ---
 
 
