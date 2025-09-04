@@ -1,13 +1,11 @@
 ---
-{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-11T17:13:21.307+02:00","updated":"2025-08-17T19:03:49.834+02:00"}
+{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-04T16:25:13.860+02:00"}
 ---
 
 #                   ✨Main Page✨
 
 > [!INFO]  
-> Welcome to your **Cosmic Vault**—this is mission control for all your notes.
-
-Hallo ik ben 
+> Welcome to my **Personal Vault**—this is the place where I store all information I collect and preserve. Things could get eddited or dissapear, this is for personal storage and for others too see and look into. I hope you find something that interests you or that you enjoy. 
 
 ---
 
