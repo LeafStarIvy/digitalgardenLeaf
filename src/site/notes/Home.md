@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-04T16:25:13.860+02:00"}
+{"dg-publish":true,"permalink":"/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-04T16:26:04.533+02:00"}
 ---
 
 #                   ✨Main Page✨
@@ -9,8 +9,7 @@
 
 ---
 
-<!-- Full-width nebula background -->
-![Nebula Banner](/img/user/img/Nebulabanner.jpg){ width=100% }  
+<!-- Full-width nebula background -->  
 
 ---
 
