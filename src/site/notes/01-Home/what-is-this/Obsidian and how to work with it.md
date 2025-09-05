@@ -1,17 +1,17 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/what-is-this/obsidian-and-how-to-work-with-it/","noteIcon":"","created":"2025-09-05T15:58:08.348+02:00","updated":"2025-09-05T19:17:27.987+02:00"}
+{"dg-publish":true,"permalink":"/01-home/what-is-this/obsidian-and-how-to-work-with-it/","noteIcon":"","created":"2025-09-05T15:58:08.348+02:00","updated":"2025-09-05T19:25:01.152+02:00"}
 ---
 
 # Obsidian — How it works
 
 > A single-file, long-term reference. Starts with the most common formatting and ends with rarer / plugin-driven features. Includes examples, use-cases and tips so you can copy/paste straight into your notes.
 
+Shortcuts: 
+<div class="transclusion internal-embed is-loaded"><a class="markdown-embed-link" href="/01-home/what-is-this/quick-syntax-summary-copy-paste-reference/" aria-label="Open link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a><div class="markdown-embed">
 
-<div class="transclusion internal-embed is-loaded"><a class="markdown-embed-link" href="/01-home/what-is-this/obsidian-and-how-to-work-with-it/#quick-syntax-summary-copy-paste-reference" aria-label="Open link"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a><div class="markdown-embed">
 
 
 
-## Quick syntax summary (copy/paste reference)
 
 - Headings: `# H1` / `## H2`
     
@@ -36,11 +36,8 @@
 - YAML frontmatter: `---\nkey: value\n---`
     
 
----
-
 
 </div></div>
-
 
 
 ## Table of contents
@@ -731,36 +728,9 @@ This section lists features usually provided by community plugins or by extended
 
 ---
 
-## Quick syntax summary (copy/paste reference)
-
-- Headings: `# H1` / `## H2`
-    
-- Bold/Italic: `**bold**` / `_italic_`
-    
-- Link: `[[Note|label]]` or `[external](https://)`
-    
-- Embed note: `![[Note Name]]`
-    
-- Embed block: `![[Note#^blockID]]`
-    
-- Callout: `> [!NOTE]` then `> content`
-    
-- Query: `query\nyour search\n`
-    
-- Dataview: `dataview\nTABLE ...\n`
-    
-- Tasks: `tasks\nnot done\n`
-    
-- Image embed: `![[image.png|200]]` or `![](https://...)`
-    
-- YAML frontmatter: `---\nkey: value\n---`
-    
-
----
-
 ## Where to go next / plugin checklist
 
-If you want to extend your Obsidian with the features described in later sections, the community plugins to inspect first are:
+If you want to extend your Obsidian with the features, the community plugins to inspect first are:
 
 - Dataview (powerful queries)
     
