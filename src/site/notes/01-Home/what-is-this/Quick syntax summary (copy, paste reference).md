@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/what-is-this/quick-syntax-summary-copy-paste-reference/","noteIcon":"","created":"2025-09-05T19:21:04.365+02:00","updated":"2025-09-05T19:32:30.013+02:00"}
+{"dg-publish":true,"permalink":"/01-home/what-is-this/quick-syntax-summary-copy-paste-reference/","noteIcon":"","created":"2025-09-05T19:21:04.365+02:00","updated":"2025-09-05T19:38:20.884+02:00"}
 ---
 
 ## Copy/paste for easy use
@@ -11,7 +11,7 @@
     
 - Link: `[[Note|label]]` or `[external](https://)`
     
-- Embed note: `![[Note Name]]`
+- Embed note: `![[Note Name] ]`
     
 - Embed block: `![[Note#^blockID]]`
     
@@ -23,7 +23,7 @@
     
 - Tasks: `tasks\nnot done\n`
     
-- Image embed: `![[image.png|200]]` or `![](https://...)`
+- Image embed: `![[image.png|200] ]` or `![](https://...)`
     
 - YAML frontmatter: `---\nkey: value\n---`
     
