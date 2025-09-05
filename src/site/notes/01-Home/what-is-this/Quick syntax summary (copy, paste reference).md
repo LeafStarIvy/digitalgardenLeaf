@@ -1,6 +1,8 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/what-is-this/quick-syntax-summary-copy-paste-reference/","noteIcon":"","created":"2025-09-05T19:21:04.365+02:00","updated":"2025-09-05T19:29:22.777+02:00"}
+{"dg-publish":true,"permalink":"/01-home/what-is-this/quick-syntax-summary-copy-paste-reference/","noteIcon":"","created":"2025-09-05T19:21:04.365+02:00","updated":"2025-09-05T19:30:34.457+02:00"}
 ---
+
+## Copy/paste for easy use
 
 ```
 - Headings: `# H1` / `## H2`
