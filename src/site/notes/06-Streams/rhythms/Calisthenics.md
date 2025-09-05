@@ -1,9 +1,10 @@
 ---
-{"dg-publish":true,"permalink":"/06-streams/rhythms/calisthenics/","noteIcon":"","created":"2025-09-05T15:49:48.599+02:00","updated":"2025-09-05T22:02:49.873+02:00"}
+{"dg-publish":true,"permalink":"/06-streams/rhythms/calisthenics/","noteIcon":"","created":"2025-09-05T15:49:48.599+02:00","updated":"2025-09-05T22:06:36.122+02:00"}
 ---
 
->[!INFO] 
-> The number one exercise I do to up my strength. I use the Calisthenics training schedule 
+>[!IMPORTANT] 
+> The number one exercise I do to up my strength. 
+> I use this Calisthenics training plan
 
 ![Pasted image 20250905213110.png](/img/user/_attachments/Pasted%20image%2020250905213110.png)
 ![Pasted image 20250905220210.png](/img/user/_attachments/Pasted%20image%2020250905220210.png)
