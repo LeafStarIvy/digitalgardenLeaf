@@ -1,8 +1,8 @@
 ---
-{"dg-publish":true,"permalink":"/06-streams/rhythms/calisthenics/","noteIcon":"","created":"2025-09-05T15:49:48.599+02:00","updated":"2025-09-05T22:07:09.428+02:00"}
+{"dg-publish":true,"permalink":"/06-streams/rhythms/calisthenics/","noteIcon":"","created":"2025-09-05T15:49:48.599+02:00","updated":"2025-09-05T22:09:03.210+02:00"}
 ---
 
->[!IMPORTANT] 
+>[!INFO] 
 > The number one exercise I do to up my strength. 
 > I use this Calisthenics basics training plan
 
