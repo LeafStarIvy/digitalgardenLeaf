@@ -1,10 +1,10 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/what-is-this/quick-syntax-summary-copy-paste-reference/","noteIcon":"","created":"2025-09-05T19:21:04.365+02:00","updated":"2025-09-05T19:30:34.457+02:00"}
+{"dg-publish":true,"permalink":"/01-home/what-is-this/quick-syntax-summary-copy-paste-reference/","noteIcon":"","created":"2025-09-05T19:21:04.365+02:00","updated":"2025-09-05T19:32:30.013+02:00"}
 ---
 
 ## Copy/paste for easy use
 
-```
+>[!Don't forget to delete spaces in the ones that can't get loaded on the site]
 - Headings: `# H1` / `## H2`
     
 - Bold/Italic: `**bold**` / `_italic_`
