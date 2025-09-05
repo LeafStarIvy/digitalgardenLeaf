@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/what-is-this/quick-syntax-summary-copy-paste-reference/","noteIcon":"","created":"2025-09-05T19:38:20.883+02:00","updated":"2025-09-05T19:50:01.566+02:00"}
+{"dg-publish":true,"permalink":"/01-home/what-is-this/quick-syntax-summary-copy-paste-reference/","noteIcon":"","created":"2025-09-05T19:38:20.883+02:00","updated":"2025-09-05T20:43:14.011+02:00"}
 ---
 
 ## Copy/paste for easy use
@@ -10,7 +10,7 @@
     
 - Bold/Italic: `**bold**` / `_italic_`
     
-- Link: `[[Note|label]]` or `[external](https://)`
+- Link: `[[Note|label] ]` or `[external](https://)`
     
 - Embed note: `![[Note Name] ]`
     
