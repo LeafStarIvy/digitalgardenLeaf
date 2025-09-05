@@ -1,13 +1,10 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/what-is-this/obsidian-and-how-to-work-with-it/","noteIcon":"","created":"2025-09-05T15:58:08.348+02:00","updated":"2025-09-05T16:25:29.738+02:00"}
+{"dg-publish":true,"permalink":"/01-home/what-is-this/obsidian-and-how-to-work-with-it/","noteIcon":"","created":"2025-09-05T15:58:08.348+02:00","updated":"2025-09-05T17:32:46.586+02:00"}
 ---
 
 # Obsidian — How it works
 
 > A single-file, long-term reference. Starts with the most common formatting and ends with rarer / plugin-driven features. Includes examples, use-cases and tips so you can copy/paste straight into your notes.
-
-**File name suggestion:** `Obsidian — Complete Formatting & Embed Reference.md`
-
 ---
 
 ## Table of contents
