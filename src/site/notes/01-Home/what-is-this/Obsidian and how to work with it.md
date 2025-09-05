@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/what-is-this/obsidian-and-how-to-work-with-it/","noteIcon":"","created":"2025-09-05T15:58:08.348+02:00","updated":"2025-09-05T19:28:00.343+02:00"}
+{"dg-publish":true,"permalink":"/01-home/what-is-this/obsidian-and-how-to-work-with-it/","noteIcon":"","created":"2025-09-05T15:58:08.348+02:00","updated":"2025-09-05T19:48:16.630+02:00"}
 ---
 
 # Obsidian — How it works
