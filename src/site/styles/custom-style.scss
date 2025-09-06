@@ -1,155 +1,179 @@
 /* ============================================
-   GLASS MORPHISM DIGITAL GARDEN THEME
-   Complete Custom Styling System
+   ENHANCED GLASS MORPHISM DIGITAL GARDEN THEME
+   Version 2.0 - Completely Restructured
    ============================================ */
 
 /* ============================================
-   SECTION 1: CSS VARIABLES & THEME SETUP
+   SECTION 1: FOUNDATIONAL VARIABLES
+   Centralized theming system with proper fallbacks
    ============================================ */
 
 :root {
-  /* Glass Properties - Light Mode */
-  --glass-bg-light: rgba(255, 255, 255, 0.1);
-  --glass-bg-medium-light: rgba(255, 255, 255, 0.15);
-  --glass-bg-heavy-light: rgba(255, 255, 255, 0.25);
-  --glass-border-light: rgba(255, 255, 255, 0.18);
-  --glass-shadow-light: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-  --glass-text-primary-light: rgba(0, 0, 0, 0.9);
-  --glass-text-secondary-light: rgba(0, 0, 0, 0.7);
-  --glass-text-muted-light: rgba(0, 0, 0, 0.5);
-  --glass-accent-light: rgba(70, 130, 180, 0.8);
+  /* === Glass Effect Properties === */
+  --glass-blur-light: blur(12px);
+  --glass-blur-medium: blur(16px);
+  --glass-blur-heavy: blur(24px);
   
-  /* Glass Properties - Dark Mode */
-  --glass-bg-dark: rgba(0, 0, 0, 0.3);
-  --glass-bg-medium-dark: rgba(0, 0, 0, 0.4);
-  --glass-bg-heavy-dark: rgba(0, 0, 0, 0.5);
-  --glass-border-dark: rgba(255, 255, 255, 0.1);
-  --glass-shadow-dark: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  /* === Light Theme Glass Variables === */
+  --glass-bg-light: rgba(255, 255, 255, 0.08);
+  --glass-bg-medium-light: rgba(255, 255, 255, 0.12);
+  --glass-bg-heavy-light: rgba(255, 255, 255, 0.18);
+  --glass-border-light: rgba(255, 255, 255, 0.15);
+  --glass-shadow-light: 0 12px 40px rgba(31, 38, 135, 0.12);
+  --glass-text-primary-light: rgba(20, 20, 20, 0.95);
+  --glass-text-secondary-light: rgba(40, 40, 40, 0.8);
+  --glass-text-muted-light: rgba(60, 60, 60, 0.65);
+  --glass-accent-light: rgba(59, 130, 246, 0.85);
+  
+  /* === Dark Theme Glass Variables === */
+  --glass-bg-dark: rgba(15, 15, 15, 0.35);
+  --glass-bg-medium-dark: rgba(25, 25, 25, 0.45);
+  --glass-bg-heavy-dark: rgba(35, 35, 35, 0.55);
+  --glass-border-dark: rgba(255, 255, 255, 0.08);
+  --glass-shadow-dark: 0 12px 40px rgba(0, 0, 0, 0.25);
   --glass-text-primary-dark: rgba(255, 255, 255, 0.95);
-  --glass-text-secondary-dark: rgba(255, 255, 255, 0.8);
-  --glass-text-muted-dark: rgba(255, 255, 255, 0.6);
-  --glass-accent-dark: rgba(100, 200, 255, 0.9);
+  --glass-text-secondary-dark: rgba(240, 240, 240, 0.8);
+  --glass-text-muted-dark: rgba(200, 200, 200, 0.65);
+  --glass-accent-dark: rgba(96, 165, 250, 0.9);
   
-  /* Blur and Animation Properties */
-  --glass-blur: blur(10px);
-  --glass-blur-heavy: blur(20px);
-  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --animation-float: float 6s ease-in-out infinite;
+  /* === Animation & Transition System === */
+  --transition-fast: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-slow: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   
-  /* Background Image Variables */
-  --current-bg-image: url('');
-  --bg-overlay-opacity: 0.4;
-
-   --default-light-bg: url('https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=80&w=2000');
+  /* === Layout System Variables === */
+  --sidebar-width: 320px;
+  --sidebar-trigger-width: 60px;
+  --content-padding: 40px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 20px;
+  
+  /* === Background Image System === */
+  --current-bg-image: '';
+  --bg-overlay-opacity: 0.3;
+  --default-light-bg: url('https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=80&w=2000');
   --default-dark-bg: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2000');
 }
 
 /* ============================================
-   SECTION 2: THEME MODE CLASSES
+   SECTION 2: THEME MODE CONFIGURATION
+   Clean theme switching with consistent variables
    ============================================ */
 
-/* Light Mode Configuration */
+/* === Base Theme Setup === */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  transition: var(--transition-smooth);
+  overflow-x: hidden;
+}
+
+/* === Light Theme Configuration === */
 body.theme-light {
   --glass-bg: var(--glass-bg-light);
   --glass-bg-medium: var(--glass-bg-medium-light);
   --glass-bg-heavy: var(--glass-bg-heavy-light);
   --glass-border: var(--glass-border-light);
   --glass-shadow: var(--glass-shadow-light);
+  --glass-blur: var(--glass-blur-light);
+  
   --text-primary: var(--glass-text-primary-light);
   --text-normal: var(--glass-text-primary-light);
+  --text-secondary: var(--glass-text-secondary-light);
   --text-muted: var(--glass-text-muted-light);
   --text-accent: var(--glass-accent-light);
+  --link-color: var(--glass-accent-light);
+  --link-color-hover: var(--glass-text-primary-light);
+  
+  /* Clear backgrounds for transparency */
   --background-primary: transparent;
   --background-secondary: transparent;
   --background-primary-alt: transparent;
   --background-secondary-alt: transparent;
-  --h1-color: var(--glass-text-primary-light);
-  --h2-color: var(--glass-text-primary-light);
-  --h3-color: var(--glass-text-primary-light);
-  --h4-color: var(--glass-text-primary-light);
-  --h5-color: var(--glass-text-primary-light);
-  --h6-color: var(--glass-text-secondary-light);
-  --link-color: var(--glass-accent-light);
-  --link-color-hover: var(--glass-accent-light);
 }
 
-/* Dark Mode Configuration */
+/* === Dark Theme Configuration === */
 body.theme-dark {
   --glass-bg: var(--glass-bg-dark);
   --glass-bg-medium: var(--glass-bg-medium-dark);
   --glass-bg-heavy: var(--glass-bg-heavy-dark);
   --glass-border: var(--glass-border-dark);
   --glass-shadow: var(--glass-shadow-dark);
+  --glass-blur: var(--glass-blur-light);
+  
   --text-primary: var(--glass-text-primary-dark);
   --text-normal: var(--glass-text-primary-dark);
+  --text-secondary: var(--glass-text-secondary-dark);
   --text-muted: var(--glass-text-muted-dark);
   --text-accent: var(--glass-accent-dark);
+  --link-color: var(--glass-accent-dark);
+  --link-color-hover: var(--glass-text-primary-dark);
+  
+  /* Clear backgrounds for transparency */
   --background-primary: transparent;
   --background-secondary: transparent;
   --background-primary-alt: transparent;
   --background-secondary-alt: transparent;
-  --h1-color: var(--glass-text-primary-dark);
-  --h2-color: var(--glass-text-primary-dark);
-  --h3-color: var(--glass-text-primary-dark);
-  --h4-color: var(--glass-text-primary-dark);
-  --h5-color: var(--glass-text-primary-dark);
-  --h6-color: var(--glass-text-secondary-dark);
-  --link-color: var(--glass-accent-dark);
-  --link-color-hover: var(--glass-accent-dark);
 }
 
 /* ============================================
-   SECTION 3: BACKGROUND SYSTEM
+   SECTION 3: DYNAMIC BACKGROUND SYSTEM
+   Advanced background management with smooth transitions
    ============================================ */
 
-/* Background Container */
+/* === Primary Background Layer === */
 body::before {
   content: '';
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: var(--current-bg-image, var(--default-dark-bg)); /* Fallback to default */
+  width: 100vw;
+  height: 100vh;
+  background-image: var(--current-bg-image, var(--default-dark-bg));
   background-size: cover;
-  background-position: center;
+  background-position: center center;
   background-attachment: fixed;
-  z-index: -2;
-  transition: background-image 0.5s ease-in-out;
+  background-repeat: no-repeat;
+  z-index: -10;
+  transition: var(--transition-slow);
 }
 
-/* Light theme default background */
+/* === Theme-specific Background Fallbacks === */
 body.theme-light::before {
   background-image: var(--current-bg-image, var(--default-light-bg));
 }
 
-/* Dark theme default background */
 body.theme-dark::before {
   background-image: var(--current-bg-image, var(--default-dark-bg));
 }
 
-/* Overlay for better text readability */
+/* === Adaptive Overlay System === */
 body::after {
   content: '';
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100vw;
+  height: 100vh;
   background: linear-gradient(
     135deg,
     rgba(0, 0, 0, var(--bg-overlay-opacity)) 0%,
-    rgba(0, 0, 0, calc(var(--bg-overlay-opacity) * 0.7)) 100%
+    rgba(0, 0, 0, calc(var(--bg-overlay-opacity) * 0.6)) 50%,
+    rgba(0, 0, 0, calc(var(--bg-overlay-opacity) * 0.8)) 100%
   );
-  z-index: -1;
+  z-index: -5;
+  transition: var(--transition-smooth);
 }
 
 /* ============================================
-   SECTION 4: GLASS MORPHISM MIXINS
+   SECTION 4: GLASS MORPHISM FOUNDATION
+   Core glass effect mixins and base classes
    ============================================ */
 
-/* Main Glass Effect */
-.glass-morphism,
+/* === Primary Glass Effect Mixin === */
+.glass-effect,
 .content,
 .navbar,
 .sidebar-container,
@@ -170,8 +194,8 @@ div.transclusion,
   transition: var(--transition-smooth);
 }
 
-/* Medium Glass Effect */
-.glass-morphism-medium,
+/* === Medium Intensity Glass Effect === */
+.glass-effect-medium,
 .search-button,
 .notelink.active-note,
 .searchresult.active,
@@ -180,643 +204,532 @@ div.transclusion,
 #full-graph,
 .referred {
   background: var(--glass-bg-medium) !important;
-  backdrop-filter: var(--glass-blur) !important;
-  -webkit-backdrop-filter: var(--glass-blur) !important;
+  backdrop-filter: var(--glass-blur-medium) !important;
+  -webkit-backdrop-filter: var(--glass-blur-medium) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--glass-shadow) !important;
+  transition: var(--transition-smooth);
+}
+
+/* === Heavy Glass Effect for Overlays === */
+.glass-effect-heavy,
+.search-container.active,
+.fullpage-overlay,
+.modal-overlay {
+  background: var(--glass-bg-heavy) !important;
+  backdrop-filter: var(--glass-blur-heavy) !important;
+  -webkit-backdrop-filter: var(--glass-blur-heavy) !important;
   border: 1px solid var(--glass-border) !important;
   box-shadow: var(--glass-shadow) !important;
 }
 
-/* Heavy Glass Effect */
-.glass-morphism-heavy,
-.search-container.active,
-.fullpage-overlay {
-  background: var(--glass-bg-heavy) !important;
-  backdrop-filter: var(--glass-blur-heavy) !important;
-  -webkit-backdrop-filter: var(--glass-blur-heavy) !important;
-}
-
 /* ============================================
-   SECTION 5: THEME TOGGLE CONTROLS
+   SECTION 5: INTELLIGENT SIDEBAR SYSTEM
+   Auto-hide sidebar with smooth animations and responsive behavior
    ============================================ */
 
-/* Theme Toggle Container */
-.theme-toggle-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 1000;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-/* Theme Toggle Buttons */
-.theme-toggle-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--glass-bg-medium);
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition-smooth);
-  color: var(--text-primary);
-}
-
-.theme-toggle-btn:hover {
-  background: var(--glass-bg-heavy);
-  transform: scale(1.1);
-}
-
-.theme-toggle-btn.active {
-  background: var(--glass-accent);
-  color: white;
-}
-
-/* Background Cycling Button */
-.bg-cycle-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--glass-bg-medium);
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition-smooth);
-  color: var(--text-primary);
-}
-
-.bg-cycle-btn:hover {
-  background: var(--glass-bg-heavy);
-  transform: rotate(180deg);
-}
-
-/* ============================================
-   SECTION 6: MAIN CONTENT STYLING
-   ============================================ */
-
-/* Content Container */
-.content {
-  border-radius: 20px !important;
-  padding: 30px !important;
-  margin-top: 20px !important;
-  margin-bottom: 20px !important;
-  position: relative;
-  animation: fadeInUp 0.6s ease-out;
-
-       /* Main note positioning and sizing */
-  max-width: 1000px !important;
-  margin-right: 120px !important;
-  min-height: calc(100vh - 160px) !important; /* Almost full height */
-}
-
-/* When file tree is hidden, center the content */
-body:not(.has-filetree) .content {
-  width: calc(100vw - 60px) !important;
-  margin-left: 200px !important;
-  margin-right: 30px !important;
-}
-
-/* Content Responsive Adjustments */
-@media (max-width: 1200px) {
-  .content {
-    width: calc(100vw - 320px) !important;
-    margin-left: 290px !important;
-  }
-}
-
-@media (max-width: 1000px) {
-  .content {
-    width: calc(100vw - 60px) !important;
-    margin-left: 30px !important;
-    margin-right: 30px !important;
-  }
-}
-
-@media (max-width: 800px) {
-  .content {
-    width: calc(100vw - 20px) !important;
-    margin-left: 10px !important;
-    margin-right: 10px !important;
-  }
-}
-
-/* Headers Glass Enhancement */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--text-primary) !important;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1em;
-  position: relative;
-}
-
-h1::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 50px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--glass-accent), transparent);
-  border-radius: 2px;
-}
-
-/* ============================================
-   SECTION 7: NAVIGATION & SIDEBAR
-   ============================================ */
-
-/* Navbar Glass */
-.navbar {
-  border-radius: 0 0 20px 20px !important;
-  padding: 15px 30px !important;
-  position: fixed !important;
-  top: 0 !important;
-}
-
-/* Sidebar Components */
-.sidebar {
-  right: 30px !important;
-  top: 100px !important;
-}
-
-.sidebar-container {
-  border-radius: 20px !important;
-  padding: 20px !important;
-  background: var(--glass-bg) !important;
-}
-
-/* TOC Glass Enhancement */
-.toc {
-  border-radius: 15px !important;
-  margin-bottom: 20px !important;
-  padding: 15px !important;
-}
-
-.toc-container {
-  max-height: 300px !important;
-  padding-right: 10px !important;
-}
-
-.toc-container::-webkit-scrollbar {
-  width: 6px;
-}
-
-.toc-container::-webkit-scrollbar-track {
-  background: var(--glass-bg);
-  border-radius: 3px;
-}
-
-.toc-container::-webkit-scrollbar-thumb {
-  background: var(--glass-accent);
-  border-radius: 3px;
-}
-
-/* Backlinks Glass */
-.backlinks {
-  border-radius: 15px !important;
-  padding: 15px !important;
-}
-
-.backlink-list {
-  border-left: 2px solid var(--glass-accent) !important;
-  padding-left: 15px !important;
-}
-
-/* ============================================
-   SECTION 8: GRAPH VIEW STYLING
-   ============================================ */
-
-/* Graph Container */
-.graph {
-  border-radius: 15px !important;
-  padding: 10px !important;
-  background: var(--glass-bg) !important;
-}
-
-#link-graph, 
-#graph-fs,
-#full-graph {
-  border-radius: 10px !important;
-  background: var(--glass-bg-medium) !important;
-  padding: 10px !important;
-  position: relative !important;
-}
-
-/* Canvas element inside graph */
-#link-graph canvas,
-#graph-fs canvas,
-#full-graph canvas {
-  border-radius: 10px !important;
-  background: transparent !important;
-}
-
-/* Graph View D3 Elements - Node colors */
-.graph-view circle.node,
-.graph-view .node {
-  fill: var(--glass-accent) !important;
-  stroke: var(--glass-border) !important;
-  stroke-width: 1px !important;
-}
-
-.graph-view circle.node:hover,
-.graph-view .node:hover {
-  fill: var(--text-primary) !important;
-  stroke: var(--glass-accent) !important;
-  stroke-width: 2px !important;
-}
-
-/* Graph View D3 Elements - Link lines */
-.graph-view line.link,
-.graph-view .link,
-.graph-view path {
-  stroke: var(--glass-border) !important;
-  stroke-opacity: 0.5 !important;
-  fill: none !important;
-}
-
-.graph-view line.link:hover,
-.graph-view .link:hover {
-  stroke: var(--glass-accent) !important;
-  stroke-opacity: 1 !important;
-}
-
-/* Graph text labels */
-.graph-view text,
-.graph-view .node-label {
-  fill: var(--text-primary) !important;
-  font-size: 12px !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-/* Fix for graph view container */
-.graph-view-container {
-  background: transparent !important;
-  border: none !important;
-}
-
-/* ============================================
-   SECTION 9: FILE TREE STYLING
-   ============================================ */
-
-.notelink {
-  border-radius: 10px !important;
-  margin: 5px 0 !important;
-  padding: 8px 15px !important;
-  transition: var(--transition-smooth);
-}
-
-.notelink:hover {
-  background: var(--glass-bg-medium) !important;
-  transform: translateX(5px);
-}
-
-.notelink.active-note {
-  background: var(--glass-bg-heavy) !important;
-  border-left: 3px solid var(--glass-accent) !important;
-}
-
-/* ============================================
-   SECTION 9A: AUTO-HIDE SIDEBAR SYSTEM
-   ============================================ */
-
-/* Hover trigger zone with visual darkening */
+/* === Sidebar Trigger Zone === */
+/* Visual indicator zone that appears on left edge when sidebar is hidden */
 .sidebar-trigger-zone {
   position: fixed;
   left: 0;
   top: 0;
-  width: 60px;
+  width: var(--sidebar-trigger-width);
   height: 100vh;
   z-index: 999;
   background: linear-gradient(
     to right,
-    rgba(0, 0, 0, 0.15) 0%,
-    rgba(0, 0, 0, 0.08) 70%,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.05) 70%,
     transparent 100%
   );
-  backdrop-filter: blur(2px);
-  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  transition: var(--transition-smooth);
   cursor: pointer;
+  opacity: 0.7;
 }
 
 .sidebar-trigger-zone:hover {
   background: linear-gradient(
     to right,
-    rgba(0, 0, 0, 0.25) 0%,
-    rgba(0, 0, 0, 0.12) 70%,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.1) 70%,
     transparent 100%
   );
-  width: 80px;
+  width: calc(var(--sidebar-trigger-width) + 20px);
+  opacity: 1;
 }
 
-/* File tree sidebar - initially hidden */
+/* === Auto-Hide File Tree Sidebar === */
+/* Main sidebar container with slide-in animation */
 .filetree-sidebar {
   position: fixed !important;
-  left: -320px !important;
+  left: calc(-1 * var(--sidebar-width)) !important;
   top: 0 !important;
-  width: 320px !important;
+  width: var(--sidebar-width) !important;
   height: 100vh !important;
   z-index: 1000;
   transition: left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-  border-radius: 0 25px 25px 0 !important;
-  padding: 25px !important;
-  background: var(--glass-bg) !important;
+  border-radius: 0 var(--border-radius-xl) var(--border-radius-xl) 0 !important;
+  padding: 30px 25px !important;
   overflow-y: auto;
-  box-shadow: 5px 0 30px rgba(0, 0, 0, 0.2);
-  backdrop-filter: var(--glass-blur-heavy) !important;
+  overflow-x: hidden;
+  box-shadow: 8px 0 32px rgba(0, 0, 0, 0.15);
 }
 
-/* Sidebar visible state */
+/* === Sidebar Visible State === */
 .filetree-sidebar.sidebar-visible {
   left: 0 !important;
+  box-shadow: 8px 0 48px rgba(0, 0, 0, 0.25);
 }
 
-/* CSS Variable for easy adjustment */
-:root {
-  --content-left-offset: 120px; /* CHANGE THIS VALUE TO ADJUST MAIN CONTENT POSITION */
-}
-
-/* Sidebar indicator dots */
+/* === Sidebar Pulsing Indicator Dots === */
+/* Visual cue showing sidebar can be accessed */
 .sidebar-indicator {
   position: fixed;
-  left: 15px;
+  left: 20px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 998;
   pointer-events: none;
+  opacity: 0.6;
+  transition: var(--transition-smooth);
 }
 
 .sidebar-indicator::before,
 .sidebar-indicator::after {
   content: '';
   position: absolute;
-  width: 8px;
-  height: 8px;
-  background: var(--glass-accent);
+  width: 6px;
+  height: 6px;
+  background: var(--text-accent);
   border-radius: 50%;
-  opacity: 0.6;
+  box-shadow: 0 0 8px var(--text-accent);
 }
 
 .sidebar-indicator::before {
-  top: -15px;
-  animation: pulse 2s infinite;
+  top: -12px;
+  animation: pulse-indicator 2s infinite;
 }
 
 .sidebar-indicator::after {
-  top: 15px;
-  animation: pulse 2s infinite 1s;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.2); }
+  top: 12px;
+  animation: pulse-indicator 2s infinite 1s;
 }
 
 /* Hide indicator when sidebar is visible */
 .filetree-sidebar.sidebar-visible ~ .sidebar-indicator {
   opacity: 0;
+  transform: translateY(-50%) translateX(-10px);
 }
 
-/* Enhanced scrollbar for sidebar */
-.filetree-sidebar::-webkit-scrollbar {
-  width: 8px;
-}
-
-.filetree-sidebar::-webkit-scrollbar-track {
-  background: var(--glass-bg);
-  border-radius: 4px;
-}
-
-.filetree-sidebar::-webkit-scrollbar-thumb {
-  background: var(--glass-accent);
-  border-radius: 4px;
-  opacity: 0.7;
-}
-
-/* File tree items styling */
+/* === Enhanced File Tree Styling === */
 .filetree-sidebar .notelink {
-  border-radius: 12px !important;
-  margin: 6px 0 !important;
-  padding: 12px 18px !important;
-  transition: all 0.2s ease !important;
-  opacity: 0.85;
+  border-radius: var(--border-radius-md) !important;
+  margin: 4px 0 !important;
+  padding: 12px 16px !important;
+  transition: var(--transition-fast) !important;
+  opacity: 0.8;
   border: 1px solid transparent !important;
+  font-size: 0.9em;
+  font-weight: 400;
 }
 
 .filetree-sidebar .notelink:hover {
   background: var(--glass-bg-medium) !important;
-  transform: translateX(8px);
+  transform: translateX(6px);
   opacity: 1;
   border: 1px solid var(--glass-border) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .filetree-sidebar .notelink.active-note {
   background: var(--glass-bg-heavy) !important;
-  border-left: 4px solid var(--glass-accent) !important;
+  border-left: 3px solid var(--text-accent) !important;
   opacity: 1;
+  font-weight: 500;
+  transform: translateX(3px);
 }
 
-/* Responsive adjustments */
-@media (max-width: 1200px) {
-  :root {
-    --content-left-offset: 80px;
-  }
+/* ============================================
+   SECTION 6: RESPONSIVE CONTENT LAYOUT SYSTEM
+   Smart content positioning that adapts to screen size and sidebar state
+   ============================================ */
+
+/* === Main Content Container === */
+.content {
+  position: relative;
+  width: calc(100vw - 100px);
+  max-width: 900px;
+  margin: 80px auto 40px auto;
+  padding: var(--content-padding) !important;
+  border-radius: var(--border-radius-xl) !important;
+  min-height: calc(100vh - 200px);
+  animation: slideInUp 0.6s ease-out;
 }
 
-@media (max-width: 800px) {
-  :root {
-    --content-left-offset: 20px;
-  }
-  
+/* === Content Layout States === */
+/* When sidebar is visible, adjust content positioning */
+body.sidebar-open .content {
+  margin-left: calc(var(--sidebar-width) + 40px);
+  width: calc(100vw - var(--sidebar-width) - 140px);
+}
+
+/* === Tablet Layout (768px - 1200px) === */
+@media (max-width: 1200px) and (min-width: 769px) {
   .content {
-    position: relative !important;
-    left: auto !important;
-    right: auto !important;
-    margin: 70px 10px 20px 10px !important;
-  }
-  
-  .sidebar-trigger-zone {
-    width: 40px;
+    width: calc(100vw - 80px);
+    margin: 80px 40px;
+    max-width: none;
   }
   
   .filetree-sidebar {
     width: 280px !important;
     left: -280px !important;
   }
+  
+  body.sidebar-open .content {
+    margin-left: 320px;
+    width: calc(100vw - 360px);
+  }
+}
+
+/* === Mobile Layout (≤768px) === */
+@media (max-width: 768px) {
+  .content {
+    width: calc(100vw - 20px);
+    margin: 70px 10px 30px 10px;
+    padding: 25px !important;
+    border-radius: var(--border-radius-lg) !important;
+  }
+  
+  .filetree-sidebar {
+    width: 100vw !important;
+    left: -100vw !important;
+    border-radius: 0 !important;
+    padding: 20px !important;
+  }
+  
+  .sidebar-trigger-zone {
+    width: 40px;
+  }
+  
+  body.sidebar-open .content {
+    margin-left: 10px;
+    width: calc(100vw - 20px);
+  }
+}
+
+/* === Small Mobile Layout (≤480px) === */
+@media (max-width: 480px) {
+  .content {
+    margin: 60px 5px 20px 5px;
+    padding: 20px !important;
+    width: calc(100vw - 10px);
+  }
+  
+  .sidebar-trigger-zone {
+    width: 30px;
+  }
 }
 
 /* ============================================
-   SECTION 10: SEARCH INTERFACE
+   SECTION 7: THEME CONTROL INTERFACE
+   Floating theme and background controls with enhanced UX
    ============================================ */
 
-.search-container {
-  background: rgba(0, 0, 0, 0.6) !important;
-  backdrop-filter: blur(5px) !important;
-}
-
-.search-box {
-  background: var(--glass-bg-heavy) !important;
-  border-radius: 25px !important;
-  padding: 25px !important;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
-}
-
-.search-box input {
-  background: var(--glass-bg) !important;
-  border: 1px solid var(--glass-border) !important;
-  border-radius: 15px !important;
-  padding: 15px 20px !important;
-  color: var(--text-primary) !important;
-}
-
-.searchresult {
-  background: var(--glass-bg) !important;
-  border-radius: 12px !important;
-  padding: 15px !important;
-  margin: 10px 0 !important;
+/* === Theme Control Container === */
+.theme-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 8px;
+  background: var(--glass-bg-medium);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--glass-shadow);
   transition: var(--transition-smooth);
 }
 
-.searchresult:hover {
-  background: var(--glass-bg-medium) !important;
+.theme-controls:hover {
+  background: var(--glass-bg-heavy);
   transform: translateY(-2px);
 }
 
-/* ============================================
-   SECTION 11: BUTTONS & INTERACTIVE ELEMENTS
-   ============================================ */
-
-/* All Buttons Glass Style */
-button,
-.button,
-.search-button,
-.mod-cta {
-  background: var(--glass-bg-medium) !important;
-  backdrop-filter: var(--glass-blur) !important;
-  border: 1px solid var(--glass-border) !important;
-  border-radius: 12px !important;
-  padding: 8px 16px !important;
-  color: var(--text-primary) !important;
-  transition: var(--transition-smooth);
+/* === Individual Control Buttons === */
+.theme-btn, .bg-cycle-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--glass-border);
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+  color: var(--text-primary);
+  font-size: 16px;
 }
 
-button:hover,
-.button:hover,
-.search-button:hover {
-  background: var(--glass-bg-heavy) !important;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important;
+.theme-btn:hover, .bg-cycle-btn:hover {
+  background: var(--glass-bg-medium);
+  transform: scale(1.1);
+  border-color: var(--text-accent) !important;
+}
+
+/* === Form Elements === */
+input, textarea, select {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--border-radius-sm) !important;
+  padding: 10px 12px !important;
+  color: var(--text-primary) !important;
+  transition: var(--transition-fast);
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--text-accent) !important;
+  box-shadow: 0 0 0 2px rgba(var(--text-accent), 0.2) !important;
+  outline: none;
+  background: var(--glass-bg-medium) !important;
 }
 
 /* ============================================
-   SECTION 12: LINKS & TEXT ELEMENTS
+   SECTION 13: CODE BLOCKS & SYNTAX HIGHLIGHTING
+   Enhanced code presentation with glass styling
    ============================================ */
 
-a {
-  color: var(--glass-accent) !important;
-  text-decoration: none;
-  transition: var(--transition-smooth);
+/* === Code Block Container === */
+pre {
+  background: var(--glass-bg-medium) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--border-radius-md) !important;
+  padding: 20px !important;
+  backdrop-filter: var(--glass-blur) !important;
+  overflow-x: auto;
+  margin: 1.5em 0;
   position: relative;
 }
 
-a:hover {
-  color: var(--text-primary) !important;
-  text-shadow: 0 0 8px var(--glass-accent);
-}
-
-/* Internal links special effect */
-a.internal-link::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--glass-accent);
-  transition: width 0.3s ease;
-}
-
-a.internal-link:hover::after {
-  width: 100%;
-}
-
-/* ============================================
-   SECTION 13: CODE BLOCKS & TABLES
-   ============================================ */
-
-/* Code blocks */
-pre,
+/* === Inline Code === */
 code {
   background: var(--glass-bg-medium) !important;
   border: 1px solid var(--glass-border) !important;
-  border-radius: 8px !important;
+  border-radius: 4px !important;
+  padding: 2px 6px !important;
+  color: var(--text-primary) !important;
+  font-size: 0.9em;
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+}
+
+/* === Code Block in Pre === */
+pre code {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
   color: var(--text-primary) !important;
 }
 
-pre {
-  padding: 15px !important;
-  backdrop-filter: var(--glass-blur) !important;
+/* === Code Block Scrollbar === */
+pre::-webkit-scrollbar {
+  height: 8px;
 }
 
-/* Tables */
-table {
-  background: var(--glass-bg) !important;
-  border-radius: 10px !important;
-  overflow: hidden;
+pre::-webkit-scrollbar-track {
+  background: var(--glass-bg);
+  border-radius: 4px;
 }
 
-th {
-  background: var(--glass-bg-medium) !important;
-  padding: 12px !important;
-  border-bottom: 2px solid var(--glass-accent) !important;
-}
-
-td {
-  padding: 10px !important;
-  border-bottom: 1px solid var(--glass-border) !important;
-}
-
-tr:hover {
-  background: var(--glass-bg-medium) !important;
+pre::-webkit-scrollbar-thumb {
+  background: var(--text-accent);
+  border-radius: 4px;
+  opacity: 0.7;
 }
 
 /* ============================================
-   SECTION 14: SCROLLBARS
+   SECTION 14: TABLE STYLING SYSTEM
+   Enhanced table presentation with glass effects
    ============================================ */
 
-/* Custom Scrollbar */
+/* === Table Container === */
+table {
+  background: var(--glass-bg) !important;
+  border-radius: var(--border-radius-md) !important;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  margin: 1.5em 0;
+  box-shadow: var(--glass-shadow);
+}
+
+/* === Table Headers === */
+th {
+  background: var(--glass-bg-medium) !important;
+  padding: 15px 12px !important;
+  border-bottom: 2px solid var(--text-accent) !important;
+  font-weight: 600;
+  text-align: left;
+  color: var(--text-primary) !important;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* === Table Data Cells === */
+td {
+  padding: 12px !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+  color: var(--text-primary) !important;
+  vertical-align: top;
+}
+
+/* === Table Row Hover Effects === */
+tr:hover {
+  background: var(--glass-bg-medium) !important;
+  transition: var(--transition-fast);
+}
+
+/* === Striped Table Rows === */
+tr:nth-child(even) {
+  background: rgba(var(--glass-bg), 0.3) !important;
+}
+
+/* === Responsive Table === */
+@media (max-width: 768px) {
+  table {
+    font-size: 0.85em;
+  }
+  
+  th, td {
+    padding: 8px 6px !important;
+  }
+}
+
+/* ============================================
+   SECTION 15: CALLOUTS & SPECIAL CONTAINERS
+   Enhanced callout styling with glass morphism
+   ============================================ */
+
+/* === Base Callout Styling === */
+.callout {
+  border-radius: var(--border-radius-md) !important;
+  padding: 20px !important;
+  margin: 1.5em 0 !important;
+  backdrop-filter: var(--glass-blur-medium) !important;
+  position: relative;
+}
+
+/* === Callout Types === */
+.callout[data-callout="note"] {
+  border-left: 4px solid #3b82f6 !important;
+  background: rgba(59, 130, 246, 0.05) !important;
+}
+
+.callout[data-callout="warning"] {
+  border-left: 4px solid #f59e0b !important;
+  background: rgba(245, 158, 11, 0.05) !important;
+}
+
+.callout[data-callout="error"] {
+  border-left: 4px solid #ef4444 !important;
+  background: rgba(239, 68, 68, 0.05) !important;
+}
+
+.callout[data-callout="success"] {
+  border-left: 4px solid #10b981 !important;
+  background: rgba(16, 185, 129, 0.05) !important;
+}
+
+.callout[data-callout="tip"] {
+  border-left: 4px solid #8b5cf6 !important;
+  background: rgba(139, 92, 246, 0.05) !important;
+}
+
+/* === Callout Title === */
+.callout-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-primary) !important;
+}
+
+/* ============================================
+   SECTION 16: ADVANCED SCROLLBAR SYSTEM
+   Custom scrollbars throughout the application
+   ============================================ */
+
+/* === Universal Scrollbar Styling === */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
   background: var(--glass-bg);
-  border-radius: 5px;
+  border-radius: 4px;
+  margin: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--glass-accent);
-  border-radius: 5px;
+  background: var(--text-accent);
+  border-radius: 4px;
   border: 1px solid var(--glass-border);
+  opacity: 0.8;
+  transition: var(--transition-fast);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--glass-bg-heavy);
+  background: var(--text-primary);
+  opacity: 1;
+}
+
+/* === Scrollbar Corner === */
+::-webkit-scrollbar-corner {
+  background: var(--glass-bg);
+}
+
+/* === Firefox Scrollbar === */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-accent) var(--glass-bg);
 }
 
 /* ============================================
-   SECTION 15: ANIMATIONS
+   SECTION 17: ANIMATION LIBRARY
+   Comprehensive animation system for smooth interactions
    ============================================ */
 
+/* === Keyframe Definitions === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
   from {
     opacity: 0;
     transform: translateY(30px);
@@ -827,76 +740,64 @@ tr:hover {
   }
 }
 
-@keyframes float {
+@keyframes slideInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes pulse-indicator {
   0%, 100% {
-    transform: translateY(0px);
+    opacity: 0.3;
+    transform: scale(1);
   }
   50% {
-    transform: translateY(-10px);
+    opacity: 1;
+    transform: scale(1.3);
   }
 }
 
 @keyframes shimmer {
   0% {
-    background-position: -1000px 0;
+    background-position: -200% 0;
   }
   100% {
-    background-position: 1000px 0;
+    background-position: 200% 0;
   }
 }
 
-/* Hover animations for various elements */
-.content,
-.sidebar-container,
-.search-box {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-/* ============================================
-   SECTION 16: RESPONSIVE DESIGN
-   ============================================ */
-
-@media (max-width: 1400px) {
-  .sidebar {
-    position: relative !important;
-    right: auto !important;
-    max-width: 100% !important;
-    margin: 30px auto !important;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
   }
-  
-  .content {
-    margin-top: 80px !important;
+  50% {
+    transform: translateY(-8px);
   }
 }
 
-@media (max-width: 800px) {
-  .theme-toggle-container {
-    top: 10px;
-    right: 10px;
-  }
-  
-  .theme-toggle-btn,
-  .bg-cycle-btn {
-    width: 35px;
-    height: 35px;
-  }
-  
-  .content {
-    padding: 20px !important;
-    margin: 70px 10px 20px 10px !important;
-  }
-  
-  .filetree-sidebar {
-    width: 100% !important;
-    border-radius: 0 !important;
-  }
+/* === Animation Classes === */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
 }
 
-/* ============================================
-   SECTION 17: SPECIAL EFFECTS
-   ============================================ */
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out;
+}
 
-/* Shimmer effect for loading */
+.animate-slide-in-up {
+  animation: slideInUp 0.6s ease-out;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* === Loading Animation === */
 .loading-shimmer {
   background: linear-gradient(
     90deg,
@@ -904,28 +805,24 @@ tr:hover {
     var(--glass-bg-medium) 50%,
     var(--glass-bg) 100%
   );
-  background-size: 1000px 100%;
-  animation: shimmer 2s infinite;
-}
-
-/* Glow effect for important elements */
-.glow {
-  box-shadow: 
-    0 0 20px var(--glass-accent),
-    inset 0 0 20px rgba(255, 255, 255, 0.1) !important;
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
 }
 
 /* ============================================
    SECTION 18: UTILITY CLASSES
+   Helpful utility classes for common styling needs
    ============================================ */
 
+/* === Glass Utility Classes === */
 .glass-card {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
-  border-radius: 15px;
+  border-radius: var(--border-radius-md);
   padding: 20px;
   margin: 15px 0;
+  box-shadow: var(--glass-shadow);
 }
 
 .glass-badge {
@@ -933,16 +830,576 @@ tr:hover {
   backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
-  padding: 5px 15px;
+  padding: 6px 16px;
   display: inline-block;
-  font-size: 0.9em;
+  font-size: 0.85em;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 2px 4px;
 }
 
+.glass-panel {
+  background: var(--glass-bg-heavy);
+  backdrop-filter: var(--glass-blur-heavy);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-lg);
+  padding: 25px;
+  margin: 20px 0;
+  box-shadow: var(--glass-shadow);
+}
+
+/* === Layout Utilities === */
 .no-glass {
   backdrop-filter: none !important;
   background: var(--glass-bg-heavy) !important;
 }
 
+.glass-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  filter: grayscale(0.3);
+}
+
+.text-glow {
+  text-shadow: 0 0 10px var(--text-accent);
+}
+
+.border-glow {
+  box-shadow: 
+    0 0 20px var(--text-accent),
+    inset 0 0 20px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* === Spacing Utilities === */
+.mt-glass { margin-top: 20px; }
+.mb-glass { margin-bottom: 20px; }
+.ml-glass { margin-left: 20px; }
+.mr-glass { margin-right: 20px; }
+.p-glass { padding: 20px; }
+
+/* === Responsive Visibility === */
+.hidden-mobile {
+  display: block;
+}
+
+.visible-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hidden-mobile {
+    display: none;
+  }
+  
+  .visible-mobile {
+    display: block;
+  }
+}
+
 /* ============================================
-   END OF CUSTOM STYLES
+   SECTION 19: SPECIAL EFFECTS & ENHANCEMENTS
+   Advanced visual effects and micro-interactions
    ============================================ */
+
+/* === Hover Effects === */
+.hover-lift {
+  transition: var(--transition-smooth);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.hover-glow:hover {
+  box-shadow: 
+    0 0 20px var(--text-accent),
+    var(--glass-shadow);
+}
+
+/* === Focus Effects === */
+.focus-ring:focus {
+  outline: none;
+  box-shadow: 
+    0 0 0 3px rgba(var(--text-accent), 0.3),
+    var(--glass-shadow);
+}
+
+/* === Selection Styling === */
+::selection {
+  background: rgba(var(--text-accent), 0.3);
+  color: var(--text-primary);
+}
+
+::-moz-selection {
+  background: rgba(var(--text-accent), 0.3);
+  color: var(--text-primary);
+}
+
+/* ============================================
+   SECTION 20: PERFORMANCE OPTIMIZATIONS
+   CSS optimizations for better rendering performance
+   ============================================ */
+
+/* === Hardware Acceleration === */
+.content,
+.filetree-sidebar,
+.theme-controls,
+.sidebar-container {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* === Reduced Motion Support === */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-float {
+    animation: none;
+  }
+  
+  .pulse-indicator::before,
+  .pulse-indicator::after {
+    animation: none;
+  }
+}
+
+/* === Print Styles === */
+@media print {
+  .theme-controls,
+  .sidebar-trigger-zone,
+  .sidebar-indicator,
+  .filetree-sidebar {
+    display: none !important;
+  }
+  
+  .content {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    background: white !important;
+    box-shadow: none !important;
+    border: none !important;
+    color: black !important;
+  }
+  
+  body::before,
+  body::after {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   SECTION 21: BROWSER COMPATIBILITY
+   Fallbacks and vendor prefixes for better compatibility
+   ============================================ */
+
+/* === Safari Specific Fixes === */
+@supports (-webkit-backdrop-filter: blur(1px)) {
+  .glass-effect,
+  .glass-effect-medium,
+  .glass-effect-heavy {
+    -webkit-backdrop-filter: var(--glass-blur) !important;
+  }
+}
+
+/* === Firefox Fallbacks === */
+@-moz-document url-prefix() {
+  .glass-effect,
+  .glass-effect-medium,
+  .glass-effect-heavy {
+    background: var(--glass-bg-heavy) !important;
+  }
+}
+
+/* === Edge Legacy Support === */
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-effect,
+  .glass-effect-medium,
+  .glass-effect-heavy {
+    background: var(--glass-bg-heavy) !important;
+    border: 2px solid var(--glass-border) !important;
+  }
+}
+
+/* ============================================
+   END OF ENHANCED GLASS MORPHISM THEME
+   All sections complete - ready for deployment
+   ============================================ */);
+}
+
+.theme-btn.active {
+  background: var(--text-accent);
+  color: white;
+  box-shadow: 0 0 12px var(--text-accent);
+}
+
+/* === Background Cycle Button Special Effect === */
+.bg-cycle-btn:hover {
+  transform: scale(1.1) rotate(180deg);
+}
+
+/* === Mobile Theme Controls === */
+@media (max-width: 768px) {
+  .theme-controls {
+    top: 15px;
+    right: 15px;
+    padding: 6px;
+    gap: 8px;
+  }
+  
+  .theme-btn, .bg-cycle-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+}
+
+/* ============================================
+   SECTION 8: TYPOGRAPHY & CONTENT STYLING
+   Enhanced text hierarchy with glass-compatible styling
+   ============================================ */
+
+/* === Header Hierarchy === */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 1.5em 0 0.8em 0;
+  font-weight: 600;
+  line-height: 1.3;
+  position: relative;
+}
+
+h1 {
+  font-size: 2.2em;
+  margin-bottom: 1em;
+}
+
+h2 {
+  font-size: 1.8em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+h4 {
+  font-size: 1.3em;
+}
+
+h5 {
+  font-size: 1.1em;
+}
+
+h6 {
+  font-size: 1em;
+  color: var(--text-secondary) !important;
+}
+
+/* === Header Accent Lines === */
+h1::after, h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--text-accent) 0%, transparent 70%);
+  border-radius: 1px;
+  transition: var(--transition-smooth);
+}
+
+h1::after {
+  width: 60px;
+}
+
+h2::after {
+  width: 45px;
+}
+
+/* === Paragraph and Text Elements === */
+p {
+  margin-bottom: 1.2em;
+  color: var(--text-primary);
+}
+
+/* === Enhanced Link Styling === */
+a {
+  color: var(--link-color) !important;
+  text-decoration: none;
+  transition: var(--transition-fast);
+  position: relative;
+  border-bottom: 1px solid transparent;
+}
+
+a:hover {
+  color: var(--link-color-hover) !important;
+  border-bottom-color: var(--text-accent);
+  text-shadow: 0 0 8px var(--text-accent);
+}
+
+/* === Internal Link Special Effects === */
+a.internal-link {
+  padding-bottom: 2px;
+}
+
+a.internal-link::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--text-accent);
+  transition: width 0.3s ease;
+}
+
+a.internal-link:hover::before {
+  width: 100%;
+}
+
+/* ============================================
+   SECTION 9: RIGHT SIDEBAR COMPONENTS
+   Table of contents, backlinks, and graph styling
+   ============================================ */
+
+/* === Right Sidebar Container === */
+.sidebar {
+  position: fixed !important;
+  right: 20px !important;
+  top: 120px !important;
+  width: 280px !important;
+  max-height: calc(100vh - 160px);
+  z-index: 100;
+}
+
+/* === Sidebar Component Base === */
+.sidebar-container {
+  border-radius: var(--border-radius-lg) !important;
+  padding: 20px !important;
+  margin-bottom: 20px !important;
+}
+
+/* === Table of Contents Enhancement === */
+.toc {
+  border-radius: var(--border-radius-md) !important;
+  padding: 18px !important;
+  margin-bottom: 20px !important;
+}
+
+.toc-container {
+  max-height: 300px !important;
+  overflow-y: auto;
+  padding-right: 8px !important;
+}
+
+.toc-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.toc-container::-webkit-scrollbar-track {
+  background: var(--glass-bg);
+  border-radius: 2px;
+}
+
+.toc-container::-webkit-scrollbar-thumb {
+  background: var(--text-accent);
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+.toc-container::-webkit-scrollbar-thumb:hover {
+  opacity: 1;
+}
+
+/* === Backlinks Styling === */
+.backlinks {
+  border-radius: var(--border-radius-md) !important;
+  padding: 18px !important;
+}
+
+.backlink-list {
+  border-left: 2px solid var(--text-accent) !important;
+  padding-left: 15px !important;
+  margin-left: 5px;
+}
+
+/* === Responsive Sidebar Behavior === */
+@media (max-width: 1400px) {
+  .sidebar {
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 30px auto !important;
+    max-height: none;
+  }
+}
+
+/* ============================================
+   SECTION 10: ENHANCED GRAPH VISUALIZATION
+   Improved graph styling with better visibility
+   ============================================ */
+
+/* === Graph Container === */
+.graph {
+  border-radius: var(--border-radius-md) !important;
+  padding: 15px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+#link-graph, #graph-fs, #full-graph {
+  border-radius: var(--border-radius-sm) !important;
+  padding: 10px !important;
+  position: relative !important;
+  min-height: 200px;
+}
+
+/* === Graph Canvas Styling === */
+#link-graph canvas,
+#graph-fs canvas,
+#full-graph canvas {
+  border-radius: var(--border-radius-sm) !important;
+  background: transparent !important;
+}
+
+/* === Graph Node Styling === */
+.graph-view circle.node,
+.graph-view .node {
+  fill: var(--text-accent) !important;
+  stroke: var(--glass-border) !important;
+  stroke-width: 1.5px !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.graph-view circle.node:hover,
+.graph-view .node:hover {
+  fill: var(--text-primary) !important;
+  stroke: var(--text-accent) !important;
+  stroke-width: 2.5px !important;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* === Graph Link Styling === */
+.graph-view line.link,
+.graph-view .link,
+.graph-view path {
+  stroke: var(--glass-border) !important;
+  stroke-opacity: 0.4 !important;
+  stroke-width: 1px !important;
+  fill: none !important;
+}
+
+.graph-view line.link:hover,
+.graph-view .link:hover {
+  stroke: var(--text-accent) !important;
+  stroke-opacity: 0.8 !important;
+  stroke-width: 2px !important;
+}
+
+/* === Graph Text Labels === */
+.graph-view text,
+.graph-view .node-label {
+  fill: var(--text-primary) !important;
+  font-size: 11px !important;
+  font-weight: 500;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+/* ============================================
+   SECTION 11: ADVANCED SEARCH INTERFACE
+   Enhanced search with better UX and animations
+   ============================================ */
+
+/* === Search Overlay === */
+.search-container {
+  background: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(8px) !important;
+  z-index: 2000;
+}
+
+.search-container.active {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* === Search Box Enhancement === */
+.search-box {
+  border-radius: var(--border-radius-xl) !important;
+  padding: 30px !important;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4) !important;
+  animation: slideInScale 0.4s ease-out;
+}
+
+.search-box input {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--border-radius-md) !important;
+  padding: 16px 20px !important;
+  font-size: 16px !important;
+  color: var(--text-primary) !important;
+  width: 100% !important;
+  box-sizing: border-box;
+  transition: var(--transition-smooth);
+}
+
+.search-box input:focus {
+  border-color: var(--text-accent) !important;
+  box-shadow: 0 0 0 3px rgba(var(--text-accent), 0.2) !important;
+  outline: none;
+}
+
+/* === Search Results === */
+.searchresult {
+  background: var(--glass-bg) !important;
+  border-radius: var(--border-radius-md) !important;
+  padding: 16px !important;
+  margin: 12px 0 !important;
+  transition: var(--transition-smooth);
+  border: 1px solid var(--glass-border) !important;
+}
+
+.searchresult:hover {
+  background: var(--glass-bg-medium) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ============================================
+   SECTION 12: INTERACTIVE ELEMENTS
+   Buttons, forms, and other interactive components
+   ============================================ */
+
+/* === Universal Button Styling === */
+button,
+.button,
+.search-button,
+.mod-cta,
+input[type="submit"],
+input[type="button"] {
+  background: var(--glass-bg-medium) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--border-radius-md) !important;
+  padding: 10px 18px !important;
+  color: var(--text-primary) !important;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  font-size: 14px;
+}
+
+button:hover,
+.button:hover,
+.search-button:hover {
+  background: var(--glass-bg-heavy) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+  border-color: var(--text-accent
