@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/what-is-this/quick-syntax-summary-copy-paste-reference/","noteIcon":"","created":"2025-09-05T19:21:04.365+02:00","updated":"2025-09-05T20:43:14.012+02:00"}
+{"dg-publish":true,"permalink":"/01-home/what-is-this/quick-syntax-summary-copy-paste-reference/","noteIcon":"","created":"2025-09-05T19:21:04.365+02:00","updated":"2025-09-05T22:06:00.613+02:00"}
 ---
 
 ## Copy/paste for easy use
@@ -17,6 +17,7 @@
 - Embed block: `![[Note#^blockID]]`
     
 - Callout: `> [!NOTE]` then `> content`
+    **Common types:** `NOTE`, `TIP`, `WARNING`, `IMPORTANT`, `INFO`, `DANGER`
     
 - Query: `query\nyour search\n`
     
