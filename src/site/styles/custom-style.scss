@@ -776,3 +776,811 @@ div.transclusion::before,
    SECTION 11: ENHANCED NAVIGATION & SIDEBAR
    ============================================ */
 
+/* Navbar Enhancement */
+.navbar {
+  border-radius: 0 0 24px 24px !important;
+  padding: 18px 35px !important;
+  position: fixed !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: var(--navbar-height) !important;
+  z-index: 1000 !important;
+  box-shadow: var(--glass-shadow), 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Sidebar Components Enhancement */
+.sidebar {
+  position: fixed !important;
+  right: 30px !important;
+  top: 100px !important;
+  width: 280px !important;
+  z-index: 999 !important;
+}
+
+.sidebar-container {
+  border-radius: 20px !important;
+  padding: 25px !important;
+  background: var(--glass-bg) !important;
+  margin-bottom: 20px !important;
+  transition: var(--transition-smooth);
+}
+
+.sidebar-container:hover {
+  background: var(--glass-bg-medium) !important;
+  transform: translateX(-5px);
+}
+
+/* TOC Enhancement */
+.toc {
+  border-radius: 16px !important;
+  margin-bottom: 20px !important;
+  padding: 20px !important;
+  position: relative;
+}
+
+.toc::before {
+  content: '📑';
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 16px;
+  opacity: 0.6;
+}
+
+.toc-container {
+  max-height: 400px !important;
+  padding-right: 12px !important;
+  overflow-y: auto;
+}
+
+.toc-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.toc-container::-webkit-scrollbar-track {
+  background: var(--glass-bg);
+  border-radius: 3px;
+}
+
+.toc-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--glass-accent), var(--crystal-purple));
+  border-radius: 3px;
+}
+
+/* TOC Links Enhancement */
+.toc a {
+  display: block;
+  padding: 6px 12px;
+  margin: 4px 0;
+  border-radius: 8px;
+  transition: var(--transition-smooth);
+  border-left: 3px solid transparent;
+}
+
+.toc a:hover {
+  background: var(--glass-bg-medium) !important;
+  border-left-color: var(--glass-accent);
+  transform: translateX(4px);
+}
+
+/* Backlinks Enhancement */
+.backlinks {
+  border-radius: 16px !important;
+  padding: 20px !important;
+  position: relative;
+}
+
+.backlinks::before {
+  content: '🔗';
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 16px;
+  opacity: 0.6;
+}
+
+.backlink-list {
+  border-left: 3px solid var(--glass-accent) !important;
+  padding-left: 18px !important;
+  position: relative;
+}
+
+.backlink-list::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 0;
+  width: 9px;
+  height: 9px;
+  background: var(--glass-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--glass-accent);
+}
+
+/* ============================================
+   SECTION 12: ENHANCED FILE TREE SYSTEM
+   ============================================ */
+
+/* Auto-hide Sidebar Trigger */
+.sidebar-trigger-zone {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 60px;
+  height: 100vh;
+  z-index: 999;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.06) 70%,
+    transparent 100%
+  );
+  backdrop-filter: blur(3px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+.sidebar-trigger-zone:hover {
+  background: linear-gradient(
+    to right,
+    rgba(59, 130, 246, 0.15) 0%,
+    rgba(59, 130, 246, 0.08) 70%,
+    transparent 100%
+  );
+  width: 80px;
+}
+
+/* Enhanced File Tree Sidebar */
+.filetree-sidebar {
+  position: fixed !important;
+  left: -350px !important;
+  top: 0 !important;
+  width: 350px !important;
+  height: 100vh !important;
+  z-index: 1001;
+  transition: left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  border-radius: 0 30px 30px 0 !important;
+  padding: 30px !important;
+  background: var(--glass-bg) !important;
+  overflow-y: auto;
+  box-shadow: 8px 0 40px rgba(0, 0, 0, 0.25);
+  backdrop-filter: var(--glass-blur-heavy) !important;
+}
+
+.filetree-sidebar.sidebar-visible {
+  left: 0 !important;
+}
+
+/* Sidebar Indicator Enhancement */
+.sidebar-indicator {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 998;
+  pointer-events: none;
+}
+
+.sidebar-indicator::before,
+.sidebar-indicator::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(135deg, var(--glass-accent), var(--crystal-purple));
+  border-radius: 50%;
+  opacity: 0.7;
+  box-shadow: 0 0 8px var(--glass-accent);
+}
+
+.sidebar-indicator::before {
+  top: -20px;
+  animation: crystal-pulse 3s infinite;
+}
+
+.sidebar-indicator::after {
+  top: 20px;
+  animation: crystal-pulse 3s infinite 1.5s;
+}
+
+/* Enhanced File Tree Items */
+.filetree-sidebar .notelink {
+  border-radius: 14px !important;
+  margin: 8px 0 !important;
+  padding: 14px 20px !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  opacity: 0.9;
+  border: 1px solid transparent !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.filetree-sidebar .notelink::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.filetree-sidebar .notelink:hover::before {
+  left: 100%;
+}
+
+.filetree-sidebar .notelink:hover {
+  background: var(--glass-bg-medium) !important;
+  transform: translateX(10px) scale(1.02);
+  opacity: 1;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.filetree-sidebar .notelink.active-note {
+  background: linear-gradient(135deg, var(--glass-bg-heavy), var(--glass-bg-medium)) !important;
+  border-left: 5px solid var(--glass-accent) !important;
+  opacity: 1;
+  transform: translateX(5px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.2);
+}
+
+/* ============================================
+   SECTION 13: ENHANCED SEARCH INTERFACE
+   ============================================ */
+
+.search-container {
+  background: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(8px) !important;
+  z-index: 10000 !important;
+}
+
+.search-box {
+  background: var(--glass-bg-heavy) !important;
+  border-radius: 28px !important;
+  padding: 30px !important;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid var(--glass-border) !important;
+  max-width: 600px !important;
+  margin: 0 auto !important;
+}
+
+.search-box input {
+  background: var(--glass-bg) !important;
+  border: 2px solid var(--glass-border) !important;
+  border-radius: 18px !important;
+  padding: 18px 24px !important;
+  color: var(--text-primary) !important;
+  font-size: 16px !important;
+  width: 100% !important;
+  transition: var(--transition-smooth);
+}
+
+.search-box input:focus {
+  border-color: var(--glass-accent) !important;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3) !important;
+  outline: none !important;
+}
+
+.searchresult {
+  background: var(--glass-bg) !important;
+  border-radius: 14px !important;
+  padding: 18px !important;
+  margin: 12px 0 !important;
+  transition: var(--transition-smooth);
+  border: 1px solid var(--glass-border) !important;
+}
+
+.searchresult:hover {
+  background: var(--glass-bg-medium) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ============================================
+   SECTION 14: ENHANCED BUTTONS & INTERACTIONS
+   ============================================ */
+
+button,
+.button,
+.search-button,
+.mod-cta {
+  background: linear-gradient(135deg, var(--glass-bg-medium), var(--glass-bg)) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 14px !important;
+  padding: 10px 20px !important;
+  color: var(--text-primary) !important;
+  transition: var(--transition-bounce);
+  cursor: pointer;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+button::before,
+.button::before,
+.search-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+button:hover::before,
+.button:hover::before,
+.search-button:hover::before {
+  left: 100%;
+}
+
+button:hover,
+.button:hover,
+.search-button:hover {
+  background: linear-gradient(135deg, var(--glass-accent), var(--crystal-purple)) !important;
+  color: white !important;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* ============================================
+   SECTION 15: ENHANCED CODE BLOCKS & TABLES
+   ============================================ */
+
+/* Enhanced Code Blocks */
+pre,
+code {
+  background: var(--glass-bg-medium) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  color: var(--text-primary) !important;
+  font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+}
+
+pre {
+  padding: 20px !important;
+  backdrop-filter: var(--glass-blur) !important;
+  position: relative;
+  overflow-x: auto;
+}
+
+pre::before {
+  content: '</>';
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: var(--glass-accent);
+  opacity: 0.6;
+  font-size: 14px;
+}
+
+code {
+  padding: 4px 8px !important;
+  font-size: 0.9em;
+  border-radius: 6px !important;
+}
+
+/* Enhanced Tables */
+table {
+  background: var(--glass-bg) !important;
+  border-radius: 16px !important;
+  overflow: hidden;
+  border: 1px solid var(--glass-border) !important;
+  backdrop-filter: var(--glass-blur) !important;
+  width: 100% !important;
+  margin: 20px 0 !important;
+}
+
+th {
+  background: linear-gradient(135deg, var(--glass-bg-medium), var(--glass-bg-heavy)) !important;
+  padding: 16px !important;
+  border-bottom: 2px solid var(--glass-accent) !important;
+  color: var(--text-primary) !important;
+  font-weight: 600;
+  text-align: left;
+}
+
+td {
+  padding: 14px 16px !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+  color: var(--text-primary) !important;
+}
+
+tr:hover {
+  background: var(--glass-bg-medium) !important;
+}
+
+tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* ============================================
+   SECTION 16: ENHANCED SCROLLBARS
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--glass-bg);
+  border-radius: 6px;
+  border: 1px solid var(--glass-border);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--glass-accent), var(--crystal-purple));
+  border-radius: 6px;
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--crystal-purple), var(--crystal-rose));
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--glass-bg);
+}
+
+/* ============================================
+   SECTION 17: ENHANCED ANIMATIONS
+   ============================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes crystal-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+    box-shadow: 0 0 8px var(--glass-accent);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+    box-shadow: 0 0 15px var(--glass-accent), 0 0 25px rgba(59, 130, 246, 0.3);
+  }
+}
+
+@keyframes glow-rotate {
+  0% {
+    box-shadow: 0 0 20px var(--crystal-blue);
+  }
+  25% {
+    box-shadow: 0 0 20px var(--crystal-purple);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--crystal-teal);
+  }
+  75% {
+    box-shadow: 0 0 20px var(--crystal-rose);
+  }
+  100% {
+    box-shadow: 0 0 20px var(--crystal-blue);
+  }
+}
+
+/* Hover Animations */
+.content,
+.sidebar-container,
+.search-box {
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ============================================
+   SECTION 18: ENHANCED RESPONSIVE DESIGN
+   ============================================ */
+
+/* Desktop Large */
+@media (min-width: 1400px) {
+  .content {
+    max-width: 1400px !important;
+  }
+  
+  .sidebar {
+    width: 320px !important;
+  }
+}
+
+/* Desktop */
+@media (max-width: 1399px) and (min-width: 1200px) {
+  .content {
+    width: calc(100vw - 380px) !important;
+  }
+}
+
+/* Laptop */
+@media (max-width: 1199px) and (min-width: 992px) {
+  .content {
+    width: calc(100vw - 100px) !important;
+    margin: 90px 50px 30px 50px !important;
+  }
+  
+  .sidebar {
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    margin-top: 30px !important;
+  }
+  
+  .theme-toggle-container {
+    right: 15px;
+    top: 15px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 991px) and (min-width: 768px) {
+  .content {
+    width: calc(100vw - 60px) !important;
+    margin: 85px 30px 25px 30px !important;
+    padding: 30px !important;
+  }
+  
+  .filetree-sidebar {
+    width: 300px !important;
+    left: -300px !important;
+  }
+  
+  .theme-toggle-container {
+    padding: 6px;
+    gap: 8px;
+  }
+  
+  .theme-toggle-btn,
+  .bg-cycle-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .content {
+    width: calc(100vw - 30px) !important;
+    margin: 75px 15px 20px 15px !important;
+    padding: 20px !important;
+    border-radius: 18px !important;
+  }
+  
+  .theme-toggle-container {
+    top: 10px;
+    right: 10px;
+    padding: 4px;
+    gap: 6px;
+    border-radius: 16px;
+  }
+  
+  .theme-toggle-btn,
+  .bg-cycle-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+  
+  .filetree-sidebar {
+    width: calc(100vw - 40px) !important;
+    left: calc(-100vw + 40px) !important;
+    border-radius: 0 25px 25px 0 !important;
+    padding: 20px !important;
+  }
+  
+  .sidebar-trigger-zone {
+    width: 50px;
+  }
+  
+  .navbar {
+    padding: 12px 20px !important;
+    border-radius: 0 0 20px 20px !important;
+  }
+  
+  h1 {
+    font-size: 2em !important;
+  }
+  
+  .search-box {
+    padding: 20px !important;
+    border-radius: 20px !important;
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 480px) {
+  .content {
+    width: calc(100vw - 20px) !important;
+    margin: 70px 10px 15px 10px !important;
+    padding: 16px !important;
+    border-radius: 16px !important;
+  }
+  
+  .theme-toggle-container {
+    transform: scale(0.9);
+  }
+  
+  h1 {
+    font-size: 1.8em !important;
+  }
+  
+  .callout {
+    margin: 15px 0 !important;
+  }
+  
+  .callout-title {
+    padding: 12px 16px !important;
+  }
+  
+  .callout-content {
+    padding: 16px !important;
+  }
+}
+
+/* ============================================
+   SECTION 19: SPECIAL CRYSTAL EFFECTS
+   ============================================ */
+
+/* Crystal Shard Effect for Special Elements */
+.crystal-shard {
+  position: relative;
+  overflow: visible;
+}
+
+.crystal-shard::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(45deg, 
+    var(--crystal-blue),
+    var(--crystal-purple),
+    var(--crystal-teal),
+    var(--crystal-rose),
+    var(--crystal-blue)
+  );
+  background-size: 400% 400%;
+  border-radius: inherit;
+  opacity: 0.3;
+  animation: glow-rotate 4s ease-in-out infinite;
+  z-index: -1;
+}
+
+/* Floating Crystal Animation */
+.floating-crystal {
+  animation: var(--animation-float);
+}
+
+/* Glass Reflection Effect */
+.glass-reflection::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ============================================
+   SECTION 20: UTILITY CLASSES
+   ============================================ */
+
+/* Enhanced Glass Cards */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  padding: 24px;
+  margin: 20px 0;
+  box-shadow: var(--glass-shadow);
+  transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+  background: var(--glass-bg-medium);
+  transform: translateY(-2px);
+}
+
+/* Crystal Badges */
+.glass-badge {
+  background: linear-gradient(135deg, var(--glass-bg-medium), var(--crystal-blue));
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 25px;
+  padding: 6px 16px;
+  display: inline-block;
+  font-size: 0.9em;
+  color: var(--text-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* No Glass Override */
+.no-glass {
+  backdrop-filter: none !important;
+  background: var(--glass-bg-heavy) !important;
+}
+
+/* Mobile-only utilities */
+.mobile-only {
+  display: none !important;
+}
+
+@media (max-width: 767px) {
+  .mobile-only {
+    display: block !important;
+  }
+  
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   END OF ENHANCED STYLES
+   Features Added:
+   
+   1. CRYSTAL-INSPIRED HORIZONTAL RULES - Animated gradient lines with glowing center
+   2. ENHANCED CALLOUTS SYSTEM - Full support for NOTE, TIP, WARNING, IMPORTANT, INFO, DANGER
+   3. IMPROVED THEME TOGGLE BUTTONS - Better design with hover effects and animations
+   4. FIXED GRAPH VIEW - Preserved original functionality while adding glass styling
+   5. ENHANCED EMBED SYSTEM - Better styling for note and block embeds
+   6. MOBILE-RESPONSIVE DESIGN - Fully responsive across all screen sizes
+   7. CRYSTAL ANIMATIONS - Special effects using CSS animations
+   8. ENHANCED TYPOGRAPHY - Better text formatting and link styling
+   9. IMPROVED SCROLLBARS - Custom styled scrollbars with gradients
+   10. SPECIAL UTILITY CLASSES - Additional helper classes for customization
+   ============================================ */
