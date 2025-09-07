@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/06-streams/now/calisthenics-goals/","noteIcon":"","created":"2025-09-07T11:53:33.426+02:00","updated":"2025-09-07T17:28:30.014+02:00"}
+{"dg-publish":true,"permalink":"/06-streams/now/calisthenics-goals/","noteIcon":"","created":"2025-09-07T11:53:33.426+02:00","updated":"2025-09-07T17:30:00.196+02:00"}
 ---
 
 
@@ -8,9 +8,9 @@
 >! Wednesday and Saturday are rest days !
 
 [[06-Streams/rhythms/Calisthenics#Push progression\|Calisthenics#Push progression]][[06-Streams/rhythms/Calisthenics#Pull progression\|Calisthenics#Pull progression]][[06-Streams/rhythms/Calisthenics#Legs progression\|Calisthenics#Legs progression]]
-
-
-
+-
+-
+-
 [[06-Streams/rhythms/Calisthenics#Monday Push\|Calisthenics#Monday Push]] Shortcut for Pushups
 -
 -
