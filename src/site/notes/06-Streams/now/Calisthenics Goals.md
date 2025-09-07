@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/06-streams/now/calisthenics-goals/","noteIcon":"","created":"2025-09-07T11:53:33.426+02:00","updated":"2025-09-07T21:05:09.876+02:00"}
+{"dg-publish":true,"permalink":"/06-streams/now/calisthenics-goals/","noteIcon":"","created":"2025-09-07T11:53:33.426+02:00","updated":"2025-09-07T21:05:37.671+02:00"}
 ---
 
 
@@ -25,12 +25,7 @@
 -
 [[06-Streams/rhythms/Calisthenics#Sunday Legs\|Calisthenics#Sunday Legs]] Shortcut for Legs
 -
-Set 1 Done hand assisted
-Set 2 Done hand assisted
-Set 3 Done hand assisted
-Set 4 Done hand assisted
-Set 5 = 16
-Set 6 = 12
+F
 
 | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday                                                                                                                                   |
 | ------ | ------- | --------- | -------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
