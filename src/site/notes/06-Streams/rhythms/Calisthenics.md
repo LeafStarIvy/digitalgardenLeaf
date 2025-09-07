@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/06-streams/rhythms/calisthenics/","noteIcon":"","created":"2025-09-05T15:49:48.599+02:00","updated":"2025-09-07T12:03:15.786+02:00"}
+{"dg-publish":true,"permalink":"/06-streams/rhythms/calisthenics/","noteIcon":"","created":"2025-09-05T15:49:48.599+02:00","updated":"2025-09-07T17:16:42.441+02:00"}
 ---
 
 >[!INFO] 
