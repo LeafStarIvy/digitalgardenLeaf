@@ -773,7 +773,7 @@ div.transclusion::before,
 }
 
 /* ============================================
-   SECTION 11: ENHANCED NAVIGATION & SIDEBAR
+   SECTION 11: ENHANCED NAVIGATION & SIDEBAR SYSTEMS
    ============================================ */
 
 /* Navbar Enhancement */
@@ -788,15 +788,94 @@ div.transclusion::before,
   box-shadow: var(--glass-shadow), 0 4px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Sidebar Components Enhancement */
-.sidebar {
-  position: fixed !important;
-  right: 30px !important;
-  top: 100px !important;
-  width: 280px !important;
-  z-index: 999 !important;
+/* ============================================
+   RIGHT SIDEBAR SYSTEM (Graph, TOC, Backlinks)
+   ============================================ */
+
+/* Right Sidebar Trigger Zone */
+.right-sidebar-trigger-zone {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 60px;
+  height: 100vh;
+  z-index: 999;
+  background: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.06) 70%,
+    transparent 100%
+  );
+  backdrop-filter: blur(3px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
 }
 
+.right-sidebar-trigger-zone:hover {
+  background: linear-gradient(
+    to left,
+    rgba(59, 130, 246, 0.15) 0%,
+    rgba(59, 130, 246, 0.08) 70%,
+    transparent 100%
+  );
+  width: 80px;
+}
+
+/* Right Sidebar Container - Auto-hide version */
+.sidebar {
+  position: fixed !important;
+  right: -380px !important; /* Hidden off-screen by default */
+  top: 0 !important;
+  width: 350px !important;
+  height: 100vh !important;
+  z-index: 1001;
+  transition: right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  border-radius: 30px 0 0 30px !important;
+  padding: 30px !important;
+  background: var(--glass-bg) !important;
+  overflow-y: auto;
+  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.25);
+  backdrop-filter: var(--glass-blur-heavy) !important;
+  padding-top: 100px !important; /* Account for navbar */
+}
+
+.sidebar.sidebar-visible {
+  right: 0 !important; /* Show sidebar when active */
+}
+
+/* Right Sidebar Indicator */
+.right-sidebar-indicator {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 998;
+  pointer-events: none;
+}
+
+.right-sidebar-indicator::before,
+.right-sidebar-indicator::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(135deg, var(--crystal-teal), var(--crystal-rose));
+  border-radius: 50%;
+  opacity: 0.7;
+  box-shadow: 0 0 8px var(--crystal-teal);
+}
+
+.right-sidebar-indicator::before {
+  top: -20px;
+  animation: crystal-pulse 3s infinite;
+}
+
+.right-sidebar-indicator::after {
+  top: 20px;
+  animation: crystal-pulse 3s infinite 1.5s;
+}
+
+/* Individual Sidebar Components Enhancement */
 .sidebar-container {
   border-radius: 20px !important;
   padding: 25px !important;
@@ -860,7 +939,7 @@ div.transclusion::before,
 .toc a:hover {
   background: var(--glass-bg-medium) !important;
   border-left-color: var(--glass-accent);
-  transform: translateX(4px);
+  transform: translateX(-4px); /* Changed direction for right sidebar */
 }
 
 /* Backlinks Enhancement */
@@ -880,15 +959,15 @@ div.transclusion::before,
 }
 
 .backlink-list {
-  border-left: 3px solid var(--glass-accent) !important;
-  padding-left: 18px !important;
+  border-right: 3px solid var(--glass-accent) !important; /* Changed to right border */
+  padding-right: 18px !important; /* Changed to right padding */
   position: relative;
 }
 
 .backlink-list::before {
   content: '';
   position: absolute;
-  left: -6px;
+  right: -6px; /* Changed to right positioning */
   top: 0;
   width: 9px;
   height: 9px;
@@ -896,7 +975,6 @@ div.transclusion::before,
   border-radius: 50%;
   box-shadow: 0 0 6px var(--glass-accent);
 }
-
 /* ============================================
    SECTION 12: ENHANCED FILE TREE SYSTEM
    ============================================ */
