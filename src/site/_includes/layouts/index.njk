@@ -90,11 +90,6 @@
     {%include "components/notegrowthhistory.njk"%}
 {% if settings.dgShowFileTree !== true %}
   {%include "components/navbar.njk"%}
-<!-- Right sidebar auto-hide system -->
-  {% if settings.dgShowBacklinks === true or settings.dgShowLocalGraph === true or settings.dgShowToc === true%}
-    <div class="right-sidebar-trigger-zone"></div>
-    <div class="right-sidebar-indicator"></div>
-  {%endif%}
 {%else%}
   <!-- Auto-hide sidebar system -->
   <div class="sidebar-trigger-zone"></div>
@@ -344,110 +339,42 @@ function updateBackground() {
       */
     </script>
 
-<!-- Enhanced Sidebar Toggle Script for Both Left and Right -->
+<!-- Sidebar Toggle Script -->
 <script>
-// Left Sidebar (File Tree) Management
-let leftSidebarTimer;
-const leftSidebar = document.querySelector('.filetree-sidebar');
-const leftTriggerZone = document.querySelector('.sidebar-trigger-zone');
+let sidebarTimer;
+const sidebar = document.querySelector('.filetree-sidebar');
+const triggerZone = document.querySelector('.sidebar-trigger-zone');
 
-if (leftSidebar && leftTriggerZone) {
-  // Show left sidebar on hover
-  function showLeftSidebar() {
-    clearTimeout(leftSidebarTimer);
-    leftSidebar.classList.add('sidebar-visible');
+if (sidebar && triggerZone) {
+  // Show sidebar on hover
+  function showSidebar() {
+    clearTimeout(sidebarTimer);
+    sidebar.classList.add('sidebar-visible');
   }
 
-  // Hide left sidebar with delay
-  function hideLeftSidebar() {
-    leftSidebarTimer = setTimeout(() => {
-      leftSidebar.classList.remove('sidebar-visible');
+  // Hide sidebar with delay
+  function hideSidebar() {
+    sidebarTimer = setTimeout(() => {
+      sidebar.classList.remove('sidebar-visible');
     }, 300); // 300ms delay before hiding
   }
 
-  // Left sidebar event listeners
-  leftTriggerZone.addEventListener('mouseenter', showLeftSidebar);
-  leftTriggerZone.addEventListener('mouseleave', hideLeftSidebar);
-  leftSidebar.addEventListener('mouseenter', showLeftSidebar);
-  leftSidebar.addEventListener('mouseleave', hideLeftSidebar);
+  // Event listeners
+  triggerZone.addEventListener('mouseenter', showSidebar);
+  triggerZone.addEventListener('mouseleave', hideSidebar);
+  sidebar.addEventListener('mouseenter', showSidebar);
+  sidebar.addEventListener('mouseleave', hideSidebar);
 
-  // Touch support for mobile - left sidebar
-  leftTriggerZone.addEventListener('touchstart', (e) => {
+  // Touch support for mobile
+  triggerZone.addEventListener('touchstart', (e) => {
     e.preventDefault();
-    if (leftSidebar.classList.contains('sidebar-visible')) {
-      leftSidebar.classList.remove('sidebar-visible');
+    if (sidebar.classList.contains('sidebar-visible')) {
+      sidebar.classList.remove('sidebar-visible');
     } else {
-      showLeftSidebar();
+      showSidebar();
     }
   });
 }
-
-// Right Sidebar (Graph, TOC, Backlinks) Management
-let rightSidebarTimer;
-const rightSidebar = document.querySelector('.sidebar');
-const rightTriggerZone = document.querySelector('.right-sidebar-trigger-zone');
-
-if (rightSidebar && rightTriggerZone) {
-  // Show right sidebar on hover
-  function showRightSidebar() {
-    clearTimeout(rightSidebarTimer);
-    rightSidebar.classList.add('sidebar-visible');
-  }
-
-  // Hide right sidebar with delay
-  function hideRightSidebar() {
-    rightSidebarTimer = setTimeout(() => {
-      rightSidebar.classList.remove('sidebar-visible');
-    }, 300); // 300ms delay before hiding
-  }
-
-  // Right sidebar event listeners
-  rightTriggerZone.addEventListener('mouseenter', showRightSidebar);
-  rightTriggerZone.addEventListener('mouseleave', hideRightSidebar);
-  rightSidebar.addEventListener('mouseenter', showRightSidebar);
-  rightSidebar.addEventListener('mouseleave', hideRightSidebar);
-
-  // Touch support for mobile - right sidebar
-  rightTriggerZone.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    if (rightSidebar.classList.contains('sidebar-visible')) {
-      rightSidebar.classList.remove('sidebar-visible');
-    } else {
-      showRightSidebar();
-    }
-  });
-}
-
-// Keyboard shortcuts for sidebar control
-document.addEventListener('keydown', function(e) {
-  // Alt + L: Toggle left sidebar
-  if (e.altKey && e.key === 'l') {
-    if (leftSidebar) {
-      if (leftSidebar.classList.contains('sidebar-visible')) {
-        hideLeftSidebar();
-      } else {
-        showLeftSidebar();
-      }
-    }
-  }
-  // Alt + R: Toggle right sidebar  
-  if (e.altKey && e.key === 'r') {
-    if (rightSidebar) {
-      if (rightSidebar.classList.contains('sidebar-visible')) {
-        hideRightSidebar();
-      } else {
-        showRightSidebar();
-      }
-    }
-  }
-});
-
-// Debug logging (remove in production)
-console.log('Sidebar system initialized');
-console.log('Left sidebar found:', !!leftSidebar);
-console.log('Right sidebar found:', !!rightSidebar);
-console.log('Left trigger zone found:', !!leftTriggerZone);
-console.log('Right trigger zone found:', !!rightTriggerZone);
 </script>
 
   </body>
