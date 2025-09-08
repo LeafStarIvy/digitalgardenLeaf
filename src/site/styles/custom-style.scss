@@ -309,42 +309,41 @@ div.transclusion,
 }
 
 /* ============================================
-   SECTION 6: ENHANCED MAIN CONTENT STYLING
+   SECTION 6: ENHANCED MAIN CONTENT STYLING (UPDATED)
    ============================================ */
 
-/* Content Container with Responsive Design */
+/* Content Container with Responsive Design - Updated for Right Sidebar */
 .content {
   border-radius: 24px !important;
   padding: 40px !important;
-  margin: 90px auto 30px auto !important;
+  margin: 90px 80px 30px auto !important; /* Added right margin for trigger zone */
   position: relative;
   animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   max-width: var(--content-max-width) !important;
-  width: calc(100vw - 400px) !important;
+  width: calc(100vw - 480px) !important; /* Adjusted for both sidebars */
   min-height: calc(100vh - 140px) !important;
   box-shadow: var(--glass-shadow), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
 }
 
-/* Content Responsive Design */
+/* Content Responsive Design - Updated */
 @media (max-width: 1400px) {
   .content {
-    width: calc(100vw - 350px) !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    width: calc(100vw - 420px) !important;
+    margin: 90px 70px 30px auto !important;
   }
 }
 
 @media (max-width: 1200px) {
   .content {
-    width: calc(100vw - 80px) !important;
-    margin: 90px 40px 30px 40px !important;
+    width: calc(100vw - 140px) !important;
+    margin: 90px 70px 30px 70px !important;
   }
 }
 
 @media (max-width: 768px) {
   .content {
-    width: calc(100vw - 40px) !important;
-    margin: 80px 20px 20px 20px !important;
+    width: calc(100vw - 100px) !important;
+    margin: 80px 50px 20px 50px !important;
     padding: 25px !important;
     border-radius: 20px !important;
   }
@@ -352,8 +351,8 @@ div.transclusion,
 
 @media (max-width: 480px) {
   .content {
-    width: calc(100vw - 20px) !important;
-    margin: 70px 10px 15px 10px !important;
+    width: calc(100vw - 60px) !important;
+    margin: 70px 30px 15px 30px !important;
     padding: 20px !important;
     border-radius: 16px !important;
   }
@@ -1024,6 +1023,358 @@ div.transclusion::before,
   opacity: 1;
   transform: translateX(5px);
   box-shadow: 0 6px 20px rgba(59, 130, 246, 0.2);
+}
+
+/* ============================================
+   SECTION 12B: RIGHT SIDEBAR AUTO-HIDE SYSTEM
+   ============================================ */
+
+/* Right Sidebar Trigger Zone */
+.right-sidebar-trigger-zone {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 60px;
+  height: 100vh;
+  z-index: 999;
+  background: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.06) 70%,
+    transparent 100%
+  );
+  backdrop-filter: blur(3px);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+.right-sidebar-trigger-zone:hover {
+  background: linear-gradient(
+    to left,
+    rgba(59, 130, 246, 0.15) 0%,
+    rgba(59, 130, 246, 0.08) 70%,
+    transparent 100%
+  );
+  width: 80px;
+}
+
+/* Enhanced Right Sidebar with Auto-Hide */
+.sidebar {
+  position: fixed !important;
+  right: -350px !important;
+  top: 0 !important;
+  width: 350px !important;
+  height: 100vh !important;
+  z-index: 1001 !important;
+  transition: right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  border-radius: 30px 0 0 30px !important;
+  padding: 30px !important;
+  background: var(--glass-bg) !important;
+  backdrop-filter: var(--glass-blur-heavy) !important;
+  overflow-y: auto !important;
+  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.25) !important;
+  border: 1px solid var(--glass-border) !important;
+}
+
+.sidebar.sidebar-visible {
+  right: 0 !important;
+}
+
+/* Right Sidebar Indicator Enhancement */
+.right-sidebar-indicator {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 998;
+  pointer-events: none;
+}
+
+.right-sidebar-indicator::before,
+.right-sidebar-indicator::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(135deg, var(--crystal-purple), var(--crystal-teal));
+  border-radius: 50%;
+  opacity: 0.7;
+  box-shadow: 0 0 8px var(--crystal-purple);
+}
+
+.right-sidebar-indicator::before {
+  top: -20px;
+  animation: crystal-pulse 3s infinite;
+}
+
+.right-sidebar-indicator::after {
+  top: 20px;
+  animation: crystal-pulse 3s infinite 1.5s;
+}
+
+/* ============================================
+   ENHANCED RIGHT SIDEBAR COMPONENTS
+   ============================================ */
+
+/* Redesigned Sidebar Container */
+.sidebar-container {
+  border-radius: 20px !important;
+  padding: 25px !important;
+  background: var(--glass-bg-medium) !important;
+  margin-bottom: 25px !important;
+  transition: var(--transition-smooth);
+  border: 1px solid var(--glass-border) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.sidebar-container:hover::before {
+  left: 100%;
+}
+
+.sidebar-container:hover {
+  background: var(--glass-bg-heavy) !important;
+  transform: translateX(-10px) scale(1.02);
+  box-shadow: var(--glass-shadow), -5px 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced TOC Section */
+.toc {
+  border-radius: 18px !important;
+  margin-bottom: 25px !important;
+  padding: 25px !important;
+  position: relative;
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+}
+
+.toc::before {
+  content: '📋';
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+.toc::after {
+  content: 'Table of Contents';
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--glass-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.toc-container {
+  max-height: 400px !important;
+  padding-right: 12px !important;
+  overflow-y: auto;
+  margin-top: 35px;
+}
+
+/* Enhanced TOC Links */
+.toc a {
+  display: block;
+  padding: 8px 16px;
+  margin: 6px 0;
+  border-radius: 10px;
+  transition: var(--transition-smooth);
+  border-left: 3px solid transparent;
+  position: relative;
+  font-weight: 500;
+}
+
+.toc a:hover {
+  background: var(--glass-bg-medium) !important;
+  border-left-color: var(--crystal-teal);
+  transform: translateX(6px);
+  box-shadow: 0 2px 8px rgba(20, 184, 166, 0.2);
+}
+
+/* Enhanced Backlinks Section */
+.backlinks {
+  border-radius: 18px !important;
+  padding: 25px !important;
+  position: relative;
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border) !important;
+  margin-bottom: 25px;
+}
+
+.backlinks::before {
+  content: '🔗';
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+.backlinks::after {
+  content: 'Pages Mentioning This';
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--crystal-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.backlink-list {
+  border-left: 3px solid var(--crystal-blue) !important;
+  padding-left: 20px !important;
+  position: relative;
+  margin-top: 35px;
+}
+
+.backlink-list::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 0;
+  width: 11px;
+  height: 11px;
+  background: var(--crystal-blue);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--crystal-blue);
+}
+
+.backlinks a {
+  display: block;
+  padding: 10px 15px;
+  margin: 8px 0;
+  border-radius: 10px;
+  background: var(--glass-bg-medium);
+  border: 1px solid var(--glass-border);
+  transition: var(--transition-smooth);
+}
+
+.backlinks a:hover {
+  background: var(--glass-bg-heavy) !important;
+  transform: translateX(-5px) scale(1.02);
+  box-shadow: -5px 2px 15px rgba(59, 130, 246, 0.2);
+}
+
+/* Enhanced Graph Section */
+.graph {
+  border-radius: 18px !important;
+  padding: 20px !important;
+  background: var(--glass-bg) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  margin-bottom: 25px;
+  border: 1px solid var(--glass-border) !important;
+  min-height: 300px;
+}
+
+.graph::before {
+  content: '🕸️';
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 18px;
+  opacity: 0.7;
+  z-index: 10;
+}
+
+.graph::after {
+  content: 'Local Graph';
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--crystal-rose);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 10;
+}
+
+/* Graph Content Area */
+.graph-content {
+  margin-top: 40px;
+  height: 250px;
+  position: relative;
+  border-radius: 12px;
+  background: var(--glass-bg-medium);
+  border: 1px solid var(--glass-border);
+}
+
+/* Responsive Design for Right Sidebar */
+@media (max-width: 1399px) {
+  .sidebar {
+    width: 320px !important;
+    right: -320px !important;
+  }
+}
+
+@media (max-width: 1199px) {
+  .sidebar {
+    width: 300px !important;
+    right: -300px !important;
+    padding: 25px !important;
+  }
+  
+  .content {
+    margin-right: 25px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .sidebar {
+    width: calc(100vw - 60px) !important;
+    right: calc(-100vw + 60px) !important;
+    border-radius: 25px 0 0 25px !important;
+    padding: 20px !important;
+  }
+  
+  .right-sidebar-trigger-zone {
+    width: 50px;
+  }
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    width: calc(100vw - 40px) !important;
+    right: calc(-100vw + 40px) !important;
+    border-radius: 20px 0 0 20px !important;
+    padding: 15px !important;
+  }
+  
+  .sidebar-container {
+    padding: 18px !important;
+    margin-bottom: 18px !important;
+  }
+  
+  .toc, .backlinks, .graph {
+    padding: 18px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: calc(100vw - 20px) !important;
+    right: calc(-100vw + 20px) !important;
+    border-radius: 16px 0 0 16px !important;
+    padding: 12px !important;
+  }
 }
 
 /* ============================================
