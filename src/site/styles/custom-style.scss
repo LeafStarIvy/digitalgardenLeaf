@@ -1922,6 +1922,39 @@ tr:last-child td {
   }
 }
 
+
+
+
+
+
+/* force toggle icons to a readable size */
+.theme-toggle-btn svg,
+.bg-cycle-btn svg {
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  display: block;
+  flex: none;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+/* If icons are <img> or background-images: */
+.theme-toggle-btn img,
+.bg-cycle-btn img {
+  width: 28px !important;
+  height: 28px !important;
+  max-width: none !important;
+}
+
+/* If an icon font / <i> is used */
+.theme-toggle-btn i,
+.theme-toggle-btn .icon {
+  font-size: 22px !important;
+  line-height: 1 !important;
+}
+
 /* ============================================
    END OF ENHANCED STYLES
    Features Added:
