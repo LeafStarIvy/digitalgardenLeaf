@@ -344,14 +344,11 @@ div.transclusion,
 }
 
 /* apply the unique animations on hover / active states */
-.theme-toggle-btn.light-mode-btn svg,
-.theme-toggle-btn.light-mode-btn.active svg,
-.theme-toggle-btn.light-mode-btn:hover svg {
+/* Sun: animation only on hover */
+.theme-toggle-btn.light-mode-btn svg {
   animation: none;
-  /* only trigger the pulse on hover/active (so it isn't always moving) */
 }
-.theme-toggle-btn.light-mode-btn:hover svg,
-.theme-toggle-btn.light-mode-btn.active svg {
+.theme-toggle-btn.light-mode-btn:hover svg {
   animation: sun-radiate 1.2s ease-in-out;
 }
 
