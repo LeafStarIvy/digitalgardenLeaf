@@ -207,17 +207,23 @@ div.transclusion,
 }
 
 /* ============================================
-   SECTION 5: ENHANCED THEME TOGGLE CONTROLS
+   SECTION 5: ENHANCED THEME TOGGLE CONTROLS (CONSOLIDATED)
+   Replace original SECTION 5 with this block.
    ============================================ */
 
-/* Theme Toggle Container */
+/* sensible variables so sizes/scale are controlled in one place */
 .theme-toggle-container {
+  --toggle-btn-size: 44px;     /* button outer size */
+  --toggle-icon-size: 20px;    /* svg icon size inside button */
+  --toggle-btn-radius: 12px;
+  --toggle-gap: 12px;
+
   position: fixed;
   top: 25px;
   right: 25px;
   z-index: 1001;
   display: flex;
-  gap: 12px;
+  gap: var(--toggle-gap);
   align-items: center;
   padding: 8px;
   background: var(--glass-bg-medium);
@@ -225,88 +231,184 @@ div.transclusion,
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   box-shadow: var(--glass-shadow);
-  transition: var(--transition-smooth);
+  transition: var(--transition-smooth), transform 160ms ease;
 }
 
+/* subtle lift on container hover (preserves placement) */
 .theme-toggle-container:hover {
   background: var(--glass-bg-heavy);
   transform: translateY(-2px);
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.15);
 }
 
-/* Enhanced Theme Toggle Buttons */
-.theme-toggle-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
+/* common button base for theme toggles and bg-cycle */
+.theme-toggle-btn,
+.bg-cycle-btn {
+  width: var(--toggle-btn-size);
+  height: var(--toggle-btn-size);
+  border-radius: var(--toggle-btn-radius);
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur-subtle);
   border: 1px solid var(--glass-border);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.08);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: var(--transition-bounce);
+  transition: transform 260ms cubic-bezier(.2,.9,.3,1), box-shadow 260ms, background 260ms;
   color: var(--text-primary);
-  font-size: 18px;
+  font-size: 18px; /* fallback for font-icons */
   position: relative;
   overflow: hidden;
 }
 
-.theme-toggle-btn::before {
+/* shimmer stripe */
+.theme-toggle-btn::before,
+.bg-cycle-btn::before {
   content: '';
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s ease;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  transition: left .5s ease;
+  pointer-events: none;
 }
 
-.theme-toggle-btn:hover::before {
-  left: 100%;
-}
+.theme-toggle-btn:hover::before,
+.bg-cycle-btn:hover::before { left: 100%; }
 
-.theme-toggle-btn:hover {
-  background: var(--glass-bg-medium);
-  transform: scale(1.15) rotate(5deg);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-.theme-toggle-btn.active {
-  background: linear-gradient(135deg, var(--glass-accent), rgba(255, 255, 255, 0.1));
-  color: white;
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
-}
-
-/* Enhanced Background Cycling Button */
-.bg-cycle-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--crystal-teal), var(--crystal-blue));
-  backdrop-filter: var(--glass-blur-subtle);
-  border: 1px solid var(--glass-border);
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition-bounce);
-  color: white;
-  font-size: 18px;
-  position: relative;
-  overflow: hidden;
-}
-
+/* hover & base transforms — heavier but controlled */
+.theme-toggle-btn:hover,
 .bg-cycle-btn:hover {
-  background: linear-gradient(135deg, var(--crystal-purple), var(--crystal-rose));
-  transform: scale(1.15) rotate(180deg);
-  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+  transform: scale(1.12) rotate(4deg);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+  background: var(--glass-bg-medium);
 }
+
+/* active state (selected theme) */
+.theme-toggle-btn.active {
+  background: linear-gradient(135deg, var(--glass-accent), rgba(255,255,255,0.08));
+  color: white;
+  transform: scale(1.04);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.28);
+}
+
+/* make sure SVGs and images inside behave consistently */
+.theme-toggle-btn svg,
+.bg-cycle-btn svg,
+.theme-toggle-btn img,
+.bg-cycle-btn img {
+  width: var(--toggle-icon-size);
+  height: var(--toggle-icon-size);
+  min-width: var(--toggle-icon-size);
+  min-height: var(--toggle-icon-size);
+  max-width: none;
+  max-height: none;
+  display: block;
+}
+
+/* keep strokes legible when scaling */
+.theme-toggle-btn svg, .bg-cycle-btn svg {
+  stroke-width: 1.8;
+  vector-effect: non-scaling-stroke;
+  transform-origin: 50% 50%;
+}
+
+/* -------------------------
+   Unique button animations
+   ------------------------- */
+
+/* sun: gentle rotation + radiant pulse */
+@keyframes sun-radiate {
+  0%   { transform: rotate(0) scale(1); filter: drop-shadow(0 0 0 rgba(255,200,0,0)); }
+  30%  { transform: rotate(6deg) scale(1.08); filter: drop-shadow(0 0 10px rgba(255,180,0,0.45)); }
+  60%  { transform: rotate(-4deg) scale(1.04); filter: drop-shadow(0 0 6px rgba(255,190,0,0.35)); }
+  100% { transform: rotate(0) scale(1); filter: drop-shadow(0 0 0 rgba(255,200,0,0)); }
+}
+
+/* moon: soft glide/tilt to suggest a crescent drift */
+@keyframes moon-glide {
+  0%   { transform: translateY(0) rotate(0); }
+  40%  { transform: translateY(-6px) rotate(-12deg); filter: drop-shadow(0 6px 12px rgba(80,100,255,0.18)); }
+  80%  { transform: translateY(2px) rotate(4deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
+/* background-cycle: smooth rotate + scale pop */
+@keyframes bg-rotate-pulse {
+  0%   { transform: rotate(0) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.06); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* apply the unique animations on hover / active states */
+.theme-toggle-btn.light-mode-btn svg,
+.theme-toggle-btn.light-mode-btn.active svg,
+.theme-toggle-btn.light-mode-btn:hover svg {
+  animation: none;
+  /* only trigger the pulse on hover/active (so it isn't always moving) */
+}
+.theme-toggle-btn.light-mode-btn:hover svg,
+.theme-toggle-btn.light-mode-btn.active svg {
+  animation: sun-radiate 1.2s ease-in-out;
+}
+
+.theme-toggle-btn.dark-mode-btn svg,
+.theme-toggle-btn.dark-mode-btn.active svg,
+.theme-toggle-btn.dark-mode-btn:hover svg {
+  animation: none;
+}
+.theme-toggle-btn.dark-mode-btn:hover svg,
+.theme-toggle-btn.dark-mode-btn.active svg {
+  animation: moon-glide 0.95s cubic-bezier(.22,.9,.24,1);
+}
+
+/* background cycle animation on hover/active */
+.bg-cycle-btn:hover svg,
+.bg-cycle-btn.active svg {
+  animation: bg-rotate-pulse 0.9s ease-in-out;
+}
+
+/* Accessibility: respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle-btn svg,
+  .bg-cycle-btn svg {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Responsive adjustments using the variables (no duplicated rules) */
+@media (max-width: 991px) and (min-width: 768px) {
+  .theme-toggle-container {
+    --toggle-btn-size: 38px;
+    --toggle-icon-size: 18px;
+    --toggle-btn-radius: 10px;
+    padding: 6px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 767px) {
+  .theme-toggle-container {
+    --toggle-btn-size: 34px;
+    --toggle-icon-size: 16px;
+    --toggle-btn-radius: 10px;
+    padding: 4px;
+    gap: 6px;
+    top: 10px;
+    right: 10px;
+    border-radius: 16px; /* keep existing mobile look */
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-toggle-container { transform: scale(0.9); }
+}
+
+/* End of consolidated SECTION 5 */
 
 /* ============================================
    SECTION 6: ENHANCED MAIN CONTENT STYLING
@@ -1920,39 +2022,6 @@ tr:last-child td {
   .desktop-only {
     display: none !important;
   }
-}
-
-
-
-
-
-
-/* force toggle icons to a readable size */
-.theme-toggle-btn svg,
-.bg-cycle-btn svg {
-  width: 28px !important;
-  height: 28px !important;
-  min-width: 28px !important;
-  min-height: 28px !important;
-  display: block;
-  flex: none;
-  max-width: none !important;
-  max-height: none !important;
-}
-
-/* If icons are <img> or background-images: */
-.theme-toggle-btn img,
-.bg-cycle-btn img {
-  width: 28px !important;
-  height: 28px !important;
-  max-width: none !important;
-}
-
-/* If an icon font / <i> is used */
-.theme-toggle-btn i,
-.theme-toggle-btn .icon {
-  font-size: 22px !important;
-  line-height: 1 !important;
 }
 
 /* ============================================
