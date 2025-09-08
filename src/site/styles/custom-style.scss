@@ -312,15 +312,15 @@ div.transclusion,
    SECTION 6: ENHANCED MAIN CONTENT STYLING
    ============================================ */
 
-/* Content Container Adjustments for Auto-hide Sidebars */
+/* Content Container with Responsive Design */
 .content {
   border-radius: 24px !important;
   padding: 40px !important;
-  margin: 90px auto 30px auto !important; /* Centered when sidebars are hidden */
+  margin: 90px auto 30px auto !important;
   position: relative;
   animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   max-width: var(--content-max-width) !important;
-  width: calc(100vw - 80px) !important; /* Full width minus small margins */
+  width: calc(100vw - 400px) !important;
   min-height: calc(100vh - 140px) !important;
   box-shadow: var(--glass-shadow), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
 }
@@ -773,7 +773,7 @@ div.transclusion::before,
 }
 
 /* ============================================
-   SECTION 11: ENHANCED NAVIGATION & SIDEBAR SYSTEMS
+   SECTION 11: ENHANCED NAVIGATION & SIDEBAR
    ============================================ */
 
 /* Navbar Enhancement */
@@ -788,94 +788,15 @@ div.transclusion::before,
   box-shadow: var(--glass-shadow), 0 4px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* ============================================
-   RIGHT SIDEBAR SYSTEM (Graph, TOC, Backlinks)
-   ============================================ */
-
-/* Right Sidebar Trigger Zone */
-.right-sidebar-trigger-zone {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 60px;
-  height: 100vh;
-  z-index: 999;
-  background: linear-gradient(
-    to left,
-    rgba(0, 0, 0, 0.12) 0%,
-    rgba(0, 0, 0, 0.06) 70%,
-    transparent 100%
-  );
-  backdrop-filter: blur(3px);
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  cursor: pointer;
-}
-
-.right-sidebar-trigger-zone:hover {
-  background: linear-gradient(
-    to left,
-    rgba(59, 130, 246, 0.15) 0%,
-    rgba(59, 130, 246, 0.08) 70%,
-    transparent 100%
-  );
-  width: 80px;
-}
-
-/* Right Sidebar Container - Auto-hide version */
+/* Sidebar Components Enhancement */
 .sidebar {
   position: fixed !important;
-  right: -380px !important; /* Hidden off-screen by default */
-  top: 0 !important;
-  width: 350px !important;
-  height: 100vh !important;
-  z-index: 1001;
-  transition: right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-  border-radius: 30px 0 0 30px !important;
-  padding: 30px !important;
-  background: var(--glass-bg) !important;
-  overflow-y: auto;
-  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.25);
-  backdrop-filter: var(--glass-blur-heavy) !important;
-  padding-top: 100px !important; /* Account for navbar */
+  right: 30px !important;
+  top: 100px !important;
+  width: 280px !important;
+  z-index: 999 !important;
 }
 
-.sidebar.sidebar-visible {
-  right: 0 !important; /* Show sidebar when active */
-}
-
-/* Right Sidebar Indicator */
-.right-sidebar-indicator {
-  position: fixed;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 998;
-  pointer-events: none;
-}
-
-.right-sidebar-indicator::before,
-.right-sidebar-indicator::after {
-  content: '';
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: linear-gradient(135deg, var(--crystal-teal), var(--crystal-rose));
-  border-radius: 50%;
-  opacity: 0.7;
-  box-shadow: 0 0 8px var(--crystal-teal);
-}
-
-.right-sidebar-indicator::before {
-  top: -20px;
-  animation: crystal-pulse 3s infinite;
-}
-
-.right-sidebar-indicator::after {
-  top: 20px;
-  animation: crystal-pulse 3s infinite 1.5s;
-}
-
-/* Individual Sidebar Components Enhancement */
 .sidebar-container {
   border-radius: 20px !important;
   padding: 25px !important;
@@ -939,7 +860,7 @@ div.transclusion::before,
 .toc a:hover {
   background: var(--glass-bg-medium) !important;
   border-left-color: var(--glass-accent);
-  transform: translateX(-4px); /* Changed direction for right sidebar */
+  transform: translateX(4px);
 }
 
 /* Backlinks Enhancement */
@@ -959,15 +880,15 @@ div.transclusion::before,
 }
 
 .backlink-list {
-  border-right: 3px solid var(--glass-accent) !important; /* Changed to right border */
-  padding-right: 18px !important; /* Changed to right padding */
+  border-left: 3px solid var(--glass-accent) !important;
+  padding-left: 18px !important;
   position: relative;
 }
 
 .backlink-list::before {
   content: '';
   position: absolute;
-  right: -6px; /* Changed to right positioning */
+  left: -6px;
   top: 0;
   width: 9px;
   height: 9px;
@@ -975,6 +896,7 @@ div.transclusion::before,
   border-radius: 50%;
   box-shadow: 0 0 6px var(--glass-accent);
 }
+
 /* ============================================
    SECTION 12: ENHANCED FILE TREE SYSTEM
    ============================================ */
