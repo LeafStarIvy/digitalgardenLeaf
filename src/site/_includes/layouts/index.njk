@@ -90,6 +90,11 @@
     {%include "components/notegrowthhistory.njk"%}
 {% if settings.dgShowFileTree !== true %}
   {%include "components/navbar.njk"%}
+<!-- Right sidebar auto-hide system -->
+  {% if settings.dgShowBacklinks === true or settings.dgShowLocalGraph === true or settings.dgShowToc === true%}
+    <div class="right-sidebar-trigger-zone"></div>
+    <div class="right-sidebar-indicator"></div>
+  {%endif%}
 {%else%}
   <!-- Auto-hide sidebar system -->
   <div class="sidebar-trigger-zone"></div>
