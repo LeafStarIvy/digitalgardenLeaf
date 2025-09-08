@@ -309,41 +309,42 @@ div.transclusion,
 }
 
 /* ============================================
-   SECTION 6: ENHANCED MAIN CONTENT STYLING (UPDATED)
+   SECTION 6: ENHANCED MAIN CONTENT STYLING
    ============================================ */
 
-/* Content Container with Responsive Design - Updated for Right Sidebar */
+/* Content Container with Responsive Design */
 .content {
   border-radius: 24px !important;
   padding: 40px !important;
-  margin: 90px 80px 30px auto !important; /* Added right margin for trigger zone */
+  margin: 90px auto 30px auto !important;
   position: relative;
   animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   max-width: var(--content-max-width) !important;
-  width: calc(100vw - 480px) !important; /* Adjusted for both sidebars */
+  width: calc(100vw - 400px) !important;
   min-height: calc(100vh - 140px) !important;
   box-shadow: var(--glass-shadow), 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
 }
 
-/* Content Responsive Design - Updated */
+/* Content Responsive Design */
 @media (max-width: 1400px) {
   .content {
-    width: calc(100vw - 420px) !important;
-    margin: 90px 70px 30px auto !important;
+    width: calc(100vw - 350px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }
 
 @media (max-width: 1200px) {
   .content {
-    width: calc(100vw - 140px) !important;
-    margin: 90px 70px 30px 70px !important;
+    width: calc(100vw - 80px) !important;
+    margin: 90px 40px 30px 40px !important;
   }
 }
 
 @media (max-width: 768px) {
   .content {
-    width: calc(100vw - 100px) !important;
-    margin: 80px 50px 20px 50px !important;
+    width: calc(100vw - 40px) !important;
+    margin: 80px 20px 20px 20px !important;
     padding: 25px !important;
     border-radius: 20px !important;
   }
@@ -351,12 +352,13 @@ div.transclusion,
 
 @media (max-width: 480px) {
   .content {
-    width: calc(100vw - 60px) !important;
-    margin: 70px 30px 15px 30px !important;
+    width: calc(100vw - 20px) !important;
+    margin: 70px 10px 15px 10px !important;
     padding: 20px !important;
     border-radius: 16px !important;
   }
 }
+
 
 /* ============================================
    SECTION 7: ENHANCED OBSIDIAN MARKDOWN ELEMENTS
