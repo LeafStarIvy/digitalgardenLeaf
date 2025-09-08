@@ -141,9 +141,12 @@
       {% endfor %}
     </main>
 
-    {% if settings.dgShowBacklinks === true or settings.dgShowLocalGraph === true or settings.dgShowToc === true%}
-      {%include "components/sidebar.njk" %}
-    {%endif%}
+{% if settings.dgShowBacklinks === true or settings.dgShowLocalGraph === true or settings.dgShowToc === true%}
+  <!-- Auto-hide right sidebar system -->
+  <div class="right-sidebar-trigger-zone"></div>
+  {%include "components/sidebar.njk" %}
+  <div class="right-sidebar-indicator"></div>
+{%endif%}
 
     {% if settings.dgLinkPreview === true %}
       {%include "components/linkPreview.njk"%}
@@ -372,6 +375,56 @@ if (sidebar && triggerZone) {
       sidebar.classList.remove('sidebar-visible');
     } else {
       showSidebar();
+    }
+  });
+}
+</script>
+
+<!-- Right Sidebar Toggle Script -->
+<script>
+let rightSidebarTimer;
+const rightSidebar = document.querySelector('.sidebar');
+const rightTriggerZone = document.querySelector('.right-sidebar-trigger-zone');
+
+if (rightSidebar && rightTriggerZone) {
+  // Show right sidebar on hover
+  function showRightSidebar() {
+    clearTimeout(rightSidebarTimer);
+    rightSidebar.classList.add('sidebar-visible');
+  }
+
+  // Hide right sidebar with delay
+  function hideRightSidebar() {
+    rightSidebarTimer = setTimeout(() => {
+      rightSidebar.classList.remove('sidebar-visible');
+    }, 300); // 300ms delay before hiding
+  }
+
+  // Event listeners for right sidebar
+  rightTriggerZone.addEventListener('mouseenter', showRightSidebar);
+  rightTriggerZone.addEventListener('mouseleave', hideRightSidebar);
+  rightSidebar.addEventListener('mouseenter', showRightSidebar);
+  rightSidebar.addEventListener('mouseleave', hideRightSidebar);
+
+  // Touch support for mobile - right sidebar
+  rightTriggerZone.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    if (rightSidebar.classList.contains('sidebar-visible')) {
+      rightSidebar.classList.remove('sidebar-visible');
+    } else {
+      showRightSidebar();
+    }
+  });
+
+  // Keyboard shortcut for right sidebar (Alt + R)
+  document.addEventListener('keydown', function(e) {
+    if (e.altKey && e.key === 'r') {
+      e.preventDefault();
+      if (rightSidebar.classList.contains('sidebar-visible')) {
+        rightSidebar.classList.remove('sidebar-visible');
+      } else {
+        showRightSidebar();
+      }
     }
   });
 }
