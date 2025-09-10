@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-10T20:38:53.961+02:00"}
+{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-10T20:39:38.754+02:00"}
 ---
 
 #  ✨Main Page✨
@@ -20,8 +20,8 @@
 
 
 
-
-
+<a href="#" class="flash-card-link"> <div class="flash-card hero accent-purple shimmer"> <div class="card-content"> <div class="card-title">Creative Works</div> <div class="card-subtitle">Art & Projects</div> <div class="card-description"> Visual experiments, generative art, and creative coding projects that blur the line between art and technology. </div> </div> </div> </a>
+<a href="#" class="flash-card-link"> <div class="flash-card hero accent-blue pulse"> <div class="card-content"> <div class="card-title">Knowledge Base</div> <div class="card-subtitle">Learning Resources</div> <div class="card-description"> Structured guides, tutorials, and reference materials for continuous learning and skill development. </div> </div> </div> </a> </div> </div>
 
 
 
