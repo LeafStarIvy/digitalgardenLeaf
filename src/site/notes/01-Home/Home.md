@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-04T16:34:39.479+02:00"}
+{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-10T20:38:53.961+02:00"}
 ---
 
 #  ✨Main Page✨
@@ -14,6 +14,19 @@
 [[05-Studio/showcases/Me\|Me]]
 
 [[05-Studio/showcases/Room Design Display\|Room Design Display]]
+
+
+ <div class="demo-section"> <div class="flash-container cols-1"> <a href="#" class="flash-card-link"> <div class="flash-card hero gradient-border glow"> <div class="card-content"> <div class="card-title">Digital Garden</div> <div class="card-subtitle">Explore My Thoughts</div> <div class="card-description"> A curated collection of interconnected ideas, notes, and discoveries growing organically over time. </div> </div> </div> </a> </div> </div>
+
+
+
+
+
+
+
+
+
+
 
 ## 🌟 Constellations (Main Sections)
 f
