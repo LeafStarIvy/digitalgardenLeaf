@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-11T16:52:11.433+02:00"}
+{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-11T17:01:36.848+02:00"}
 ---
 
 #  ✨Main Page✨
@@ -15,398 +15,382 @@
 
 [[05-Studio/showcases/Room Design Display\|Room Design Display]]
 
+# Flash Card System - Obsidian Usage Guide
 
-# Flash Card System Implementation Guide
+## How to Use in Your Notes
 
-## 📁 File Structure Setup
+Simply paste any of these code blocks directly into your Obsidian notes. The Digital Garden plugin will render them perfectly with your CSS.
 
-First, create these folders in your Obsidian vault:
+---
 
-```
-your-vault/
-├── assets/
-│   ├── artists/
-│   ├── playlists/
-│   ├── categories/
-│   └── icons/
-└── pages/
-    ├── artists.md
-    ├── playlists.md
-    └── navigation.md
-```
-
-## 🖼️ Image Setup
-
-Save images in your `assets` folder. The Digital Garden plugin will automatically sync these to GitHub and make them accessible via URLs like:
-
-- `https://yourusername.github.io/your-repo/assets/artists/artist-name.jpg`
-- `https://yourusername.github.io/your-repo/assets/playlists/playlist-cover.jpg`
-
-## 🎯 Basic Usage Examples
-
-### 1. Artists Page (3 columns)
+## 1. Artist Gallery (3 columns)
 
 
-<!-- In your artists.md file -->
 <div class="flash-container cols-3">
+    <a href="https://open.spotify.com/artist/4q3ewBCX7sLwd24euuV69X" class="flash-card artist-card accent-purple shimmer">
+        <img src="https://i.scdn.co/image/ab6761610000e5ebf7db7c8ede90a019c54590bb" alt="Bad Bunny" class="card-image">
+        <div class="card-content">
+            <div class="card-title">Bad Bunny</div>
+            <div class="card-subtitle">Reggaeton • Latin Trap</div>
+        </div>
+        <div class="card-badge">Popular</div>
+    </a>
     
-    <!-- Artist Card 1 -->
-    <a href="[[Artist - Taylor Swift\|Artist - Taylor Swift]]" class="flash-card artist-card accent-purple shimmer">
-        <img src="assets/artists/taylor-swift.jpg" alt="Taylor Swift" class="card-image">
+    <a href="https://open.spotify.com/artist/1URnnhqYAYcrqrcwql10ft" class="flash-card artist-card accent-gold glow">
+        <img src="https://i.scdn.co/image/ab6761610000e5eb247f44069c0bd1781df2f785" alt="21 Savage" class="card-image">
         <div class="card-content">
-            <h3 class="card-title">Taylor Swift</h3>
-            <p class="card-subtitle">Pop, Country</p>
-            <div class="card-tags">
-                <span class="tag">Grammy Winner</span>
-                <span class="tag">Songwriter</span>
-            </div>
-        </div>
-        <div class="card-badge">⭐</div>
-    </a>
-
-    <!-- Artist Card 2 -->
-    <a href="[[Artist - The Weeknd\|Artist - The Weeknd]]" class="flash-card artist-card accent-red glow">
-        <img src="assets/artists/the-weeknd.jpg" alt="The Weeknd" class="card-image">
-        <div class="card-content">
-            <h3 class="card-title">The Weeknd</h3>
-            <p class="card-subtitle">R&B, Pop</p>
-            <div class="card-tags">
-                <span class="tag">Multi-Platinum</span>
-            </div>
+            <div class="card-title">21 Savage</div>
+            <div class="card-subtitle">Hip-Hop • Rap</div>
         </div>
     </a>
-
-    <!-- Artist Card 3 -->
-    <a href="[[Artist - Daft Punk\|Artist - Daft Punk]]" class="flash-card artist-card accent-gold frosted">
-        <img src="assets/artists/daft-punk.jpg" alt="Daft Punk" class="card-image">
+    
+    <a href="https://open.spotify.com/artist/06HL4z0CvFAxyc27GXpf02" class="flash-card artist-card accent-pink pulse">
+        <img src="https://i.scdn.co/image/ab6761610000e5eb89c1d6d841ad8b0c22e715da" alt="Taylor Swift" class="card-image">
         <div class="card-content">
-            <h3 class="card-title">Daft Punk</h3>
-            <p class="card-subtitle">Electronic, House</p>
-            <div class="card-tags">
-                <span class="tag">Legendary</span>
-                <span class="tag">Robots</span>
-            </div>
+            <div class="card-title">Taylor Swift</div>
+            <div class="card-subtitle">Pop • Country</div>
         </div>
-        <div class="status-dot offline"></div>
+        <div class="card-badge">Featured</div>
     </a>
-
 </div>
 
 
-### 2. Playlists Page (4 columns)
+---
+
+## 2. Music Playlists (4 columns)
 
 
-<!-- In your playlists.md file -->
 <div class="flash-container cols-4">
-    
-    <!-- Playlist Card 1 -->
-    <a href="https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M" class="flash-card playlist-card accent-green bounce">
-        <img src="assets/playlists/chill-vibes.jpg" alt="Chill Vibes" class="card-image">
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M" class="flash-card playlist-card accent-green">
+        <img src="https://i.scdn.co/image/ab67706f000000027ea4d505212f9cf2a7a68b16" alt="Today's Top Hits" class="card-image">
         <div class="card-content">
-            <h3 class="card-title">Chill Vibes</h3>
-            <p class="card-description">Perfect for studying and relaxation</p>
-            <div class="card-meta">
-                <span>47 songs</span>
-                <span>3h 12m</span>
-            </div>
-        </div>
-        <div class="card-badge">🎵</div>
-    </a>
-
-    <!-- Playlist Card 2 -->
-    <a href="https://open.spotify.com/playlist/37i9dQZF1DX0XUsuxWHRQd" class="flash-card playlist-card accent-orange pulse">
-        <img src="assets/playlists/workout-hits.jpg" alt="Workout Hits" class="card-image">
-        <div class="card-content">
-            <h3 class="card-title">Workout Hits</h3>
-            <p class="card-description">High energy tracks to power your workout</p>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 75%;"></div>
-            </div>
-        </div>
-        <div class="card-badge">🔥</div>
-    </a>
-
-    <!-- Playlist Card 3 -->
-    <a href="[[My Jazz Collection\|My Jazz Collection]]" class="flash-card playlist-card accent-blue neon">
-        <img src="assets/playlists/jazz-classics.jpg" alt="Jazz Classics" class="card-image">
-        <div class="card-content">
-            <h3 class="card-title">Jazz Classics</h3>
-            <p class="card-description">Timeless jazz standards and modern interpretations</p>
-            <div class="card-actions">
-                <button class="action-btn">Play</button>
-                <button class="action-btn">Share</button>
-            </div>
-        </div>
-    </a>
-
-    <!-- Playlist Card 4 -->
-    <a href="https://music.apple.com/playlist/pl.example" class="flash-card playlist-card gradient-border">
-        <img src="assets/playlists/indie-discoveries.jpg" alt="Indie Discoveries" class="card-image">
-        <div class="card-content">
-            <h3 class="card-title">Indie Discoveries</h3>
-            <p class="card-description">Hidden gems from independent artists</p>
+            <div class="card-title">Today's Top Hits</div>
+            <div class="card-description">The most played songs right now</div>
             <div class="card-tags">
-                <span class="tag">New</span>
-                <span class="tag">Curated</span>
+                <span class="tag">Pop</span>
+                <span class="tag">100 songs</span>
             </div>
         </div>
-        <div class="card-badges">
-            <div class="card-badge">🎸</div>
-            <div class="card-badge">✨</div>
+    </a>
+    
+    <a href="https://open.spotify.com/playlist/37i9dQZF1DX0XUsuxWHRQd" class="flash-card playlist-card accent-blue">
+        <img src="https://i.scdn.co/image/ab67706f00000002724554ed6bed78f3fbb31842" alt="RapCaviar" class="card-image">
+        <div class="card-content">
+            <div class="card-title">RapCaviar</div>
+            <div class="card-description">New music and big hits in hip-hop</div>
+            <div class="card-tags">
+                <span class="tag">Hip-Hop</span>
+                <span class="tag">65 songs</span>
+            </div>
         </div>
     </a>
-
+    
+    <div class="flash-card playlist-card accent-orange frosted">
+        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300" alt="My Chill Mix" class="card-image">
+        <div class="card-content">
+            <div class="card-title">My Chill Mix</div>
+            <div class="card-description">Perfect for coding sessions</div>
+            <div class="card-tags">
+                <span class="tag">Lo-Fi</span>
+                <span class="tag">42 songs</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flash-card playlist-card accent-purple neon">
+        <img src="https://images.unsplash.com/photo-1571330735066-03aaa9429d89?w=300" alt="Electronic Vibes" class="card-image">
+        <div class="card-content">
+            <div class="card-title">Electronic Vibes</div>
+            <div class="card-description">Future bass and melodic dubstep</div>
+            <div class="card-tags">
+                <span class="tag">EDM</span>
+                <span class="tag">38 songs</span>
+            </div>
+        </div>
+    </div>
 </div>
 
 
-### 3. Main Navigation Page (2 columns, wide cards)
+---
+
+## 3. Navigation Shortcuts for Your Site
 
 
-<!-- In your navigation.md or home page -->
+<div class="flash-container cols-3">
+    <a href="[[Notes/Programming\|Notes/Programming]]" class="flash-card nav-card accent-cyan shimmer">
+        <div class="card-icon">💻</div>
+        <div class="card-content">
+            <div class="card-title">Programming Notes</div>
+            <div class="card-description">Code snippets, algorithms, and development resources</div>
+        </div>
+    </a>
+    
+    <a href="[[Books/Reading List\|Books/Reading List]]" class="flash-card nav-card accent-green glow">
+        <div class="card-icon">📚</div>
+        <div class="card-content">
+            <div class="card-title">Book Library</div>
+            <div class="card-description">Reading notes, summaries, and recommendations</div>
+        </div>
+    </a>
+    
+    <a href="[[Projects/Current\|Projects/Current]]" class="flash-card nav-card accent-gold bounce">
+        <div class="card-icon">🚀</div>
+        <div class="card-content">
+            <div class="card-title">Active Projects</div>
+            <div class="card-description">Current work and creative endeavors</div>
+        </div>
+        <div class="card-badge">3 Active</div>
+    </a>
+</div>
+
+
+---
+
+## 4. Main Site Navigation (Hero Cards)
+
+
 <div class="flash-container cols-2">
-    
-    <!-- Music Section -->
-    <a href="[[Music Hub\|Music Hub]]" class="flash-card nav-card hero accent-purple shimmer">
-        <img src="assets/categories/music-hub.jpg" alt="Music Hub" class="card-image">
+    <a href="[[Knowledge Base\|Knowledge Base]]" class="flash-card hero accent-blue gradient-border">
+        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600" alt="Knowledge" class="card-image">
         <div class="card-content">
-            <h2 class="card-title">🎵 Music Universe</h2>
-            <p class="card-description">Explore artists, playlists, album reviews, and concert memories. Dive into my musical journey across genres and decades.</p>
+            <div class="card-title">Knowledge Base</div>
+            <div class="card-subtitle">Comprehensive Learning Hub</div>
+            <div class="card-description">Dive deep into topics that matter. From technical documentation to philosophical musings, everything organized for easy discovery.</div>
             <div class="card-tags">
-                <span class="tag">500+ Artists</span>
-                <span class="tag">50+ Playlists</span>
-                <span class="tag">Reviews</span>
+                <span class="tag">500+ Notes</span>
+                <span class="tag">Updated Daily</span>
             </div>
         </div>
-        <div class="card-overlay">
-            <h3 class="card-title">Discover Music</h3>
-            <p>Latest additions: Arctic Monkeys, Tame Impala, ODESZA</p>
+    </a>
+    
+    <a href="[[Creative Works\|Creative Works]]" class="flash-card hero accent-purple pulse">
+        <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600" alt="Creative" class="card-image">
+        <div class="card-content">
+            <div class="card-title">Creative Portfolio</div>
+            <div class="card-subtitle">Art • Writing • Design</div>
+            <div class="card-description">Explore original works, experimental projects, and creative documentation. Where ideas come to life.</div>
+            <div class="card-tags">
+                <span class="tag">Mixed Media</span>
+                <span class="tag">Original Work</span>
+            </div>
         </div>
     </a>
+</div>
 
-    <!-- Knowledge Base -->
-    <a href="[[Knowledge Garden\|Knowledge Garden]]" class="flash-card nav-card hero accent-green glow">
-        <img src="assets/categories/knowledge-garden.jpg" alt="Knowledge Garden" class="card-image">
+
+---
+
+## 5. Dashboard Stats (Compact)
+
+
+<div class="flash-container cols-4">
+    <div class="flash-card stats-card accent-green minimal">
+        <div class="card-number">247</div>
+        <div class="card-label">Total Notes</div>
+    </div>
+    
+    <div class="flash-card stats-card accent-blue minimal">
+        <div class="card-number">15</div>
+        <div class="card-label">Projects</div>
+    </div>
+    
+    <div class="flash-card stats-card accent-purple minimal">
+        <div class="card-number">89</div>
+        <div class="card-label">Links Made</div>
+    </div>
+    
+    <div class="flash-card stats-card accent-gold minimal">
+        <div class="card-number">12</div>
+        <div class="card-label">This Week</div>
+    </div>
+</div>
+
+
+---
+
+## 6. Feature Highlights (Mixed Layout)
+
+
+<div class="flash-container cols-3">
+    <div class="flash-card feature-card wide accent-cyan frosted">
         <div class="card-content">
-            <h2 class="card-title">🌱 Knowledge Garden</h2>
-            <p class="card-description">Personal notes, learning resources, book summaries, and thoughts on technology, philosophy, and life.</p>
+            <div class="card-title">Featured Article</div>
+            <div class="card-subtitle">Understanding Digital Gardens</div>
+            <div class="card-description">A comprehensive guide to building and maintaining your personal knowledge ecosystem. Learn the principles behind effective note-taking and knowledge management.</div>
             <div class="progress-bar">
-                <div class="progress-fill" style="width: 60%;"></div>
+                <div class="progress-fill" style="width: 75%"></div>
             </div>
-        </div>
-        <div class="card-badge">Growing</div>
-    </a>
-
-    <!-- Projects Portfolio -->
-    <a href="[[Projects\|Projects]]" class="flash-card nav-card feature-card accent-gold bounce">
-        <div class="card-content">
-            <img src="assets/icons/code-icon.svg" alt="Projects" class="card-icon">
-            <h2 class="card-title">⚡ Projects & Code</h2>
-            <p class="card-description">Web development projects, coding experiments, and technical documentation.</p>
             <div class="card-meta">
-                <span>15 Projects</span>
-                <span>Updated weekly</span>
-            </div>
-        </div>
-    </a>
-
-    <!-- Photography -->
-    <a href="[[Photography\|Photography]]" class="flash-card nav-card minimal accent-cyan frosted">
-        <div class="card-content">
-            <img src="assets/icons/camera-icon.svg" alt="Photography" class="card-icon">
-            <h2 class="card-title">📸 Visual Stories</h2>
-            <p class="card-description">Travel photography, street art, and visual experiments.</p>
-        </div>
-        <div class="status-dot"></div>
-    </a>
-
-</div>
-
-
-### 4. Quick Shortcuts (6 columns, compact)
-
-
-<!-- Quick access shortcuts -->
-<div class="flash-container cols-6">
-    
-    <a href="[[Daily Notes\|Daily Notes]]" class="flash-card compact minimal accent-blue">
-        <img src="assets/icons/calendar.svg" alt="Daily Notes" class="card-icon">
-        <div class="card-content">
-            <span class="card-title">Daily Notes</span>
-        </div>
-    </a>
-
-    <a href="[[Task Manager\|Task Manager]]" class="flash-card compact minimal accent-red">
-        <img src="assets/icons/tasks.svg" alt="Tasks" class="card-icon">
-        <div class="card-content">
-            <span class="card-title">Tasks</span>
-            <span class="card-badge">3</span>
-        </div>
-    </a>
-
-    <a href="[[Reading List\|Reading List]]" class="flash-card compact minimal accent-green">
-        <img src="assets/icons/book.svg" alt="Reading" class="card-icon">
-        <div class="card-content">
-            <span class="card-title">Reading List</span>
-        </div>
-    </a>
-
-    <a href="[[Ideas Inbox\|Ideas Inbox]]" class="flash-card compact minimal accent-purple pulse">
-        <img src="assets/icons/lightbulb.svg" alt="Ideas" class="card-icon">
-        <div class="card-content">
-            <span class="card-title">Ideas</span>
-        </div>
-    </a>
-
-    <a href="[[Bookmarks\|Bookmarks]]" class="flash-card compact minimal accent-gold">
-        <img src="assets/icons/bookmark.svg" alt="Bookmarks" class="card-icon">
-        <div class="card-content">
-            <span class="card-title">Bookmarks</span>
-        </div>
-    </a>
-
-    <a href="[[Archive\|Archive]]" class="flash-card compact minimal accent-cyan">
-        <img src="assets/icons/archive.svg" alt="Archive" class="card-icon">
-        <div class="card-content">
-            <span class="card-title">Archive</span>
-        </div>
-    </a>
-
-</div>
-
-
-### 5. Stats Dashboard (auto-responsive)
-
-
-<!-- Dashboard with statistics -->
-<div class="flash-container cols-auto">
-    
-    <div class="flash-card stats-card accent-green">
-        <div class="card-content">
-            <div class="card-number">127</div>
-            <div class="card-label">Notes Created</div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 85%;"></div>
+                <span>75% Complete</span>
+                <span>Updated 2 days ago</span>
             </div>
         </div>
     </div>
-
-    <div class="flash-card stats-card accent-blue">
+    
+    <a href="[[Tools/Obsidian Setup\|Tools/Obsidian Setup]]" class="flash-card compact accent-orange shimmer">
+        <div class="card-icon">⚙️</div>
         <div class="card-content">
-            <div class="card-number">43</div>
-            <div class="card-label">Artists Discovered</div>
+            <div class="card-title">Setup Guide</div>
         </div>
-        <div class="card-badge">This Month</div>
-    </div>
-
-    <div class="flash-card stats-card accent-purple">
+    </a>
+    
+    <div class="flash-card profile-card accent-pink glow">
+        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200" alt="Profile" class="card-avatar">
         <div class="card-content">
-            <div class="card-number">8</div>
-            <div class="card-label">Projects Active</div>
+            <div class="card-title">About Me</div>
+            <div class="card-description">Digital craftsperson, knowledge architect, and perpetual learner.</div>
+            <div class="status-dot"></div>
         </div>
-        <div class="status-dot"></div>
     </div>
-
 </div>
 
 
-## 🎨 Style Combinations
+---
 
-### Available Classes:
+## 7. Using Your GitHub Assets
 
-**Container Options:**
+For images stored in your Digital Garden's GitHub repository:
 
-- `cols-1` to `cols-8` - Fixed columns
-- `cols-auto` - Responsive (min 250px)
-- `cols-wide` - Responsive (min 350px)
-- `cols-narrow` - Responsive (min 180px)
 
-**Card Variants:**
+<div class="flash-container cols-3">
+    <a href="[[Projects/Web Development\|Projects/Web Development]]" class="flash-card with-image accent-blue">
+        <img src="https://raw.githubusercontent.com/yourusername/your-digital-garden/main/assets/images/web-dev.jpg" alt="Web Development" class="card-image">
+        <div class="card-content">
+            <div class="card-title">Web Development</div>
+            <div class="card-description">Frontend and backend development notes</div>
+        </div>
+    </a>
+    
+    <a href="[[Research/AI Notes\|Research/AI Notes]]" class="flash-card with-image accent-purple">
+        <img src="https://raw.githubusercontent.com/yourusername/your-digital-garden/main/assets/images/ai-research.png" alt="AI Research" class="card-image">
+        <div class="card-content">
+            <div class="card-title">AI Research</div>
+            <div class="card-description">Machine learning and AI development</div>
+        </div>
+    </a>
+    
+    <a href="[[Life/Photography\|Life/Photography]]" class="flash-card with-image accent-green">
+        <img src="https://raw.githubusercontent.com/yourusername/your-digital-garden/main/assets/images/photography.jpg" alt="Photography" class="card-image">
+        <div class="card-content">
+            <div class="card-title">Photography</div>
+            <div class="card-description">Visual storytelling and technique</div>
+        </div>
+    </a>
+</div>
 
-- `minimal` - Clean, subtle
-- `hero` - Large, prominent
-- `compact` - Small, horizontal
-- `tall` - Extra height
-- `wide` - Spans 2 columns
-- `full-width` - Spans all columns
 
-**Card Types:**
+---
 
-- `artist-card` - Circular image, centered
-- `playlist-card` - Music note decoration
-- `nav-card` - Arrow indicator
-- `category-card` - Large icon
-- `stats-card` - Number display
-- `profile-card` - Avatar style
-- `feature-card` - Star decoration
+## 8. Minimal Quick Links
 
-**Colors:**
 
-- `accent-blue` - Blue gradient
-- `accent-purple` - Purple gradient
-- `accent-green` - Green gradient
-- `accent-gold` - Gold gradient
-- `accent-red` - Red gradient
-- `accent-pink` - Pink gradient
-- `accent-cyan` - Cyan gradient
-- `accent-orange` - Orange gradient
+<div class="flash-container cols-5">
+    <a href="[[Daily Notes\|Daily Notes]]" class="flash-card minimal">
+        <div class="card-title">📅 Daily Notes</div>
+    </a>
+    
+    <a href="[[Ideas/Inbox\|Ideas/Inbox]]" class="flash-card minimal accent-gold">
+        <div class="card-title">💡 Ideas Inbox</div>
+    </a>
+    
+    <a href="[[Archive\|Archive]]" class="flash-card minimal accent-blue">
+        <div class="card-title">📦 Archive</div>
+    </a>
+    
+    <a href="[[Templates\|Templates]]" class="flash-card minimal accent-purple">
+        <div class="card-title">📋 Templates</div>
+    </a>
+    
+    <a href="[[Meta/Dashboard\|Meta/Dashboard]]" class="flash-card minimal accent-green">
+        <div class="card-title">📊 Dashboard</div>
+    </a>
+</div>
 
-**Effects:**
 
-- `glow` - Subtle glow effect
-- `shimmer` - Shimmer on hover
-- `pulse` - Pulsing animation
-- `bounce` - Bounce on hover
-- `gradient-border` - Rainbow border
-- `frosted` - Enhanced glass effect
-- `neon` - Neon glow border
+---
 
-## 🔗 Linking Options
-
-1. **Internal Obsidian Links:** `[[Note Name]]`
-2. **External URLs:** `https://example.com`
-3. **Email Links:** `mailto:email@example.com`
-4. **File Downloads:** `assets/files/document.pdf`
-
-## 📱 Responsive Behavior
-
-- **Desktop (1200px+):** Full column count
-- **Tablet (768-1199px):** Reduced columns automatically
-- **Mobile (<768px):** Maximum 2 columns
-- **Small Mobile (<480px):** Single column
-
-## 🎯 Pro Tips
-
-1. **Image Optimization:** Use 300x200px images for best results
-2. **Consistent Naming:** Use kebab-case for asset files
-3. **Badge System:** Use emojis or short text for visual hierarchy
-4. **Color Coding:** Assign consistent colors per category
-5. **Progressive Enhancement:** Start minimal, add effects as needed
-
-## 🚀 Advanced Examples
-
-### Full-width feature card with overlay:
+## 9. Full-Width Feature Banner
 
 
 <div class="flash-container cols-1">
-    <a href="[[Featured Content\|Featured Content]]" class="flash-card hero full-width gradient-border shimmer">
-        <img src="assets/featured/hero-image.jpg" alt="Featured" class="card-image">
+    <div class="flash-card full-width hero accent-gradient neon">
         <div class="card-content">
-            <h1 class="card-title">✨ Featured: Digital Garden Evolution</h1>
-            <p class="card-description">How I transformed my note-taking system into a living, breathing knowledge ecosystem.</p>
+            <div class="card-title" style="font-size: 2.5rem; margin-bottom: 1rem;">Welcome to My Digital Garden 🌱</div>
+            <div class="card-subtitle" style="font-size: 1.2rem; margin-bottom: 2rem;">A living collection of thoughts, ideas, and knowledge</div>
+            <div class="card-description" style="font-size: 1.1rem; max-width: 800px; margin: 0 auto;">
+                This is where ideas grow, connections form, and knowledge crystallizes. Every note is a seed that might bloom into something greater. Feel free to wander, explore, and discover the interconnected web of thoughts and insights.
+            </div>
+            <div class="card-actions" style="opacity: 1; justify-content: center; margin-top: 2rem;">
+                <a href="[[Start Here\|Start Here]]" class="action-btn">🚀 Start Exploring</a>
+                <a href="[[About\|About]]" class="action-btn">ℹ️ Learn More</a>
+                <a href="[[Recent\|Recent]]" class="action-btn">🆕 What's New</a>
+            </div>
         </div>
-        <div class="card-overlay">
-            <h2>Read the Story</h2>
-            <p>Published: December 2024 • 8 min read</p>
-        </div>
-        <div class="card-badges">
-            <div class="card-badge">Featured</div>
-            <div class="card-badge">New</div>
-        </div>
-    </a>
+    </div>
 </div>
 
 
-This system gives you infinite flexibility while maintaining the glassy, adaptive aesthetic of your digital garden. Each card seamlessly integrates with your existing design and works perfectly across all devices!
+---
+
+## Key Tips for Implementation:
+
+### 1. **Container Classes:**
+
+- `cols-1` to `cols-8`: Fixed columns
+- `cols-auto`: Responsive auto-fit
+- `cols-wide`: Wider cards (350px min)
+- `cols-narrow`: Narrower cards (180px min)
+
+### 2. **Card Types:**
+
+- `flash-card`: Base card
+- `artist-card`: Perfect for people/artists
+- `playlist-card`: Music/media collections
+- `nav-card`: Navigation with arrows
+- `stats-card`: Numbers and metrics
+- `profile-card`: Personal profiles
+- `feature-card`: Highlighted content
+
+### 3. **Size Modifiers:**
+
+- `minimal`: Smaller, subtle cards
+- `compact`: Single-line horizontal layout
+- `hero`: Large featured cards
+- `wide`: Spans 2 columns
+- `full-width`: Spans all columns
+
+### 4. **Color Accents:**
+
+- `accent-blue`, `accent-purple`, `accent-green`
+- `accent-gold`, `accent-red`, `accent-pink`
+- `accent-cyan`, `accent-orange`
+
+### 5. **Special Effects:**
+
+- `glow`: Soft glow effect
+- `shimmer`: Sliding shine on hover
+- `pulse`: Pulsing animation
+- `bounce`: Bounces on hover
+- `frosted`: Enhanced glass effect
+- `neon`: Colorful border glow
+- `gradient-border`: Animated border
+
+### 6. **GitHub Asset URLs:**
+
+Replace `yourusername/your-digital-garden` with your actual GitHub repository path:
+
+
+https://raw.githubusercontent.com/yourusername/your-digital-garden/main/assets/images/filename.jpg
+
+
+### 7. **Internal Links:**
+
+Use Obsidian's standard linking format:
+
+- `[[Note Name]]` for internal notes
+- `[[Folder/Note Name]]` for organized notes
+
+Just paste any of these examples directly into your Obsidian notes and they'll render beautifully on your Digital Garden site!
 
 
 
