@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-11T16:50:21.536+02:00"}
+{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-11T16:52:11.433+02:00"}
 ---
 
 #  ✨Main Page✨
@@ -46,12 +46,12 @@ Save images in your `assets` folder. The Digital Garden plugin will automaticall
 
 ### 1. Artists Page (3 columns)
 
-```html
+
 <!-- In your artists.md file -->
 <div class="flash-container cols-3">
     
     <!-- Artist Card 1 -->
-    <a href="[[Artist - Taylor Swift]]" class="flash-card artist-card accent-purple shimmer">
+    <a href="[[Artist - Taylor Swift\|Artist - Taylor Swift]]" class="flash-card artist-card accent-purple shimmer">
         <img src="assets/artists/taylor-swift.jpg" alt="Taylor Swift" class="card-image">
         <div class="card-content">
             <h3 class="card-title">Taylor Swift</h3>
@@ -65,7 +65,7 @@ Save images in your `assets` folder. The Digital Garden plugin will automaticall
     </a>
 
     <!-- Artist Card 2 -->
-    <a href="[[Artist - The Weeknd]]" class="flash-card artist-card accent-red glow">
+    <a href="[[Artist - The Weeknd\|Artist - The Weeknd]]" class="flash-card artist-card accent-red glow">
         <img src="assets/artists/the-weeknd.jpg" alt="The Weeknd" class="card-image">
         <div class="card-content">
             <h3 class="card-title">The Weeknd</h3>
@@ -77,7 +77,7 @@ Save images in your `assets` folder. The Digital Garden plugin will automaticall
     </a>
 
     <!-- Artist Card 3 -->
-    <a href="[[Artist - Daft Punk]]" class="flash-card artist-card accent-gold frosted">
+    <a href="[[Artist - Daft Punk\|Artist - Daft Punk]]" class="flash-card artist-card accent-gold frosted">
         <img src="assets/artists/daft-punk.jpg" alt="Daft Punk" class="card-image">
         <div class="card-content">
             <h3 class="card-title">Daft Punk</h3>
@@ -91,11 +91,11 @@ Save images in your `assets` folder. The Digital Garden plugin will automaticall
     </a>
 
 </div>
-```
+
 
 ### 2. Playlists Page (4 columns)
 
-```html
+
 <!-- In your playlists.md file -->
 <div class="flash-container cols-4">
     
@@ -127,7 +127,7 @@ Save images in your `assets` folder. The Digital Garden plugin will automaticall
     </a>
 
     <!-- Playlist Card 3 -->
-    <a href="[[My Jazz Collection]]" class="flash-card playlist-card accent-blue neon">
+    <a href="[[My Jazz Collection\|My Jazz Collection]]" class="flash-card playlist-card accent-blue neon">
         <img src="assets/playlists/jazz-classics.jpg" alt="Jazz Classics" class="card-image">
         <div class="card-content">
             <h3 class="card-title">Jazz Classics</h3>
@@ -157,16 +157,16 @@ Save images in your `assets` folder. The Digital Garden plugin will automaticall
     </a>
 
 </div>
-```
+
 
 ### 3. Main Navigation Page (2 columns, wide cards)
 
-```html
+
 <!-- In your navigation.md or home page -->
 <div class="flash-container cols-2">
     
     <!-- Music Section -->
-    <a href="[[Music Hub]]" class="flash-card nav-card hero accent-purple shimmer">
+    <a href="[[Music Hub\|Music Hub]]" class="flash-card nav-card hero accent-purple shimmer">
         <img src="assets/categories/music-hub.jpg" alt="Music Hub" class="card-image">
         <div class="card-content">
             <h2 class="card-title">🎵 Music Universe</h2>
@@ -184,7 +184,7 @@ Save images in your `assets` folder. The Digital Garden plugin will automaticall
     </a>
 
     <!-- Knowledge Base -->
-    <a href="[[Knowledge Garden]]" class="flash-card nav-card hero accent-green glow">
+    <a href="[[Knowledge Garden\|Knowledge Garden]]" class="flash-card nav-card hero accent-green glow">
         <img src="assets/categories/knowledge-garden.jpg" alt="Knowledge Garden" class="card-image">
         <div class="card-content">
             <h2 class="card-title">🌱 Knowledge Garden</h2>
@@ -197,7 +197,7 @@ Save images in your `assets` folder. The Digital Garden plugin will automaticall
     </a>
 
     <!-- Projects Portfolio -->
-    <a href="[[Projects]]" class="flash-card nav-card feature-card accent-gold bounce">
+    <a href="[[Projects\|Projects]]" class="flash-card nav-card feature-card accent-gold bounce">
         <div class="card-content">
             <img src="assets/icons/code-icon.svg" alt="Projects" class="card-icon">
             <h2 class="card-title">⚡ Projects & Code</h2>
@@ -210,7 +210,7 @@ Save images in your `assets` folder. The Digital Garden plugin will automaticall
     </a>
 
     <!-- Photography -->
-    <a href="[[Photography]]" class="flash-card nav-card minimal accent-cyan frosted">
+    <a href="[[Photography\|Photography]]" class="flash-card nav-card minimal accent-cyan frosted">
         <div class="card-content">
             <img src="assets/icons/camera-icon.svg" alt="Photography" class="card-icon">
             <h2 class="card-title">📸 Visual Stories</h2>
@@ -220,22 +220,22 @@ Save images in your `assets` folder. The Digital Garden plugin will automaticall
     </a>
 
 </div>
-```
+
 
 ### 4. Quick Shortcuts (6 columns, compact)
 
-```html
+
 <!-- Quick access shortcuts -->
 <div class="flash-container cols-6">
     
-    <a href="[[Daily Notes]]" class="flash-card compact minimal accent-blue">
+    <a href="[[Daily Notes\|Daily Notes]]" class="flash-card compact minimal accent-blue">
         <img src="assets/icons/calendar.svg" alt="Daily Notes" class="card-icon">
         <div class="card-content">
             <span class="card-title">Daily Notes</span>
         </div>
     </a>
 
-    <a href="[[Task Manager]]" class="flash-card compact minimal accent-red">
+    <a href="[[Task Manager\|Task Manager]]" class="flash-card compact minimal accent-red">
         <img src="assets/icons/tasks.svg" alt="Tasks" class="card-icon">
         <div class="card-content">
             <span class="card-title">Tasks</span>
@@ -243,28 +243,28 @@ Save images in your `assets` folder. The Digital Garden plugin will automaticall
         </div>
     </a>
 
-    <a href="[[Reading List]]" class="flash-card compact minimal accent-green">
+    <a href="[[Reading List\|Reading List]]" class="flash-card compact minimal accent-green">
         <img src="assets/icons/book.svg" alt="Reading" class="card-icon">
         <div class="card-content">
             <span class="card-title">Reading List</span>
         </div>
     </a>
 
-    <a href="[[Ideas Inbox]]" class="flash-card compact minimal accent-purple pulse">
+    <a href="[[Ideas Inbox\|Ideas Inbox]]" class="flash-card compact minimal accent-purple pulse">
         <img src="assets/icons/lightbulb.svg" alt="Ideas" class="card-icon">
         <div class="card-content">
             <span class="card-title">Ideas</span>
         </div>
     </a>
 
-    <a href="[[Bookmarks]]" class="flash-card compact minimal accent-gold">
+    <a href="[[Bookmarks\|Bookmarks]]" class="flash-card compact minimal accent-gold">
         <img src="assets/icons/bookmark.svg" alt="Bookmarks" class="card-icon">
         <div class="card-content">
             <span class="card-title">Bookmarks</span>
         </div>
     </a>
 
-    <a href="[[Archive]]" class="flash-card compact minimal accent-cyan">
+    <a href="[[Archive\|Archive]]" class="flash-card compact minimal accent-cyan">
         <img src="assets/icons/archive.svg" alt="Archive" class="card-icon">
         <div class="card-content">
             <span class="card-title">Archive</span>
@@ -272,11 +272,11 @@ Save images in your `assets` folder. The Digital Garden plugin will automaticall
     </a>
 
 </div>
-```
+
 
 ### 5. Stats Dashboard (auto-responsive)
 
-```html
+
 <!-- Dashboard with statistics -->
 <div class="flash-container cols-auto">
     
@@ -307,7 +307,7 @@ Save images in your `assets` folder. The Digital Garden plugin will automaticall
     </div>
 
 </div>
-```
+
 
 ## 🎨 Style Combinations
 
@@ -386,9 +386,9 @@ Save images in your `assets` folder. The Digital Garden plugin will automaticall
 
 ### Full-width feature card with overlay:
 
-```html
+
 <div class="flash-container cols-1">
-    <a href="[[Featured Content]]" class="flash-card hero full-width gradient-border shimmer">
+    <a href="[[Featured Content\|Featured Content]]" class="flash-card hero full-width gradient-border shimmer">
         <img src="assets/featured/hero-image.jpg" alt="Featured" class="card-image">
         <div class="card-content">
             <h1 class="card-title">✨ Featured: Digital Garden Evolution</h1>
@@ -404,7 +404,7 @@ Save images in your `assets` folder. The Digital Garden plugin will automaticall
         </div>
     </a>
 </div>
-```
+
 
 This system gives you infinite flexibility while maintaining the glassy, adaptive aesthetic of your digital garden. Each card seamlessly integrates with your existing design and works perfectly across all devices!
 
