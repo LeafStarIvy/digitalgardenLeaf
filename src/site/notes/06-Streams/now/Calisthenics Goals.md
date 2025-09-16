@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/06-streams/now/calisthenics-goals/","noteIcon":"","created":"2025-09-07T21:08:44.440+02:00","updated":"2025-09-16T08:33:04.347+02:00"}
+{"dg-publish":true,"permalink":"/06-streams/now/calisthenics-goals/","noteIcon":"","created":"2025-09-07T11:53:33.426+02:00","updated":"2025-09-16T08:33:04.347+02:00"}
 ---
 
 
