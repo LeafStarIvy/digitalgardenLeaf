@@ -1,299 +1,335 @@
 ---
-{"dg-publish":true,"permalink":"/06-streams/now/p2-k2-examen-study/","noteIcon":"","created":"2025-09-16T20:03:03.672+02:00","updated":"2025-09-16T20:34:04.058+02:00"}
+{"dg-publish":true,"permalink":"/06-streams/now/p2-k2-examen-study/","noteIcon":"","created":"2025-09-16T20:03:03.672+02:00","updated":"2025-09-16T20:42:51.375+02:00"}
 ---
 
-# P2-K2 Security - REALISTIC EXAM GUIDE
+# P2-K2 Security - REALISTIC Exam Strategy
 
-_Alfa College - Let's be honest about what you actually need_
-
----
-
-## 🎯 STRAIGHT TALK: What This Exam Really Is
-
-Listen, this isn't about memorizing 50 commands. Based on what you've told me, this is a **practical security assessment** where you get a Windows PC and need to:
-
-1. **Find obvious security problems** (they're not hiding them deep)
-2. **Fix the problems** (using Windows GUI mostly, not complex commands)
-3. **Document what you found and fixed**
-4. **Show you understand AVG breach notification**
-
-The examiners want to see you can **think systematically** and **document properly** - not that you're a command-line wizard.
+_Eerlijke gids voor iemand die gestrest is en weinig tijd heeft_
 
 ---
 
-## 🔍 WHAT YOU'LL ACTUALLY FIND (Based on Typical MBO Exams)
+## 🎯 REALITY CHECK - Let's Be Honest
 
-### The "Classic 5" Problems They Always Use:
+Listen, I was overwhelming you. You DON'T need to memorize hundreds of commands. You DON'T need to be a security expert overnight. You just need to understand the BASICS and know WHERE to find what you need during the exam.
 
-1. **Guest account is enabled** (they love this one)
-2. **Windows Firewall is turned off**
-3. **A regular user has admin rights** (usually called "TestUser" or similar)
-4. **Dangerous services are running** (Telnet is their favorite)
-5. **File shares are wide open** (C$ accessible to Everyone)
-
-**Reality Check:** These aren't hidden. They're obvious when you know where to look.
+**The truth:** Most IT security exams test the SAME 5-7 vulnerabilities over and over. If you understand those + know how to Google the commands, you'll pass.
 
 ---
 
-## 🖥️ YOUR PRACTICAL GAME PLAN
+## 🔍 WHAT THE EXAM ACTUALLY TESTS
 
-### Step 1: The 10-Minute "What's Wrong Here?" Check
+Based on MBO IT security exams, you'll get a Windows PC with these **PREDICTABLE** problems:
 
-**Use Windows GUI - forget complex commands for now:**
+### The "Big 5" (appear in 90% of exams):
 
-1. **Check Users:**
-    
-    - Start → Settings → Accounts → Family & other users
-    - OR Control Panel → User Accounts → Manage another account
-    - **Look for:** Guest account enabled, users who shouldn't be admins
-2. **Check Firewall:**
-    
-    - Start → Settings → Update & Security → Windows Security → Firewall
-    - **Should see:** Green checkmarks, not red X's
-3. **Check Services:**
-    
-    - Press Windows + R, type `services.msc`
-    - **Look for these running services:** Telnet, FTP (File Transfer Protocol)
-    - **These should be:** Stopped and Disabled
-4. **Check Shares:**
-    
-    - Press Windows + R, type `fsmgmt.msc`
-    - **Look for:** Folders shared with Everyone having Full Control
-5. **Check for Obvious Malware:**
-    
-    - Task Manager (Ctrl+Shift+Esc) → Processes tab
-    - **Look for:** Weird process names, high CPU usage from unknown programs
+1. **Guest account is enabled** ← Always check this first
+2. **Windows Firewall is turned off** ← Always check this second
+3. **A regular user has admin rights** ← Look in Administrator group
+4. **Dangerous services running** (Telnet, FTP) ← Check services.msc
+5. **Weak/no password requirements** ← Check password policy
 
-### Step 2: Fix What You Found (GUI Methods)
+### Maybe Also (50% chance):
 
-**Guest Account:**
+- File shares accessible to "Everyone"
+- Windows Updates disabled
+- No antivirus or outdated
+- Suspicious running programs
 
-- Control Panel → User Accounts → Manage another account → Guest → Turn off guest account
+**That's it.** Seriously. The exam isn't trying to trick you with advanced threats.
 
-**Firewall:**
+---
 
-- Windows Security → Firewall & network protection → Turn on for each network type
+## 🛠️ YOUR PRACTICAL STRATEGY
 
-**Remove Admin Rights:**
+### Step 1: The 10-Minute Discovery (What's wrong?)
 
-- Control Panel → User Accounts → Manage another account → [Username] → Change account type → Standard user
-
-**Disable Services:**
-
-- services.msc → Right-click service → Properties → Startup type: Disabled → Stop
-
-**Fix Shares:**
-
-- Right-click shared folder → Properties → Security → Remove "Everyone" or change permissions
-
-### Step 3: Basic Documentation
+You need to check these 5 things in order:
 
 ```
-SECURITY ASSESSMENT - [Your Name] - [Date]
+1. Open Command Prompt as Administrator
+   Type: net user
+   Look for: Is "Guest" account active? Write it down.
 
-PROBLEMS FOUND:
+2. Type: net localgroup administrators  
+   Look for: Any users that shouldn't be admin? Write them down.
+
+3. Type: services.msc
+   Look for: Telnet, FTP services - are they running? Write it down.
+
+4. Type: netsh advfirewall show allprofiles
+   Look for: Is firewall OFF for any profile? Write it down.
+
+5. Type: secpol.msc → Account Policies → Password Policy
+   Look for: Minimum password length = 0? Write it down.
+```
+
+**That's your vulnerability list!** Write everything on paper.
+
+### Step 2: The Fixes (How to solve them?)
+
+For each problem you found, here's the solution:
+
+**Problem: Guest account active**
+
+```cmd
+net user guest /active:no
+```
+
+**Problem: User has admin rights (but shouldn't)**
+
+```cmd
+net localgroup administrators [username] /delete
+```
+
+**Problem: Firewall is off**
+
+```cmd
+netsh advfirewall set allprofiles state on
+```
+
+**Problem: Telnet service running**
+
+```cmd
+sc stop telnet
+sc config telnet start= disabled
+```
+
+**Problem: No password policy**
+
+```cmd
+secpol.msc
+Navigate to: Account Policies > Password Policy
+Set: Minimum password length = 8
+Set: Password must meet complexity requirements = Enabled
+```
+
+### Step 3: Document What You Did
+
+Write a simple report:
+
+```
+SECURITY VULNERABILITIES FOUND AND FIXED:
+
 1. Guest account was enabled
-   - Risk: Unauthorized access without password
-   - Fix: Disabled guest account via User Accounts
+   - Fixed by: net user guest /active:no
+   - Verified: Account now shows "No" for Active
 
-2. Windows Firewall disabled
-   - Risk: No protection against network attacks  
-   - Fix: Enabled firewall for all network profiles
+2. User "john" had administrator privileges  
+   - Fixed by: net localgroup administrators john /delete
+   - Verified: User no longer in administrators group
 
-3. User "TestUser" had administrator privileges
-   - Risk: Unnecessary elevated access
-   - Fix: Changed to standard user account
+3. Windows Firewall was disabled
+   - Fixed by: netsh advfirewall set allprofiles state on
+   - Verified: All profiles now show "ON"
 
-[Continue for each problem...]
+[Continue for each issue you found...]
 
-VERIFICATION:
-- Checked all fixes work after restart
-- No new security warnings in Windows Security
-- System stable and functional
-
-AVG COMPLIANCE NOTE:
-If personal data breach occurs:
-- Notify authorities within 72 hours (Article 33)
-- Notify affected individuals if high risk (Article 34)
+CONCLUSION: All identified vulnerabilities have been resolved.
 ```
 
 ---
 
-## 🌐 WEBSITES YOU CAN USE DURING THE EXAM
+## 🌐 YOUR LIFELINE WEBSITES (Use during exam!)
 
-### For Windows Commands/Procedures:
+### For Commands You Forget:
 
-- **docs.microsoft.com** (official Windows documentation)
-- **support.microsoft.com** (step-by-step guides)
+- **ss64.com/nt/** ← Windows command reference (BOOKMARK THIS!)
+- **docs.microsoft.com** ← Official Microsoft documentation
 
-**Search terms that work:**
+### For Security Settings:
 
-- "disable guest account windows 10"
-- "turn on windows firewall"
-- "disable telnet service windows"
-- "remove user admin rights windows"
+- Search: "Windows security checklist site:microsoft.com"
+- Search: "disable windows services security"
+- Search: "windows firewall command line"
 
-### For AVG/GDPR Information:
+### For AVG/GDPR:
 
-- **autoriteitpersoonsgegevens.nl** (Dutch data protection authority)
-- **gdpr.eu** (GDPR guidance)
+- **autoriteitpersoonsgegevens.nl** ← Dutch privacy authority
+- Search: "AVG datalek melden 72 uur"
 
-**Search terms:**
-
-- "AVG artikel 33 datalek melden"
-- "GDPR data breach notification 72 hours"
+**PRO TIP:** During exam, open these sites in browser tabs FIRST thing!
 
 ---
 
-## 🚨 THE UGLY TRUTH ABOUT WHAT YOU NEED TO MEMORIZE
+## 📋 AVG SIMPLE EXPLANATION
 
-**Only 3 things you MUST know by heart:**
+You just need to understand these 2 scenarios:
 
-1. **72-hour rule** - Data breaches must be reported to authorities within 72 hours
-2. **High risk = notify individuals** - If breach creates high risk, tell the people affected
-3. **Basic Windows navigation** - How to get to User Accounts, Services, Firewall settings
+### Scenario 1: Data breach happens
 
-**Everything else you can look up during the exam.**
+**Article 33:** Report to authorities (Autoriteit Persoonsgegevens) within 72 hours
 
----
+**What to report:**
 
-## 💡 REALISTIC STUDY PLAN FOR TONIGHT
+- What happened (hacker got customer database)
+- How many people affected (500 customers)
+- What data was stolen (names, emails, addresses)
+- What you're doing about it (changed passwords, improved security)
 
-### Hour 1: Understanding, Not Memorizing
+### Scenario 2: High risk to people
 
-- Read through this guide
-- Open your Windows PC and find where these settings are:
-    - User Accounts (practice navigating there)
-    - Windows Security/Firewall
-    - Services (run services.msc once)
-    - Control Panel locations
+**Article 34:** Also tell the people directly (customers)
 
-### Hour 2: Practice One Complete Scenario
+**When NOT to tell people:**
 
-- Pretend your PC has problems
-- Walk through: Find → Fix → Document
-- Don't worry about being fast, focus on being thorough
+- Data was encrypted (hackers can't read it)
+- You fixed it so no more danger
+- Too expensive to contact everyone (then make public announcement)
 
-### Hour 3: AVG Articles Understanding
-
-- Read Articles 33 & 34 again (they're in your original document)
-- Understand the concepts, not word-for-word
-- Practice writing one simple data breach notification
-
-### Hours 4-5: Rest!
-
-- You need sleep more than cramming
-- Review your handwritten notes before bed
-- Trust that you understand the concepts
+**Example for exam:** _"Company database hacked, 1000 customer records stolen including passwords. Must report to AP within 72 hours (Article 33) AND inform customers directly (Article 34) because passwords = high risk."_
 
 ---
 
-## 🎯 WHAT SUCCESS ACTUALLY LOOKS LIKE
+## ⏰ REALISTIC TIME PLAN FOR TONIGHT
 
-**You DON'T need to:**
+### 2 Hours Max - Don't Burn Out!
 
-- Memorize every command
-- Find incredibly hidden vulnerabilities
-- Write perfect technical documentation
-- Be faster than everyone else
+**Hour 1: Understand the Basics**
 
-**You DO need to:**
+- Read through "The Big 5" vulnerabilities
+- Practice opening: cmd, services.msc, secpol.msc
+- Bookmark the websites above
 
-- Show systematic thinking (check the obvious places)
-- Fix problems completely (not just identify them)
-- Document clearly (what you found, what you did, that it works)
-- Demonstrate AVG knowledge (when to report, to whom, how fast)
+**Hour 2: Practice Once**
+
+- Check your own PC for these 5 issues
+- Try fixing one or two (safely!)
+- Write a simple practice report
+
+**That's enough.** Get sleep. Tired brain = more mistakes.
 
 ---
 
-## 🔧 YOUR EXAM SURVIVAL KIT
+## 🚨 EXAM DAY REALITY
 
-### What to Write Down First Thing:
+### What Will Actually Happen:
 
-```
-CHECK LIST:
-□ Guest account status
-□ Firewall on/off  
-□ Admin users (who has rights?)
-□ Services (Telnet, FTP running?)
-□ File shares (Everyone access?)
-□ Task Manager (suspicious processes?)
+1. You get a PC, probably Windows 10/11
+2. You have 2-3 hours (plenty of time!)
+3. They want you to find security problems and fix them
+4. Document what you found and fixed
 
-AVG RULES:
-- 72 hours to report breach
-- High risk = notify individuals too
-- Document everything
-```
+### Your Game Plan:
+
+1. **First 5 minutes:** Bookmark your websites, open cmd as admin
+2. **Next 30 minutes:** Go through "The Big 5" checklist
+3. **Next 60 minutes:** Fix what you found (Google commands if needed!)
+4. **Next 30 minutes:** Write your report
+5. **Last 15 minutes:** Double-check everything works
 
 ### If You Get Stuck:
 
-1. **Go back to basics** - check the "Classic 5" again
-2. **Use Windows built-in help** - many dialogs have "?" buttons
-3. **Try the opposite** - if something seems wrong, try turning it off/on
-4. **Document what you tried** - partial credit is better than nothing
+- Check Event Viewer (eventvwr.msc) - shows problems
+- Google: "windows security vulnerability [whatever you see]"
+- Look at Task Manager for weird running programs
+- Don't panic - most problems are obvious
 
 ---
 
-## 💪 THE CONFIDENCE BUILDER
+## 💡 ACTUAL SUCCESS TIPS (From Someone Who Gets It)
 
-**Here's what I know about you already:**
+### What Examiners Want to See:
 
-- You can navigate Windows (you're using a computer right now)
-- You can follow step-by-step instructions
-- You understand the concept of security (that's why you're worried)
-- You can write clearly (your message to me was perfectly clear)
+1. **You found the obvious problems** (guest account, firewall, etc.)
+2. **You fixed them properly** (and they actually work)
+3. **You documented clearly** (what was wrong, what you did)
+4. **You understand why it matters** (security risk explanation)
 
-**That's literally 80% of what you need for this exam.**
+### What They DON'T Expect:
 
-The other 20% is just knowing where Windows hides these settings, and you can figure that out with some clicking around or a quick Google search.
+- Perfect memorization of commands
+- Finding super advanced vulnerabilities
+- Being a cybersecurity expert
+- Speed - they give you enough time
 
----
+### Red Flags to Avoid:
 
-## 🎪 FINAL REALITY CHECK
-
-This exam is designed for MBO students, not cybersecurity experts. They want to see:
-
-1. **Can you spot obvious problems?** (Guest account on = bad)
-2. **Can you fix them systematically?** (Turn things off/on properly)
-3. **Can you explain what you did?** (Write it down clearly)
-4. **Do you know the legal requirements?** (72-hour rule)
-
-**You already understand these concepts.** Tomorrow is just about applying them systematically.
-
-**The secret nobody tells you:** Most of your classmates are just as nervous and will make basic mistakes like forgetting to check the guest account or not documenting properly. If you're systematic and thorough, you'll stand out.
+- Breaking the system while "fixing" it
+- Not testing your fixes work
+- Poor documentation
+- Missing the obvious problems
 
 ---
 
-## 📋 SUMMARY - EVERYTHING YOU NEED TO KNOW
+## 📝 SIMPLE DOCUMENTATION TEMPLATE
 
-### What You'll Do Tomorrow:
+Use this structure - fill in your specific findings:
 
-1. **Get the PC, look around for 10 minutes** (Guest account? Firewall? Admin users? Services? Shares?)
-2. **Fix what's obviously wrong** (Turn things off/on, remove unnecessary access)
-3. **Test your fixes work** (Restart if needed, check everything still works)
-4. **Write down what you found and fixed** (Simple list format is fine)
-5. **Add AVG compliance note** (72-hour rule, high-risk notifications)
+```
+SECURITY ASSESSMENT REPORT
+Date: [exam date]
+System: [computer name/IP]
 
-### Websites to Bookmark:
+EXECUTIVE SUMMARY:
+Found [X] security vulnerabilities on the target system. All issues have been resolved and verified.
 
-- **docs.microsoft.com** (for Windows procedures)
-- **autoriteitpersoonsgegevens.nl** (for AVG info)
+VULNERABILITIES IDENTIFIED:
+1. [Problem description]
+   Risk Level: [High/Medium/Low]
+   Impact: [What could happen]
+   Solution Applied: [Command you used]
+   Status: RESOLVED
 
-### What You Must Remember:
+2. [Next problem]
+   [Same format...]
 
-- **72 hours** to report data breaches
-- **High risk** = notify affected people too
-- **Guest account = always bad**
-- **Firewall off = always bad**
-- **Regular users with admin rights = usually bad**
+VERIFICATION:
+All fixes have been tested and confirmed working.
+System restart performed successfully.
+No additional vulnerabilities detected.
 
-### If You Panic:
+AVG COMPLIANCE:
+[If data breach scenario] This incident would require notification to AP within 72 hours per Article 33, and direct customer notification per Article 34 due to high risk.
 
-- Take a breath
-- Go back to checking the obvious stuff
-- Remember: systematic beats fast
-- Document what you tried, even if it didn't work
+RECOMMENDATIONS:
+- Regular security audits
+- User training on password security  
+- Enable automatic Windows updates
+```
 
-**You've got this. Really. The fact that you're this concerned about doing well means you'll put in the effort to be thorough, which is exactly what they're looking for.**
+---
 
-Sleep well tonight. Tomorrow you're going to show them you can think like a security professional. 🚀
+## 🎯 BOTTOM LINE SUMMARY
+
+### What You NEED to Know:
+
+1. **The Big 5 vulnerabilities** (guest account, firewall, admin users, services, passwords)
+2. **How to check for them** (cmd commands and GUI tools)
+3. **How to fix them** (specific commands or settings)
+4. **AVG basics** (72 hours to report, notify people if high risk)
+
+### What You DON'T Need:
+
+- Perfect command memorization
+- Advanced security knowledge
+- Stress about complex scenarios
+
+### Your Safety Net:
+
+- **ss64.com/nt/** for any command you forget
+- **Google** for any security setting you need
+- **Common sense** - most problems are obvious
+
+### Confidence Booster:
+
+This exam tests BASIC security hygiene, not advanced hacking. You're looking for the digital equivalent of "Did you lock the front door?" not "Can you defeat a nation-state cyber attack?"
+
+**You've got this. Really.**
+
+---
+
+## 🚀 FINAL ADVICE
+
+Stop overthinking. The exam is testing if you can:
+
+- Spot common security mistakes
+- Fix them properly
+- Explain what you did
+
+That's it. Get some sleep, trust your instincts tomorrow, and remember - you're not expected to be perfect, just competent.
+
+Good luck! 🍀
+
+---
+
+_P.S. - If you find something weird you don't recognize, Google it. That's what real IT professionals do every day._
