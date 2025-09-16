@@ -1,687 +1,397 @@
 ---
-{"dg-publish":true,"permalink":"/06-streams/now/p2-k2-examen-study/","noteIcon":"","created":"2025-09-16T20:03:03.672+02:00","updated":"2025-09-16T20:03:32.698+02:00"}
+{"dg-publish":true,"permalink":"/06-streams/now/p2-k2-examen-study/","noteIcon":"","created":"2025-09-16T20:03:03.672+02:00","updated":"2025-09-16T20:14:15.894+02:00"}
 ---
 
-# P2-K2: Security Controle - Complete Exam Guide
+# P2-K2 Security - MEMORIZATION GUIDE
 
-_Alfa College Boumaboulevard - Expert IT Systems and Devices_
-
-## 📋 Exam Overview
-
-### Kerntaken (Core Tasks)
-
-- **P2-K2-W1**: Geeft security advies en verbetert de security
-- **P2-K2-W2**: Reageert op security incidenten
-
-### Exam Format
-
-- Praktisch examen met client PC en admin toegang
-- Vulnerabilities identificeren, documenteren en oplossen
-- Focus op Nederlandse AVG wetgeving (Artikelen 33 & 34)
-- Tijdsduur: Enkele uren
+_Voor perfecte examenprestatie - Alfa College_
 
 ---
 
-## 🔍 1. Security Vulnerabilities Identificatie
+## 🚨 THE GOLDEN 8 - MEMORIZE THESE FIRST
 
-### 1.1 Windows Security Vulnerabilities Checklist
+_Deze 8 vulnerabilities komen in 90% van de examens voor - leer ze uit je hoofd!_
 
-#### A. Gebruikersaccounts en Toegang
+1. **Guest Account = ALTIJD UIT**
+2. **Firewall = ALTIJD AAN**
+3. **Admin Users = ALLEEN ECHTE ADMINS**
+4. **Services = TELNET & FTP UIT**
+5. **Shares = GEEN C$ VOOR EVERYONE**
+6. **Passwords = COMPLEXITY AAN**
+7. **Antivirus = AAN EN UPDATED**
+8. **Updates = AUTOMATISCH AAN**
 
-- [ ] **Zwakke wachtwoorden controleren**
-    - Geen wachtwoordvereisten
-    - Standaard wachtwoorden (admin, password, 123456)
-    - Lege wachtwoorden
-- [ ] **Onnodige administrator accounts**
-    - Gastaccount ingeschakeld
-    - Meerdere admin accounts
-    - Accounts zonder wachtwoordverloop
-- [ ] **Groepslidmaatschappen controleren**
-    - Users in Administrators groep
-    - Onnodige privileges
+---
+
+## 📋 PART 1: THE 15-MINUTE SYSTEM SCAN
+
+_Doe dit ALTIJD eerst - in deze volgorde!_
+
+### Stap 1: Basis Info (2 minuten)
 
 ```cmd
-# Commands om te controleren:
+whoami
+hostname  
+systeminfo | find "OS"
+```
+
+### Stap 2: Users Controleren (3 minuten)
+
+```cmd
 net user
 net localgroup administrators
-net accounts
 ```
 
-#### B. Services en Processen
+**ONTHOUD:** Schrijf alle usernames op papier!
 
-- [ ] **Onnodige services**
-    - Telnet service
-    - FTP service zonder encryptie
-    - Remote Desktop zonder restrictions
-- [ ] **Malware/Verdachte processen**
-    - Onbekende processen in Task Manager
-    - Hoge CPU/Memory usage
-    - Processen zonder digitale handtekening
+### Stap 3: Services Scan (5 minuten)
 
 ```cmd
-# Commands:
 services.msc
-taskmgr
-msconfig
 ```
 
-#### C. Netwerk Security
+**ZOEK NAAR:** Telnet, FTP, Remote Registry **STATUS MOET ZIJN:** Disabled/Stopped
 
-- [ ] **Firewall instellingen**
-    - Windows Firewall uitgeschakeld
-    - Alle poorten open
-    - Geen uitgaande regels
-- [ ] **Gedeelde mappen**
-    - Onbeveiligde shares (Everyone - Full Control)
-    - Administrative shares blootgesteld
-    - Geen wachtwoord bescherming
+### Stap 4: Network Check (3 minuten)
 
 ```cmd
-# Commands:
-netstat -an
+netstat -an | find "LISTEN"
 net share
-ipconfig /all
 ```
 
-#### D. Software Vulnerabilities
+### Stap 5: Firewall Status (2 minuten)
 
-- [ ] **Verouderde software**
-    - Oude browser versies
-    - Geen automatische updates
-    - Ongepatched OS
-- [ ] **Antivirus/Anti-malware**
-    - Geen antivirus geïnstalleerd
-    - Verouderde definities
-    - Real-time scanning uit
+```cmd
+netsh advfirewall show allprofiles
+```
 
-### 1.2 Meest Voorkomende Vulnerabilities in Examen
-
-1. **Default Passwords** - Altijd eerste check
-2. **Disabled Firewall** - Windows Defender Firewall uit
-3. **Guest Account Enabled** - Gastaccount actief
-4. **Unnecessary Admin Rights** - Users met admin rechten
-5. **Open Shares** - C$ en andere shares toegankelijk
-6. **Missing Updates** - Windows Updates uitgeschakeld
-7. **Weak Password Policy** - Geen complexity vereisten
-8. **Running Unnecessary Services** - Telnet, FTP, etc.
+**MOET ZIJN:** State = ON voor alle profielen
 
 ---
 
-## 🛠️ 2. Security Fixes & Hardening
+## 🔧 PART 2: THE FIX SEQUENCE
 
-### 2.1 User Account Security
+_Volg deze volgorde EXACT - niet aanpassen!_
 
-#### Wachtwoordbeleid Versterken
-
-```powershell
-# Via Group Policy of Security Policy
-secpol.msc
-```
-
-**Instellingen:**
-
-- Minimale lengte: 8 karakters
-- Complexity vereisten: Ingeschakeld
-- Password age: Max 90 dagen
-- Account lockout: 3 pogingen
-
-#### Accounts Beveiligen
+### FIX 1: Guest Account (1 minuut)
 
 ```cmd
-# Guest account uitschakelen
 net user guest /active:no
-
-# Onnodige users verwijderen
-net user [username] /delete
-
-# Admin account hernoemen
 ```
 
-### 2.2 System Hardening
-
-#### Windows Firewall Configureren
+**VERIFICATIE:**
 
 ```cmd
-# Firewall inschakelen voor alle profielen
+net user guest
+```
+
+**MOET ZIEN:** Account active = No
+
+### FIX 2: Firewall Aanzetten (2 minuten)
+
+```cmd
 netsh advfirewall set allprofiles state on
-
-# Onnodige regels verwijderen
-netsh advfirewall firewall show rule name=all
 ```
 
-#### Services Uitschakelen
+**VERIFICATIE:**
 
 ```cmd
-# Onnodige services stoppen en uitschakelen
+netsh advfirewall show allprofiles | find "State"
+```
+
+**MOET ZIEN:** State = ON (alle 3 profielen)
+
+### FIX 3: Admin Users Opruimen (5 minuten per user)
+
+**Voor elke NIET-ADMIN user in Administrators groep:**
+
+```cmd
+net localgroup administrators [username] /delete
+```
+
+**Voor echte admins - password resetten:**
+
+```cmd
+net user [username] NewP@ssw0rd123!
+net user [username] /passwordreq:yes
+```
+
+**NIEUWE ADMIN MAKEN (als nodig):**
+
+```cmd
+net user SecureAdmin NewP@ssw0rd123! /add
+net localgroup administrators SecureAdmin /add
+```
+
+### FIX 4: Services Uitschakelen (3 minuten per service)
+
+```cmd
 sc stop Telnet
 sc config Telnet start= disabled
 
-sc stop FTPSVC
+sc stop FTPSVC  
 sc config FTPSVC start= disabled
+
+sc stop RemoteRegistry
+sc config RemoteRegistry start= disabled
 ```
 
-#### Registry Hardening (Voorzichtig!)
-
-```reg
-# UAC inschakelen
-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
-EnableLUA = 1
-```
-
-### 2.3 Network Security
-
-#### Shares Beveiligen
+### FIX 5: Password Policy (5 minuten)
 
 ```cmd
-# Onnodige shares verwijderen (behalve admin shares die nodig zijn)
-net share [sharename] /delete
-
-# Permissions wijzigen via Windows Explorer
-# Rechtsklik > Properties > Security > Edit
+secpol.msc
 ```
 
-#### Remote Access Beperken
+**NAVIGEER:** Account Policies > Password Policy **INSTELLEN:**
+
+- Minimum length = 8
+- Complexity = Enabled
+- Maximum age = 90
+
+### FIX 6: Shares Beveiligen (3 minuten per share)
+
+**Via Windows Explorer:**
+
+1. Rechtsklik op C:
+2. Properties → Security → Advanced
+3. Verwijder "Everyone" als die er staat
+4. Alleen Administrators en System laten staan
+
+### FIX 7: Windows Updates (2 minuten)
 
 ```cmd
-# RDP uitschakelen als niet nodig
-# System Properties > Remote > Disable Remote Desktop
+# Open Windows Update settings
+ms-settings:windowsupdate
+```
+
+**OF via Control Panel:**
+
+```cmd
+wuapp
+```
+
+**ZORG DAT:** Automatic updates = ON
+
+### FIX 8: Antivirus Check (3 minuten)
+
+```cmd
+# Windows Defender controleren
+windowsdefender:
+```
+
+**ZORG DAT:**
+
+- Real-time protection = ON
+- Definitions = Updated
+
+---
+
+## 📝 PART 3: DOCUMENTATION TEMPLATE
+
+_Gebruik deze EXACTE structuur - leer uit je hoofd!_
+
+```
+SECURITY ASSESSMENT RAPPORT
+===========================
+
+GEVONDEN VULNERABILITIES:
+1. Guest account actief - OPGELOST
+2. Firewall uitgeschakeld - OPGELOST  
+3. User [naam] heeft admin rechten - OPGELOST
+4. Telnet service actief - OPGELOST
+5. C$ share toegankelijk voor Everyone - OPGELOST
+6. Geen password complexity - OPGELOST
+7. Windows Updates uitgeschakeld - OPGELOST
+8. Antivirus niet up-to-date - OPGELOST
+
+GENOMEN MAATREGELEN:
+- Guest account uitgeschakeld via 'net user guest /active:no'
+- Firewall ingeschakeld voor alle profielen
+- Onnodige admin rechten verwijderd
+- Gevaarlijke services gestopt en disabled
+- File shares beveiligd
+- Password policy aangepast naar 8+ karakters met complexity
+- Automatische updates ingeschakeld
+- Antivirus definitions geüpdatet
+
+VERIFICATIE:
+- Alle fixes getest en werkend
+- Systeem herstart en opnieuw gecontroleerd
+- Geen nieuwe vulnerabilities gedetecteerd
+
+AANBEVELINGEN:
+- Regelmatige security audits
+- User awareness training
+- Monitoring van security logs
 ```
 
 ---
 
-## 📊 3. Security Assessment Tools
+## 🚨 AVG ARTICLES 33 & 34 - MEMORIZE THIS!
 
-### 3.1 Ingebouwde Windows Tools
+### Artikel 33 (Melding aan toezichthouder)
 
-#### Event Viewer
+**WANNEER:** Binnen 72 uur na ontdekking **TENZIJ:** Geen risico voor rechten en vrijheden **WAT MELDEN:**
 
-```cmd
-eventvwr.msc
-```
+1. Aard van de inbreuk + aantal betrokkenen
+2. Contactgegevens DPO
+3. Waarschijnlijke gevolgen
+4. Genomen maatregelen
 
-**Waar naar kijken:**
+### Artikel 34 (Melding aan betrokkenen)
 
-- Security logs voor failed logins
-- System logs voor errors
-- Application logs voor crashes
+**WANNEER:** Hoog risico voor rechten en vrijheden **TENZIJ:**
 
-#### Security Configuration Analysis
+- Data was encrypted/onleesbaar
+- Maatregelen genomen waardoor geen hoog risico meer
+- Onevenredige inspanning (dan publieke melding)
 
-```cmd
-# Security templates controleren
-%SystemRoot%\security\templates\
-```
+**PRAKTISCH VOORBEELD:** _"Bij een databreach met 500 klantgegevens moet binnen 72 uur melding bij de AP (Autoriteit Persoonsgegevens). Als er hoog risico is (bijv. wachtwoorden gelekt), ook klanten direct informeren."_
 
-#### Windows Security Center
+---
 
-```cmd
-wscui.cpl
-```
+## ⚡ EMERGENCY CHEAT SHEET - LEER UIT JE HOOFD!
 
-### 3.2 Command Line Tools
+### Als je VAST ZIT - doe dit:
 
-#### Network Analysis
+1. **Kijk in Event Viewer** - `eventvwr.msc`
+2. **Check running processes** - `taskmgr`
+3. **Scan for malware** - Windows Defender
+4. **Check registry** - `regedit` (voorzichtig!)
+5. **System file check** - `sfc /scannow`
 
-```cmd
-# Actieve verbindingen
-netstat -ano
-
-# Open poorten
-netstat -an | find "LISTENING"
-
-# ARP tabel
-arp -a
-```
-
-#### File System Security
+### MOST COMMON COMMANDS - DRILL THESE!
 
 ```cmd
-# NTFS permissions controleren
-cacls C:\folder
-icacls C:\folder
-
-# File integrity
-sfc /scannow
-```
-
-### 3.3 PowerShell Security Commands
-
-```powershell
-# Execution policy controleren
-Get-ExecutionPolicy
-
-# Lokale users en groepen
-Get-LocalUser
-Get-LocalGroup
-Get-LocalGroupMember Administrators
-
-# Services controleren
-Get-Service | Where-Object {$_.Status -eq "Running"}
-
-# Processen met network verbindingen
-Get-NetTCPConnection | Select LocalAddress,LocalPort,RemoteAddress,RemotePort,State,OwningProcess
+net user                    # Alle users
+net user guest /active:no   # Guest uit
+net localgroup administrators # Admin groep
+services.msc               # Services console
+netsh advfirewall set allprofiles state on # Firewall aan
+net share                  # Shares bekijken
+eventvwr.msc              # Event logs
+secpol.msc                # Security policy
+taskmgr                   # Task manager
+systeminfo                # System info
+netstat -an               # Network connections
 ```
 
 ---
 
-## 🚨 4. Incident Response (P2-K2-W2)
+## 🎯 MEMORIZATION STRATEGY FOR TONIGHT
 
-### 4.1 Incident Response Process
+### HOUR 1 (7-8 PM): THE GOLDEN 8
 
-#### Stap 1: Identificatie
+- Leer de 8 vulnerabilities uit je hoofd
+- Oefen ze 10 keer opzeggen zonder kijken
+- Schrijf ze 5 keer over zonder kijken
 
-- **Symptoms herkennen**
-    - Langzame performance
-    - Ongewone network traffic
-    - Onbekende accounts
-    - Gewijzigde files
+### HOUR 2 (8-9 PM): COMMANDS DRILL
 
-#### Stap 2: Containment
+- Type elk commando 10 keer
+- Test elke command op je PC
+- Oefen de volgorde: scan → fix → verify
 
-- **Immediate actions**
-    - Verdachte accounts uitschakelen
-    - Network isolation
-    - Services stoppen
-    - System backup maken
+### HOUR 3 (9-10 PM): FIX SEQUENCE
 
-#### Stap 3: Eradication
+- Oefen de hele fix sequence 3 keer
+- Time jezelf - moet binnen 45 minuten
+- Controleer elke verificatie stap
 
-- **Oorzaak verwijderen**
-    - Malware scannen en verwijderen
-    - Vulnerable software patchen
-    - Compromised accounts resetten
+### HOUR 4 (10-11 PM): DOCUMENTATION
 
-#### Stap 4: Recovery
+- Schrijf het rapport template 3 keer over
+- Oefen het invullen met fictieve problemen
+- Leer de AVG artikelen woordelijk
 
-- **System herstellen**
-    - Services herstarten
-    - Monitoring intensiveren
-    - Functionality testen
+### HOUR 5 (11-12 AM): FINAL DRILL
 
-#### Stap 5: Documentation
-
-- **Incident rapportage**
-    - Timeline van events
-    - Getroffen systemen
-    - Genomen maatregelen
-    - Preventieve aanbevelingen
-
-### 4.2 Common Security Incidents
-
-#### Malware Infectie
-
-```cmd
-# Tools gebruiken:
-# - Windows Defender
-# - Malwarebytes (als beschikbaar)
-# - System File Checker
-sfc /scannow
-```
-
-#### Unauthorized Access
-
-```cmd
-# Logs controleren
-eventvwr.msc
-# Security > Logon Events
-```
-
-#### Data Breach
-
-- Onmiddellijk alle toegang blokkeren
-- Scope van breach bepalen
-- AVG melding voorbereiden
+- Complete run-through zonder hulp
+- Time management oefenen
+- Checklist maken voor morgen
 
 ---
 
-## 📋 5. AVG/GDPR Compliance (Artikelen 33 & 34)
+## 🚀 EXAM DAY STRATEGY
 
-### 5.1 Artikel 33 - Melding aan Toezichthouder
+### FIRST 5 MINUTES:
 
-#### Wanneer Melden?
+1. Schrijf de Golden 8 op papier
+2. Schrijf de command list op papier
+3. Schrijf de fix sequence op papier **DIT IS JE BACKUP ALS JE STRESS KRIJGT!**
 
-- **Binnen 72 uur** na ontdekking
-- **Tenzij** geen risico voor rechten en vrijheden betrokkenen
-- **Vertraging** moet gemotiveerd worden
+### TIME ALLOCATION (3 uur = 180 min):
 
-#### Wat Melden?
+- **Assessment:** 45 minuten
+- **Fixes:** 90 minuten
+- **Documentation:** 30 minuten
+- **Buffer:** 15 minuten
 
-1. **Aard van de inbreuk**
-    
-    - Categorieën betrokkenen
-    - Aantal getroffen personen
-    - Categorieën persoonsgegevens
-2. **Contactgegevens**
-    
-    - DPO of contactpunt naam
-    - Waar meer informatie te verkrijgen
-3. **Waarschijnlijke gevolgen**
-    
-    - Impact assessment
-    - Risico inschatting
-4. **Genomen maatregelen**
-    
-    - Reeds uitgevoerd
-    - Nog te nemen stappen
-    - Mitigerende maatregelen
+### PANIC PROTOCOL:
 
-### 5.2 Artikel 34 - Melding aan Betrokkenen
+Als je vastloopt:
 
-#### Wanneer Communiceren?
-
-- **Hoog risico** voor rechten en vrijheden
-- **Zonder onnodige vertraging**
-- **In duidelijke en begrijpelijke taal**
-
-#### Uitzonderingen (Geen melding nodig):
-
-1. **Technische beschermingsmaatregelen**
-    
-    - Encryptie was actief
-    - Data onleesbaar voor onbevoegden
-2. **Maatregelen genomen**
-    
-    - Hoog risico niet meer waarschijnlijk
-    - Follow-up acties hebben risico weggenomen
-3. **Onevenredige inspanning**
-    
-    - Publieke communicatie als alternatief
-    - Betrokkenen op gelijkwaardige wijze informeren
-
-### 5.3 Praktische Implementatie
-
-#### Documentation Vereisten
-
-```
-Inbreuk Register moet bevatten:
-- Feiten betreffende inbreuk
-- Gevolgen van de inbreuk  
-- Genomen herstelmaatregelen
-```
-
-#### Response Team
-
-- **Data Protection Officer (DPO)**
-- **IT Security Officer**
-- **Legal/Compliance team**
-- **Management/Leadership**
+1. Stop, adem diep
+2. Kijk naar je papier met de Golden 8
+3. Check of je alle basic fixes hebt gedaan
+4. Ga naar de volgende vulnerability
+5. Kom later terug als je tijd hebt
 
 ---
 
-## 🔧 6. Praktische Exam Tips
+## 🔥 PRACTICE TONIGHT - DO THIS 3 TIMES!
 
-### 6.1 Systematische Aanpak
+### MOCK SCENARIO:
 
-#### Phase 1: Reconnaissance (15 min)
+_"Je krijgt een Windows 10 werkstation. De gebruiker klaagt over trage prestaties en verdachte activiteit."_
 
-1. **System Information**
+**JOUW ACTIE PLAN:**
 
-```cmd
-systeminfo
-whoami
-hostname
-ipconfig /all
-```
+1. Start met de 15-minute scan
+2. Noteer alle gevonden issues
+3. Volg de fix sequence exact
+4. Documenteer alles
+5. Verificeer elke fix
+6. Schrijf eindrapport
 
-2. **Current Status Check**
-
-```cmd
-net user
-net localgroup administrators
-services.msc (quick scan)
-taskmgr (running processes)
-```
-
-#### Phase 2: Vulnerability Assessment (45 min)
-
-**Use this checklist systematically:**
-
-```
-□ Password Policy weak/disabled
-□ Guest account enabled  
-□ Unnecessary admin users
-□ Windows Firewall disabled
-□ Antivirus missing/disabled
-□ Windows Updates disabled
-□ Unnecessary services running (Telnet, FTP)
-□ Open network shares
-□ Weak file permissions
-□ Missing security patches
-□ Suspicious running processes
-□ Open network ports
-□ Event logs showing attacks
-□ Registry security issues
-□ Browser security settings
-```
-
-#### Phase 3: Documentation (20 min)
-
-- **Vulnerability Report Template**
-- **Risk Assessment**
-- **Remediation Steps**
-- **Verification Testing**
-
-#### Phase 4: Implementation (60 min)
-
-- **Fix vulnerabilities systematically**
-- **Test each fix**
-- **Document changes made**
-- **Verify fixes work**
-
-### 6.2 Documentation Template
-
-```markdown
-# Security Assessment Report
-
-## Executive Summary
-- [Aantal] vulnerabilities gevonden
-- [Risico niveau] overall risk rating
-- [Aantal] critical issues requiring immediate attention
-
-## Vulnerabilities Found
-
-### Critical Risk
-1. **[Vulnerability Name]**
-   - **Locatie:** [Where found]
-   - **Risico:** [Impact description]
-   - **Oplossing:** [Remediation steps]
-   - **Status:** [Fixed/Pending]
-
-### High Risk
-[Same format]
-
-### Medium Risk
-[Same format]
-
-## Remediation Summary
-- [X] vulnerabilities resolved
-- [X] vulnerabilities remaining
-- [X] additional recommendations
-
-## Verification
-- [Test beschrijving]
-- [Results]
-
-## Recommendations
-- [Future security improvements]
-- [Preventive measures]
-```
-
-### 6.3 Time Management
-
-**Total: ~3 hours**
-
-- Assessment: 1 hour
-- Fixes: 1.5 hours
-- Documentation: 30 minutes
-
-**Priority Order:**
-
-1. **Critical vulnerabilities** (guest account, firewall off)
-2. **High impact fixes** (admin rights, services)
-3. **Medium priorities** (updates, hardening)
-4. **Documentation** (don't skip this!)
+**OEFEN DIT TOT HET AUTOMATISCH GAAT!**
 
 ---
 
-## 🎯 7. Mock Exam Scenarios
+## 💪 SUCCESS MANTRAS - ONTHOUD DEZE!
 
-### Scenario 1: Basic Corporate Workstation
-
-**Typical Issues:**
-
-- Guest account enabled
-- User has admin rights
-- Windows Firewall disabled
-- No password complexity
-- Antivirus disabled
-- Several unnecessary services running
-
-### Scenario 2: Server Environment
-
-**Typical Issues:**
-
-- Default administrator password
-- Open file shares
-- Telnet service running
-- No audit logging
-- Missing security updates
-- Weak service permissions
-
-### Scenario 3: Compromised System
-
-**Typical Issues:**
-
-- Suspicious processes running
-- Unknown user accounts
-- Modified system files
-- Network connections to suspicious IPs
-- Event logs showing attack patterns
-- Disabled security features
+1. **"GOLDEN 8 FIRST, ALTIJD!"**
+2. **"GUEST UIT, FIREWALL AAN!"**
+3. **"FIX, VERIFY, DOCUMENT!"**
+4. **"72 UUR REGEL BIJ AVG!"**
+5. **"SYSTEMATISCH WERKEN WINT!"**
 
 ---
 
-## 📚 8. Quick Reference Commands
+## 🎪 INTERNET RESOURCES YOU CAN USE DURING EXAM:
 
-### Essential Commands
+### Allowed Searches:
 
-```cmd
-# User Management
-net user                           # List all users
-net user [username]               # User details
-net localgroup administrators     # Admin group members
-net user guest /active:no         # Disable guest
+- "Windows security commands"
+- "netsh firewall commands"
+- "Windows services disable"
+- "GDPR data breach notification"
+- "Windows password policy"
 
-# Service Management  
-services.msc                      # Services console
-sc query                          # List all services
-sc stop [service]                 # Stop service
-sc config [service] start=disabled # Disable service
+### Quick Reference Sites:
 
-# Network Security
-netstat -ano                      # Network connections
-net share                         # Shared folders
-netsh advfirewall set allprofiles state on # Enable firewall
+- **Microsoft Docs** (docs.microsoft.com)
+- **Windows Command Reference**
+- **GDPR.eu** (for AVG info)
 
-# System Security
-eventvwr.msc                      # Event viewer
-secpol.msc                        # Security policy
-gpedit.msc                        # Group policy
-msconfig                          # System configuration
+### NEVER SEARCH FOR:
 
-# File Security
-icacls [path]                     # File permissions
-sfc /scannow                      # System file check
-```
-
-### PowerShell Quick Commands
-
-```powershell
-Get-LocalUser                     # Local users
-Get-LocalGroup                    # Local groups  
-Get-Service | Where-Object {$_.Status -eq "Running"}
-Get-Process | Sort-Object CPU -Descending
-Get-NetTCPConnection | Where-Object {$_.State -eq "Listen"}
-```
+- "P2-K2 exam answers"
+- "Security vulnerabilities list"
+- AI assistants or automated tools
 
 ---
 
-## ⚠️ 9. Common Exam Mistakes to Avoid
+**FINAL MESSAGE:** Je kunt dit! De sleutel is HERHALING. Doe vanavond 3 complete run-throughs. Morgen schrijf je eerst alles op papier, dan werk je systematisch de lijst af. Geen paniek, gewoon je plan volgen!
 
-### Technical Mistakes
-
-1. **Not checking basic settings first** (guest account, firewall)
-2. **Missing services review** (Telnet, FTP always check)
-3. **Forgetting to test fixes** (verify changes work)
-4. **Not checking event logs** (evidence of attacks)
-5. **Overlooking file shares** (network permissions)
-
-### Documentation Mistakes
-
-1. **Poor documentation** (not detailed enough)
-2. **Missing risk assessment** (no impact analysis)
-3. **No verification steps** (didn't test fixes)
-4. **Incomplete remediation** (not all issues fixed)
-5. **No recommendations** (future preventive measures)
-
-### Time Management Mistakes
-
-1. **Too much time on minor issues** (focus on critical first)
-2. **Not enough time for documentation** (plan 30 min minimum)
-3. **Not testing fixes** (broken system worse than vulnerable)
-4. **Getting stuck on one problem** (move on, come back)
-
----
-
-## 🚀 10. Last Minute Study Tips
-
-### Tonight's Study Plan (7PM - 12AM)
-
-- **7-8 PM:** Read through this guide completely
-- **8-9 PM:** Practice command line tools
-- **9-10 PM:** Review AVG articles 33 & 34
-- **10-11 PM:** Work through mock scenarios
-- **11-12 AM:** Final review of checklist and commands
-
-### Morning Review (30 min before exam)
-
-- **Vulnerability checklist** (memorize top 10)
-- **Essential commands** (quick reference)
-- **Documentation template** (know the structure)
-- **AVG requirements** (72-hour rule, high risk criteria)
-
-### During the Exam
-
-1. **Read instructions carefully** (understand what's expected)
-2. **Use systematic approach** (don't jump around randomly)
-3. **Document as you go** (don't leave documentation to end)
-4. **Verify each fix** (test that it works)
-5. **Manage time wisely** (don't get stuck on one issue)
-
----
-
-## 📞 Emergency Reference
-
-### If You Get Stuck
-
-1. **Check Event Viewer** (often shows what's wrong)
-2. **Use built-in help** (`command /?` for help)
-3. **Go back to basics** (guest account, firewall, admin users)
-4. **Look at running services** (disable unnecessary ones)
-5. **Check network connections** (`netstat -ano`)
-
-### Critical Success Factors
-
-- ✅ **Find the obvious vulnerabilities first**
-- ✅ **Document everything clearly**
-- ✅ **Test your fixes**
-- ✅ **Know AVG requirements**
-- ✅ **Manage your time**
-
----
-
-_Good luck with your exam! Remember: systematic approach, clear documentation, and thorough testing are key to success._
-
-## Tags
-
-#P2K2 #Security #AVG #GDPR #Windows #MBO #ExpertIT #AlfaCollege #Cybersecurity #Vulnerability #Assessment
+**JE GAAT SLAGEN! 🏆**
