@@ -1,397 +1,299 @@
 ---
-{"dg-publish":true,"permalink":"/06-streams/now/p2-k2-examen-study/","noteIcon":"","created":"2025-09-16T20:03:03.672+02:00","updated":"2025-09-16T20:14:15.894+02:00"}
+{"dg-publish":true,"permalink":"/06-streams/now/p2-k2-examen-study/","noteIcon":"","created":"2025-09-16T20:03:03.672+02:00","updated":"2025-09-16T20:34:04.058+02:00"}
 ---
 
-# P2-K2 Security - MEMORIZATION GUIDE
+# P2-K2 Security - REALISTIC EXAM GUIDE
 
-_Voor perfecte examenprestatie - Alfa College_
-
----
-
-## 🚨 THE GOLDEN 8 - MEMORIZE THESE FIRST
-
-_Deze 8 vulnerabilities komen in 90% van de examens voor - leer ze uit je hoofd!_
-
-1. **Guest Account = ALTIJD UIT**
-2. **Firewall = ALTIJD AAN**
-3. **Admin Users = ALLEEN ECHTE ADMINS**
-4. **Services = TELNET & FTP UIT**
-5. **Shares = GEEN C$ VOOR EVERYONE**
-6. **Passwords = COMPLEXITY AAN**
-7. **Antivirus = AAN EN UPDATED**
-8. **Updates = AUTOMATISCH AAN**
+_Alfa College - Let's be honest about what you actually need_
 
 ---
 
-## 📋 PART 1: THE 15-MINUTE SYSTEM SCAN
+## 🎯 STRAIGHT TALK: What This Exam Really Is
 
-_Doe dit ALTIJD eerst - in deze volgorde!_
+Listen, this isn't about memorizing 50 commands. Based on what you've told me, this is a **practical security assessment** where you get a Windows PC and need to:
 
-### Stap 1: Basis Info (2 minuten)
+1. **Find obvious security problems** (they're not hiding them deep)
+2. **Fix the problems** (using Windows GUI mostly, not complex commands)
+3. **Document what you found and fixed**
+4. **Show you understand AVG breach notification**
 
-```cmd
-whoami
-hostname  
-systeminfo | find "OS"
-```
-
-### Stap 2: Users Controleren (3 minuten)
-
-```cmd
-net user
-net localgroup administrators
-```
-
-**ONTHOUD:** Schrijf alle usernames op papier!
-
-### Stap 3: Services Scan (5 minuten)
-
-```cmd
-services.msc
-```
-
-**ZOEK NAAR:** Telnet, FTP, Remote Registry **STATUS MOET ZIJN:** Disabled/Stopped
-
-### Stap 4: Network Check (3 minuten)
-
-```cmd
-netstat -an | find "LISTEN"
-net share
-```
-
-### Stap 5: Firewall Status (2 minuten)
-
-```cmd
-netsh advfirewall show allprofiles
-```
-
-**MOET ZIJN:** State = ON voor alle profielen
+The examiners want to see you can **think systematically** and **document properly** - not that you're a command-line wizard.
 
 ---
 
-## 🔧 PART 2: THE FIX SEQUENCE
+## 🔍 WHAT YOU'LL ACTUALLY FIND (Based on Typical MBO Exams)
 
-_Volg deze volgorde EXACT - niet aanpassen!_
+### The "Classic 5" Problems They Always Use:
 
-### FIX 1: Guest Account (1 minuut)
+1. **Guest account is enabled** (they love this one)
+2. **Windows Firewall is turned off**
+3. **A regular user has admin rights** (usually called "TestUser" or similar)
+4. **Dangerous services are running** (Telnet is their favorite)
+5. **File shares are wide open** (C$ accessible to Everyone)
 
-```cmd
-net user guest /active:no
-```
-
-**VERIFICATIE:**
-
-```cmd
-net user guest
-```
-
-**MOET ZIEN:** Account active = No
-
-### FIX 2: Firewall Aanzetten (2 minuten)
-
-```cmd
-netsh advfirewall set allprofiles state on
-```
-
-**VERIFICATIE:**
-
-```cmd
-netsh advfirewall show allprofiles | find "State"
-```
-
-**MOET ZIEN:** State = ON (alle 3 profielen)
-
-### FIX 3: Admin Users Opruimen (5 minuten per user)
-
-**Voor elke NIET-ADMIN user in Administrators groep:**
-
-```cmd
-net localgroup administrators [username] /delete
-```
-
-**Voor echte admins - password resetten:**
-
-```cmd
-net user [username] NewP@ssw0rd123!
-net user [username] /passwordreq:yes
-```
-
-**NIEUWE ADMIN MAKEN (als nodig):**
-
-```cmd
-net user SecureAdmin NewP@ssw0rd123! /add
-net localgroup administrators SecureAdmin /add
-```
-
-### FIX 4: Services Uitschakelen (3 minuten per service)
-
-```cmd
-sc stop Telnet
-sc config Telnet start= disabled
-
-sc stop FTPSVC  
-sc config FTPSVC start= disabled
-
-sc stop RemoteRegistry
-sc config RemoteRegistry start= disabled
-```
-
-### FIX 5: Password Policy (5 minuten)
-
-```cmd
-secpol.msc
-```
-
-**NAVIGEER:** Account Policies > Password Policy **INSTELLEN:**
-
-- Minimum length = 8
-- Complexity = Enabled
-- Maximum age = 90
-
-### FIX 6: Shares Beveiligen (3 minuten per share)
-
-**Via Windows Explorer:**
-
-1. Rechtsklik op C:
-2. Properties → Security → Advanced
-3. Verwijder "Everyone" als die er staat
-4. Alleen Administrators en System laten staan
-
-### FIX 7: Windows Updates (2 minuten)
-
-```cmd
-# Open Windows Update settings
-ms-settings:windowsupdate
-```
-
-**OF via Control Panel:**
-
-```cmd
-wuapp
-```
-
-**ZORG DAT:** Automatic updates = ON
-
-### FIX 8: Antivirus Check (3 minuten)
-
-```cmd
-# Windows Defender controleren
-windowsdefender:
-```
-
-**ZORG DAT:**
-
-- Real-time protection = ON
-- Definitions = Updated
+**Reality Check:** These aren't hidden. They're obvious when you know where to look.
 
 ---
 
-## 📝 PART 3: DOCUMENTATION TEMPLATE
+## 🖥️ YOUR PRACTICAL GAME PLAN
 
-_Gebruik deze EXACTE structuur - leer uit je hoofd!_
+### Step 1: The 10-Minute "What's Wrong Here?" Check
+
+**Use Windows GUI - forget complex commands for now:**
+
+1. **Check Users:**
+    
+    - Start → Settings → Accounts → Family & other users
+    - OR Control Panel → User Accounts → Manage another account
+    - **Look for:** Guest account enabled, users who shouldn't be admins
+2. **Check Firewall:**
+    
+    - Start → Settings → Update & Security → Windows Security → Firewall
+    - **Should see:** Green checkmarks, not red X's
+3. **Check Services:**
+    
+    - Press Windows + R, type `services.msc`
+    - **Look for these running services:** Telnet, FTP (File Transfer Protocol)
+    - **These should be:** Stopped and Disabled
+4. **Check Shares:**
+    
+    - Press Windows + R, type `fsmgmt.msc`
+    - **Look for:** Folders shared with Everyone having Full Control
+5. **Check for Obvious Malware:**
+    
+    - Task Manager (Ctrl+Shift+Esc) → Processes tab
+    - **Look for:** Weird process names, high CPU usage from unknown programs
+
+### Step 2: Fix What You Found (GUI Methods)
+
+**Guest Account:**
+
+- Control Panel → User Accounts → Manage another account → Guest → Turn off guest account
+
+**Firewall:**
+
+- Windows Security → Firewall & network protection → Turn on for each network type
+
+**Remove Admin Rights:**
+
+- Control Panel → User Accounts → Manage another account → [Username] → Change account type → Standard user
+
+**Disable Services:**
+
+- services.msc → Right-click service → Properties → Startup type: Disabled → Stop
+
+**Fix Shares:**
+
+- Right-click shared folder → Properties → Security → Remove "Everyone" or change permissions
+
+### Step 3: Basic Documentation
 
 ```
-SECURITY ASSESSMENT RAPPORT
-===========================
+SECURITY ASSESSMENT - [Your Name] - [Date]
 
-GEVONDEN VULNERABILITIES:
-1. Guest account actief - OPGELOST
-2. Firewall uitgeschakeld - OPGELOST  
-3. User [naam] heeft admin rechten - OPGELOST
-4. Telnet service actief - OPGELOST
-5. C$ share toegankelijk voor Everyone - OPGELOST
-6. Geen password complexity - OPGELOST
-7. Windows Updates uitgeschakeld - OPGELOST
-8. Antivirus niet up-to-date - OPGELOST
+PROBLEMS FOUND:
+1. Guest account was enabled
+   - Risk: Unauthorized access without password
+   - Fix: Disabled guest account via User Accounts
 
-GENOMEN MAATREGELEN:
-- Guest account uitgeschakeld via 'net user guest /active:no'
-- Firewall ingeschakeld voor alle profielen
-- Onnodige admin rechten verwijderd
-- Gevaarlijke services gestopt en disabled
-- File shares beveiligd
-- Password policy aangepast naar 8+ karakters met complexity
-- Automatische updates ingeschakeld
-- Antivirus definitions geüpdatet
+2. Windows Firewall disabled
+   - Risk: No protection against network attacks  
+   - Fix: Enabled firewall for all network profiles
 
-VERIFICATIE:
-- Alle fixes getest en werkend
-- Systeem herstart en opnieuw gecontroleerd
-- Geen nieuwe vulnerabilities gedetecteerd
+3. User "TestUser" had administrator privileges
+   - Risk: Unnecessary elevated access
+   - Fix: Changed to standard user account
 
-AANBEVELINGEN:
-- Regelmatige security audits
-- User awareness training
-- Monitoring van security logs
+[Continue for each problem...]
+
+VERIFICATION:
+- Checked all fixes work after restart
+- No new security warnings in Windows Security
+- System stable and functional
+
+AVG COMPLIANCE NOTE:
+If personal data breach occurs:
+- Notify authorities within 72 hours (Article 33)
+- Notify affected individuals if high risk (Article 34)
 ```
 
 ---
 
-## 🚨 AVG ARTICLES 33 & 34 - MEMORIZE THIS!
+## 🌐 WEBSITES YOU CAN USE DURING THE EXAM
 
-### Artikel 33 (Melding aan toezichthouder)
+### For Windows Commands/Procedures:
 
-**WANNEER:** Binnen 72 uur na ontdekking **TENZIJ:** Geen risico voor rechten en vrijheden **WAT MELDEN:**
+- **docs.microsoft.com** (official Windows documentation)
+- **support.microsoft.com** (step-by-step guides)
 
-1. Aard van de inbreuk + aantal betrokkenen
-2. Contactgegevens DPO
-3. Waarschijnlijke gevolgen
-4. Genomen maatregelen
+**Search terms that work:**
 
-### Artikel 34 (Melding aan betrokkenen)
+- "disable guest account windows 10"
+- "turn on windows firewall"
+- "disable telnet service windows"
+- "remove user admin rights windows"
 
-**WANNEER:** Hoog risico voor rechten en vrijheden **TENZIJ:**
+### For AVG/GDPR Information:
 
-- Data was encrypted/onleesbaar
-- Maatregelen genomen waardoor geen hoog risico meer
-- Onevenredige inspanning (dan publieke melding)
+- **autoriteitpersoonsgegevens.nl** (Dutch data protection authority)
+- **gdpr.eu** (GDPR guidance)
 
-**PRAKTISCH VOORBEELD:** _"Bij een databreach met 500 klantgegevens moet binnen 72 uur melding bij de AP (Autoriteit Persoonsgegevens). Als er hoog risico is (bijv. wachtwoorden gelekt), ook klanten direct informeren."_
+**Search terms:**
+
+- "AVG artikel 33 datalek melden"
+- "GDPR data breach notification 72 hours"
 
 ---
 
-## ⚡ EMERGENCY CHEAT SHEET - LEER UIT JE HOOFD!
+## 🚨 THE UGLY TRUTH ABOUT WHAT YOU NEED TO MEMORIZE
 
-### Als je VAST ZIT - doe dit:
+**Only 3 things you MUST know by heart:**
 
-1. **Kijk in Event Viewer** - `eventvwr.msc`
-2. **Check running processes** - `taskmgr`
-3. **Scan for malware** - Windows Defender
-4. **Check registry** - `regedit` (voorzichtig!)
-5. **System file check** - `sfc /scannow`
+1. **72-hour rule** - Data breaches must be reported to authorities within 72 hours
+2. **High risk = notify individuals** - If breach creates high risk, tell the people affected
+3. **Basic Windows navigation** - How to get to User Accounts, Services, Firewall settings
 
-### MOST COMMON COMMANDS - DRILL THESE!
+**Everything else you can look up during the exam.**
 
-```cmd
-net user                    # Alle users
-net user guest /active:no   # Guest uit
-net localgroup administrators # Admin groep
-services.msc               # Services console
-netsh advfirewall set allprofiles state on # Firewall aan
-net share                  # Shares bekijken
-eventvwr.msc              # Event logs
-secpol.msc                # Security policy
-taskmgr                   # Task manager
-systeminfo                # System info
-netstat -an               # Network connections
+---
+
+## 💡 REALISTIC STUDY PLAN FOR TONIGHT
+
+### Hour 1: Understanding, Not Memorizing
+
+- Read through this guide
+- Open your Windows PC and find where these settings are:
+    - User Accounts (practice navigating there)
+    - Windows Security/Firewall
+    - Services (run services.msc once)
+    - Control Panel locations
+
+### Hour 2: Practice One Complete Scenario
+
+- Pretend your PC has problems
+- Walk through: Find → Fix → Document
+- Don't worry about being fast, focus on being thorough
+
+### Hour 3: AVG Articles Understanding
+
+- Read Articles 33 & 34 again (they're in your original document)
+- Understand the concepts, not word-for-word
+- Practice writing one simple data breach notification
+
+### Hours 4-5: Rest!
+
+- You need sleep more than cramming
+- Review your handwritten notes before bed
+- Trust that you understand the concepts
+
+---
+
+## 🎯 WHAT SUCCESS ACTUALLY LOOKS LIKE
+
+**You DON'T need to:**
+
+- Memorize every command
+- Find incredibly hidden vulnerabilities
+- Write perfect technical documentation
+- Be faster than everyone else
+
+**You DO need to:**
+
+- Show systematic thinking (check the obvious places)
+- Fix problems completely (not just identify them)
+- Document clearly (what you found, what you did, that it works)
+- Demonstrate AVG knowledge (when to report, to whom, how fast)
+
+---
+
+## 🔧 YOUR EXAM SURVIVAL KIT
+
+### What to Write Down First Thing:
+
+```
+CHECK LIST:
+□ Guest account status
+□ Firewall on/off  
+□ Admin users (who has rights?)
+□ Services (Telnet, FTP running?)
+□ File shares (Everyone access?)
+□ Task Manager (suspicious processes?)
+
+AVG RULES:
+- 72 hours to report breach
+- High risk = notify individuals too
+- Document everything
 ```
 
----
+### If You Get Stuck:
 
-## 🎯 MEMORIZATION STRATEGY FOR TONIGHT
-
-### HOUR 1 (7-8 PM): THE GOLDEN 8
-
-- Leer de 8 vulnerabilities uit je hoofd
-- Oefen ze 10 keer opzeggen zonder kijken
-- Schrijf ze 5 keer over zonder kijken
-
-### HOUR 2 (8-9 PM): COMMANDS DRILL
-
-- Type elk commando 10 keer
-- Test elke command op je PC
-- Oefen de volgorde: scan → fix → verify
-
-### HOUR 3 (9-10 PM): FIX SEQUENCE
-
-- Oefen de hele fix sequence 3 keer
-- Time jezelf - moet binnen 45 minuten
-- Controleer elke verificatie stap
-
-### HOUR 4 (10-11 PM): DOCUMENTATION
-
-- Schrijf het rapport template 3 keer over
-- Oefen het invullen met fictieve problemen
-- Leer de AVG artikelen woordelijk
-
-### HOUR 5 (11-12 AM): FINAL DRILL
-
-- Complete run-through zonder hulp
-- Time management oefenen
-- Checklist maken voor morgen
+1. **Go back to basics** - check the "Classic 5" again
+2. **Use Windows built-in help** - many dialogs have "?" buttons
+3. **Try the opposite** - if something seems wrong, try turning it off/on
+4. **Document what you tried** - partial credit is better than nothing
 
 ---
 
-## 🚀 EXAM DAY STRATEGY
+## 💪 THE CONFIDENCE BUILDER
 
-### FIRST 5 MINUTES:
+**Here's what I know about you already:**
 
-1. Schrijf de Golden 8 op papier
-2. Schrijf de command list op papier
-3. Schrijf de fix sequence op papier **DIT IS JE BACKUP ALS JE STRESS KRIJGT!**
+- You can navigate Windows (you're using a computer right now)
+- You can follow step-by-step instructions
+- You understand the concept of security (that's why you're worried)
+- You can write clearly (your message to me was perfectly clear)
 
-### TIME ALLOCATION (3 uur = 180 min):
+**That's literally 80% of what you need for this exam.**
 
-- **Assessment:** 45 minuten
-- **Fixes:** 90 minuten
-- **Documentation:** 30 minuten
-- **Buffer:** 15 minuten
-
-### PANIC PROTOCOL:
-
-Als je vastloopt:
-
-1. Stop, adem diep
-2. Kijk naar je papier met de Golden 8
-3. Check of je alle basic fixes hebt gedaan
-4. Ga naar de volgende vulnerability
-5. Kom later terug als je tijd hebt
+The other 20% is just knowing where Windows hides these settings, and you can figure that out with some clicking around or a quick Google search.
 
 ---
 
-## 🔥 PRACTICE TONIGHT - DO THIS 3 TIMES!
+## 🎪 FINAL REALITY CHECK
 
-### MOCK SCENARIO:
+This exam is designed for MBO students, not cybersecurity experts. They want to see:
 
-_"Je krijgt een Windows 10 werkstation. De gebruiker klaagt over trage prestaties en verdachte activiteit."_
+1. **Can you spot obvious problems?** (Guest account on = bad)
+2. **Can you fix them systematically?** (Turn things off/on properly)
+3. **Can you explain what you did?** (Write it down clearly)
+4. **Do you know the legal requirements?** (72-hour rule)
 
-**JOUW ACTIE PLAN:**
+**You already understand these concepts.** Tomorrow is just about applying them systematically.
 
-1. Start met de 15-minute scan
-2. Noteer alle gevonden issues
-3. Volg de fix sequence exact
-4. Documenteer alles
-5. Verificeer elke fix
-6. Schrijf eindrapport
-
-**OEFEN DIT TOT HET AUTOMATISCH GAAT!**
+**The secret nobody tells you:** Most of your classmates are just as nervous and will make basic mistakes like forgetting to check the guest account or not documenting properly. If you're systematic and thorough, you'll stand out.
 
 ---
 
-## 💪 SUCCESS MANTRAS - ONTHOUD DEZE!
+## 📋 SUMMARY - EVERYTHING YOU NEED TO KNOW
 
-1. **"GOLDEN 8 FIRST, ALTIJD!"**
-2. **"GUEST UIT, FIREWALL AAN!"**
-3. **"FIX, VERIFY, DOCUMENT!"**
-4. **"72 UUR REGEL BIJ AVG!"**
-5. **"SYSTEMATISCH WERKEN WINT!"**
+### What You'll Do Tomorrow:
 
----
+1. **Get the PC, look around for 10 minutes** (Guest account? Firewall? Admin users? Services? Shares?)
+2. **Fix what's obviously wrong** (Turn things off/on, remove unnecessary access)
+3. **Test your fixes work** (Restart if needed, check everything still works)
+4. **Write down what you found and fixed** (Simple list format is fine)
+5. **Add AVG compliance note** (72-hour rule, high-risk notifications)
 
-## 🎪 INTERNET RESOURCES YOU CAN USE DURING EXAM:
+### Websites to Bookmark:
 
-### Allowed Searches:
+- **docs.microsoft.com** (for Windows procedures)
+- **autoriteitpersoonsgegevens.nl** (for AVG info)
 
-- "Windows security commands"
-- "netsh firewall commands"
-- "Windows services disable"
-- "GDPR data breach notification"
-- "Windows password policy"
+### What You Must Remember:
 
-### Quick Reference Sites:
+- **72 hours** to report data breaches
+- **High risk** = notify affected people too
+- **Guest account = always bad**
+- **Firewall off = always bad**
+- **Regular users with admin rights = usually bad**
 
-- **Microsoft Docs** (docs.microsoft.com)
-- **Windows Command Reference**
-- **GDPR.eu** (for AVG info)
+### If You Panic:
 
-### NEVER SEARCH FOR:
+- Take a breath
+- Go back to checking the obvious stuff
+- Remember: systematic beats fast
+- Document what you tried, even if it didn't work
 
-- "P2-K2 exam answers"
-- "Security vulnerabilities list"
-- AI assistants or automated tools
+**You've got this. Really. The fact that you're this concerned about doing well means you'll put in the effort to be thorough, which is exactly what they're looking for.**
 
----
-
-**FINAL MESSAGE:** Je kunt dit! De sleutel is HERHALING. Doe vanavond 3 complete run-throughs. Morgen schrijf je eerst alles op papier, dan werk je systematisch de lijst af. Geen paniek, gewoon je plan volgen!
-
-**JE GAAT SLAGEN! 🏆**
+Sleep well tonight. Tomorrow you're going to show them you can think like a security professional. 🚀
