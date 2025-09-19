@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-16T19:40:03.283+02:00"}
+{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-19T13:24:50.574+02:00"}
 ---
 
 #  ✨Main Page✨
@@ -51,7 +51,72 @@
 
 
 
+/* Example 1: Music/Playlist Grid
+<div class="glass-grid grid-4">
+  <div class="glass-card music-card">
+    <a href="/playlists/chill-vibes">
+      <div class="card-image">
+        <img src="/img/MALOGO/playlist-chill.png" alt="Chill Vibes">
+        <div class="play-overlay">
+          <div class="play-icon"></div>
+        </div>
+      </div>
+      <div class="card-content">
+        <h3 class="card-title">Chill Vibes</h3>
+        <p class="card-artist">Curated Collection</p>
+        <div class="card-tags">
+          <span class="tag">Ambient</span>
+          <span class="tag">Relaxing</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
 
+Example 2: Note Cards
+<div class="glass-grid grid-3">
+  <div class="glass-card note-card">
+    <a href="/notes/web-development">
+      <div class="card-icon">📝</div>
+      <h3 class="card-title">Web Development</h3>
+      <p class="card-excerpt">Modern techniques and best practices for building responsive websites...</p>
+      <div class="card-meta">
+        <span>15 notes</span>
+        <span>Updated 2d ago</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+Example 3: Hero Card for Front Page
+<div class="glass-grid grid-featured">
+  <div class="glass-card hero-card">
+    <div class="card-background">
+      <img src="/img/hero-bg.png" alt="">
+    </div>
+    <div class="card-content">
+      <span class="card-badge">Featured</span>
+      <h2 class="card-title">Welcome to My Digital Garden</h2>
+      <p class="card-description">Explore my collection of notes, thoughts, and creative works. A living document of continuous learning.</p>
+      <span class="card-cta">Start Exploring →</span>
+    </div>
+  </div>
+</div>
+
+Example 4: Compact Navigation
+<div class="glass-flex">
+  <div class="glass-card compact-card">
+    <a href="/music">
+      <div class="card-icon">
+        <img src="/img/icons/music.svg" alt="Music">
+      </div>
+      <div class="card-content">
+        <h4 class="card-title">Music Collection</h4>
+        <p class="card-subtitle">Browse artists & playlists</p>
+      </div>
+    </a>
+  </div>
+</div>
 
 
 
