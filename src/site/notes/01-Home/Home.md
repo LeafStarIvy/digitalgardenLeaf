@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-20T17:27:51.420+02:00"}
+{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-20T20:41:41.610+02:00"}
 ---
 
 #  ✨Main Page✨
@@ -153,7 +153,7 @@ Example 4: Compact Navigation
   <div class="glass-card compact-card">
     <a href="/music">
       <div class="card-icon">
-        <img src="/img/icons/music.svg" alt="Music">
+        <img src="/img/icons/hero-bg.png" alt="Music">
       </div>
       <div class="card-content">
         <h4 class="card-title">Music Collection</h4>
