@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-09-20T20:52:31.429+02:00","updated":"2025-09-20T21:45:14.503+02:00"}
+{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-09-20T20:52:31.429+02:00","updated":"2025-09-20T21:50:07.407+02:00"}
 ---
 
 #  ✨Main Page✨
@@ -126,6 +126,56 @@
   </div>
 </div>
 
+
+
+<div class="demo-section">
+  <div class="flash-container cols-4">
+
+    <!-- Stack -->
+    <a href="/Stack" class="flash-card nav-card compact accent-blue">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+        <path d="M2 17l10 5 10-5"/>
+        <path d="M2 12l10 5 10-5"/>
+      </svg>
+      <div class="card-content">
+        <div class="card-title">Stack</div>
+      </div>
+    </a>
+
+    <!-- Recent -->
+    <a href="/Recent" class="flash-card nav-card compact accent-purple">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 6v6l4 2"/>
+      </svg>
+      <div class="card-content">
+        <div class="card-title">Recent</div>
+      </div>
+    </a>
+
+    <!-- Archive -->
+    <a href="/Archive" class="flash-card nav-card compact accent-green">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+      </svg>
+      <div class="card-content">
+        <div class="card-title">Archive</div>
+      </div>
+    </a>
+
+    <!-- Favorites -->
+    <a href="/Favorites" class="flash-card nav-card compact accent-gold">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+      <div class="card-content">
+        <div class="card-title">Favorites</div>
+      </div>
+    </a>
+
+  </div>
+</div>
 
 
 <h2>Minimal Cards</h2> <div class="demo-section"> <div class="flash-container cols-2"> <div class="flash-card minimal"> <div class="card-content"> <div class="card-title">Quick Note</div> <div class="card-subtitle">Simple and clean design for basic information</div> </div> </div> <div class="flash-card minimal"> <div class="card-content"> <div class="card-title">Reference Link</div> <div class="card-subtitle">Lightweight card for external resources</div> </div> </div> </div> </div>
