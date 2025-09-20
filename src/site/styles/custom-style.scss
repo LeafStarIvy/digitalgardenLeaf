@@ -3560,6 +3560,35 @@ tr:last-child td {
     }
 }
 
+/* Make anchors behave exactly like .flash-card divs (grid items / flex containers) */
+a.flash-card {
+  display: flex;           /* ensure the anchor is a flex container */
+  align-items: center;     /* keep icon + text vertically centered */
+  text-decoration: none;   /* remove link underline */
+  color: inherit;          /* keep same color as other cards */
+  width: 100%;             /* fill the grid cell */
+  height: 100%;
+}
+
+/* Ensure the compact layout still applies if you use compact class on an anchor */
+a.flash-card.compact {
+  padding: 0.8rem 1rem;
+  min-height: 60px;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Ensure inner anchor content stretches (safe fallback when markup is mixed) */
+.flash-card > a {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  align-items: center;
+}
+
 
 /* ============================================
    END OF ENHANCED STYLES
