@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-20T17:19:21.986+02:00"}
+{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-20T17:20:09.437+02:00"}
 ---
 
 ---
@@ -86,4 +86,28 @@ tags:
 
 ## 🧪 Experiments & Playground
 
-<div class="glass-grid grid-3"> <!-- Lab Notes --> <div class="glass-card note-card shimmer"> <a href="/lab"> <div class="card-icon">🧪</div> <h3 class="card-title">Digital Laboratory</h3> <p class="card-excerpt">Experiments in progress, failed attempts, and lessons learned...</p> <div class="card-meta"> <span>[[Current Tests\|Current Tests]]</span> <span>[[Lab Journal\|Lab Journal]]</span> </div> </a> </div> <!-- Ideas Parking --> <div class="glass-card note-card float"> <a href="/ideas"> <div class="card-icon">💭</div> <h3 class="card-title">Idea Incubator</h3> <p class="card-excerpt">Half-baked thoughts and potential projects waiting for their moment...</p> <div class="card-meta"> <span>[[Someday Maybe\|Someday Maybe]]</span> <span>[[Wild Ideas\|Wild Ideas]]</span> </div> </a> </div> <!-- Playground --> <div class="glass-card note-card pulse"> <a href="/playground"> <div class="card-icon">🎮</div> <h3 class="card-title">Code Playground</h3> <p class="card-excerpt">Interactive demos, prototypes, and fun
+<div class="glass-grid grid-3"> <!-- Lab Notes --> <div class="glass-card note-card shimmer"> <a href="/lab"> <div class="card-icon">🧪</div> <h3 class="card-title">Digital Laboratory</h3> <p class="card-excerpt">Experiments in progress, failed attempts, and lessons learned...</p> <div class="card-meta"> <span>[[Current Tests\|Current Tests]]</span> <span>[[Lab Journal\|Lab Journal]]</span> </div> </a> </div> <!-- Ideas Parking --> <div class="glass-card note-card float"> <a href="/ideas"> <div class="card-icon">💭</div> <h3 class="card-title">Idea Incubator</h3> <p class="card-excerpt">Half-baked thoughts and potential projects waiting for their moment...</p> <div class="card-meta"> <span>[[Someday Maybe\|Someday Maybe]]</span> <span>[[Wild Ideas\|Wild Ideas]]</span> </div> </a> </div> <!-- Playground --> <div class="glass-card note-card pulse"> <a href="/playground"> <div class="card-icon">🎮</div> <h3 class="card-title">Code Playground</h3> <p class="card-excerpt">Interactive demos, prototypes, and fun experiments...</p> <div class="card-meta"> <span>[[Live Demos\|Live Demos]]</span> <span>[[Sandbox\|Sandbox]]</span> </div> </a> </div> </div>
+
+---
+
+## 🌐 Community & Connections
+
+<div class="glass-grid grid-4"> <!-- Collaborations --> <div class="glass-card compact-card"> <a href="/collaborations"> <div class="card-icon">🤝</div> <div class="card-content"> <h4 class="card-title">Collaborations</h4> <p class="card-subtitle">Joint projects</p> </div> </a> </div> <!-- Network --> <div class="glass-card compact-card"> <a href="/network"> <div class="card-icon">🕸️</div> <div class="card-content"> <h4 class="card-title">Network Notes</h4> <p class="card-subtitle">People & connections</p> </div> </a> </div> <!-- Recommendations --> <div class="glass-card compact-card"> <a href="/recommendations"> <div class="card-icon">⭐</div> <div class="card-content"> <h4 class="card-title">Recommendations</h4> <p class="card-subtitle">Things worth sharing</p> </div> </a> </div> <!-- Guest Book --> <div class="glass-card compact-card"> <a href="/guestbook"> <div class="card-icon">📓</div> <div class="card-content"> <h4 class="card-title">Guest Book</h4> <p class="card-subtitle">Visitor thoughts</p> </div> </a> </div> </div>
+
+---
+
+## 🗺️ Meta & Navigation
+
+<div class="glass-grid grid-2"> <!-- Site Map --> <div class="glass-card nav-card gradient-border"> <a href="/sitemap"> <div class="nav-content"> <div class="nav-title">🗺️ Complete Site Map</div> <div class="nav-description">Full navigation tree of all pages and connections</div> </div> <div class="nav-arrow"></div> </a> </div> <!-- Graph View --> <div class="glass-card nav-card gradient-border"> <a href="/graph"> <div class="nav-content"> <div class="nav-title">🕸️ Knowledge Graph</div> <div class="nav-description">Visual representation of all interconnections</div> </div> <div class="nav-arrow"></div> </a> </div> </div> <div class="glass-grid grid-6"> <!-- Quick Meta Links --> <div class="glass-card compact-card minimal"> <a href="/changelog"> <div class="card-icon">📝</div> <div class="card-content"> <h4 class="card-title">Changelog</h4> </div> </a> </div> <div class="glass-card compact-card minimal"> <a href="/tags"> <div class="card-icon">🏷️</div> <div class="card-content"> <h4 class="card-title">All Tags</h4> </div> </a> </div> <div class="glass-card compact-card minimal"> <a href="/recent"> <div class="card-icon">🕐</div> <div class="card-content"> <h4 class="card-title">Recent</h4> </div> </a> </div> <div class="glass-card compact-card minimal"> <a href="/random"> <div class="card-icon">🎲</div> <div class="card-content"> <h4 class="card-title">Random</h4> </div> </a> </div> <div class="glass-card compact-card minimal"> <a href="/stats"> <div class="card-icon">📊</div> <div class="card-content"> <h4 class="card-title">Statistics</h4> </div> </a> </div> <div class="glass-card compact-card minimal"> <a href="/about"> <div class="card-icon">ℹ️</div> <div class="card-content"> <h4 class="card-title">About</h4> </div> </a> </div> </div>
+
+---
+
+## 🔮 Future Spaces
+
+_Areas planned for development_
+
+<div class="glass-grid grid-4"> <!-- Placeholder 1 --> <div class="glass-card minimal" style="opacity: 0.6;"> <div class="card-content"> <div class="card-title">🚧 Coming Soon</div> <div class="card-subtitle">Space reserved for future content</div> </div> </div> <!-- Placeholder 2 --> <div class="glass-card minimal" style="opacity: 0.6;"> <div class="card-content"> <div class="card-title">🚧 In Development</div> <div class="card-subtitle">New section under construction</div> </div> </div> <!-- Placeholder 3 --> <div class="glass-card minimal" style="opacity: 0.6;"> <div class="card-content"> <div class="card-title">🚧 Planned Feature</div> <div class="card-subtitle">Interactive element coming</div> </div> </div> <!-- Placeholder 4 --> <div class="glass-card minimal" style="opacity: 0.6;"> <div class="card-content"> <div class="card-title">🚧 Beta Testing</div> <div class="card-subtitle">Experimental area</div> </div> </div> </div>
+
+---
+
+<div style="text-align: center; margin-top: 4rem; padding: 2rem 0; color: rgba(255,255,255,0.6);"> <p style="font-style: italic; margin-bottom: 1rem;"> "A garden is never finished, only abandoned or continuously tended." </p> <p style="font-size: 0.9rem;"> Last cultivated: [[2024-01-15\|2024-01-15]] • Total notes: [[Stats\|1,247]] • Growing since: [[2023\|2023]] </p> <div style="margin-top: 2rem;"> <a href="/feed" style="margin: 0 1rem;">RSS</a> • <a href="/newsletter" style="margin: 0 1rem;">Newsletter</a> • <a href="/contact" style="margin: 0 1rem;">Contact</a> • <a href="/privacy" style="margin: 0 1rem;">Privacy</a> </div> </div>
