@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-19T13:24:50.574+02:00"}
+{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-20T14:47:44.850+02:00"}
 ---
 
 #  ✨Main Page✨
@@ -21,9 +21,172 @@
 <div style="text-align: center; margin-top: 3rem; color: rgba(255,255,255,0.6);"> <em>Welcome to my corner of the internet. Feel free to explore, and don't hesitate to reach out if something resonates with you.</em> </div>
 
 
+<div class="hero-parallax">
+  <div class="float-element float-1"></div>
+  <div class="float-element float-2"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Welcome to My Digital Garden</h1>
+    <p class="hero-subtitle">A living collection of thoughts, ideas, and discoveries</p>
+    <div class="hero-cta-group">
+      <a href="#explore" class="hero-cta primary">Start Exploring</a>
+      <a href="#about" class="hero-cta">Learn More</a>
+    </div>
+  </div>
+</div>
 
 
- <div class="demo-section"> <div class="flash-container cols-1"> <a href="#" class="flash-card-link"> <div class="flash-card hero gradient-border glow"> <div class="card-content"> <div class="card-title">Digital Garden</div> <div class="card-subtitle">Explore My Thoughts</div> <div class="card-description"> A curated collection of interconnected ideas, notes, and discoveries growing organically over time. </div> </div> </div> </a> </div> </div>
+<div class="timeline-container">
+  <div class="timeline-line"></div>
+  
+  <div class="timeline-item">
+    <div class="timeline-dot"></div>
+    <div class="timeline-content">
+      <div class="timeline-date">December 2024</div>
+      <div class="timeline-title">Started Digital Garden</div>
+      <div class="timeline-description">Began documenting my learning journey and creative projects</div>
+    </div>
+  </div>
+  
+  <div class="timeline-item">
+    <div class="timeline-dot"></div>
+    <div class="timeline-content">
+      <div class="timeline-date">January 2025</div>
+      <div class="timeline-title">100 Notes Milestone</div>
+      <div class="timeline-description">Reached my first major content milestone</div>
+    </div>
+  </div>
+</div>
+
+<div class="stats-dashboard">
+  <div class="stat-card">
+    <span class="stat-icon">📝</span>
+    <div class="stat-number" data-count="156">156</div>
+    <div class="stat-label">Total Notes</div>
+    <span class="stat-trend">↑ 12 this week</span>
+  </div>
+  
+  <div class="stat-card">
+    <span class="stat-icon">🔗</span>
+    <div class="stat-number" data-count="423">423</div>
+    <div class="stat-label">Connections</div>
+    <span class="stat-trend">↑ 34 new links</span>
+  </div>
+  
+  <div class="stat-card">
+    <span class="stat-icon">🏷️</span>
+    <div class="stat-number" data-count="67">67</div>
+    <div class="stat-label">Tags</div>
+    <span class="stat-trend">↑ 5 new tags</span>
+  </div>
+  
+  <div class="stat-card">
+    <span class="stat-icon">📚</span>
+    <div class="stat-number" data-count="2.4k">2.4k</div>
+    <div class="stat-label">Words Written</div>
+    <span class="stat-trend">↑ 500 today</span>
+  </div>
+</div>
+
+<div class="tag-cloud-container">
+  <h2 class="tag-cloud-title">Explore Topics</h2>
+  <div class="tag-cloud">
+    <a href="#" class="tag-cloud-item size-xl color-blue">JavaScript <span class="tag-count">45</span></a>
+    <a href="#" class="tag-cloud-item size-lg color-purple">Design <span class="tag-count">32</span></a>
+    <a href="#" class="tag-cloud-item size-md">CSS <span class="tag-count">28</span></a>
+    <a href="#" class="tag-cloud-item size-lg color-green">React <span class="tag-count">31</span></a>
+    <a href="#" class="tag-cloud-item size-sm">TypeScript <span class="tag-count">15</span></a>
+    <a href="#" class="tag-cloud-item size-md">Node.js <span class="tag-count">22</span></a>
+    <a href="#" class="tag-cloud-item size-xs">Docker <span class="tag-count">8</span></a>
+    <a href="#" class="tag-cloud-item size-lg">Python <span class="tag-count">35</span></a>
+  </div>
+</div>
+
+
+<div class="feature-grid">
+  <div class="feature-card highlighted">
+    <div class="feature-icon">🚀</div>
+    <h3 class="feature-title">Quick Start</h3>
+    <p class="feature-description">Get up and running with guided tutorials and starter templates designed for beginners.</p>
+    <a href="#" class="feature-link">Get Started</a>
+  </div>
+  
+  <div class="feature-card">
+    <div class="feature-icon">📊</div>
+    <h3 class="feature-title">Analytics</h3>
+    <p class="feature-description">Track your progress with detailed insights into your learning journey and growth.</p>
+    <a href="#" class="feature-link">View Stats</a>
+  </div>
+  
+  <div class="feature-card">
+    <div class="feature-icon">🎨</div>
+    <h3 class="feature-title">Themes</h3>
+    <p class="feature-description">Customize your experience with beautiful themes and personalization options.</p>
+    <a href="#" class="feature-link">Customize</a>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <div class="demo-section"> <div class="flash-container cols-2"> <a href="#" class="flash-card-link"> <div class="flash-card hero gradient-border glow"> <div class="card-content"> <div class="card-title">Digital Garden</div> <div class="card-subtitle">Explore My Thoughts</div> <div class="card-description"> A curated collection of interconnected ideas, notes, and discoveries growing organically over time. </div> </div> </div> </a> </div> </div> 
+ 
+
+<div class="demo-section">
+  <div class="flash-container cols-3">
+    
+    <!-- Card 1 -->
+    <a href="#" class="flash-card-link">
+      <div class="flash-card hero gradient-border glow">
+        <div class="card-content">
+          <div class="card-title">Digital Garden</div>
+          <div class="card-subtitle">Explore My Thoughts</div>
+          <div class="card-description">
+            A curated collection of interconnected ideas, notes, and discoveries growing organically over time.
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 2 -->
+    <a href="#" class="flash-card-link">
+      <div class="flash-card accent-blue">
+        <div class="card-content">
+          <div class="card-title">Learning Hub</div>
+          <div class="card-subtitle">Sharpen Skills</div>
+          <div class="card-description">
+            Resources, tutorials, and guides to keep learning every day.
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 3 -->
+    <a href="#" class="flash-card-link">
+      <div class="flash-card accent-green">
+        <div class="card-content">
+          <div class="card-title">Projects</div>
+          <div class="card-subtitle">Hands-On Work</div>
+          <div class="card-description">
+            Showcasing practical experiments, builds, and creative explorations.
+          </div>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
 
 
 
