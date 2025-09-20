@@ -1,15 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-20T17:24:44.897+02:00"}
----
-
----
-
-tags:
-
-- dashboard
-- home
-- navigation dg-home: true dg-publish: true
-
+{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-20T17:25:36.297+02:00"}
 ---
 
 # 🌱 Digital Garden
