@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-20T20:41:41.610+02:00"}
+{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-20T20:44:55.444+02:00"}
 ---
 
 #  ✨Main Page✨
@@ -21,7 +21,7 @@
 <div style="text-align: center; margin-top: 3rem; color: rgba(255,255,255,0.6);"> <em>Welcome to my corner of the internet. Feel free to explore, and don't hesitate to reach out if something resonates with you.</em> </div>
 
 
- <div class="demo-section"> <div class="flash-container cols-2"> <a href="#" class="flash-card-link"> <div class="flash-card hero gradient-border glow"> <div class="card-content"> <div class="card-title">Digital Garden</div> <div class="card-subtitle">Explore My Thoughts</div> <div class="card-description"> A curated collection of interconnected ideas, notes, and discoveries growing organically over time. </div> </div> </div> </a> </div> </div> 
+ <div class="demo-section"> <div class="flash-container cols-2"> <a href="/music" class="flash-card-link"> <div class="flash-card hero gradient-border glow"> <div class="card-content"> <div class="card-title">Digital Garden</div> <div class="card-subtitle">Explore My Thoughts</div> <div class="card-description"> A curated collection of interconnected ideas, notes, and discoveries growing organically over time. </div> </div> </div> </a> </div> </div> 
  
 
 <div class="demo-section">
@@ -101,7 +101,7 @@
   <div class="glass-card music-card">
     <a href="/playlists/chill-vibes">
       <div class="card-image">
-        <img src="/img/MALOGO/playlist-chill.png" alt="Chill Vibes">
+        <img src="/img/icons/hero-bg.png" alt="Chill Vibes">
         <div class="play-overlay">
           <div class="play-icon"></div>
         </div>
@@ -137,7 +137,7 @@ Example 3: Hero Card for Front Page
 <div class="glass-grid grid-featured">
   <div class="glass-card hero-card">
     <div class="card-background">
-      <img src="/img/hero-bg.png" alt="">
+      <img src="/img/icons/hero-bg.png" alt="">
     </div>
     <div class="card-content">
       <span class="card-badge">Featured</span>
