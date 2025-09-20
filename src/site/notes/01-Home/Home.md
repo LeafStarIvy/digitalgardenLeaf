@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-09-20T20:52:31.429+02:00","updated":"2025-09-20T22:14:49.883+02:00"}
+{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-09-20T20:52:31.429+02:00","updated":"2025-09-20T22:24:54.607+02:00"}
 ---
 
 #  ✨Main Page✨
@@ -83,56 +83,44 @@
 <div class="demo-section">
   <div class="flash-container cols-4">
 
-    <!-- Stack -->
-    <div class="flash-card nav-card compact accent-blue">
-      <a class="flash-card-link" href="/Stack" aria-label="Open Stack">
-        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-          <path d="M2 17l10 5 10-5"/>
-          <path d="M2 12l10 5 10-5"/>
-        </svg>
-        <div class="card-content">
-          <div class="card-title">Stack</div>
-        </div>
-      </a>
-    </div>
+    <a href="/Stack" class="flash-card nav-card compact accent-blue">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+        <path d="M2 17l10 5 10-5"/>
+        <path d="M2 12l10 5 10-5"/>
+      </svg>
+      <div class="card-content">
+        <div class="card-title">Stack</div>
+      </div>
+    </a>
 
-    <!-- Recent -->
-    <div class="flash-card nav-card compact accent-purple">
-      <a class="flash-card-link" href="/Recent" aria-label="Open Recent">
-        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="M12 6v6l4 2"/>
-        </svg>
-        <div class="card-content">
-          <div class="card-title">Recent</div>
-        </div>
-      </a>
-    </div>
+    <a href="/Recent" class="flash-card nav-card compact accent-purple">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 6v6l4 2"/>
+      </svg>
+      <div class="card-content">
+        <div class="card-title">Recent</div>
+      </div>
+    </a>
 
-    <!-- Archive -->
-    <div class="flash-card nav-card compact accent-green">
-      <a class="flash-card-link" href="/Archive" aria-label="Open Archive">
-        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
-        </svg>
-        <div class="card-content">
-          <div class="card-title">Archive</div>
-        </div>
-      </a>
-    </div>
+    <a href="/Archive" class="flash-card nav-card compact accent-green">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+      </svg>
+      <div class="card-content">
+        <div class="card-title">Archive</div>
+      </div>
+    </a>
 
-    <!-- Favorites -->
-    <div class="flash-card nav-card compact accent-gold">
-      <a class="flash-card-link" href="/Favorites" aria-label="Open Favorites">
-        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-        </svg>
-        <div class="card-content">
-          <div class="card-title">Favorites</div>
-        </div>
-      </a>
-    </div>
+    <a href="/Favorites" class="flash-card nav-card compact accent-gold">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+      <div class="card-content">
+        <div class="card-title">Favorites</div>
+      </div>
+    </a>
 
   </div>
 </div>
