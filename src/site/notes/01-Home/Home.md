@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-20T17:20:09.437+02:00"}
+{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-20T17:24:44.897+02:00"}
 ---
 
 ---
@@ -22,7 +22,7 @@ tags:
 
 <div class="glass-grid grid-featured"> <div class="glass-card hero-card"> <div class="card-background"> <img src="/img/hero-gradient.png" alt=""> </div> <div class="card-content"> <span class="card-badge">Featured Today</span> <h2 class="card-title">Current Focus: Building Knowledge Systems</h2> <p class="card-description">Exploring the intersection of personal knowledge management, creative expression, and digital minimalism. Dive into my latest thoughts on building a second brain.</p> <a href="/projects/current-focus" class="card-cta">Explore Current Projects →</a> </div> </div> <div class="glass-grid grid-1" style="gap: var(--gap-md);"> <div class="glass-card stats-card"> <div class="stat-number">[[Daily Planner\|Today]]</div> <div class="stat-label">Daily Dashboard</div> <div class="stat-change">View Schedule & Tasks</div> </div>
 
-```
+
 <div class="glass-card nav-card">
   <a href="/weekly-review">
     <div class="nav-content">
@@ -42,7 +42,7 @@ tags:
     </div>
   </a>
 </div>
-```
+
 
 </div> </div>
 
