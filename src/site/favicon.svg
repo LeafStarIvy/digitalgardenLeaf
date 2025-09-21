@@ -50,79 +50,79 @@
         opacity="0.3"/>
   
   <!-- Vision Star - Primary observation (top, largest) -->
-  <g transform="translate(8,3.5)">
+  <g transform="translate(8,3)">
     <!-- Outer rays -->
-    <path d="M0 -2.2 L0.3 -0.8 L0 0 L-0.3 -0.8 Z" fill="url(#visionStar)" opacity="0.6"/>
-    <path d="M2.2 0 L0.8 -0.3 L0 0 L0.8 0.3 Z" fill="url(#visionStar)" opacity="0.6"/>
-    <path d="M0 2.2 L-0.3 0.8 L0 0 L0.3 0.8 Z" fill="url(#visionStar)" opacity="0.6"/>
-    <path d="M-2.2 0 L-0.8 0.3 L0 0 L-0.8 -0.3 Z" fill="url(#visionStar)" opacity="0.6"/>
+    <path d="M0 -3.5 L0.5 -1.2 L0 0 L-0.5 -1.2 Z" fill="url(#visionStar)" opacity="0.8"/>
+    <path d="M3.5 0 L1.2 -0.5 L0 0 L1.2 0.5 Z" fill="url(#visionStar)" opacity="0.8"/>
+    <path d="M0 3.5 L-0.5 1.2 L0 0 L0.5 1.2 Z" fill="url(#visionStar)" opacity="0.8"/>
+    <path d="M-3.5 0 L-1.2 0.5 L0 0 L-1.2 -0.5 Z" fill="url(#visionStar)" opacity="0.8"/>
     
     <!-- Inner star -->
-    <path d="M0 -1.4 L0.2 -0.5 L0 0 L-0.2 -0.5 Z" fill="url(#visionStar)"/>
-    <path d="M1.4 0 L0.5 -0.2 L0 0 L0.5 0.2 Z" fill="url(#visionStar)"/>
-    <path d="M0 1.4 L-0.2 0.5 L0 0 L0.2 0.5 Z" fill="url(#visionStar)"/>
-    <path d="M-1.4 0 L-0.5 0.2 L0 0 L-0.5 -0.2 Z" fill="url(#visionStar)"/>
+    <path d="M0 -2.2 L0.35 -0.8 L0 0 L-0.35 -0.8 Z" fill="url(#visionStar)"/>
+    <path d="M2.2 0 L0.8 -0.35 L0 0 L0.8 0.35 Z" fill="url(#visionStar)"/>
+    <path d="M0 2.2 L-0.35 0.8 L0 0 L0.35 0.8 Z" fill="url(#visionStar)"/>
+    <path d="M-2.2 0 L-0.8 0.35 L0 0 L-0.8 -0.35 Z" fill="url(#visionStar)"/>
     
     <!-- Core -->
-    <circle cx="0" cy="0" r="0.4" fill="#fef3c7"/>
-    <circle cx="0" cy="0" r="0.2" fill="#fbbf24"/>
+    <circle cx="0" cy="0" r="0.8" fill="#fef3c7"/>
+    <circle cx="0" cy="0" r="0.4" fill="#fbbf24"/>
   </g>
   
   <!-- Discovery Star - Exploration energy (right) -->
-  <g transform="translate(12.5,7)">
+  <g transform="translate(13,8)">
     <!-- Outer rays -->
-    <path d="M0 -1.8 L0.25 -0.6 L0 0 L-0.25 -0.6 Z" fill="url(#discoveryStar)" opacity="0.7"/>
-    <path d="M1.8 0 L0.6 -0.25 L0 0 L0.6 0.25 Z" fill="url(#discoveryStar)" opacity="0.7"/>
-    <path d="M0 1.8 L-0.25 0.6 L0 0 L0.25 0.6 Z" fill="url(#discoveryStar)" opacity="0.7"/>
-    <path d="M-1.8 0 L-0.6 0.25 L0 0 L-0.6 -0.25 Z" fill="url(#discoveryStar)" opacity="0.7"/>
+    <path d="M0 -3 L0.4 -1 L0 0 L-0.4 -1 Z" fill="url(#discoveryStar)" opacity="0.8"/>
+    <path d="M3 0 L1 -0.4 L0 0 L1 0.4 Z" fill="url(#discoveryStar)" opacity="0.8"/>
+    <path d="M0 3 L-0.4 1 L0 0 L0.4 1 Z" fill="url(#discoveryStar)" opacity="0.8"/>
+    <path d="M-3 0 L-1 0.4 L0 0 L-1 -0.4 Z" fill="url(#discoveryStar)" opacity="0.8"/>
     
     <!-- Inner star -->
-    <path d="M0 -1.2 L0.18 -0.4 L0 0 L-0.18 -0.4 Z" fill="url(#discoveryStar)"/>
-    <path d="M1.2 0 L0.4 -0.18 L0 0 L0.4 0.18 Z" fill="url(#discoveryStar)"/>
-    <path d="M0 1.2 L-0.18 0.4 L0 0 L0.18 0.4 Z" fill="url(#discoveryStar)"/>
-    <path d="M-1.2 0 L-0.4 0.18 L0 0 L-0.4 -0.18 Z" fill="url(#discoveryStar)"/>
+    <path d="M0 -2 L0.3 -0.7 L0 0 L-0.3 -0.7 Z" fill="url(#discoveryStar)"/>
+    <path d="M2 0 L0.7 -0.3 L0 0 L0.7 0.3 Z" fill="url(#discoveryStar)"/>
+    <path d="M0 2 L-0.3 0.7 L0 0 L0.3 0.7 Z" fill="url(#discoveryStar)"/>
+    <path d="M-2 0 L-0.7 0.3 L0 0 L-0.7 -0.3 Z" fill="url(#discoveryStar)"/>
     
     <!-- Core -->
-    <circle cx="0" cy="0" r="0.35" fill="#ddd6fe"/>
-    <circle cx="0" cy="0" r="0.18" fill="#8b5cf6"/>
+    <circle cx="0" cy="0" r="0.7" fill="#ddd6fe"/>
+    <circle cx="0" cy="0" r="0.35" fill="#8b5cf6"/>
   </g>
   
   <!-- Reflection Star - Contemplation (bottom) -->
-  <g transform="translate(8,11.5)">
+  <g transform="translate(8,13)">
     <!-- Outer rays -->
-    <path d="M0 -1.6 L0.22 -0.55 L0 0 L-0.22 -0.55 Z" fill="url(#reflectionStar)" opacity="0.8"/>
-    <path d="M1.6 0 L0.55 -0.22 L0 0 L0.55 0.22 Z" fill="url(#reflectionStar)" opacity="0.8"/>
-    <path d="M0 1.6 L-0.22 0.55 L0 0 L0.22 0.55 Z" fill="url(#reflectionStar)" opacity="0.8"/>
-    <path d="M-1.6 0 L-0.55 0.22 L0 0 L-0.55 -0.22 Z" fill="url(#reflectionStar)" opacity="0.8"/>
+    <path d="M0 -3 L0.4 -1 L0 0 L-0.4 -1 Z" fill="url(#reflectionStar)" opacity="0.8"/>
+    <path d="M3 0 L1 -0.4 L0 0 L1 0.4 Z" fill="url(#reflectionStar)" opacity="0.8"/>
+    <path d="M0 3 L-0.4 1 L0 0 L0.4 1 Z" fill="url(#reflectionStar)" opacity="0.8"/>
+    <path d="M-3 0 L-1 0.4 L0 0 L-1 -0.4 Z" fill="url(#reflectionStar)" opacity="0.8"/>
     
     <!-- Inner star -->
-    <path d="M0 -1.1 L0.16 -0.37 L0 0 L-0.16 -0.37 Z" fill="url(#reflectionStar)"/>
-    <path d="M1.1 0 L0.37 -0.16 L0 0 L0.37 0.16 Z" fill="url(#reflectionStar)"/>
-    <path d="M0 1.1 L-0.16 0.37 L0 0 L0.16 0.37 Z" fill="url(#reflectionStar)"/>
-    <path d="M-1.1 0 L-0.37 0.16 L0 0 L-0.37 -0.16 Z" fill="url(#reflectionStar)"/>
+    <path d="M0 -2 L0.3 -0.7 L0 0 L-0.3 -0.7 Z" fill="url(#reflectionStar)"/>
+    <path d="M2 0 L0.7 -0.3 L0 0 L0.7 0.3 Z" fill="url(#reflectionStar)"/>
+    <path d="M0 2 L-0.3 0.7 L0 0 L0.3 0.7 Z" fill="url(#reflectionStar)"/>
+    <path d="M-2 0 L-0.7 0.3 L0 0 L-0.7 -0.3 Z" fill="url(#reflectionStar)"/>
     
     <!-- Core -->
-    <circle cx="0" cy="0" r="0.32" fill="#f0f9ff"/>
-    <circle cx="0" cy="0" r="0.16" fill="#7dd3fc"/>
+    <circle cx="0" cy="0" r="0.7" fill="#f0f9ff"/>
+    <circle cx="0" cy="0" r="0.35" fill="#7dd3fc"/>
   </g>
   
   <!-- Knowledge Star - Wisdom (left) -->
-  <g transform="translate(3.5,7)">
+  <g transform="translate(3,8)">
     <!-- Outer rays -->
-    <path d="M0 -1.7 L0.24 -0.58 L0 0 L-0.24 -0.58 Z" fill="url(#knowledgeStar)" opacity="0.75"/>
-    <path d="M1.7 0 L0.58 -0.24 L0 0 L0.58 0.24 Z" fill="url(#knowledgeStar)" opacity="0.75"/>
-    <path d="M0 1.7 L-0.24 0.58 L0 0 L0.24 0.58 Z" fill="url(#knowledgeStar)" opacity="0.75"/>
-    <path d="M-1.7 0 L-0.58 0.24 L0 0 L-0.58 -0.24 Z" fill="url(#knowledgeStar)" opacity="0.75"/>
+    <path d="M0 -3 L0.4 -1 L0 0 L-0.4 -1 Z" fill="url(#knowledgeStar)" opacity="0.8"/>
+    <path d="M3 0 L1 -0.4 L0 0 L1 0.4 Z" fill="url(#knowledgeStar)" opacity="0.8"/>
+    <path d="M0 3 L-0.4 1 L0 0 L0.4 1 Z" fill="url(#knowledgeStar)" opacity="0.8"/>
+    <path d="M-3 0 L-1 0.4 L0 0 L-1 -0.4 Z" fill="url(#knowledgeStar)" opacity="0.8"/>
     
     <!-- Inner star -->
-    <path d="M0 -1.15 L0.17 -0.39 L0 0 L-0.17 -0.39 Z" fill="url(#knowledgeStar)"/>
-    <path d="M1.15 0 L0.39 -0.17 L0 0 L0.39 0.17 Z" fill="url(#knowledgeStar)"/>
-    <path d="M0 1.15 L-0.17 0.39 L0 0 L0.17 0.39 Z" fill="url(#knowledgeStar)"/>
-    <path d="M-1.15 0 L-0.39 0.17 L0 0 L-0.39 -0.17 Z" fill="url(#knowledgeStar)"/>
+    <path d="M0 -2 L0.3 -0.7 L0 0 L-0.3 -0.7 Z" fill="url(#knowledgeStar)"/>
+    <path d="M2 0 L0.7 -0.3 L0 0 L0.7 0.3 Z" fill="url(#knowledgeStar)"/>
+    <path d="M0 2 L-0.3 0.7 L0 0 L0.3 0.7 Z" fill="url(#knowledgeStar)"/>
+    <path d="M-2 0 L-0.7 0.3 L0 0 L-0.7 -0.3 Z" fill="url(#knowledgeStar)"/>
     
     <!-- Core -->
-    <circle cx="0" cy="0" r="0.33" fill="#fef3c7"/>
-    <circle cx="0" cy="0" r="0.17" fill="#f472b6"/>
+    <circle cx="0" cy="0" r="0.7" fill="#fef3c7"/>
+    <circle cx="0" cy="0" r="0.35" fill="#f472b6"/>
   </g>
   
   <!-- Subtle connecting energy flows -->
