@@ -1,13 +1,7 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-21T14:54:20.566+02:00"}
+{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-21T15:00:37.556+02:00"}
 ---
 
- <div class="card-grid cols-1"> <div class="card card-feature card-xl hover-lift"> <a href="#welcome"> <div class="card-body"> <h1 class="card-title">Welcome to My Digital Garden 🌱</h1> <p class="card-text" style="font-size: 1.2rem; margin-bottom: 1.5rem;"> A living collection of thoughts, projects, and discoveries. This garden grows through continuous learning and creative exploration. </p> <div class="card-tags"> <span class="card-tag">Knowledge Base</span> <span class="card-tag">Creative Works</span> <span class="card-tag">Personal Archive</span> </div> </div> </a> </div> </div>   
-
-
-
-
-<div class="card-grid cols-4" style="margin-top: 2rem;"> <div class="card card-purple card-icon-top hover-lift"> <a href="#music"> <div class="card-body"> <div class="card-icon">🎵</div> <h3 class="card-title">Music</h3> <p class="card-text">Artists & Playlists</p> </div> </a> </div> <div class="card card-blue card-icon-top hover-lift"> <a href="#projects"> <div class="card-body"> <div class="card-icon">🚀</div> <h3 class="card-title">Projects</h3> <p class="card-text">Current builds</p> </div> </a> </div> <div class="card card-green card-icon-top hover-lift"> <a href="#notes"> <div class="card-body"> <div class="card-icon">📝</div> <h3 class="card-title">Notes</h3> <p class="card-text">Knowledge vault</p> </div> </a> </div> <div class="card card-yellow card-icon-top hover-lift"> <a href="#creative"> <div class="card-body"> <div class="card-icon">🎨</div> <h3 class="card-title">Creative</h3> <p class="card-text">Art & Writing</p> </div> </a> </div> </div> 
 
 
 > [!INFO]  
