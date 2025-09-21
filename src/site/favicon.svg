@@ -1,52 +1,147 @@
 <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="leafGrad3" x1="0.2" y1="0.2" x2="0.8" y2="0.9">
-      <stop offset="0%" style="stop-color:#a7f3d0;stop-opacity:1" />
-      <stop offset="30%" style="stop-color:#6ee7b7;stop-opacity:1" />
-      <stop offset="70%" style="stop-color:#10b981;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#047857;stop-opacity:1" />
-    </linearGradient>
-    <radialGradient id="observatoryDome" cx="0.5" cy="0.4" r="0.6">
-      <stop offset="0%" style="stop-color:#fef3c7;stop-opacity:1" />
-      <stop offset="40%" style="stop-color:#fbbf24;stop-opacity:0.9" />
-      <stop offset="80%" style="stop-color:#92400e;stop-opacity:0.7" />
-      <stop offset="100%" style="stop-color:#451a03;stop-opacity:0.5" />
+    <!-- Vision Star - Primary telescope star -->
+    <radialGradient id="visionStar" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0%" style="stop-color:#fef3c7"/>
+      <stop offset="30%" style="stop-color:#fbbf24"/>
+      <stop offset="70%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
     </radialGradient>
+    
+    <!-- Knowledge Star - Warm amber wisdom -->
+    <radialGradient id="knowledgeStar" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0%" style="stop-color:#fef3c7"/>
+      <stop offset="30%" style="stop-color:#f472b6"/>
+      <stop offset="70%" style="stop-color:#e879f9"/>
+      <stop offset="100%" style="stop-color:#c026d3"/>
+    </radialGradient>
+    
+    <!-- Discovery Star - Dynamic exploration energy -->
+    <radialGradient id="discoveryStar" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0%" style="stop-color:#ddd6fe"/>
+      <stop offset="30%" style="stop-color:#8b5cf6"/>
+      <stop offset="70%" style="stop-color:#7c3aed"/>
+      <stop offset="100%" style="stop-color:#5b21b6"/>
+    </radialGradient>
+    
+    <!-- Reflection Star - Gentle contemplation -->
+    <radialGradient id="reflectionStar" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0%" style="stop-color:#f0f9ff"/>
+      <stop offset="30%" style="stop-color:#7dd3fc"/>
+      <stop offset="70%" style="stop-color:#0ea5e9"/>
+      <stop offset="100%" style="stop-color:#0369a1"/>
+    </radialGradient>
+    
+    <!-- Connection lines gradient -->
+    <linearGradient id="constellation" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24"/>
+      <stop offset="25%" style="stop-color:#f472b6"/>
+      <stop offset="50%" style="stop-color:#8b5cf6"/>
+      <stop offset="75%" style="stop-color:#7dd3fc"/>
+      <stop offset="100%" style="stop-color:#fbbf24"/>
+    </linearGradient>
   </defs>
   
-  <!-- Classic leaf silhouette -->
-  <path d="M8 1.5C8 1.5 12.5 3 13.5 7.5C14 10 13 12 11.5 13C10.5 13.8 9.2 14.2 8 14.5C6.8 14.2 5.5 13.8 4.5 13C3 12 2 10 2.5 7.5C3.5 3 8 1.5 8 1.5Z" 
-        fill="url(#leafGrad3)" stroke="none"/>
+  <!-- Constellation connecting lines (very subtle) -->
+  <path d="M8 3.5 L12.5 7 L8 11.5 L3.5 7 Z" 
+        stroke="url(#constellation)" 
+        stroke-width="0.08" 
+        fill="none" 
+        opacity="0.3"/>
   
-  <!-- Main observatory dome -->
-  <ellipse cx="8" cy="7.5" rx="3.2" ry="2.8" fill="url(#observatoryDome)" opacity="0.85"/>
+  <!-- Vision Star - Primary observation (top, largest) -->
+  <g transform="translate(8,3.5)">
+    <!-- Outer rays -->
+    <path d="M0 -2.2 L0.3 -0.8 L0 0 L-0.3 -0.8 Z" fill="url(#visionStar)" opacity="0.6"/>
+    <path d="M2.2 0 L0.8 -0.3 L0 0 L0.8 0.3 Z" fill="url(#visionStar)" opacity="0.6"/>
+    <path d="M0 2.2 L-0.3 0.8 L0 0 L0.3 0.8 Z" fill="url(#visionStar)" opacity="0.6"/>
+    <path d="M-2.2 0 L-0.8 0.3 L0 0 L-0.8 -0.3 Z" fill="url(#visionStar)" opacity="0.6"/>
+    
+    <!-- Inner star -->
+    <path d="M0 -1.4 L0.2 -0.5 L0 0 L-0.2 -0.5 Z" fill="url(#visionStar)"/>
+    <path d="M1.4 0 L0.5 -0.2 L0 0 L0.5 0.2 Z" fill="url(#visionStar)"/>
+    <path d="M0 1.4 L-0.2 0.5 L0 0 L0.2 0.5 Z" fill="url(#visionStar)"/>
+    <path d="M-1.4 0 L-0.5 0.2 L0 0 L-0.5 -0.2 Z" fill="url(#visionStar)"/>
+    
+    <!-- Core -->
+    <circle cx="0" cy="0" r="0.4" fill="#fef3c7"/>
+    <circle cx="0" cy="0" r="0.2" fill="#fbbf24"/>
+  </g>
   
-  <!-- Dome structural elements -->
-  <ellipse cx="8" cy="7.5" rx="2.6" ry="2.2" fill="none" stroke="#f59e0b" stroke-width="0.15" opacity="0.6"/>
-  <ellipse cx="8" cy="7.5" rx="1.8" ry="1.5" fill="none" stroke="#fbbf24" stroke-width="0.2" opacity="0.8"/>
+  <!-- Discovery Star - Exploration energy (right) -->
+  <g transform="translate(12.5,7)">
+    <!-- Outer rays -->
+    <path d="M0 -1.8 L0.25 -0.6 L0 0 L-0.25 -0.6 Z" fill="url(#discoveryStar)" opacity="0.7"/>
+    <path d="M1.8 0 L0.6 -0.25 L0 0 L0.6 0.25 Z" fill="url(#discoveryStar)" opacity="0.7"/>
+    <path d="M0 1.8 L-0.25 0.6 L0 0 L0.25 0.6 Z" fill="url(#discoveryStar)" opacity="0.7"/>
+    <path d="M-1.8 0 L-0.6 0.25 L0 0 L-0.6 -0.25 Z" fill="url(#discoveryStar)" opacity="0.7"/>
+    
+    <!-- Inner star -->
+    <path d="M0 -1.2 L0.18 -0.4 L0 0 L-0.18 -0.4 Z" fill="url(#discoveryStar)"/>
+    <path d="M1.2 0 L0.4 -0.18 L0 0 L0.4 0.18 Z" fill="url(#discoveryStar)"/>
+    <path d="M0 1.2 L-0.18 0.4 L0 0 L0.18 0.4 Z" fill="url(#discoveryStar)"/>
+    <path d="M-1.2 0 L-0.4 0.18 L0 0 L-0.4 -0.18 Z" fill="url(#discoveryStar)"/>
+    
+    <!-- Core -->
+    <circle cx="0" cy="0" r="0.35" fill="#ddd6fe"/>
+    <circle cx="0" cy="0" r="0.18" fill="#8b5cf6"/>
+  </g>
   
-  <!-- Central stem as observatory tower -->
-  <line x1="8" y1="11" x2="8" y2="14.5" stroke="#047857" stroke-width="0.6" opacity="0.9"/>
+  <!-- Reflection Star - Contemplation (bottom) -->
+  <g transform="translate(8,11.5)">
+    <!-- Outer rays -->
+    <path d="M0 -1.6 L0.22 -0.55 L0 0 L-0.22 -0.55 Z" fill="url(#reflectionStar)" opacity="0.8"/>
+    <path d="M1.6 0 L0.55 -0.22 L0 0 L0.55 0.22 Z" fill="url(#reflectionStar)" opacity="0.8"/>
+    <path d="M0 1.6 L-0.22 0.55 L0 0 L0.22 0.55 Z" fill="url(#reflectionStar)" opacity="0.8"/>
+    <path d="M-1.6 0 L-0.55 0.22 L0 0 L-0.55 -0.22 Z" fill="url(#reflectionStar)" opacity="0.8"/>
+    
+    <!-- Inner star -->
+    <path d="M0 -1.1 L0.16 -0.37 L0 0 L-0.16 -0.37 Z" fill="url(#reflectionStar)"/>
+    <path d="M1.1 0 L0.37 -0.16 L0 0 L0.37 0.16 Z" fill="url(#reflectionStar)"/>
+    <path d="M0 1.1 L-0.16 0.37 L0 0 L0.16 0.37 Z" fill="url(#reflectionStar)"/>
+    <path d="M-1.1 0 L-0.37 0.16 L0 0 L-0.37 -0.16 Z" fill="url(#reflectionStar)"/>
+    
+    <!-- Core -->
+    <circle cx="0" cy="0" r="0.32" fill="#f0f9ff"/>
+    <circle cx="0" cy="0" r="0.16" fill="#7dd3fc"/>
+  </g>
   
-  <!-- Leaf veins as energy conduits -->
-  <path d="M8 4.5C6.5 5.5 5 7 4.8 8.5C5.2 10.2 6.8 11.5 8 12" 
-        fill="none" stroke="#34d399" stroke-width="0.25" opacity="0.6"/>
-  <path d="M8 4.5C9.5 5.5 11 7 11.2 8.5C10.8 10.2 9.2 11.5 8 12" 
-        fill="none" stroke="#34d399" stroke-width="0.25" opacity="0.6"/>
+  <!-- Knowledge Star - Wisdom (left) -->
+  <g transform="translate(3.5,7)">
+    <!-- Outer rays -->
+    <path d="M0 -1.7 L0.24 -0.58 L0 0 L-0.24 -0.58 Z" fill="url(#knowledgeStar)" opacity="0.75"/>
+    <path d="M1.7 0 L0.58 -0.24 L0 0 L0.58 0.24 Z" fill="url(#knowledgeStar)" opacity="0.75"/>
+    <path d="M0 1.7 L-0.24 0.58 L0 0 L0.24 0.58 Z" fill="url(#knowledgeStar)" opacity="0.75"/>
+    <path d="M-1.7 0 L-0.58 0.24 L0 0 L-0.58 -0.24 Z" fill="url(#knowledgeStar)" opacity="0.75"/>
+    
+    <!-- Inner star -->
+    <path d="M0 -1.15 L0.17 -0.39 L0 0 L-0.17 -0.39 Z" fill="url(#knowledgeStar)"/>
+    <path d="M1.15 0 L0.39 -0.17 L0 0 L0.39 0.17 Z" fill="url(#knowledgeStar)"/>
+    <path d="M0 1.15 L-0.17 0.39 L0 0 L0.17 0.39 Z" fill="url(#knowledgeStar)"/>
+    <path d="M-1.15 0 L-0.39 0.17 L0 0 L-0.39 -0.17 Z" fill="url(#knowledgeStar)"/>
+    
+    <!-- Core -->
+    <circle cx="0" cy="0" r="0.33" fill="#fef3c7"/>
+    <circle cx="0" cy="0" r="0.17" fill="#f472b6"/>
+  </g>
   
-  <!-- Celestial bodies orbiting -->
-  <circle cx="5.5" cy="6.5" r="0.3" fill="#60a5fa" opacity="0.9"/>
-  <circle cx="10.5" cy="6.8" r="0.25" fill="#f472b6" opacity="0.8"/>
-  <circle cx="9.8" cy="9.2" r="0.2" fill="#a78bfa" opacity="0.9"/>
-  <circle cx="6.2" cy="8.8" r="0.35" fill="#fbbf24" opacity="0.8"/>
+  <!-- Subtle connecting energy flows -->
+  <circle cx="10.2" cy="5.2" r="0.08" fill="#fbbf24" opacity="0.6">
+    <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="10.2" cy="8.8" r="0.06" fill="#8b5cf6" opacity="0.7">
+    <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="5.8" cy="8.8" r="0.07" fill="#7dd3fc" opacity="0.6">
+    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="5.8" cy="5.2" r="0.09" fill="#f472b6" opacity="0.5">
+    <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3.2s" repeatCount="indefinite"/>
+  </circle>
   
-  <!-- Observatory beacon -->
-  <circle cx="8" cy="6.5" r="0.4" fill="#fef3c7" opacity="1"/>
-  <circle cx="8" cy="6.5" r="0.2" fill="#f59e0b" opacity="0.9"/>
-  
-  <!-- Twinkling atmosphere -->
-  <circle cx="4.5" cy="5" r="0.08" fill="#ffffff" opacity="1"/>
-  <circle cx="11.5" cy="5.5" r="0.08" fill="#ffffff" opacity="0.9"/>
-  <circle cx="10.2" cy="10.5" r="0.08" fill="#ffffff" opacity="0.8"/>
-  <circle cx="5.8" cy="10.2" r="0.08" fill="#ffffff" opacity="0.9"/>
+  <!-- Distant cosmic dust -->
+  <circle cx="1" cy="2" r="0.03" fill="#ffffff" opacity="0.8"/>
+  <circle cx="15" cy="3" r="0.04" fill="#ffffff" opacity="0.6"/>
+  <circle cx="2" cy="13" r="0.03" fill="#ffffff" opacity="0.7"/>
+  <circle cx="14" cy="12" r="0.05" fill="#ffffff" opacity="0.9"/>
 </svg>
