@@ -2007,1558 +2007,1885 @@ tr:last-child td {
   }
 }
 
-/* ============================================
-   SECTION 21: ADVANCED FLASH CARD SYSTEM
-   ============================================ */
-
-/* Base Variables */
-:root {
-    --card-blur: 12px;
-    --card-bg: rgba(255, 255, 255, 0.08);
-    --card-bg-hover: rgba(255, 255, 255, 0.12);
-    --card-border: rgba(255, 255, 255, 0.18);
-    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    --card-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.15);
-    --card-text: rgba(255, 255, 255, 0.95);
-    --card-text-secondary: rgba(255, 255, 255, 0.7);
-    --card-radius: 16px;
-    --card-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --card-glow: 0 0 20px rgba(255, 255, 255, 0.1);
-}
-
-/* Dark mode adjustments */
-.theme-dark {
-    --card-bg: rgba(0, 0, 0, 0.3);
-    --card-bg-hover: rgba(0, 0, 0, 0.4);
-    --card-border: rgba(255, 255, 255, 0.1);
-    --card-text: rgba(255, 255, 255, 0.9);
-}
-
-/* Container System */
-.flash-container {
-    display: grid;
-    gap: 1.5rem;
-    padding: 1rem;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* Responsive Column System */
-.flash-container.cols-1 { grid-template-columns: 1fr; }
-.flash-container.cols-2 { grid-template-columns: repeat(2, 1fr); }
-.flash-container.cols-3 { grid-template-columns: repeat(3, 1fr); }
-.flash-container.cols-4 { grid-template-columns: repeat(4, 1fr); }
-.flash-container.cols-5 { grid-template-columns: repeat(5, 1fr); }
-.flash-container.cols-6 { grid-template-columns: repeat(6, 1fr); }
-.flash-container.cols-7 { grid-template-columns: repeat(7, 1fr); }
-.flash-container.cols-8 { grid-template-columns: repeat(8, 1fr); }
-
-/* Auto-responsive */
-.flash-container.cols-auto {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-
-/* Variable width columns */
-.flash-container.cols-wide { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
-.flash-container.cols-narrow { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-
-/* Base Flash Card */
-.flash-card {
-    position: relative;
-    background: var(--card-bg);
-    backdrop-filter: blur(var(--card-blur));
-    -webkit-backdrop-filter: blur(var(--card-blur));
-    border: 1px solid var(--card-border);
-    border-radius: var(--card-radius);
-    padding: 1.5rem;
-    transition: var(--card-transition);
-    cursor: pointer;
-    overflow: hidden;
-    box-shadow: var(--card-shadow);
-    min-height: 120px;
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: inherit;
-}
-
-.flash-card:hover {
-    background: var(--card-bg-hover);
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: var(--card-shadow-hover);
-    border-color: rgba(255, 255, 255, 0.3);
-}
-
-/* Card with Image */
-.flash-card.with-image {
-    padding: 0;
-    overflow: hidden;
-}
-
-.flash-card .card-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-    transition: var(--card-transition);
-}
-
-.flash-card:hover .card-image {
-    transform: scale(1.05);
-}
-
-.flash-card .card-content {
-    padding: 1.5rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.flash-card.with-image .card-content {
-    padding: 1.2rem;
-}
-
-/* Typography */
-.flash-card .card-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--card-text);
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-}
-
-.flash-card .card-subtitle {
-    font-size: 0.9rem;
-    color: var(--card-text-secondary);
-    margin-bottom: 0.8rem;
-    font-weight: 400;
-}
-
-.flash-card .card-description {
-    font-size: 0.95rem;
-    color: var(--card-text-secondary);
-    line-height: 1.5;
-    flex-grow: 1;
-}
-
-/* Badge System */
-.flash-card .card-badge {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
-    backdrop-filter: blur(10px);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    color: var(--card-text);
-    border: 1px solid rgba(255,255,255,0.2);
-    z-index: 10;
-}
-
-/* Multiple badges */
-.flash-card .card-badges {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    display: flex;
-    gap: 0.5rem;
-    z-index: 10;
-}
-
-/* Icon Support */
-.flash-card .card-icon {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 1rem;
-    opacity: 0.9;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-}
-
-/* Variants */
-
-/* Minimal Card */
-.flash-card.minimal {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(4px);
-    padding: 1rem;
-    min-height: 80px;
-}
-
-.flash-card.minimal:hover {
-    background: rgba(255, 255, 255, 0.06);
-    transform: translateY(-2px);
-}
-
-/* Hero Card */
-.flash-card.hero {
-    min-height: 300px;
-    background: linear-gradient(135deg, 
-        rgba(255,255,255,0.1) 0%, 
-        rgba(255,255,255,0.05) 100%);
-    border: 2px solid var(--card-border);
-}
-
-.flash-card.hero .card-image {
-    height: 300px;
-}
-
-.flash-card.hero .card-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-}
-
-/* Compact Card */
-.flash-card.compact {
-    padding: 0.8rem 1rem;
-    min-height: 60px;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-}
-
-.flash-card.compact .card-icon {
-    width: 32px;
-    height: 32px;
-    margin: 0;
-}
-
-.flash-card.compact .card-content {
-    padding: 0;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-
-/* Tall Card */
-.flash-card.tall {
-    min-height: 400px;
-}
-
-.flash-card.tall .card-image {
-    height: 250px;
-}
-
-/* Wide Card */
-.flash-card.wide {
-    grid-column: span 2;
-}
-
-/* Full Width Card */
-.flash-card.full-width {
-    grid-column: 1 / -1;
-}
-
-/* Color Variants */
-.flash-card.accent-blue {
-    background: linear-gradient(135deg, 
-        rgba(59, 130, 246, 0.15), 
-        rgba(59, 130, 246, 0.05));
-    border-color: rgba(59, 130, 246, 0.3);
-}
-
-.flash-card.accent-purple {
-    background: linear-gradient(135deg, 
-        rgba(147, 51, 234, 0.15), 
-        rgba(147, 51, 234, 0.05));
-    border-color: rgba(147, 51, 234, 0.3);
-}
-
-.flash-card.accent-green {
-    background: linear-gradient(135deg, 
-        rgba(34, 197, 94, 0.15), 
-        rgba(34, 197, 94, 0.05));
-    border-color: rgba(34, 197, 94, 0.3);
-}
-
-.flash-card.accent-gold {
-    background: linear-gradient(135deg, 
-        rgba(251, 191, 36, 0.15), 
-        rgba(251, 191, 36, 0.05));
-    border-color: rgba(251, 191, 36, 0.3);
-}
-
-.flash-card.accent-red {
-    background: linear-gradient(135deg, 
-        rgba(239, 68, 68, 0.15), 
-        rgba(239, 68, 68, 0.05));
-    border-color: rgba(239, 68, 68, 0.3);
-}
-
-.flash-card.accent-pink {
-    background: linear-gradient(135deg, 
-        rgba(236, 72, 153, 0.15), 
-        rgba(236, 72, 153, 0.05));
-    border-color: rgba(236, 72, 153, 0.3);
-}
-
-.flash-card.accent-cyan {
-    background: linear-gradient(135deg, 
-        rgba(6, 182, 212, 0.15), 
-        rgba(6, 182, 212, 0.05));
-    border-color: rgba(6, 182, 212, 0.3);
-}
-
-.flash-card.accent-orange {
-    background: linear-gradient(135deg, 
-        rgba(249, 115, 22, 0.15), 
-        rgba(249, 115, 22, 0.05));
-    border-color: rgba(249, 115, 22, 0.3);
-}
-
-/* Special Effects */
-
-/* Glow Effect */
-.flash-card.glow {
-    box-shadow: var(--card-shadow), var(--card-glow);
-}
-
-.flash-card.glow:hover {
-    box-shadow: var(--card-shadow-hover), 
-                0 0 30px rgba(255, 255, 255, 0.2);
-}
-
-/* Shimmer Effect */
-.flash-card.shimmer {
-    position: relative;
-    overflow: hidden;
-}
-
-.flash-card.shimmer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.1),
-        transparent
-    );
-    transition: left 0.5s;
-    z-index: 1;
-}
-
-.flash-card.shimmer:hover::before {
-    left: 100%;
-}
-
-/* Pulse Effect */
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
-}
-
-.flash-card.pulse {
-    animation: pulse 2s infinite;
-}
-
-/* Bounce hover effect */
-@keyframes bounce {
-    0%, 20%, 60%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    80% { transform: translateY(-5px); }
-}
-
-.flash-card.bounce:hover {
-    animation: bounce 0.6s;
-}
-
-/* Gradient Border */
-.flash-card.gradient-border {
-    background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
-                linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%) border-box;
-    border: 2px solid transparent;
-}
-
-/* Frosted Glass Effect */
-.flash-card.frosted {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-/* Neon Glow Effect */
-.flash-card.neon {
-    border: 2px solid transparent;
-    background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
-                linear-gradient(45deg, #ff006e, #8338ec, #3a86ff) border-box;
-    box-shadow: 0 0 20px rgba(255, 0, 110, 0.3);
-}
-
-/* Artist Card Specific */
-.flash-card.artist-card {
-    text-align: center;
-    background: radial-gradient(circle at top, 
-        rgba(255,255,255,0.1), 
-        rgba(255,255,255,0.02));
-}
-
-.flash-card.artist-card .card-image {
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 1rem;
-    border: 3px solid rgba(255, 255, 255, 0.1);
-    object-fit: cover;
-}
-
-.flash-card.artist-card .card-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 0.3rem;
-}
-
-.flash-card.artist-card .card-subtitle {
-    font-size: 0.85rem;
-    opacity: 0.8;
-    font-style: italic;
-}
-
-/* Playlist Card */
-.flash-card.playlist-card {
-    background: linear-gradient(135deg, 
-        rgba(30, 215, 96, 0.1), 
-        rgba(30, 215, 96, 0.02));
-    border-color: rgba(30, 215, 96, 0.2);
-    position: relative;
-}
-
-.flash-card.playlist-card::after {
-    content: '♪';
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    font-size: 2rem;
-    opacity: 0.1;
-    pointer-events: none;
-}
-
-.flash-card.playlist-card .card-image {
-    border-radius: 8px;
-}
-
-/* Navigation Card */
-.flash-card.nav-card {
-    background: linear-gradient(135deg,
-        rgba(255,255,255,0.05),
-        rgba(255,255,255,0.02));
-    border-width: 2px;
-    position: relative;
-    overflow: visible;
-}
-
-.flash-card.nav-card::after {
-    content: '→';
-    position: absolute;
-    right: 1.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.5rem;
-    opacity: 0.5;
-    transition: var(--card-transition);
-    pointer-events: none;
-}
-
-.flash-card.nav-card:hover::after {
-    right: 1rem;
-    opacity: 0.8;
-}
-
-/* Category Card */
-.flash-card.category-card {
-    background: linear-gradient(135deg,
-        rgba(99, 102, 241, 0.1),
-        rgba(139, 92, 246, 0.05));
-    border: 2px solid rgba(99, 102, 241, 0.2);
-    min-height: 150px;
-}
-
-.flash-card.category-card .card-icon {
-    width: 64px;
-    height: 64px;
-    margin-bottom: 1rem;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
-}
-
-/* Stats Card */
-.flash-card.stats-card {
-    text-align: center;
-    background: linear-gradient(135deg,
-        rgba(16, 185, 129, 0.1),
-        rgba(16, 185, 129, 0.02));
-    border-color: rgba(16, 185, 129, 0.3);
-}
-
-.flash-card.stats-card .card-number {
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: var(--card-text);
-    margin-bottom: 0.5rem;
-    line-height: 1;
-}
-
-.flash-card.stats-card .card-label {
-    font-size: 0.9rem;
-    color: var(--card-text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* Profile Card */
-.flash-card.profile-card {
-    background: linear-gradient(135deg,
-        rgba(168, 85, 247, 0.1),
-        rgba(168, 85, 247, 0.02));
-    border-color: rgba(168, 85, 247, 0.3);
-    text-align: center;
-}
-
-.flash-card.profile-card .card-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin: 0 auto 1rem;
-    border: 3px solid rgba(255, 255, 255, 0.2);
-    object-fit: cover;
-}
-
-/* Feature Card */
-.flash-card.feature-card {
-    background: linear-gradient(135deg,
-        rgba(245, 158, 11, 0.1),
-        rgba(245, 158, 11, 0.02));
-    border-color: rgba(245, 158, 11, 0.3);
-    position: relative;
-}
-
-.flash-card.feature-card::before {
-    content: '✨';
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    font-size: 1.5rem;
-    opacity: 0.3;
-    pointer-events: none;
-}
-
-/* Link Styling */
-.flash-card-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-/* Tags */
-.flash-card .card-tags {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-}
-
-.flash-card .tag {
-    padding: 0.2rem 0.6rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    font-size: 0.8rem;
-    color: var(--card-text-secondary);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Status indicators */
-.flash-card .status-dot {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #10b981;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    z-index: 10;
-}
-
-.flash-card .status-dot.offline { background: #ef4444; }
-.flash-card .status-dot.away { background: #f59e0b; }
-.flash-card .status-dot.busy { background: #8b5cf6; }
-
-/* Progress Bar */
-.flash-card .progress-bar {
-    width: 100%;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-    margin-top: 1rem;
-    overflow: hidden;
-}
-
-.flash-card .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #10b981, #34d399);
-    border-radius: 2px;
-    transition: width 0.3s ease;
-}
-
-/* Action buttons */
-.flash-card .card-actions {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.flash-card:hover .card-actions {
-    opacity: 1;
-}
-
-.flash-card .action-btn {
-    padding: 0.3rem 0.6rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
-    color: var(--card-text);
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition: var(--card-transition);
-}
-
-.flash-card .action-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-1px);
-}
-
-/* Meta information */
-.flash-card .card-meta {
-    font-size: 0.8rem;
-    color: var(--card-text-secondary);
-    margin-top: auto;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Overlay content */
-.flash-card .card-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, 
-        rgba(0, 0, 0, 0.8), 
-        rgba(0, 0, 0, 0.4), 
-        transparent);
-    padding: 2rem 1.5rem 1.5rem;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-}
-
-.flash-card:hover .card-overlay {
-    transform: translateY(0);
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-    .flash-container.cols-8 { grid-template-columns: repeat(6, 1fr); }
-    .flash-container.cols-7 { grid-template-columns: repeat(5, 1fr); }
-    .flash-container.cols-6 { grid-template-columns: repeat(4, 1fr); }
-}
-
-@media (max-width: 992px) {
-    .flash-container.cols-8,
-    .flash-container.cols-7,
-    .flash-container.cols-6,
-    .flash-container.cols-5 { 
-        grid-template-columns: repeat(3, 1fr); 
-    }
-}
-
-@media (max-width: 768px) {
-    .flash-container.cols-4,
-    .flash-container.cols-5,
-    .flash-container.cols-6,
-    .flash-container.cols-7,
-    .flash-container.cols-8 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .flash-container.cols-3 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .flash-card.wide,
-    .flash-card.full-width {
-        grid-column: 1 / -1;
-    }
-}
-
-@media (max-width: 480px) {
-    .flash-container.cols-2,
-    .flash-container.cols-3,
-    .flash-container.cols-4,
-    .flash-container.cols-5,
-    .flash-container.cols-6,
-    .flash-container.cols-7,
-    .flash-container.cols-8 {
-        grid-template-columns: 1fr;
-    }
-
-    .flash-card {
-        padding: 1rem;
-    }
-
-    .flash-card.hero {
-        min-height: 250px;
-    }
-
-    .flash-card.artist-card .card-image {
-        width: 100px;
-        height: 100px;
-    }
-}
-
-/* Animation delays for staggered effects */
-.flash-card:nth-child(1) { animation-delay: 0.1s; }
-.flash-card:nth-child(2) { animation-delay: 0.2s; }
-.flash-card:nth-child(3) { animation-delay: 0.3s; }
-.flash-card:nth-child(4) { animation-delay: 0.4s; }
-.flash-card:nth-child(5) { animation-delay: 0.5s; }
-.flash-card:nth-child(6) { animation-delay: 0.6s; }
-
-/* Fade-in animation */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.flash-card.animate-in {
-    animation: fadeInUp 0.6s ease-out forwards;
-}
-
-/* Custom scrollbar for card content */
-.flash-card::-webkit-scrollbar {
-    width: 4px;
-}
-
-.flash-card::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-}
-
-.flash-card::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-}
-
-.flash-card::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-    .flash-card {
-        border-width: 2px;
-        background: rgba(255, 255, 255, 0.15);
-    }
-    
-    .flash-card:hover {
-        background: rgba(255, 255, 255, 0.25);
-    }
-}
-
-/* Reduced motion support */
+/* ======================================================================
+   custom.css — Phase 1: Foundations & Design Tokens
+   (Glass Card Framework v3.0 — Core tokens + base card + layout utils)
+   ====================================================================== */
+
+/* -------------------------
+   Design tokens (canonical)
+   ------------------------- */
+:root{
+  /* Accent (tasteful, muted violet) */
+  --accent: #7C5CFA;
+  --accent-600: #6F4CF0;
+  --accent-400: #A48CFF;
+
+  /* Core palette (neutral / translucent so background shows through) */
+  --glass-bg-weak: rgba(255,255,255,0.04); /* subtle, for light-over-dark or light backgrounds */
+  --glass-bg-mid:  rgba(255,255,255,0.06);
+  --glass-bg-strong: rgba(255,255,255,0.10);
+
+  --glass-dark-weak: rgba(0,0,0,0.18);  /* used in theme dark override */
+  --glass-dark-mid:  rgba(0,0,0,0.22);
+
+  /* Text */
+  --text-primary: rgba(255,255,255,0.94);
+  --text-secondary: rgba(255,255,255,0.72);
+  --text-muted: rgba(255,255,255,0.56);
+
+  /* Spacing & sizes */
+  --space-xs: 0.375rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 1.75rem;
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  /* Blur & shadows (tuned for subtlety so the background image still reads) */
+  --glass-blur: 10px;
+  --glass-saturation: 140%;
+  --shadow-sm: 0 6px 18px rgba(0,0,0,0.08);
+  --shadow-md: 0 12px 36px rgba(0,0,0,0.12);
+  --card-transition: all 280ms cubic-bezier(.2,.9,.3,1);
+}
+
+/* Theme "auto" (neutral default) - cards are intentionally subtle so your bg image shows through */
+.theme-auto { 
+  --card-bg: var(--glass-bg-mid);
+  --card-border: rgba(255,255,255,0.06);
+  --card-text: var(--text-primary);
+}
+
+/* Light / Dark override helpers (used later by theme packs; included now so CSS is consistent) */
+.theme-dark { 
+  --card-bg: var(--glass-dark-mid);
+  --card-border: rgba(255,255,255,0.06);
+  --card-text: rgba(255,255,255,0.92);
+}
+.theme-light {
+  --card-bg: var(--glass-bg-mid);
+  --card-border: rgba(0,0,0,0.06);
+  --card-text: rgba(0,0,0,0.9);
+}
+
+/* --------------------------
+   Global layout helpers
+   -------------------------- */
+.dg-grid {
+  display: grid;
+  gap: var(--space-md);
+  width: 100%;
+  box-sizing: border-box;
+  align-items: start;
+}
+
+/* responsive preset columns (you can add classes: .cols-1 ... .cols-6) */
+.dg-grid.cols-1 { grid-template-columns: 1fr; }
+.dg-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.dg-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.dg-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.dg-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
+.dg-grid.cols-6 { grid-template-columns: repeat(6, 1fr); }
+
+/* auto-fit grid is the default recommended: min width 220px, allows up to 6 visible on wide screens */
+.dg-grid.cols-auto {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* wide / narrow presets */
+.dg-grid.cols-wide { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.dg-grid.cols-narrow { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+
+/* Masonry-ish (CSS columns fallback) - use .dg-masonry */
+.dg-masonry {
+  column-gap: var(--space-md);
+  column-fill: auto;
+}
+.dg-masonry .dg-card {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 var(--space-md);
+}
+
+/* deck / stacked overlapping layout */
+.dg-deck {
+  position: relative;
+  display: grid;
+  gap: 0;
+  grid-auto-flow: row;
+}
+
+/* small utilities */
+.dg-row { display:flex; gap:var(--space-sm); align-items:center; }
+.dg-center { display:flex; align-items:center; justify-content:center; }
+
+/* --------------------------
+   Base Card: core element
+   -------------------------- */
+/* canonical card class: ".dg-card" */
+.dg-card {
+  position: relative;
+  background: var(--card-bg, var(--glass-bg-mid));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+  border: 1px solid var(--card-border, rgba(255,255,255,0.06));
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-md);
+  color: var(--card-text, var(--text-primary));
+  transition: var(--card-transition);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none; /* works for <a> as a card */
+  min-height: 92px;
+  overflow: hidden; /* overlay & effects rely on this */
+  isolation: isolate; /* ensure pseudo elements sit behind content */
+}
+
+/* hover / focus behavior (subtle so bg still visible) */
+.dg-card:hover,
+.dg-card:focus-within {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+/* interactive link support: allow <a class="dg-card" href=""> ... </a> */
+.dg-card.dg-link { cursor: pointer; }
+
+/* --------------------------
+   Card sizes
+   -------------------------- */
+.dg-card--sm { padding: var(--space-sm); min-height: 72px; border-radius: var(--radius-sm); }
+.dg-card--md { padding: var(--space-md); min-height: 110px; border-radius: var(--radius-md); }
+.dg-card--lg { padding: var(--space-lg); min-height: 220px; border-radius: var(--radius-lg); }
+.dg-card--hero { padding: var(--space-lg); min-height: 360px; border-radius: calc(var(--radius-lg) + 6px); }
+
+/* grid span helpers to use inside .dg-grid */
+.span-1 { grid-column: span 1; }
+.span-2 { grid-column: span 2; }
+.span-3 { grid-column: span 3; }
+.span-4 { grid-column: span 4; }
+
+/* --------------------------
+   Card internals / utilities
+   -------------------------- */
+.dg-card .dg-image {
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  border-radius: calc(var(--radius-md) - 4px);
+  display:block;
+  margin-bottom: var(--space-sm);
+  transition: transform 350ms ease;
+}
+.dg-card:hover .dg-image { transform: scale(1.03); }
+
+/* content area that flexes to bottom (for meta alignment) */
+.dg-card .dg-content {
+  display:flex;
+  flex-direction:column;
+  gap:0.6rem;
+  flex: 1 1 auto;
+}
+
+/* title / subtitle */
+.dg-card .dg-title {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--card-text);
+}
+.dg-card .dg-sub {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  margin-top: -2px;
+}
+
+/* excerpt / body */
+.dg-card .dg-excerpt {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  flex: 1 1 auto;
+  margin-top: 0.2rem;
+  overflow:hidden;
+}
+
+/* tags / badges */
+.dg-card .dg-tags {
+  display:flex;
+  gap: 0.45rem;
+  flex-wrap:wrap;
+  margin-top: 0.6rem;
+}
+.dg-tag {
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.04);
+  color: var(--text-secondary);
+}
+
+/* absolute top-right badge bank */
+.dg-badges {
+  position:absolute;
+  top: 12px;
+  right: 12px;
+  display:flex;
+  gap:0.4rem;
+  z-index: 6;
+}
+
+/* status dot (small) */
+.dg-status {
+  width:10px; height:10px; border-radius:50%;
+  border: 2px solid rgba(255,255,255,0.08);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.25) inset;
+}
+
+/* actions reveal on hover (small action buttons) */
+.dg-actions {
+  display:flex;
+  gap:0.5rem;
+  margin-top:0.6rem;
+  opacity:0;
+  transition: opacity 220ms ease;
+}
+.dg-card:hover .dg-actions,
+.dg-card:focus-within .dg-actions { opacity:1; }
+
+/* each action button */
+.dg-btn {
+  padding:6px 8px;
+  border-radius:8px;
+  font-size:0.8rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  color:var(--card-text);
+}
+
+/* overlay area (reveals on hover) */
+.dg-overlay {
+  position:absolute;
+  left:0; right:0; bottom:0;
+  padding: var(--space-md);
+  background: linear-gradient(to top, rgba(0,0,0,0.28), transparent);
+  transform: translateY(60%);
+  transition: transform 300ms ease;
+  pointer-events:none;
+}
+.dg-card:hover .dg-overlay { transform: translateY(0); pointer-events:auto; }
+
+/* subtle accent edge (thin line on left) to mark categories without dominating) */
+.dg-accent-edge {
+  position:absolute;
+  left:0; top:0; bottom:0;
+  width:4px;
+  border-radius: 0 8px 8px 0;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 60%, transparent), transparent);
+  opacity: 0.9;
+}
+
+/* image badge (circular avatar) */
+.dg-avatar {
+  width:56px; height:56px; border-radius:50%; object-fit:cover;
+  border: 2px solid rgba(255,255,255,0.06);
+}
+
+/* progress bar micro UI */
+.dg-progress {
+  height:6px; width:100%; background: rgba(255,255,255,0.04); border-radius:6px; overflow:hidden;
+}
+.dg-progress > i { display:block; height:100%; width:40%; background: linear-gradient(90deg, var(--accent), var(--accent-400)); transition: width 350ms ease; }
+
+/* --------------------------
+   Accessibility + performance
+   -------------------------- */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-    .flash-card,
-    .flash-card *,
-    .flash-card::before,
-    .flash-card::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
+  .dg-card, .dg-image, .dg-overlay, .dg-actions { transition: none !important; animation: none !important; transform: none !important; }
 }
 
-/* Print styles */
+/* High contrast */
+@media (prefers-contrast: high) {
+  .dg-card { border-width: 2px; background: rgba(255,255,255,0.12); }
+}
+
+/* Print rules */
 @media print {
-    .flash-card {
-        background: white !important;
-        color: black !important;
-        border: 2px solid black !important;
-        box-shadow: none !important;
-        break-inside: avoid;
-        margin-bottom: 1rem;
-    }
-    
-    .flash-card .card-image {
-        filter: grayscale(100%);
-    }
+  .dg-card { background: white !important; color: black !important; -webkit-print-color-adjust: exact; box-shadow:none !important; border:1px solid #000; }
+  .dg-image { filter: grayscale(100%); }
 }
 
-/* ============================================
-   GLASS MORPHISM FLASH CARD SYSTEM V2.0
-   For Obsidian Digital Garden
-   ============================================ */
+/* Performance hint: compact mode (turn off heavy effects for very long lists) */
+.dg-compact-mode .dg-card {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  border-color: rgba(0,0,0,0.06) !important;
+  transform: none !important;
+}
 
-/* Core Design System Variables */
+/* --------------------------
+   Small helper classes
+   -------------------------- */
+.hidden { display:none !important; }
+.kv { font-weight:700; font-size:0.85rem; color:var(--text-secondary); }
+
+/* --------------------------
+   End of Phase 1
+   -------------------------- */
+
+/* ======================================================================
+   Phase 2: Layout Systems — grid, mosaic, masonry, deck, showcase
+   (Append this block to your custom.css after Phase 1)
+   ====================================================================== */
+
+/* --------------------------
+   Auto column sizing helpers
+   -------------------------- */
+/* Default recommended grid container (up to 6) */
+.dg-grid.cols-auto {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+/* Force max of 6 columns on very wide screens, with responsive fallbacks */
+@media (min-width: 1600px) {
+  .dg-grid.cols-auto { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+}
+@media (min-width: 1280px) and (max-width:1599px) {
+  .dg-grid.cols-auto { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+@media (min-width: 992px) and (max-width:1279px) {
+  .dg-grid.cols-auto { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 768px) {
+  .dg-grid.cols-auto { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .dg-grid.cols-auto { grid-template-columns: 1fr; }
+}
+
+/* Simple span helpers (already in Phase1) — ensure they are responsive-friendly */
+@media (max-width: 768px) {
+  .span-2, .span-3, .span-4 { grid-column: span 1 !important; } /* mobile collapse */
+}
+
+/* --------------------------
+   Mosaic layout (dense auto-fit)
+   -------------------------- */
+.dg-mosaic {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-md);
+  grid-auto-flow: dense; /* allows short items to fill holes */
+}
+
+/* utility: class-based span for mosaic (overrides default widths) */
+.dg-mosaic .span-2 { grid-column: span 2; }
+.dg-mosaic .span-3 { grid-column: span 3; }
+
+/* --------------------------
+   Faux masonry (CSS columns approach)
+   - Works well for mixed-height cards; recommended for image-heavy flows.
+   -------------------------- */
+.dg-masonry {
+  column-gap: var(--space-md);
+  column-width: 300px; /* browser will create columns ~300px wide */
+}
+.dg-masonry .dg-card {
+  display:inline-block; /* allows proper column flow */
+  width: 100%;
+  margin-bottom: var(--space-md);
+}
+
+/* Masonry grid fallback when columns are not desired (grid-based masonry) */
+.dg-masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-md);
+}
+
+/* --------------------------
+   Deck / Stacked overlapping panels
+   -------------------------- */
+.dg-deck {
+  display: grid;
+  gap: 0;
+  grid-auto-flow: row;
+}
+
+.dg-deck .dg-card {
+  margin: 0 auto;
+  width: min(92%, 980px);
+  transform-origin: center;
+  transition: transform 420ms cubic-bezier(.2,.9,.3,1), box-shadow 320ms;
+  position: relative;
+}
+
+/* slight offset stacking: apply classes to children as needed */
+.dg-deck .card-stack-1 { transform: translateY(0px) rotate(-1deg) scale(1); z-index:10; }
+.dg-deck .card-stack-2 { transform: translateY(18px) rotate(0.5deg) scale(0.99); z-index:8; }
+.dg-deck .card-stack-3 { transform: translateY(36px) rotate(-0.6deg) scale(0.98); z-index:6; }
+
+/* hover the deck to lift the top card */
+.dg-deck:hover .card-stack-1 { transform: translateY(-6px) rotate(-0.5deg) scale(1.01); box-shadow: var(--shadow-md); }
+
+/* --------------------------
+   Showcase / Carousel (CSS-only)
+   - Manual control using radio inputs (accessible)
+   -------------------------- */
+/* container */
+.dg-showcase {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* slide-track is wide horizontally and contains slides inline-block */
+.dg-showcase .showcase-track {
+  display: flex;
+  gap: var(--space-md);
+  width: 100%;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* each slide */
+.dg-showcase .showcase-slide {
+  min-width: min(82%, 980px);
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+}
+
+/* Mobile: make it full width smaller */
+@media (max-width: 768px) {
+  .dg-showcase .showcase-slide { min-width: 92%; }
+}
+
+/* Controls (next/prev) optionally visible — styled labels for radios */
+.dg-showcase-controls {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  right: 12px;
+  display:flex;
+  justify-content:space-between;
+  pointer-events:none;
+}
+.dg-showcase-controls .btn {
+  pointer-events:auto;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 8px 12px;
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  transition: transform 180ms ease;
+}
+
+/* small indicator strip (dots) */
+.dg-showcase .showcase-dots {
+  display:flex;
+  gap:6px;
+  justify-content:center;
+  margin-top: var(--space-sm);
+}
+
+/* radio-driven slide selection (progressive enhancement)
+   Note: we'll provide accessible markup in examples. */
+
+/* --------------------------
+   Auto-fit utilities & misc
+   -------------------------- */
+/* small grid gap variants */
+.dg-grid.gap-sm { gap: var(--space-sm); }
+.dg-grid.gap-lg { gap: var(--space-lg); }
+
+/* full-width helper to let a card span the entire row in any grid */
+.dg-full-row { grid-column: 1 / -1; }
+
+/* compact column helper (useful for sidebars) */
+.dg-sidebar { max-width: 360px; width:100%; }
+
+/* --------------------------
+   Template helper classes (explicit)
+   -------------------------- */
+.template-hero-nav .hero-area { grid-column: 1 / -1; }
+.template-hero-nav .nav-area { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-md); }
+
+/* --------------------------
+   Small transitions & accessibility
+   -------------------------- */
+.dg-grid .dg-card:focus { outline: 3px solid color-mix(in srgb, var(--accent) 18%, transparent); outline-offset: 3px; }
+
+/* enable compact mode for very large lists (suggested used on index pages) */
+.dg-compact-mode .dg-showcase .showcase-track,
+.dg-compact-mode .dg-mosaic,
+.dg-compact-mode .dg-grid {
+  gap: var(--space-sm);
+}
+.dg-compact-mode .dg-card { backdrop-filter:none; box-shadow:none; border-color: rgba(0,0,0,0.06); }
+
+/* End Phase 2 */
+
+/* =========================================================================
+   Phase 3: Core Card Archetypes
+   (Append to custom.css — works with Phase1 tokens & Phase2 layouts)
+   Default sample image used in examples: /img/MALOGO/Fullflavor.png
+   ========================================================================= */
+
+/* ---------------------------
+   Small helper for default images
+   --------------------------- */
+/* Use this if you want a pseudo bg fallback (note: some browsers won't load url in CSS var) */
 :root {
-    /* Glass Morphism Base */
-    --glass-blur: 16px;
-    --glass-saturation: 180%;
-    --glass-bg-light: rgba(255, 255, 255, 0.05);
-    --glass-bg-medium: rgba(255, 255, 255, 0.08);
-    --glass-bg-heavy: rgba(255, 255, 255, 0.12);
-    --glass-border: rgba(255, 255, 255, 0.15);
-    --glass-border-hover: rgba(255, 255, 255, 0.25);
-    
-    /* Typography */
-    --text-primary: rgba(255, 255, 255, 0.95);
-    --text-secondary: rgba(255, 255, 255, 0.75);
-    --text-tertiary: rgba(255, 255, 255, 0.6);
-    
-    /* Shadows & Effects */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.2);
-    --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.3);
-    
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    
-    /* Spacing */
-    --gap-xs: 0.5rem;
-    --gap-sm: 1rem;
-    --gap-md: 1.5rem;
-    --gap-lg: 2rem;
-    --gap-xl: 3rem;
+  --dg-default-img: "/img/MALOGO/Fullflavor.png";
 }
 
-/* ============================================
-   CONTAINER LAYOUTS
-   ============================================ */
-
-/* Base Container */
-.glass-grid {
-    display: grid;
-    gap: var(--gap-md);
-    padding: var(--gap-sm);
-    width: 100%;
-    box-sizing: border-box;
-    position: relative;
+/* ---------------------------
+   Common internal helpers used by archetypes
+   --------------------------- */
+.dg-card .card-head {
+  display:flex;
+  gap:0.75rem;
+  align-items:center;
+}
+.dg-card .card-head .title-wrap { flex:1; min-width:0; }
+.dg-card .card-meta-row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:0.5rem;
+  margin-top: 0.6rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
 }
 
-/* Grid Layouts */
-.glass-grid.grid-1 { grid-template-columns: 1fr; }
-.glass-grid.grid-2 { grid-template-columns: repeat(2, 1fr); }
-.glass-grid.grid-3 { grid-template-columns: repeat(3, 1fr); }
-.glass-grid.grid-4 { grid-template-columns: repeat(4, 1fr); }
-.glass-grid.grid-5 { grid-template-columns: repeat(5, 1fr); }
-.glass-grid.grid-6 { grid-template-columns: repeat(6, 1fr); }
-
-/* Special Layouts */
-.glass-grid.grid-featured {
-    grid-template-columns: 2fr 1fr;
+/* subtle small icon placeholder */
+.dg-card .card-ico {
+  width:46px; height:46px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.03);
+  flex-shrink:0;
 }
 
-.glass-grid.grid-mosaic {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    grid-auto-flow: dense;
+/* small circular thumbnail */
+.dg-card .card-thumb {
+  width:56px; height:56px; border-radius:10px; object-fit:cover; flex-shrink:0;
+  border:2px solid rgba(255,255,255,0.04);
 }
 
-.glass-grid.grid-masonry {
-    column-count: 3;
-    column-gap: var(--gap-md);
+/* soft caption under images */
+.dg-card .card-caption { font-size:0.82rem; color:var(--text-secondary); margin-top:0.4rem; }
+
+/* micro sparkline (pure CSS gradient block) */
+.dg-sparkline {
+  height:28px; background: linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.06));
+  border-radius:6px; position:relative; overflow:hidden;
+}
+.dg-sparkline::after {
+  content: '';
+  position:absolute; right:0; top:0; bottom:0;
+  width: 40%; background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 40%, transparent), transparent);
+  transform-origin:right center; opacity:0.95;
 }
 
-.glass-grid.grid-masonry .glass-card {
+/* small progress ring imitation using radial gradient */
+.dg-progress-ring {
+  width:48px;height:48px;border-radius:50%;background:
+    conic-gradient(var(--accent) 0 60%, rgba(255,255,255,0.06) 60% 100%),
+    radial-gradient(closest-side, rgba(0,0,0,0.12) 78%, transparent 79%);
+  display:inline-block; flex-shrink:0;
+}
+
+/* ---------------------------
+   1) HERO / FEATURE CARD
+   - big, full-bleed feel while still glassy
+   --------------------------- */
+.card-hero {
+  /* hero-specific rules */
+  display:block;
+  position:relative;
+  overflow:hidden;
+  padding: clamp(1.25rem, 2.6vw, 3rem);
+  min-height: 380px;
+  border-radius: calc(var(--radius-lg) + 4px);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--card-bg) 70%, transparent), rgba(0,0,0,0.06));
+  box-shadow: var(--shadow-lg);
+}
+
+/* hero blurred bg layer (optionally place an <img class="hero-bg"> inside card) */
+.card-hero .hero-bg {
+  position:absolute; inset:0; z-index:-2; object-fit:cover; width:100%; height:100%; filter: blur(12px) saturate(120%); opacity:0.38;
+}
+.card-hero .hero-overlay {
+  position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.0)); z-index:-1;
+}
+
+/* hero content */
+.card-hero .hero-badge { display:inline-block; padding:8px 14px; border-radius:999px; font-weight:600; background: color-mix(in srgb, var(--accent) 10%, transparent); border:1px solid rgba(255,255,255,0.06); color:var(--card-text); }
+.card-hero .hero-title { font-size: clamp(1.6rem, 3.2vw, 2.4rem); font-weight:800; margin:0 0 .4rem; color:var(--card-text); line-height:1.05; }
+.card-hero .hero-lead { font-size:1rem; color:var(--text-secondary); max-width:68ch; }
+
+/* big CTA group */
+.card-hero .hero-ctas { margin-top:1.25rem; display:flex; gap:0.75rem; flex-wrap:wrap; }
+.card-hero .hero-cta {
+  padding: 10px 16px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border:1px solid rgba(255,255,255,0.06); color: var(--card-text); font-weight:600;
+}
+.card-hero .hero-cta.primary {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 18%, transparent), color-mix(in srgb, var(--accent) 8%, transparent));
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  box-shadow: 0 6px 22px color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+/* ---------------------------
+   2) NAV / PORTAL CARD
+   - clear portal CTA with arrow affordance
+   --------------------------- */
+.card-nav {
+  display:flex; align-items:center; gap:1rem;
+  padding: var(--space-md);
+}
+.card-nav .nav-left { display:flex; gap:0.75rem; align-items:center; }
+.card-nav .nav-title { font-weight:700; font-size:1.05rem; margin:0; }
+.card-nav .nav-desc { font-size:0.88rem; color:var(--text-secondary); }
+.card-nav .nav-arrow {
+  width:44px; height:44px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04);
+  transition: transform 220ms ease;
+}
+.card-nav:hover .nav-arrow { transform: translateX(6px); }
+
+/* ---------------------------
+   3) NOTE CARD (content-first)
+   - title, excerpt, backlinks summary
+   --------------------------- */
+.card-note {
+  padding: var(--space-md);
+  min-height: 140px;
+}
+.card-note .card-excerpt { font-size:0.96rem; color:var(--text-muted); margin-top:0.6rem; }
+.card-note .backlink-preview { margin-top:0.6rem; font-size:0.82rem; color:var(--text-secondary); display:flex; gap:0.5rem; flex-wrap:wrap; }
+
+/* small pill for counts */
+.card-note .pill {
+  display:inline-block; padding:4px 8px; border-radius:999px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04);
+  color:var(--text-secondary); font-size:0.78rem;
+}
+
+/* ---------------------------
+   4) COLLECTION CARD (mini grid preview)
+   --------------------------- */
+.card-collection {
+  padding: var(--space-md);
+  min-height: 240px;
+}
+.card-collection .collection-grid {
+  display:grid; grid-template-columns: repeat(2, 1fr); gap:0.4rem; margin-bottom: var(--space-sm);
+}
+.card-collection .collection-grid img { width:100%; height:70px; object-fit:cover; border-radius:8px; }
+
+/* collection footer */
+.card-collection .collection-footer { display:flex; justify-content:space-between; align-items:center; gap:0.5rem; margin-top:0.6rem; }
+
+/* ---------------------------
+   5) PLAYLIST / MUSIC CARD
+   - cover + overlay play button + faux-tracklist
+   --------------------------- */
+.card-playlist { min-height: 300px; padding:0; overflow:hidden; border-radius: calc(var(--radius-md) + 4px); }
+.card-playlist .playlist-image { width:100%; height:190px; object-fit:cover; display:block; border-radius:12px 12px 0 0; }
+.card-playlist .play-overlay {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 240ms ease; background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.12));
+}
+.card-playlist:hover .play-overlay { opacity:1; }
+.card-playlist .play-icon {
+  width:64px;height:64px;border-radius:999px;background:var(--card-text);display:inline-flex;align-items:center;justify-content:center;font-weight:700;color:#111;font-size:22px;box-shadow:var(--shadow-md);
+}
+.card-playlist .playlist-body { padding:var(--space-md); }
+
+/* faux track list (just visual; no audio controls) */
+.card-playlist .track { display:flex; gap:0.6rem; align-items:center; padding:6px 0; border-bottom:1px dashed rgba(255,255,255,0.02); }
+.card-playlist .track .idx { width:28px; text-align:center; color:var(--text-secondary); }
+
+/* ---------------------------
+   6) ARTIST / PROFILE CARD
+   - circular avatar, bio, links
+   --------------------------- */
+.card-artist { text-align:left; min-height: 200px; padding:var(--space-md); }
+.card-artist .artist-avatar { width:96px; height:96px; border-radius:999px; object-fit:cover; display:block; border:2px solid rgba(255,255,255,0.06); margin-bottom:0.6rem; }
+.card-artist .artist-name { font-size:1.05rem; font-weight:800; }
+.card-artist .artist-role { color:var(--text-secondary); font-size:0.9rem; }
+
+/* social links row */
+.card-artist .artist-links { display:flex; gap:0.5rem; margin-top:0.7rem; }
+
+/* ---------------------------
+   7) MEDIA CARD (image/video poster)
+   - overlay preview modal trigger using :target or checkbox pattern
+   --------------------------- */
+.card-media { padding:0; overflow:hidden; border-radius:12px; min-height: 180px; position:relative; }
+.card-media .poster { display:block; width:100%; height:220px; object-fit:cover; }
+.card-media .media-overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 260ms ease; }
+.card-media:hover .media-overlay { opacity:1; }
+.card-media .media-icon { width:60px;height:60px;border-radius:999px;background:rgba(255,255,255,0.95);color:#111; display:inline-flex; align-items:center; justify-content:center; font-size:20px; }
+
+/* :target modal preview (works when you link to #preview-id) */
+.dg-modal {
+  position:fixed; inset:0; display:grid; place-items:center; background: rgba(0,0,0,0.6); padding:40px; opacity:0; visibility:hidden; transition:opacity 240ms ease;
+  z-index:9999;
+}
+.dg-modal:target { opacity:1; visibility:visible; }
+.dg-modal .modal-card { width:min(1100px, 96%); max-height:90vh; overflow:auto; background:var(--card-bg); border-radius:12px; padding:16px; box-shadow:var(--shadow-xl); }
+
+/* ---------------------------
+   8) STATS / KPI CARD
+   - big number, label, small delta
+   --------------------------- */
+.card-stats { text-align:center; padding:var(--space-md); min-height:160px; }
+.card-stats .stat-number { font-size:2.6rem; font-weight:900; background:linear-gradient(90deg, var(--accent-600), var(--accent-400)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:0.25rem; }
+.card-stats .stat-label { text-transform:uppercase; letter-spacing:1px; font-size:0.82rem; color:var(--text-secondary); }
+.card-stats .stat-delta { display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.03); margin-top:0.6rem; color:var(--text-secondary); font-size:0.82rem; }
+
+/* ---------------------------
+   9) COMPACT / LINK CARD
+   - tiny shortcuts for fast nav
+   --------------------------- */
+.card-compact { display:flex; gap:0.75rem; align-items:center; padding:0.6rem 0.8rem; min-height:52px; }
+.card-compact .compact-icon { width:40px; height:40px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04); }
+.card-compact .compact-text { font-weight:600; font-size:0.95rem; }
+
+/* ---------------------------
+   10) SHOWCASE / IMAGE CARD
+   - large aspect image with overlay caption
+   --------------------------- */
+.card-showcase { position:relative; padding:0; overflow:hidden; border-radius:12px; min-height:200px; }
+.card-showcase .show-img { width:100%; height:260px; object-fit:cover; display:block; border-radius:12px; }
+.card-showcase .show-overlay { position:absolute; left:0; right:0; bottom:0; padding:16px; background: linear-gradient(180deg, rgba(0,0,0,0.6), transparent); color:white; transform:translateY(20%); transition:transform 240ms ease; }
+.card-showcase:hover .show-overlay { transform:translateY(0); }
+
+/* ---------------------------
+   11) FEATURE / PROMO CARD
+   - small CTA + icon
+   --------------------------- */
+.card-feature { display:flex; gap:0.8rem; align-items:center; padding:var(--space-sm); min-height:86px; }
+.card-feature .feat-ico { width:48px; height:48px; border-radius:12px; display:inline-flex; align-items:center; justify-content:center; background:linear-gradient(180deg, color-mix(in srgb, var(--accent) 18%, transparent), rgba(255,255,255,0.02)); color:#fff; font-weight:700; }
+
+/* ---------------------------
+   Archetype modifiers (variants)
+   --------------------------- */
+/* frosted variant intensifies blur+border */
+.card-frosted { backdrop-filter: blur(calc(var(--glass-blur) + 6px)) saturate(150%); -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 6px)) saturate(150%); border:1px solid rgba(255,255,255,0.08); }
+
+/* gradient-border accent (tastesful) */
+.card-gradient { background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box, linear-gradient(90deg, var(--accent-600), var(--accent-400)) border-box; border:2px solid transparent; }
+
+/* glow accent */
+.card-glow { box-shadow: 0 12px 40px color-mix(in srgb, var(--accent) 12%, transparent); }
+
+/* compact content (fewer details) */
+.card-compact--tiny .dg-title { font-size:0.92rem; font-weight:700; }
+
+/* ---------------------------
+   Small responsive tweaks
+   --------------------------- */
+@media (max-width: 768px) {
+  .card-hero { min-height: 260px; padding:1rem; }
+  .card-playlist .playlist-image { height:140px; }
+  .card-showcase .show-img { height:180px; }
+  .card-artist .artist-avatar { width:72px; height:72px; }
+}
+
+/* ---------------------------
+   Accessibility keys
+   --------------------------- */
+.card-hero:focus-within, .card-nav:focus-within, .card-note:focus-within { outline: 3px solid color-mix(in srgb, var(--accent) 10%, transparent); outline-offset:4px; }
+
+/* Reduced motion override (be conservative on page with many cards) */
+@media (prefers-reduced-motion: reduce) {
+  .card-hero, .card-playlist, .card-showcase, .card-deck { transition:none !important; animation:none !important; transform:none !important; }
+}
+
+/* ---------------------------
+   End of Phase 3 archetypes
+   --------------------------- */
+
+/* =========================================================================
+   Phase 4: Advanced Visual Effects & Micro-interactions
+   - Layered glass, shimmer sweep, gradient borders, tilt, parallax, stagger
+   - Append to custom.css after earlier phases
+   ========================================================================= */
+
+/* -------------------------
+   Effect intensity tokens (tweak these to taste)
+   ------------------------- */
+:root {
+  --effect-tilt-amount: 6deg;        /* max rotation on hover */
+  --effect-tilt-y: 4deg;
+  --effect-tilt-scale: 1.02;
+  --effect-glow-alpha: 0.10;         /* global glow alpha */
+  --effect-shimmer-strength: 0.12;   /* opacity of shimmer sweep */
+  --effect-shimmer-speed: 1800ms;
+  --effect-parallax-translate: 10px; /* amount pseudo-layer moves */
+  --effect-float-distance: 10px;
+  --stagger-step: 0.08s;             /* each card delay step */
+}
+
+/* -------------------------
+   Global effect toggles (apply to a wrapper with dg-content-classes)
+   - .effects-enable-all -> enable everything site-wide
+   - .effects-disable -> disable all heavy effects
+   - .dg-compact-mode -> already included in Phase 1 to disable heavy features
+   ------------------------- */
+.effects-enable-all .dg-card { /* lightweight hint - doesn't force all per-card variants */ }
+.effects-disable .dg-card,
+.dg-compact-mode .dg-card {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* -------------------------
+   Layered glass: realistic sheen + inner depth
+   - use .effect-glass to get extra pseudo layers
+   ------------------------- */
+.dg-card.effect-glass {
+  position: relative;
+  isolation: isolate;
+}
+
+.dg-card.effect-glass::before,
+.dg-card.effect-glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  border-radius: inherit;
+}
+
+/* soft sheen (top-left) */
+.dg-card.effect-glass::before {
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.06) 0%,
+    rgba(255,255,255,0.02) 20%,
+    rgba(255,255,255,0.00) 100%);
+  mix-blend-mode: screen;
+  transform: translateZ(0) scale(1.02);
+  filter: blur(6px);
+  opacity: 0.9;
+}
+
+/* inner depth / subtle noise + border */
+.dg-card.effect-glass::after {
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.00));
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 6px 28px rgba(0,0,0,0.12);
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+
+/* -------------------------
+   Shimmer sweep (toggle per-card with .effect-shimmer)
+   - subtle moving sheen across the card
+   - respect prefers-reduced-motion
+   ------------------------- */
+@keyframes dg-shimmer {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+.dg-card.effect-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.dg-card.effect-shimmer::before {
+  content: "";
+  position: absolute;
+  left: -120%;
+  top: -40%;
+  width: 60%;
+  height: 180%;
+  transform: rotate(18deg);
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.00) 0%,
+    rgba(255,255,255,var(--effect-shimmer-strength)) 40%,
+    rgba(255,255,255,0.00) 70%);
+  mix-blend-mode: screen;
+  filter: blur(8px);
+  opacity: 0.95;
+  transition: opacity 220ms ease;
+  animation: dg-shimmer var(--effect-shimmer-speed) linear infinite;
+}
+
+/* reduce shimmer on hover if too strong */
+.dg-card.effect-shimmer:hover::before { animation-duration: calc(var(--effect-shimmer-speed) * 1.25); }
+
+/* disable on reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .dg-card.effect-shimmer::before { animation: none; opacity: 0.0; }
+}
+
+/* -------------------------
+   Gradient border and neon glow combos
+   - .effect-gradient-border, .effect-glow
+   ------------------------- */
+.dg-card.effect-gradient-border {
+  background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+              linear-gradient(90deg, var(--accent-600), var(--accent-400)) border-box;
+  border: 2px solid transparent;
+}
+
+.dg-card.effect-glow {
+  box-shadow: 0 18px 50px color-mix(in srgb, var(--accent) var(--effect-glow-alpha), transparent);
+}
+
+/* combined, tasteful: */
+.dg-card.effect-gradient-border.effect-glow { transform: translateY(-6px) scale(1.01); }
+
+/* -------------------------
+   Faux parallax / depth pseudo-layer
+   - .effect-parallax allows a subtle background image layer to move on hover
+   - requires placing an <img class="parallax-layer"> inside the card as early child
+   ------------------------- */
+.dg-card.effect-parallax { overflow: visible; }
+.dg-card.effect-parallax .parallax-layer {
+  position:absolute;
+  inset: 0;
+  z-index:-3;
+  object-fit:cover;
+  width:100%;
+  height:100%;
+  transform: translateY(0) scale(1.06);
+  transition: transform 520ms cubic-bezier(.2,.9,.3,1), opacity 360ms;
+  opacity: 0.34;
+  filter: blur(10px) saturate(120%);
+  border-radius: inherit;
+}
+.dg-card.effect-parallax:hover .parallax-layer {
+  transform: translateY(calc(var(--effect-parallax-translate) * -1)) scale(1.08);
+  opacity:0.46;
+}
+
+/* -------------------------
+   Hover tilt (faux 3D)
+   - .effect-tilt: per-card opt-in
+   - uses :hover to set rotation; mobile fallback collapses to none
+   - can set data-tilt="mild|med|strong" on card to vary degrees
+   ------------------------- */
+.dg-card.effect-tilt {
+  transform-origin: center;
+  transition: transform 360ms cubic-bezier(.2,.9,.3,1), box-shadow 260ms;
+  will-change: transform;
+}
+
+/* default mild tilt on hover (pointer hover only devices) */
+@media (hover: hover) and (pointer: fine) {
+  .dg-card.effect-tilt:hover {
+    transform: perspective(900px) rotateX(calc(var(--tilt-x, -1deg))) rotateY(calc(var(--tilt-y, 1deg))) scale(var(--effect-tilt-scale));
+  }
+}
+
+/* preset intensities via data attribute (add to card markup). Fallbacks exist */
+.dg-card.effect-tilt[data-tilt="mild"] { --tilt-x: -2deg; --tilt-y: 1.4deg; --effect-tilt-scale: 1.01; }
+.dg-card.effect-tilt[data-tilt="med"]  { --tilt-x: -4deg; --tilt-y: 2.6deg; --effect-tilt-scale: 1.015; }
+.dg-card.effect-tilt[data-tilt="strong"]{ --tilt-x: -6deg; --tilt-y: 4deg; --effect-tilt-scale: 1.03; }
+
+/* disable tilt on touch devices */
+@media (pointer: coarse), (hover: none) {
+  .dg-card.effect-tilt { transform: none !important; }
+}
+
+/* -------------------------
+   Floating / breathing micro-animation (for hero/featured cards)
+   - .effect-float will gently move the card up/down
+   ------------------------- */
+@keyframes dg-float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(calc(var(--effect-float-distance) * -1)); }
+  100% { transform: translateY(0px); }
+}
+.dg-card.effect-float { animation: dg-float 6s ease-in-out infinite; }
+
+/* -------------------------
+   Staggered entry utilities
+   - add .stagger-container to wrapper and set --stagger-step if needed
+   - each card should have style="--stagger-index: N;" or you can use nth-child
+   ------------------------- */
+@keyframes dg-fadeUp {
+  0% { opacity: 0; transform: translateY(18px); }
+  100%{ opacity: 1; transform: translateY(0); }
+}
+.stagger-container .dg-card {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: dg-fadeUp 520ms cubic-bezier(.22,.9,.3,1) forwards;
+  animation-delay: calc(var(--stagger-index, 0) * var(--stagger-step, 0.08s));
+}
+
+/* helper nth-child rule for automatic indices (if you don't set inline styles) */
+.stagger-container .dg-card:nth-child(1) { --stagger-index: 0; }
+.stagger-container .dg-card:nth-child(2) { --stagger-index: 1; }
+.stagger-container .dg-card:nth-child(3) { --stagger-index: 2; }
+.stagger-container .dg-card:nth-child(4) { --stagger-index: 3; }
+.stagger-container .dg-card:nth-child(5) { --stagger-index: 4; }
+
+/* -------------------------
+   Combined sample presets (convenience classes)
+   ------------------------- */
+/* subtle-pop: shimmer + mild tilt (good for featured tiles) */
+.dg-card.subtle-pop { --tilt-x:-2deg; --tilt-y:1deg; }
+.dg-card.subtle-pop.effect-shimmer.effect-tilt { }
+
+/* loud-pop: gradient border + glow + shimmer */
+.dg-card.loud-pop.effect-gradient-border.effect-glow.effect-shimmer { }
+
+/* -------------------------
+   Accessibility and performance safe defaults
+   ------------------------- */
+/* users prefer reduced motion -> turn off animations, shimmers, floats */
+@media (prefers-reduced-motion: reduce) {
+  .dg-card.effect-shimmer::before, .dg-card.effect-float { animation: none !important; }
+  .dg-card.effect-tilt { transition: none !important; transform: none !important; }
+}
+
+/* compact mode override (already declared earlier) */
+.dg-compact-mode .dg-card.effect-shimmer::before,
+.dg-compact-mode .dg-card.effect-float,
+.dg-compact-mode .dg-card.effect-glow {
+  display:none !important; opacity:0 !important; box-shadow:none !important;
+}
+
+/* -------------------------
+   Developer notes (commented, for future JS hooks)
+   - For pointer-driven tilt, listen to mousemove on .dg-card and set
+     --tilt-x and --tilt-y accordingly; CSS will transition smoothly.
+   - For performant parallax with many items, prefer background-position
+     changes on a dedicated layer and throttle events.
+   ------------------------- */
+
+/* End of Phase 4 */
+
+/* =========================================================================
+   Phase 5: CSS-only Interactivity Patterns
+   - Accordion (details/summary)
+   - Expandable card (checkbox + label fallback)
+   - CSS-only carousel (radios + labels) + scroll-snap variant
+   - :target modal previews (refined)
+   - Accessible focus states and keyboard hints (CSS only)
+   - All interactive behaviors are opt-in via classes
+   ========================================================================= */
+
+/* =========================
+   UX / utility styles used by patterns
+   ========================= */
+.dg-toggle-icon {
+  display:inline-block;
+  width:22px;height:22px;border-radius:6px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.04);
+  text-align:center; line-height:22px; font-weight:700; color:var(--card-text);
+  transition: transform 220ms ease;
+}
+
+/* hint for keyboard users - visually subtle */
+.dg-keyboard-hint { font-size:0.78rem; color:var(--text-secondary); opacity:0.9; }
+
+/* focus style for interactive things */
+.interactive [tabindex], .interactive button, .interactive a {
+  outline-offset:3px;
+}
+.interactive [tabindex]:focus, .interactive button:focus, .interactive a:focus {
+  outline: 3px solid color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+/* =========================
+   1) Accordion — details/summary (recommended for accessibility)
+   - Opt-in by adding .interactive-accordion to a wrapper
+   - Use <details> / <summary> semantic elements (browser accessible)
+   - We style them to look like cards, maintain keyboard behavior out-of-the-box
+   ========================= */
+.interactive-accordion details {
+  background: transparent; /* preserve parent card BG */
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.interactive-accordion summary {
+  list-style: none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  cursor: pointer;
+  padding: 0.4rem 0;
+}
+.interactive-accordion summary::-webkit-details-marker { display: none; } /* hide native marker */
+
+.interactive-accordion summary .dg-title { font-size:1rem; font-weight:700; margin:0; }
+.interactive-accordion summary .dg-sub { font-size:0.82rem; color:var(--text-secondary); margin:0; }
+
+.interactive-accordion summary .dg-toggle-icon {
+  transform: rotate(0deg);
+}
+.interactive-accordion details[open] summary .dg-toggle-icon {
+  transform: rotate(90deg);
+}
+
+/* content panel */
+.interactive-accordion .acc-panel {
+  margin-top:0.6rem;
+  padding-top:0.6rem;
+  border-top: 1px solid rgba(255,255,255,0.03);
+  color:var(--text-muted);
+}
+
+/* smooth max-height transition (works reasonably when contents not massive) */
+.interactive-accordion .acc-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 420ms cubic-bezier(.2,.9,.3,1), opacity 260ms;
+  opacity: 0;
+}
+.interactive-accordion details[open] .acc-panel {
+  max-height: 1200px; /* large enough for typical content */
+  opacity: 1;
+}
+
+/* prefers-reduced-motion fallback */
+@media (prefers-reduced-motion: reduce) {
+  .interactive-accordion .acc-panel { transition: none !important; }
+}
+
+/* =========================
+   2) Expandable card (checkbox + label)
+   - Useful when you want the whole card to toggle a detail area
+   - Opt-in with wrapper .interactive-expand
+   - Works without JS — checkbox is visually hidden but remains focusable
+   ========================= */
+
+/* visually-hidden-but-focusable pattern */
+.visually-hidden-focusable {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
+/* card content layout */
+.interactive-expand .expand-label {
+  display:flex;
+  width:100%;
+  gap:0.8rem;
+  align-items:center;
+  cursor:pointer;
+}
+.interactive-expand .expand-label .dg-title { margin:0; }
+.interactive-expand .expand-body {
+  margin-top:0.6rem;
+  max-height:0;
+  overflow:hidden;
+  transition: max-height 360ms cubic-bezier(.2,.9,.3,1), opacity 260ms;
+  opacity:0;
+  border-top:1px solid rgba(255,255,255,0.03);
+  padding-top:0.6rem;
+}
+
+/* when the associated checkbox is checked, reveal */
+.interactive-expand input[type="checkbox"]:checked + .expand-label + .expand-body {
+  max-height: 900px;
+  opacity:1;
+}
+
+/* keyboard affordance: make label focusable for users who tab */
+.interactive-expand .expand-label[tabindex] { outline-offset:3px; }
+
+/* =========================
+   3) CSS-only Carousel (radios + labels + dots)
+   - Opt-in with .carousel wrapper
+   - Provides accessible labels that map to radios
+   - Also include a scroll-snap fallback version (useful for mobile)
+   ========================= */
+
+/* base carousel track for radio-driven slides */
+.carousel { position:relative; width:100%; }
+.carousel .slides {
+  position:relative;
+  width:100%;
+  min-height: 220px;
+  overflow:hidden;
+}
+
+/* hide native radios */
+.carousel input[type="radio"] { position:absolute; left:-9999px; }
+
+/* each "slide" is positioned */
+.carousel .slide {
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transform: translateX(6%) scale(.99);
+  transition: opacity 420ms ease, transform 420ms ease;
+  display:flex; align-items:center; justify-content:center;
+  padding: var(--space-md);
+}
+
+/* show the slide when its radio is checked */
+.carousel input#c1:checked ~ .slides .s1,
+.carousel input#c2:checked ~ .slides .s2,
+.carousel input#c3:checked ~ .slides .s3,
+.carousel input#c4:checked ~ .slides .s4 {
+  opacity:1;
+  transform: translateX(0) scale(1);
+  position:relative;
+  z-index:2;
+}
+
+/* controls (labels bound to radios) */
+.carousel .controls {
+  display:flex; justify-content:center; gap:8px; margin-top:var(--space-sm);
+}
+.carousel .controls label {
+  display:inline-flex; width:12px; height:12px; border-radius:999px;
+  background: rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.04);
+  cursor:pointer;
+}
+.carousel input#c1:checked ~ .controls label[for="c1"],
+.carousel input#c2:checked ~ .controls label[for="c2"],
+.carousel input#c3:checked ~ .controls label[for="c3"],
+.carousel input#c4:checked ~ .controls label[for="c4"] {
+  background: linear-gradient(90deg, var(--accent-600), var(--accent-400));
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+/* small prev/next arrows using labels bound to next/prev radios */
+.carousel .arrow { position:absolute; top:50%; transform:translateY(-50%); pointer-events:auto; }
+.carousel .arrow.prev { left:12px; }
+.carousel .arrow.next { right:12px; }
+.carousel .arrow label {
+  display:inline-flex; align-items:center; justify-content:center; padding:8px 10px; border-radius:10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.04);
+}
+
+/* scroll-snap fallback variant — use .carousel-snap on pages that prefer native scroll */
+.carousel-snap .slides {
+  display:flex; gap:var(--space-md); overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+}
+.carousel-snap .slide { position:relative; min-width: min(92%, 980px); flex:0 0 auto; scroll-snap-align:center; opacity:1; transform:none; }
+
+/* =========================
+   4) :target modal refined
+   - Opt-in with .modal-trigger links pointing to #id
+   - Includes close link and focusable area
+   ========================= */
+.dg-modal {
+  position:fixed; inset:0; display:grid; place-items:center; background: rgba(0,0,0,0.62); padding:32px; visibility:hidden; opacity:0; transition: opacity 260ms ease;
+  z-index:99999;
+}
+.dg-modal:target { visibility: visible; opacity:1; }
+.dg-modal .modal-card {
+  width:min(1100px, 96%); max-height: 90vh; overflow:auto; border-radius:12px; padding:18px; background:var(--card-bg);
+  box-shadow: var(--shadow-xl);
+}
+
+/* keyboard hint and close bar */
+.dg-modal .modal-close {
+  float:right; display:inline-block; padding:6px 8px; text-decoration:none; font-weight:700; color:var(--card-text);
+}
+
+/* =========================
+   5) Direct card detail w/ :target anchor (alternate modal)
+   - each card can link to #detail-<id> to show large inline section
+   - useful for deep-dive pages without JS
+   ========================= */
+.dg-detail {
+  transition: max-height 360ms ease, opacity 260ms; max-height:0; opacity:0; overflow:hidden;
+  border-top:1px solid rgba(255,255,255,0.03); margin-top:0.6rem; padding-top:0.6rem;
+}
+.dg-detail:target { max-height: 1200px; opacity:1; }
+
+/* =========================
+   6) ARIA + keyboard friendly helpers (CSS only)
+   - visual focus states, reduced motion respect
+   ========================= */
+.interactive a[role="button"], .interactive [role="button"] { cursor:pointer; }
+.interactive summary, .interactive label, .interactive button { user-select:none; }
+
+/* ensure focus-visible is prominent */
+:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 18%, transparent); outline-offset:3px; }
+
+/* reduce animations for prefers-reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+  .carousel .slide, .carousel-snap .slides, .interactive-accordion .acc-panel, .interactive-expand .expand-body { transition:none !important; animation:none !important; }
+}
+
+/* --------------------------
+   End of Phase 5
+   -------------------------- */
+
+/* =========================================================================
+   Phase 6: Accessibility, Print & Performance Tuning
+   - Append to custom.css after Phases 1..5
+   - Purpose: make the system robust, performant and producible at scale
+   ========================================================================= */
+
+/* -------------------------
+   1) Global runtime toggles (safe defaults)
+   - .dg-compact-mode: already present; reduces heavy effects (backdrop-filter, shadows)
+   - .effects-disable: remove all visual effects
+   - .dg-low-power-mode: conservative rendering mode for mobile/older devices
+   ------------------------- */
+.effects-disable,
+.dg-low-power-mode,
+.dg-compact-mode {
+  --card-bg: rgba(255,255,255,0.02);
+  --card-border: rgba(0,0,0,0.06);
+}
+
+/* fully remove expensive painting ops */
+.effects-disable .dg-card,
+.dg-low-power-mode .dg-card,
+.dg-compact-mode .dg-card {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* also disable shimmer pseudo-elements */
+.effects-disable .dg-card.effect-shimmer::before,
+.dg-compact-mode .dg-card.effect-shimmer::before,
+.dg-low-power-mode .dg-card.effect-shimmer::before {
+  display:none !important; opacity:0 !important;
+}
+
+/* -------------------------
+   2) prefers-reduced-motion & reduced-transparency
+   - Force safe styles for users who opt out of motion or transparency
+   ------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .dg-card, .dg-card * { transition: none !important; animation: none !important; transform: none !important; }
+  .dg-card.effect-float, .dg-card.effect-shimmer { animation: none !important; }
+}
+
+/* prefers-reduced-transparency (non-standard, Safari-related) */
+@media (prefers-reduced-transparency: reduce), (prefers-reduced-transparency: no-preference) and (prefers-reduced-motion: reduce) {
+  .dg-card { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+}
+
+/* -------------------------
+   3) High-contrast support and WCAG-minded color options
+   - extra accessible focus ring, high contrast swap
+   ------------------------- */
+@media (prefers-contrast: more), (forced-colors: active) {
+  :root {
+    --card-bg: #fff;
+    --card-text: #000;
+    --card-border: #000;
+  }
+  .dg-card { border-width:2px; background: var(--card-bg) !important; color:var(--card-text) !important; box-shadow:none !important; }
+  .dg-tag, .dg-badges span { border:1px solid #000; background:transparent; color:var(--card-text); }
+  :focus-visible { outline: 4px solid var(--accent-600); outline-offset: 4px; }
+}
+
+/* -------------------------
+   4) Enhanced focus & keyboard affordances
+   - Ensure focus-visible is prominent and stable
+   ------------------------- */
+:focus { outline: none; }
+:focus-visible {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
+  outline: none;
+  border-radius: 8px;
+}
+
+/* make interactive elements clearly tabbable */
+.dg-card[tabindex] { cursor: pointer; }
+.dg-card[tabindex]:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 18%, transparent); outline-offset:3px; }
+
+/* small helper for screen-reader-only text */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height:1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+
+/* -------------------------
+   5) Print styles (cards -> linear readable list)
+   - Convert cards to simple white boxes, remove heavy visuals
+   ------------------------- */
+@media print {
+  /* page background removed */
+  body, .site-wrapper, .page { background: #fff !important; color: #000 !important; }
+
+  /* flatten cards for print */
+  .dg-card {
+    background: #fff !important;
+    color: #000 !important;
+    border: 1px solid #000 !important;
+    box-shadow: none !important;
+    -webkit-print-color-adjust: exact;
     break-inside: avoid;
-    margin-bottom: var(--gap-md);
-}
-
-/* Flex Layouts */
-.glass-flex {
-    display: flex;
-    gap: var(--gap-md);
-    flex-wrap: wrap;
-    padding: var(--gap-sm);
-}
-
-.glass-flex.flex-center {
-    justify-content: center;
-    align-items: center;
-}
-
-/* ============================================
-   BASE GLASS CARD
-   ============================================ */
-
-.glass-card {
-    position: relative;
-    background: var(--glass-bg-light);
-    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
-    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: var(--transition-smooth);
-    cursor: pointer;
-    isolation: isolate;
-}
-
-.glass-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.1) 0%,
-        rgba(255, 255, 255, 0.05) 50%,
-        transparent 100%
-    );
-    pointer-events: none;
-    z-index: -1;
-}
-
-.glass-card:hover {
-    transform: translateY(-4px);
-    background: var(--glass-bg-medium);
-    border-color: var(--glass-border-hover);
-    box-shadow: var(--shadow-lg);
-}
-
-/* Remove default link styling */
-.glass-card a {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    height: 100%;
-}
-
-/* ============================================
-   CARD TYPES
-   ============================================ */
-
-/* 1. MUSIC/PLAYLIST CARD */
-.glass-card.music-card {
-    min-height: 320px;
-    background: linear-gradient(
-        180deg,
-        rgba(139, 92, 246, 0.1) 0%,
-        var(--glass-bg-light) 100%
-    );
-}
-
-.glass-card.music-card .card-image {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    border-radius: 20px 20px 0 0;
-}
-
-.glass-card.music-card .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--transition-smooth);
-}
-
-.glass-card.music-card:hover .card-image img {
-    transform: scale(1.1);
-    filter: brightness(1.1);
-}
-
-.glass-card.music-card .play-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.3);
-    opacity: 0;
-    transition: var(--transition-smooth);
-}
-
-.glass-card.music-card:hover .play-overlay {
-    opacity: 1;
-}
-
-.glass-card.music-card .play-icon {
-    width: 60px;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-lg);
-    transition: var(--transition-smooth);
-}
-
-.glass-card.music-card:hover .play-icon {
-    transform: scale(1.1);
-}
-
-.glass-card.music-card .play-icon::after {
-    content: '▶';
-    color: #1a1a1a;
-    font-size: 24px;
-    margin-left: 4px;
-}
-
-.glass-card.music-card .card-content {
-    padding: var(--gap-md);
-}
-
-.glass-card.music-card .card-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: var(--gap-xs);
-}
-
-.glass-card.music-card .card-artist {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin-bottom: var(--gap-sm);
-}
-
-.glass-card.music-card .card-tags {
-    display: flex;
-    gap: var(--gap-xs);
-    flex-wrap: wrap;
-}
-
-.glass-card.music-card .tag {
-    padding: 4px 12px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-}
-
-/* 2. NOTE CARD */
-.glass-card.note-card {
-    min-height: 200px;
-    padding: var(--gap-md);
-    background: linear-gradient(
-        135deg,
-        rgba(34, 197, 94, 0.05) 0%,
-        var(--glass-bg-light) 100%
-    );
-}
-
-.glass-card.note-card .card-icon {
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: var(--gap-sm);
-    font-size: 20px;
-}
-
-.glass-card.note-card .card-title {
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: var(--gap-xs);
-}
-
-.glass-card.note-card .card-excerpt {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: var(--gap-sm);
-}
-
-.glass-card.note-card .card-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.8rem;
-    color: var(--text-tertiary);
-}
-
-/* 3. HERO CARD (Front Page Featured) */
-.glass-card.hero-card {
-    grid-column: span 2;
-    min-height: 400px;
-    background: linear-gradient(
-        135deg,
-        rgba(59, 130, 246, 0.1) 0%,
-        rgba(147, 51, 234, 0.05) 50%,
-        var(--glass-bg-light) 100%
-    );
-    position: relative;
-    overflow: hidden;
-}
-
-.glass-card.hero-card .card-background {
-    position: absolute;
-    inset: 0;
-    opacity: 0.3;
-    z-index: -1;
-}
-
-.glass-card.hero-card .card-background img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(20px);
-}
-
-.glass-card.hero-card .card-content {
-    position: relative;
-    padding: var(--gap-xl) var(--gap-lg);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.glass-card.hero-card .card-badge {
-    display: inline-block;
-    padding: 6px 16px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    font-size: 0.8rem;
-    color: var(--text-primary);
-    margin-bottom: var(--gap-md);
-    width: fit-content;
-}
-
-.glass-card.hero-card .card-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: var(--gap-md);
-    line-height: 1.2;
-}
-
-.glass-card.hero-card .card-description {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: var(--gap-lg);
-    max-width: 600px;
-}
-
-.glass-card.hero-card .card-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--gap-xs);
-    padding: 12px 24px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 12px;
-    color: var(--text-primary);
-    font-weight: 500;
-    transition: var(--transition-smooth);
-    width: fit-content;
-}
-
-.glass-card.hero-card:hover .card-cta {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateX(4px);
-}
-
-/* 4. COMPACT CARD */
-.glass-card.compact-card {
-    min-height: auto;
-    padding: var(--gap-sm);
-    display: flex;
-    align-items: center;
-    gap: var(--gap-sm);
-}
-
-.glass-card.compact-card .card-icon {
-    width: 48px;
-    height: 48px;
-    flex-shrink: 0;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.glass-card.compact-card .card-icon img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-}
-
-.glass-card.compact-card .card-content {
-    flex: 1;
-}
-
-.glass-card.compact-card .card-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.glass-card.compact-card .card-subtitle {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-}
-
-/* 5. IMAGE SHOWCASE CARD */
-.glass-card.showcase-card {
-    aspect-ratio: 16 / 9;
-    position: relative;
-    padding: 0;
-}
-
-.glass-card.showcase-card .card-image {
-    position: absolute;
-    inset: 0;
-}
-
-.glass-card.showcase-card .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-}
-
-.glass-card.showcase-card .card-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: var(--gap-lg) var(--gap-md) var(--gap-md);
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.8),
-        rgba(0, 0, 0, 0.4) 40%,
-        transparent
-    );
-    border-radius: 0 0 20px 20px;
-    transform: translateY(calc(100% - 60px));
-    transition: var(--transition-smooth);
-}
-
-.glass-card.showcase-card:hover .card-overlay {
-    transform: translateY(0);
-}
-
-.glass-card.showcase-card .card-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: white;
-    margin-bottom: var(--gap-xs);
-}
-
-.glass-card.showcase-card .card-description {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.5;
-}
-
-/* 6. STATS CARD */
-.glass-card.stats-card {
-    padding: var(--gap-md);
-    text-align: center;
-    background: linear-gradient(
-        135deg,
-        rgba(236, 72, 153, 0.1) 0%,
-        var(--glass-bg-light) 100%
-    );
-}
-
-.glass-card.stats-card .stat-number {
-    font-size: 3rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: var(--gap-xs);
-}
-
-.glass-card.stats-card .stat-label {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.glass-card.stats-card .stat-change {
-    display: inline-block;
-    margin-top: var(--gap-sm);
-    padding: 4px 12px;
-    background: rgba(34, 197, 94, 0.1);
-    border: 1px solid rgba(34, 197, 94, 0.3);
-    border-radius: 12px;
-    font-size: 0.8rem;
-    color: rgba(34, 197, 94, 0.9);
-}
-
-/* 7. NAVIGATION CARD */
-.glass-card.nav-card {
-    padding: var(--gap-md);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 120px;
-}
-
-.glass-card.nav-card .nav-content {
-    flex: 1;
-}
-
-.glass-card.nav-card .nav-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: var(--gap-xs);
-}
-
-.glass-card.nav-card .nav-description {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-}
-
-.glass-card.nav-card .nav-arrow {
-    width: 32px;
-    height: 32px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition-smooth);
-}
-
-.glass-card.nav-card:hover .nav-arrow {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateX(4px);
-}
-
-.glass-card.nav-card .nav-arrow::after {
-    content: '→';
-    color: var(--text-primary);
-    font-size: 18px;
-}
-
-/* 8. COLLECTION CARD */
-.glass-card.collection-card {
-    padding: var(--gap-md);
-    min-height: 280px;
-}
-
-.glass-card.collection-card .collection-preview {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--gap-xs);
-    margin-bottom: var(--gap-md);
-}
-
-.glass-card.collection-card .preview-item {
-    aspect-ratio: 1;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.glass-card.collection-card .preview-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.glass-card.collection-card .collection-title {
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: var(--gap-xs);
-}
-
-.glass-card.collection-card .collection-count {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-}
-
-/* ============================================
-   SPECIAL EFFECTS & MODIFIERS
-   ============================================ */
-
-/* Gradient Borders */
-.glass-card.gradient-border {
-    background: 
-        linear-gradient(var(--glass-bg-light), var(--glass-bg-light)) padding-box,
-        linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%) border-box;
-    border: 2px solid transparent;
-}
-
-/* Floating Animation */
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-}
-
-.glass-card.float {
-    animation: float 6s ease-in-out infinite;
-}
-
-/* Glow Effect */
-.glass-card.glow {
-    box-shadow: 
-        var(--shadow-md),
-        0 0 40px rgba(139, 92, 246, 0.2);
-}
-
-/* Shimmer Effect */
-@keyframes shimmer {
-    0% { background-position: -1000px 0; }
-    100% { background-position: 1000px 0; }
-}
-
-.glass-card.shimmer::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.1),
-        transparent
-    );
-    background-size: 1000px 100%;
-    animation: shimmer 3s infinite;
-    pointer-events: none;
-}
-
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
-
-@media (max-width: 1200px) {
-    .glass-grid.grid-6 { grid-template-columns: repeat(4, 1fr); }
-    .glass-grid.grid-5 { grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (max-width: 992px) {
-    .glass-grid.grid-6,
-    .glass-grid.grid-5,
-    .glass-grid.grid-4 { 
-        grid-template-columns: repeat(3, 1fr); 
-    }
-    
-    .glass-grid.grid-featured {
-        grid-template-columns: 1fr;
-    }
-    
-    .glass-card.hero-card {
-        grid-column: span 3;
-    }
-}
-
-@media (max-width: 768px) {
-    .glass-grid.grid-6,
-    .glass-grid.grid-5,
-    .glass-grid.grid-4,
-    .glass-grid.grid-3 { 
-        grid-template-columns: repeat(2, 1fr); 
-    }
-    
-    .glass-grid.grid-masonry {
-        column-count: 2;
-    }
-    
-    .glass-card.hero-card {
-        grid-column: span 2;
-        min-height: 300px;
-    }
-    
-    .glass-card.hero-card .card-title {
-        font-size: 1.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .glass-grid.grid-6,
-    .glass-grid.grid-5,
-    .glass-grid.grid-4,
-    .glass-grid.grid-3,
-    .glass-grid.grid-2 { 
-        grid-template-columns: 1fr; 
-    }
-    
-    .glass-grid.grid-masonry {
-        column-count: 1;
-    }
-    
-    .glass-card.hero-card {
-        grid-column: span 1;
-        min-height: 250px;
-    }
-    
-    .glass-card.hero-card .card-title {
-        font-size: 1.5rem;
-    }
-    
-    .glass-card.hero-card .card-content {
-        padding: var(--gap-lg) var(--gap-md);
-    }
-}
-
-/* ============================================
-   ACCESSIBILITY & PERFORMANCE
-   ============================================ */
-
-/* Focus States */
-.glass-card:focus-visible {
-    outline: 2px solid rgba(139, 92, 246, 0.5);
-    outline-offset: 2px;
-}
-
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-    .glass-card,
-    .glass-card * {
-        animation: none !important;
-        transition: none !important;
-    }
-}
-
-/* High Contrast */
-@media (prefers-contrast: high) {
-    .glass-card {
-        border-width: 2px;
-        background: rgba(255, 255, 255, 0.15);
-    }
-}
-
-/* Print Styles */
+    page-break-inside: avoid;
+    margin: 0 0 16px 0 !important;
+  }
+
+  /* images: reduce to grayscale & lower height */
+  .dg-image, .card-showcase .show-img, .card-playlist .playlist-image, .card-hero .hero-bg {
+    height: auto !important;
+    max-height: 220px !important;
+    filter: grayscale(100%) contrast(95%) !important;
+  }
+
+  /* hide interactive-only UI */
+  .dg-actions, .play-overlay, .nav-arrow, .dg-toggle-icon, .dg-badges { display: none !important; }
+
+  /* typography */
+  .dg-title { color:#000 !important; font-size:1.05rem; }
+  .dg-sub, .dg-excerpt { color:#111 !important; font-size:0.92rem; }
+}
+
+/* -------------------------
+   6) Image & media performance helpers
+   - lazy loading guidance via HTML examples below
+   - offer CSS fallback if JS not available
+   ------------------------- */
+.dg-image, img.dg-avatar, .poster, .show-img { max-width:100%; height:auto; display:block; }
+
+/* helper to visually reserve space for images (prevents layout shift)
+   Use inline style: style="aspect-ratio: 16/9;" or class .ar-16-9 */
+.ar-16-9 { aspect-ratio: 16 / 9; }
+.ar-4-3  { aspect-ratio: 4 / 3; }
+
+/* -------------------------
+   7) Will-change guidance & safe use
+   - Provide helper utilities; avoid applying globally
+   ------------------------- */
+.dg-will-change {
+  will-change: transform, opacity;
+  /* add this class to a very small number of elements only */
+}
+
+/* -------------------------
+   8) Limits & thresholds for heavy effects
+   - Use these helpers to limit heavy effects on large lists
+   ------------------------- */
+/* don't let more than N cards show heavy effects by default.
+   Use .effects-heavy-allowed attr on wrapper to indicate how many are allowed e.g. effects-heavy-allowed="4" */
+
+/* CSS cannot count dynamically; provide guidance instead in checklist. */
+
+/* -------------------------
+   9) Debugging & performance trace helpers (dev only)
+   - .dg-debug-outline to add thin outlines to cards for layout debugging
+   ------------------------- */
+.dg-debug-outline .dg-card { outline: 1px dashed rgba(255,0,0,0.12); }
+
+/* -------------------------
+   10) Practical compact presets for production
+   - Add to a page's frontmatter: dg-content-classes: "theme-auto dg-grid cols-auto dg-compact-mode"
+   - Or use dg-low-power-mode for mobile-friendly pages
+   ------------------------- */
+.dg-low-power-mode .dg-card--hero { min-height: 220px; padding: var(--space-md); }
+.dg-low-power-mode .dg-image, .dg-low-power-mode .show-img { height:auto; max-height:220px; }
+
+/* -------------------------
+   End of Phase 6
+   ========================================================================= */
+
+/* =========================================================================
+   Phase 7: Theme Packs — Per-card theming system
+   - Append to custom.css after Phase 6
+   - Apply per-card via: <a class="dg-card card-theme-aurora">...</a>
+   - Variables set per theme: --card-bg, --card-border, --card-text, --accent, --card-glow, --card-shine, --card-saturation
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   Base theme variable fallbacks (ensure non-theme cards still look correct)
+   ------------------------------------------------------------------------- */
+:root {
+  /* already defined earlier, but ensuring safe fallbacks */
+  --card-bg: var(--glass-bg-mid, rgba(255,255,255,0.06));
+  --card-border: rgba(255,255,255,0.06);
+  --card-text: var(--text-primary, rgba(255,255,255,0.94));
+  --accent: var(--accent, #7C5CFA);
+  --card-glow: rgba(124,92,250,0.09);
+  --card-shine: rgba(255,255,255,0.06);
+  --card-saturation: 140%;
+}
+
+/* -------------------------------------------------------------------------
+   Helper: apply theme variables to a card
+   Use classes like: .card-theme-aurora on the card element
+   ------------------------------------------------------------------------- */
+
+/* — CRYSTAL (luxury frosted violet) — elegant glassy neutral purple */
+.card-theme-crystal {
+  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  --card-border: rgba(124,92,250,0.16);
+  --card-text: rgba(255,255,255,0.96);
+  --accent: #7C5CFA;
+  --card-glow: rgba(124,92,250,0.12);
+  --card-shine: rgba(255,255,255,0.08);
+  --card-saturation: 150%;
+}
+
+/* — FROSTED (icy cool glass) — bluish, higher blur feel but subtle */
+.card-theme-frosted {
+  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+  --card-border: rgba(200,220,255,0.08);
+  --card-text: rgba(250,250,255,0.95);
+  --accent: #6FB3FF;
+  --card-glow: rgba(111,179,255,0.10);
+  --card-shine: rgba(255,255,255,0.06);
+  --card-saturation: 160%;
+}
+
+/* — PAPER (soft tactile) — off-white, slight texture vibe (still translucent) */
+.card-theme-paper {
+  --card-bg: linear-gradient(180deg, rgba(255,255,245,0.85), rgba(255,252,240,0.78));
+  --card-border: rgba(0,0,0,0.06);
+  --card-text: rgba(10,10,10,0.92);
+  --accent: #C07A2F;
+  --card-glow: rgba(192,122,47,0.06);
+  --card-shine: rgba(255,255,255,0.04);
+  --card-saturation: 100%;
+}
+
+/* — MIDNIGHT (deep matte, content-first) */
+.card-theme-midnight {
+  --card-bg: linear-gradient(180deg, rgba(6,6,12,0.56), rgba(6,6,12,0.42));
+  --card-border: rgba(255,255,255,0.04);
+  --card-text: rgba(245,245,245,0.95);
+  --accent: #00D4FF;
+  --card-glow: rgba(0,212,255,0.08);
+  --card-shine: rgba(255,255,255,0.03);
+  --card-saturation: 120%;
+}
+
+/* — NEON POP (fun, punchy; still translucent) */
+.card-theme-neon {
+  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  --card-border: rgba(255,0,150,0.12);
+  --card-text: rgba(255,255,255,0.96);
+  --accent: #FF00AA;
+  --card-glow: rgba(255,0,170,0.12);
+  --card-shine: rgba(255,255,255,0.07);
+  --card-saturation: 170%;
+}
+
+/* — AURORA (soft northern-light gradient) */
+.card-theme-aurora {
+  --card-bg: linear-gradient(180deg, rgba(17, 24, 39, 0.44), rgba(34,197,94,0.02));
+  --card-border: rgba(34,197,94,0.12);
+  --card-text: rgba(245,245,250,0.95);
+  --accent: #2EE6B1;
+  --card-glow: rgba(46,230,177,0.10);
+  --card-shine: rgba(255,255,255,0.06);
+  --card-saturation: 145%;
+}
+
+/* — FOREST (deep greens, earthy) */
+.card-theme-forest {
+  --card-bg: linear-gradient(180deg, rgba(8, 30, 15, 0.46), rgba(20, 60, 30, 0.18));
+  --card-border: rgba(34,197,94,0.10);
+  --card-text: rgba(235,245,235,0.95);
+  --accent: #2FB06B;
+  --card-glow: rgba(47,176,107,0.08);
+  --card-shine: rgba(255,255,255,0.03);
+  --card-saturation: 120%;
+}
+
+/* — OCEAN (cool teal + surf) */
+.card-theme-ocean {
+  --card-bg: linear-gradient(180deg, rgba(6, 182, 212, 0.06), rgba(6, 182, 212, 0.02));
+  --card-border: rgba(6,182,212,0.12);
+  --card-text: rgba(8,20,22,0.95);
+  --accent: #06B6D4;
+  --card-glow: rgba(6,182,212,0.10);
+  --card-shine: rgba(255,255,255,0.04);
+  --card-saturation: 140%;
+}
+
+/* — SUNSET (warm orange -> pink wash) */
+.card-theme-sunset {
+  --card-bg: linear-gradient(180deg, rgba(255,180,120,0.08), rgba(255,120,140,0.04));
+  --card-border: rgba(255,120,140,0.10);
+  --card-text: rgba(16,12,12,0.95);
+  --accent: #FF6B6B;
+  --card-glow: rgba(255,107,107,0.08);
+  --card-shine: rgba(255,255,255,0.05);
+  --card-saturation: 140%;
+}
+
+/* — VINTAGE (sepia map, soft film) */
+.card-theme-vintage {
+  --card-bg: linear-gradient(180deg, rgba(255,250,238,0.86), rgba(245,236,220,0.78));
+  --card-border: rgba(0,0,0,0.06);
+  --card-text: rgba(20,16,10,0.92);
+  --accent: #C49A6C;
+  --card-glow: rgba(196,154,108,0.06);
+  --card-shine: rgba(255,255,255,0.03);
+  --card-saturation: 95%;
+}
+
+/* — CERAMIC (soft, low-sheen neutral) */
+.card-theme-ceramic {
+  --card-bg: linear-gradient(180deg, rgba(250,250,248,0.90), rgba(245,245,244,0.86));
+  --card-border: rgba(20,20,20,0.04);
+  --card-text: rgba(18,18,18,0.94);
+  --accent: #8A6BFF;
+  --card-glow: rgba(138,107,255,0.06);
+  --card-shine: rgba(255,255,255,0.04);
+  --card-saturation: 100%;
+}
+
+/* — VELVET (rich, tactile, low sheen) */
+.card-theme-velvet {
+  --card-bg: linear-gradient(180deg, rgba(22,8,19,0.6), rgba(38,10,30,0.42));
+  --card-border: rgba(255,255,255,0.03);
+  --card-text: rgba(252,245,248,0.95);
+  --accent: #B03A80;
+  --card-glow: rgba(176,58,128,0.08);
+  --card-shine: rgba(255,255,255,0.02);
+  --card-saturation: 120%;
+}
+
+/* — PASTEL (soft candy palette) */
+.card-theme-pastel {
+  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(252,248,255,0.84));
+  --card-border: rgba(220,220,255,0.06);
+  --card-text: rgba(26,26,26,0.92);
+  --accent: #FFB3C6;
+  --card-glow: rgba(255,179,198,0.06);
+  --card-shine: rgba(255,255,255,0.04);
+  --card-saturation: 95%;
+}
+
+/* — SOLARIZED (muted but distinct) */
+.card-theme-solarized {
+  --card-bg: linear-gradient(180deg, rgba(253,246,227,0.06), rgba(38,50,56,0.03));
+  --card-border: rgba(38,50,56,0.06);
+  --card-text: rgba(12,17,23,0.94);
+  --accent: #268BD2;
+  --card-glow: rgba(38,139,210,0.08);
+  --card-shine: rgba(255,255,255,0.03);
+  --card-saturation: 110%;
+}
+
+/* — TERMINAL (monochrome, compact) */
+.card-theme-terminal {
+  --card-bg: rgba(0,0,0,0.52);
+  --card-border: rgba(255,255,255,0.03);
+  --card-text: rgba(180,255,180,0.95);
+  --accent: #7CF26C;
+  --card-glow: rgba(124,242,108,0.06);
+  --card-shine: rgba(255,255,255,0.02);
+  --card-saturation: 90%;
+}
+
+/* — CYBERPUNK (hot pink + cyan) */
+.card-theme-cyberpunk {
+  --card-bg: linear-gradient(180deg, rgba(6,6,20,0.58), rgba(20,6,30,0.42));
+  --card-border: rgba(255,20,145,0.12);
+  --card-text: rgba(245,245,250,0.96);
+  --accent: #00FFE1;
+  --card-glow: rgba(255,20,145,0.10);
+  --card-shine: rgba(255,255,255,0.05);
+  --card-saturation: 170%;
+}
+
+/* — MONO (clean single-tone) */
+.card-theme-mono {
+  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  --card-border: rgba(0,0,0,0.06);
+  --card-text: rgba(10,10,10,0.92);
+  --accent: #555555;
+  --card-glow: rgba(85,85,85,0.06);
+  --card-shine: rgba(255,255,255,0.02);
+  --card-saturation: 100%;
+}
+
+/* — MINIMAL (very low visual noise) */
+.card-theme-minimal {
+  --card-bg: rgba(255,255,255,0.03);
+  --card-border: rgba(255,255,255,0.02);
+  --card-text: rgba(240,240,240,0.95);
+  --accent: #9CA3AF;
+  --card-glow: rgba(156,163,175,0.04);
+  --card-shine: rgba(255,255,255,0.02);
+  --card-saturation: 90%;
+}
+
+/* — RETRO (mid-century warm tones) */
+.card-theme-retro {
+  --card-bg: linear-gradient(180deg, rgba(255,245,230,0.9), rgba(246,236,210,0.86));
+  --card-border: rgba(0,0,0,0.06);
+  --card-text: rgba(24,20,16,0.94);
+  --accent: #D47331;
+  --card-glow: rgba(212,115,49,0.06);
+  --card-shine: rgba(255,255,255,0.03);
+  --card-saturation: 95%;
+}
+
+/* — BUBBLEGUM (bright playful) */
+.card-theme-bubblegum {
+  --card-bg: linear-gradient(180deg, rgba(255,245,252,0.9), rgba(255,230,245,0.86));
+  --card-border: rgba(255,180,220,0.08);
+  --card-text: rgba(18,18,18,0.96);
+  --accent: #FF6FCF;
+  --card-glow: rgba(255,111,207,0.08);
+  --card-shine: rgba(255,255,255,0.05);
+  --card-saturation: 100%;
+}
+
+/* — SCIFI HOLO (holographic sheen, subtle iridescence) */
+.card-theme-holo {
+  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(24,8,80,0.02));
+  --card-border: rgba(120,90,255,0.08);
+  --card-text: rgba(245,245,255,0.95);
+  --accent: #7FDDFF;
+  --card-glow: rgba(127,221,255,0.10);
+  --card-shine: rgba(255,255,255,0.08);
+  --card-saturation: 170%;
+}
+
+/* — FILM-GRAIN (subtle texture & soft contrast) */
+.card-theme-film {
+  --card-bg: linear-gradient(180deg, rgba(10,10,12,0.44), rgba(10,10,12,0.34));
+  --card-border: rgba(255,255,255,0.03);
+  --card-text: rgba(230,230,230,0.95);
+  --accent: #E09F3E;
+  --card-glow: rgba(224,159,62,0.06);
+  --card-shine: rgba(255,255,255,0.03);
+  --card-saturation: 100%;
+}
+
+/* — TIMBER (wood-ish, warm, slightly textured) */
+.card-theme-timber {
+  --card-bg: linear-gradient(180deg, rgba(245,237,228,0.9), rgba(230,218,200,0.86));
+  --card-border: rgba(0,0,0,0.06);
+  --card-text: rgba(30,22,18,0.94);
+  --accent: #8B5E3C;
+  --card-glow: rgba(139,94,60,0.05);
+  --card-shine: rgba(255,255,255,0.02);
+  --card-saturation: 95%;
+}
+
+/* — DESERT (sandy warm calm) */
+.card-theme-desert {
+  --card-bg: linear-gradient(180deg, rgba(255,250,240,0.86), rgba(255,240,220,0.82));
+  --card-border: rgba(0,0,0,0.05);
+  --card-text: rgba(25,18,12,0.94);
+  --accent: #D99058;
+  --card-glow: rgba(217,144,88,0.06);
+  --card-shine: rgba(255,255,255,0.03);
+  --card-saturation: 95%;
+}
+
+/* — BOTANICAL (leafy soft) */
+.card-theme-botanical {
+  --card-bg: linear-gradient(180deg, rgba(240,250,242,0.9), rgba(230,245,235,0.84));
+  --card-border: rgba(100,140,120,0.06);
+  --card-text: rgba(18,20,16,0.94);
+  --accent: #3E8E66;
+  --card-glow: rgba(62,142,102,0.05);
+  --card-shine: rgba(255,255,255,0.03);
+  --card-saturation: 100%;
+}
+
+/* -------------------------------------------------------------------------
+   Additive modifiers you can combine with themes
+   - .theme-outline: stronger thin outline using current --accent
+   - .theme-muted: desaturates the card slightly
+   - .theme-strong: intensifies glow and border
+   ------------------------------------------------------------------------- */
+.card-theme-outline {
+  border: 1.6px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--accent) 8%, transparent);
+}
+.card-theme-muted {
+  filter: saturate(0.82) brightness(0.98);
+  --card-glow: color-mix(in srgb, var(--card-glow) 60%, transparent);
+}
+.card-theme-strong {
+  --card-glow: color-mix(in srgb, var(--accent) 20%, transparent);
+  box-shadow: 0 18px 64px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+/* -------------------------------------------------------------------------
+   Connect theme variables to card internals (map variables to visual properties)
+   - This block updates the core mapping; it keeps actual visual CSS DRY.
+   ------------------------------------------------------------------------- */
+.dg-card {
+  /* override previously used variables if theme applied to card */
+  background: var(--card-bg, var(--glass-bg-mid));
+  border: 1px solid var(--card-border, rgba(255,255,255,0.06));
+  color: var(--card-text, var(--text-primary));
+  filter: saturate(var(--card-saturation, 140%));
+}
+
+/* small accent utility used by tags/badges */
+.dg-card .dg-tag, .dg-card .dg-badge {
+  border-color: color-mix(in srgb, var(--accent) 16%, rgba(255,255,255,0.04));
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  color: var(--card-text);
+}
+
+/* glow & gradient border usage respects theme variables */
+.dg-card.effect-glow { box-shadow: 0 18px 50px var(--card-glow, rgba(0,0,0,0.08)); }
+.dg-card.effect-gradient-border { 
+  background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+              linear-gradient(90deg, color-mix(in srgb, var(--accent) 40%, transparent), var(--accent)) border-box;
+}
+
+/* sheen overlay derived from --card-shine */
+.dg-card::before {
+  --s: var(--card-shine, rgba(255,255,255,0.04));
+  content: "";
+  position: absolute; inset: 0; pointer-events:none; border-radius: inherit;
+  background: linear-gradient(135deg, transparent 0%, var(--s) 2%, transparent 50%);
+  mix-blend-mode: screen; opacity: 0.35;
+  z-index: -1;
+}
+
+/* print fallback: ignore theme transparency and use print-safe colors */
 @media print {
-    .glass-card {
-        background: white !important;
-        border: 1px solid #000 !important;
-        box-shadow: none !important;
-    }
+  .dg-card[class*="card-theme-"] {
+    background: #fff !important;
+    color: #000 !important;
+    border: 1px solid #000 !important;
+    -webkit-print-color-adjust: exact;
+  }
 }
+
+/* End of Phase 7 theme pack block */
+
+
+
+
+
 
 
 
