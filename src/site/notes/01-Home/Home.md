@@ -1,8 +1,467 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-21T17:03:41.022+02:00"}
+{"dg-publish":true,"permalink":"/01-home/home/","contentClasses":"theme-parchment dg-grid cols-auto","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-22T16:45:18.636+02:00"}
 ---
 
+---
+dg-publish: true
+dg-content-classes: "theme-auto dg-grid cols-auto"
+---
 
+<a class="dg-card dg-link card-hero card-frosted" href="/about">
+  <!-- optional background image -->
+  <img class="hero-bg" src="/img/MALOGO/Fullflavor.png" alt="hero bg" aria-hidden>
+  <div class="hero-overlay" aria-hidden></div>
+
+  <div class="hero-badge">Welcome</div>
+  <h2 class="hero-title">This is a big visual introduction</h2>
+  <p class="hero-lead">Use the hero to present your garden's mission, a featured project, or a curated snapshot. The card intentionally reads lightly over the page background.</p>
+
+  <div class="hero-ctas">
+    <span class="hero-cta primary">Explore Collections</span>
+    <span class="hero-cta">Quick Capture</span>
+  </div>
+</a>
+<a class="dg-card dg-link card-nav" href="/projects" aria-label="Open Projects collection">
+  <div class="nav-left">
+    <div class="card-ico"><img src="/img/MALOGO/Fullflavor.png" style="width:36px;height:36px;border-radius:6px;object-fit:cover;" alt=""></div>
+    <div class="title-wrap">
+      <div class="nav-title">Projects</div>
+      <div class="nav-desc">Pinned projects, boards & quick links</div>
+    </div>
+  </div>
+  <div class="nav-arrow" aria-hidden>→</div>
+</a>
+<a class="dg-card dg-link card-note" href="/notes/architecture">
+  <div class="card-head">
+    <div class="card-ico"><strong>🧭</strong></div>
+    <div class="title-wrap">
+      <h3 class="dg-title">System Architecture — evergreen note</h3>
+      <div class="dg-sub">Architecture · PKM</div>
+    </div>
+  </div>
+
+  <div class="dg-excerpt">Short excerpt or summary of the note. Keep it 1-3 lines so the card remains readable and doesn't dominate the page background.</div>
+
+  <div class="backlink-preview">
+    <span class="pill">Linked from: Projects</span>
+    <span class="pill">Backlinks: 12</span>
+  </div>
+</a>
+<a class="dg-card dg-link card-collection" href="/collections/photography">
+  <div style="display:flex; gap:1rem;">
+    <div style="flex:1;">
+      <div class="collection-grid">
+        <img src="/img/MALOGO/Fullflavor.png" alt="">
+        <img src="/img/MALOGO/Fullflavor.png" alt="">
+        <img src="/img/MALOGO/Fullflavor.png" alt="">
+        <img src="/img/MALOGO/Fullflavor.png" alt="">
+      </div>
+      <h4 class="dg-title">Photography — curated</h4>
+      <div class="collection-count">128 items • mixed media</div>
+    </div>
+    <div style="width:120px;display:flex;align-items:center;justify-content:center;">
+      <div class="dg-progress" style="width:100px;"><i style="width:72%"></i></div>
+    </div>
+  </div>
+
+  <div class="collection-footer">
+    <div class="dg-sub">Top picks & highlights</div>
+    <div class="dg-tag">Gallery</div>
+  </div>
+</a>
+<a class="dg-card dg-link card-playlist" href="/music/late-night-mix">
+  <img class="playlist-image" src="/img/MALOGO/Fullflavor.png" alt="playlist cover">
+  <div class="play-overlay" aria-hidden>
+    <div class="play-icon">▶</div>
+  </div>
+
+  <div class="playlist-body">
+    <h4 class="dg-title">Late-night Mix</h4>
+    <div class="dg-sub">15 tracks • Chill synthwave</div>
+
+    <div style="margin-top:0.8rem;">
+      <div class="track"><div class="idx">1</div><div style="flex:1;color:var(--text-secondary)">Track name — short</div><div style="color:var(--text-muted);font-size:0.82rem">3:24</div></div>
+      <div class="track"><div class="idx">2</div><div style="flex:1;color:var(--text-secondary)">Track name — short</div><div style="color:var(--text-muted);font-size:0.82rem">2:58</div></div>
+    </div>
+  </div>
+</a>
+<a class="dg-card dg-link card-artist" href="/people/artist-j">
+  <img class="artist-avatar" src="/img/MALOGO/Fullflavor.png" alt="Artist avatar">
+  <div>
+    <div class="artist-name">Fullflavor</div>
+    <div class="artist-role">Musician • Producer</div>
+    <div class="artist-links">
+      <span class="dg-tag">SoundCloud</span>
+      <span class="dg-tag">Bandcamp</span>
+    </div>
+  </div>
+</a>
+<!-- poster card -->
+<a class="dg-card dg-link card-media" href="#preview-1" aria-controls="preview-1">
+  <img class="poster" src="/img/MALOGO/Fullflavor.png" alt="media poster">
+  <div class="media-overlay" aria-hidden>
+    <div class="media-icon">▶</div>
+  </div>
+</a>
+
+<!-- modal (paste somewhere on same page) -->
+<div id="preview-1" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a href="#" style="float:right;padding:8px 10px;background:transparent;color:var(--card-text);text-decoration:none;font-weight:700;">Close ✕</a>
+    <img src="/img/MALOGO/Fullflavor.png" alt="preview" style="width:100%;height:auto;border-radius:8px;">
+    <h3 class="dg-title">Preview title</h3>
+    <p class="dg-excerpt">Longer description or notes about this media item...</p>
+  </div>
+</div>
+
+<a class="dg-card dg-link card-compact" href="/shortcuts/clip-01">
+  <div class="compact-icon"><img src="/img/MALOGO/Fullflavor.png" alt="" style="width:24px;height:24px;border-radius:6px;"></div>
+  <div class="compact-text">Quick Capture</div>
+</a>
+<a class="dg-card dg-link card-showcase" href="/gallery/01">
+  <img class="show-img" src="/img/MALOGO/Fullflavor.png" alt="">
+  <div class="show-overlay">
+    <h4 class="dg-title">Featured Image</h4>
+    <div class="dg-sub">Collection • Highlight</div>
+  </div>
+</a>
+<a class="dg-card dg-link card-feature" href="/feature/new">
+  <div class="feat-ico">✨</div>
+  <div>
+    <div class="dg-title">New: Prompt Pack</div>
+    <div class="dg-sub">Curated starter templates for image & text</div>
+  </div>
+</a>
+---
+dg-publish: true
+dg-content-classes: "theme-auto dg-grid cols-auto"
+---
+
+<a class="dg-card dg-link card-hero effect-glass effect-shimmer effect-tilt effect-parallax subtle-pop"
+   data-tilt="mild"
+   style="--stagger-index:0;">
+  <!-- parallax layer (optional) -->
+  <img class="parallax-layer" src="/img/MALOGO/Fullflavor.png" alt="" aria-hidden>
+
+  <!-- explicit blurred hero bg (keeps background readable) -->
+  <img class="hero-bg" src="/img/MALOGO/Fullflavor.png" alt="" aria-hidden>
+
+  <div class="hero-overlay" aria-hidden></div>
+  <div class="hero-badge">Featured</div>
+  <h2 class="hero-title">Featured — With Premium Effects</h2>
+  <p class="hero-lead">This hero uses layered glass, shimmer sweep, a parallax backing and a mild tilt on hover. It reads as premium while respecting your page background.</p>
+  <div class="hero-ctas"><span class="hero-cta primary">Open</span></div>
+</a>
+<a class="dg-card dg-link card-playlist effect-glow effect-shimmer loud-pop" href="/music/late-night" style="--stagger-index:1;">
+  <img class="playlist-image" src="/img/MALOGO/Fullflavor.png" alt="">
+  <div class="play-overlay"><div class="play-icon">▶</div></div>
+  <div class="playlist-body">
+    <h4 class="dg-title">Late-night Mix</h4>
+    <div class="dg-sub">15 tracks • Chill</div>
+  </div>
+</a>
+<a class="dg-card dg-link card-nav" href="/projects" style="--stagger-index:2;">
+  <div class="nav-left"><div class="card-ico"><img src="/img/MALOGO/Fullflavor.png" style="width:36px;height:36px;border-radius:6px"></div>
+    <div class="title-wrap"><div class="nav-title">Projects</div><div class="nav-desc">Active work</div></div>
+  </div>
+  <div class="nav-arrow">→</div>
+</a>
+---
+dg-content-classes: "theme-auto effects-enable-all dg-grid cols-auto"
+---
+<!-- now any card with effect-* classes will show; you can also mass-add classes via the wrapper -->
+
+---
+dg-content-classes: "theme-auto effects-disable dg-grid cols-auto dg-compact-mode"
+---
+<!-- This will enforce a performant, minimal look -->
+
+<div class="stagger-container dg-grid cols-auto">
+  <a class="dg-card dg-link card-note" style="--stagger-index:0">...</a>
+  <a class="dg-card dg-link card-note" style="--stagger-index:1">...</a>
+  <a class="dg-card dg-link card-note" style="--stagger-index:2">...</a>
+</div>
+
+---
+dg-publish: true
+dg-content-classes: "theme-auto interactive interactive-accordion dg-grid cols-auto"
+---
+
+<a class="dg-card dg-link dg-card--md">
+  <div class="dg-content">
+    <!-- details provides native keyboard behavior and semantics -->
+    <details>
+      <summary>
+        <div style="display:flex; gap:0.75rem; align-items:center;">
+          <div style="width:46px;height:46px;border-radius:8px;overflow:hidden;"><img src="/img/MALOGO/Fullflavor.png" style="width:100%;height:100%;object-fit:cover;" alt=""></div>
+          <div>
+            <div class="dg-title">Daily Notes — Journal</div>
+            <div class="dg-sub">Quick thoughts & captures</div>
+          </div>
+        </div>
+        <span class="dg-toggle-icon" aria-hidden>›</span>
+      </summary>
+
+      <div class="acc-panel">
+        <p class="dg-excerpt">This accordion is a semantic <code>&lt;details&gt;</code> element. It's keyboard accessible: users can press Enter/Space to open it and Tab into contents.</p>
+        <div style="margin-top:8px;"><a class="dg-btn" href="/journal/today">Open today's note</a></div>
+      </div>
+    </details>
+  </div>
+</a>
+
+---
+dg-publish: true
+dg-content-classes: "theme-auto interactive interactive-expand dg-grid cols-auto"
+---
+
+<!-- Checkbox toggles card details; checkbox remains focusable for keyboard users -->
+<div class="dg-card dg-card--md">
+  <input id="ex-1" class="visually-hidden-focusable" type="checkbox" />
+  <label for="ex-1" class="expand-label" tabindex="0" role="button" aria-controls="ex-1-body" aria-expanded="false">
+    <div style="display:flex;gap:0.9rem;align-items:center;">
+      <img src="/img/MALOGO/Fullflavor.png" style="width:46px;height:46px;border-radius:8px;object-fit:cover;" alt="">
+      <div>
+        <div class="dg-title">Project — Quick Overview</div>
+        <div class="dg-sub">One-line summary</div>
+      </div>
+    </div>
+    <span class="dg-toggle-icon">+</span>
+  </label>
+
+  <div id="ex-1-body" class="expand-body">
+    <p class="dg-excerpt">Expanded detail lives here. Use this for quick actions, checklists, or a short log you want inline without navigating away.</p>
+    <div style="margin-top:8px;"><a class="dg-btn" href="/projects/alpha">Open project</a></div>
+  </div>
+</div>
+
+---
+dg-publish: true
+dg-content-classes: "theme-auto interactive carousel"
+---
+
+<!-- 3-slide example using radios -->
+<input type="radio" id="c1" name="c" checked>
+<input type="radio" id="c2" name="c">
+<input type="radio" id="c3" name="c">
+
+<div class="carousel">
+  <div class="slides">
+    <div class="slide s1">
+      <a class="dg-card dg-link card-showcase" href="/feature/1"><img class="show-img" src="/img/MALOGO/Fullflavor.png"><div class="show-overlay"><h4 class="dg-title">Feature One</h4></div></a>
+    </div>
+    <div class="slide s2">
+      <a class="dg-card dg-link card-showcase" href="/feature/2"><img class="show-img" src="/img/MALOGO/Fullflavor.png"><div class="show-overlay"><h4 class="dg-title">Feature Two</h4></div></a>
+    </div>
+    <div class="slide s3">
+      <a class="dg-card dg-link card-showcase" href="/feature/3"><img class="show-img" src="/img/MALOGO/Fullflavor.png"><div class="show-overlay"><h4 class="dg-title">Feature Three</h4></div></a>
+    </div>
+  </div>
+
+  <!-- dot controls -->
+  <div class="controls" role="tablist" aria-label="Showcase slides">
+    <label for="c1" role="tab" tabindex="0" aria-controls="slide1" aria-selected="true"></label>
+    <label for="c2" role="tab" tabindex="0" aria-controls="slide2"></label>
+    <label for="c3" role="tab" tabindex="0" aria-controls="slide3"></label>
+  </div>
+
+  <!-- optional arrows (labels mapped to radios; for a 3-item carousel, labels activate respective radios) -->
+  <div class="arrow prev"><label for="c1" aria-hidden>‹</label></div>
+  <div class="arrow next"><label for="c3" aria-hidden>›</label></div>
+</div>
+
+
+---
+dg-publish: true
+dg-content-classes: "theme-auto carousel-snap"
+---
+
+<div class="carousel-snap">
+  <div class="slides">
+    <div class="slide">
+      <a class="dg-card dg-link card-showcase" href="/feature/1"><img class="show-img" src="/img/MALOGO/Fullflavor.png"><div class="show-overlay"><h4 class="dg-title">Feature A</h4></div></a>
+    </div>
+    <div class="slide">
+      <a class="dg-card dg-link card-showcase" href="/feature/2"><img class="show-img" src="/img/MALOGO/Fullflavor.png"><div class="show-overlay"><h4 class="dg-title">Feature B</h4></div></a>
+    </div>
+    <div class="slide">
+      <a class="dg-card dg-link card-showcase" href="/feature/3"><img class="show-img" src="/img/MALOGO/Fullflavor.png"><div class="show-overlay"><h4 class="dg-title">Feature C</h4></div></a>
+    </div>
+  </div>
+</div>
+
+---
+dg-publish: true
+dg-content-classes: "theme-auto"
+---
+
+<!-- card that links to modal -->
+<a class="dg-card dg-link card-media modal-trigger" href="#modal-1">
+  <img class="poster" src="/img/MALOGO/Fullflavor.png" alt="">
+  <div class="media-overlay"><div class="media-icon">▶</div></div>
+</a>
+
+<!-- modal (place anywhere on same page) -->
+<div id="modal-1" class="dg-modal" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h2 id="modal-1-title" class="dg-title">Media Preview</h2>
+    <img src="/img/MALOGO/Fullflavor.png" style="width:100%;height:auto;border-radius:8px;" alt="">
+    <p class="dg-excerpt">This :target modal opens without JS. Press the Close link to remove the hash and hide the modal.</p>
+  </div>
+</div>
+
+---
+dg-publish: true
+dg-content-classes: "theme-auto dg-grid cols-auto"
+---
+
+<a class="dg-card dg-link card-note" href="#detail-42">
+  <div class="dg-content">
+    <div class="dg-title">Deep-dive Note</div>
+    <div class="dg-sub">Click to expand below</div>
+  </div>
+</a>
+
+<!-- the inline detail area -->
+<div id="detail-42" class="dg-detail">
+  <h3 class="dg-title">Deep-dive title</h3>
+  <p class="dg-excerpt">This long preview appears in-page when linking to #detail-42. Use for longer descriptions, TODO lists, or embed media.</p>
+</div>
+
+
+---
+dg-publish: true
+dg-content-classes: "theme-auto dg-grid cols-auto gap-md"
+---
+
+<!-- Preview many themes at once -->
+<div class="dg-grid cols-auto" role="list">
+  <a class="dg-card dg-link dg-card--md card-theme-crystal" href="#" role="listitem">
+    <div class="dg-content"><h4 class="dg-title">Crystal</h4><div class="dg-sub">Luxe glass</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-aurora" href="#">
+    <div class="dg-content"><h4 class="dg-title">Aurora</h4><div class="dg-sub">Northern light</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-frosted" href="#">
+    <div class="dg-content"><h4 class="dg-title">Frosted</h4><div class="dg-sub">Icy sheen</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-paper" href="#">
+    <div class="dg-content"><h4 class="dg-title">Paper</h4><div class="dg-sub">Tactile</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-midnight" href="#">
+    <div class="dg-content"><h4 class="dg-title">Midnight</h4><div class="dg-sub">Matte dark</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-neon card-theme-strong" href="#">
+    <div class="dg-content"><h4 class="dg-title">Neon</h4><div class="dg-sub">Pop</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-forest" href="#">
+    <div class="dg-content"><h4 class="dg-title">Forest</h4><div class="dg-sub">Leafy</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-ocean" href="#">
+    <div class="dg-content"><h4 class="dg-title">Ocean</h4><div class="dg-sub">Cool teal</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-sunset" href="#">
+    <div class="dg-content"><h4 class="dg-title">Sunset</h4><div class="dg-sub">Warm wash</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-vintage" href="#">
+    <div class="dg-content"><h4 class="dg-title">Vintage</h4><div class="dg-sub">Sepia</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-ceramic" href="#">
+    <div class="dg-content"><h4 class="dg-title">Ceramic</h4><div class="dg-sub">Soft neutral</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-velvet" href="#">
+    <div class="dg-content"><h4 class="dg-title">Velvet</h4><div class="dg-sub">Rich</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-pastel" href="#">
+    <div class="dg-content"><h4 class="dg-title">Pastel</h4><div class="dg-sub">Soft candy</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-solarized" href="#">
+    <div class="dg-content"><h4 class="dg-title">Solarized</h4><div class="dg-sub">Muted</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-terminal" href="#">
+    <div class="dg-content"><h4 class="dg-title">Terminal</h4><div class="dg-sub">Mono</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-cyberpunk" href="#">
+    <div class="dg-content"><h4 class="dg-title">Cyberpunk</h4><div class="dg-sub">Hot pink/cyan</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-mono" href="#">
+    <div class="dg-content"><h4 class="dg-title">Mono</h4><div class="dg-sub">Minimal</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-retro" href="#">
+    <div class="dg-content"><h4 class="dg-title">Retro</h4><div class="dg-sub">Mid-century</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-bubblegum" href="#">
+    <div class="dg-content"><h4 class="dg-title">Bubblegum</h4><div class="dg-sub">Playful</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-holo" href="#">
+    <div class="dg-content"><h4 class="dg-title">Holo</h4><div class="dg-sub">Holographic</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-film" href="#">
+    <div class="dg-content"><h4 class="dg-title">Film</h4><div class="dg-sub">Grain</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-timber" href="#">
+    <div class="dg-content"><h4 class="dg-title">Timber</h4><div class="dg-sub">Wood</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-desert" href="#">
+    <div class="dg-content"><h4 class="dg-title">Desert</h4><div class="dg-sub">Sandy calm</div></div>
+  </a>
+
+  <a class="dg-card dg-link dg-card--md card-theme-botanical" href="#">
+    <div class="dg-content"><h4 class="dg-title">Botanical</h4><div class="dg-sub">Leafy soft</div></div>
+  </a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="glass-grid grid-4"> <!-- Placeholder 1 --> <div class="glass-card minimal" style="opacity: 0.6;"> <div class="card-content"> <div class="card-title">🚧 Coming Soon</div> <div class="card-subtitle">Space reserved for future content</div> </div> </div> <!-- Placeholder 2 --> <div class="glass-card minimal" style="opacity: 0.6;"> <div class="card-content"> <div class="card-title">🚧 In Development</div> <div class="card-subtitle">New section under construction</div> </div> </div> <!-- Placeholder 3 --> <div class="glass-card minimal" style="opacity: 0.6;"> <div class="card-content"> <div class="card-title">🚧 Planned Feature</div> <div class="card-subtitle">Interactive element coming</div> </div> </div> <!-- Placeholder 4 --> <div class="glass-card minimal" style="opacity: 0.6;"> <div class="card-content"> <div class="card-title">🚧 Beta Testing</div> <div class="card-subtitle">Experimental area</div> </div> </div> </div>
 
 > [!INFO]  
 > Welcome to my **Personal Vault**—this is the place where I store all information I collect and preserve. Things could get eddited or dissapear, this is for personal storage and for others too see and look into. I hope you find something that interests you or that you enjoy. 
@@ -224,49 +683,6 @@ Example 4: Compact Navigation
   </div>
 </div>
 
-
-
-
-
-
-## 🌟 Constellations (Main Sections)
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-f
-
-test
 
 
 # 🌱 Digital Garden
