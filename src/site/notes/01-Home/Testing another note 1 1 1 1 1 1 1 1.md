@@ -1,37 +1,8 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1-1/","contentClasses":"theme-auto dg-grid cols-auto gap-md stagger-container","noteIcon":"","created":"2025-09-22T17:02:12.611+02:00","updated":"2025-09-22T17:26:15.984+02:00"}
+{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1-1/","contentClasses":"theme-auto dg-grid cols-auto gap-md stagger-container","noteIcon":"","created":"2025-09-22T17:02:12.611+02:00","updated":"2025-09-22T17:28:20.723+02:00"}
 ---
 
 
-<!--
-  FRONT PAGE: "Garden Hub" — a rich, side-by-side layout built from the archetypes.
-  - Top -> most important: hero, immediate actions, pinned nav
-  - Middle -> curated collections, external links, playlists
-  - Lower -> recent notes, shortcuts, stats, deck, admin legend
-  - All cards are per-card themed. Effects are opt-in only (no defaults).
--->
-
-<!-- =========================
-     HERO / PRIMARY (full-width)
-     - big intro, primary CTAs, parallax layer
-   ========================= -->
-<a class="dg-card dg-link dg-card--hero card-hero card-theme-crystal effect-glass subtle-pop"
-   href="/about" aria-label="About this Garden" style="--stagger-index:0;">
-  <img class="parallax-layer" src="/img/MALOGO/Fullflavor.png" alt="" aria-hidden>
-  <img class="hero-bg" src="/img/MALOGO/Fullflavor.png" alt="" aria-hidden>
-  <div class="hero-overlay" aria-hidden></div>
-
-  <div class="hero-badge">Garden Hub</div>
-  <h1 class="hero-title">Welcome — My Digital Garden</h1>
-  <p class="hero-lead">This page is the central hub for everything I care about: projects, prompts, playlists,
-     saved clips, tools, reading, and external resources. Cards are intentionally translucent so the background sets the mood.</p>
-
-  <div class="hero-ctas">
-    <a class="hero-cta" href="/today">Today / Quick Start</a>
-    <a class="hero-cta primary" href="/collections">Explore Collections</a>
-    <a class="hero-cta" href="/capture">Quick Capture</a>
-  </div>
-</a>
 
 <!-- =========================
      QUICK NAV ROW (High priority) — up to 6 side-by-side
