@@ -1,7 +1,12 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1-1/","tags":["gardenEntry"],"noteIcon":"","created":"2025-09-22T17:02:12.611+02:00","updated":"2025-09-22T17:16:02.198+02:00"}
+{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1-1/","contentClasses":"theme-auto dg-grid cols-auto gap-md stagger-container","tags":["gardenEntry"],"noteIcon":"","created":"2025-09-22T17:02:12.611+02:00","updated":"2025-09-22T17:18:00.798+02:00"}
 ---
 
+
+# Page wrapper classes:
+# - theme-auto: neutral tokens (cards remain translucent)
+# - dg-grid cols-auto gap-md: flexible up to 6 columns
+# - stagger-container: staggered intro animation (optional)
 
 <!--
   FRONT PAGE: "Garden Hub" — a rich, side-by-side layout built from the archetypes.
