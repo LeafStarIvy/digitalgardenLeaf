@@ -1,8 +1,37 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1-1/","contentClasses":"theme-auto dg-grid cols-auto gap-md stagger-container","noteIcon":"","created":"2025-09-22T17:02:12.611+02:00","updated":"2025-09-22T17:28:20.723+02:00"}
+{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1-1/","contentClasses":"theme-auto dg-grid cols-auto gap-md stagger-container","noteIcon":"","created":"2025-09-22T17:02:12.611+02:00","updated":"2025-09-22T17:29:26.595+02:00"}
 ---
 
 
+<!--
+  FRONT PAGE: "Garden Hub" — a rich, side-by-side layout built from the archetypes.
+  - Top -> most important: hero, immediate actions, pinned nav
+  - Middle -> curated collections, external links, playlists
+  - Lower -> recent notes, shortcuts, stats, deck, admin legend
+  - All cards are per-card themed. Effects are opt-in only (no defaults).
+-->
+
+<!-- =========================
+     HERO / PRIMARY (full-width)
+     - big intro, primary CTAs, parallax layer
+   ========================= -->
+<a class="dg-card dg-link dg-card--hero card-hero card-theme-crystal effect-glass subtle-pop"
+   href="/about" aria-label="About this Garden" style="--stagger-index:0;">
+  <img class="parallax-layer" src="/img/MALOGO/Fullflavor.png" alt="" aria-hidden>
+  <img class="hero-bg" src="/img/MALOGO/Fullflavor.png" alt="" aria-hidden>
+  <div class="hero-overlay" aria-hidden></div>
+
+  <div class="hero-badge">Garden Hub</div>
+  <h1 class="hero-title">Welcome — My Digital Garden</h1>
+  <p class="hero-lead">This page is the central hub for everything I care about: projects, prompts, playlists,
+     saved clips, tools, reading, and external resources. Cards are intentionally translucent so the background sets the mood.</p>
+
+  <div class="hero-ctas">
+    <a class="hero-cta" href="/today">Today / Quick Start</a>
+    <a class="hero-cta primary" href="/collections">Explore Collections</a>
+    <a class="hero-cta" href="/capture">Quick Capture</a>
+  </div>
+</a>
 
 <!-- =========================
      QUICK NAV ROW (High priority) — up to 6 side-by-side
@@ -92,60 +121,6 @@
      EXTERNAL LINKS — per-card themes + external icons
      (Open external sites in new tab; rel attributes present)
    ========================= -->
-<h2 class="dg-title">External Favorites</h2>
-
-<div class="dg-grid cols-auto gap-md" role="list" aria-label="External links" style="--stagger-index:3;">
-  <a class="dg-card dg-link dg-card--md card-theme-neon card-theme-outline" href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="Open YouTube">
-    <div class="dg-content"><h4 class="dg-title">YouTube</h4><div class="dg-sub">Channels & saved videos</div><div class="dg-tags"><span class="dg-tag">Video</span><span class="dg-tag">Watchlist</span></div></div>
-  </a>
-
-  <a class="dg-card dg-link dg-card--md card-theme-terminal" href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub">
-    <div class="dg-content"><h4 class="dg-title">GitHub</h4><div class="dg-sub">Repos & gists</div><div class="dg-tags"><span class="dg-tag">Code</span></div></div>
-  </a>
-
-  <a class="dg-card dg-link dg-card--md card-theme-cyberpunk" href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Open X/Twitter">
-    <div class="dg-content"><h4 class="dg-title">X (Twitter)</h4><div class="dg-sub">Follow lists & threads</div><div class="dg-tags"><span class="dg-tag">Social</span></div></div>
-  </a>
-
-  <a class="dg-card dg-link dg-card--md card-theme-film" href="https://vimeo.com" target="_blank" rel="noopener noreferrer" aria-label="Open Vimeo">
-    <div class="dg-content"><h4 class="dg-title">Vimeo</h4><div class="dg-sub">Cinematic & experimental clips</div></div>
-  </a>
-
-  <a class="dg-card dg-link dg-card--md card-theme-ocean" href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" aria-label="Open Spotify">
-    <div class="dg-content"><h4 class="dg-title">Spotify</h4><div class="dg-sub">Saved playlists</div></div>
-  </a>
-
-  <a class="dg-card dg-link dg-card--md card-theme-retro" href="https://store.steampowered.com" target="_blank" rel="noopener noreferrer" aria-label="Open Steam">
-    <div class="dg-content"><h4 class="dg-title">Steam</h4><div class="dg-sub">Wishlist & clips</div></div>
-  </a>
-</div>
-
-<!-- =========================
-     QUICK COLLECTIONS (compact previews)
-   ========================= -->
-<div class="dg-grid cols-auto gap-md" style="--stagger-index:4;" role="list">
-  <a class="dg-card dg-link dg-card--md card-theme-paper card-collection" href="/collections/prompts">
-    <div class="collection-grid">
-      <img src="/img/MALOGO/Fullflavor.png" alt="">
-      <img src="/img/MALOGO/Fullflavor.png" alt="">
-      <img src="/img/MALOGO/Fullflavor.png" alt="">
-      <img src="/img/MALOGO/Fullflavor.png" alt="">
-    </div>
-    <div class="dg-content"><h4 class="dg-title">Saved Prompts</h4><div class="collection-count">432 items</div></div>
-  </a>
-
-  <a class="dg-card dg-link dg-card--md card-theme-film" href="/collections/gaming-clips">
-    <div class="dg-content"><h4 class="dg-title">Gameplay Clips</h4><div class="dg-sub">Highlights & edits</div></div>
-  </a>
-
-  <a class="dg-card dg-link dg-card--md card-theme-botanical" href="/collections/recipes">
-    <div class="dg-content"><h4 class="dg-title">Recipes</h4><div class="dg-sub">Favorites & riffs</div></div>
-  </a>
-
-  <a class="dg-card dg-link dg-card--md card-theme-desert" href="/collections/travel">
-    <div class="dg-content"><h4 class="dg-title">Travel</h4><div class="dg-sub">Places I've been / want to</div></div>
-  </a>
-</div>
 
 <!-- =========================
      RECENT NOTES (compact grid + mini meta)
