@@ -1,9 +1,8 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-22T16:49:33.976+02:00"}
+{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-22T16:50:20.463+02:00"}
 ---
 
 ---
-dg-publish: true
 dg-content-classes: "theme-auto dg-grid cols-auto"
 ---
 
