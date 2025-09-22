@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1-1/","contentClasses":"theme-auto dg-grid cols-auto gap-md stagger-container","tags":["gardenEntry"],"noteIcon":"","created":"2025-09-22T17:02:12.611+02:00","updated":"2025-09-22T17:12:52.292+02:00"}
+{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1-1/","tags":["gardenEntry"],"noteIcon":"","created":"2025-09-22T17:02:12.611+02:00","updated":"2025-09-22T17:16:02.198+02:00"}
 ---
 
 
