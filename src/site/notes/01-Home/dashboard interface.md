@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/dashboard-interface/","contentClasses":"theme-auto dg-compact-mode","noteIcon":"","created":"2025-09-23T19:01:39.212+02:00","updated":"2025-09-23T19:16:15.056+02:00"}
+{"dg-publish":true,"permalink":"/01-home/dashboard-interface/","noteIcon":"","created":"2025-09-23T19:01:39.212+02:00","updated":"2025-09-23T19:18:13.533+02:00"}
 ---
 
 title: "All Links — Navigation"
