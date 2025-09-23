@@ -1,53 +1,32 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T17:26:30.512+02:00"}
+{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T17:28:16.788+02:00"}
 ---
 
 
 ---
 
 <!-- HERO: compact, centered -->
-<!-- HERO: gateway to all links/dashboards (single anchor, obvious action) -->
-<a class="dg-card card-hero hero-constrained card-theme-crystal effect-glass" href="/links" aria-label="Open all dashboards and site links" >
-  <!-- Background (kept) -->
+<a class="dg-card card-hero hero-constrained card-theme-crystal effect-glass" href="/about" aria-label="Welcome to my garden">
+  <!-- Optional background images (either or both). Keep as early children so they sit behind content -->
   <img class="parallax-layer" src="/img/linkicons/mainbanner.png" alt="" aria-hidden>
   <img class="hero-bg" src="/img/linkicons/mainbanner.png" alt="" aria-hidden>
 
-  <!-- overlay -->
+  <!-- overlay (ensures legibility even on bright backgrounds) -->
   <div class="hero-overlay" aria-hidden></div>
 
-  <!-- content row: left = intro, right = clear action -->
+  <!-- all visible content stays inside hero-content -->
   <div class="hero-content">
-    <div class="hero-row">
-      <div class="hero-left">
-        <div class="hero-badge">Hub • Home</div>
-        <h1 class="hero-title">Welcome to my Digital Garden</h1>
-        <p class="hero-lead">
-          This is the place where I store and curate projects, prompts, playlists, clips, and notes.
-          <strong>Click the button on the right</strong> to open the master hub with dashboards, shortcuts and all links for the site.
-        </p>
+    <div class="hero-badge">Hub • Home</div>
+    <h1 class="hero-title">Welcome to my Digital garden</h1>
+    <p class="hero-lead">This is the place where I store all information I collect and preserve. Things could get edited or disappear, this is for personal storage and for others too see and look into. I hope you find something that interests you or that you enjoy.</p>
 
-        <!-- optional micro CTAs (keep or remove) -->
-        <div class="hero-ctas" aria-hidden>
-          <span class="hero-cta">Collections</span>
-          <span class="hero-cta">Today</span>
-          <span class="hero-cta">Quick Capture</span>
-        </div>
-      </div>
-
-      <div class="hero-right" aria-hidden>
-        <!-- Primary action pill (entire card is the link, this is an affordance); visually stronger -->
-        <div class="hero-action" role="link" aria-hidden>
-          <div>
-            <span class="hero-action-sub">All Dashboards & Links</span>
-            <span style="display:block; font-size:1.02rem; margin-top:2px;">Open master hub</span>
-          </div>
-          <div class="hero-action-arrow" aria-hidden>→</div>
-        </div>
-      </div>
+    <div class="hero-ctas">
+      <span class="hero-cta primary">Collections</span>
+      <span class="hero-cta">Today</span>
+      <span class="hero-cta">Quick Capture</span>
     </div>
   </div>
 </a>
-
 
 
 
@@ -307,7 +286,7 @@
 <!-- ===========================
    RECENT NOTES (list-style compact cards)
    =========================== -->
-<div><table class="dataview table-view-table"><thead class="table-view-thead"><tr class="table-view-tr-header"><th class="table-view-th"><span>📄 Note</span><span class="dataview small-text">5</span></th><th class="table-view-th"><span>🕑 Created</span></th><th class="table-view-th"><span>✏️ Modified</span></th><th class="table-view-th"><span>🔗 Links</span></th></tr></thead><tbody class="table-view-tbody"><tr><td><span><a data-tooltip-position="top" aria-label="01-Home/Testing another note 1 1 1 1 1 1 1.md" data-href="01-Home/Testing another note 1 1 1 1 1 1 1.md" href="01-Home/Testing another note 1 1 1 1 1 1 1.md" class="internal-link" target="_blank" rel="noopener nofollow">Testing another note 1 1 1 1 1 1 1</a></span></td><td><span>2025-09-22 17:02</span></td><td><span>2025-09-23 17:26</span></td><td>0</td></tr><tr><td><span><a data-tooltip-position="top" aria-label="01-Home/dashboards/Projects dashboard 3.md" data-href="01-Home/dashboards/Projects dashboard 3.md" href="01-Home/dashboards/Projects dashboard 3.md" class="internal-link" target="_blank" rel="noopener nofollow">Projects dashboard 3</a></span></td><td><span>2025-09-23 16:49</span></td><td><span>2025-09-23 16:49</span></td><td>0</td></tr><tr><td><span><a data-tooltip-position="top" aria-label="01-Home/dashboards/Projects dashboard 2.md" data-href="01-Home/dashboards/Projects dashboard 2.md" href="01-Home/dashboards/Projects dashboard 2.md" class="internal-link" target="_blank" rel="noopener nofollow">Projects dashboard 2</a></span></td><td><span>2025-09-23 16:49</span></td><td><span>2025-09-23 16:49</span></td><td>0</td></tr><tr><td><span><a data-tooltip-position="top" aria-label="01-Home/dashboards/Prompts dashboard.md" data-href="01-Home/dashboards/Prompts dashboard.md" href="01-Home/dashboards/Prompts dashboard.md" class="internal-link" target="_blank" rel="noopener nofollow">Prompts dashboard</a></span></td><td><span>2025-09-23 16:49</span></td><td><span>2025-09-23 16:49</span></td><td>0</td></tr><tr><td><span><a data-tooltip-position="top" aria-label="01-Home/dashboards/Projects dashboard.md" data-href="01-Home/dashboards/Projects dashboard.md" href="01-Home/dashboards/Projects dashboard.md" class="internal-link" target="_blank" rel="noopener nofollow">Projects dashboard</a></span></td><td><span>2025-09-23 16:48</span></td><td><span>2025-09-23 16:49</span></td><td>0</td></tr></tbody></table></div>
+<div><table class="dataview table-view-table"><thead class="table-view-thead"><tr class="table-view-tr-header"><th class="table-view-th"><span>📄 Note</span><span class="dataview small-text">5</span></th><th class="table-view-th"><span>🕑 Created</span></th><th class="table-view-th"><span>✏️ Modified</span></th><th class="table-view-th"><span>🔗 Links</span></th></tr></thead><tbody class="table-view-tbody"><tr><td><span><a data-tooltip-position="top" aria-label="01-Home/Testing another note 1 1 1 1 1 1 1.md" data-href="01-Home/Testing another note 1 1 1 1 1 1 1.md" href="01-Home/Testing another note 1 1 1 1 1 1 1.md" class="internal-link" target="_blank" rel="noopener nofollow">Testing another note 1 1 1 1 1 1 1</a></span></td><td><span>2025-09-22 17:02</span></td><td><span>2025-09-23 17:28</span></td><td>0</td></tr><tr><td><span><a data-tooltip-position="top" aria-label="01-Home/dashboards/Projects dashboard 3.md" data-href="01-Home/dashboards/Projects dashboard 3.md" href="01-Home/dashboards/Projects dashboard 3.md" class="internal-link" target="_blank" rel="noopener nofollow">Projects dashboard 3</a></span></td><td><span>2025-09-23 16:49</span></td><td><span>2025-09-23 16:49</span></td><td>0</td></tr><tr><td><span><a data-tooltip-position="top" aria-label="01-Home/dashboards/Projects dashboard 2.md" data-href="01-Home/dashboards/Projects dashboard 2.md" href="01-Home/dashboards/Projects dashboard 2.md" class="internal-link" target="_blank" rel="noopener nofollow">Projects dashboard 2</a></span></td><td><span>2025-09-23 16:49</span></td><td><span>2025-09-23 16:49</span></td><td>0</td></tr><tr><td><span><a data-tooltip-position="top" aria-label="01-Home/dashboards/Prompts dashboard.md" data-href="01-Home/dashboards/Prompts dashboard.md" href="01-Home/dashboards/Prompts dashboard.md" class="internal-link" target="_blank" rel="noopener nofollow">Prompts dashboard</a></span></td><td><span>2025-09-23 16:49</span></td><td><span>2025-09-23 16:49</span></td><td>0</td></tr><tr><td><span><a data-tooltip-position="top" aria-label="01-Home/dashboards/Projects dashboard.md" data-href="01-Home/dashboards/Projects dashboard.md" href="01-Home/dashboards/Projects dashboard.md" class="internal-link" target="_blank" rel="noopener nofollow">Projects dashboard</a></span></td><td><span>2025-09-23 16:48</span></td><td><span>2025-09-23 16:49</span></td><td>0</td></tr></tbody></table></div>
 
 
 
