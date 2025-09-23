@@ -1,9 +1,6 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/dashboard-interface/","noteIcon":"","created":"2025-09-23T19:01:39.212+02:00","updated":"2025-09-23T19:18:13.533+02:00"}
+{"dg-publish":true,"permalink":"/01-home/dashboard-interface/","noteIcon":"","created":"2025-09-23T19:01:39.212+02:00","updated":"2025-09-23T19:18:49.764+02:00"}
 ---
-
-title: "All Links — Navigation"
-dg-publish: true
 
 
 # All Links — Master Navigation & Link Library
