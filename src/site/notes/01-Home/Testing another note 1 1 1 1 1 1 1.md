@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T15:45:10.181+02:00"}
+{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T16:58:57.248+02:00"}
 ---
 
 
@@ -146,6 +146,80 @@
   <a class="dg-card dg-link card-compact card-theme-forest" href="/projects/current"><div class="compact-icon">🧭</div><div class="compact-text">Active Project</div></a>
 </div>
 
+<div class="dg-grid cols-auto gap-md" role="list" style="--stagger-index:1;">
+  <!-- Projects -->
+  <a class="dg-card dg-link dg-card--md card-nav card-theme-forest" href="/projects" role="listitem" aria-label="Projects">
+    <div class="nav-left">
+      <div class="card-ico"><img src="/img/MALOGO/Fullflavor.png" style="width:36px;height:36px;border-radius:6px;object-fit:cover;" alt=""></div>
+      <div class="title-wrap">
+        <div class="nav-title">Projects</div>
+        <div class="nav-desc">Boards, repos, active work</div>
+      </div>
+    </div>
+    <div class="nav-arrow" aria-hidden>→</div>
+  </a>
+
+  <!-- Prompts -->
+  <a class="dg-card dg-link dg-card--md card-nav card-theme-paper" href="/prompts" role="listitem" aria-label="Prompts">
+    <div class="nav-left">
+      <div class="card-ico">💡</div>
+      <div class="title-wrap">
+        <div class="nav-title">Prompts</div>
+        <div class="nav-desc">Saved templates & experiments</div>
+      </div>
+    </div>
+    <div class="nav-arrow" aria-hidden>→</div>
+  </a>
+
+  <!-- Music -->
+  <a class="dg-card dg-link dg-card--md card-nav card-theme-ocean" href="/music" role="listitem" aria-label="Music">
+    <div class="nav-left">
+      <div class="card-ico"><img src="/img/MALOGO/Fullflavor.png" style="width:36px;height:36px;border-radius:6px;object-fit:cover;" alt=""></div>
+      <div class="title-wrap">
+        <div class="nav-title">Music</div>
+        <div class="nav-desc">Playlists & artists</div>
+      </div>
+    </div>
+    <div class="nav-arrow" aria-hidden>→</div>
+  </a>
+
+  <!-- Clips (videos) -->
+  <a class="dg-card dg-link dg-card--md card-nav card-theme-film" href="/clips" role="listitem" aria-label="Clips">
+    <div class="nav-left">
+      <div class="card-ico">🎬</div>
+      <div class="title-wrap">
+        <div class="nav-title">Saved Clips</div>
+        <div class="nav-desc">Gameplay & highlights</div>
+      </div>
+    </div>
+    <div class="nav-arrow" aria-hidden>→</div>
+  </a>
+
+  <!-- Collections -->
+  <a class="dg-card dg-link dg-card--md card-nav card-theme-ceramic" href="/collections" role="listitem" aria-label="Collections">
+    <div class="nav-left">
+      <div class="card-ico">📚</div>
+      <div class="title-wrap">
+        <div class="nav-title">Collections</div>
+        <div class="nav-desc">Curated lists & galleries</div>
+      </div>
+    </div>
+    <div class="nav-arrow" aria-hidden>→</div>
+  </a>
+
+  <!-- Quick search -->
+  <a class="dg-card dg-link dg-card--md card-nav card-theme-ocean" href="/music" role="listitem" aria-label="Music">
+    <div class="nav-left">
+      <div class="card-ico"><img src="/img/MALOGO/Fullflavor.png" style="width:36px;height:36px;border-radius:6px;object-fit:cover;" alt=""></div>
+      <div class="title-wrap">
+        <div class="nav-title">Music</div>
+        <div class="nav-desc">Playlists & artists</div>
+      </div>
+    </div>
+    <div class="nav-arrow" aria-hidden>→</div>
+  </a>
+</div>
+
 <!-- ===========================
    LIVE PLAYLIST + MINI PLAYER CARD (visual demo)
    =========================== -->
@@ -209,18 +283,31 @@
 
 
 
-
-
-
-<!-- ===========================
-   CAROUSEL SHOWCASE (compact radio-driven) 
-   - uses interactive carousel built in Phase 5
-   =========================== -->
-
-
 <!-- ===========================
    RECENT NOTES (list-style compact cards)
    =========================== -->
+| File                                                                                                 | Note                                                                                                 | Created            | Last Modified      | Backlinks | Links Out |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------ | ------------------ | --------- | --------- |
+| [[01-Home/Testing another note 1 1 1 1 1 1 1\|Testing another note 1 1 1 1 1 1 1]]                | [[01-Home/Testing another note 1 1 1 1 1 1 1\|Testing another note 1 1 1 1 1 1 1]]                | September 22, 2025 | September 23, 2025 | 0         | 0         |
+| [[01-Home/dashboards/Projects dashboard\|Projects dashboard]]                                     | [[01-Home/dashboards/Projects dashboard\|Projects dashboard]]                                     | September 23, 2025 | September 23, 2025 | 0         | 0         |
+| [[01-Home/dashboards/Projects dashboard 2\|Projects dashboard 2]]                                 | [[01-Home/dashboards/Projects dashboard 2\|Projects dashboard 2]]                                 | September 23, 2025 | September 23, 2025 | 0         | 0         |
+| [[01-Home/dashboards/Projects dashboard 3\|Projects dashboard 3]]                                 | [[01-Home/dashboards/Projects dashboard 3\|Projects dashboard 3]]                                 | September 23, 2025 | September 23, 2025 | 0         | 0         |
+| [[01-Home/dashboards/Prompts dashboard\|Prompts dashboard]]                                       | [[01-Home/dashboards/Prompts dashboard\|Prompts dashboard]]                                       | September 23, 2025 | September 23, 2025 | 0         | 0         |
+| [[01-Home/01-Home\|01-Home]]                                                                      | [[01-Home/01-Home\|01-Home]]                                                                      | September 04, 2025 | September 23, 2025 | 0         | 0         |
+| [[01-Home/Test pages/Testing another note checkpoint\|Testing another note checkpoint]]           | [[01-Home/Test pages/Testing another note checkpoint\|Testing another note checkpoint]]           | September 23, 2025 | September 23, 2025 | 0         | 0         |
+| [[01-Home/Test pages/Testing another note 1 1 1 1 1 1 1 1\|Testing another note 1 1 1 1 1 1 1 1]] | [[01-Home/Test pages/Testing another note 1 1 1 1 1 1 1 1\|Testing another note 1 1 1 1 1 1 1 1]] | September 22, 2025 | September 22, 2025 | 0         | 0         |
+| [[01-Home/Test pages/Testing another note 1 1 1 1 1 1\|Testing another note 1 1 1 1 1 1]]         | [[01-Home/Test pages/Testing another note 1 1 1 1 1 1\|Testing another note 1 1 1 1 1 1]]         | September 22, 2025 | September 22, 2025 | 0         | 0         |
+| [[01-Home/Test pages/Testing another note 1 1 1 1 1\|Testing another note 1 1 1 1 1]]             | [[01-Home/Test pages/Testing another note 1 1 1 1 1\|Testing another note 1 1 1 1 1]]             | September 22, 2025 | September 22, 2025 | 0         | 0         |
+| [[01-Home/Test pages/Testing another note 1 1 1 1\|Testing another note 1 1 1 1]]                 | [[01-Home/Test pages/Testing another note 1 1 1 1\|Testing another note 1 1 1 1]]                 | September 22, 2025 | September 22, 2025 | 0         | 0         |
+| [[01-Home/Test pages/Testing another note 1 1 1\|Testing another note 1 1 1]]                     | [[01-Home/Test pages/Testing another note 1 1 1\|Testing another note 1 1 1]]                     | September 22, 2025 | September 22, 2025 | 0         | 0         |
+| [[01-Home/Test pages/Testing another note 1 1\|Testing another note 1 1]]                         | [[01-Home/Test pages/Testing another note 1 1\|Testing another note 1 1]]                         | September 22, 2025 | September 22, 2025 | 0         | 0         |
+| [[01-Home/Test pages/Testing another note 1\|Testing another note 1]]                             | [[01-Home/Test pages/Testing another note 1\|Testing another note 1]]                             | September 22, 2025 | September 22, 2025 | 0         | 0         |
+| [[01-Home/Test pages/Testing another note\|Testing another note]]                                 | [[01-Home/Test pages/Testing another note\|Testing another note]]                                 | September 22, 2025 | September 22, 2025 | 0         | 0         |
+
+{ .block-language-dataview}
+
+
+
 <h2 class="dg-title" style="--stagger-index:6;">Recent Notes</h2>
 <div class="dg-grid cols-auto gap-md">
   <a class="dg-card dg-link card-note card-theme-paper" href="/notes/today" style="--stagger-index:6;">
@@ -279,7 +366,11 @@
    =========================== -->
 
 
-
+<!-- ===========================
+   CAROUSEL SHOWCASE (compact radio-driven) 
+   - uses interactive carousel built in Phase 5
+   =========================== -->
+   
 <div style="--stagger-index:5;">
   <h2 class="dg-title">Showcase</h2>
 
