@@ -2537,106 +2537,92 @@ tr:last-child td {
 /* End Phase 2 */
 
 /* =========================================================================
-   Phase 3: Core Card Archetypes
-   (Append to custom.css — works with Phase1 tokens & Phase2 layouts)
-   Default sample image used in examples: /img/MALOGO/Fullflavor.png
+   PHASE 3 (REWORKED) — CORE CARD ARCHETYPES & ROBUST HERO
+   - Replace your existing Phase 3 block completely with this
+   - Safe defaults, compact hero, and archetypes (nav, note, playlist, etc.)
+   - Designed to avoid conflicting pseudo-elements and stray visual slices
    ========================================================================= */
 
 /* ---------------------------
-   Small helper for default images
+   Basic tokens used here (fallbacks; Phase1 tokens still preferred)
    --------------------------- */
-/* Use this if you want a pseudo bg fallback (note: some browsers won't load url in CSS var) */
 :root {
-  --dg-default-img: "/img/MALOGO/Fullflavor.png";
+  --card-radius-lg: 16px;
+  --card-radius-md: 12px;
+  --card-padding-md: 1rem;
+  --card-padding-lg: 1.6rem;
+  --glass-blur: 12px;
+  --shadow-md: 0 8px 28px rgba(0,0,0,0.12);
+  --shadow-lg: 0 20px 48px rgba(0,0,0,0.18);
+  --accent-default: #7C5CFA;
+  --card-bg-default: rgba(255,255,255,0.04);
 }
 
 /* ---------------------------
-   Common internal helpers used by archetypes
+   Base card wrapper used by all card archetypes
+   - Keep as minimal and predictable as possible
+   - Anchor-friendly: use <a class="dg-card ..."> to create a full-card link
    --------------------------- */
-.dg-card .card-head {
-  display:flex;
-  gap:0.75rem;
-  align-items:center;
-}
-.dg-card .card-head .title-wrap { flex:1; min-width:0; }
-.dg-card .card-meta-row {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:0.5rem;
-  margin-top: 0.6rem;
-  color: var(--text-muted);
-  font-size: 0.82rem;
-}
-
-/* subtle small icon placeholder */
-.dg-card .card-ico {
-  width:46px; height:46px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border:1px solid rgba(255,255,255,0.03);
-  flex-shrink:0;
-}
-
-/* small circular thumbnail */
-.dg-card .card-thumb {
-  width:56px; height:56px; border-radius:10px; object-fit:cover; flex-shrink:0;
-  border:2px solid rgba(255,255,255,0.04);
-}
-
-/* soft caption under images */
-.dg-card .card-caption { font-size:0.82rem; color:var(--text-secondary); margin-top:0.4rem; }
-
-/* micro sparkline (pure CSS gradient block) */
-.dg-sparkline {
-  height:28px; background: linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.06));
-  border-radius:6px; position:relative; overflow:hidden;
-}
-.dg-sparkline::after {
-  content: '';
-  position:absolute; right:0; top:0; bottom:0;
-  width: 40%; background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 40%, transparent), transparent);
-  transform-origin:right center; opacity:0.95;
-}
-
-/* small progress ring imitation using radial gradient */
-.dg-progress-ring {
-  width:48px;height:48px;border-radius:50%;background:
-    conic-gradient(var(--accent) 0 60%, rgba(255,255,255,0.06) 60% 100%),
-    radial-gradient(closest-side, rgba(0,0,0,0.12) 78%, transparent 79%);
-  display:inline-block; flex-shrink:0;
-}
-
-/* ===========================
-   Hero: Robust single-card hero (Phase 8 fix)
-   Drop this into custom.css AFTER earlier hero definitions to override them.
-   Two display modes:
-     - .hero-constrained -> centered, max-width
-     - .hero-bleed -> full-bleed edge to edge
-   =========================== */
-
-.card-hero {
-  display: block;
-  position: relative; /* required for absolute layers */
-  overflow: hidden;
-  border-radius: 16px;
-  padding: clamp(1.25rem, 2.6vw, 2.4rem);
-  min-height: 320px;
+.dg-card {
+  display: block;                    /* anchor-friendly block-level card */
+  position: relative;
   box-sizing: border-box;
-  margin: 1.25rem auto;
-  background: transparent !important; /* we use layers below */
-  /* ensure the hero's content sits above all effect layers */
-  isolation: isolate;
+  padding: var(--card-padding-md);
+  border-radius: var(--card-radius-md);
+  background: var(--card-bg, var(--card-bg-default));
+  color: var(--card-text, rgba(255,255,255,0.95));
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 280ms cubic-bezier(.2,.9,.3,1), box-shadow 280ms;
+  border: 1px solid rgba(255,255,255,0.04);
   -webkit-font-smoothing:antialiased;
 }
 
-/* ensure global card pseudo-sheen does not split hero visual
-   (some previous rules used .dg-card::before; hide for hero) */
-.card-hero::before,
-.card-hero::after {
+/* Make them tabbable and properly focusable */
+.dg-card[tabindex] { cursor:pointer; }
+.dg-card:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent-default) 18%, transparent); outline-offset:4px; }
+
+/* Prevent any previous global .dg-card::before pseudo from breaking hero
+   The hero below will intentionally override its own pseudo-layers. */
+.dg-card.card-hero::before,
+.dg-card.card-hero::after {
   display: none !important;
 }
 
-/* Background layers (exact stacking order) */
+/* Hover micro-lift (opt-in via class or global) */
+.dg-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ---------------------------
+   HERO / FEATURE CARD (compact & robust)
+   - Use .card-hero on a link: <a class="dg-card card-hero" ...>
+   - Two modes: .hero-constrained (default) and .hero-bleed (full-width)
+   - Background image may be passed via inline var --hero-img or a child <img class="hero-bg">
+   --------------------------- */
+.card-hero {
+  padding: clamp(1rem, 2.2vw, 2.0rem);
+  min-height: 280px;
+  border-radius: calc(var(--card-radius-lg));
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: var(--shadow-md);
+  margin: 1rem auto;
+  max-width: 1200px;
+  /* ensure hero layers don't leak to other elements */
+  isolation: isolate;
+}
+
+/* full-bleed variant (use if you want edge-to-edge visuals) */
+.card-hero.hero-bleed {
+  width: 100vw;
+  max-width: none;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0;
+}
+
+/* internal stacking: we use explicit children rather than relying on ::before from elsewhere */
 .card-hero .hero-bg,
 .card-hero .parallax-layer {
   position: absolute;
@@ -2646,233 +2632,166 @@ tr:last-child td {
   object-fit: cover;
   object-position: center;
   pointer-events: none;
-  display: block;
-  filter: blur(10px) saturate(120%);
-  transform-origin: center;
+  z-index: 0;
+  opacity: 0.46;
+  filter: blur(calc(var(--glass-blur) - 2px)) saturate(110%);
 }
 
-/* parallax layer sits below the main blurred background (optional) */
-.card-hero .parallax-layer { z-index: -30; opacity: 0.36; filter: blur(14px) saturate(120%); transform: scale(1.06); }
+/* parallax layer if used — slightly more blurred & behind hero-bg */
+.card-hero .parallax-layer { z-index: -10; opacity: 0.34; filter: blur(calc(var(--glass-blur) + 4px)); transform: scale(1.05); }
 
-/* hero-bg is the main image that anchors the hero */
-.card-hero .hero-bg { z-index: -20; opacity: 0.46; filter: blur(8px) saturate(110%); }
-
-/* a semi-opaque overlay to guarantee legibility; sits above background layers */
+/* overlay to guarantee text legibility (above BG but below content) */
 .card-hero .hero-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: -10;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.06));
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+  background: linear-gradient(180deg, rgba(0,0,0,0.20), rgba(0,0,0,0.06));
 }
 
-/* hero content wrapper always above overlays */
+/* hero content sits above overlay */
 .card-hero .hero-content {
-  position: relative;
-  z-index: 3; /* put all content above overlays and backgrounds */
-  color: var(--card-text, rgba(255,255,255,0.95));
-  max-width: 1200px;
+  position: relative; z-index:2; max-width: 68ch;
 }
 
-/* hero text styles (safe defaults) */
-.card-hero .hero-badge { display:inline-block; padding:6px 12px; border-radius:999px; background: rgba(255,255,255,0.06); color:var(--card-text); font-weight:600; margin-bottom:0.6rem; }
-.card-hero .hero-title { margin: 0 0 .5rem; font-size: clamp(1.5rem, 3vw, 2.4rem); line-height:1.05; font-weight:800; color:var(--card-text); }
-.card-hero .hero-lead { margin:0 0 1rem; color: var(--text-secondary, rgba(255,255,255,0.78)); max-width:66ch; }
+/* hero typography (compact and readable) */
+.card-hero .hero-badge {
+  display:inline-block; padding:6px 12px; border-radius:999px;
+  background: color-mix(in srgb, var(--accent-default) 8%, rgba(255,255,255,0.02));
+  border:1px solid rgba(255,255,255,0.04); font-weight:700; font-size:0.86rem;
+}
+.card-hero .hero-title {
+  margin: 0.6rem 0 0.25rem;
+  font-weight:800; line-height:1.02;
+  font-size: clamp(1.35rem, 2.6vw, 2.0rem);
+}
+.card-hero .hero-lead { margin:0; color: var(--text-secondary, rgba(255,255,255,0.82)); font-size:0.98rem; }
 
 /* CTA group */
-.card-hero .hero-ctas { display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:0.6rem; }
-.card-hero .hero-cta { padding:10px 14px; border-radius:10px; background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.04); color:var(--card-text); text-decoration:none; }
-
-/* full-bleed variant: remove margin and make edges flush with page */
-.card-hero.hero-bleed {
-  width: 100vw;
-  max-width: none;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  border-radius: 0; /* if you want full edge-to-edge remove radius */
+.card-hero .hero-ctas { display:flex; gap:0.6rem; margin-top:0.8rem; flex-wrap:wrap; }
+.card-hero .hero-cta {
+  padding:8px 12px; border-radius:10px; font-weight:700; font-size:0.95rem;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.03);
+  color: var(--card-text);
+}
+.card-hero .hero-cta.primary {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent-default) 18%, transparent), color-mix(in srgb, var(--accent-default) 8%, transparent));
+  border: 1px solid color-mix(in srgb, var(--accent-default) 28%, transparent);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--accent-default) 10%, transparent);
 }
 
-/* constrained variant centers hero and limits width (default) */
-.card-hero.hero-constrained { max-width: 1200px; }
-
+/* Responsive hero adjustments */
+@media (max-width: 900px) {
+  .card-hero { padding: 1rem; min-height:220px; }
+  .card-hero .hero-title { font-size: 1.25rem; }
+  .card-hero .hero-lead { font-size:0.95rem; }
+}
 
 /* ---------------------------
-   2) NAV / PORTAL CARD
-   - clear portal CTA with arrow affordance
+   NAV / PORTAL CARD
+   - concise portal variant for quick navigation
    --------------------------- */
 .card-nav {
-  display:flex; align-items:center; gap:1rem;
-  padding: var(--space-md);
+  display:flex; gap:0.9rem; align-items:center; justify-content:space-between;
+  padding: calc(var(--card-padding-md) - 0.1rem);
 }
-.card-nav .nav-left { display:flex; gap:0.75rem; align-items:center; }
-.card-nav .nav-title { font-weight:700; font-size:1.05rem; margin:0; }
-.card-nav .nav-desc { font-size:0.88rem; color:var(--text-secondary); }
+.card-nav .nav-left { display:flex; gap:0.75rem; align-items:center; min-width:0; }
+.card-nav .nav-title { font-weight:700; font-size:1rem; margin:0; }
+.card-nav .nav-desc { font-size:0.86rem; color:var(--text-secondary); }
 .card-nav .nav-arrow {
-  width:44px; height:44px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04);
-  transition: transform 220ms ease;
+  width:40px; height:40px; border-radius:8px; display:inline-flex; align-items:center; justify-content:center;
+  background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04);
+  transition: transform 200ms;
 }
 .card-nav:hover .nav-arrow { transform: translateX(6px); }
 
 /* ---------------------------
-   3) NOTE CARD (content-first)
-   - title, excerpt, backlinks summary
+   NOTE CARD (content-first)
    --------------------------- */
-.card-note {
-  padding: var(--space-md);
-  min-height: 140px;
-}
-.card-note .card-excerpt { font-size:0.96rem; color:var(--text-muted); margin-top:0.6rem; }
-.card-note .backlink-preview { margin-top:0.6rem; font-size:0.82rem; color:var(--text-secondary); display:flex; gap:0.5rem; flex-wrap:wrap; }
-
-/* small pill for counts */
-.card-note .pill {
-  display:inline-block; padding:4px 8px; border-radius:999px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04);
-  color:var(--text-secondary); font-size:0.78rem;
-}
+.card-note { padding: var(--card-padding-md); min-height: 120px; }
+.card-note .card-excerpt { color: var(--text-muted, rgba(255,255,255,0.78)); margin-top:0.6rem; font-size:0.95rem; }
+.card-note .backlink-preview { margin-top:0.6rem; display:flex; gap:0.5rem; flex-wrap:wrap; font-size:0.82rem; color:var(--text-secondary); }
+.card-note .pill { padding:5px 9px; border-radius:999px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); font-size:0.8rem; }
 
 /* ---------------------------
-   4) COLLECTION CARD (mini grid preview)
+   COLLECTION CARD (mini-previews)
    --------------------------- */
-.card-collection {
-  padding: var(--space-md);
-  min-height: 240px;
-}
-.card-collection .collection-grid {
-  display:grid; grid-template-columns: repeat(2, 1fr); gap:0.4rem; margin-bottom: var(--space-sm);
-}
-.card-collection .collection-grid img { width:100%; height:70px; object-fit:cover; border-radius:8px; }
-
-/* collection footer */
-.card-collection .collection-footer { display:flex; justify-content:space-between; align-items:center; gap:0.5rem; margin-top:0.6rem; }
+.card-collection { padding:var(--card-padding-md); min-height:200px; }
+.card-collection .collection-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:0.4rem; margin-bottom:0.6rem; }
+.card-collection .collection-grid img { width:100%; height:76px; object-fit:cover; border-radius:8px; }
 
 /* ---------------------------
-   5) PLAYLIST / MUSIC CARD
-   - cover + overlay play button + faux-tracklist
+   PLAYLIST / MUSIC CARD
    --------------------------- */
-.card-playlist { min-height: 300px; padding:0; overflow:hidden; border-radius: calc(var(--radius-md) + 4px); }
-.card-playlist .playlist-image { width:100%; height:190px; object-fit:cover; display:block; border-radius:12px 12px 0 0; }
-.card-playlist .play-overlay {
-  position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 240ms ease; background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.12));
-}
+.card-playlist { padding:0; overflow:hidden; border-radius: calc(var(--card-radius-md)); min-height: 260px; }
+.card-playlist .playlist-image { display:block; width:100%; height:180px; object-fit:cover; border-radius:12px 12px 0 0; }
+.card-playlist .play-overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 220ms; background: linear-gradient(180deg, rgba(0,0,0,0.16), rgba(0,0,0,0.08)); }
 .card-playlist:hover .play-overlay { opacity:1; }
-.card-playlist .play-icon {
-  width:64px;height:64px;border-radius:999px;background:var(--card-text);display:inline-flex;align-items:center;justify-content:center;font-weight:700;color:#111;font-size:22px;box-shadow:var(--shadow-md);
-}
-.card-playlist .playlist-body { padding:var(--space-md); }
-
-/* faux track list (just visual; no audio controls) */
-.card-playlist .track { display:flex; gap:0.6rem; align-items:center; padding:6px 0; border-bottom:1px dashed rgba(255,255,255,0.02); }
-.card-playlist .track .idx { width:28px; text-align:center; color:var(--text-secondary); }
+.card-playlist .play-icon { width:56px; height:56px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center; background: var(--card-text); color:#111; font-weight:700; box-shadow:var(--shadow-md); }
 
 /* ---------------------------
-   6) ARTIST / PROFILE CARD
-   - circular avatar, bio, links
+   ARTIST / PROFILE CARD
    --------------------------- */
-.card-artist { text-align:left; min-height: 200px; padding:var(--space-md); }
-.card-artist .artist-avatar { width:96px; height:96px; border-radius:999px; object-fit:cover; display:block; border:2px solid rgba(255,255,255,0.06); margin-bottom:0.6rem; }
-.card-artist .artist-name { font-size:1.05rem; font-weight:800; }
-.card-artist .artist-role { color:var(--text-secondary); font-size:0.9rem; }
-
-/* social links row */
-.card-artist .artist-links { display:flex; gap:0.5rem; margin-top:0.7rem; }
+.card-artist { padding: var(--card-padding-md); min-height: 160px; display:flex; gap:1rem; align-items:center; }
+.card-artist .artist-avatar { width:80px; height:80px; border-radius:999px; object-fit:cover; border:2px solid rgba(255,255,255,0.04); }
 
 /* ---------------------------
-   7) MEDIA CARD (image/video poster)
-   - overlay preview modal trigger using :target or checkbox pattern
+   MEDIA / SHOWCASE CARD
    --------------------------- */
-.card-media { padding:0; overflow:hidden; border-radius:12px; min-height: 180px; position:relative; }
-.card-media .poster { display:block; width:100%; height:220px; object-fit:cover; }
-.card-media .media-overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 260ms ease; }
-.card-media:hover .media-overlay { opacity:1; }
-.card-media .media-icon { width:60px;height:60px;border-radius:999px;background:rgba(255,255,255,0.95);color:#111; display:inline-flex; align-items:center; justify-content:center; font-size:20px; }
-
-/* :target modal preview (works when you link to #preview-id) */
-.dg-modal {
-  position:fixed; inset:0; display:grid; place-items:center; background: rgba(0,0,0,0.6); padding:40px; opacity:0; visibility:hidden; transition:opacity 240ms ease;
-  z-index:9999;
-}
-.dg-modal:target { opacity:1; visibility:visible; }
-.dg-modal .modal-card { width:min(1100px, 96%); max-height:90vh; overflow:auto; background:var(--card-bg); border-radius:12px; padding:16px; box-shadow:var(--shadow-xl); }
-
-/* ---------------------------
-   8) STATS / KPI CARD
-   - big number, label, small delta
-   --------------------------- */
-.card-stats { text-align:center; padding:var(--space-md); min-height:160px; }
-.card-stats .stat-number { font-size:2.6rem; font-weight:900; background:linear-gradient(90deg, var(--accent-600), var(--accent-400)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:0.25rem; }
-.card-stats .stat-label { text-transform:uppercase; letter-spacing:1px; font-size:0.82rem; color:var(--text-secondary); }
-.card-stats .stat-delta { display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.03); margin-top:0.6rem; color:var(--text-secondary); font-size:0.82rem; }
-
-/* ---------------------------
-   9) COMPACT / LINK CARD
-   - tiny shortcuts for fast nav
-   --------------------------- */
-.card-compact { display:flex; gap:0.75rem; align-items:center; padding:0.6rem 0.8rem; min-height:52px; }
-.card-compact .compact-icon { width:40px; height:40px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04); }
-.card-compact .compact-text { font-weight:600; font-size:0.95rem; }
-
-/* ---------------------------
-   10) SHOWCASE / IMAGE CARD
-   - large aspect image with overlay caption
-   --------------------------- */
-.card-showcase { position:relative; padding:0; overflow:hidden; border-radius:12px; min-height:200px; }
-.card-showcase .show-img { width:100%; height:260px; object-fit:cover; display:block; border-radius:12px; }
-.card-showcase .show-overlay { position:absolute; left:0; right:0; bottom:0; padding:16px; background: linear-gradient(180deg, rgba(0,0,0,0.6), transparent); color:white; transform:translateY(20%); transition:transform 240ms ease; }
+.card-showcase { padding:0; overflow:hidden; border-radius:12px; min-height:200px; position:relative; }
+.card-showcase .show-img { width:100%; height:220px; object-fit:cover; display:block; border-radius:12px; }
+.card-showcase .show-overlay { position:absolute; bottom:0; left:0; right:0; padding:12px; background: linear-gradient(180deg, rgba(0,0,0,0.6), transparent); color:white; transform:translateY(18%); transition:transform 220ms; }
 .card-showcase:hover .show-overlay { transform:translateY(0); }
 
 /* ---------------------------
-   11) FEATURE / PROMO CARD
-   - small CTA + icon
+   STATS / KPI CARD
    --------------------------- */
-.card-feature { display:flex; gap:0.8rem; align-items:center; padding:var(--space-sm); min-height:86px; }
-.card-feature .feat-ico { width:48px; height:48px; border-radius:12px; display:inline-flex; align-items:center; justify-content:center; background:linear-gradient(180deg, color-mix(in srgb, var(--accent) 18%, transparent), rgba(255,255,255,0.02)); color:#fff; font-weight:700; }
+.card-stats { padding:var(--card-padding-md); text-align:center; min-height:140px; }
+.card-stats .stat-number { font-size:2.2rem; font-weight:900; margin-bottom:0.2rem; background: linear-gradient(90deg, var(--accent-default), color-mix(in srgb, var(--accent-default) 60%, white)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.card-stats .stat-label { font-size:0.82rem; color:var(--text-secondary); text-transform:uppercase; }
 
 /* ---------------------------
-   Archetype modifiers (variants)
+   COMPACT / SHORTCUT CARD
    --------------------------- */
-/* frosted variant intensifies blur+border */
-.card-frosted { backdrop-filter: blur(calc(var(--glass-blur) + 6px)) saturate(150%); -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 6px)) saturate(150%); border:1px solid rgba(255,255,255,0.08); }
-
-/* gradient-border accent (tastesful) */
-.card-gradient { background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box, linear-gradient(90deg, var(--accent-600), var(--accent-400)) border-box; border:2px solid transparent; }
-
-/* glow accent */
-.card-glow { box-shadow: 0 12px 40px color-mix(in srgb, var(--accent) 12%, transparent); }
-
-/* compact content (fewer details) */
-.card-compact--tiny .dg-title { font-size:0.92rem; font-weight:700; }
+.card-compact { display:flex; gap:0.8rem; align-items:center; padding:0.55rem 0.8rem; min-height:48px; border-radius:10px; }
+.card-compact .compact-icon { width:40px; height:40px; border-radius:8px; display:inline-flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); }
 
 /* ---------------------------
-   Small responsive tweaks
+   GENERAL MODIFIERS & VARIANTS
+   --------------------------- */
+.card-frosted { backdrop-filter: blur(calc(var(--glass-blur) + 4px)) saturate(120%); -webkit-backdrop-filter: blur(calc(var(--glass-blur) + 4px)) saturate(120%); border:1px solid rgba(255,255,255,0.06); }
+.card-gradient { background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box, linear-gradient(90deg, var(--accent-default), color-mix(in srgb, var(--accent-default) 60%, white)) border-box; border:2px solid transparent; }
+.card-glow { box-shadow: 0 16px 56px color-mix(in srgb, var(--accent-default) 12%, transparent); }
+
+/* ---------------------------
+   RESPONSIVE TWEAKS
    --------------------------- */
 @media (max-width: 768px) {
-  .card-hero { min-height: 260px; padding:1rem; }
+  .dg-card { padding: 0.8rem; border-radius: 12px; }
+  .card-hero { min-height:200px; padding:1rem; }
+  .card-showcase .show-img { height:160px; }
   .card-playlist .playlist-image { height:140px; }
-  .card-showcase .show-img { height:180px; }
-  .card-artist .artist-avatar { width:72px; height:72px; }
 }
 
 /* ---------------------------
-   Accessibility keys
+   ACCESSIBILITY & PRINT
    --------------------------- */
-.card-hero:focus-within, .card-nav:focus-within, .card-note:focus-within { outline: 3px solid color-mix(in srgb, var(--accent) 10%, transparent); outline-offset:4px; }
-
-/* Reduced motion override (be conservative on page with many cards) */
 @media (prefers-reduced-motion: reduce) {
-  .card-hero, .card-playlist, .card-showcase, .card-deck { transition:none !important; animation:none !important; transform:none !important; }
+  .dg-card { transition: none !important; animation: none !important; transform:none !important; }
+  .card-hero .parallax-layer { transform:none !important; }
 }
 
-/* Responsive adjustments */
-@media (max-width: 900px) {
-  .card-hero { padding: 1rem; min-height: 260px; }
-  .card-hero .hero-title { font-size: 1.5rem; }
-  .card-hero .hero-lead { font-size: 0.95rem; }
+@media print {
+  .dg-card { background:#fff !important; color:#000 !important; border:1px solid #000 !important; box-shadow:none !important; }
+  .card-hero { page-break-inside: avoid; }
 }
 
 /* ---------------------------
-   End of Phase 3 archetypes
+   NOTES & MARKUP GUIDELINES (DO NOT DELETE)
+   - Use this markup pattern for the hero to avoid nested anchors / stray cards.
+   - Avoid placing other <a> elements as direct children inside a dg-card anchor.
+   - If you need internal clickable elements, use <button role="button"> or <span role="link"> (and style).
    --------------------------- */
+
+/* End of Phase 3 (reworked) */
+
 
 /* =========================================================================
    Phase 4: Advanced Visual Effects & Micro-interactions
