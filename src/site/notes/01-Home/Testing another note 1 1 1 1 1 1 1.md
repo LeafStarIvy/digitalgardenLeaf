@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T15:29:23.181+02:00"}
+{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T15:33:23.962+02:00"}
 ---
 
 
@@ -17,8 +17,8 @@
   <!-- all visible content stays inside hero-content -->
   <div class="hero-content">
     <div class="hero-badge">Hub • Home</div>
-    <h1 class="hero-title">Welcome — My Digital Garden</h1>
-    <p class="hero-lead">A living, growing collection of projects, prompts, music, clips, reading notes, and tiny experiments. Cards are translucent so your background image sets the mood.</p>
+    <h1 class="hero-title">Welcome to my Digital garden</h1>
+    <p class="hero-lead">This is the place where I store all information I collect and preserve. Things could get edited or disappear, this is for personal storage and for others too see and look into. I hope you find something that interests you or that you enjoy.</p>
 
     <div class="hero-ctas">
       <span class="hero-cta primary">Collections</span>
