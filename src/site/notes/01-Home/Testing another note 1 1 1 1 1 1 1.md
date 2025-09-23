@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T15:33:23.962+02:00"}
+{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T15:45:10.181+02:00"}
 ---
 
 
@@ -180,41 +180,43 @@
     <div class="stat-delta">+4.8% this month</div>
   </a>
 </div>
+<h2 class="dg-title" style="--stagger-index:10;">External Links & Utilities</h2>
+<div class="dg-grid cols-auto gap-md">
+  <a class="dg-card dg-link card-theme-neon" href="https://www.youtube.com/" target="_blank" rel="noopener"> 
+    <div class="dg-content"><h4 class="dg-title">YouTube</h4><div class="dg-sub">Watch & capture clips</div></div>
+  </a>
+
+  <a class="dg-card dg-link card-theme-terminal" href="https://github.com/" target="_blank" rel="noopener"> 
+    <div class="dg-content"><h4 class="dg-title">GitHub</h4><div class="dg-sub">Code & snippets</div></div>
+  </a>
+
+  <a class="dg-card dg-link card-theme-ocean" href="https://open.spotify.com/" target="_blank" rel="noopener">
+    <div class="dg-content"><h4 class="dg-title">Spotify</h4><div class="dg-sub">Playlists & tracks</div></div>
+  </a>
+
+  <a class="dg-card dg-link card-theme-aurora" href="https://soundcloud.com/" target="_blank" rel="noopener">
+    <div class="dg-content"><h4 class="dg-title">SoundCloud</h4><div class="dg-sub">Artists & demos</div></div>
+  </a>
+
+  <a class="dg-card dg-link card-theme-paper" href="https://en.wikipedia.org/wiki/Main_Page" target="_blank" rel="noopener">
+    <div class="dg-content"><h4 class="dg-title">Wikipedia</h4><div class="dg-sub">Reference</div></div>
+  </a>
+
+  <a class="dg-card dg-link card-theme-crystal" href="https://news.ycombinator.com/" target="_blank" rel="noopener">
+    <div class="dg-content"><h4 class="dg-title">Hacker News</h4><div class="dg-sub">Tech links</div></div>
+  </a>
+</div>
+
+
+
+
+
 
 <!-- ===========================
    CAROUSEL SHOWCASE (compact radio-driven) 
    - uses interactive carousel built in Phase 5
    =========================== -->
-<div style="--stagger-index:5;">
-  <h2 class="dg-title">Showcase</h2>
 
-  <!-- radios -->
-  <input type="radio" id="front-c1" name="front-c" checked>
-  <input type="radio" id="front-c2" name="front-c">
-  <input type="radio" id="front-c3" name="front-c">
-
-  <div class="carousel">
-    <div class="slides">
-      <div class="slide s1">
-        <a class="dg-card dg-link card-showcase card-theme-holo" href="/features/one"><img class="show-img" src="/img/MALOGO/Fullflavor.png" alt=""><div class="show-overlay"><h4 class="dg-title">Visual Feature</h4><div class="dg-sub">High-res gallery</div></div></a>
-      </div>
-
-      <div class="slide s2">
-        <a class="dg-card dg-link card-showcase card-theme-velvet effect-glow" href="/features/two"><img class="show-img" src="/img/MALOGO/Fullflavor.png" alt=""><div class="show-overlay"><h4 class="dg-title">Long Read</h4><div class="dg-sub">Featured essay</div></div></a>
-      </div>
-
-      <div class="slide s3">
-        <a class="dg-card dg-link card-showcase card-theme-crystal effect-glass" href="/features/three"><img class="show-img" src="/img/MALOGO/Fullflavor.png" alt=""><div class="show-overlay"><h4 class="dg-title">Experiment</h4><div class="dg-sub">Prompt collection</div></div></a>
-      </div>
-    </div>
-
-    <div class="controls" role="tablist" aria-label="Front showcase">
-      <label for="front-c1" role="tab" tabindex="0" aria-controls="slidef1" aria-selected="true"></label>
-      <label for="front-c2" role="tab" tabindex="0" aria-controls="slidef2"></label>
-      <label for="front-c3" role="tab" tabindex="0" aria-controls="slidef3"></label>
-    </div>
-  </div>
-</div>
 
 <!-- ===========================
    RECENT NOTES (list-style compact cards)
@@ -275,6 +277,40 @@
    ADMIN / EDITOR PANEL — things you'll use while curating
    - Legend, theme preview shortcut, theme picker snippet to copy
    =========================== -->
+
+
+
+<div style="--stagger-index:5;">
+  <h2 class="dg-title">Showcase</h2>
+
+  <!-- radios -->
+  <input type="radio" id="front-c1" name="front-c" checked>
+  <input type="radio" id="front-c2" name="front-c">
+  <input type="radio" id="front-c3" name="front-c">
+
+  <div class="carousel">
+    <div class="slides">
+      <div class="slide s1">
+        <a class="dg-card dg-link card-showcase card-theme-holo" href="/features/one"><img class="show-img" src="/img/MALOGO/Fullflavor.png" alt=""><div class="show-overlay"><h4 class="dg-title">Visual Feature</h4><div class="dg-sub">High-res gallery</div></div></a>
+      </div>
+
+      <div class="slide s2">
+        <a class="dg-card dg-link card-showcase card-theme-velvet effect-glow" href="/features/two"><img class="show-img" src="/img/MALOGO/Fullflavor.png" alt=""><div class="show-overlay"><h4 class="dg-title">Long Read</h4><div class="dg-sub">Featured essay</div></div></a>
+      </div>
+
+      <div class="slide s3">
+        <a class="dg-card dg-link card-showcase card-theme-crystal effect-glass" href="/features/three"><img class="show-img" src="/img/MALOGO/Fullflavor.png" alt=""><div class="show-overlay"><h4 class="dg-title">Experiment</h4><div class="dg-sub">Prompt collection</div></div></a>
+      </div>
+    </div>
+
+    <div class="controls" role="tablist" aria-label="Front showcase">
+      <label for="front-c1" role="tab" tabindex="0" aria-controls="slidef1" aria-selected="true"></label>
+      <label for="front-c2" role="tab" tabindex="0" aria-controls="slidef2"></label>
+      <label for="front-c3" role="tab" tabindex="0" aria-controls="slidef3"></label>
+    </div>
+  </div>
+</div>
+
 <h2 class="dg-title" style="--stagger-index:9;">Editor Tools & Legend</h2>
 
 <div class="dg-grid cols-auto gap-md">
@@ -330,32 +366,6 @@
 <!-- ===========================
    FOOTER — external links / social / resources
    =========================== -->
-<h2 class="dg-title" style="--stagger-index:10;">External Links & Utilities</h2>
-<div class="dg-grid cols-auto gap-md">
-  <a class="dg-card dg-link card-theme-neon" href="https://www.youtube.com/" target="_blank" rel="noopener"> 
-    <div class="dg-content"><h4 class="dg-title">YouTube</h4><div class="dg-sub">Watch & capture clips</div></div>
-  </a>
-
-  <a class="dg-card dg-link card-theme-terminal" href="https://github.com/" target="_blank" rel="noopener"> 
-    <div class="dg-content"><h4 class="dg-title">GitHub</h4><div class="dg-sub">Code & snippets</div></div>
-  </a>
-
-  <a class="dg-card dg-link card-theme-ocean" href="https://open.spotify.com/" target="_blank" rel="noopener">
-    <div class="dg-content"><h4 class="dg-title">Spotify</h4><div class="dg-sub">Playlists & tracks</div></div>
-  </a>
-
-  <a class="dg-card dg-link card-theme-aurora" href="https://soundcloud.com/" target="_blank" rel="noopener">
-    <div class="dg-content"><h4 class="dg-title">SoundCloud</h4><div class="dg-sub">Artists & demos</div></div>
-  </a>
-
-  <a class="dg-card dg-link card-theme-paper" href="https://en.wikipedia.org/wiki/Main_Page" target="_blank" rel="noopener">
-    <div class="dg-content"><h4 class="dg-title">Wikipedia</h4><div class="dg-sub">Reference</div></div>
-  </a>
-
-  <a class="dg-card dg-link card-theme-crystal" href="https://news.ycombinator.com/" target="_blank" rel="noopener">
-    <div class="dg-content"><h4 class="dg-title">Hacker News</h4><div class="dg-sub">Tech links</div></div>
-  </a>
-</div>
 
 <!-- ===========================
    EXTRA: Useful interactive inset examples (accordion + modal)
