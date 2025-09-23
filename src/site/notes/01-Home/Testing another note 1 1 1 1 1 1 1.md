@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T11:28:30.080+02:00"}
+{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T11:44:36.842+02:00"}
 ---
 
 
@@ -35,6 +35,23 @@
       <span class="hero-cta primary">Collections</span>
       <span class="hero-cta">Today</span>
       <span class="hero-cta">Quick Capture</span>
+    </div>
+  </div>
+</a>
+
+<!-- HERO: full-bleed (use when you want edge-to-edge banner) -->
+<a class="dg-card card-hero hero-bleed card-theme-aurora effect-glass" href="/about" aria-label="Welcome to my garden - full bleed">
+  <img class="parallax-layer" src="/img/MALOGO/Fullflavor.png" alt="" aria-hidden>
+  <img class="hero-bg" src="/img/MALOGO/Fullflavor.png" alt="" aria-hidden>
+  <div class="hero-overlay" aria-hidden></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">Welcome</div>
+    <h1 class="hero-title">My Digital Garden — Full Bleed</h1>
+    <p class="hero-lead">Edge-to-edge hero useful for bold landing pages. Use sparingly for curated pages.</p>
+    <div class="hero-ctas">
+      <span class="hero-cta primary">Explore</span>
+      <span class="hero-cta">Subscribe</span>
     </div>
   </div>
 </a>
