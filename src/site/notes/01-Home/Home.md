@@ -1,8 +1,29 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-22T16:51:59.420+02:00"}
+{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-23T19:04:02.091+02:00"}
 ---
 
+<a class="dg-card card-hero hero-constrained card-theme-crystal effect-glass" href="/01-Home/dashboard-interface" aria-label="Welcome to my garden">
+  <!-- Optional background images (either or both). Keep as early children so they sit behind content -->
+  <img class="parallax-layer" src="/img/linkicons/mainbanner.png" alt="" aria-hidden>
+  <img class="hero-bg" src="/img/linkicons/mainbanner.png" alt="" aria-hidden>
 
+  <!-- overlay (ensures legibility even on bright backgrounds) -->
+  <div class="hero-overlay" aria-hidden></div>
+
+  <!-- all visible content stays inside hero-content -->
+  <div class="hero-content">
+    <div class="hero-badge">Hub • Home</div>
+    <h1 class="hero-title">Welcome to my Digital garden</h1>
+    <p class="hero-lead">This is the place where I store all information I collect and preserve. Things could get edited or disappear, this is for personal storage and for others too see and look into. I hope you find something that interests you or that you enjoy.</p>
+
+    <div class="hero-ctas">
+      <span class="hero-cta primary">Collections</span>
+      <span class="hero-cta">Today</span>
+      <span class="hero-cta">Quick Capture</span>
+      <span class="hero-cta">For press here----></span>
+    </div>
+  </div>
+</a>
 
 
 
