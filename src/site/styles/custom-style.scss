@@ -3490,236 +3490,372 @@ tr:last-child td {
    ========================================================================= */
 
 /* =========================================================================
-   PHASE 7 (REWORKED MAJOR): THEME PACKS — Per-card translucent adaptive themes
-   - Replace/append this block to your custom.css after Phase 6
-   - Per-card usage: <a class="dg-card card-theme-aurora">...</a>
-   - Inline overrides allowed: style="--h:220; --s:78%; --l:56%; --accent-h:220; --accent-s:90%; --accent-l:60%;"
-   - Notes: All themes aim to be translucent, glassy and readable over arbitrary background imagery.
+   Phase 7: Theme Packs — Per-card theming system
+   - Append to custom.css after Phase 6
+   - Apply per-card via: <a class="dg-card card-theme-aurora">...</a>
+   - Variables set per theme: --card-bg, --card-border, --card-text, --accent, --card-glow, --card-shine, --card-saturation
    ========================================================================= */
 
-/* -------------------------
-   core mapping & fallbacks
-   ------------------------- */
-:root{
-  /* fallback accent/text */
-  --theme-fallback-h: 250;
-  --theme-fallback-s: 60%;
-  --theme-fallback-l: 50%;
-  --accent-h: var(--theme-fallback-h);
-  --accent-s: var(--theme-fallback-s);
-  --accent-l: var(--theme-fallback-l);
-  --card-text: rgba(255,255,255,0.96); /* you asked for white text */
-  --card-sheen-alpha: 0.06;
-  --card-saturation: 130%;
-  --card-glow-alpha: 0.08;
-  --glass-blur: 14px;
+/* -------------------------------------------------------------------------
+   Base theme variable fallbacks (ensure non-theme cards still look correct)
+   ------------------------------------------------------------------------- */
+:root {
+  /* already defined earlier, but ensuring safe fallbacks */
+  --card-bg: var(--glass-bg-mid, rgba(255,255,255,0.06));
+  --card-border: rgba(255,255,255,0.06);
+  --card-text: var(--text-primary, rgba(255,255,255,0.94));
+  --accent: var(--accent, #7C5CFA);
+  --card-glow: rgba(124,92,250,0.09);
+  --card-shine: rgba(255,255,255,0.06);
+  --card-saturation: 140%;
 }
 
-/* -------------------------
-   helper: produce HSLA strings via variables
-   (we store --h, --s, --l on each theme, with units for s and l like '60%')
-   ------------------------- */
-.dg-card[class*="card-theme-"] {
-  /* base translucent glass using the theme H/S/L values */
-  --h: var(--h, 250);
-  --s: var(--s, 60%);
-  --l: var(--l, 50%);
-  --accent-h: var(--accent-h, var(--h));
-  --accent-s: var(--accent-s, var(--s));
-  --accent-l: var(--accent-l, var(--l));
-  --bg-a-1: 0.14;   /* top gradient alpha */
-  --bg-a-2: 0.06;   /* bottom gradient alpha */
-  --sheen-a: var(--card-sheen-alpha);
-  --glow-a: var(--card-glow-alpha);
+/* -------------------------------------------------------------------------
+   Helper: apply theme variables to a card
+   Use classes like: .card-theme-aurora on the card element
+   ------------------------------------------------------------------------- */
 
-  /* construct color tokens other CSS blocks will consume */
-  --theme-color: hsla(var(--h), var(--s), var(--l), 1);
-  --theme-color-1: hsla(var(--h), var(--s), var(--l), var(--bg-a-1));
-  --theme-color-2: hsla(var(--h), var(--s), var(--l), var(--bg-a-2));
-  --theme-accent: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 1);
-  --theme-accent-soft: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.18);
-
-  /* safer text contrast overlay (automatically used on very bright backgrounds) */
-  --text-contrast-overlay: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.04));
+/* — CRYSTAL (luxury frosted violet) — elegant glassy neutral purple */
+.card-theme-crystal {
+  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  --card-border: rgba(124,92,250,0.16);
+  --card-text: rgba(255,255,255,0.96);
+  --accent: #7C5CFA;
+  --card-glow: rgba(124,92,250,0.12);
+  --card-shine: rgba(255,255,255,0.08);
+  --card-saturation: 150%;
 }
 
-/* -------------------------
-   core visual application (applies to any card that has a card-theme-*)
-   - We intentionally override the global dg-card::before sheen for themed cards
-   - This block keeps the card translucent, glassy, and adaptive.
-   ------------------------- */
-.dg-card[class*="card-theme-"] {
-  background:
-    linear-gradient(180deg, var(--theme-color-1), var(--theme-color-2)),
-    rgba(255,255,255,0.02); /* subtle base so light backgrounds still look soft */
-  background-blend-mode: normal, normal;
-  border: 1px solid color-mix(in srgb, var(--theme-accent) 18%, rgba(255,255,255,0.04));
+/* — FROSTED (icy cool glass) — bluish, higher blur feel but subtle */
+.card-theme-frosted {
+  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+  --card-border: rgba(200,220,255,0.08);
+  --card-text: rgba(250,250,255,0.95);
+  --accent: #6FB3FF;
+  --card-glow: rgba(111,179,255,0.10);
+  --card-shine: rgba(255,255,255,0.06);
+  --card-saturation: 160%;
+}
+
+/* — PAPER (soft tactile) — off-white, slight texture vibe (still translucent) */
+.card-theme-paper {
+  --card-bg: linear-gradient(180deg, rgba(255,255,245,0.85), rgba(255,252,240,0.78));
+  --card-border: rgba(0,0,0,0.06);
+  --card-text: rgba(10,10,10,0.92);
+  --accent: #C07A2F;
+  --card-glow: rgba(192,122,47,0.06);
+  --card-shine: rgba(255,255,255,0.04);
+  --card-saturation: 100%;
+}
+
+/* — MIDNIGHT (deep matte, content-first) */
+.card-theme-midnight {
+  --card-bg: linear-gradient(180deg, rgba(6,6,12,0.56), rgba(6,6,12,0.42));
+  --card-border: rgba(255,255,255,0.04);
+  --card-text: rgba(245,245,245,0.95);
+  --accent: #00D4FF;
+  --card-glow: rgba(0,212,255,0.08);
+  --card-shine: rgba(255,255,255,0.03);
+  --card-saturation: 120%;
+}
+
+/* — NEON POP (fun, punchy; still translucent) */
+.card-theme-neon {
+  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  --card-border: rgba(255,0,150,0.12);
+  --card-text: rgba(255,255,255,0.96);
+  --accent: #FF00AA;
+  --card-glow: rgba(255,0,170,0.12);
+  --card-shine: rgba(255,255,255,0.07);
+  --card-saturation: 170%;
+}
+
+/* — AURORA (soft northern-light gradient) */
+.card-theme-aurora {
+  --card-bg: linear-gradient(180deg, rgba(17, 24, 39, 0.44), rgba(34,197,94,0.02));
+  --card-border: rgba(34,197,94,0.12);
+  --card-text: rgba(245,245,250,0.95);
+  --accent: #2EE6B1;
+  --card-glow: rgba(46,230,177,0.10);
+  --card-shine: rgba(255,255,255,0.06);
+  --card-saturation: 145%;
+}
+
+/* — FOREST (deep greens, earthy) */
+.card-theme-forest {
+  --card-bg: linear-gradient(180deg, rgba(8, 30, 15, 0.46), rgba(20, 60, 30, 0.18));
+  --card-border: rgba(34,197,94,0.10);
+  --card-text: rgba(235,245,235,0.95);
+  --accent: #2FB06B;
+  --card-glow: rgba(47,176,107,0.08);
+  --card-shine: rgba(255,255,255,0.03);
+  --card-saturation: 120%;
+}
+
+/* — OCEAN (cool teal + surf) */
+.card-theme-ocean {
+  --card-bg: linear-gradient(180deg, rgba(6, 182, 212, 0.06), rgba(6, 182, 212, 0.02));
+  --card-border: rgba(6,182,212,0.12);
+  --card-text: rgba(8,20,22,0.95);
+  --accent: #06B6D4;
+  --card-glow: rgba(6,182,212,0.10);
+  --card-shine: rgba(255,255,255,0.04);
+  --card-saturation: 140%;
+}
+
+/* — SUNSET (warm orange -> pink wash) */
+.card-theme-sunset {
+  --card-bg: linear-gradient(180deg, rgba(255,180,120,0.08), rgba(255,120,140,0.04));
+  --card-border: rgba(255,120,140,0.10);
+  --card-text: rgba(16,12,12,0.95);
+  --accent: #FF6B6B;
+  --card-glow: rgba(255,107,107,0.08);
+  --card-shine: rgba(255,255,255,0.05);
+  --card-saturation: 140%;
+}
+
+/* — VINTAGE (sepia map, soft film) */
+.card-theme-vintage {
+  --card-bg: linear-gradient(180deg, rgba(255,250,238,0.86), rgba(245,236,220,0.78));
+  --card-border: rgba(0,0,0,0.06);
+  --card-text: rgba(20,16,10,0.92);
+  --accent: #C49A6C;
+  --card-glow: rgba(196,154,108,0.06);
+  --card-shine: rgba(255,255,255,0.03);
+  --card-saturation: 95%;
+}
+
+/* — CERAMIC (soft, low-sheen neutral) */
+.card-theme-ceramic {
+  --card-bg: linear-gradient(180deg, rgba(250,250,248,0.90), rgba(245,245,244,0.86));
+  --card-border: rgba(20,20,20,0.04);
+  --card-text: rgba(18,18,18,0.94);
+  --accent: #8A6BFF;
+  --card-glow: rgba(138,107,255,0.06);
+  --card-shine: rgba(255,255,255,0.04);
+  --card-saturation: 100%;
+}
+
+/* — VELVET (rich, tactile, low sheen) */
+.card-theme-velvet {
+  --card-bg: linear-gradient(180deg, rgba(22,8,19,0.6), rgba(38,10,30,0.42));
+  --card-border: rgba(255,255,255,0.03);
+  --card-text: rgba(252,245,248,0.95);
+  --accent: #B03A80;
+  --card-glow: rgba(176,58,128,0.08);
+  --card-shine: rgba(255,255,255,0.02);
+  --card-saturation: 120%;
+}
+
+/* — PASTEL (soft candy palette) */
+.card-theme-pastel {
+  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(252,248,255,0.84));
+  --card-border: rgba(220,220,255,0.06);
+  --card-text: rgba(26,26,26,0.92);
+  --accent: #FFB3C6;
+  --card-glow: rgba(255,179,198,0.06);
+  --card-shine: rgba(255,255,255,0.04);
+  --card-saturation: 95%;
+}
+
+/* — SOLARIZED (muted but distinct) */
+.card-theme-solarized {
+  --card-bg: linear-gradient(180deg, rgba(253,246,227,0.06), rgba(38,50,56,0.03));
+  --card-border: rgba(38,50,56,0.06);
+  --card-text: rgba(12,17,23,0.94);
+  --accent: #268BD2;
+  --card-glow: rgba(38,139,210,0.08);
+  --card-shine: rgba(255,255,255,0.03);
+  --card-saturation: 110%;
+}
+
+/* — TERMINAL (monochrome, compact) */
+.card-theme-terminal {
+  --card-bg: rgba(0,0,0,0.52);
+  --card-border: rgba(255,255,255,0.03);
+  --card-text: rgba(180,255,180,0.95);
+  --accent: #7CF26C;
+  --card-glow: rgba(124,242,108,0.06);
+  --card-shine: rgba(255,255,255,0.02);
+  --card-saturation: 90%;
+}
+
+/* — CYBERPUNK (hot pink + cyan) */
+.card-theme-cyberpunk {
+  --card-bg: linear-gradient(180deg, rgba(6,6,20,0.58), rgba(20,6,30,0.42));
+  --card-border: rgba(255,20,145,0.12);
+  --card-text: rgba(245,245,250,0.96);
+  --accent: #00FFE1;
+  --card-glow: rgba(255,20,145,0.10);
+  --card-shine: rgba(255,255,255,0.05);
+  --card-saturation: 170%;
+}
+
+/* — MONO (clean single-tone) */
+.card-theme-mono {
+  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  --card-border: rgba(0,0,0,0.06);
+  --card-text: rgba(10,10,10,0.92);
+  --accent: #555555;
+  --card-glow: rgba(85,85,85,0.06);
+  --card-shine: rgba(255,255,255,0.02);
+  --card-saturation: 100%;
+}
+
+/* — MINIMAL (very low visual noise) */
+.card-theme-minimal {
+  --card-bg: rgba(255,255,255,0.03);
+  --card-border: rgba(255,255,255,0.02);
+  --card-text: rgba(240,240,240,0.95);
+  --accent: #9CA3AF;
+  --card-glow: rgba(156,163,175,0.04);
+  --card-shine: rgba(255,255,255,0.02);
+  --card-saturation: 90%;
+}
+
+/* — RETRO (mid-century warm tones) */
+.card-theme-retro {
+  --card-bg: linear-gradient(180deg, rgba(255,245,230,0.9), rgba(246,236,210,0.86));
+  --card-border: rgba(0,0,0,0.06);
+  --card-text: rgba(24,20,16,0.94);
+  --accent: #D47331;
+  --card-glow: rgba(212,115,49,0.06);
+  --card-shine: rgba(255,255,255,0.03);
+  --card-saturation: 95%;
+}
+
+/* — BUBBLEGUM (bright playful) */
+.card-theme-bubblegum {
+  --card-bg: linear-gradient(180deg, rgba(255,245,252,0.9), rgba(255,230,245,0.86));
+  --card-border: rgba(255,180,220,0.08);
+  --card-text: rgba(18,18,18,0.96);
+  --accent: #FF6FCF;
+  --card-glow: rgba(255,111,207,0.08);
+  --card-shine: rgba(255,255,255,0.05);
+  --card-saturation: 100%;
+}
+
+/* — SCIFI HOLO (holographic sheen, subtle iridescence) */
+.card-theme-holo {
+  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(24,8,80,0.02));
+  --card-border: rgba(120,90,255,0.08);
+  --card-text: rgba(245,245,255,0.95);
+  --accent: #7FDDFF;
+  --card-glow: rgba(127,221,255,0.10);
+  --card-shine: rgba(255,255,255,0.08);
+  --card-saturation: 170%;
+}
+
+/* — FILM-GRAIN (subtle texture & soft contrast) */
+.card-theme-film {
+  --card-bg: linear-gradient(180deg, rgba(10,10,12,0.44), rgba(10,10,12,0.34));
+  --card-border: rgba(255,255,255,0.03);
+  --card-text: rgba(230,230,230,0.95);
+  --accent: #E09F3E;
+  --card-glow: rgba(224,159,62,0.06);
+  --card-shine: rgba(255,255,255,0.03);
+  --card-saturation: 100%;
+}
+
+/* — TIMBER (wood-ish, warm, slightly textured) */
+.card-theme-timber {
+  --card-bg: linear-gradient(180deg, rgba(245,237,228,0.9), rgba(230,218,200,0.86));
+  --card-border: rgba(0,0,0,0.06);
+  --card-text: rgba(30,22,18,0.94);
+  --accent: #8B5E3C;
+  --card-glow: rgba(139,94,60,0.05);
+  --card-shine: rgba(255,255,255,0.02);
+  --card-saturation: 95%;
+}
+
+/* — DESERT (sandy warm calm) */
+.card-theme-desert {
+  --card-bg: linear-gradient(180deg, rgba(255,250,240,0.86), rgba(255,240,220,0.82));
+  --card-border: rgba(0,0,0,0.05);
+  --card-text: rgba(25,18,12,0.94);
+  --accent: #D99058;
+  --card-glow: rgba(217,144,88,0.06);
+  --card-shine: rgba(255,255,255,0.03);
+  --card-saturation: 95%;
+}
+
+/* — BOTANICAL (leafy soft) */
+.card-theme-botanical {
+  --card-bg: linear-gradient(180deg, rgba(240,250,242,0.9), rgba(230,245,235,0.84));
+  --card-border: rgba(100,140,120,0.06);
+  --card-text: rgba(18,20,16,0.94);
+  --accent: #3E8E66;
+  --card-glow: rgba(62,142,102,0.05);
+  --card-shine: rgba(255,255,255,0.03);
+  --card-saturation: 100%;
+}
+
+/* -------------------------------------------------------------------------
+   Additive modifiers you can combine with themes
+   - .theme-outline: stronger thin outline using current --accent
+   - .theme-muted: desaturates the card slightly
+   - .theme-strong: intensifies glow and border
+   ------------------------------------------------------------------------- */
+.card-theme-outline {
+  border: 1.6px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--accent) 8%, transparent);
+}
+.card-theme-muted {
+  filter: saturate(0.82) brightness(0.98);
+  --card-glow: color-mix(in srgb, var(--card-glow) 60%, transparent);
+}
+.card-theme-strong {
+  --card-glow: color-mix(in srgb, var(--accent) 20%, transparent);
+  box-shadow: 0 18px 64px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+/* -------------------------------------------------------------------------
+   Connect theme variables to card internals (map variables to visual properties)
+   - This block updates the core mapping; it keeps actual visual CSS DRY.
+   ------------------------------------------------------------------------- */
+.dg-card {
+  /* override previously used variables if theme applied to card */
+  background: var(--card-bg, var(--glass-bg-mid));
+  border: 1px solid var(--card-border, rgba(255,255,255,0.06));
+  color: var(--card-text, var(--text-primary));
+  filter: saturate(var(--card-saturation, 140%));
+}
+
+/* small accent utility used by tags/badges */
+.dg-card .dg-tag, .dg-card .dg-badge {
+  border-color: color-mix(in srgb, var(--accent) 16%, rgba(255,255,255,0.04));
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   color: var(--card-text);
-  filter: saturate(var(--card-saturation, 120%));
-  backdrop-filter: blur(var(--glass-blur)) saturate(130%);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(130%);
-  position: relative;
-  overflow: hidden;
 }
 
-/* remove older global sheen for themed cards to avoid double-sheen */
-.dg-card[class*="card-theme-"]::before { content:''; display:block; position:absolute; inset:0; z-index:0; pointer-events:none; background:transparent; }
-
-/* sheen + soft iridescent overlay for themes (per-card pseudo) */
-.dg-card[class*="card-theme-"]::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  /* subtle diagonal shine derived from theme */
-  background: linear-gradient(135deg,
-              hsla(var(--h), var(--s), calc(var(--l) + 20%), calc(var(--sheen-a) * 0.85)) 0%,
-              transparent 18%,
-              transparent 70%,
-              hsla(var(--accent-h), var(--accent-s), var(--accent-l), calc(var(--sheen-a) * 0.5)) 100%);
-  mix-blend-mode: screen;
-  opacity: 0.95;
-  transition: opacity .35s;
-  border-radius: inherit;
+/* glow & gradient border usage respects theme variables */
+.dg-card.effect-glow { box-shadow: 0 18px 50px var(--card-glow, rgba(0,0,0,0.08)); }
+.dg-card.effect-gradient-border { 
+  background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+              linear-gradient(90deg, color-mix(in srgb, var(--accent) 40%, transparent), var(--accent)) border-box;
 }
 
-/* ensure card content sits above pseudo layers */
-.dg-card[class*="card-theme-"] > * { position: relative; z-index: 2; }
-
-/* soft glow when opted-in (.effect-glow) */
-.dg-card[class*="card-theme-"].effect-glow {
-  box-shadow: 0 20px 50px hsla(var(--accent-h), var(--accent-s), var(--accent-l), var(--glow-a));
+/* sheen overlay derived from --card-shine */
+.dg-card::before {
+  --s: var(--card-shine, rgba(255,255,255,0.04));
+  content: "";
+  position: absolute; inset: 0; pointer-events:none; border-radius: inherit;
+  background: linear-gradient(135deg, transparent 0%, var(--s) 2%, transparent 50%);
+  mix-blend-mode: screen; opacity: 0.35;
+  z-index: -1;
 }
 
-/* gradient border option */
-.dg-card[class*="card-theme-"].effect-gradient-border {
-  background:
-    linear-gradient(180deg, var(--theme-color-1), var(--theme-color-2)) padding-box,
-    linear-gradient(90deg, var(--theme-accent-soft), var(--theme-accent)) border-box;
-  border: 2px solid transparent;
+/* print fallback: ignore theme transparency and use print-safe colors */
+@media print {
+  .dg-card[class*="card-theme-"] {
+    background: #fff !important;
+    color: #000 !important;
+    border: 1px solid #000 !important;
+    -webkit-print-color-adjust: exact;
+  }
 }
 
-/* small tag / badge mapping inside card to theme accent */
-.dg-card[class*="card-theme-"] .dg-tag, .dg-card[class*="card-theme-"] .dg-badge {
-  background: color-mix(in srgb, var(--theme-accent) 6%, rgba(255,255,255,0.04));
-  border: 1px solid color-mix(in srgb, var(--theme-accent) 18%, rgba(255,255,255,0.03));
-  color: var(--card-text);
-}
-
-/* allow per-card inline accent override (use inline style on card element) */
-/* e.g. <a class="dg-card card-theme-custom" style="--h:15; --s:90%; --l:56%; --accent-h:15; --accent-s:90%; --accent-l:56%;"> */
-.dg-card[style*="--h:"] { /* no-op; styles pick up inline vars automatically */ }
-
-/* modifiers */
-.card-theme-outline { box-shadow: none; border: 1.2px solid color-mix(in srgb, var(--theme-accent) 28%, rgba(255,255,255,0.04)); }
-.card-theme-muted { filter: saturate(0.8) brightness(0.96); opacity: 0.94; }
-.card-theme-strong { --sheen-a: 0.09; --glow-a: 0.14; transform: translateY(-2px); }
-
-/* force readable white text (user request) + optional enhanced-contrast overlay
-   If a card is on a very bright part of the background, you can add .theme-contrast to increase overlay darkness */
-.dg-card[class*="card-theme-"] .dg-title,
-.dg-card[class*="card-theme-"] .dg-sub,
-.dg-card[class*="card-theme-"] p,
-.dg-card[class*="card-theme-"] .dg-excerpt {
-  color: var(--card-text);
-  text-shadow: 0 1px 0 rgba(0,0,0,0.12);
-}
-
-.dg-card[class*="card-theme-"].theme-contrast::after{
-  /* additional darkening overlay for exceptional backgrounds */
-  background: linear-gradient(180deg, rgba(0,0,0,0.28), rgba(0,0,0,0.06));
-  mix-blend-mode: normal;
-  opacity: 1;
-}
-
-/* PERF: reduce expensive effects if parent flags present */
-.effects-disable .dg-card[class*="card-theme-"],
-.dg-compact-mode .dg-card[class*="card-theme-"] {
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  box-shadow: none !important;
-  filter: none !important;
-}
-@media (prefers-reduced-motion: reduce) {
-  .dg-card[class*="card-theme-"] { transition: none !important; }
-  .dg-card[class*="card-theme-"]::after { animation: none !important; }
-}
-
-/* -------------------------
-   THEME LIST — set H, S, L, accent H,S,L for each theme
-   (All themes keep white text default. Modify per-card via inline style if needed)
-   ------------------------- */
-
-/* TIP: you may override any theme by adding inline style to the card:
-   style="--h:210; --s:78%; --l:46%; --accent-h:210; --accent-s:80%; --accent-l:60%;"
-*/
-
-/* 30 curated themes — translucent and deliberately subtle so background shows through.
-   Each theme sets:
-     --h: <number>
-     --s: <percentage>
-     --l: <percentage>
-     --accent-h / -s / -l optional (if not set, accent comes from --h/--s/--l)
-*/
-
-.card-theme-crystal      { --h:265; --s:48%; --l:58%; --accent-h:265; --accent-s:62%; --accent-l:60%; }
-.card-theme-frosted      { --h:205; --s:74%; --l:60%; --accent-h:205; --accent-s:86%; --accent-l:60%; }
-.card-theme-aurora       { --h:162; --s:60%; --l:42%; --accent-h:162; --accent-s:72%; --accent-l:52%; }
-.card-theme-forest       { --h:134; --s:54%; --l:26%; --accent-h:134; --accent-s:66%; --accent-l:36%; }
-.card-theme-ocean        { --h:190; --s:62%; --l:46%; --accent-h:190; --accent-s:80%; --accent-l:54%; }
-.card-theme-sunset       { --h:18;  --s:86%; --l:55%; --accent-h:18;  --accent-s:90%; --accent-l:58%; }
-.card-theme-velvet       { --h:325; --s:42%; --l:20%; --accent-h:325; --accent-s:60%; --accent-l:42%; }
-.card-theme-pastel       { --h:315; --s:40%; --l:92%; --accent-h:315; --accent-s:48%; --accent-l:70%; }
-.card-theme-midnight     { --h:225; --s:20%; --l:10%; --accent-h:200; --accent-s:90%; --accent-l:60%; }
-.card-theme-neon         { --h:330; --s:95%; --l:60%; --accent-h:330; --accent-s:95%; --accent-l:62%; }
-.card-theme-cyberpunk    { --h:285; --s:75%; --l:18%; --accent-h:190; --accent-s:100%; --accent-l:60%; }
-.card-theme-holo         { --h:200; --s:70%; --l:44%; --accent-h:280; --accent-s:80%; --accent-l:62%; }
-.card-theme-film         { --h:30;  --s:20%; --l:12%; --accent-h:30;  --accent-s:60%; --accent-l:48%; }
-.card-theme-ceramic      { --h:260; --s:16%; --l:94%; --accent-h:260; --accent-s:18%; --accent-l:60%; }
-.card-theme-paper        { --h:30;  --s:24%; --l:92%; --accent-h:30;  --accent-s:30%; --accent-l:60%; }
-.card-theme-vintage      { --h:40;  --s:38%; --l:86%; --accent-h:30;  --accent-s:44%; --accent-l:48%; }
-.card-theme-retro        { --h:28;  --s:60%; --l:68%; --accent-h:18;  --accent-s:60%; --accent-l:48%; }
-.card-theme-timber       { --h:28;  --s:40%; --l:46%; --accent-h:28;  --accent-s:48%; --accent-l:40%; }
-.card-theme-desert       { --h:36;  --s:60%; --l:78%; --accent-h:36;  --accent-s:64%; --accent-l:52%; }
-.card-theme-botanical    { --h:120; --s:36%; --l:90%; --accent-h:120; --accent-s:40%; --accent-l:60%; }
-.card-theme-solarized    { --h:196; --s:30%; --l:50%; --accent-h:196; --accent-s:60%; --accent-l:48%; }
-.card-theme-terminal     { --h:120; --s:32%; --l:8%;  --accent-h:120; --accent-s:80%; --accent-l:56%; }
-.card-theme-mono         { --h:0;   --s:0%;  --l:95%; --accent-h:0;   --accent-s:0%;  --accent-l:44%; }
-.card-theme-minimal      { --h:210; --s:10%; --l:8%;  --accent-h:210; --accent-s:10%; --accent-l:68%; }
-.card-theme-bubblegum    { --h:330; --s:70%; --l:92%; --accent-h:330; --accent-s:80%; --accent-l:68%; }
-.card-theme-filmgrain    { --h:12;  --s:18%; --l:12%; --accent-h:12;  --accent-s:38%; --accent-l:46%; }
-.card-theme-ember        { --h:14;  --s:82%; --l:48%; --accent-h:14;  --accent-s:86%; --accent-l:54%; }
-.card-theme-glacier      { --h:200; --s:60%; --l:88%; --accent-h:200; --accent-s:80%; --accent-l:68%; }
-.card-theme-orchid       { --h:290; --s:58%; --l:66%; --accent-h:290; --accent-s:72%; --accent-l:60%; }
-
-/* -------------------------
-   small helper utilities for editors
-   ------------------------- */
-/* theme picker demo classes (no visual change beyond theme vars) */
-.theme-swatch { display:inline-block; width:36px; height:24px; border-radius:6px; border:1px solid rgba(255,255,255,0.06); box-shadow: 0 4px 14px rgba(0,0,0,0.08); margin:2px; }
-
-/* legend helper: show color swatch using the theme vars */
-.theme-swatch.card-theme-crystal { background: linear-gradient(90deg, var(--theme-accent-soft), var(--theme-accent)); }
-
-/* -------------------------
-   usage examples (copy these into notes if you want)
-   ------------------------- */
-
-/* Example: per-card class:
-   <a class="dg-card card-theme-aurora">...</a>
-
-   Example: override inline
-   <a class="dg-card card-theme-crystal" style="--h:200; --s:80%; --l:46%; --accent-h:200; --accent-s:82%; --accent-l:60%;">...</a>
-
-   Example: add contrast overlay (if background is very bright)
-   <a class="dg-card card-theme-ceramic theme-contrast">...</a>
-
-   Combine with modifiers:
-   <a class="dg-card card-theme-neon card-theme-strong effect-shimmer">...</a>
-*/
-
-
+/* End of Phase 7 theme pack block */
 
 
 
