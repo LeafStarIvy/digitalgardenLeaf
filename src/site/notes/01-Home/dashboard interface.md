@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/dashboard-interface/","noteIcon":"","created":"2025-09-23T19:01:39.212+02:00","updated":"2025-09-23T19:49:26.091+02:00"}
+{"dg-publish":true,"permalink":"/01-home/dashboard-interface/","noteIcon":"","created":"2025-09-23T19:01:39.212+02:00","updated":"2025-09-23T19:55:48.470+02:00"}
 ---
 
 # All Links — Master Navigation & Link Library
@@ -497,4 +497,298 @@ dg-publish: false
 If you want, I can next:
 - Output a one-line template per theme (card with title + CTA) so you can paste the exact snippet for any theme quickly, or  
 - Create the same preview but with larger cards + short descriptors (for a style guide page). Which next?
+::contentReference[oaicite:0]{index=0}
+
+---
+title: Theme preview — translucent (clickable modals)
+dg-publish: false
+---
+
+# Theme preview — translucent (click to open image)
+
+<div class="dg-grid cols-auto" style="grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:0.9rem; align-items:stretch;">
+
+  <!-- Crystal -->
+  <a class="dg-card dg-link dg-card--sm card-theme-crystal card-showcase" href="#theme-modal-crystal" aria-label="Open Crystal preview">
+    <div class="card-image"><img src="/img/MALOGO/Fullflavor.png" alt="Crystal preview"></div>
+    <div class="card-overlay"><h4 class="dg-title">Crystal</h4><div class="dg-sub">Glassy violet • subtle sheen</div></div>
+  </a>
+
+  <!-- Frosted -->
+  <a class="dg-card dg-link dg-card--sm card-theme-frosted card-showcase" href="#theme-modal-frosted" aria-label="Open Frosted preview">
+    <div class="card-image"><img src="/img/MALOGO/Fullflavor.png" alt="Frosted preview"></div>
+    <div class="card-overlay"><h4 class="dg-title">Frosted</h4><div class="dg-sub">Icy cool glass • calm</div></div>
+  </a>
+
+  <!-- Aurora -->
+  <a class="dg-card dg-link dg-card--sm card-theme-aurora card-showcase" href="#theme-modal-aurora" aria-label="Open Aurora preview">
+    <div class="card-image"><img src="/img/MALOGO/Fullflavor.png" alt="Aurora preview"></div>
+    <div class="card-overlay"><h4 class="dg-title">Aurora</h4><div class="dg-sub">Northern-lights • soft green</div></div>
+  </a>
+
+  <!-- Forest -->
+  <a class="dg-card dg-link dg-card--sm card-theme-forest card-showcase" href="#theme-modal-forest" aria-label="Open Forest preview">
+    <div class="card-image"><img src="/img/MALOGO/Fullflavor.png" alt="Forest preview"></div>
+    <div class="card-overlay"><h4 class="dg-title">Forest</h4><div class="dg-sub">Deep green • organic</div></div>
+  </a>
+
+  <!-- Ocean -->
+  <a class="dg-card dg-link dg-card--sm card-theme-ocean card-showcase" href="#theme-modal-ocean" aria-label="Open Ocean preview">
+    <div class="card-image"><img src="/img/MALOGO/Fullflavor.png" alt="Ocean preview"></div>
+    <div class="card-overlay"><h4 class="dg-title">Ocean</h4><div class="dg-sub">Teal surf • cool</div></div>
+  </a>
+
+  <!-- Glacier -->
+  <a class="dg-card dg-link dg-card--sm card-theme-glacier card-showcase" href="#theme-modal-glacier" aria-label="Open Glacier preview">
+    <div class="card-image"><img src="/img/MALOGO/Fullflavor.png" alt="Glacier preview"></div>
+    <div class="card-overlay"><h4 class="dg-title">Glacier</h4><div class="dg-sub">Pale cool • airy</div></div>
+  </a>
+
+  <!-- Ember -->
+  <a class="dg-card dg-link dg-card--sm card-theme-ember card-showcase" href="#theme-modal-ember" aria-label="Open Ember preview">
+    <div class="card-image"><img src="/img/MALOGO/Fullflavor.png" alt="Ember preview"></div>
+    <div class="card-overlay"><h4 class="dg-title">Ember</h4><div class="dg-sub">Warm ember • punchy</div></div>
+  </a>
+
+  <!-- Velvet -->
+  <a class="dg-card dg-link dg-card--sm card-theme-velvet card-showcase" href="#theme-modal-velvet" aria-label="Open Velvet preview">
+    <div class="card-image"><img src="/img/MALOGO/Fullflavor.png" alt="Velvet preview"></div>
+    <div class="card-overlay"><h4 class="dg-title">Velvet</h4><div class="dg-sub">Rich • tactile deep tone</div></div>
+  </a>
+
+  <!-- Holo -->
+  <a class="dg-card dg-link dg-card--sm card-theme-holo card-showcase" href="#theme-modal-holo" aria-label="Open Holo preview">
+    <div class="card-image"><img src="/img/MALOGO/Fullflavor.png" alt="Holo preview"></div>
+    <div class="card-overlay"><h4 class="dg-title">Holo</h4><div class="dg-sub">Iridescent • holo sheen</div></div>
+  </a>
+
+  <!-- Neon -->
+  <a class="dg-card dg-link dg-card--sm card-theme-neon card-showcase" href="#theme-modal-neon" aria-label="Open Neon preview">
+    <div class="card-image"><img src="/img/MALOGO/Fullflavor.png" alt="Neon preview"></div>
+    <div class="card-overlay"><h4 class="dg-title">Neon</h4><div class="dg-sub">Punchy • nightlife</div></div>
+  </a>
+
+  <!-- Cyberpunk -->
+  <a class="dg-card dg-link dg-card--sm card-theme-cyberpunk card-showcase" href="#theme-modal-cyberpunk" aria-label="Open Cyberpunk preview">
+    <div class="card-image"><img src="/img/MALOGO/Fullflavor.png" alt="Cyberpunk preview"></div>
+    <div class="card-overlay"><h4 class="dg-title">Cyberpunk</h4><div class="dg-sub">Hot pink & cyan • neon</div></div>
+  </a>
+
+  <!-- Film -->
+  <a class="dg-card dg-link dg-card--sm card-theme-film card-showcase" href="#theme-modal-film" aria-label="Open Film preview">
+    <div class="card-image"><img src="/img/MALOGO/Fullflavor.png" alt="Film preview"></div>
+    <div class="card-overlay"><h4 class="dg-title">Film</h4><div class="dg-sub">Moody • cinematic</div></div>
+  </a>
+
+  <!-- Filmgrain -->
+  <a class="dg-card dg-link dg-card--sm card-theme-filmgrain card-showcase" href="#theme-modal-filmgrain" aria-label="Open Filmgrain preview">
+    <div class="card-image"><img src="/img/MALOGO/Fullflavor.png" alt="Filmgrain preview"></div>
+    <div class="card-overlay"><h4 class="dg-title">Filmgrain</h4><div class="dg-sub">Textured • vintage cinema</div></div>
+  </a>
+
+  <!-- Solarized -->
+  <a class="dg-card dg-link dg-card--sm card-theme-solarized card-showcase" href="#theme-modal-solarized" aria-label="Open Solarized preview">
+    <div class="card-image"><img src="/img/MALOGO/Fullflavor.png" alt="Solarized preview"></div>
+    <div class="card-overlay"><h4 class="dg-title">Solarized</h4><div class="dg-sub">Muted & mellow</div></div>
+  </a>
+
+  <!-- Terminal -->
+  <a class="dg-card dg-link dg-card--sm card-theme-terminal card-showcase" href="#theme-modal-terminal" aria-label="Open Terminal preview">
+    <div class="card-image"><img src="/img/MALOGO/Fullflavor.png" alt="Terminal preview"></div>
+    <div class="card-overlay"><h4 class="dg-title">Terminal</h4><div class="dg-sub">Monochrome • compact</div></div>
+  </a>
+
+  <!-- Minimal -->
+  <a class="dg-card dg-link dg-card--sm card-theme-minimal card-showcase" href="#theme-modal-minimal" aria-label="Open Minimal preview">
+    <div class="card-image"><img src="/img/MALOGO/Fullflavor.png" alt="Minimal preview"></div>
+    <div class="card-overlay"><h4 class="dg-title">Minimal</h4><div class="dg-sub">Very low visual noise</div></div>
+  </a>
+
+  <!-- Orchid -->
+  <a class="dg-card dg-link dg-card--sm card-theme-orchid card-showcase" href="#theme-modal-orchid" aria-label="Open Orchid preview">
+    <div class="card-image"><img src="/img/MALOGO/Fullflavor.png" alt="Orchid preview"></div>
+    <div class="card-overlay"><h4 class="dg-title">Orchid</h4><div class="dg-sub">Soft purple bloom</div></div>
+  </a>
+
+</div>
+
+<!-- Modals (one per theme) -->
+<!-- Crystal -->
+<div id="theme-modal-crystal" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h3 class="dg-title">Crystal — preview</h3>
+    <img src="/img/MALOGO/Fullflavor.png" alt="Crystal preview" style="width:100%;height:auto;border-radius:8px;margin-bottom:8px;">
+    <p class="dg-excerpt">Glassy violet • subtle sheen. Translucent theme designed to let backgrounds show through — replace this text with notes.</p>
+  </div>
+</div>
+
+<!-- Frosted -->
+<div id="theme-modal-frosted" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h3 class="dg-title">Frosted — preview</h3>
+    <img src="/img/MALOGO/Fullflavor.png" alt="Frosted preview" style="width:100%;height:auto;border-radius:8px;margin-bottom:8px;">
+    <p class="dg-excerpt">Icy cool glass • calm. Translucent, subtle bluish tint.</p>
+  </div>
+</div>
+
+<!-- Aurora -->
+<div id="theme-modal-aurora" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h3 class="dg-title">Aurora — preview</h3>
+    <img src="/img/MALOGO/Fullflavor.png" alt="Aurora preview" style="width:100%;height:auto;border-radius:8px;margin-bottom:8px;">
+    <p class="dg-excerpt">Northern-lights • soft green. Great for organic / people cards.</p>
+  </div>
+</div>
+
+<!-- Forest -->
+<div id="theme-modal-forest" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h3 class="dg-title">Forest — preview</h3>
+    <img src="/img/MALOGO/Fullflavor.png" alt="Forest preview" style="width:100%;height:auto;border-radius:8px;margin-bottom:8px;">
+    <p class="dg-excerpt">Deep green • organic. Use for project or nature collections.</p>
+  </div>
+</div>
+
+<!-- Ocean -->
+<div id="theme-modal-ocean" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h3 class="dg-title">Ocean — preview</h3>
+    <img src="/img/MALOGO/Fullflavor.png" alt="Ocean preview" style="width:100%;height:auto;border-radius:8px;margin-bottom:8px;">
+    <p class="dg-excerpt">Teal surf • cool. Nice for playlists and music cards.</p>
+  </div>
+</div>
+
+<!-- Glacier -->
+<div id="theme-modal-glacier" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h3 class="dg-title">Glacier — preview</h3>
+    <img src="/img/MALOGO/Fullflavor.png" alt="Glacier preview" style="width:100%;height:auto;border-radius:8px;margin-bottom:8px;">
+    <p class="dg-excerpt">Pale cool • airy. Subtle, high-key tint that stays translucent.</p>
+  </div>
+</div>
+
+<!-- Ember -->
+<div id="theme-modal-ember" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h3 class="dg-title">Ember — preview</h3>
+    <img src="/img/MALOGO/Fullflavor.png" alt="Ember preview" style="width:100%;height:auto;border-radius:8px;margin-bottom:8px;">
+    <p class="dg-excerpt">Warm ember • punchy. Good for callouts or highlight cards.</p>
+  </div>
+</div>
+
+<!-- Velvet -->
+<div id="theme-modal-velvet" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h3 class="dg-title">Velvet — preview</h3>
+    <img src="/img/MALOGO/Fullflavor.png" alt="Velvet preview" style="width:100%;height:auto;border-radius:8px;margin-bottom:8px;">
+    <p class="dg-excerpt">Rich • tactile deep tone. Works well as hero accent or profile cards.</p>
+  </div>
+</div>
+
+<!-- Holo -->
+<div id="theme-modal-holo" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h3 class="dg-title">Holo — preview</h3>
+    <img src="/img/MALOGO/Fullflavor.png" alt="Holo preview" style="width:100%;height:auto;border-radius:8px;margin-bottom:8px;">
+    <p class="dg-excerpt">Iridescent • holo sheen. Great for experiments and playful elements.</p>
+  </div>
+</div>
+
+<!-- Neon -->
+<div id="theme-modal-neon" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h3 class="dg-title">Neon — preview</h3>
+    <img src="/img/MALOGO/Fullflavor.png" alt="Neon preview" style="width:100%;height:auto;border-radius:8px;margin-bottom:8px;">
+    <p class="dg-excerpt">Punchy • nightlife. Use sparingly as accent or CTA.</p>
+  </div>
+</div>
+
+<!-- Cyberpunk -->
+<div id="theme-modal-cyberpunk" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h3 class="dg-title">Cyberpunk — preview</h3>
+    <img src="/img/MALOGO/Fullflavor.png" alt="Cyberpunk preview" style="width:100%;height:auto;border-radius:8px;margin-bottom:8px;">
+    <p class="dg-excerpt">Hot pink & cyan • neon. Bold, energetic theme.</p>
+  </div>
+</div>
+
+<!-- Film -->
+<div id="theme-modal-film" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h3 class="dg-title">Film — preview</h3>
+    <img src="/img/MALOGO/Fullflavor.png" alt="Film preview" style="width:100%;height:auto;border-radius:8px;margin-bottom:8px;">
+    <p class="dg-excerpt">Moody • cinematic. Good for media / clips cards.</p>
+  </div>
+</div>
+
+<!-- Filmgrain -->
+<div id="theme-modal-filmgrain" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h3 class="dg-title">Filmgrain — preview</h3>
+    <img src="/img/MALOGO/Fullflavor.png" alt="Filmgrain preview" style="width:100%;height:auto;border-radius:8px;margin-bottom:8px;">
+    <p class="dg-excerpt">Textured • vintage cinema. Adds subtle tactile grain.</p>
+  </div>
+</div>
+
+<!-- Solarized -->
+<div id="theme-modal-solarized" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h3 class="dg-title">Solarized — preview</h3>
+    <img src="/img/MALOGO/Fullflavor.png" alt="Solarized preview" style="width:100%;height:auto;border-radius:8px;margin-bottom:8px;">
+    <p class="dg-excerpt">Muted & mellow. Balanced and readable over many backgrounds.</p>
+  </div>
+</div>
+
+<!-- Terminal -->
+<div id="theme-modal-terminal" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h3 class="dg-title">Terminal — preview</h3>
+    <img src="/img/MALOGO/Fullflavor.png" alt="Terminal preview" style="width:100%;height:auto;border-radius:8px;margin-bottom:8px;">
+    <p class="dg-excerpt">Monochrome • compact. Great for code-snippet cards and tools.</p>
+  </div>
+</div>
+
+<!-- Minimal -->
+<div id="theme-modal-minimal" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h3 class="dg-title">Minimal — preview</h3>
+    <img src="/img/MALOGO/Fullflavor.png" alt="Minimal preview" style="width:100%;height:auto;border-radius:8px;margin-bottom:8px;">
+    <p class="dg-excerpt">Very low visual noise — subtle, elegant, and unobtrusive.</p>
+  </div>
+</div>
+
+<!-- Orchid -->
+<div id="theme-modal-orchid" class="dg-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <a class="modal-close" href="#" aria-label="Close">✕</a>
+    <h3 class="dg-title">Orchid — preview</h3>
+    <img src="/img/MALOGO/Fullflavor.png" alt="Orchid preview" style="width:100%;height:auto;border-radius:8px;margin-bottom:8px;">
+    <p class="dg-excerpt">Soft purple bloom — gentle, elegant accent color.</p>
+  </div>
+</div>
+
+---
+
+**Notes**
+- This uses the `:target` CSS modal pattern. Clicking a card updates the URL fragment (e.g. `#theme-modal-crystal`) and displays that modal. Clicking the ✕ (which links to `#`) closes it.
+- Accessibility: `:target` modals do not manage keyboard focus by default. If you want proper focus-trap, ESC-to-close, and screen-reader improvements, I can provide a small Phase 9 JS enhancement (few dozen lines) that unobtrusively adds those features.
+- If you want image-specific captions, place them in the `<p class="dg-excerpt">` inside the modal-card.
+
+Would you like the optional tiny JS for focus + ESC close now, or is this pure CSS version sufficient?
 ::contentReference[oaicite:0]{index=0}
