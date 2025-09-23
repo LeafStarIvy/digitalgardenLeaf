@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T13:07:45.202+02:00"}
+{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T13:16:48.722+02:00"}
 ---
 
 ---
@@ -10,6 +10,32 @@ dg-content-classes: "frontpage"
 
 
 
+<!-- Compact hero card example (constrained) -->
+<a class="dg-card card-hero card-theme-aurora card-theme-glass-heavy" href="/about"
+   style="--tint:#2EE6B1; --tint-opacity:0.05; --accent:#2EE6B1;" data-contrast="medium">
+  <img class="hero-bg" src="/img/MALOGO/Fullflavor.png" alt="" aria-hidden style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:.5; filter: blur(10px) saturate(1.05);">
+  <div class="hero-content" style="position:relative; z-index:10;">
+    <div class="hero-badge">Hub • Home</div>
+    <h1 class="hero-title">Welcome — Adaptive Garden</h1>
+    <p class="hero-lead">Translucent themes adapt to the background. Use data-contrast="high" on bright areas.</p>
+    <div class="hero-ctas"><span class="hero-cta primary">Collections</span><span class="hero-cta">Today</span></div>
+  </div>
+</a>
+
+<!-- Card with high contrast (use when background is bright or busy) -->
+<a class="dg-card card-theme-ocean card-theme-strong" href="#" data-contrast="high" style="--tint:#06B6D4; --tint-opacity:0.06;">
+  <div><strong>Ocean (high contrast)</strong><div style="font-size:.86rem;margin-top:.4rem;opacity:.9">Use this when the background is bright here</div></div>
+</a>
+
+<!-- Card with low contrast (soft) -->
+<a class="dg-card card-theme-pastel" href="#" data-contrast="low" style="--tint:#FFB3C6; --tint-opacity:.045;">
+  <div><strong>Pastel (soft)</strong><div style="font-size:.86rem;margin-top:.4rem;opacity:.9">Soft and airy</div></div>
+</a>
+
+<!-- Inline accent override -->
+<a class="dg-card card-theme-velvet" href="#" style="--accent:#FF8B6B; --tint:#FF8B6B; --tint-opacity:.05;" data-contrast="medium">
+  <div><strong>Velvet with warm accent</strong></div>
+</a>
 
 
 
