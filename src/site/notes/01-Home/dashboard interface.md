@@ -1,7 +1,6 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/dashboard-interface/","noteIcon":"","created":"2025-09-23T19:01:39.212+02:00","updated":"2025-09-23T19:18:49.764+02:00"}
+{"dg-publish":true,"permalink":"/01-home/dashboard-interface/","noteIcon":"","created":"2025-09-23T19:01:39.212+02:00","updated":"2025-09-23T19:31:53.079+02:00"}
 ---
-
 
 # All Links — Master Navigation & Link Library
 
@@ -23,11 +22,11 @@
     <div class="compact-icon">♪</div><div class="compact-text">♪ Music — Playlists</div>
   </a>
 
-  <a class="dg-card card-compact card-theme-paper" href="/prompts" title="Prompts">
+  <a class="dg-card card-compact card-theme-frosted" href="/prompts" title="Prompts">
     <div class="compact-icon">💡</div><div class="compact-text">💡 Prompts — Templates</div>
   </a>
 
-  <a class="dg-card card-compact card-theme-ceramic" href="/today" title="Today">
+  <a class="dg-card card-compact card-theme-holo" href="/today" title="Today">
     <div class="compact-icon">📅</div><div class="compact-text">📅 Today — Daily</div>
   </a>
 
@@ -47,11 +46,11 @@
     </div>
   </a>
 
-  <a class="dg-card card-theme-timber" href="/projects/beta">
+  <a class="dg-card card-theme-forest" href="/projects/beta">
     <div class="card-content"><div class="card-title">🔧 Project — Beta</div><div class="card-subtitle">🚧 Coming Soon: detailed board</div></div>
   </a>
 
-  <a class="dg-card card-theme-retro" href="/projects/archived">
+  <a class="dg-card card-theme-velvet" href="/projects/archived">
     <div class="card-content"><div class="card-title">📦 Archive — Old Projects</div><div class="card-subtitle">🗂 Store & notes</div></div>
   </a>
 
@@ -64,7 +63,7 @@
 
 ## Prompts & Templates
 <div class="dg-grid cols-auto" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
-  <a class="dg-card card-theme-paper" href="/prompts/writing">
+  <a class="dg-card card-theme-frosted" href="/prompts/writing">
     <div class="card-content"><div class="card-title">✍️ Writing Prompts</div><div class="card-subtitle">✏️ Fill with examples</div></div>
   </a>
 
@@ -90,7 +89,7 @@
     <div class="playlist-body"><div class="card-title">▶️ Late-night Mix</div><div class="card-subtitle">🎧 Chill / synth</div></div>
   </a>
 
-  <a class="dg-card card-playlist card-theme-pastel" href="/music/morning">
+  <a class="dg-card card-playlist card-theme-glacier" href="/music/morning">
     <img class="playlist-image" src="/img/MALOGO/Fullflavor.png" alt="">
     <div class="playlist-body"><div class="card-title">☀️ Morning Mix</div><div class="card-subtitle">🌤️ Uplifting</div></div>
   </a>
@@ -122,15 +121,15 @@
 
 ## Reading / Booknotes
 <div class="dg-grid cols-auto" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
-  <a class="dg-card card-note card-theme-paper" href="/reading/current">
+  <a class="dg-card card-note card-theme-frosted" href="/reading/current">
     <div class="card-content"><div class="card-title">📖 Current — Book</div><div class="card-excerpt">✏️ Notes & highlights</div></div>
   </a>
 
-  <a class="dg-card card-note card-theme-vintage" href="/reading/archive">
+  <a class="dg-card card-note card-theme-filmgrain" href="/reading/archive">
     <div class="card-content"><div class="card-title">📚 Archive</div><div class="card-excerpt">🚧 Archive older booknotes</div></div>
   </a>
 
-  <a class="dg-card card-theme-ceramic" href="/reading/quotes">
+  <a class="dg-card card-theme-crystal" href="/reading/quotes">
     <div class="card-content"><div class="card-title">✴️ Quotes</div><div class="card-subtitle">✏️ Fill with gems</div></div>
   </a>
 </div>
@@ -143,7 +142,7 @@
     <div class="card-content"><div class="card-title">⌘ CLI Snippets</div><div class="card-subtitle">✏️ Add useful commands</div></div>
   </a>
 
-  <a class="dg-card card-theme-mono" href="/tools/css">
+  <a class="dg-card card-theme-cyberpunk" href="/tools/css">
     <div class="card-content"><div class="card-title">🎨 CSS Snippets</div><div class="card-subtitle">🧩 Styles & themes</div></div>
   </a>
 
@@ -165,7 +164,7 @@
     <div class="card-content"><div class="card-title">🤝 Collaborators</div><div class="card-subtitle">✏️ Fill names</div></div>
   </a>
 
-  <a class="dg-card card-theme-pastel" href="/people/contacts">
+  <a class="dg-card card-theme-velvet" href="/people/contacts">
     <div class="card-content"><div class="card-title">📇 Contacts</div><div class="card-subtitle">✏️ Fill details</div></div>
   </a>
 </div>
@@ -210,7 +209,7 @@
     <div class="card-content"><div class="card-title">♫ Spotify</div><div class="card-subtitle">Playlists</div></div>
   </a>
 
-  <a class="dg-card card-theme-paper" href="https://en.wikipedia.org/" target="_blank" rel="noopener">
+  <a class="dg-card card-theme-frosted" href="https://en.wikipedia.org/" target="_blank" rel="noopener">
     <div class="card-content"><div class="card-title">📚 Wikipedia</div><div class="card-subtitle">Reference</div></div>
   </a>
 
@@ -218,7 +217,7 @@
     <div class="card-content"><div class="card-title">📰 Hacker News</div><div class="card-subtitle">Tech links</div></div>
   </a>
 
-  <a class="dg-card card-theme-ceramic" href="/bookmarks">
+  <a class="dg-card card-theme-holo" href="/bookmarks">
     <div class="card-content"><div class="card-title">🔖 Bookmarks — Personal</div><div class="card-subtitle">✏️ Curate</div></div>
   </a>
 </div>
@@ -231,11 +230,11 @@
     <div class="card-content"><div class="card-title">🧾 Note Template</div><div class="card-subtitle">✏️ Copy & use</div></div>
   </a>
 
-  <a class="dg-card card-theme-paper" href="/templates/publish">
+  <a class="dg-card card-theme-frosted" href="/templates/publish">
     <div class="card-content"><div class="card-title">🚀 Publish Checklist</div><div class="card-subtitle">✏️ Fill steps</div></div>
   </a>
 
-  <a class="dg-card card-theme-ceramic" href="/cheatsheets">
+  <a class="dg-card card-theme-holo" href="/cheatsheets">
     <div class="card-content"><div class="card-title">📎 Cheatsheets</div><div class="card-subtitle">✏️ Add shortcuts</div></div>
   </a>
 </div>
@@ -245,8 +244,8 @@
 ## Tags / Filters / Quick Lists (useful for maintenance)
 <div class="dg-grid cols-auto" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
   <a class="dg-card card-compact card-theme-minimal" href="/tags/project"><div class="compact-icon">🏷</div><div class="compact-text">#project — (tag index)</div></a>
-  <a class="dg-card card-compact card-theme-ceramic" href="/tags/music"><div class="compact-icon">🏷</div><div class="compact-text">#music</div></a>
-  <a class="dg-card card-compact card-theme-paper" href="/tags/prompt"><div class="compact-icon">🏷</div><div class="compact-text">#prompt</div></a>
+  <a class="dg-card card-compact card-theme-solarized" href="/tags/music"><div class="compact-icon">🏷</div><div class="compact-text">#music</div></a>
+  <a class="dg-card card-compact card-theme-frosted" href="/tags/prompt"><div class="compact-icon">🏷</div><div class="compact-text">#prompt</div></a>
   <a class="dg-card card-compact card-theme-forest" href="/tags/people"><div class="compact-icon">🏷</div><div class="compact-text">#people</div></a>
 </div>
 
@@ -288,7 +287,7 @@
 
 ## Maintenance / Admin
 <div class="dg-grid cols-auto" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
-  <a class="dg-card card-theme-ceramic" href="/admin/theme-legend">
+  <a class="dg-card card-theme-solarized" href="/admin/theme-legend">
     <div class="card-content"><div class="card-title">⚙ Theme Legend</div><div class="card-subtitle">📘 How themes map</div></div>
   </a>
 
@@ -305,7 +304,7 @@
 
 ## Footer — notes & placeholders
 <div class="dg-grid cols-auto" style="grid-template-columns: repeat(3, 1fr); gap: 1rem;">
-  <div class="dg-card card-theme-paper" style="opacity:0.9;">
+  <div class="dg-card card-theme-frosted" style="opacity:0.9;">
     <div class="card-content"><div class="card-title">🚧 Placeholder — Replace</div><div class="card-subtitle">Replace these with real links</div></div>
   </div>
 
@@ -313,11 +312,11 @@
     <div class="card-content"><div class="card-title">✏️ Tip</div><div class="card-subtitle">Use inline HTML for predictable cards (avoid nested markdown links inside anchors)</div></div>
   </div>
 
-  <div class="dg-card card-theme-ceramic" style="opacity:0.9;">
+  <div class="dg-card card-theme-holo" style="opacity:0.9;">
     <div class="card-content"><div class="card-title">🔁 Sync</div><div class="card-subtitle">Use templates to add new link cards quickly</div></div>
   </div>
 </div>
 
 ---
 
-> Want me to turn any of these placeholder cards into actual template-ready snippets (e.g., "Project card template", "External link card template", "Playlist card template") so you can paste them and fill the fields? I can also output a single JSON/CSV list of all placeholder titles for bulk-editing if you'd prefer to import into a generator. Which one next?
+> Want me to generate a matching **theme-preview** snippet that shows these translucent themes using `/img/MALOGO/Fullflavor.png` behind them so you can visually compare how each interacts with your background? I can paste the preview note next.
