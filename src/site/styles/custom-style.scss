@@ -2870,12 +2870,6 @@ tr:last-child td {
   .card-hero .hero-lead { font-size: 0.95rem; }
 }
 
-/* reduced motion / performance safe */
-@media (prefers-reduced-motion: reduce), .dg-compact-mode {
-  .card-hero .parallax-layer { transform: none; transition: none; opacity:0.34; }
-  .card-hero .hero-bg { transition: none; }
-}
-
 /* ---------------------------
    End of Phase 3 archetypes
    --------------------------- */
