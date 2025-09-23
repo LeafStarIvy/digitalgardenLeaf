@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T15:26:44.801+02:00"}
+{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T15:29:23.181+02:00"}
 ---
 
 
@@ -8,8 +8,8 @@
 <!-- HERO: compact, centered -->
 <a class="dg-card card-hero hero-constrained card-theme-crystal effect-glass" href="/about" aria-label="Welcome to my garden">
   <!-- Optional background images (either or both). Keep as early children so they sit behind content -->
-  <img class="parallax-layer" src="/img/linkicons/mainbanner3.png" alt="" aria-hidden>
-  <img class="hero-bg" src="/img/linkicons/mainbanner3.png" alt="" aria-hidden>
+  <img class="parallax-layer" src="/img/linkicons/mainbanner.png" alt="" aria-hidden>
+  <img class="hero-bg" src="/img/linkicons/mainbanner.png" alt="" aria-hidden>
 
   <!-- overlay (ensures legibility even on bright backgrounds) -->
   <div class="hero-overlay" aria-hidden></div>
