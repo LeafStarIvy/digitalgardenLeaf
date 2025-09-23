@@ -1,11 +1,18 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T12:47:29.813+02:00"}
+{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T13:07:45.202+02:00"}
 ---
 
 ---
 
-
+# wrapper: frontpage ensures see-through styling for all cards on this page
+dg-content-classes: "frontpage"
 ---
+
+
+
+
+
+
 
 <!-- =========================
      HERO (compact, robust) — uses the fixed hero markup
