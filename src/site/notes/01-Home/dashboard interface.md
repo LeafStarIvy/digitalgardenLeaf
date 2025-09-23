@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/dashboard-interface/","noteIcon":"","created":"2025-09-23T19:01:39.212+02:00","updated":"2025-09-23T19:31:53.079+02:00"}
+{"dg-publish":true,"permalink":"/01-home/dashboard-interface/","noteIcon":"","created":"2025-09-23T19:01:39.212+02:00","updated":"2025-09-23T19:37:05.592+02:00"}
 ---
 
 # All Links — Master Navigation & Link Library
@@ -319,4 +319,4 @@
 
 ---
 
-> Want me to generate a matching **theme-preview** snippet that shows these translucent themes using `/img/MALOGO/Fullflavor.png` behind them so you can visually compare how each interacts with your background? I can paste the preview note next.
+<div class="glass-grid grid-4"> <!-- Placeholder 1 --> <div class="glass-card minimal" style="opacity: 0.6;"> <div class="card-content"> <div class="card-title">🚧 Working on this</div>  </div> </div> </div>

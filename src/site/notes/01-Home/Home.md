@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-23T19:04:02.091+02:00"}
+{"dg-publish":true,"permalink":"/01-home/home/","tags":["dashboard","home","gardenEntry"],"noteIcon":"","created":"2025-08-28T23:54:20.501+02:00","updated":"2025-09-23T19:36:09.786+02:00"}
 ---
 
 <a class="dg-card card-hero hero-constrained card-theme-crystal effect-glass" href="/01-Home/dashboard-interface" aria-label="Welcome to my garden">
@@ -34,9 +34,9 @@
 
 
 
-
-
 <div class="glass-grid grid-4"> <!-- Placeholder 1 --> <div class="glass-card minimal" style="opacity: 0.6;"> <div class="card-content"> <div class="card-title">🚧 Coming Soon</div> <div class="card-subtitle">Space reserved for future content</div> </div> </div> <!-- Placeholder 2 --> <div class="glass-card minimal" style="opacity: 0.6;"> <div class="card-content"> <div class="card-title">🚧 In Development</div> <div class="card-subtitle">New section under construction</div> </div> </div> <!-- Placeholder 3 --> <div class="glass-card minimal" style="opacity: 0.6;"> <div class="card-content"> <div class="card-title">🚧 Planned Feature</div> <div class="card-subtitle">Interactive element coming</div> </div> </div> <!-- Placeholder 4 --> <div class="glass-card minimal" style="opacity: 0.6;"> <div class="card-content"> <div class="card-title">🚧 Beta Testing</div> <div class="card-subtitle">Experimental area</div> </div> </div> </div>
+
+
 
 > [!INFO]  
 > Welcome to my **Personal Vault**—this is the place where I store all information I collect and preserve. Things could get eddited or dissapear, this is for personal storage and for others too see and look into. I hope you find something that interests you or that you enjoy. 
