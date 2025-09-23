@@ -3490,372 +3490,235 @@ tr:last-child td {
    ========================================================================= */
 
 /* =========================================================================
-   Phase 7: Theme Packs — Per-card theming system
-   - Append to custom.css after Phase 6
-   - Apply per-card via: <a class="dg-card card-theme-aurora">...</a>
-   - Variables set per theme: --card-bg, --card-border, --card-text, --accent, --card-glow, --card-shine, --card-saturation
+   PHASE 7 (REWORKED) — Advanced Theme Packs (per-card)
+   - Replace your old Phase 7 block with this
+   - Per-card usage: <a class="dg-card card-theme-aurora">...</a>
+   - Per-card accent override: style="--accent:#FF6B6B"
+   - Per-card contrast: data-contrast="high" or data-contrast="low"
    ========================================================================= */
 
-/* -------------------------------------------------------------------------
-   Base theme variable fallbacks (ensure non-theme cards still look correct)
-   ------------------------------------------------------------------------- */
-:root {
-  /* already defined earlier, but ensuring safe fallbacks */
-  --card-bg: var(--glass-bg-mid, rgba(255,255,255,0.06));
+/* ---------------------------
+   Core theme variable defaults
+   --------------------------- */
+:root{
+  --theme-card-radius: 14px;
+  --theme-sheen-opacity: 0.28;
+  --theme-overlay-color: rgba(0,0,0,0.06);
+  --card-bg: rgba(255,255,255,0.04);
   --card-border: rgba(255,255,255,0.06);
-  --card-text: var(--text-primary, rgba(255,255,255,0.94));
-  --accent: var(--accent, #7C5CFA);
-  --card-glow: rgba(124,92,250,0.09);
-  --card-shine: rgba(255,255,255,0.06);
-  --card-saturation: 140%;
-}
-
-/* -------------------------------------------------------------------------
-   Helper: apply theme variables to a card
-   Use classes like: .card-theme-aurora on the card element
-   ------------------------------------------------------------------------- */
-
-/* — CRYSTAL (luxury frosted violet) — elegant glassy neutral purple */
-.card-theme-crystal {
-  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-  --card-border: rgba(124,92,250,0.16);
-  --card-text: rgba(255,255,255,0.96);
+  --card-text: rgba(255,255,255,0.94);
   --accent: #7C5CFA;
-  --card-glow: rgba(124,92,250,0.12);
-  --card-shine: rgba(255,255,255,0.08);
-  --card-saturation: 150%;
-}
-
-/* — FROSTED (icy cool glass) — bluish, higher blur feel but subtle */
-.card-theme-frosted {
-  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
-  --card-border: rgba(200,220,255,0.08);
-  --card-text: rgba(250,250,255,0.95);
-  --accent: #6FB3FF;
-  --card-glow: rgba(111,179,255,0.10);
-  --card-shine: rgba(255,255,255,0.06);
-  --card-saturation: 160%;
-}
-
-/* — PAPER (soft tactile) — off-white, slight texture vibe (still translucent) */
-.card-theme-paper {
-  --card-bg: linear-gradient(180deg, rgba(255,255,245,0.85), rgba(255,252,240,0.78));
-  --card-border: rgba(0,0,0,0.06);
-  --card-text: rgba(10,10,10,0.92);
-  --accent: #C07A2F;
-  --card-glow: rgba(192,122,47,0.06);
-  --card-shine: rgba(255,255,255,0.04);
-  --card-saturation: 100%;
-}
-
-/* — MIDNIGHT (deep matte, content-first) */
-.card-theme-midnight {
-  --card-bg: linear-gradient(180deg, rgba(6,6,12,0.56), rgba(6,6,12,0.42));
-  --card-border: rgba(255,255,255,0.04);
-  --card-text: rgba(245,245,245,0.95);
-  --accent: #00D4FF;
-  --card-glow: rgba(0,212,255,0.08);
-  --card-shine: rgba(255,255,255,0.03);
-  --card-saturation: 120%;
-}
-
-/* — NEON POP (fun, punchy; still translucent) */
-.card-theme-neon {
-  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-  --card-border: rgba(255,0,150,0.12);
-  --card-text: rgba(255,255,255,0.96);
-  --accent: #FF00AA;
-  --card-glow: rgba(255,0,170,0.12);
-  --card-shine: rgba(255,255,255,0.07);
-  --card-saturation: 170%;
-}
-
-/* — AURORA (soft northern-light gradient) */
-.card-theme-aurora {
-  --card-bg: linear-gradient(180deg, rgba(17, 24, 39, 0.44), rgba(34,197,94,0.02));
-  --card-border: rgba(34,197,94,0.12);
-  --card-text: rgba(245,245,250,0.95);
-  --accent: #2EE6B1;
-  --card-glow: rgba(46,230,177,0.10);
-  --card-shine: rgba(255,255,255,0.06);
-  --card-saturation: 145%;
-}
-
-/* — FOREST (deep greens, earthy) */
-.card-theme-forest {
-  --card-bg: linear-gradient(180deg, rgba(8, 30, 15, 0.46), rgba(20, 60, 30, 0.18));
-  --card-border: rgba(34,197,94,0.10);
-  --card-text: rgba(235,245,235,0.95);
-  --accent: #2FB06B;
-  --card-glow: rgba(47,176,107,0.08);
-  --card-shine: rgba(255,255,255,0.03);
-  --card-saturation: 120%;
-}
-
-/* — OCEAN (cool teal + surf) */
-.card-theme-ocean {
-  --card-bg: linear-gradient(180deg, rgba(6, 182, 212, 0.06), rgba(6, 182, 212, 0.02));
-  --card-border: rgba(6,182,212,0.12);
-  --card-text: rgba(8,20,22,0.95);
-  --accent: #06B6D4;
-  --card-glow: rgba(6,182,212,0.10);
-  --card-shine: rgba(255,255,255,0.04);
-  --card-saturation: 140%;
-}
-
-/* — SUNSET (warm orange -> pink wash) */
-.card-theme-sunset {
-  --card-bg: linear-gradient(180deg, rgba(255,180,120,0.08), rgba(255,120,140,0.04));
-  --card-border: rgba(255,120,140,0.10);
-  --card-text: rgba(16,12,12,0.95);
-  --accent: #FF6B6B;
-  --card-glow: rgba(255,107,107,0.08);
+  --card-glow: rgba(124,92,250,0.08);
   --card-shine: rgba(255,255,255,0.05);
   --card-saturation: 140%;
+  --card-overlay-opacity: 0; /* zero by default (adaptive via data-contrast) */
 }
 
-/* — VINTAGE (sepia map, soft film) */
-.card-theme-vintage {
-  --card-bg: linear-gradient(180deg, rgba(255,250,238,0.86), rgba(245,236,220,0.78));
-  --card-border: rgba(0,0,0,0.06);
-  --card-text: rgba(20,16,10,0.92);
-  --accent: #C49A6C;
-  --card-glow: rgba(196,154,108,0.06);
-  --card-shine: rgba(255,255,255,0.03);
-  --card-saturation: 95%;
+/* ---------------------------
+   Base mapping: apply variables to cards
+   --------------------------- */
+.dg-card {
+  position: relative;
+  display: block;
+  padding: 1rem;
+  border-radius: var(--theme-card-radius);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--card-text);
+  overflow: hidden;
+  transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s;
+  -webkit-font-smoothing:antialiased;
+  filter: saturate(var(--card-saturation,120%));
 }
 
-/* — CERAMIC (soft, low-sheen neutral) */
-.card-theme-ceramic {
-  --card-bg: linear-gradient(180deg, rgba(250,250,248,0.90), rgba(245,245,244,0.86));
-  --card-border: rgba(20,20,20,0.04);
-  --card-text: rgba(18,18,18,0.94);
-  --accent: #8A6BFF;
-  --card-glow: rgba(138,107,255,0.06);
+/* stacking: sheen (::before) -> overlay (::after) -> content (z-index above) */
+.dg-card::before{
+  /* sheen / soft highlight */
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(135deg,
+    transparent 0%,
+    color-mix(in srgb, var(--card-shine, rgba(255,255,255,0.04)) 45%, transparent) 6%,
+    transparent 55%);
+  opacity: var(--theme-sheen-opacity);
+  mix-blend-mode: screen;
+  border-radius: inherit;
+}
+
+/* overlay for contrast control (adaptive) */
+.dg-card::after{
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: var(--theme-overlay-color);
+  opacity: var(--card-overlay-opacity, 0);
+  border-radius: inherit;
+}
+
+/* ensure visible content sits above pseudo-elements */
+.dg-card > * { position: relative; z-index: 3; }
+
+/* hover micro-lift (non-invasive) */
+.dg-card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px color-mix(in srgb, var(--card-glow) 10%, transparent); }
+
+/* ---------------------------
+   Per-card contrast toggles (data attributes)
+   - data-contrast="high" -> stronger dark overlay for legibility
+   - data-contrast="low" -> light overlay (useful on dark backgrounds)
+   --------------------------- */
+.dg-card[data-contrast="high"] { --card-overlay-opacity: 0.36; --theme-overlay-color: rgba(0,0,0,0.56); }
+.dg-card[data-contrast="medium"] { --card-overlay-opacity: 0.18; --theme-overlay-color: rgba(0,0,0,0.28); }
+.dg-card[data-contrast="low"] { --card-overlay-opacity: 0.08; --theme-overlay-color: rgba(255,255,255,0.06); }
+
+/* ---------------------------
+   Accent override (inline style recommended)
+   - Use: <a class="dg-card card-theme-aurora" style="--accent:#FF6B6B">...</a>
+   --------------------------- */
+.dg-card { --accent: var(--accent, #7C5CFA); }
+
+/* ---------------------------
+   Theme variables: MANY THEMES — translucent & background-friendly
+   - Each theme defines a minimal set of variables only (translucent)
+   - Use linear-gradients with low alpha so background shows through
+   --------------------------- */
+
+/* ---------- BASIC / NEUTRAL ---------- */
+.card-theme-plain {
+  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
+  --card-border: rgba(255,255,255,0.05);
+  --card-text: rgba(250,250,250,0.96);
+  --accent: #9CA3AF;
+  --card-glow: rgba(156,163,175,0.06);
   --card-shine: rgba(255,255,255,0.04);
-  --card-saturation: 100%;
-}
-
-/* — VELVET (rich, tactile, low sheen) */
-.card-theme-velvet {
-  --card-bg: linear-gradient(180deg, rgba(22,8,19,0.6), rgba(38,10,30,0.42));
-  --card-border: rgba(255,255,255,0.03);
-  --card-text: rgba(252,245,248,0.95);
-  --accent: #B03A80;
-  --card-glow: rgba(176,58,128,0.08);
-  --card-shine: rgba(255,255,255,0.02);
-  --card-saturation: 120%;
-}
-
-/* — PASTEL (soft candy palette) */
-.card-theme-pastel {
-  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(252,248,255,0.84));
-  --card-border: rgba(220,220,255,0.06);
-  --card-text: rgba(26,26,26,0.92);
-  --accent: #FFB3C6;
-  --card-glow: rgba(255,179,198,0.06);
-  --card-shine: rgba(255,255,255,0.04);
-  --card-saturation: 95%;
-}
-
-/* — SOLARIZED (muted but distinct) */
-.card-theme-solarized {
-  --card-bg: linear-gradient(180deg, rgba(253,246,227,0.06), rgba(38,50,56,0.03));
-  --card-border: rgba(38,50,56,0.06);
-  --card-text: rgba(12,17,23,0.94);
-  --accent: #268BD2;
-  --card-glow: rgba(38,139,210,0.08);
-  --card-shine: rgba(255,255,255,0.03);
   --card-saturation: 110%;
 }
+.card-theme-minimal { --card-bg: rgba(255,255,255,0.028); --card-border: rgba(255,255,255,0.02); --accent:#B0B7C1; --card-text:rgba(245,245,245,0.95); --card-saturation:95%; }
+.card-theme-mono { --card-bg: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); --card-text:#0b0b0b; --accent:#555; --card-saturation:100%; }
 
-/* — TERMINAL (monochrome, compact) */
-.card-theme-terminal {
-  --card-bg: rgba(0,0,0,0.52);
-  --card-border: rgba(255,255,255,0.03);
-  --card-text: rgba(180,255,180,0.95);
-  --accent: #7CF26C;
-  --card-glow: rgba(124,242,108,0.06);
-  --card-shine: rgba(255,255,255,0.02);
-  --card-saturation: 90%;
-}
+/* ---------- NATURE / EARTH ---------- */
+.card-theme-forest { --card-bg: linear-gradient(180deg, rgba(6,20,12,0.34), rgba(20,60,30,0.08)); --card-border: rgba(34,197,94,0.10); --accent:#2FB06B; --card-text:rgba(240,248,238,0.95); --card-glow: rgba(47,176,107,0.06); }
+.card-theme-botanical { --card-bg: linear-gradient(180deg, rgba(240,250,242,0.88), rgba(230,245,235,0.80)); --accent:#3E8E66; --card-text:#111; --card-saturation:102%; }
+.card-theme-ocean { --card-bg: linear-gradient(180deg, rgba(6,182,212,0.06), rgba(6,182,212,0.02)); --accent:#06B6D4; --card-text:#0b1720; --card-saturation:130%; }
+.card-theme-desert { --card-bg: linear-gradient(180deg, rgba(255,250,240,0.86), rgba(255,240,220,0.82)); --accent:#D99058; --card-text:#1a1208; }
 
-/* — CYBERPUNK (hot pink + cyan) */
-.card-theme-cyberpunk {
-  --card-bg: linear-gradient(180deg, rgba(6,6,20,0.58), rgba(20,6,30,0.42));
-  --card-border: rgba(255,20,145,0.12);
-  --card-text: rgba(245,245,250,0.96);
-  --accent: #00FFE1;
-  --card-glow: rgba(255,20,145,0.10);
-  --card-shine: rgba(255,255,255,0.05);
-  --card-saturation: 170%;
-}
+/* ---------- SKY / LIGHT ---------- */
+.card-theme-aurora { --card-bg: linear-gradient(180deg, rgba(17,24,39,0.32), rgba(34,197,94,0.02)); --accent:#2EE6B1; --card-shine: rgba(255,255,255,0.06); --card-text:rgba(250,250,250,0.96); }
+.card-theme-sky { --card-bg: linear-gradient(180deg, rgba(220,240,255,0.85), rgba(240,248,255,0.82)); --accent:#68BDF6; --card-text:#062233; --card-saturation:100%; }
+.card-theme-sunset { --card-bg: linear-gradient(180deg, rgba(255,180,120,0.08), rgba(255,120,140,0.04)); --accent:#FF6B6B; --card-text:#100809; }
 
-/* — MONO (clean single-tone) */
-.card-theme-mono {
-  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-  --card-border: rgba(0,0,0,0.06);
-  --card-text: rgba(10,10,10,0.92);
-  --accent: #555555;
-  --card-glow: rgba(85,85,85,0.06);
-  --card-shine: rgba(255,255,255,0.02);
-  --card-saturation: 100%;
-}
+/* ---------- SYNTH / NEON / ELECTRONIC ---------- */
+.card-theme-neo { --card-bg: linear-gradient(180deg, rgba(10,10,28,0.46), rgba(18,10,28,0.30)); --accent:#7C5CFA; --card-text:rgba(245,245,250,0.96); --card-saturation:150%; }
+.card-theme-neon { --card-bg: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); --accent:#FF00AA; --card-glow:rgba(255,0,170,0.12); --card-saturation:170%; }
+.card-theme-cyberpunk { --card-bg: linear-gradient(180deg, rgba(6,6,20,0.58), rgba(20,6,30,0.42)); --accent:#00FFE1; --card-text:rgba(245,245,250,0.96); --card-saturation:170%; }
+.card-theme-holo { --card-bg: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(24,8,80,0.02)); --accent:#7FDDFF; --card-shine: rgba(255,255,255,0.08); }
 
-/* — MINIMAL (very low visual noise) */
-.card-theme-minimal {
-  --card-bg: rgba(255,255,255,0.03);
-  --card-border: rgba(255,255,255,0.02);
-  --card-text: rgba(240,240,240,0.95);
-  --accent: #9CA3AF;
-  --card-glow: rgba(156,163,175,0.04);
-  --card-shine: rgba(255,255,255,0.02);
-  --card-saturation: 90%;
-}
+/* ---------- WARM / TACTILE ---------- */
+.card-theme-paper { --card-bg: linear-gradient(180deg, rgba(255,255,245,0.86), rgba(255,252,240,0.78)); --card-text:#1a1208; --accent:#C07A2F; --card-saturation:96%; }
+.card-theme-timber { --card-bg: linear-gradient(180deg, rgba(245,237,228,0.9), rgba(230,218,200,0.86)); --accent:#8B5E3C; --card-text:#21170f; }
+.card-theme-ceramic { --card-bg: linear-gradient(180deg, rgba(250,250,248,0.90), rgba(245,245,244,0.86)); --accent:#8A6BFF; --card-text:#121212; }
 
-/* — RETRO (mid-century warm tones) */
-.card-theme-retro {
-  --card-bg: linear-gradient(180deg, rgba(255,245,230,0.9), rgba(246,236,210,0.86));
-  --card-border: rgba(0,0,0,0.06);
-  --card-text: rgba(24,20,16,0.94);
-  --accent: #D47331;
-  --card-glow: rgba(212,115,49,0.06);
-  --card-shine: rgba(255,255,255,0.03);
-  --card-saturation: 95%;
-}
+/* ---------- CINEMATIC / FILM ---------- */
+.card-theme-film { --card-bg: linear-gradient(180deg, rgba(10,10,12,0.44), rgba(10,10,12,0.34)); --accent:#E09F3E; --card-text:rgba(230,230,230,0.95); --card-saturation:100%; }
+.card-theme-velvet { --card-bg: linear-gradient(180deg, rgba(22,8,19,0.62), rgba(38,10,30,0.44)); --accent:#B03A80; --card-text:rgba(252,245,248,0.96); }
+.card-theme-vintage { --card-bg: linear-gradient(180deg, rgba(255,250,238,0.86), rgba(245,236,220,0.78)); --accent:#C49A6C; --card-text:#14100c; --card-saturation:95%; }
 
-/* — BUBBLEGUM (bright playful) */
-.card-theme-bubblegum {
-  --card-bg: linear-gradient(180deg, rgba(255,245,252,0.9), rgba(255,230,245,0.86));
-  --card-border: rgba(255,180,220,0.08);
-  --card-text: rgba(18,18,18,0.96);
-  --accent: #FF6FCF;
-  --card-glow: rgba(255,111,207,0.08);
-  --card-shine: rgba(255,255,255,0.05);
-  --card-saturation: 100%;
-}
+/* ---------- PASTEL / PLAYFUL ---------- */
+.card-theme-pastel { --card-bg: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(252,248,255,0.84)); --accent:#FFB3C6; --card-text:#1a1a1a; }
+.card-theme-bubblegum { --card-bg: linear-gradient(180deg, rgba(255,245,252,0.9), rgba(255,230,245,0.86)); --accent:#FF6FCF; --card-text:#111; }
 
-/* — SCIFI HOLO (holographic sheen, subtle iridescence) */
-.card-theme-holo {
-  --card-bg: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(24,8,80,0.02));
-  --card-border: rgba(120,90,255,0.08);
-  --card-text: rgba(245,245,255,0.95);
-  --accent: #7FDDFF;
-  --card-glow: rgba(127,221,255,0.10);
-  --card-shine: rgba(255,255,255,0.08);
-  --card-saturation: 170%;
-}
+/* ---------- RETRO / ANALOG ---------- */
+.card-theme-retro { --card-bg: linear-gradient(180deg, rgba(255,245,230,0.9), rgba(246,236,210,0.86)); --accent:#D47331; --card-text:#181210; --card-saturation:98%; }
+.card-theme-analog { --card-bg: linear-gradient(180deg, rgba(245,240,236,0.86), rgba(235,230,220,0.84)); --accent:#B45F33; }
 
-/* — FILM-GRAIN (subtle texture & soft contrast) */
-.card-theme-film {
-  --card-bg: linear-gradient(180deg, rgba(10,10,12,0.44), rgba(10,10,12,0.34));
-  --card-border: rgba(255,255,255,0.03);
-  --card-text: rgba(230,230,230,0.95);
-  --accent: #E09F3E;
-  --card-glow: rgba(224,159,62,0.06);
-  --card-shine: rgba(255,255,255,0.03);
-  --card-saturation: 100%;
-}
+/* ---------- DEV / TERMINAL ---------- */
+.card-theme-terminal { --card-bg: rgba(0,0,0,0.52); --card-text: rgba(170,255,170,0.95); --accent:#7CF26C; --card-saturation:90%; }
 
-/* — TIMBER (wood-ish, warm, slightly textured) */
-.card-theme-timber {
-  --card-bg: linear-gradient(180deg, rgba(245,237,228,0.9), rgba(230,218,200,0.86));
-  --card-border: rgba(0,0,0,0.06);
-  --card-text: rgba(30,22,18,0.94);
-  --accent: #8B5E3C;
-  --card-glow: rgba(139,94,60,0.05);
-  --card-shine: rgba(255,255,255,0.02);
-  --card-saturation: 95%;
-}
+/* ---------- MINIMAL / UTILITY ---------- */
+.card-theme-clean { --card-bg: linear-gradient(180deg, rgba(255,255,255,0.028), rgba(255,255,255,0.02)); --card-text: #111; --accent:#6B7280; --card-saturation:95%; }
+.card-theme-soft { --card-bg: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)); --accent:#8CA6FF; --card-text:rgba(16,18,20,0.94); }
 
-/* — DESERT (sandy warm calm) */
-.card-theme-desert {
-  --card-bg: linear-gradient(180deg, rgba(255,250,240,0.86), rgba(255,240,220,0.82));
-  --card-border: rgba(0,0,0,0.05);
-  --card-text: rgba(25,18,12,0.94);
-  --accent: #D99058;
-  --card-glow: rgba(217,144,88,0.06);
-  --card-shine: rgba(255,255,255,0.03);
-  --card-saturation: 95%;
-}
-
-/* — BOTANICAL (leafy soft) */
-.card-theme-botanical {
-  --card-bg: linear-gradient(180deg, rgba(240,250,242,0.9), rgba(230,245,235,0.84));
-  --card-border: rgba(100,140,120,0.06);
-  --card-text: rgba(18,20,16,0.94);
-  --accent: #3E8E66;
-  --card-glow: rgba(62,142,102,0.05);
-  --card-shine: rgba(255,255,255,0.03);
-  --card-saturation: 100%;
-}
+/* ---------- MORE EXTRAS — experimental / fun ---------- */
+.card-theme-ice { --card-bg: linear-gradient(180deg, rgba(240,250,255,0.85), rgba(240,248,255,0.80)); --accent:#7EE7FF; --card-text:#071827; }
+.card-theme-ember { --card-bg: linear-gradient(180deg, rgba(30,8,6,0.36), rgba(60,16,8,0.14)); --accent:#FF6A3D; --card-text:rgba(255,244,240,0.96); --card-saturation:130%; }
+.card-theme-graphite { --card-bg: linear-gradient(180deg, rgba(28,28,30,0.58), rgba(18,18,20,0.38)); --accent:#A3A3A3; --card-text:#F4F4F6; }
 
 /* -------------------------------------------------------------------------
-   Additive modifiers you can combine with themes
-   - .theme-outline: stronger thin outline using current --accent
-   - .theme-muted: desaturates the card slightly
-   - .theme-strong: intensifies glow and border
+   Theme modifiers (combine with any .card-theme-*)
    ------------------------------------------------------------------------- */
+
+/* thin outline using accent */
 .card-theme-outline {
-  border: 1.6px solid color-mix(in srgb, var(--accent) 28%, transparent);
-  box-shadow: 0 8px 28px color-mix(in srgb, var(--accent) 8%, transparent);
+  border: 1.4px solid color-mix(in srgb, var(--accent) 26%, rgba(255,255,255,0.04));
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--accent) 6%, transparent);
 }
-.card-theme-muted {
-  filter: saturate(0.82) brightness(0.98);
-  --card-glow: color-mix(in srgb, var(--card-glow) 60%, transparent);
-}
+
+/* desaturate / mute */
+.card-theme-muted { filter: saturate(.72) contrast(.96) brightness(.98); --card-glow: color-mix(in srgb, var(--card-glow) 60%, transparent); }
+
+/* stronger border & glow for emphasis (use sparingly) */
 .card-theme-strong {
-  --card-glow: color-mix(in srgb, var(--accent) 20%, transparent);
+  --card-glow: color-mix(in srgb, var(--accent) 28%, transparent);
   box-shadow: 0 18px 64px color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
-/* -------------------------------------------------------------------------
-   Connect theme variables to card internals (map variables to visual properties)
-   - This block updates the core mapping; it keeps actual visual CSS DRY.
-   ------------------------------------------------------------------------- */
-.dg-card {
-  /* override previously used variables if theme applied to card */
-  background: var(--card-bg, var(--glass-bg-mid));
-  border: 1px solid var(--card-border, rgba(255,255,255,0.06));
-  color: var(--card-text, var(--text-primary));
-  filter: saturate(var(--card-saturation, 140%));
+/* very subtle glass only (for long lists where background should dominate) */
+.card-theme-ghost { background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.02); --card-shine: rgba(255,255,255,0.02); --theme-sheen-opacity: 0.12; }
+
+/* heavier frosted glass (opt-in) */
+.card-theme-glass-heavy { backdrop-filter: blur(20px) saturate(150%); -webkit-backdrop-filter: blur(20px) saturate(150%); }
+
+/* add a light textured noise (CSS-only subtle grain using svg data URI) */
+.card-theme-grainy::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'><filter id='f'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='60' height='60' filter='url(%23f)' opacity='0.02' fill='black'/></svg>");
+  background-repeat: repeat;
+  background-blend-mode: overlay;
 }
 
-/* small accent utility used by tags/badges */
+/* -------------------------------------------------------------------------
+   Small utilities and helpers
+   ------------------------------------------------------------------------- */
+
+/* tag/badge mapping uses accent variable */
 .dg-card .dg-tag, .dg-card .dg-badge {
-  border-color: color-mix(in srgb, var(--accent) 16%, rgba(255,255,255,0.04));
+  display:inline-block; padding:0.25rem 0.6rem; border-radius:999px; font-size:0.78rem;
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid color-mix(in srgb, var(--accent) 12%, rgba(255,255,255,0.02));
   color: var(--card-text);
 }
 
-/* glow & gradient border usage respects theme variables */
-.dg-card.effect-glow { box-shadow: 0 18px 50px var(--card-glow, rgba(0,0,0,0.08)); }
+/* effect helpers that respect theme variables */
 .dg-card.effect-gradient-border { 
   background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
               linear-gradient(90deg, color-mix(in srgb, var(--accent) 40%, transparent), var(--accent)) border-box;
+  border:2px solid transparent;
+}
+.dg-card.effect-glow { box-shadow: 0 20px 60px color-mix(in srgb, var(--card-glow) 18%, transparent); }
+
+/* allow inline accent override with style="--accent:#HEX" (recommended) */
+/* example: <a class="dg-card card-theme-aurora" style="--accent:#FF8B6B"> */
+
+/* small responsive saturation softening on mobile */
+@media (max-width:900px) {
+  .dg-card { filter: saturate(calc(var(--card-saturation,120%) * 0.88)); }
+  .card-theme-strong { box-shadow: 0 10px 34px color-mix(in srgb, var(--accent) 8%, transparent); }
 }
 
-/* sheen overlay derived from --card-shine */
-.dg-card::before {
-  --s: var(--card-shine, rgba(255,255,255,0.04));
-  content: "";
-  position: absolute; inset: 0; pointer-events:none; border-radius: inherit;
-  background: linear-gradient(135deg, transparent 0%, var(--s) 2%, transparent 50%);
-  mix-blend-mode: screen; opacity: 0.35;
-  z-index: -1;
-}
-
-/* print fallback: ignore theme transparency and use print-safe colors */
+/* print fallback: flatten all themes for legibility */
 @media print {
-  .dg-card[class*="card-theme-"] {
-    background: #fff !important;
-    color: #000 !important;
-    border: 1px solid #000 !important;
-    -webkit-print-color-adjust: exact;
-  }
+  .dg-card { background:#fff !important; color:#000 !important; border:1px solid #000 !important; box-shadow:none !important; filter:none !important; }
 }
 
-/* End of Phase 7 theme pack block */
+/* accessibility: stronger focus ring (using current accent) */
+.dg-card:focus-within, .dg-card:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 20%, rgba(255,255,255,0.06));
+  outline-offset: 4px;
+}
+
+/* end Phase 7 (reworked) */
+
 
 
 
