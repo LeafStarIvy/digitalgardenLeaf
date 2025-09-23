@@ -2606,46 +2606,95 @@ tr:last-child td {
   display:inline-block; flex-shrink:0;
 }
 
-/* ---------------------------
-   1) HERO / FEATURE CARD
-   - big, full-bleed feel while still glassy
-   --------------------------- */
+/* ===========================
+   Hero: Robust single-card hero (Phase 8 fix)
+   Drop this into custom.css AFTER earlier hero definitions to override them.
+   Two display modes:
+     - .hero-constrained -> centered, max-width
+     - .hero-bleed -> full-bleed edge to edge
+   =========================== */
+
 .card-hero {
-  /* hero-specific rules */
-  display:block;
-  position:relative;
-  overflow:hidden;
-  padding: clamp(1.25rem, 2.6vw, 3rem);
-  min-height: 380px;
-  border-radius: calc(var(--radius-lg) + 4px);
-  background: linear-gradient(180deg, color-mix(in srgb, var(--card-bg) 70%, transparent), rgba(0,0,0,0.06));
-  box-shadow: var(--shadow-lg);
+  display: block;
+  position: relative; /* required for absolute layers */
+  overflow: hidden;
+  border-radius: 16px;
+  padding: clamp(1.25rem, 2.6vw, 2.4rem);
+  min-height: 320px;
+  box-sizing: border-box;
+  margin: 1.25rem auto;
+  background: transparent !important; /* we use layers below */
+  /* ensure the hero's content sits above all effect layers */
+  isolation: isolate;
+  -webkit-font-smoothing:antialiased;
 }
 
-/* hero blurred bg layer (optionally place an <img class="hero-bg"> inside card) */
-.card-hero .hero-bg {
-  position:absolute; inset:0; z-index:-2; object-fit:cover; width:100%; height:100%; filter: blur(12px) saturate(120%); opacity:0.38;
+/* ensure global card pseudo-sheen does not split hero visual
+   (some previous rules used .dg-card::before; hide for hero) */
+.card-hero::before,
+.card-hero::after {
+  display: none !important;
 }
+
+/* Background layers (exact stacking order) */
+.card-hero .hero-bg,
+.card-hero .parallax-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  display: block;
+  filter: blur(10px) saturate(120%);
+  transform-origin: center;
+}
+
+/* parallax layer sits below the main blurred background (optional) */
+.card-hero .parallax-layer { z-index: -30; opacity: 0.36; filter: blur(14px) saturate(120%); transform: scale(1.06); }
+
+/* hero-bg is the main image that anchors the hero */
+.card-hero .hero-bg { z-index: -20; opacity: 0.46; filter: blur(8px) saturate(110%); }
+
+/* a semi-opaque overlay to guarantee legibility; sits above background layers */
 .card-hero .hero-overlay {
-  position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.0)); z-index:-1;
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.06));
 }
 
-/* hero content */
-.card-hero .hero-badge { display:inline-block; padding:8px 14px; border-radius:999px; font-weight:600; background: color-mix(in srgb, var(--accent) 10%, transparent); border:1px solid rgba(255,255,255,0.06); color:var(--card-text); }
-.card-hero .hero-title { font-size: clamp(1.6rem, 3.2vw, 2.4rem); font-weight:800; margin:0 0 .4rem; color:var(--card-text); line-height:1.05; }
-.card-hero .hero-lead { font-size:1rem; color:var(--text-secondary); max-width:68ch; }
+/* hero content wrapper always above overlays */
+.card-hero .hero-content {
+  position: relative;
+  z-index: 3; /* put all content above overlays and backgrounds */
+  color: var(--card-text, rgba(255,255,255,0.95));
+  max-width: 1200px;
+}
 
-/* big CTA group */
-.card-hero .hero-ctas { margin-top:1.25rem; display:flex; gap:0.75rem; flex-wrap:wrap; }
-.card-hero .hero-cta {
-  padding: 10px 16px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-  border:1px solid rgba(255,255,255,0.06); color: var(--card-text); font-weight:600;
+/* hero text styles (safe defaults) */
+.card-hero .hero-badge { display:inline-block; padding:6px 12px; border-radius:999px; background: rgba(255,255,255,0.06); color:var(--card-text); font-weight:600; margin-bottom:0.6rem; }
+.card-hero .hero-title { margin: 0 0 .5rem; font-size: clamp(1.5rem, 3vw, 2.4rem); line-height:1.05; font-weight:800; color:var(--card-text); }
+.card-hero .hero-lead { margin:0 0 1rem; color: var(--text-secondary, rgba(255,255,255,0.78)); max-width:66ch; }
+
+/* CTA group */
+.card-hero .hero-ctas { display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:0.6rem; }
+.card-hero .hero-cta { padding:10px 14px; border-radius:10px; background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.04); color:var(--card-text); text-decoration:none; }
+
+/* full-bleed variant: remove margin and make edges flush with page */
+.card-hero.hero-bleed {
+  width: 100vw;
+  max-width: none;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0; /* if you want full edge-to-edge remove radius */
 }
-.card-hero .hero-cta.primary {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 18%, transparent), color-mix(in srgb, var(--accent) 8%, transparent));
-  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
-  box-shadow: 0 6px 22px color-mix(in srgb, var(--accent) 10%, transparent);
-}
+
+/* constrained variant centers hero and limits width (default) */
+.card-hero.hero-constrained { max-width: 1200px; }
+
 
 /* ---------------------------
    2) NAV / PORTAL CARD
@@ -2812,6 +2861,19 @@ tr:last-child td {
 /* Reduced motion override (be conservative on page with many cards) */
 @media (prefers-reduced-motion: reduce) {
   .card-hero, .card-playlist, .card-showcase, .card-deck { transition:none !important; animation:none !important; transform:none !important; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .card-hero { padding: 1rem; min-height: 260px; }
+  .card-hero .hero-title { font-size: 1.5rem; }
+  .card-hero .hero-lead { font-size: 0.95rem; }
+}
+
+/* reduced motion / performance safe */
+@media (prefers-reduced-motion: reduce), .dg-compact-mode {
+  .card-hero .parallax-layer { transform: none; transition: none; opacity:0.34; }
+  .card-hero .hero-bg { transition: none; }
 }
 
 /* ---------------------------
