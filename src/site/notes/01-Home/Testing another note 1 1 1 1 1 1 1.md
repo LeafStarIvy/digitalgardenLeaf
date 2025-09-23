@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T11:06:11.325+02:00"}
+{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T11:20:30.785+02:00"}
 ---
 
 
@@ -15,25 +15,35 @@
 <!-- ===========================
    HERO — top of page (primary CTA & context)
    =========================== -->
-<a class="dg-card dg-link dg-card--hero card-hero card-theme-crystal effect-glass subtle-pop effect-parallax" 
+<!-- HERO: center-constrained -->
+<a class="dg-card dg-link card-hero card-theme-crystal effect-glass subtle-pop hero-constrained"
    href="/about" aria-label="Garden introduction" style="--stagger-index:0;">
+  <!-- optional parallax/backing layer (keep if you want the subtle parallax) -->
   <img class="parallax-layer" src="/img/MALOGO/Fullflavor.png" alt="" aria-hidden>
+
+  <!-- main background for hero (blurred, full coverage) -->
   <img class="hero-bg" src="/img/MALOGO/Fullflavor.png" alt="" aria-hidden>
+
+  <!-- overlay for legibility -->
   <div class="hero-overlay" aria-hidden></div>
 
-  <div class="hero-badge">Hub • Home</div>
-  <h1 class="hero-title">Welcome — My Digital Garden</h1>
-  <p class="hero-lead">
-    A living, growing collection of projects, prompts, music, clips, reading notes, and tiny experiments.
-    Cards are intentionally translucent so your background image sets the mood — pick cards to highlight, keep most subtle.
-  </p>
+  <!-- keep all hero content in dedicated wrapper -->
+  <div class="hero-content">
+    <div class="hero-badge">Hub • Home</div>
+    <h1 class="hero-title">Welcome — My Digital Garden</h1>
+    <p class="hero-lead">
+      A living, growing collection of projects, prompts, music, clips, reading notes, and tiny experiments.
+      Cards are intentionally translucent so your background image sets the mood — pick cards to highlight, keep most subtle.
+    </p>
 
-  <div class="hero-ctas">
-    <a class="hero-cta primary" href="/collections">Collections</a>
-    <a class="hero-cta" href="/today">Today</a>
-    <a class="hero-cta" href="/capture">Quick Capture</a>
+    <div class="hero-ctas">
+      <a class="hero-cta primary" href="/collections">Collections</a>
+      <a class="hero-cta" href="/today">Today</a>
+      <a class="hero-cta" href="/capture">Quick Capture</a>
+    </div>
   </div>
 </a>
+
 
 <!-- ===========================
    TOP NAV / PORTALS — 1st row (fast access)
