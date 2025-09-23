@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/dashboard-interface/","noteIcon":"","created":"2025-09-23T19:01:39.212+02:00","updated":"2025-09-23T19:37:05.592+02:00"}
+{"dg-publish":true,"permalink":"/01-home/dashboard-interface/","noteIcon":"","created":"2025-09-23T19:01:39.212+02:00","updated":"2025-09-23T19:40:11.520+02:00"}
 ---
 
 # All Links — Master Navigation & Link Library
@@ -320,3 +320,174 @@
 ---
 
 <div class="glass-grid grid-4"> <!-- Placeholder 1 --> <div class="glass-card minimal" style="opacity: 0.6;"> <div class="card-content"> <div class="card-title">🚧 Working on this</div>  </div> </div> </div>
+
+
+---
+title: "Theme Preview — Translucent Themes"
+dg-publish: false
+dg-content-classes: "theme-auto"
+---
+
+<!-- Theme preview for translucent themes.
+     Paste this entire note into Obsidian and view in Preview mode. -->
+
+
+
+# Translucent Theme Preview
+
+> These cards each use `/img/MALOGO/Fullflavor.png` as their background so you can check how translucency and theme color interact with your image. Click a card (or use it as a template) to copy the classes.
+
+<div id="theme-preview">
+
+  <a class="dg-card dg-link preview-card card-theme-crystal" href="#" aria-label="Crystal">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Crystal</h4>
+      <div class="dg-sub">Glassy violet — soft & elegant</div>
+    </div>
+  </a>
+
+  <a class="dg-card dg-link preview-card card-theme-frosted" href="#" aria-label="Frosted">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Frosted</h4>
+      <div class="dg-sub">Icy glass — cool & crisp</div>
+    </div>
+  </a>
+
+  <a class="dg-card dg-link preview-card card-theme-aurora effect-glow" href="#" aria-label="Aurora">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Aurora</h4>
+      <div class="dg-sub">Soft northern lights — green-blue</div>
+    </div>
+  </a>
+
+  <a class="dg-card dg-link preview-card card-theme-forest" href="#" aria-label="Forest">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Forest</h4>
+      <div class="dg-sub">Deep green translucency</div>
+    </div>
+  </a>
+
+  <a class="dg-card dg-link preview-card card-theme-ocean" href="#" aria-label="Ocean">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Ocean</h4>
+      <div class="dg-sub">Teal wash — cool & calm</div>
+    </div>
+  </a>
+
+  <a class="dg-card dg-link preview-card card-theme-midnight" href="#" aria-label="Midnight">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Midnight</h4>
+      <div class="dg-sub">Deep matte — content-first</div>
+    </div>
+  </a>
+
+  <a class="dg-card dg-link preview-card card-theme-neon effect-shimmer" href="#" aria-label="Neon">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Neon</h4>
+      <div class="dg-sub">Punchy accent — playful</div>
+    </div>
+  </a>
+
+  <a class="dg-card dg-link preview-card card-theme-cyberpunk" href="#" aria-label="Cyberpunk">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Cyberpunk</h4>
+      <div class="dg-sub">Hot pink & cyan sheen</div>
+    </div>
+  </a>
+
+  <a class="dg-card dg-link preview-card card-theme-holo" href="#" aria-label="Holo">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Holo</h4>
+      <div class="dg-sub">Iridescent holographic feel</div>
+    </div>
+  </a>
+
+  <a class="dg-card dg-link preview-card card-theme-film" href="#" aria-label="Film">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Film</h4>
+      <div class="dg-sub">Cinematic — soft contrast</div>
+    </div>
+  </a>
+
+  <a class="dg-card dg-link preview-card card-theme-filmgrain" href="#" aria-label="Filmgrain">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Filmgrain</h4>
+      <div class="dg-sub">Textured & moody</div>
+    </div>
+  </a>
+
+  <a class="dg-card dg-link preview-card card-theme-velvet" href="#" aria-label="Velvet">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Velvet</h4>
+      <div class="dg-sub">Rich, tactile low-sheen</div>
+    </div>
+  </a>
+
+  <a class="dg-card dg-link preview-card card-theme-solarized" href="#" aria-label="Solarized">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Solarized</h4>
+      <div class="dg-sub">Muted tones, high usability</div>
+    </div>
+  </a>
+
+  <a class="dg-card dg-link preview-card card-theme-terminal" href="#" aria-label="Terminal">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Terminal</h4>
+      <div class="dg-sub">Monochrome green-ish</div>
+    </div>
+  </a>
+
+  <a class="dg-card dg-link preview-card card-theme-minimal" href="#" aria-label="Minimal">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Minimal</h4>
+      <div class="dg-sub">Low visual noise</div>
+    </div>
+  </a>
+
+  <a class="dg-card dg-link preview-card card-theme-ember" href="#" aria-label="Ember">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Ember</h4>
+      <div class="dg-sub">Warm glowing ember tone</div>
+    </div>
+  </a>
+
+  <a class="dg-card dg-link preview-card card-theme-glacier" href="#" aria-label="Glacier">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Glacier</h4>
+      <div class="dg-sub">Cool bright translucent</div>
+    </div>
+  </a>
+
+  <a class="dg-card dg-link preview-card card-theme-orchid" href="#" aria-label="Orchid">
+    <img class="theme-bg" src="/img/MALOGO/Fullflavor.png" alt="">
+    <div class="dg-content">
+      <h4 class="dg-title">Orchid</h4>
+      <div class="dg-sub">Soft purple bloom</div>
+    </div>
+  </a>
+
+</div>
+
+---
+
+**Notes & tips**
+- To test a single theme on an existing card, copy one anchor block and paste it into another note, then replace the inner title/subtitle and `href`.
+- If your card feels hard to read against a particular part of your background, add the `theme-contrast` class to that card to enable a stronger overlay (e.g., `<a class="dg-card card-theme-aurora theme-contrast">`).
+- Want a PNG/printed swatch or a single-column version for mobile screenshots? Say “one-column export” and I’ll produce it.
