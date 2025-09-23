@@ -1,8 +1,7 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T10:59:57.834+02:00"}
+{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container dg-grid cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T11:02:01.197+02:00"}
 ---
 
----
 
 # wrapper classes: theme-auto ensures translucent cards so background remains visible
 # stagger-container will give staggered entrance animation to cards (editable)
