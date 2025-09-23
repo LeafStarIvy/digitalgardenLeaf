@@ -2677,6 +2677,79 @@ tr:last-child td {
   box-shadow: 0 8px 24px color-mix(in srgb, var(--accent-default) 10%, transparent);
 }
 
+/* ===========================
+   HERO: Right-side action & clearer CTA (compact)
+   Add this AFTER your hero styles in custom.css
+   =========================== */
+
+.card-hero .hero-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.card-hero .hero-left {
+  flex: 1 1 auto;
+  min-width: 0; /* prevent overflow from long text */
+}
+
+.card-hero .hero-right {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Big clear action pill on the right */
+.card-hero .hero-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  font-size: 0.98rem;
+  color: var(--card-text);
+  transition: transform 200ms cubic-bezier(.2,.9,.3,1), box-shadow 200ms;
+  white-space: nowrap;
+}
+
+/* accent pill (small square with arrow) */
+.card-hero .hero-action .hero-action-arrow {
+  display:inline-grid;
+  place-items:center;
+  width:40px;
+  height:40px;
+  border-radius:8px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--theme-accent) 22%, rgba(255,255,255,0.02)), var(--theme-accent-soft));
+  color: var(--card-text);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--theme-accent) 12%, rgba(0,0,0,0.12));
+  font-weight:900;
+  font-size:1.05rem;
+  line-height: 1;
+  transform: translateX(0);
+}
+
+/* subtle hover feedback for the right action when you hover the whole card */
+.card-hero:hover .hero-action { transform: translateX(6px); box-shadow: 0 12px 36px rgba(0,0,0,0.18); }
+
+/* helper small label above the action (optional) */
+.card-hero .hero-action .hero-action-sub { font-size:0.72rem; opacity:0.9; display:block; font-weight:600; }
+
+/* smaller layout tweaks for narrow screens */
+@media (max-width: 760px) {
+  .card-hero .hero-row { flex-direction: column; align-items: flex-start; gap: 0.9rem; }
+  .card-hero .hero-right { width:100%; display:flex; justify-content:flex-start; }
+  .card-hero .hero-action { width:100%; justify-content:space-between; padding:12px 14px; }
+  .card-hero .hero-action .hero-action-arrow { margin-left: 0.5rem; }
+}
+
+
 /* Responsive hero adjustments */
 @media (max-width: 900px) {
   .card-hero { padding: 1rem; min-height:220px; }
