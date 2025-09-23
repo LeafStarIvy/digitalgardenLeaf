@@ -1,12 +1,10 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T11:52:57.552+02:00"}
+{"dg-publish":true,"permalink":"/01-home/testing-another-note-1-1-1-1-1-1-1/","contentClasses":"theme-auto stagger-container cols-auto gap-md","noteIcon":"","created":"2025-09-22T17:02:07.021+02:00","updated":"2025-09-23T12:47:29.813+02:00"}
 ---
 
 ---
-dg-home: true
-dg-publish: true
-# wrapper: frontpage ensures see-through styling for all cards on this page
-dg-content-classes: "frontpage"
+
+
 ---
 
 <!-- =========================
