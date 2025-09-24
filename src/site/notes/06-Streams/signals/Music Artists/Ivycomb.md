@@ -1,10 +1,17 @@
 ---
-{"dg-publish":true,"permalink":"/06-streams/signals/music-artists/ivycomb/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-08-28T23:54:20.691+02:00","updated":"2025-04-28T17:20:15.717+02:00"}
+{"dg-publish":true,"permalink":"/06-streams/signals/music-artists/ivycomb/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-08-28T23:54:20.691+02:00","updated":"2025-09-24T19:22:23.619+02:00"}
 ---
 
 
 <img src="/img/MALOGO/Ivycomblogo.jpg" alt="logo" class="round-img round-img-200">
 
+
+<img src="/img/MALOGO/Ivycomblogo.jpg" alt="logo" class="round-img round-img-48">
+.round-img-48  { --size: 48px;  }
+.round-img-64  { --size: 64px;  }
+.round-img-96  { --size: 96px;  }
+.round-img-128 { --size: 128px; }
+.round-img-200 { --size: 200px; }
 ## About
 
 - **Genre**: Alternative ([ivycomb - Apple Music](https://music.apple.com/us/artist/ivycomb/1587049088?utm_source=chatgpt.com))
