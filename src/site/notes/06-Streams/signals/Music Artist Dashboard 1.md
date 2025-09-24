@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/06-streams/signals/music-artist-dashboard-1/","tags":["#dashboard"],"noteIcon":"","created":"2025-09-24T18:08:21.865+02:00","updated":"2025-09-24T18:12:34.337+02:00"}
+{"dg-publish":true,"permalink":"/06-streams/signals/music-artist-dashboard-1/","tags":["#dashboard"],"noteIcon":"","created":"2025-09-24T18:08:21.865+02:00","updated":"2025-09-24T18:43:35.242+02:00"}
 ---
 
 ---
@@ -12,7 +12,7 @@ dg-publish: false
 
 <!-- Block 1 -->
 <div class="dg-grid cols-auto" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:1rem; align-items:start;">
-  <a class="dg-card card-artist music card-theme-ocean" href="/Content/Music-Artists/Ivycomb" aria-label="Ivycomb">
+  <a class="dg-card card-artist music card-theme-ocean" href="/06-Streams/signals/Music-Artists/Ivycomb" aria-label="Ivycomb">
     <div style="display:flex;gap:1rem;align-items:center;">
       <img class="artist-avatar-circle artist-ring artist-size-lg" src="/img/MALOGO/ivycomblogo.jpg" alt="Ivycomb">
       <div class="card-content">
