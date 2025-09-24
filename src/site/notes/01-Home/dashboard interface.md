@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/01-home/dashboard-interface/","noteIcon":"","created":"2025-09-23T19:01:39.212+02:00","updated":"2025-09-23T19:55:48.470+02:00"}
+{"dg-publish":true,"permalink":"/01-home/dashboard-interface/","noteIcon":"","created":"2025-09-23T19:01:39.212+02:00","updated":"2025-09-24T17:17:33.775+02:00"}
 ---
 
 # All Links — Master Navigation & Link Library
@@ -7,7 +7,6 @@
 > This page is a single place for every link, collection, and quick note. Replace placeholder cards (🚧 / ✏️) with your real links and descriptions. Use `card-theme-*` classes on individual cards to change looks.
 
 ---
-
 ## Quick Access — top 6 (everyday)
 <div class="dg-grid cols-auto" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
   <a class="dg-card card-compact card-theme-minimal" href="/capture" title="Quick Capture">
@@ -30,8 +29,8 @@
     <div class="compact-icon">📅</div><div class="compact-text">📅 Today — Daily</div>
   </a>
 
-  <a class="dg-card card-compact card-theme-solarized" href="/search" title="Search">
-    <div class="compact-icon">🔎</div><div class="compact-text">🔎 Search — (site)</div>
+  <a class="dg-card card-compact card-theme-solarized" href="\06-Streams\now\Calisthenics-Goals" title="My training">
+    <div class="compact-icon">💯💦</div><div class="compact-text">💪 My training</div>
   </a>
 </div>
 
