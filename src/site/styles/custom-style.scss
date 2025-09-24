@@ -2760,6 +2760,145 @@ tr:last-child td {
 .card-gradient { background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box, linear-gradient(90deg, var(--accent-default), color-mix(in srgb, var(--accent-default) 60%, white)) border-box; border:2px solid transparent; }
 .card-glow { box-shadow: 0 16px 56px color-mix(in srgb, var(--accent-default) 12%, transparent); }
 
+/* =========================================================================
+   Image Rounding Utilities
+   - Paste into custom.css (Phase 3 or Phase 7 recommended)
+   ========================================================================= */
+
+/* size & ring variables (adjust to taste globally) */
+:root {
+  --img-ring-width: 2px;
+  --img-ring-color: color-mix(in srgb, var(--accent, #7C5CFA) 32%, rgba(255,255,255,0.08));
+  --img-size-sm: 40px;
+  --img-size-md: 72px;
+  --img-size-lg: 120px;
+}
+
+/* Core round container — works for <img> or background-image blocks */
+.img-round,
+.img-circle {
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 9999px;            /* fully circular */
+  vertical-align: middle;
+  -webkit-mask-image: -webkit-radial-gradient(white, black); /* helps anti-aliasing on some browsers */
+}
+
+/* Make any <img> inside inherit the container size and cover */
+.img-round img,
+.img-circle img,
+.artist-avatar.img-round,
+.card-thumb.img-round {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;           /* keep the circular mask */
+}
+
+/* size helpers */
+.img-round.sm { width: var(--img-size-sm); height: var(--img-size-sm); }
+.img-round.md { width: var(--img-size-md); height: var(--img-size-md); }
+.img-round.lg { width: var(--img-size-lg); height: var(--img-size-lg); }
+
+/* ring / subtle outline modifier */
+.img-ring {
+  box-shadow: 0 0 0 var(--img-ring-width) var(--img-ring-color) inset;
+}
+
+/* optional thin external ring to separate from complex backgrounds */
+.img-ring-external {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12), 0 0 0 calc(var(--img-ring-width) + 1px) var(--img-ring-color);
+}
+
+/* small soft-rounded radius variant (not fully circular) */
+.img-round-soft {
+  border-radius: 14px;  /* tweak as needed */
+}
+
+/* background-image variant (useful when you want a div with CSS background-image) */
+.bg-round {
+  background-size: cover;
+  background-position: center;
+  border-radius: 9999px;
+  display: inline-block;
+  width: var(--img-size-md);
+  height: var(--img-size-md);
+  overflow: hidden;
+}
+
+/* focus / accessibility */
+.img-round:focus-within, .img-round:focus {
+  outline: 3px solid color-mix(in srgb, var(--accent, #7C5CFA) 28%, rgba(255,255,255,0.14));
+  outline-offset: 4px;
+}
+
+/* ===========================
+   Artist Circle Utilities
+   - For fully circular music artist avatars
+   - Append to custom.css (Phase 3 or Phase 7)
+   =========================== */
+
+/* default circular sizes (adjust variables if you want) */
+:root {
+  --artist-size-sm: 64px;
+  --artist-size-md: 96px;
+  --artist-size-lg: 140px; /* default for music artists */
+  --artist-ring-width: 3px;
+  --artist-ring-color: color-mix(in srgb, var(--accent, #7C5CFA) 30%, rgba(255,255,255,0.06));
+  --artist-shadow: 0 8px 30px rgba(0,0,0,0.18);
+}
+
+/* make the image element itself perfectly circular and fixed square */
+.artist-avatar-circle,
+.img-round.circle,
+.img-round.round {
+  display: inline-block;
+  width: var(--artist-size-lg) !important;
+  height: var(--artist-size-lg) !important;
+  border-radius: 50% !important;       /* perfect circle */
+  overflow: hidden;
+  box-shadow: var(--artist-shadow);
+  object-fit: cover;                    /* if applied to <img> */
+  vertical-align: middle;
+}
+
+/* if used on a <img>, ensure it fills the container */
+.artist-avatar-circle[src],
+.artist-avatar-circle img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block;
+  border-radius: 50% !important;
+}
+
+/* ring variants */
+.artist-ring {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.16), 0 0 0 var(--artist-ring-width) var(--artist-ring-color);
+}
+
+/* smaller / medium modifiers */
+.artist-size-sm { width: var(--artist-size-sm) !important; height: var(--artist-size-sm) !important; }
+.artist-size-md { width: var(--artist-size-md) !important; height: var(--artist-size-md) !important; }
+.artist-size-lg { width: var(--artist-size-lg) !important; height: var(--artist-size-lg) !important; }
+
+/* helper: apply to music cards only */
+.music-artist .artist-avatar-circle,
+.card-playlist .artist-avatar-circle,
+.card-artist.music .artist-avatar-circle {
+  width: var(--artist-size-lg);
+  height: var(--artist-size-lg);
+  border-radius: 50%;
+}
+
+/* responsive shrink on small screens */
+@media (max-width: 720px) {
+  .artist-avatar-circle,
+  .artist-size-lg { width: 96px !important; height: 96px !important; }
+}
+
+
 /* ---------------------------
    RESPONSIVE TWEAKS
    --------------------------- */
@@ -2783,6 +2922,12 @@ tr:last-child td {
   .card-hero { page-break-inside: avoid; }
 }
 
+/* small responsive fallback — ensure avatars never break layout */
+@media (max-width: 480px) {
+  .img-round.md { width: 56px; height: 56px; }
+  .img-round.lg { width: 84px; height: 84px; }
+}
+
 /* ---------------------------
    NOTES & MARKUP GUIDELINES (DO NOT DELETE)
    - Use this markup pattern for the hero to avoid nested anchors / stray cards.
@@ -2791,6 +2936,7 @@ tr:last-child td {
    --------------------------- */
 
 /* End of Phase 3 (reworked) */
+
 
 
 /* =========================================================================
