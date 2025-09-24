@@ -4004,6 +4004,52 @@ tr:last-child td {
 /* End of Phase 7 theme pack block */
 
 
+/* ============================================
+   SECTION 22: Round images
+   ============================================ */
+
+/* Core circular behavior */
+.round-img {
+  display: block;              /* removes inline-gap and makes sizing consistent */
+  width: var(--size, 200px);   /* default size = 200px, override with --size */
+  height: var(--size, 200px);
+  min-width: 0;                /* prevents overflow in flexible layouts */
+  border-radius: 50%;          /* make it circular */
+  object-fit: cover;           /* crop to fill without distortion */
+  vertical-align: middle;
+  -webkit-user-drag: none;     /* optional: prevent drag ghosting in some UIs */
+  image-rendering: auto;
+}
+
+/* Make images responsive inside notes: will shrink if container is smaller.
+   Keeps aspect ratio 1:1 by using max-width while keeping the explicit --size preference. */
+.round-img {
+  max-width: 100%;
+  height: auto;                 /* allow max-width to scale down gracefully */
+  aspect-ratio: 1 / 1;          /* ensure always square when supported */
+}
+
+/* If you prefer the image to strictly obey width & height (no shrink),
+   use the size-utility classes below instead of relying on max-width. */
+
+/* Utility size classes (use alongside .round-img) */
+.round-img-48  { --size: 48px;  }
+.round-img-64  { --size: 64px;  }
+.round-img-96  { --size: 96px;  }
+.round-img-128 { --size: 128px; }
+.round-img-200 { --size: 200px; }
+
+/* Optional small ring/border variants */
+.round-img-ring {
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.12);
+  /* or use border: 3px solid var(--ring-color, #fff); */
+}
+
+/* Accessibility: ensure images don't exceed readable line-height when inline */
+.round-img-inline {
+  display: inline-block;
+  vertical-align: middle;
+}
 
 
 
