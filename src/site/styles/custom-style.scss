@@ -4052,9 +4052,694 @@ tr:last-child td {
 }
 
 
+/* ============================================
+   SECTION 23: Obsidian — MEGA Note Windows Snippet
+   ============================================ */
+
+/*
+Obsidian — MEGA Note Windows Snippet
+-----------------------------------
+Filename suggestion: obsidian-snippets/mega-note-windows.css
+
+How to use:
+1. Copy this entire file into a new file inside your vault: .obsidian/snippets/mega-note-windows.css
+2. Enable it in Obsidian: Settings → Appearance → CSS snippets → toggle it on.
+3. Usage examples are included below as HTML snippets inside CSS comments. Copy the HTML into any note and the styles will apply.
+4. Customize variables at the top to match your theme.
+
+This file contains MANY ready-to-try classes and components:
+- Basic cards, glassmorphism, leafy, galaxy, paper, terminal, ribbon
+- Post-its, floating notes, corner badges, neon, neumorphism
+- Animated pulses, typing effects, progress bars, checklists
+- Two-column grids, timelines, callout replacements, details styling
+- Tiny utilities for icons, counters, and responsive sizing
+
+Enjoy! Paste examples into a note and toggle the snippet — they should work instantly.
+
+--- VARIABLES (edit these to quickly recolor everything) --- */
+:root{
+  --mnw-bg: rgba(255,255,255,0.02);
+  --mnw-foreground: var(--text-normal);
+  --mnw-accent: #67c18a; /* leaf green */
+  --mnw-accent-2: #7dd3fc; /* sky */
+  --mnw-glass: rgba(255,255,255,0.04);
+  --mnw-radius: 12px;
+  --mnw-card-padding: 12px;
+  --mnw-shadow: 0 8px 20px rgba(2,8,23,0.25);
+  --mnw-muted: var(--text-muted);
+}
+
+/* --------------------------- BASIC CARDS --------------------------- */
+.mnw-card{
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: var(--mnw-radius);
+  padding: var(--mnw-card-padding);
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+}
+/* HTML example:
+<div class="mnw-card">⭐ Focus block<br><small>Work 50m / Break 10m</small></div>
+*/
+
+/* --------------------------- GLASS / FROST --------------------------- */
+.mnw-glass{
+  border-radius: calc(var(--mnw-radius) + 4px);
+  padding: calc(var(--mnw-card-padding) + 4px);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.07);
+}
+/* HTML example:
+<div class="mnw-glass">☁️ Slow down and breathe</div>
+*/
+
+/* --------------------------- LEAF / NATURE --------------------------- */
+.mnw-leaf{
+  border-left: 6px solid var(--mnw-accent);
+  padding: calc(var(--mnw-card-padding) + 6px);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(103,193,138,0.06), transparent);
+}
+/* HTML example:
+<div class="mnw-leaf">🌿 Daily habit: Drink water</div>
+*/
+
+/* --------------------------- GALAXY / NIGHT --------------------------- */
+.mnw-galaxy{
+  color: #e6f7ff;
+  background: linear-gradient(135deg, #081627, #1b2b3b);
+  padding: calc(var(--mnw-card-padding) + 6px);
+  border-radius: 14px;
+  box-shadow: var(--mnw-shadow);
+}
+.mnw-galaxy .mnw-sub{opacity:0.85; font-size:0.95em}
+/* HTML example:
+<div class="mnw-galaxy"><strong>☄️ Stargaze</strong> <div class="mnw-sub">What made me smile today?</div></div>
+*/
+
+/* --------------------------- STICKY / POST-IT --------------------------- */
+.mnw-postit{
+  width: 220px;
+  padding: 10px;
+  background: #fff6b8;
+  border: 1px solid #edd87a;
+  transform: rotate(-3deg);
+  box-shadow: 6px 6px 12px rgba(0,0,0,0.08);
+  border-radius: 6px;
+}
+/* Variant: pinned (with pseudo tack) */
+.mnw-postit--pinned{position:relative}
+.mnw-postit--pinned:after{
+  content: ""; width:12px; height:12px; background:#ffd1dc; border-radius:50%; position:absolute; left:10px; top:-6px; box-shadow:0 2px 6px rgba(0,0,0,0.15);
+}
+/* HTML example:
+<div class="mnw-postit mnw-postit--pinned">🩷 Call Sam</div>
+*/
+
+/* --------------------------- TERMINAL / CODE --------------------------- */
+.mnw-term{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+  background: linear-gradient(180deg,#061018,#091426);
+  color: #cfe9ff;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.02);
+}
+/* HTML example:
+<div class="mnw-term">➜ _deploy.sh — run after tests pass</div>
+*/
+
+/* --------------------------- RIBBON / BANNER --------------------------- */
+.mnw-ribbon{
+  border-radius: 8px;
+  padding: 12px;
+  background: linear-gradient(90deg,#ffb86b,#ff7b7b);
+  color: white;
+  font-weight: 700;
+}
+/* HTML example:
+<div class="mnw-ribbon">📌 Project Milestone — Deadline: 2025-10-05</div>
+*/
+
+/* --------------------------- NEUMORPHIC --------------------------- */
+.mnw-neu{
+  border-radius: 16px;
+  padding: 14px;
+  background: linear-gradient(180deg,#f5f7fa,#e9eef5);
+  box-shadow: 12px 12px 24px rgba(0,0,0,0.06), -8px -8px 18px rgba(255,255,255,0.6);
+  color: #1b2b3b;
+}
+/* HTML example:
+<div class="mnw-neu">🧭 Soft card — good for controls / toggles</div>
+*/
+
+/* --------------------------- NEON / HIGHLIGHT --------------------------- */
+.mnw-neon{
+  border-radius: 8px;
+  padding: 12px;
+  background: rgba(0,0,0,0.6);
+  color: #eaffff;
+  text-shadow: 0 2px 12px rgba(125,211,252,0.25);
+  box-shadow: 0 6px 30px rgba(125,211,252,0.06);
+}
+.mnw-neon--magenta{ text-shadow: 0 2px 12px rgba(255,128,200,0.28); box-shadow: 0 6px 30px rgba(255,128,200,0.06);}
+/* HTML example:
+<div class="mnw-neon mnw-neon--magenta">⚡ Hot idea</div>
+*/
+
+/* --------------------------- PAPER / NOTEBOOK --------------------------- */
+.mnw-paper{
+  background: linear-gradient(180deg,#fffdf6,#fff8ec);
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+/* HTML example:
+<div class="mnw-paper">✒️ Notebook entry — write long-form here.</div>
+*/
+
+/* --------------------------- PROGRESS BAR / METRICS --------------------------- */
+.mnw-progress{ width:100%; background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:8px; padding:6px;}
+.mnw-progress__bar{ height:12px; border-radius:8px; background: linear-gradient(90deg,var(--mnw-accent), var(--mnw-accent-2)); width:60%; }
+/* HTML example:
+<div class="mnw-progress"><div class="mnw-progress__bar"></div></div>
+*/
+
+/* --------------------------- CHECKLIST CARD --------------------------- */
+.mnw-check{
+  padding:12px; border-radius:10px; border:1px dashed rgba(255,255,255,0.03); background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+}
+.mnw-check input[type=checkbox]{ transform: scale(1.1); margin-right:8px; }
+/* HTML example:
+<div class="mnw-check"><label><input type="checkbox" checked> Morning review</label><br><label><input type="checkbox"> Finish draft</label></div>
+*/
+
+/* --------------------------- BADGE / COUNTER --------------------------- */
+.mnw-badge{ display:inline-block; padding:6px 8px; border-radius:999px; background:linear-gradient(90deg,var(--mnw-accent), #4ade80); color:white; font-weight:600; font-size:0.9em; }
+/* HTML example:
+<span class="mnw-badge">NEW</span>
+*/
+
+/* --------------------------- CORNER RIBBON --------------------------- */
+.mnw-corner{ position:relative; padding:12px; border-radius:8px; overflow:visible;}
+.mnw-corner:before{
+  content: "HOT"; position:absolute; right:-32px; top:8px; transform: rotate(45deg); background: #ff6b6b; color:white; padding:6px 30px; font-weight:700; border-radius:4px; box-shadow:0 6px 18px rgba(0,0,0,0.12);
+}
+/* HTML example:
+<div class="mnw-corner">This card has a corner ribbon</div>
+*/
+
+/* --------------------------- TIMELINE ITEM --------------------------- */
+.mnw-timeline{ position:relative; padding-left:28px; margin:12px 0;}
+.mnw-timeline:before{ content:""; position:absolute; left:10px; top:6px; bottom:6px; width:2px; background:linear-gradient(180deg,var(--mnw-accent),transparent); border-radius:2px; }
+.mnw-timeline__node{ position:absolute; left:2px; top:6px; width:18px; height:18px; border-radius:50%; background:var(--mnw-accent); box-shadow:0 4px 10px rgba(0,0,0,0.12); }
+/* HTML example:
+<div class="mnw-timeline"><div class="mnw-timeline__node"></div><strong>2025-09-26</strong> — Milestone reached</div>
+*/
+
+/* --------------------------- TWO-COLUMN COMPARISON --------------------------- */
+.mnw-2col{ display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:start;}
+/* HTML example:
+<div class="mnw-2col"><div><strong>Pros</strong><ul><li>Fast</li></ul></div><div><strong>Cons</strong><ul><li>No tracking</li></ul></div></div>
+*/
+
+/* --------------------------- COLLAPSIBLE DETAILS (styling) --------------------------- */
+.mnw-details details{ background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent); padding:10px; border-radius:10px;}
+.mnw-details summary{ cursor:pointer; font-weight:600; }
+/* HTML example:
+<div class="mnw-details"><details><summary>☾ Reflection — click</summary>Long reflection text here.</details></div>
+*/
+
+/* --------------------------- ANIMATIONS: PULSE, FLOAT, POP --------------------------- */
+@keyframes mnw-pulse{ 0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)} }
+.mnw-pulse{ animation: mnw-pulse 2.2s ease-in-out infinite; }
+@keyframes mnw-float{ 0%{transform: translateY(0);}50%{transform: translateY(-6px);}100%{transform: translateY(0);} }
+.mnw-float{ animation: mnw-float 3.5s ease-in-out infinite; }
+@keyframes mnw-pop{ 0%{transform:scale(0.98); opacity:0}60%{transform:scale(1.02);opacity:1}100%{transform:scale(1);opacity:1} }
+.mnw-pop{ animation: mnw-pop 420ms cubic-bezier(.2,.8,.2,1) both; }
+/* HTML example:
+<div class="mnw-card mnw-pulse">Pulsing attention</div>
+*/
+
+/* --------------------------- TYPING / CARET EFFECT --------------------------- */
+.mnw-type{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace; white-space:nowrap; overflow:hidden; border-right:2px solid rgba(255,255,255,0.08); }
+@keyframes mnw-typeAnim{ from{ width:0 } to{ width:100% } }
+.mnw-type--reveal{ display:inline-block; width:16ch; animation: mnw-typeAnim 3s steps(16) 1; }
+/* HTML example:
+<div class="mnw-type mnw-type--reveal">echo "Big idea loading..."</div>
+*/
+
+/* --------------------------- ICON + TITLE ROW --------------------------- */
+.mnw-row{ display:flex; gap:10px; align-items:center;}
+.mnw-row .mnw-icon{ font-size:1.45em; }
+/* HTML example:
+<div class="mnw-card mnw-row"><div class="mnw-icon">🌿</div><div><strong>Habit</strong><div class="mnw-sub">Drink water</div></div></div>
+*/
+
+/* --------------------------- SMALL UTILITIES --------------------------- */
+.mnw-muted{ color:var(--mnw-muted); }
+.mnw-small{ font-size:0.9em; }
+.mnw-center{ text-align:center }
+.mnw-compact{ padding:6px; border-radius:8px }
+
+/* --------------------------- RESPONSIVE UTILS --------------------------- */
+@media (max-width:700px){
+  .mnw-2col{ grid-template-columns:1fr }
+  .mnw-postit{ width:180px }
+}
+
+/* --------------------------- FANCY CORNERS / GEOMETRIC --------------------------- */
+.mnw-fancy{ padding:12px; border-radius:14px; position:relative; overflow:visible;}
+.mnw-fancy:before{ content:"◈"; position:absolute; left:12px; top:12px; opacity:0.12; font-size:20px }
+/* HTML example:
+<div class="mnw-fancy">Design note: spacing on mobile</div>
+*/
+
+/* --------------------------- HOVER REVEAL (subtext show) --------------------------- */
+.mnw-hover{ position:relative; padding:12px;}
+.mnw-hover .mnw-hover-sub{ opacity:0; transform:translateY(6px); transition:all .28s ease; font-size:0.95em }
+.mnw-hover:hover .mnw-hover-sub{ opacity:1; transform:translateY(0); }
+/* HTML example:
+<div class="mnw-hover mnw-card">Hover me<div class="mnw-hover-sub">Extra context revealed</div></div>
+*/
+
+/* --------------------------- CLIPPED SHAPES (circle / slant) --------------------------- */
+.mnw-circle{ border-radius:999px; padding:12px 18px; display:inline-block; }
+.mnw-slant{ clip-path: polygon(0 0, 100% 6%, 100% 100%, 0 94%); padding:14px; }
+/* HTML example:
+<div class="mnw-slant" style="background:linear-gradient(90deg,#7ee787,#3bb0ff)">Slanted header</div>
+*/
+
+/* --------------------------- EMBEDDED MINI-CARD (for lists) --------------------------- */
+.mnw-mini{ display:inline-block; padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.03); margin:4px; }
+/* HTML example:
+<div class="mnw-mini">🔖 Tag</div>
+*/
+
+/* --------------------------- CHECK / TOGGLE SWITCH STYLES --------------------------- */
+.mnw-switch{ display:inline-flex; align-items:center; gap:10px }
+.mnw-switch input[type=checkbox]{ appearance:none; width:44px; height:22px; border-radius:12px; background:rgba(255,255,255,0.06); position:relative; outline:none; cursor:pointer; }
+.mnw-switch input[type=checkbox]:after{ content:''; position:absolute; left:4px; top:4px; width:14px; height:14px; border-radius:50%; background:white; transition:all .18s }
+.mnw-switch input[type=checkbox]:checked{ background: linear-gradient(90deg,var(--mnw-accent),var(--mnw-accent-2)); }
+.mnw-switch input[type=checkbox]:checked:after{ transform:translateX(22px) }
+/* HTML example:
+<label class="mnw-switch"><input type="checkbox"> Auto-save</label>
+*/
+
+/* --------------------------- TABLE / KEY-VALUE LIST --------------------------- */
+.mnw-table table{ width:100%; border-collapse:collapse }
+.mnw-table td, .mnw-table th{ padding:8px; border-bottom:1px solid rgba(255,255,255,0.02) }
+/* HTML example:
+<div class="mnw-table"><table><tr><th>Key</th><th>Value</th></tr><tr><td>OS</td><td>Windows</td></tr></table></div>
+*/
+
+/* --------------------------- LIGHT / DARK ADAPTIVE (uses theme variables) --------------------------- */
+/* Most styles above should adapt. Use variables at top to quickly tweak look. */
+
+/* --------------------------- EXTENDED: COMBINATIONS & PRESET KITS  --------------------------- */
+/* Apply multiple classes to get combos: mnw-card + mnw-galaxy + mnw-pulse etc.
+   Examples:
+   <div class="mnw-card mnw-galaxy mnw-pulse">Cosmic attention</div>
+   <div class="mnw-card mnw-leaf mnw-hover">Green card with hover reveal</div>
+*/
+
+/* --------------------------- END OF FILE: EXTRA EXAMPLES (copy-paste below into a note) --------------------------- */
+/*
 
 
+/*
+Obsidian: "Windows — Giant CSS Pack"
+Place this file in: .obsidian/snippets/obsidian-windows-giant.css
+Then enable it in Settings → Appearance → CSS snippets.
 
+This single file contains 40+ ready-to-use classes, micro-animations,
+progress/tooltip helpers, responsive tweaks, and examples. Usage
+examples are annotated above each block as CSS comments (so you can
+copy-paste the HTML into a note). The CSS relies on Obsidian theme
+variables where appropriate (see comments). Feel free to cherry-pick
+or enable the whole snippet.
+
+NOTE: If you want a lighter version, say so and I will split into
+multiple snippets (e.g., "themes", "animations", "cards").
+*/
+
+/* ----------------------------------
+   1) Basic card base (use this as foundation)
+   Usage:
+   <div class="ow-card">
+     **Title**\nContent here.
+   </div>
+   ---------------------------------- */
+.ow-card{
+  border: 1px solid var(--text-muted, rgba(127,127,127,0.12));
+  border-radius: 12px;
+  padding: 12px;
+  background: var(--background-secondary, rgba(255,255,255,0.02));
+  box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+}
+
+/* ----------------------------------
+   2) Glass / frosted variant
+   Usage: <div class="ow-glass">...</div>
+   ---------------------------------- */
+.ow-glass{
+  border-radius: 12px;
+  padding: 14px;
+  backdrop-filter: blur(6px) saturate(120%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* ----------------------------------
+   3) Leafy accent
+   Usage: <div class="ow-leaf">🌿 ...</div>
+   ---------------------------------- */
+.ow-leaf{
+  border-left: 6px solid #67c18a;
+  padding: 12px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(103,193,138,0.06), transparent);
+}
+
+/* ----------------------------------
+   4) Galaxy / night theme
+   Usage: <div class="ow-galaxy">...</div>
+   ---------------------------------- */
+.ow-galaxy{
+  color: var(--text-accent, #e6f7ff);
+  background: linear-gradient(135deg,#081627,#1b2b3b);
+  padding: 14px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(2,8,23,0.6);
+}
+
+/* ----------------------------------
+   5) Sticky / paper memo
+   Usage: <div class="ow-sticky">...</div>
+   ---------------------------------- */
+.ow-sticky{
+  background: #fff8d6;
+  border: 1px dashed #e1c56f;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.06);
+  font-style: italic;
+}
+
+/* ----------------------------------
+   6) Terminal / retro box
+   Usage: <div class="ow-terminal">...</div>
+   ---------------------------------- */
+.ow-terminal{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+  background: #0b1220;
+  color: #cfe9ff;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+/* ----------------------------------
+   7) Ribbon banner (accent header)
+   Usage: <div class="ow-ribbon">📌 ...</div>
+   ---------------------------------- */
+.ow-ribbon{
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: inline-block;
+  background: linear-gradient(90deg,#ffb86b,#ff7b7b);
+  color: white;
+  font-weight: 600;
+}
+
+/* ----------------------------------
+   8) Fancy decorative with corner glyph
+   Usage: <div class="ow-fancy">...</div>
+   ---------------------------------- */
+.ow-fancy{
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: linear-gradient(180deg, rgba(250,250,255,0.02), transparent);
+  position: relative;
+}
+.ow-fancy:before{
+  content: "◈";
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+/* ----------------------------------
+   9) Post-it tilt
+   Usage: <div class="ow-postit">...</div>
+   ---------------------------------- */
+.ow-postit{
+  width: 220px;
+  padding: 12px;
+  background: #fff6b8;
+  border: 1px solid #edd87a;
+  transform: rotate(-3deg);
+  box-shadow: 6px 6px 12px rgba(0,0,0,0.08);
+  border-radius: 6px;
+}
+
+/* ----------------------------------
+   10) Progress bar helpers
+   Usage:
+   <div class="ow-progress" data-pct="60">
+     <div class="ow-progress-bar"></div>
+   </div>
+   Or set width on .ow-progress-bar.
+   ---------------------------------- */
+.ow-progress{width: 100%; background: var(--background-modifier-border); border-radius:6px; padding:4px}
+.ow-progress-bar{height:12px; border-radius:4px; background: linear-gradient(90deg,#7ee787,#3bb0ff); width:50%}
+
+/* set width via attribute (optional): */
+.ow-progress[data-pct] .ow-progress-bar{width: calc(var(--pct,1) * 1%);}
+/* helper to read data-pct via inline style using CSS custom property in the tag: */
+/* <div class="ow-progress" style="--pct:60"> */
+
+/* ----------------------------------
+   11) Tiny inline badge
+   Usage: <span class="ow-badge">⚑ NOTE</span>
+   ---------------------------------- */
+.ow-badge{display:inline-block;padding:4px 8px;border-radius:999px;background:var(--background-modifier-accent);font-weight:600}
+
+/* ----------------------------------
+   12) Big quote block
+   Usage: <blockquote class="ow-quote">...</blockquote>
+   ---------------------------------- */
+.ow-quote{font-size:1.05rem;padding:14px;border-left:4px solid var(--text-accent);border-radius:6px;background:linear-gradient(180deg, rgba(0,0,0,0.02), transparent)}
+
+/* ----------------------------------
+   13) Two-column responsive layout
+   Usage: <div class="ow-cols-2"> <div>left</div><div>right</div> </div>
+   ---------------------------------- */
+.ow-cols-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:680px){.ow-cols-2{grid-template-columns:1fr}}
+
+/* ----------------------------------
+   14) Decorative header + small subtext
+   Usage: <div class="ow-header"> <h3>Title</h3> <div class="ow-sub">subtext</div> </div>
+   ---------------------------------- */
+.ow-header h3{margin:0;font-weight:700}
+.ow-sub{font-size:0.86rem;opacity:0.8}
+
+/* ----------------------------------
+   15) Neumorphism card
+   Usage: <div class="ow-neu">...</div>
+   ---------------------------------- */
+.ow-neu{border-radius:12px;padding:12px;background:var(--background-primary);box-shadow: 8px 8px 18px rgba(2,8,23,0.06), -6px -6px 14px rgba(255,255,255,0.02)}
+
+/* ----------------------------------
+   16) Emboss / pressed effect
+   Usage: <div class="ow-emboss">...</div>
+   ---------------------------------- */
+.ow-emboss{padding:10px;border-radius:8px;background:linear-gradient(180deg, rgba(0,0,0,0.02), rgba(255,255,255,0.01));box-shadow: inset 1px 1px 0 rgba(255,255,255,0.03), inset -2px -2px 6px rgba(2,8,23,0.03)}
+
+/* ----------------------------------
+   17) Gradient border
+   Usage: <div class="ow-gradborder">...</div>
+   ---------------------------------- */
+.ow-gradborder{position:relative;border-radius:12px;padding:12px}
+.ow-gradborder:before{content:"";position:absolute;inset:0;padding:2px;border-radius:inherit;background:linear-gradient(90deg,#7ee787,#3bb0ff);-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);pointer-events:none}
+
+/* ----------------------------------
+   18) Floating sticky (floating card on the right)
+   Usage: <div class="ow-floating">...</div>
+   ---------------------------------- */
+.ow-floating{position:sticky;top:72px;margin-left:auto;max-width:320px}
+
+/* ----------------------------------
+   19) Tooltip helper (simple)
+   Usage: <span class="ow-tt" data-tt="Your tooltip">hover me</span>
+   ---------------------------------- */
+.ow-tt{position:relative;cursor:help}
+.ow-tt[data-tt]:hover:after{content:attr(data-tt);position:absolute;left:50%;transform:translateX(-50%);bottom:calc(100% + 8px);white-space:nowrap;padding:6px 8px;border-radius:6px;background:var(--background-modifier-accent);color:var(--text-normal);font-size:0.85rem;box-shadow:0 8px 20px rgba(2,6,23,0.2)}
+
+/* ----------------------------------
+   20) Tiny keycap element (kbd)
+   Usage: <span class="ow-kbd">Cmd</span>
+   ---------------------------------- */
+.ow-kbd{display:inline-block;padding:2px 6px;border-radius:6px;border:1px solid var(--text-muted);background:var(--background-primary);font-family:ui-monospace,monospace;font-size:0.9rem}
+
+/* ----------------------------------
+   21) Animated pulse (subtle)
+   Usage: <div class="ow-pulse">...</div>
+   ---------------------------------- */
+@keyframes ow-pulse{0%{transform:scale(1);opacity:1}50%{transform:scale(1.02);opacity:0.95}100%{transform:scale(1);opacity:1}}
+.ow-pulse{animation:ow-pulse 3s ease-in-out infinite}
+
+/* ----------------------------------
+   22) Shake attention (use sparingly)
+   Usage: <div class="ow-shake">...</div>
+   ---------------------------------- */
+@keyframes ow-shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-4px)}60%{transform:translateX(4px)}}
+.ow-shake{display:inline-block;animation:ow-shake .6s ease-in-out}
+
+/* ----------------------------------
+   23) Hover tilt
+   Usage: <div class="ow-tilt">...</div>
+   ---------------------------------- */
+.ow-tilt{transition:transform .24s cubic-bezier(.2,.9,.3,1);transform-origin:center}
+.ow-tilt:hover{transform:perspective(800px) rotateX(2deg) rotateY(-2deg) translateY(-6px)}
+
+/* ----------------------------------
+   24) Header with accent stripe
+   Usage: <div class="ow-accent"> <h4>Title</h4> </div>
+   ---------------------------------- */
+.ow-accent{position:relative;padding-left:12px}
+.ow-accent:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;border-radius:6px;background:linear-gradient(180deg,#67c18a,#3bb0ff)}
+
+/* ----------------------------------
+   25) Timeline / vertical list
+   Usage: <ul class="ow-timeline"><li>...</li></ul>
+   ---------------------------------- */
+.ow-timeline{list-style:none;padding-left:18px;border-left:2px dashed rgba(255,255,255,0.03)}
+.ow-timeline li{position:relative;margin:12px 0;padding-left:12px}
+.ow-timeline li:before{content:"";position:absolute;left:-9px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--text-accent)}
+
+/* ----------------------------------
+   26) Compact checklist card (styling checkboxes)
+   Usage: <div class="ow-checklist"><label><input type="checkbox"> Task</label></div>
+   ---------------------------------- */
+.ow-checklist label{display:flex;gap:8px;align-items:center}
+.ow-checklist input[type=checkbox]{width:18px;height:18px}
+
+/* ----------------------------------
+   27) Mini progress text bar
+   Usage: <div class="ow-mini">Progress: <span class="ow-mini-bar" style="--p:60%"></span></div>
+   ---------------------------------- */
+.ow-mini{font-size:0.95rem}
+.ow-mini-bar{display:inline-block;height:8px;vertical-align:middle;border-radius:6px;width:8rem;background:linear-gradient(90deg,#ffb86b,#ff7b7b);transform-origin:left;}
+.ow-mini-bar[style]{transform:scaleX(calc(var(--p,100) / 100))}
+
+/* ----------------------------------
+   28) Image card with caption
+   Usage:
+   <figure class="ow-imgcard">
+     <img src="..." />
+     <figcaption>caption</figcaption>
+   </figure>
+   ---------------------------------- */
+.ow-imgcard img{max-width:100%;border-radius:8px;display:block}
+.ow-imgcard figcaption{font-size:0.85rem;opacity:0.85;margin-top:6px}
+
+/* ----------------------------------
+   29) Small alert / danger block
+   Usage: <div class="ow-danger">...</div>
+   ---------------------------------- */
+.ow-danger{border-left:6px solid #ff6b6b;background:linear-gradient(180deg,rgba(255,110,110,0.03),transparent);padding:10px;border-radius:8px}
+
+/* ----------------------------------
+   30) Decorative corners (svg glyph corners via pseudo-elements)
+   Usage: <div class="ow-corners">...</div>
+   ---------------------------------- */
+.ow-corners{position:relative;padding:14px;border-radius:12px}
+.ow-corners:before,.ow-corners:after{content:'✦';position:absolute;font-size:18px;opacity:0.12}
+.ow-corners:before{left:8px;top:6px}
+.ow-corners:after{right:10px;bottom:8px}
+
+/* ----------------------------------
+   31) Tiny floating label for metadata
+   Usage: <div class="ow-meta"> <span class="ow-label">Draft</span> ...</div>
+   ---------------------------------- */
+.ow-label{font-size:0.78rem;padding:4px 8px;border-radius:999px;border:1px solid var(--text-muted);background:var(--background-primary)}
+
+/* ----------------------------------
+   32) Grid of cards (auto-fit)
+   Usage: <div class="ow-grid"> <div class="ow-card">..</div> </div>
+   ---------------------------------- */
+.ow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+
+/* ----------------------------------
+   33) Compact / tight variant
+   Usage: <div class="ow-compact">...</div>
+   ---------------------------------- */
+.ow-compact{padding:6px;border-radius:8px;font-size:0.92rem}
+
+/* ----------------------------------
+   34) Floating action pill (button-like)
+   Usage: <a class="ow-pill">+ New</a>
+   ---------------------------------- */
+.ow-pill{display:inline-block;padding:8px 12px;border-radius:24px;background:linear-gradient(90deg,#67c18a,#3bb0ff);color:white;font-weight:600;text-decoration:none}
+
+/* ----------------------------------
+   35) Marquee / subtle shimmer for delights
+   Usage: <div class="ow-sparkle">...</div>
+   ---------------------------------- */
+@keyframes ow-shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.ow-sparkle{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.06), rgba(255,255,255,0.02));background-size:200% 100%;animation:ow-shimmer 6s linear infinite}
+
+/* ----------------------------------
+   36) Toggle / collapsible summary styling (works with native <details>)
+   Usage: <details class="ow-fold"><summary>Title</summary><div>content</div></details>
+   ---------------------------------- */
+.ow-fold summary{cursor:pointer;list-style:none;padding:8px;border-radius:8px}
+.ow-fold summary::-webkit-details-marker{display:none}
+.ow-fold[open] summary{font-weight:700}
+
+/* ----------------------------------
+   37) Small CTA card with icon (flex)
+   Usage: <div class="ow-cta"><div class="ow-cta-icon">🔥</div><div>Text</div></div>
+   ---------------------------------- */
+.ow-cta{display:flex;gap:12px;align-items:center;padding:12px;border-radius:12px}
+.ow-cta-icon{font-size:1.6rem}
+
+/* ----------------------------------
+   38) Inline code / snippet highlight
+   Usage: <code class="ow-code">...</code>
+   ---------------------------------- */
+.ow-code{background:var(--background-modifier-form);padding:3px 6px;border-radius:6px;border:1px solid var(--text-muted);font-family:ui-monospace,monospace}
+
+/* ----------------------------------
+   39) Low-contrast hint box
+   Usage: <div class="ow-hint">...</div>
+   ---------------------------------- */
+.ow-hint{padding:8px;border-radius:8px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02);opacity:0.9}
+
+/* ----------------------------------
+   40) Accessibility helpers: increased focus ring for keyboard users
+   Applies to focusable elements inside snippet classes
+   ---------------------------------- */
+.ow-card :focus,.ow-pill:focus,.ow-tt:focus{outline:3px solid rgba(99,164,255,0.18);outline-offset:3px}
+
+/* ----------------------------------
+   End of pack — tips
+   - You can mix & match classes: e.g. <div class="ow-card ow-tilt ow-pulse">...
+   - Use inline styles to change sizes/percentages (e.g., style="--pct:75")
+   - If a variant uses color and you want it theme-aware, replace hard color with theme variables.
+   - Want CSS that targets only the reading view vs editor? I can add target selectors for obsidian panes.
+
+Happy exploring! If you want I can also export a matching Markdown note with one example per class
+so you can paste it straight into Obsidian and try them all. Tell me whether you want that (and
+if you'd prefer the examples as a single note file or split into sections).
+*/
 
 /* ============================================
    END OF ENHANCED STYLES
