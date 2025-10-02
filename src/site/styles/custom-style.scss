@@ -4056,68 +4056,63 @@ tr:last-child td {
 
 
 /* ============================================
-   SPINE BACKGROUND - DIGITAL GARDEN
+   SPINE BACKGROUND - DIGITAL GARDEN (Non-conflicting version)
    Symbolizes growth and the backbone of who you're becoming
+   
+   USAGE: Add this HTML div anywhere in your note:
+   <div class="spine-container"></div>
+   
+   Or for automatic activation, use the body class method below
    ============================================ */
 
-/* Main spine container - targets Digital Garden body classes */
-body.spine .content,
-body.spine-subtle .content,
-body.spine-medium .content,
-body.spine-strong .content {
-  position: relative;
-}
-
-body.spine .content::before,
-body.spine-subtle .content::before,
-body.spine-medium .content::before,
-body.spine-strong .content::before {
-  content: '';
-  position: absolute;
+/* Method 1: Manual spine div (RECOMMENDED - No conflicts) */
+.spine-container {
+  position: fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 180px;
-  height: 100%;
-  min-height: 100vh;
+  height: 100vh;
   pointer-events: none;
   z-index: 0;
+}
+
+.spine-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   
-  /* Glass morphism effect - default opacity */
+  /* Glass morphism effect */
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.08) 0%,
-    rgba(255, 255, 255, 0.12) 50%,
-    rgba(255, 255, 255, 0.08) 100%
+    rgba(255, 255, 255, 0.10) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.10) 100%
   );
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   
   /* Subtle border for definition */
-  border-left: 1px solid rgba(255, 255, 255, 0.15);
-  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
   
   /* Soft shadow for depth */
   box-shadow: 
-    inset 0 0 40px rgba(255, 255, 255, 0.05),
-    0 0 30px rgba(0, 0, 0, 0.1);
+    inset 0 0 40px rgba(255, 255, 255, 0.08),
+    0 0 30px rgba(0, 0, 0, 0.12);
 }
 
-/* Vertebrae segments - creates spine detail */
-body.spine .content::after,
-body.spine-subtle .content::after,
-body.spine-medium .content::after,
-body.spine-strong .content::after {
+/* Vertebrae segments */
+.spine-container::after {
   content: '';
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 180px;
+  left: 0;
+  width: 100%;
   height: 100%;
-  min-height: 100vh;
-  pointer-events: none;
-  z-index: 1;
   
   /* Vertebrae pattern with central spinal cord */
   background-image: 
@@ -4126,12 +4121,12 @@ body.spine-strong .content::after {
       0deg,
       transparent,
       transparent 58px,
-      rgba(255, 255, 255, 0.12) 58px,
-      rgba(255, 255, 255, 0.12) 60px,
-      rgba(255, 255, 255, 0.18) 60px,
-      rgba(255, 255, 255, 0.18) 64px,
-      rgba(255, 255, 255, 0.12) 64px,
-      rgba(255, 255, 255, 0.12) 66px,
+      rgba(255, 255, 255, 0.15) 58px,
+      rgba(255, 255, 255, 0.15) 60px,
+      rgba(255, 255, 255, 0.22) 60px,
+      rgba(255, 255, 255, 0.22) 64px,
+      rgba(255, 255, 255, 0.15) 64px,
+      rgba(255, 255, 255, 0.15) 66px,
       transparent 66px,
       transparent 124px
     ),
@@ -4140,29 +4135,16 @@ body.spine-strong .content::after {
       90deg,
       transparent 0%,
       transparent calc(50% - 2px),
-      rgba(255, 255, 255, 0.2) calc(50% - 2px),
-      rgba(255, 255, 255, 0.25) 50%,
-      rgba(255, 255, 255, 0.2) calc(50% + 2px),
+      rgba(255, 255, 255, 0.25) calc(50% - 2px),
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0.25) calc(50% + 2px),
       transparent calc(50% + 2px),
       transparent 100%
     );
 }
 
-/* Ensure content stays above spine */
-body.spine .content > *,
-body.spine-subtle .content > *,
-body.spine-medium .content > *,
-body.spine-strong .content > * {
-  position: relative;
-  z-index: 2;
-}
-
-/* ============================================
-   OPACITY VARIANTS
-   ============================================ */
-
-/* Ultra subtle - barely visible */
-body.spine-subtle .content::before {
+/* Opacity variants for manual spine */
+.spine-container.spine-subtle::before {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.03) 0%,
@@ -4171,12 +4153,9 @@ body.spine-subtle .content::before {
   );
   border-left-color: rgba(255, 255, 255, 0.08);
   border-right-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 
-    inset 0 0 40px rgba(255, 255, 255, 0.02),
-    0 0 20px rgba(0, 0, 0, 0.05);
 }
 
-body.spine-subtle .content::after {
+.spine-container.spine-subtle::after {
   background-image: 
     repeating-linear-gradient(
       0deg,
@@ -4203,50 +4182,7 @@ body.spine-subtle .content::after {
     );
 }
 
-/* Medium visibility - balanced (recommended) */
-body.spine-medium .content::before {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.10) 0%,
-    rgba(255, 255, 255, 0.15) 50%,
-    rgba(255, 255, 255, 0.10) 100%
-  );
-  border-left-color: rgba(255, 255, 255, 0.18);
-  border-right-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 
-    inset 0 0 40px rgba(255, 255, 255, 0.08),
-    0 0 30px rgba(0, 0, 0, 0.12);
-}
-
-body.spine-medium .content::after {
-  background-image: 
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 58px,
-      rgba(255, 255, 255, 0.15) 58px,
-      rgba(255, 255, 255, 0.15) 60px,
-      rgba(255, 255, 255, 0.22) 60px,
-      rgba(255, 255, 255, 0.22) 64px,
-      rgba(255, 255, 255, 0.15) 64px,
-      rgba(255, 255, 255, 0.15) 66px,
-      transparent 66px,
-      transparent 124px
-    ),
-    linear-gradient(
-      90deg,
-      transparent 0%,
-      transparent calc(50% - 2px),
-      rgba(255, 255, 255, 0.25) calc(50% - 2px),
-      rgba(255, 255, 255, 0.3) 50%,
-      rgba(255, 255, 255, 0.25) calc(50% + 2px),
-      transparent calc(50% + 2px),
-      transparent 100%
-    );
-}
-
-/* Strong visibility - prominent */
-body.spine-strong .content::before {
+.spine-container.spine-strong::before {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.15) 0%,
@@ -4255,12 +4191,9 @@ body.spine-strong .content::before {
   );
   border-left-color: rgba(255, 255, 255, 0.28);
   border-right-color: rgba(255, 255, 255, 0.28);
-  box-shadow: 
-    inset 0 0 50px rgba(255, 255, 255, 0.1),
-    0 0 40px rgba(0, 0, 0, 0.15);
 }
 
-body.spine-strong .content::after {
+.spine-container.spine-strong::after {
   background-image: 
     repeating-linear-gradient(
       0deg,
@@ -4287,153 +4220,6 @@ body.spine-strong .content::after {
     );
 }
 
-/* ============================================
-   ALTERNATIVE SELECTORS - FALLBACK
-   In case .content doesn't exist in your setup
-   ============================================ */
-
-body.spine main,
-body.spine-subtle main,
-body.spine-medium main,
-body.spine-strong main {
-  position: relative;
-}
-
-body.spine main::before,
-body.spine-subtle main::before,
-body.spine-medium main::before,
-body.spine-strong main::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 180px;
-  height: 100%;
-  min-height: 100vh;
-  pointer-events: none;
-  z-index: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.08) 0%,
-    rgba(255, 255, 255, 0.12) 50%,
-    rgba(255, 255, 255, 0.08) 100%
-  );
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-left: 1px solid rgba(255, 255, 255, 0.15);
-  border-right: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 
-    inset 0 0 40px rgba(255, 255, 255, 0.05),
-    0 0 30px rgba(0, 0, 0, 0.1);
-}
-
-body.spine main::after,
-body.spine-subtle main::after,
-body.spine-medium main::after,
-body.spine-strong main::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 180px;
-  height: 100%;
-  min-height: 100vh;
-  pointer-events: none;
-  z-index: 1;
-  background-image: 
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 58px,
-      rgba(255, 255, 255, 0.12) 58px,
-      rgba(255, 255, 255, 0.12) 60px,
-      rgba(255, 255, 255, 0.18) 60px,
-      rgba(255, 255, 255, 0.18) 64px,
-      rgba(255, 255, 255, 0.12) 64px,
-      rgba(255, 255, 255, 0.12) 66px,
-      transparent 66px,
-      transparent 124px
-    ),
-    linear-gradient(
-      90deg,
-      transparent 0%,
-      transparent calc(50% - 2px),
-      rgba(255, 255, 255, 0.2) calc(50% - 2px),
-      rgba(255, 255, 255, 0.25) 50%,
-      rgba(255, 255, 255, 0.2) calc(50% + 2px),
-      transparent calc(50% + 2px),
-      transparent 100%
-    );
-}
-
-body.spine main > *,
-body.spine-subtle main > *,
-body.spine-medium main > *,
-body.spine-strong main > * {
-  position: relative;
-  z-index: 2;
-}
-
-/* Apply variant styles to main as well */
-body.spine-subtle main::before {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.03) 100%);
-  border-left-color: rgba(255, 255, 255, 0.08);
-  border-right-color: rgba(255, 255, 255, 0.08);
-}
-
-body.spine-subtle main::after {
-  background-image: 
-    repeating-linear-gradient(0deg, transparent, transparent 58px, rgba(255, 255, 255, 0.06) 58px, rgba(255, 255, 255, 0.06) 60px, rgba(255, 255, 255, 0.09) 60px, rgba(255, 255, 255, 0.09) 64px, rgba(255, 255, 255, 0.06) 64px, rgba(255, 255, 255, 0.06) 66px, transparent 66px, transparent 124px),
-    linear-gradient(90deg, transparent 0%, transparent calc(50% - 2px), rgba(255, 255, 255, 0.1) calc(50% - 2px), rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0.1) calc(50% + 2px), transparent calc(50% + 2px), transparent 100%);
-}
-
-body.spine-medium main::before {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.10) 100%);
-  border-left-color: rgba(255, 255, 255, 0.18);
-  border-right-color: rgba(255, 255, 255, 0.18);
-}
-
-body.spine-medium main::after {
-  background-image: 
-    repeating-linear-gradient(0deg, transparent, transparent 58px, rgba(255, 255, 255, 0.15) 58px, rgba(255, 255, 255, 0.15) 60px, rgba(255, 255, 255, 0.22) 60px, rgba(255, 255, 255, 0.22) 64px, rgba(255, 255, 255, 0.15) 64px, rgba(255, 255, 255, 0.15) 66px, transparent 66px, transparent 124px),
-    linear-gradient(90deg, transparent 0%, transparent calc(50% - 2px), rgba(255, 255, 255, 0.25) calc(50% - 2px), rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.25) calc(50% + 2px), transparent calc(50% + 2px), transparent 100%);
-}
-
-body.spine-strong main::before {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.22) 50%, rgba(255, 255, 255, 0.15) 100%);
-  border-left-color: rgba(255, 255, 255, 0.28);
-  border-right-color: rgba(255, 255, 255, 0.28);
-}
-
-body.spine-strong main::after {
-  background-image: 
-    repeating-linear-gradient(0deg, transparent, transparent 58px, rgba(255, 255, 255, 0.20) 58px, rgba(255, 255, 255, 0.20) 60px, rgba(255, 255, 255, 0.30) 60px, rgba(255, 255, 255, 0.30) 64px, rgba(255, 255, 255, 0.20) 64px, rgba(255, 255, 255, 0.20) 66px, transparent 66px, transparent 124px),
-    linear-gradient(90deg, transparent 0%, transparent calc(50% - 2px), rgba(255, 255, 255, 0.35) calc(50% - 2px), rgba(255, 255, 255, 0.42) 50%, rgba(255, 255, 255, 0.35) calc(50% + 2px), transparent calc(50% + 2px), transparent 100%);
-}
-
-/* ============================================
-   USAGE INSTRUCTIONS FOR DIGITAL GARDEN
-   ============================================
-   
-   Add this to your note's frontmatter:
-   
-   ---
-   dg-publish: true
-   dg-content-classes: spine-medium
-   ---
-   
-   Available opacity levels:
-   - spine-subtle  (most transparent)
-   - spine-medium  (balanced - recommended)
-   - spine-strong  (most visible)
-   
-   Or use just "spine" for default visibility:
-   - dg-content-classes: spine
-   
-   The spine automatically extends with your content!
-   ============================================ */
 
 /* ============================================
    END OF ENHANCED STYLES
