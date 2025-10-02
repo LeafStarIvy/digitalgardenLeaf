@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/radical-alignment/","contentClasses":"spine-medium","noteIcon":"","created":"2025-10-02T18:25:07.179+02:00","updated":"2025-10-02T20:30:56.709+02:00"}
+{"dg-publish":true,"permalink":"/radical-alignment/","contentClasses":"spine-medium","noteIcon":"","created":"2025-10-02T18:25:07.179+02:00","updated":"2025-10-02T20:32:02.613+02:00"}
 ---
 
 Radical alignment with yourself is ==a holistic state of deep inner harmony and consistency, where your actions, thoughts, and behaviors are in sync with your deepest values, authentic self, and innate worthiness==. It involves unconditionally accepting your true self, including your "good, bad, and ugly" aspects, and acting with integrity to honor your desires and soul's calling, rather than succumbing to societal pressures.
@@ -249,8 +249,7 @@ TestTest
 Test
 Test
 
-<div class="spine-container"></div>
-<div class="spine-ribcage">
+<div class="spine-ribcage spine-strong">
   <!-- Right ribs upper -->
   <div class="rib-upper-r1"></div>
   <div class="rib-upper-r2"></div>
