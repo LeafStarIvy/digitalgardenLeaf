@@ -4055,192 +4055,272 @@ tr:last-child td {
 
 
 
-/*
-================================================================================
-Obsidian CSS snippet — "Spine Note"
-Creates a clean, glassy vertical "spine" behind a note when you add a property
-to a note's frontmatter. Lightweight, responsive and easy to tweak.
+/* ============================================
+   SPINE BACKGROUND - DIGITAL GARDEN
+   Symbolizes growth and the backbone of who you're becoming
+   ============================================ */
 
-How to install
-1. Save this file as `.obsidian/snippets/obsidian-spine-note.css` (or paste into
-   your existing snippet file).
-2. In Obsidian: Settings → Appearance → CSS snippets → enable `obsidian-spine-note`.
-3. Add a frontmatter property to the note(s) you want to show the spine for.
-
-Example frontmatter (YAML):
----
-cssclasses:
-  - spine-note      # required to enable the spine on that page
-  - spine-right     # optional: put the spine on the right (default: left)
-  - spine-thin      # optional modifiers (thin, wide, more-transparent, more-opaque)
-  - spine-more-transparent
----
-
-Notes on usage
-- The snippet uses the built-in `cssclasses` frontmatter property (Obsidian).
-  If you prefer another mechanism you can add the `spine-note` class manually
-  with your templates or a frontmatter plugin.
-- The spine is built from pseudo-elements so it will grow/shrink with your note
-  content (it anchors to the note's content container).
-- Tweak the variables below to match your digital-garden crystal / glassy look.
-================================================================================
-*/
-
-/* --------------------
-   User-tweakable variables
-   -------------------- */
-:root {
-  /* Width / spacing */
-  --spine-width: 72px;        /* thickness of the spine */
-  --spine-offset: 18px;       /* distance from the left/right page edge */
-  --spine-radius: 16px;       /* rounding of the spine corners */
-
-  /* Look / glassiness */
-  --spine-alpha: 0.28;        /* overall opacity (0 = invisible, 1 = solid) */
-  --spine-blur: 10px;         /* backdrop blur inside the spine */
-  --spine-shadow: 0 8px 30px rgba(0,0,0,0.12);
-
-  /* Color for the glass effect: use an RGB triple here (no alpha)
-     Example: 255,255,255 for white-ish glass; 40,40,45 for darker glass. */
-  --spine-glass-color: 255,255,255;
-}
-
-/* --------------------
-   Core selectors
-   Apply to preview & source (live) views and generally to note content.
-   We keep everything position:relative / isolation:isolate so the spine sits
-   behind the content and stretches with the note height.
-   -------------------- */
-.spine-note :is(.view-content, .markdown-preview-view, .markdown-source-view) {
+/* Target notes with spine property */
+body[class*="spine-"],
+.markdown-preview-view[data-spine],
+.markdown-source-view[data-spine] {
   position: relative;
-  isolation: isolate; /* ensure pseudo-element stacking behaves predictably */
 }
 
-/* The spine itself (the roomy, glassy vertical bar). The pseudo element
-   uses top/bottom so it tracks the full content height and grows with the note. */
-.spine-note :is(.view-content, .markdown-preview-view, .markdown-source-view)::before {
-  content: "";
+/* Main spine container - activated via frontmatter property */
+body[class*="spine-"] .markdown-preview-view::before,
+body[class*="spine-"] .markdown-source-view.mod-cm6 .cm-editor::before,
+[data-spine="true"] .markdown-preview-view::before,
+[data-spine="true"] .markdown-source-view.mod-cm6 .cm-editor::before {
+  content: '';
   position: absolute;
-  left: var(--spine-offset);
-  top: 12px;                /* small inset so it doesn't butt up to the header */
-  bottom: 12px;             /* small inset at bottom */
-  width: var(--spine-width);
-  border-radius: var(--spine-radius);
-  pointer-events: none;
-
-  /* glassy gradient + subtle texture */
-  background: linear-gradient(
-    180deg,
-    rgba(var(--spine-glass-color), var(--spine-alpha)),
-    rgba(var(--spine-glass-color), calc(var(--spine-alpha) * 0.32))
-  );
-
-  /* soft inner highlight and shadow to create a subtle bevel */
-  box-shadow: var(--spine-shadow), inset 0 1px 0 rgba(255,255,255,0.06);
-
-  /* real glass effect on modern browsers */
-  backdrop-filter: blur(var(--spine-blur)) saturate(120%);
-  -webkit-backdrop-filter: blur(var(--spine-blur)) saturate(120%);
-
-  border: 1px solid rgba(var(--spine-glass-color), calc(var(--spine-alpha) * 0.9));
-  z-index: 0; /* keep behind the page content */
-  transform: translateZ(0);
-}
-
-/* Slight ruled-line next to the spine to help separate it from the note body */
-.spine-note :is(.view-content, .markdown-preview-view, .markdown-source-view)::after {
-  content: "";
-  position: absolute;
-  left: calc(var(--spine-offset) + var(--spine-width) + 12px);
-  top: 38px;
-  bottom: 38px;
-  width: 1px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.04));
-  opacity: 0.6;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 100%;
+  min-height: 100vh;
   pointer-events: none;
   z-index: 0;
+  
+  /* Glass morphism effect */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  
+  /* Subtle border for definition */
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  
+  /* Soft shadow for depth */
+  box-shadow: 
+    inset 0 0 40px rgba(255, 255, 255, 0.05),
+    0 0 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Ensure the note content renders above the spine */
-.spine-note :is(.view-content, .markdown-preview-view, .markdown-source-view) > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* --------------------
-   Useful modifiers you can add to the cssclasses frontmatter for per-note
-   tweaks. Put these class names alongside `spine-note` in the YAML.
-   -------------------- */
-
-/* place the spine on the right instead of the left */
-.spine-note.spine-right :is(.view-content, .markdown-preview-view, .markdown-source-view)::before {
-  left: auto;
-  right: var(--spine-offset);
-}
-.spine-note.spine-right :is(.view-content, .markdown-preview-view, .markdown-source-view)::after {
-  left: auto;
-  right: calc(var(--spine-offset) + var(--spine-width) + 12px);
-}
-
-/* thinner or wider variants */
-.spine-note.spine-thin { --spine-width: 44px; }
-.spine-note.spine-wide { --spine-width: 108px; }
-
-/* transparency modifiers */
-.spine-note.spine-more-transparent { --spine-alpha: 0.12; }
-.spine-note.spine-more-opaque      { --spine-alpha: 0.46; }
-
-/* a compact variant for small / dense notes */
-.spine-note.spine-compact {
-  --spine-width: 48px;
-  --spine-offset: 12px;
-  --spine-radius: 12px;
-  --spine-blur: 6px;
-}
-
-/* --------------------
-   A tiny decorative label option (optional). If you want a small marker
-   near the top of the spine, enable `spine-label` as an extra cssclass and
-   update the content value below (it's plain text). Kept very subtle.
-   -------------------- */
-.spine-note.spine-label :is(.view-content, .markdown-preview-view, .markdown-source-view)::after {
-  /* override the ruled line with a label chip */
-}
-
-.spine-note.spine-label :is(.view-content, .markdown-preview-view, .markdown-source-view)::before {
-  /* slightly narrower to make room for the label */
-}
-
-/* Example : you can enable this style and replace the label text inline
-   by editing the CSS content if you prefer (keeps snippet lightweight). */
-/*
-.spine-note.spine-label :is(.view-content, .markdown-preview-view)::after {
-  content: "SPINE";                    / * small uppercase tag * /
+/* Vertebrae segments - creates spine detail */
+body[class*="spine-"] .markdown-preview-view::after,
+body[class*="spine-"] .markdown-source-view.mod-cm6 .cm-editor::after,
+[data-spine="true"] .markdown-preview-view::after,
+[data-spine="true"] .markdown-source-view.mod-cm6 .cm-editor::after {
+  content: '';
   position: absolute;
-  left: calc(var(--spine-offset) + 6px);
-  top: 18px;
-  font-size: 10px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.9);
-  background: rgba(0,0,0,0.12);
-  padding: 4px 6px;
-  border-radius: 8px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 100%;
+  min-height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  
+  /* Vertebrae pattern */
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 58px,
+    rgba(255, 255, 255, 0.12) 58px,
+    rgba(255, 255, 255, 0.12) 60px,
+    rgba(255, 255, 255, 0.18) 60px,
+    rgba(255, 255, 255, 0.18) 64px,
+    rgba(255, 255, 255, 0.12) 64px,
+    rgba(255, 255, 255, 0.12) 66px,
+    transparent 66px,
+    transparent 124px
+  );
+  
+  /* Central spinal cord line */
+  background-image: 
+    /* Vertebrae pattern */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 58px,
+      rgba(255, 255, 255, 0.12) 58px,
+      rgba(255, 255, 255, 0.12) 60px,
+      rgba(255, 255, 255, 0.18) 60px,
+      rgba(255, 255, 255, 0.18) 64px,
+      rgba(255, 255, 255, 0.12) 64px,
+      rgba(255, 255, 255, 0.12) 66px,
+      transparent 66px,
+      transparent 124px
+    ),
+    /* Central cord */
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent calc(50% - 2px),
+      rgba(255, 255, 255, 0.2) calc(50% - 2px),
+      rgba(255, 255, 255, 0.25) 50%,
+      rgba(255, 255, 255, 0.2) calc(50% + 2px),
+      transparent calc(50% + 2px),
+      transparent 100%
+    );
+}
+
+/* Ensure content stays above spine */
+body[class*="spine-"] .markdown-preview-view > *,
+body[class*="spine-"] .markdown-source-view.mod-cm6 .cm-content > *,
+[data-spine="true"] .markdown-preview-view > *,
+[data-spine="true"] .markdown-source-view.mod-cm6 .cm-content > * {
+  position: relative;
   z-index: 2;
 }
-*/
 
-/* --------------------
-   Small compatibility tweaks for some popular community themes.
-   If you notice the spine appearing in the wrong place, try enabling
-   the snippet with the following rule adjustments (uncomment to use).
-   -------------------- */
-/*
-.spine-note .markdown-preview-view { padding-left: calc(var(--spine-offset) + var(--spine-width) + 20px); }
-.spine-note.spine-right .markdown-preview-view { padding-right: calc(var(--spine-offset) + var(--spine-width) + 20px); padding-left: 18px; }
-*/
+/* ============================================
+   OPACITY VARIANTS
+   Add these classes to adjust transparency
+   ============================================ */
 
-/* End of snippet */
+/* Ultra subtle - barely visible */
+body.spine-subtle .markdown-preview-view::before,
+body.spine-subtle .markdown-source-view.mod-cm6 .cm-editor::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  border-left-color: rgba(255, 255, 255, 0.08);
+  border-right-color: rgba(255, 255, 255, 0.08);
+}
+
+body.spine-subtle .markdown-preview-view::after,
+body.spine-subtle .markdown-source-view.mod-cm6 .cm-editor::after {
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 58px,
+      rgba(255, 255, 255, 0.06) 58px,
+      rgba(255, 255, 255, 0.06) 60px,
+      rgba(255, 255, 255, 0.09) 60px,
+      rgba(255, 255, 255, 0.09) 64px,
+      rgba(255, 255, 255, 0.06) 64px,
+      rgba(255, 255, 255, 0.06) 66px,
+      transparent 66px,
+      transparent 124px
+    ),
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent calc(50% - 2px),
+      rgba(255, 255, 255, 0.1) calc(50% - 2px),
+      rgba(255, 255, 255, 0.12) 50%,
+      rgba(255, 255, 255, 0.1) calc(50% + 2px),
+      transparent calc(50% + 2px),
+      transparent 100%
+    );
+}
+
+/* Medium visibility - balanced */
+body.spine-medium .markdown-preview-view::before,
+body.spine-medium .markdown-source-view.mod-cm6 .cm-editor::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.10) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.10) 100%
+  );
+  border-left-color: rgba(255, 255, 255, 0.18);
+  border-right-color: rgba(255, 255, 255, 0.18);
+}
+
+body.spine-medium .markdown-preview-view::after,
+body.spine-medium .markdown-source-view.mod-cm6 .cm-editor::after {
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 58px,
+      rgba(255, 255, 255, 0.15) 58px,
+      rgba(255, 255, 255, 0.15) 60px,
+      rgba(255, 255, 255, 0.22) 60px,
+      rgba(255, 255, 255, 0.22) 64px,
+      rgba(255, 255, 255, 0.15) 64px,
+      rgba(255, 255, 255, 0.15) 66px,
+      transparent 66px,
+      transparent 124px
+    ),
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent calc(50% - 2px),
+      rgba(255, 255, 255, 0.25) calc(50% - 2px),
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0.25) calc(50% + 2px),
+      transparent calc(50% + 2px),
+      transparent 100%
+    );
+}
+
+/* Strong visibility - prominent */
+body.spine-strong .markdown-preview-view::before,
+body.spine-strong .markdown-source-view.mod-cm6 .cm-editor::before {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.20) 50%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+  border-left-color: rgba(255, 255, 255, 0.25);
+  border-right-color: rgba(255, 255, 255, 0.25);
+}
+
+body.spine-strong .markdown-preview-view::after,
+body.spine-strong .markdown-source-view.mod-cm6 .cm-editor::after {
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 58px,
+      rgba(255, 255, 255, 0.20) 58px,
+      rgba(255, 255, 255, 0.20) 60px,
+      rgba(255, 255, 255, 0.28) 60px,
+      rgba(255, 255, 255, 0.28) 64px,
+      rgba(255, 255, 255, 0.20) 64px,
+      rgba(255, 255, 255, 0.20) 66px,
+      transparent 66px,
+      transparent 124px
+    ),
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent calc(50% - 2px),
+      rgba(255, 255, 255, 0.32) calc(50% - 2px),
+      rgba(255, 255, 255, 0.38) 50%,
+      rgba(255, 255, 255, 0.32) calc(50% + 2px),
+      transparent calc(50% + 2px),
+      transparent 100%
+    );
+}
+
+/* ============================================
+   USAGE INSTRUCTIONS
+   ============================================
+   
+   To activate the spine background, add to your note's frontmatter:
+   
+   ---
+   cssclasses: spine-medium
+   ---
+   
+   Available opacity levels:
+   - spine-subtle  (most transparent, barely visible)
+   - spine-medium  (balanced, default-like visibility)
+   - spine-strong  (more prominent, clear definition)
+   
+   Or use without suffix for the default balanced look:
+   - cssclasses: spine
+   
+   The spine will automatically extend with your content!
+   
+   ============================================ */
 
 /* ============================================
    END OF ENHANCED STYLES
