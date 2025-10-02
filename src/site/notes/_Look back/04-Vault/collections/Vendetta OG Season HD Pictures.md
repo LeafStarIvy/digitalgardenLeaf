@@ -4,16 +4,16 @@
 
 # Vendetta OG Season HD Pictures
 
-![Capture.png](/img/user/_attachments/Capture.png)
-![Falling.png](/img/user/_attachments/Falling.png)
-![Going in.png](/img/user/_attachments/Going%20in.png)
-![Here we go.png](/img/user/_attachments/Here%20we%20go.png)
-![Hi.png](/img/user/_attachments/Hi.png)
-![Jump.png](/img/user/_attachments/Jump.png)
-![Look up there.png](/img/user/_attachments/Look%20up%20there.png)
-![Moon.png](/img/user/_attachments/Moon.png)
-![Touch.png](/img/user/_attachments/Touch.png)
-![Wow.png](/img/user/_attachments/Wow.png)
+![Capture.png](/img/user/img/_attachments/Capture.png)
+![Falling.png](/img/user/img/_attachments/Falling.png)
+![Going in.png](/img/user/img/_attachments/Going%20in.png)
+![Here we go.png](/img/user/img/_attachments/Here%20we%20go.png)
+![Hi.png](/img/user/img/_attachments/Hi.png)
+![Jump.png](/img/user/img/_attachments/Jump.png)
+![Look up there.png](/img/user/img/_attachments/Look%20up%20there.png)
+![Moon.png](/img/user/img/_attachments/Moon.png)
+![Touch.png](/img/user/img/_attachments/Touch.png)
+![Wow.png](/img/user/img/_attachments/Wow.png)
 
 
 

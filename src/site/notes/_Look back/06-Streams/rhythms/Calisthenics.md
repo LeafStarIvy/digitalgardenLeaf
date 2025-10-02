@@ -7,21 +7,21 @@
 > I use this as my Calisthenics basics training plan.
 > The progress I am making: [[_Look back/06-Streams/now/Calisthenics Goals\|Calisthenics Goals]]
 
-![Pasted image 20250905213110.png](/img/user/_attachments/Pasted%20image%2020250905213110.png)
-![Pasted image 20250905220210.png](/img/user/_attachments/Pasted%20image%2020250905220210.png)
+![Pasted image 20250905213110.png](/img/user/img/_attachments/Pasted%20image%2020250905213110.png)
+![Pasted image 20250905220210.png](/img/user/img/_attachments/Pasted%20image%2020250905220210.png)
 
 
 ## Monday Push
 
 
-![Pasted image 20250905214212.png](/img/user/_attachments/Pasted%20image%2020250905214212.png)
+![Pasted image 20250905214212.png](/img/user/img/_attachments/Pasted%20image%2020250905214212.png)
 
 
 
 ## Tuesday Pull
 
 
-![Pasted image 20250905213953.png](/img/user/_attachments/Pasted%20image%2020250905213953.png)
+![Pasted image 20250905213953.png](/img/user/img/_attachments/Pasted%20image%2020250905213953.png)
 
 
 
@@ -30,14 +30,14 @@
 ## Thursday Push
 
 
-![Pasted image 20250905214212.png](/img/user/_attachments/Pasted%20image%2020250905214212.png)
+![Pasted image 20250905214212.png](/img/user/img/_attachments/Pasted%20image%2020250905214212.png)
 
 
 
 ## Friday Pull
 
 
-![Pasted image 20250905213953.png](/img/user/_attachments/Pasted%20image%2020250905213953.png)
+![Pasted image 20250905213953.png](/img/user/img/_attachments/Pasted%20image%2020250905213953.png)
 
 
 
@@ -46,18 +46,18 @@
 ## Sunday Legs
 
 
-![Pasted image 20250905214345.png](/img/user/_attachments/Pasted%20image%2020250905214345.png)
+![Pasted image 20250905214345.png](/img/user/img/_attachments/Pasted%20image%2020250905214345.png)
 
 
 ## Pull progression 
 
-![Pasted image 20250905215407.png](/img/user/_attachments/Pasted%20image%2020250905215407.png)
+![Pasted image 20250905215407.png](/img/user/img/_attachments/Pasted%20image%2020250905215407.png)
 ## Push progression 
 
-![Pasted image 20250905215435.png](/img/user/_attachments/Pasted%20image%2020250905215435.png)
+![Pasted image 20250905215435.png](/img/user/img/_attachments/Pasted%20image%2020250905215435.png)
 ## Legs progression 
 
-![Pasted image 20250905215454.png](/img/user/_attachments/Pasted%20image%2020250905215454.png)
+![Pasted image 20250905215454.png](/img/user/img/_attachments/Pasted%20image%2020250905215454.png)
 
 
 
