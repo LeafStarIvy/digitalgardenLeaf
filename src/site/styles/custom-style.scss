@@ -4060,18 +4060,18 @@ tr:last-child td {
    Symbolizes growth and the backbone of who you're becoming
    ============================================ */
 
-/* Target notes with spine property */
-body[class*="spine-"],
-.markdown-preview-view[data-spine],
-.markdown-source-view[data-spine] {
+/* Main spine container - targets Digital Garden body classes */
+body.spine .content,
+body.spine-subtle .content,
+body.spine-medium .content,
+body.spine-strong .content {
   position: relative;
 }
 
-/* Main spine container - activated via frontmatter property */
-body[class*="spine-"] .markdown-preview-view::before,
-body[class*="spine-"] .markdown-source-view.mod-cm6 .cm-editor::before,
-[data-spine="true"] .markdown-preview-view::before,
-[data-spine="true"] .markdown-source-view.mod-cm6 .cm-editor::before {
+body.spine .content::before,
+body.spine-subtle .content::before,
+body.spine-medium .content::before,
+body.spine-strong .content::before {
   content: '';
   position: absolute;
   top: 0;
@@ -4083,7 +4083,7 @@ body[class*="spine-"] .markdown-source-view.mod-cm6 .cm-editor::before,
   pointer-events: none;
   z-index: 0;
   
-  /* Glass morphism effect */
+  /* Glass morphism effect - default opacity */
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.08) 0%,
@@ -4104,10 +4104,10 @@ body[class*="spine-"] .markdown-source-view.mod-cm6 .cm-editor::before,
 }
 
 /* Vertebrae segments - creates spine detail */
-body[class*="spine-"] .markdown-preview-view::after,
-body[class*="spine-"] .markdown-source-view.mod-cm6 .cm-editor::after,
-[data-spine="true"] .markdown-preview-view::after,
-[data-spine="true"] .markdown-source-view.mod-cm6 .cm-editor::after {
+body.spine .content::after,
+body.spine-subtle .content::after,
+body.spine-medium .content::after,
+body.spine-strong .content::after {
   content: '';
   position: absolute;
   top: 0;
@@ -4119,24 +4119,9 @@ body[class*="spine-"] .markdown-source-view.mod-cm6 .cm-editor::after,
   pointer-events: none;
   z-index: 1;
   
-  /* Vertebrae pattern */
-  background-image: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 58px,
-    rgba(255, 255, 255, 0.12) 58px,
-    rgba(255, 255, 255, 0.12) 60px,
-    rgba(255, 255, 255, 0.18) 60px,
-    rgba(255, 255, 255, 0.18) 64px,
-    rgba(255, 255, 255, 0.12) 64px,
-    rgba(255, 255, 255, 0.12) 66px,
-    transparent 66px,
-    transparent 124px
-  );
-  
-  /* Central spinal cord line */
+  /* Vertebrae pattern with central spinal cord */
   background-image: 
-    /* Vertebrae pattern */
+    /* Vertebrae segments */
     repeating-linear-gradient(
       0deg,
       transparent,
@@ -4150,7 +4135,7 @@ body[class*="spine-"] .markdown-source-view.mod-cm6 .cm-editor::after,
       transparent 66px,
       transparent 124px
     ),
-    /* Central cord */
+    /* Central cord line */
     linear-gradient(
       90deg,
       transparent 0%,
@@ -4164,22 +4149,20 @@ body[class*="spine-"] .markdown-source-view.mod-cm6 .cm-editor::after,
 }
 
 /* Ensure content stays above spine */
-body[class*="spine-"] .markdown-preview-view > *,
-body[class*="spine-"] .markdown-source-view.mod-cm6 .cm-content > *,
-[data-spine="true"] .markdown-preview-view > *,
-[data-spine="true"] .markdown-source-view.mod-cm6 .cm-content > * {
+body.spine .content > *,
+body.spine-subtle .content > *,
+body.spine-medium .content > *,
+body.spine-strong .content > * {
   position: relative;
   z-index: 2;
 }
 
 /* ============================================
    OPACITY VARIANTS
-   Add these classes to adjust transparency
    ============================================ */
 
 /* Ultra subtle - barely visible */
-body.spine-subtle .markdown-preview-view::before,
-body.spine-subtle .markdown-source-view.mod-cm6 .cm-editor::before {
+body.spine-subtle .content::before {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.03) 0%,
@@ -4188,10 +4171,12 @@ body.spine-subtle .markdown-source-view.mod-cm6 .cm-editor::before {
   );
   border-left-color: rgba(255, 255, 255, 0.08);
   border-right-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    inset 0 0 40px rgba(255, 255, 255, 0.02),
+    0 0 20px rgba(0, 0, 0, 0.05);
 }
 
-body.spine-subtle .markdown-preview-view::after,
-body.spine-subtle .markdown-source-view.mod-cm6 .cm-editor::after {
+body.spine-subtle .content::after {
   background-image: 
     repeating-linear-gradient(
       0deg,
@@ -4218,9 +4203,8 @@ body.spine-subtle .markdown-source-view.mod-cm6 .cm-editor::after {
     );
 }
 
-/* Medium visibility - balanced */
-body.spine-medium .markdown-preview-view::before,
-body.spine-medium .markdown-source-view.mod-cm6 .cm-editor::before {
+/* Medium visibility - balanced (recommended) */
+body.spine-medium .content::before {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.10) 0%,
@@ -4229,10 +4213,12 @@ body.spine-medium .markdown-source-view.mod-cm6 .cm-editor::before {
   );
   border-left-color: rgba(255, 255, 255, 0.18);
   border-right-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    inset 0 0 40px rgba(255, 255, 255, 0.08),
+    0 0 30px rgba(0, 0, 0, 0.12);
 }
 
-body.spine-medium .markdown-preview-view::after,
-body.spine-medium .markdown-source-view.mod-cm6 .cm-editor::after {
+body.spine-medium .content::after {
   background-image: 
     repeating-linear-gradient(
       0deg,
@@ -4260,20 +4246,21 @@ body.spine-medium .markdown-source-view.mod-cm6 .cm-editor::after {
 }
 
 /* Strong visibility - prominent */
-body.spine-strong .markdown-preview-view::before,
-body.spine-strong .markdown-source-view.mod-cm6 .cm-editor::before {
+body.spine-strong .content::before {
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.20) 50%,
+    rgba(255, 255, 255, 0.22) 50%,
     rgba(255, 255, 255, 0.15) 100%
   );
-  border-left-color: rgba(255, 255, 255, 0.25);
-  border-right-color: rgba(255, 255, 255, 0.25);
+  border-left-color: rgba(255, 255, 255, 0.28);
+  border-right-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 
+    inset 0 0 50px rgba(255, 255, 255, 0.1),
+    0 0 40px rgba(0, 0, 0, 0.15);
 }
 
-body.spine-strong .markdown-preview-view::after,
-body.spine-strong .markdown-source-view.mod-cm6 .cm-editor::after {
+body.spine-strong .content::after {
   background-image: 
     repeating-linear-gradient(
       0deg,
@@ -4281,8 +4268,8 @@ body.spine-strong .markdown-source-view.mod-cm6 .cm-editor::after {
       transparent 58px,
       rgba(255, 255, 255, 0.20) 58px,
       rgba(255, 255, 255, 0.20) 60px,
-      rgba(255, 255, 255, 0.28) 60px,
-      rgba(255, 255, 255, 0.28) 64px,
+      rgba(255, 255, 255, 0.30) 60px,
+      rgba(255, 255, 255, 0.30) 64px,
       rgba(255, 255, 255, 0.20) 64px,
       rgba(255, 255, 255, 0.20) 66px,
       transparent 66px,
@@ -4292,34 +4279,160 @@ body.spine-strong .markdown-source-view.mod-cm6 .cm-editor::after {
       90deg,
       transparent 0%,
       transparent calc(50% - 2px),
-      rgba(255, 255, 255, 0.32) calc(50% - 2px),
-      rgba(255, 255, 255, 0.38) 50%,
-      rgba(255, 255, 255, 0.32) calc(50% + 2px),
+      rgba(255, 255, 255, 0.35) calc(50% - 2px),
+      rgba(255, 255, 255, 0.42) 50%,
+      rgba(255, 255, 255, 0.35) calc(50% + 2px),
       transparent calc(50% + 2px),
       transparent 100%
     );
 }
 
 /* ============================================
-   USAGE INSTRUCTIONS
+   ALTERNATIVE SELECTORS - FALLBACK
+   In case .content doesn't exist in your setup
+   ============================================ */
+
+body.spine main,
+body.spine-subtle main,
+body.spine-medium main,
+body.spine-strong main {
+  position: relative;
+}
+
+body.spine main::before,
+body.spine-subtle main::before,
+body.spine-medium main::before,
+body.spine-strong main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 100%;
+  min-height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    inset 0 0 40px rgba(255, 255, 255, 0.05),
+    0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+body.spine main::after,
+body.spine-subtle main::after,
+body.spine-medium main::after,
+body.spine-strong main::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 100%;
+  min-height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 58px,
+      rgba(255, 255, 255, 0.12) 58px,
+      rgba(255, 255, 255, 0.12) 60px,
+      rgba(255, 255, 255, 0.18) 60px,
+      rgba(255, 255, 255, 0.18) 64px,
+      rgba(255, 255, 255, 0.12) 64px,
+      rgba(255, 255, 255, 0.12) 66px,
+      transparent 66px,
+      transparent 124px
+    ),
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent calc(50% - 2px),
+      rgba(255, 255, 255, 0.2) calc(50% - 2px),
+      rgba(255, 255, 255, 0.25) 50%,
+      rgba(255, 255, 255, 0.2) calc(50% + 2px),
+      transparent calc(50% + 2px),
+      transparent 100%
+    );
+}
+
+body.spine main > *,
+body.spine-subtle main > *,
+body.spine-medium main > *,
+body.spine-strong main > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Apply variant styles to main as well */
+body.spine-subtle main::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.03) 100%);
+  border-left-color: rgba(255, 255, 255, 0.08);
+  border-right-color: rgba(255, 255, 255, 0.08);
+}
+
+body.spine-subtle main::after {
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 58px, rgba(255, 255, 255, 0.06) 58px, rgba(255, 255, 255, 0.06) 60px, rgba(255, 255, 255, 0.09) 60px, rgba(255, 255, 255, 0.09) 64px, rgba(255, 255, 255, 0.06) 64px, rgba(255, 255, 255, 0.06) 66px, transparent 66px, transparent 124px),
+    linear-gradient(90deg, transparent 0%, transparent calc(50% - 2px), rgba(255, 255, 255, 0.1) calc(50% - 2px), rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0.1) calc(50% + 2px), transparent calc(50% + 2px), transparent 100%);
+}
+
+body.spine-medium main::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.10) 100%);
+  border-left-color: rgba(255, 255, 255, 0.18);
+  border-right-color: rgba(255, 255, 255, 0.18);
+}
+
+body.spine-medium main::after {
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 58px, rgba(255, 255, 255, 0.15) 58px, rgba(255, 255, 255, 0.15) 60px, rgba(255, 255, 255, 0.22) 60px, rgba(255, 255, 255, 0.22) 64px, rgba(255, 255, 255, 0.15) 64px, rgba(255, 255, 255, 0.15) 66px, transparent 66px, transparent 124px),
+    linear-gradient(90deg, transparent 0%, transparent calc(50% - 2px), rgba(255, 255, 255, 0.25) calc(50% - 2px), rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.25) calc(50% + 2px), transparent calc(50% + 2px), transparent 100%);
+}
+
+body.spine-strong main::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.22) 50%, rgba(255, 255, 255, 0.15) 100%);
+  border-left-color: rgba(255, 255, 255, 0.28);
+  border-right-color: rgba(255, 255, 255, 0.28);
+}
+
+body.spine-strong main::after {
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 58px, rgba(255, 255, 255, 0.20) 58px, rgba(255, 255, 255, 0.20) 60px, rgba(255, 255, 255, 0.30) 60px, rgba(255, 255, 255, 0.30) 64px, rgba(255, 255, 255, 0.20) 64px, rgba(255, 255, 255, 0.20) 66px, transparent 66px, transparent 124px),
+    linear-gradient(90deg, transparent 0%, transparent calc(50% - 2px), rgba(255, 255, 255, 0.35) calc(50% - 2px), rgba(255, 255, 255, 0.42) 50%, rgba(255, 255, 255, 0.35) calc(50% + 2px), transparent calc(50% + 2px), transparent 100%);
+}
+
+/* ============================================
+   USAGE INSTRUCTIONS FOR DIGITAL GARDEN
    ============================================
    
-   To activate the spine background, add to your note's frontmatter:
+   Add this to your note's frontmatter:
    
    ---
-   cssclasses: spine-medium
+   dg-publish: true
+   dg-content-classes: spine-medium
    ---
    
    Available opacity levels:
-   - spine-subtle  (most transparent, barely visible)
-   - spine-medium  (balanced, default-like visibility)
-   - spine-strong  (more prominent, clear definition)
+   - spine-subtle  (most transparent)
+   - spine-medium  (balanced - recommended)
+   - spine-strong  (most visible)
    
-   Or use without suffix for the default balanced look:
-   - cssclasses: spine
+   Or use just "spine" for default visibility:
+   - dg-content-classes: spine
    
-   The spine will automatically extend with your content!
-   
+   The spine automatically extends with your content!
    ============================================ */
 
 /* ============================================
