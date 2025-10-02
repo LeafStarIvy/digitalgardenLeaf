@@ -4056,169 +4056,400 @@ tr:last-child td {
 
 
 /* ============================================
-   SPINE BACKGROUND - DIGITAL GARDEN (Non-conflicting version)
-   Symbolizes growth and the backbone of who you're becoming
+   ANATOMICAL SPINE & RIB CAGE - DIGITAL GARDEN
+   Advanced vertebral column with dynamic ribcage
+   Symbolizes the structural foundation of growth
    
-   USAGE: Add this HTML div anywhere in your note:
-   <div class="spine-container"></div>
-   
-   Or for automatic activation, use the body class method below
+   USAGE: Add this HTML to your note content:
+   <div class="spine-ribcage"></div>
    ============================================ */
 
-/* Method 1: Manual spine div (RECOMMENDED - No conflicts) */
-.spine-container {
-  position: fixed;
+/* Main spine and ribcage container - positioned relative to note content */
+.spine-ribcage {
+  position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 180px;
-  height: 100vh;
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  min-height: 100%;
   pointer-events: none;
   z-index: 0;
 }
 
-.spine-container::before {
+/* Cervical spine (neck region - top ~10%) */
+.spine-ribcage::before {
   content: '';
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 12%;
   
-  /* Glass morphism effect */
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.10) 0%,
-    rgba(255, 255, 255, 0.15) 50%,
-    rgba(255, 255, 255, 0.10) 100%
-  );
+  /* Narrower vertebrae for neck */
+  background: 
+    /* Vertebral bodies */
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 28px,
+      rgba(255, 255, 255, 0.14) 28px,
+      rgba(255, 255, 255, 0.14) 30px,
+      rgba(255, 255, 255, 0.20) 30px,
+      rgba(255, 255, 255, 0.20) 34px,
+      rgba(255, 255, 255, 0.14) 34px,
+      rgba(255, 255, 255, 0.14) 36px,
+      transparent 36px,
+      transparent 64px
+    ),
+    /* Spinal cord */
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent calc(50% - 1px),
+      rgba(255, 255, 255, 0.18) calc(50% - 1px),
+      rgba(255, 255, 255, 0.22) 50%,
+      rgba(255, 255, 255, 0.18) calc(50% + 1px),
+      transparent calc(50% + 1px),
+      transparent 100%
+    );
+  
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    inset 0 0 20px rgba(255, 255, 255, 0.06),
+    0 0 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Main thoracic and lumbar spine (middle section with ribs) */
+.spine-ribcage::after {
+  content: '';
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 88%;
+  
+  /* Vertebral column with processes */
+  background: 
+    /* Vertebral bodies - larger and more defined */
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 48px,
+      rgba(255, 255, 255, 0.16) 48px,
+      rgba(255, 255, 255, 0.16) 50px,
+      rgba(255, 255, 255, 0.24) 50px,
+      rgba(255, 255, 255, 0.24) 58px,
+      rgba(255, 255, 255, 0.16) 58px,
+      rgba(255, 255, 255, 0.16) 60px,
+      transparent 60px,
+      transparent 108px
+    ),
+    /* Spinal cord - thicker in thoracic region */
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent calc(50% - 2px),
+      rgba(255, 255, 255, 0.20) calc(50% - 2px),
+      rgba(255, 255, 255, 0.28) 50%,
+      rgba(255, 255, 255, 0.20) calc(50% + 2px),
+      transparent calc(50% + 2px),
+      transparent 100%
+    );
+  
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  
-  /* Subtle border for definition */
-  border-left: 1px solid rgba(255, 255, 255, 0.18);
-  border-right: 1px solid rgba(255, 255, 255, 0.18);
-  
-  /* Soft shadow for depth */
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+  border-right: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow: 
-    inset 0 0 40px rgba(255, 255, 255, 0.08),
-    0 0 30px rgba(0, 0, 0, 0.12);
+    inset 0 0 30px rgba(255, 255, 255, 0.08),
+    0 0 20px rgba(0, 0, 0, 0.10);
 }
 
-/* Vertebrae segments */
-.spine-container::after {
-  content: '';
+/* Upper ribs (smaller, near top) - RIGHT SIDE */
+.spine-ribcage .rib-upper-r1,
+.spine-ribcage .rib-upper-r2,
+.spine-ribcage .rib-upper-r3,
+.spine-ribcage .rib-upper-r4 {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  
-  /* Vertebrae pattern with central spinal cord */
-  background-image: 
-    /* Vertebrae segments */
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 58px,
-      rgba(255, 255, 255, 0.15) 58px,
-      rgba(255, 255, 255, 0.15) 60px,
-      rgba(255, 255, 255, 0.22) 60px,
-      rgba(255, 255, 255, 0.22) 64px,
-      rgba(255, 255, 255, 0.15) 64px,
-      rgba(255, 255, 255, 0.15) 66px,
-      transparent 66px,
-      transparent 124px
-    ),
-    /* Central cord line */
-    linear-gradient(
-      90deg,
-      transparent 0%,
-      transparent calc(50% - 2px),
-      rgba(255, 255, 255, 0.25) calc(50% - 2px),
-      rgba(255, 255, 255, 0.3) 50%,
-      rgba(255, 255, 255, 0.25) calc(50% + 2px),
-      transparent calc(50% + 2px),
-      transparent 100%
-    );
-}
-
-/* Opacity variants for manual spine */
-.spine-container.spine-subtle::before {
+  left: 50%;
+  height: 2px;
   background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.03) 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    rgba(255, 255, 255, 0.03) 100%
+    90deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.22) 20%,
+    rgba(255, 255, 255, 0.14) 60%,
+    transparent 100%
   );
-  border-left-color: rgba(255, 255, 255, 0.08);
-  border-right-color: rgba(255, 255, 255, 0.08);
+  border-radius: 0 50% 50% 0;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.08);
+  transform-origin: left center;
 }
 
-.spine-container.spine-subtle::after {
-  background-image: 
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 58px,
-      rgba(255, 255, 255, 0.06) 58px,
-      rgba(255, 255, 255, 0.06) 60px,
-      rgba(255, 255, 255, 0.09) 60px,
-      rgba(255, 255, 255, 0.09) 64px,
-      rgba(255, 255, 255, 0.06) 64px,
-      rgba(255, 255, 255, 0.06) 66px,
-      transparent 66px,
-      transparent 124px
-    ),
-    linear-gradient(
-      90deg,
-      transparent 0%,
-      transparent calc(50% - 2px),
-      rgba(255, 255, 255, 0.1) calc(50% - 2px),
-      rgba(255, 255, 255, 0.12) 50%,
-      rgba(255, 255, 255, 0.1) calc(50% + 2px),
-      transparent calc(50% + 2px),
-      transparent 100%
-    );
-}
+.spine-ribcage .rib-upper-r1 { top: 15%; width: 80px; transform: rotate(-5deg); }
+.spine-ribcage .rib-upper-r2 { top: 20%; width: 95px; transform: rotate(-8deg); }
+.spine-ribcage .rib-upper-r3 { top: 25%; width: 105px; transform: rotate(-12deg); }
+.spine-ribcage .rib-upper-r4 { top: 30%; width: 115px; transform: rotate(-15deg); }
 
-.spine-container.spine-strong::before {
+/* Upper ribs - LEFT SIDE */
+.spine-ribcage .rib-upper-l1,
+.spine-ribcage .rib-upper-l2,
+.spine-ribcage .rib-upper-l3,
+.spine-ribcage .rib-upper-l4 {
+  position: absolute;
+  right: 50%;
+  height: 2px;
   background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.22) 50%,
-    rgba(255, 255, 255, 0.15) 100%
+    270deg,
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.22) 20%,
+    rgba(255, 255, 255, 0.14) 60%,
+    transparent 100%
   );
-  border-left-color: rgba(255, 255, 255, 0.28);
-  border-right-color: rgba(255, 255, 255, 0.28);
+  border-radius: 50% 0 0 50%;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.08);
+  transform-origin: right center;
 }
 
-.spine-container.spine-strong::after {
-  background-image: 
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 58px,
-      rgba(255, 255, 255, 0.20) 58px,
-      rgba(255, 255, 255, 0.20) 60px,
-      rgba(255, 255, 255, 0.30) 60px,
-      rgba(255, 255, 255, 0.30) 64px,
-      rgba(255, 255, 255, 0.20) 64px,
-      rgba(255, 255, 255, 0.20) 66px,
-      transparent 66px,
-      transparent 124px
-    ),
-    linear-gradient(
-      90deg,
-      transparent 0%,
-      transparent calc(50% - 2px),
-      rgba(255, 255, 255, 0.35) calc(50% - 2px),
-      rgba(255, 255, 255, 0.42) 50%,
-      rgba(255, 255, 255, 0.35) calc(50% + 2px),
-      transparent calc(50% + 2px),
-      transparent 100%
-    );
+.spine-ribcage .rib-upper-l1 { top: 15%; width: 80px; transform: rotate(5deg); }
+.spine-ribcage .rib-upper-l2 { top: 20%; width: 95px; transform: rotate(8deg); }
+.spine-ribcage .rib-upper-l3 { top: 25%; width: 105px; transform: rotate(12deg); }
+.spine-ribcage .rib-upper-l4 { top: 30%; width: 115px; transform: rotate(15deg); }
+
+/* Middle ribs (largest, center of page) - RIGHT SIDE */
+.spine-ribcage .rib-mid-r1,
+.spine-ribcage .rib-mid-r2,
+.spine-ribcage .rib-mid-r3,
+.spine-ribcage .rib-mid-r4,
+.spine-ribcage .rib-mid-r5 {
+  position: absolute;
+  left: 50%;
+  height: 2.5px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.20),
+    rgba(255, 255, 255, 0.26) 15%,
+    rgba(255, 255, 255, 0.16) 50%,
+    transparent 100%
+  );
+  border-radius: 0 50% 50% 0;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.10);
+  transform-origin: left center;
 }
+
+.spine-ribcage .rib-mid-r1 { top: 35%; width: 130px; transform: rotate(-18deg); }
+.spine-ribcage .rib-mid-r2 { top: 40%; width: 145px; transform: rotate(-22deg); }
+.spine-ribcage .rib-mid-r3 { top: 45%; width: 155px; transform: rotate(-25deg); }
+.spine-ribcage .rib-mid-r4 { top: 50%; width: 150px; transform: rotate(-24deg); }
+.spine-ribcage .rib-mid-r5 { top: 55%; width: 140px; transform: rotate(-22deg); }
+
+/* Middle ribs - LEFT SIDE */
+.spine-ribcage .rib-mid-l1,
+.spine-ribcage .rib-mid-l2,
+.spine-ribcage .rib-mid-l3,
+.spine-ribcage .rib-mid-l4,
+.spine-ribcage .rib-mid-l5 {
+  position: absolute;
+  right: 50%;
+  height: 2.5px;
+  background: linear-gradient(
+    270deg,
+    rgba(255, 255, 255, 0.20),
+    rgba(255, 255, 255, 0.26) 15%,
+    rgba(255, 255, 255, 0.16) 50%,
+    transparent 100%
+  );
+  border-radius: 50% 0 0 50%;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.10);
+  transform-origin: right center;
+}
+
+.spine-ribcage .rib-mid-l1 { top: 35%; width: 130px; transform: rotate(18deg); }
+.spine-ribcage .rib-mid-l2 { top: 40%; width: 145px; transform: rotate(22deg); }
+.spine-ribcage .rib-mid-l3 { top: 45%; width: 155px; transform: rotate(25deg); }
+.spine-ribcage .rib-mid-l4 { top: 50%; width: 150px; transform: rotate(24deg); }
+.spine-ribcage .rib-mid-l5 { top: 55%; width: 140px; transform: rotate(22deg); }
+
+/* Lower ribs (floating ribs - smaller again) - RIGHT SIDE */
+.spine-ribcage .rib-lower-r1,
+.spine-ribcage .rib-lower-r2,
+.spine-ribcage .rib-lower-r3 {
+  position: absolute;
+  left: 50%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0.20) 25%,
+    rgba(255, 255, 255, 0.12) 65%,
+    transparent 100%
+  );
+  border-radius: 0 50% 50% 0;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.08);
+  transform-origin: left center;
+}
+
+.spine-ribcage .rib-lower-r1 { top: 60%; width: 125px; transform: rotate(-20deg); }
+.spine-ribcage .rib-lower-r2 { top: 65%; width: 110px; transform: rotate(-18deg); }
+.spine-ribcage .rib-lower-r3 { top: 70%; width: 95px; transform: rotate(-15deg); }
+
+/* Lower ribs - LEFT SIDE */
+.spine-ribcage .rib-lower-l1,
+.spine-ribcage .rib-lower-l2,
+.spine-ribcage .rib-lower-l3 {
+  position: absolute;
+  right: 50%;
+  height: 2px;
+  background: linear-gradient(
+    270deg,
+    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0.20) 25%,
+    rgba(255, 255, 255, 0.12) 65%,
+    transparent 100%
+  );
+  border-radius: 50% 0 0 50%;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.08);
+  transform-origin: right center;
+}
+
+.spine-ribcage .rib-lower-l1 { top: 60%; width: 125px; transform: rotate(20deg); }
+.spine-ribcage .rib-lower-l2 { top: 65%; width: 110px; transform: rotate(18deg); }
+.spine-ribcage .rib-lower-l3 { top: 70%; width: 95px; transform: rotate(15deg); }
+
+/* Ensure parent container for spine is positioned */
+.content {
+  position: relative;
+}
+
+/* ============================================
+   OPACITY VARIANTS
+   ============================================ */
+
+/* Subtle variant */
+.spine-ribcage.spine-subtle::before,
+.spine-ribcage.spine-subtle::after {
+  opacity: 0.5;
+}
+
+.spine-ribcage.spine-subtle .rib-upper-r1,
+.spine-ribcage.spine-subtle .rib-upper-r2,
+.spine-ribcage.spine-subtle .rib-upper-r3,
+.spine-ribcage.spine-subtle .rib-upper-r4,
+.spine-ribcage.spine-subtle .rib-upper-l1,
+.spine-ribcage.spine-subtle .rib-upper-l2,
+.spine-ribcage.spine-subtle .rib-upper-l3,
+.spine-ribcage.spine-subtle .rib-upper-l4,
+.spine-ribcage.spine-subtle .rib-mid-r1,
+.spine-ribcage.spine-subtle .rib-mid-r2,
+.spine-ribcage.spine-subtle .rib-mid-r3,
+.spine-ribcage.spine-subtle .rib-mid-r4,
+.spine-ribcage.spine-subtle .rib-mid-r5,
+.spine-ribcage.spine-subtle .rib-mid-l1,
+.spine-ribcage.spine-subtle .rib-mid-l2,
+.spine-ribcage.spine-subtle .rib-mid-l3,
+.spine-ribcage.spine-subtle .rib-mid-l4,
+.spine-ribcage.spine-subtle .rib-mid-l5,
+.spine-ribcage.spine-subtle .rib-lower-r1,
+.spine-ribcage.spine-subtle .rib-lower-r2,
+.spine-ribcage.spine-subtle .rib-lower-r3,
+.spine-ribcage.spine-subtle .rib-lower-l1,
+.spine-ribcage.spine-subtle .rib-lower-l2,
+.spine-ribcage.spine-subtle .rib-lower-l3 {
+  opacity: 0.5;
+}
+
+/* Strong variant */
+.spine-ribcage.spine-strong::before,
+.spine-ribcage.spine-strong::after {
+  opacity: 1;
+  border-width: 1.5px;
+}
+
+.spine-ribcage.spine-strong .rib-upper-r1,
+.spine-ribcage.spine-strong .rib-upper-r2,
+.spine-ribcage.spine-strong .rib-upper-r3,
+.spine-ribcage.spine-strong .rib-upper-r4,
+.spine-ribcage.spine-strong .rib-upper-l1,
+.spine-ribcage.spine-strong .rib-upper-l2,
+.spine-ribcage.spine-strong .rib-upper-l3,
+.spine-ribcage.spine-strong .rib-upper-l4 {
+  height: 2.5px;
+}
+
+.spine-ribcage.spine-strong .rib-mid-r1,
+.spine-ribcage.spine-strong .rib-mid-r2,
+.spine-ribcage.spine-strong .rib-mid-r3,
+.spine-ribcage.spine-strong .rib-mid-r4,
+.spine-ribcage.spine-strong .rib-mid-r5,
+.spine-ribcage.spine-strong .rib-mid-l1,
+.spine-ribcage.spine-strong .rib-mid-l2,
+.spine-ribcage.spine-strong .rib-mid-l3,
+.spine-ribcage.spine-strong .rib-mid-l4,
+.spine-ribcage.spine-strong .rib-mid-l5 {
+  height: 3px;
+}
+
+/* ============================================
+   USAGE INSTRUCTIONS
+   ============================================
+   
+   Add this complete HTML structure to your note:
+   
+   <div class="spine-ribcage">
+     <!-- Right ribs upper -->
+     <div class="rib-upper-r1"></div>
+     <div class="rib-upper-r2"></div>
+     <div class="rib-upper-r3"></div>
+     <div class="rib-upper-r4"></div>
+     
+     <!-- Left ribs upper -->
+     <div class="rib-upper-l1"></div>
+     <div class="rib-upper-l2"></div>
+     <div class="rib-upper-l3"></div>
+     <div class="rib-upper-l4"></div>
+     
+     <!-- Right ribs middle -->
+     <div class="rib-mid-r1"></div>
+     <div class="rib-mid-r2"></div>
+     <div class="rib-mid-r3"></div>
+     <div class="rib-mid-r4"></div>
+     <div class="rib-mid-r5"></div>
+     
+     <!-- Left ribs middle -->
+     <div class="rib-mid-l1"></div>
+     <div class="rib-mid-l2"></div>
+     <div class="rib-mid-l3"></div>
+     <div class="rib-mid-l4"></div>
+     <div class="rib-mid-l5"></div>
+     
+     <!-- Right ribs lower -->
+     <div class="rib-lower-r1"></div>
+     <div class="rib-lower-r2"></div>
+     <div class="rib-lower-r3"></div>
+     
+     <!-- Left ribs lower -->
+     <div class="rib-lower-l1"></div>
+     <div class="rib-lower-l2"></div>
+     <div class="rib-lower-l3"></div>
+   </div>
+   
+   For opacity variants:
+   <div class="spine-ribcage spine-subtle"> ... </div>
+   <div class="spine-ribcage spine-strong"> ... </div>
+   
+   ============================================ */
 
 
 /* ============================================
