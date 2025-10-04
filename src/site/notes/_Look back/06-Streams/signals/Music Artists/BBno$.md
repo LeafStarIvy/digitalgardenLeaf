@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/look-back/06-streams/signals/music-artists/b-bno/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-08-28T23:54:14.413+02:00","updated":"2025-04-28T17:20:53.779+02:00"}
+{"dg-publish":true,"permalink":"/look-back/06-streams/signals/music-artists/b-bno/","tags":["#MusicArtist"],"noteIcon":"","created":"2025-08-28T23:54:14.413+02:00","updated":"2025-10-02T18:21:23.719+02:00"}
 ---
 
 
