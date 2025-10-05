@@ -1,8 +1,8 @@
 ---
-{"dg-publish":true,"permalink":"/many-notes-and-files/events/ghost-of-tsushima-2-release/","tags":["event","gaming","playstation"],"noteIcon":"","created":"2025-10-04T21:02:21.529+02:00","updated":"2025-10-04T22:17:49.843+02:00"}
+{"dg-publish":true,"permalink":"/many-notes-and-files/events/ghost-of-tsushima-2-release/","tags":["event","gaming","playstation"],"noteIcon":"","created":"2025-10-04T21:02:21.529+02:00","updated":"2025-10-05T20:14:17.171+02:00"}
 ---
 
-
+This note if fake
 # Ghost of Tsushima 2 Release
 
 ## 📅 Event Details
@@ -25,4 +25,4 @@
 
 ---
 
-_Last updated: 2025-10-04T00:00:00.000+02:00_
+_Last updated: 2025-10-05T00:00:00.000+02:00_

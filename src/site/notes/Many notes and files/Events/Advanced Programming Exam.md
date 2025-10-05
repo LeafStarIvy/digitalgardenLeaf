@@ -1,8 +1,8 @@
 ---
-{"dg-publish":true,"permalink":"/many-notes-and-files/events/advanced-programming-exam/","tags":["event","education"],"noteIcon":"","created":"2025-10-04T21:55:29.870+02:00","updated":"2025-10-04T22:17:40.670+02:00"}
+{"dg-publish":true,"permalink":"/many-notes-and-files/events/advanced-programming-exam/","tags":["event","education"],"noteIcon":"","created":"2025-10-04T21:55:29.870+02:00","updated":"2025-10-05T20:14:24.826+02:00"}
 ---
 
-
+This note if fake
 ![[programming-exam.jpg\|programming-exam.jpg]]
 
 # Advanced Programming Exam
@@ -28,4 +28,4 @@ Ready to show what I've learned this semester! This exam covers algorithms, data
 
 ---
 
-_Last updated: 2025-10-04T00:00:00.000+02:00_
+_Last updated: 2025-10-05T00:00:00.000+02:00_

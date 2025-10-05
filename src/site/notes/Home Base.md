@@ -27,9 +27,9 @@ I want to do new [[Things in my daily life to strive to the person I want to bec
 > [!tip] ✨ Note Ideas to write about and create✨
 > 1. [[System thinking\|System thinking]]:
 > Try to make this an note in which you describe what it is and what you do with it and use it for. 
-> 2. [[Body first living\|Body first living]]
+> 2. [[Many notes and files/Concepts/Body first living\|Body first living]]
 > Maak hiervoor een eet schema en benoem dit body first living. Vertel ook wat over jezelf en waar jij doorheen bent geweest kwa eten en je kunt hier dingen naar toe linken zoals Brian Johnson of andere dingen. Schrijf ook een waarom/redenering voor waarom je dit allemaal kiest. 
-> 3. [[Radical alignment\|Radical alignment]]
+> 3. [[Many notes and files/Concepts/Radical alignment\|Radical alignment]]
 > 
 > [[Working to always improve\|Working to always improve]]
 > [[World views and perspectives\|World views and perspectives]]

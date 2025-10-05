@@ -1,15 +1,15 @@
 ---
-{"dg-publish":true,"permalink":"/many-notes-and-files/events/amsterdam-music-festival/","tags":["event","music"],"noteIcon":"","created":"2025-10-04T22:11:49.823+02:00","updated":"2025-10-04T22:17:45.530+02:00"}
+{"dg-publish":true,"permalink":"/many-notes-and-files/events/amsterdam-music-festival/","tags":["event","music"],"noteIcon":"","created":"2025-10-04T22:11:49.823+02:00","updated":"2025-10-05T20:14:06.364+02:00"}
 ---
 
-
+This note if fake
 ![[amsterdam-festival.jpg\|amsterdam-festival.jpg]]
 
 # Amsterdam Music Festival
 
 ## 📅 Event Details
 
-**Date:** 2025-12-07T00:00:00.000+01:00 **Category:** `= this.category` **Status:** ⏳ Upcoming **Days Until:** 2 months, 3 days days
+**Date:** 2025-12-07T00:00:00.000+01:00 **Category:** `= this.category` **Status:** ⏳ Upcoming **Days Until:** 2 months, 2 days days
 
 ## 🎯 Why I'm Looking Forward to This
 
@@ -28,4 +28,4 @@ First major festival since the pandemic! Going with my best friends to see Armin
 
 ---
 
-_Last updated: 2025-10-04T00:00:00.000+02:00_
+_Last updated: 2025-10-05T00:00:00.000+02:00_
