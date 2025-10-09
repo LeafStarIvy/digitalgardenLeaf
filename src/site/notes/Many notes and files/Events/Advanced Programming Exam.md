@@ -28,4 +28,4 @@ Ready to show what I've learned this semester! This exam covers algorithms, data
 
 ---
 
-_Last updated: 2025-10-05T00:00:00.000+02:00_
+_Last updated: 2025-10-09T00:00:00.000+02:00_
