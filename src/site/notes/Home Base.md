@@ -1,6 +1,149 @@
 ---
-{"dg-publish":true,"permalink":"/home-base/","tags":["gardenEntry"],"noteIcon":"","created":"2025-10-02T18:10:01.621+02:00","updated":"2025-10-04T21:15:31.750+02:00"}
+{"dg-publish":true,"permalink":"/home-base/","tags":["gardenEntry"],"noteIcon":"","created":"2025-10-02T18:10:01.621+02:00","updated":"2025-10-09T19:09:29.668+02:00"}
 ---
+
+
+# Welcome to My Digital Garden
+
+[Your story section - already written]
+
+[Your values section - already written]
+
+---
+
+## Navigation Hubs
+
+### 🧠 [[Mind Hub\|Mind Hub]] 
+*Thinking, psychology, learning, consciousness, perspectives*
+
+### 💪 [[Body Hub\|Body Hub]]
+*Health, nutrition, exercise, longevity, physical optimization*
+
+### 🔨 [[Making Hub\|Making Hub]]
+*Projects, builds, creations, experiments*
+
+### ⚙️ [[Technical Hub\|Technical Hub]]
+*Networks, security, hardware, software, systems*
+
+### 🌐 [[Social Hub\|Social Hub]]
+*People, communication, relationships, culture, influence*
+
+### 🌱 [[Personal Hub\|Personal Hub]]
+*My story, memories, values, identity, growth*
+
+### 🚀 [[Exploration Hub\|Exploration Hub]]
+*Future plans, bucket list, seeds, experiments*
+
+### 📚 [[Library Hub\|Library Hub]]
+*All books, videos, articles, quotes, podcasts across all domains*
+
+### 🔗 [[Systems Hub\|Systems Hub]]
+*My workflows, methods, personal systems*
+
+---
+
+## Discovery
+
+### Recently Active
+| Note                                                                                                               | Updated                       | Tags                                                          |
+| ------------------------------------------------------------------------------------------------------------------ | ----------------------------- | ------------------------------------------------------------- |
+| [[Home Base\|Home Base]]                                                                                        | 7:09 PM - October 09, 2025    | <ul></ul>                                                     |
+| [[Visual Shortcuts\|Visual Shortcuts]]                                                                          | 8:29 PM - October 05, 2025    | <ul></ul>                                                     |
+| [[Many notes and files/Events/Super Mario Galaxy Movie\|Super Mario Galaxy Movie]]                              | 8:18 PM - October 05, 2025    | <ul><li>#event</li></ul>                                      |
+| [[Many notes and files/Events/Advanced Programming Exam\|Advanced Programming Exam]]                            | 8:14 PM - October 05, 2025    | <ul><li>#event</li><li>#education</li></ul>                   |
+| [[Many notes and files/Events/Ghost of Tsushima 2 Release\|Ghost of Tsushima 2 Release]]                        | 8:14 PM - October 05, 2025    | <ul><li>#event</li><li>#gaming</li><li>#playstation</li></ul> |
+| [[Many notes and files/Events/Amsterdam Music Festival\|Amsterdam Music Festival]]                              | 8:14 PM - October 05, 2025    | <ul><li>#event</li><li>#music</li></ul>                       |
+| [[Many notes and files/Events/Halley's Comet will be back\|Halley's Comet will be back]]                        | 8:13 PM - October 05, 2025    | <ul><li>#event</li></ul>                                      |
+| [[Many notes and files/Concepts/Radical alignment\|Radical alignment]]                                          | 8:00 PM - October 05, 2025    | <ul><li>#concept</li></ul>                                    |
+| [[Many notes and files/Concepts/Body first living\|Body first living]]                                          | 8:00 PM - October 05, 2025    | <ul><li>#concept</li></ul>                                    |
+| [[Many notes and files/_templates/Future event template\|Future event template]]                                | 10:32 PM - October 04, 2025   | <ul><li>#event</li></ul>                                      |
+| [[Things I'm Looking Forward To\|Things I'm Looking Forward To]]                                                | 10:22 PM - October 04, 2025   | <ul></ul>                                                     |
+| [[_Look back/P2 examen eerste gedeelte\|P2 examen eerste gedeelte]]                                             | 2:24 PM - October 04, 2025    | <ul></ul>                                                     |
+| [[_Look back/06-Streams/signals/Music Artists/BBno$\|BBno$]]                                                    | 6:21 PM - October 02, 2025    | <ul><li>#MusicArtist</li></ul>                                |
+| [[_Look back/The Psychology of Feeling\|The Psychology of Feeling]]                                             | 4:59 PM - September 30, 2025  | <ul></ul>                                                     |
+| [[img/_attachments/_Excalidraw/Drawing 2025-09-26 12.34.00.excalidraw\|Drawing 2025-09-26 12.34.00.excalidraw]] | 12:34 PM - September 26, 2025 | <ul><li>#excalidraw</li></ul>                                 |
+
+{ .block-language-dataview}`
+
+### Most Connected
+
+dataview
+
+| Note                                                                                                                              | Connections | Links Out |
+| --------------------------------------------------------------------------------------------------------------------------------- | ----------- | --------- |
+| [[img/_attachments/_Excalidraw/Add to Site.excalidraw\|Add to Site.excalidraw]]                                                | 1           | 0         |
+| [[img/_attachments/_Excalidraw/Drawing 2025-05-14 21.37.21.excalidraw\|Drawing 2025-05-14 21.37.21.excalidraw]]                | 1           | 0         |
+| [[Many notes and files/Concepts/Body first living\|Body first living]]                                                         | 1           | 0         |
+| [[Many notes and files/Concepts/Radical alignment\|Radical alignment]]                                                         | 1           | 0         |
+| [[_Look back/01-Home/01-Home\|01-Home]]                                                                                        | 1           | 0         |
+| [[_Look back/01-Home/what-is-this/Quick syntax summary (copy, paste reference)\|Quick syntax summary (copy, paste reference)]] | 1           | 0         |
+| [[_Look back/02-Atlas/02-Atlas\|02-Atlas]]                                                                                     | 1           | 0         |
+| [[_Look back/03-Workshop/03-Workshop\|03-Workshop]]                                                                            | 1           | 0         |
+| [[_Look back/04-Vault/04-Vault\|04-Vault]]                                                                                     | 1           | 0         |
+| [[_Look back/04-Vault/collections/Creative with Amel\|Creative with Amel]]                                                     | 1           | 0         |
+
+{ .block-language-dataview}
+
+### Random Discovery
+
+dataview
+
+| Explore This                |
+| --------------------------- |
+| [[Home Base\|Home Base]] |
+
+{ .block-language-dataview}
+
+---
+
+## Current Focus
+
+[Manually updated - 3-5 things you're actively working on]
+
+- [[Current project or concept\|Current project or concept]]
+- [[Current learning focus\|Current learning focus]]
+- [[Current experiment\|Current experiment]]
+
+---
+
+## Quick Access
+
+### By Status
+
+- [[Seeds & Ideas\|Seeds & Ideas]] - Early thoughts waiting to grow
+- [[Active Work\|Active Work]] - What's in progress now
+- [[Core Knowledge\|Core Knowledge]] - My foundational thinking
+- [[Needs Attention\|Needs Attention]] - Notes needing review or connection
+
+### By Type
+
+- [[All Concepts\|All Concepts]]
+- [[All Practices\|All Practices]]
+- [[All Tools\|All Tools]]
+- [[All Questions\|All Questions]]
+
+---
+
+## Garden Stats
+
+dataview
+
+| Status | Count |
+| ------ | ----- |
+| 📄     | 66    |
+| 📄     | 29    |
+| 📄     | 9     |
+| 📄     | 6     |
+| 📄     | 5     |
+| 📄     | 2     |
+| 📄     | 1     |
+| 📄     | 1     |
+| 📄     | 1     |
+| 📄     | 1     |
+| 📄     | 1     |
+| 📄     | 1     |
+
+{ .block-language-dataview}
 
 This is my digital garden that will grow with me with the things I want to do in my life. I am using this to store concepts, thoughts, ideas, memories, tools and all kinds of other things I use and want to keep. It could expand to things I want to present with projects when I come to them. It grows with how my brain works and what I use it for and I will try to make it more presentable trough time. 
 
@@ -44,9 +187,40 @@ I want to do new [[Things in my daily life to strive to the person I want to bec
 
 
 
+> [!warning] ⚠️ Proper learning and study structure
+> 1. Projects
+> 2. Subject study
+> 3. Quotes 
+> 4. 
+
+Studying brain
+Studying Thinking patterns
+Sometimes understanding new perspectives
+Studying influences of feeling
+
+Sometimes studying from people and learning from them
+
+Sometimes learning about a subject like Switches and Firewalls/Fortigates
+
+Sometimes learning to pick up a new hobby. But sometimes a hobby or something I want to pick up could also be for a purpose of upping my skills and abilities in a broad way. 
+
+1. I am thinking about maybe having a section that is important to: People, brains, Neural networks, efficiency, perspectives, feelings, Psychology.
+
+Could this one fit the gap of health and exercise? 
+
+2. Another note for physical things like: Firewalls/Switches, Cars, House things, buildings, computers, technologies, 
+
+3. Projects is something separate and that is fine. 
+
+4. Bucket list of what I want to do or try in my life. Maybe add things to it with tags? 
+: CPR, 
+Quora: So, to the main point: I was saved by friends who knew CPR. Go take a CPR class. Seriously, GO TAKE A CPR CLASS. You don't want to be fumbling around like an idiot if you face a situation like this.
+
+Maybe I should have notes that capture ideas I want to work out or start on. Something like: seeds I come across online and I keep in the pocket that is Obsidian to plant whenever I come too it. 
 
 
-So, to the main point: I was saved by friends who knew CPR. Go take a CPR class. Seriously, GO TAKE A CPR CLASS. You don't want to be fumbling around like an idiot if you face a situation like this.
+
+
 
 
 
