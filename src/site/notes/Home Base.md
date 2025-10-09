@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/home-base/","tags":["gardenEntry"],"noteIcon":"","created":"2025-10-02T18:10:01.621+02:00","updated":"2025-10-09T21:02:22.467+02:00"}
+{"dg-publish":true,"permalink":"/home-base/","tags":["gardenEntry"],"noteIcon":"","created":"2025-10-02T18:10:01.621+02:00","updated":"2025-10-09T21:11:42.136+02:00"}
 ---
 
 
@@ -47,7 +47,7 @@ More for personal use. Things I am looking foreward too doing and or picking up.
 Anything from the outside will be stored here as a note link to that specific place.
 Rule: As long as it is something not curated by me or changed in any way by me you can find it here. 
 
-### 🔗 [[Curated Knowledge/Systems\|Curated Knowledge/Systems]]
+### 🔗 [[Many notes and files/Curated Knowledge/Systems\|Systems]]
 *My workflows, methods, personal systems*
 Actual final notes of importance by me. This is what I distilled with my mind. 
 
@@ -59,13 +59,14 @@ Actual final notes of importance by me. This is what I distilled with my mind.
 ### Recently Active
 | Note                                                                                                                              | Updated                    | Tags                                                          |
 | --------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------------------- |
+| [[Many notes and files/Curated Knowledge/Systems\|Systems]]                                                                    | 9:11 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Home Base\|Home Base]]                                                                                                       | 9:11 PM - October 09, 2025 | <ul></ul>                                                     |
 | [[_Look back/01-Home/what-is-this/Quick syntax summary (copy, paste reference)\|Quick syntax summary (copy, paste reference)]] | 9:09 PM - October 09, 2025 | <ul></ul>                                                     |
 | [[_Look back/01-Home/what-is-this/Obsidian and how to work with it\|Obsidian and how to work with it]]                         | 9:09 PM - October 09, 2025 | <ul><li>#tag</li><li>#topic/subtopic</li><li>#topic</li></ul> |
 | [[_Look back/01-Home/Color themes\|Color themes]]                                                                              | 9:08 PM - October 09, 2025 | <ul></ul>                                                     |
 | [[_Look back/01-Home/dashboard interface\|dashboard interface]]                                                                | 9:08 PM - October 09, 2025 | <ul></ul>                                                     |
 | [[_Look back/01-Home/Testing another note 1 1 1 1 1 1 1 1\|Testing another note 1 1 1 1 1 1 1 1]]                              | 9:08 PM - October 09, 2025 | <ul></ul>                                                     |
 | [[_Look back/01-Home/Testing another note 1 1 1 1 1 1 1\|Testing another note 1 1 1 1 1 1 1]]                                  | 9:08 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[Curated Knowledge/Systems\|Systems]]                                                                                         | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
 | [[Many notes and files/The Library/The Library\|The Library]]                                                                  | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
 | [[Many notes and files/Exploration/Exploration\|Exploration]]                                                                  | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
 | [[Many notes and files/Personal Hub/Personal Hub\|Personal Hub]]                                                               | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
@@ -73,7 +74,6 @@ Actual final notes of importance by me. This is what I distilled with my mind.
 | [[Many notes and files/Technical Knowledge/Technical Knowledge\|Technical Knowledge]]                                          | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
 | [[Many notes and files/The Workshop/The Workshop\|The Workshop]]                                                               | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
 | [[Many notes and files/The Body/The Body\|The Body]]                                                                           | 9:03 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[Many notes and files/The Mind/The Mind\|The Mind]]                                                                           | 9:03 PM - October 09, 2025 | <ul></ul>                                                     |
 
 { .block-language-dataview}`
 
@@ -87,10 +87,10 @@ Actual final notes of importance by me. This is what I distilled with my mind.
 | [[Many notes and files/Concepts/Radical alignment\|Radical alignment]]                                          | 1           | 0         |
 | [[Many notes and files/Social/Social\|Social]]                                                                  | 1           | 0         |
 | [[Many notes and files/The Library/The Library\|The Library]]                                                   | 1           | 0         |
+| [[Many notes and files/Curated Knowledge/Systems\|Systems]]                                                     | 1           | 0         |
 | [[Many notes and files/The Body/The Body\|The Body]]                                                            | 1           | 0         |
 | [[Many notes and files/The Mind/The Mind\|The Mind]]                                                            | 1           | 0         |
 | [[Many notes and files/The Workshop/The Workshop\|The Workshop]]                                                | 1           | 0         |
-| [[Many notes and files/Technical Knowledge/Technical Knowledge\|Technical Knowledge]]                           | 1           | 0         |
 
 { .block-language-dataview}
 
