@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/home-base/","tags":["gardenEntry"],"noteIcon":"","created":"2025-10-02T18:10:01.621+02:00","updated":"2025-10-09T20:09:04.146+02:00"}
+{"dg-publish":true,"permalink":"/home-base/","tags":["gardenEntry"],"noteIcon":"","created":"2025-10-02T18:10:01.621+02:00","updated":"2025-10-09T20:24:22.902+02:00"}
 ---
 
 
@@ -18,31 +18,31 @@ So while everything is going on in the world I wanted to begin a checkpoint for 
 
 ## Navigation Hubs
 
-### 🧠 [[Mind Hub\|Mind Hub]] 
+### 🧠 [[The Mind\|The Mind]] 
 *Thinking, psychology, learning, consciousness, perspectives*
 
-### 💪 [[Body Hub\|Body Hub]]
+### 💪 [[The Body\|The Body]]
 *Health, nutrition, exercise, longevity, physical optimization*
 
-### 🔨 [[Making Hub\|Making Hub]]
+### 🔨 [[The Workshop\|The Workshop]]
 *Projects, builds, creations, experiments*
 
-### ⚙️ [[Technical Hub\|Technical Hub]]
+### ⚙️ [[Technical Knowledge\|Technical Knowledge]]
 *Networks, security, hardware, software, systems*
 
-### 🌐 [[Social Hub\|Social Hub]]
+### 🌐 [[Social\|Social]]
 *People, communication, relationships, culture, influence*
 
 ### 🌱 [[Personal Hub\|Personal Hub]]
 *My story, memories, values, identity, growth*
 
-### 🚀 [[Exploration Hub\|Exploration Hub]]
+### 🚀 [[Exploration\|Exploration]]
 *Future plans, bucket list, seeds, experiments*
 
-### 📚 [[Library Hub\|Library Hub]]
+### 📚 [[The Library\|The Library]]
 *All books, videos, articles, quotes, podcasts across all domains*
 
-### 🔗 [[Systems Hub\|Systems Hub]]
+### 🔗 [[Curated Knowledge/Systems\|Curated Knowledge/Systems]]
 *My workflows, methods, personal systems*
 
 ---
@@ -50,23 +50,23 @@ So while everything is going on in the world I wanted to begin a checkpoint for 
 ## Discovery
 
 ### Recently Active
-| Note                                                                                        | Updated                     | Tags                                                          |
-| ------------------------------------------------------------------------------------------- | --------------------------- | ------------------------------------------------------------- |
-| [[Body Hub\|Body Hub]]                                                                   | 8:14 PM - October 09, 2025  | <ul></ul>                                                     |
-| [[Mind Hub\|Mind Hub]]                                                                   | 8:10 PM - October 09, 2025  | <ul></ul>                                                     |
-| [[Home Base\|Home Base]]                                                                 | 8:09 PM - October 09, 2025  | <ul></ul>                                                     |
-| [[Visual Shortcuts\|Visual Shortcuts]]                                                   | 8:29 PM - October 05, 2025  | <ul></ul>                                                     |
-| [[Many notes and files/Events/Super Mario Galaxy Movie\|Super Mario Galaxy Movie]]       | 8:18 PM - October 05, 2025  | <ul><li>#event</li></ul>                                      |
-| [[Many notes and files/Events/Advanced Programming Exam\|Advanced Programming Exam]]     | 8:14 PM - October 05, 2025  | <ul><li>#event</li><li>#education</li></ul>                   |
-| [[Many notes and files/Events/Ghost of Tsushima 2 Release\|Ghost of Tsushima 2 Release]] | 8:14 PM - October 05, 2025  | <ul><li>#event</li><li>#gaming</li><li>#playstation</li></ul> |
-| [[Many notes and files/Events/Amsterdam Music Festival\|Amsterdam Music Festival]]       | 8:14 PM - October 05, 2025  | <ul><li>#event</li><li>#music</li></ul>                       |
-| [[Many notes and files/Events/Halley's Comet will be back\|Halley's Comet will be back]] | 8:13 PM - October 05, 2025  | <ul><li>#event</li></ul>                                      |
-| [[Many notes and files/Concepts/Radical alignment\|Radical alignment]]                   | 8:00 PM - October 05, 2025  | <ul><li>#concept</li></ul>                                    |
-| [[Many notes and files/Concepts/Body first living\|Body first living]]                   | 8:00 PM - October 05, 2025  | <ul><li>#concept</li></ul>                                    |
-| [[Many notes and files/_templates/Future event template\|Future event template]]         | 10:32 PM - October 04, 2025 | <ul><li>#event</li></ul>                                      |
-| [[Things I'm Looking Forward To\|Things I'm Looking Forward To]]                         | 10:22 PM - October 04, 2025 | <ul></ul>                                                     |
-| [[_Look back/P2 examen eerste gedeelte\|P2 examen eerste gedeelte]]                      | 2:24 PM - October 04, 2025  | <ul></ul>                                                     |
-| [[_Look back/06-Streams/signals/Music Artists/BBno$\|BBno$]]                             | 6:21 PM - October 02, 2025  | <ul><li>#MusicArtist</li></ul>                                |
+| Note                                                                                        | Updated                      | Tags                                                          |
+| ------------------------------------------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------- |
+| [[Home Base\|Home Base]]                                                                 | 8:24 PM - October 09, 2025   | <ul></ul>                                                     |
+| [[Body Hub\|Body Hub]]                                                                   | 8:14 PM - October 09, 2025   | <ul></ul>                                                     |
+| [[Visual Shortcuts\|Visual Shortcuts]]                                                   | 8:29 PM - October 05, 2025   | <ul></ul>                                                     |
+| [[Many notes and files/Events/Super Mario Galaxy Movie\|Super Mario Galaxy Movie]]       | 8:18 PM - October 05, 2025   | <ul><li>#event</li></ul>                                      |
+| [[Many notes and files/Events/Advanced Programming Exam\|Advanced Programming Exam]]     | 8:14 PM - October 05, 2025   | <ul><li>#event</li><li>#education</li></ul>                   |
+| [[Many notes and files/Events/Ghost of Tsushima 2 Release\|Ghost of Tsushima 2 Release]] | 8:14 PM - October 05, 2025   | <ul><li>#event</li><li>#gaming</li><li>#playstation</li></ul> |
+| [[Many notes and files/Events/Amsterdam Music Festival\|Amsterdam Music Festival]]       | 8:14 PM - October 05, 2025   | <ul><li>#event</li><li>#music</li></ul>                       |
+| [[Many notes and files/Events/Halley's Comet will be back\|Halley's Comet will be back]] | 8:13 PM - October 05, 2025   | <ul><li>#event</li></ul>                                      |
+| [[Many notes and files/Concepts/Radical alignment\|Radical alignment]]                   | 8:00 PM - October 05, 2025   | <ul><li>#concept</li></ul>                                    |
+| [[Many notes and files/Concepts/Body first living\|Body first living]]                   | 8:00 PM - October 05, 2025   | <ul><li>#concept</li></ul>                                    |
+| [[Many notes and files/_templates/Future event template\|Future event template]]         | 10:32 PM - October 04, 2025  | <ul><li>#event</li></ul>                                      |
+| [[Things I'm Looking Forward To\|Things I'm Looking Forward To]]                         | 10:22 PM - October 04, 2025  | <ul></ul>                                                     |
+| [[_Look back/P2 examen eerste gedeelte\|P2 examen eerste gedeelte]]                      | 2:24 PM - October 04, 2025   | <ul></ul>                                                     |
+| [[_Look back/06-Streams/signals/Music Artists/BBno$\|BBno$]]                             | 6:21 PM - October 02, 2025   | <ul><li>#MusicArtist</li></ul>                                |
+| [[_Look back/The Psychology of Feeling\|The Psychology of Feeling]]                      | 4:59 PM - September 30, 2025 | <ul></ul>                                                     |
 
 { .block-language-dataview}`
 
@@ -130,7 +130,7 @@ So while everything is going on in the world I wanted to begin a checkpoint for 
 
 | Status | Count |
 | ------ | ----- |
-| 📄     | 68    |
+| 📄     | 67    |
 | 📄     | 29    |
 | 📄     | 9     |
 | 📄     | 6     |
