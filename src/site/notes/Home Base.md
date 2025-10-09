@@ -57,23 +57,23 @@ Actual final notes of importance by me. This is what I distilled with my mind.
 ## Discovery
 
 ### Recently Active
-| Note                                                                                        | Updated                    | Tags                                                          |
-| ------------------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------------------- |
-| [[Curated Knowledge/Systems\|Systems]]                                                   | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[Many notes and files/The Library/The Library\|The Library]]                            | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[Many notes and files/Exploration/Exploration\|Exploration]]                            | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[Many notes and files/Personal Hub/Personal Hub\|Personal Hub]]                         | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[Many notes and files/Social/Social\|Social]]                                           | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[Many notes and files/Technical Knowledge/Technical Knowledge\|Technical Knowledge]]    | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[Many notes and files/The Workshop/The Workshop\|The Workshop]]                         | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[Many notes and files/The Body/The Body\|The Body]]                                     | 9:03 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[Many notes and files/The Mind/The Mind\|The Mind]]                                     | 9:03 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[Home Base\|Home Base]]                                                                 | 9:02 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[Visual Shortcuts\|Visual Shortcuts]]                                                   | 8:29 PM - October 05, 2025 | <ul></ul>                                                     |
-| [[Many notes and files/Events/Super Mario Galaxy Movie\|Super Mario Galaxy Movie]]       | 8:18 PM - October 05, 2025 | <ul><li>#event</li></ul>                                      |
-| [[Many notes and files/Events/Advanced Programming Exam\|Advanced Programming Exam]]     | 8:14 PM - October 05, 2025 | <ul><li>#event</li><li>#education</li></ul>                   |
-| [[Many notes and files/Events/Ghost of Tsushima 2 Release\|Ghost of Tsushima 2 Release]] | 8:14 PM - October 05, 2025 | <ul><li>#event</li><li>#gaming</li><li>#playstation</li></ul> |
-| [[Many notes and files/Events/Amsterdam Music Festival\|Amsterdam Music Festival]]       | 8:14 PM - October 05, 2025 | <ul><li>#event</li><li>#music</li></ul>                       |
+| Note                                                                                                                              | Updated                    | Tags                                                          |
+| --------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------------------- |
+| [[_Look back/01-Home/what-is-this/Quick syntax summary (copy, paste reference)\|Quick syntax summary (copy, paste reference)]] | 9:09 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[_Look back/01-Home/what-is-this/Obsidian and how to work with it\|Obsidian and how to work with it]]                         | 9:09 PM - October 09, 2025 | <ul><li>#tag</li><li>#topic/subtopic</li><li>#topic</li></ul> |
+| [[_Look back/01-Home/Color themes\|Color themes]]                                                                              | 9:08 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[_Look back/01-Home/dashboard interface\|dashboard interface]]                                                                | 9:08 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[_Look back/01-Home/Testing another note 1 1 1 1 1 1 1 1\|Testing another note 1 1 1 1 1 1 1 1]]                              | 9:08 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[_Look back/01-Home/Testing another note 1 1 1 1 1 1 1\|Testing another note 1 1 1 1 1 1 1]]                                  | 9:08 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Curated Knowledge/Systems\|Systems]]                                                                                         | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/The Library/The Library\|The Library]]                                                                  | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/Exploration/Exploration\|Exploration]]                                                                  | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/Personal Hub/Personal Hub\|Personal Hub]]                                                               | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/Social/Social\|Social]]                                                                                 | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/Technical Knowledge/Technical Knowledge\|Technical Knowledge]]                                          | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/The Workshop/The Workshop\|The Workshop]]                                                               | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/The Body/The Body\|The Body]]                                                                           | 9:03 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/The Mind/The Mind\|The Mind]]                                                                           | 9:03 PM - October 09, 2025 | <ul></ul>                                                     |
 
 { .block-language-dataview}`
 
@@ -137,7 +137,7 @@ Actual final notes of importance by me. This is what I distilled with my mind.
 
 | Status | Count |
 | ------ | ----- |
-| 📄     | 75    |
+| 📄     | 71    |
 | 📄     | 29    |
 | 📄     | 9     |
 | 📄     | 6     |
