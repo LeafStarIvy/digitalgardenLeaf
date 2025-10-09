@@ -38,7 +38,7 @@ A list of stuff that is from or about other people. Could be both an about page 
 *My story, memories, values, identity, growth*
 All stuff personal to and about me. 
 
-### 🚀 [[Exploration\|Exploration]]
+### 🚀 [[Many notes and files/Exploration\|Exploration]]
 *Future plans, bucket list, seeds, experiments*
 More for personal use. Things I am looking foreward too doing and or picking up. This content isn't finalized. 
 
@@ -57,23 +57,23 @@ Actual final notes of importance by me. This is what I distilled with my mind.
 ## Discovery
 
 ### Recently Active
-| Note                                                                                        | Updated                      | Tags                                                          |
-| ------------------------------------------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------- |
-| [[Home Base\|Home Base]]                                                                 | 9:02 PM - October 09, 2025   | <ul></ul>                                                     |
-| [[Body Hub\|Body Hub]]                                                                   | 8:14 PM - October 09, 2025   | <ul></ul>                                                     |
-| [[Visual Shortcuts\|Visual Shortcuts]]                                                   | 8:29 PM - October 05, 2025   | <ul></ul>                                                     |
-| [[Many notes and files/Events/Super Mario Galaxy Movie\|Super Mario Galaxy Movie]]       | 8:18 PM - October 05, 2025   | <ul><li>#event</li></ul>                                      |
-| [[Many notes and files/Events/Advanced Programming Exam\|Advanced Programming Exam]]     | 8:14 PM - October 05, 2025   | <ul><li>#event</li><li>#education</li></ul>                   |
-| [[Many notes and files/Events/Ghost of Tsushima 2 Release\|Ghost of Tsushima 2 Release]] | 8:14 PM - October 05, 2025   | <ul><li>#event</li><li>#gaming</li><li>#playstation</li></ul> |
-| [[Many notes and files/Events/Amsterdam Music Festival\|Amsterdam Music Festival]]       | 8:14 PM - October 05, 2025   | <ul><li>#event</li><li>#music</li></ul>                       |
-| [[Many notes and files/Events/Halley's Comet will be back\|Halley's Comet will be back]] | 8:13 PM - October 05, 2025   | <ul><li>#event</li></ul>                                      |
-| [[Many notes and files/Concepts/Radical alignment\|Radical alignment]]                   | 8:00 PM - October 05, 2025   | <ul><li>#concept</li></ul>                                    |
-| [[Many notes and files/Concepts/Body first living\|Body first living]]                   | 8:00 PM - October 05, 2025   | <ul><li>#concept</li></ul>                                    |
-| [[Many notes and files/_templates/Future event template\|Future event template]]         | 10:32 PM - October 04, 2025  | <ul><li>#event</li></ul>                                      |
-| [[Things I'm Looking Forward To\|Things I'm Looking Forward To]]                         | 10:22 PM - October 04, 2025  | <ul></ul>                                                     |
-| [[_Look back/P2 examen eerste gedeelte\|P2 examen eerste gedeelte]]                      | 2:24 PM - October 04, 2025   | <ul></ul>                                                     |
-| [[_Look back/06-Streams/signals/Music Artists/BBno$\|BBno$]]                             | 6:21 PM - October 02, 2025   | <ul><li>#MusicArtist</li></ul>                                |
-| [[_Look back/The Psychology of Feeling\|The Psychology of Feeling]]                      | 4:59 PM - September 30, 2025 | <ul></ul>                                                     |
+| Note                                                                                        | Updated                    | Tags                                                          |
+| ------------------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------------------- |
+| [[Curated Knowledge/Systems\|Systems]]                                                   | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[The Library\|The Library]]                                                             | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/Exploration\|Exploration]]                                        | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Personal Hub\|Personal Hub]]                                                           | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Social\|Social]]                                                                       | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Technical Knowledge\|Technical Knowledge]]                                             | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[The Workshop\|The Workshop]]                                                           | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[The Body\|The Body]]                                                                   | 9:03 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[The Mind\|The Mind]]                                                                   | 9:03 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Home Base\|Home Base]]                                                                 | 9:02 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Visual Shortcuts\|Visual Shortcuts]]                                                   | 8:29 PM - October 05, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/Events/Super Mario Galaxy Movie\|Super Mario Galaxy Movie]]       | 8:18 PM - October 05, 2025 | <ul><li>#event</li></ul>                                      |
+| [[Many notes and files/Events/Advanced Programming Exam\|Advanced Programming Exam]]     | 8:14 PM - October 05, 2025 | <ul><li>#event</li><li>#education</li></ul>                   |
+| [[Many notes and files/Events/Ghost of Tsushima 2 Release\|Ghost of Tsushima 2 Release]] | 8:14 PM - October 05, 2025 | <ul><li>#event</li><li>#gaming</li><li>#playstation</li></ul> |
+| [[Many notes and files/Events/Amsterdam Music Festival\|Amsterdam Music Festival]]       | 8:14 PM - October 05, 2025 | <ul><li>#event</li><li>#music</li></ul>                       |
 
 { .block-language-dataview}`
 
@@ -85,12 +85,12 @@ Actual final notes of importance by me. This is what I distilled with my mind.
 | [[img/_attachments/_Excalidraw/Drawing 2025-05-14 21.37.21.excalidraw\|Drawing 2025-05-14 21.37.21.excalidraw]]                | 1           | 0         |
 | [[Many notes and files/Concepts/Body first living\|Body first living]]                                                         | 1           | 0         |
 | [[Many notes and files/Concepts/Radical alignment\|Radical alignment]]                                                         | 1           | 0         |
+| [[Many notes and files/Exploration\|Exploration]]                                                                              | 1           | 0         |
 | [[_Look back/01-Home/01-Home\|01-Home]]                                                                                        | 1           | 0         |
 | [[_Look back/01-Home/what-is-this/Quick syntax summary (copy, paste reference)\|Quick syntax summary (copy, paste reference)]] | 1           | 0         |
 | [[_Look back/02-Atlas/02-Atlas\|02-Atlas]]                                                                                     | 1           | 0         |
 | [[_Look back/03-Workshop/03-Workshop\|03-Workshop]]                                                                            | 1           | 0         |
 | [[_Look back/04-Vault/04-Vault\|04-Vault]]                                                                                     | 1           | 0         |
-| [[_Look back/04-Vault/collections/Creative with Amel\|Creative with Amel]]                                                     | 1           | 0         |
 
 { .block-language-dataview}
 
@@ -137,7 +137,7 @@ Actual final notes of importance by me. This is what I distilled with my mind.
 
 | Status | Count |
 | ------ | ----- |
-| 📄     | 67    |
+| 📄     | 75    |
 | 📄     | 29    |
 | 📄     | 9     |
 | 📄     | 6     |
