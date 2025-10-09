@@ -1,11 +1,16 @@
 ---
-{"dg-publish":true,"permalink":"/home-base/","tags":["gardenEntry"],"noteIcon":"","created":"2025-10-02T18:10:01.621+02:00","updated":"2025-10-09T19:09:29.668+02:00"}
+{"dg-publish":true,"permalink":"/home-base/","tags":["gardenEntry"],"noteIcon":"","created":"2025-10-02T18:10:01.621+02:00","updated":"2025-10-09T19:13:09.090+02:00"}
 ---
 
 
 # Welcome to My Digital Garden
+This is my digital garden that will grow with me with the things I want to do in my life. I am using this to store concepts, thoughts, ideas, memories, tools and all kinds of other things I use and want to keep. It could expand to things I want to present with projects when I come to them. It grows with how my brain works and what I use it for and I will try to make it more presentable trough time. 
 
-[Your story section - already written]
+### A story about me:
+I have always had the struggle that I wanted to do more in my life and needed to surpass different boundaries that I have in my life because of myself and from others. The world is far more complex and different than any of us realize or dare to imagine it be. You never really know how the other person experiences the world and how they think and feel because of it. You can of course create some kind of close world view/perspective when you know them well, but it still isn't close to how they experience it. You don't have the same neural connections and development as they had. In summary: The world of other people is alien. 
+
+So while everything is going on in the world I wanted to begin a checkpoint for my life that I will work out my values and knowledge on. This is called a [[digital garden\|digital garden]]. 
+
 
 [Your values section - already written]
 
@@ -47,7 +52,7 @@
 ### Recently Active
 | Note                                                                                                               | Updated                       | Tags                                                          |
 | ------------------------------------------------------------------------------------------------------------------ | ----------------------------- | ------------------------------------------------------------- |
-| [[Home Base\|Home Base]]                                                                                        | 7:09 PM - October 09, 2025    | <ul></ul>                                                     |
+| [[Home Base\|Home Base]]                                                                                        | 7:13 PM - October 09, 2025    | <ul></ul>                                                     |
 | [[Visual Shortcuts\|Visual Shortcuts]]                                                                          | 8:29 PM - October 05, 2025    | <ul></ul>                                                     |
 | [[Many notes and files/Events/Super Mario Galaxy Movie\|Super Mario Galaxy Movie]]                              | 8:18 PM - October 05, 2025    | <ul><li>#event</li></ul>                                      |
 | [[Many notes and files/Events/Advanced Programming Exam\|Advanced Programming Exam]]                            | 8:14 PM - October 05, 2025    | <ul><li>#event</li><li>#education</li></ul>                   |
@@ -67,8 +72,6 @@
 
 ### Most Connected
 
-dataview
-
 | Note                                                                                                                              | Connections | Links Out |
 | --------------------------------------------------------------------------------------------------------------------------------- | ----------- | --------- |
 | [[img/_attachments/_Excalidraw/Add to Site.excalidraw\|Add to Site.excalidraw]]                                                | 1           | 0         |
@@ -86,7 +89,6 @@ dataview
 
 ### Random Discovery
 
-dataview
 
 | Explore This                |
 | --------------------------- |
@@ -144,14 +146,6 @@ dataview
 | 📄     | 1     |
 
 { .block-language-dataview}
-
-This is my digital garden that will grow with me with the things I want to do in my life. I am using this to store concepts, thoughts, ideas, memories, tools and all kinds of other things I use and want to keep. It could expand to things I want to present with projects when I come to them. It grows with how my brain works and what I use it for and I will try to make it more presentable trough time. 
-
----
-### A story about me:
-I have always had the struggle that I wanted to do more in my life and needed to surpass different boundaries that I have in my life because of myself and from others. The world is far more complex and different than any of us realize or dare to imagine it be. You never really know how the other person experiences the world and how they think and feel because of it. You can of course create some kind of close world view/perspective when you know them well, but it still isn't close to how they experience it. You don't have the same neural connections and development as they had. In summary: The world of other people is alien. 
-
-So while everything is going on in the world I wanted to begin a checkpoint for my life that I will work out my values and knowledge on. This is called a [[digital garden\|digital garden]]. 
 
 ---
 
