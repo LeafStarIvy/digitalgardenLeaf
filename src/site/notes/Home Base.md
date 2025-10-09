@@ -19,30 +19,30 @@ This is called a [[digital garden\|digital garden]].
 
 ## Navigation
 
-### 🧠 [[The Mind\|The Mind]] 
+### 🧠 [[Many notes and files/The Mind/The Mind\|The Mind]] 
 *Thinking, psychology, learning, consciousness, perspectives*
 Anything related to the brain and how people can think and experience anything. Also includes influences and effects on the experience of oneself. 
-### 💪 [[The Body\|The Body]]
+### 💪 [[Many notes and files/The Body/The Body\|The Body]]
 *Health, nutrition, exercise, longevity, physical optimization*
 What I am learning about the body and how I want to treat my own. I am going for health and capabilities. 
-### 🔨 [[The Workshop\|The Workshop]]
+### 🔨 [[Many notes and files/The Workshop/The Workshop\|The Workshop]]
 *Projects, builds, creations, experiments*
 Projects I am working on and anything I am trying. 
-### ⚙️ [[Technical Knowledge\|Technical Knowledge]]
+### ⚙️ [[Many notes and files/Technical Knowledge/Technical Knowledge\|Technical Knowledge]]
 *Networks, security, hardware, software, systems*
 This could come from anywhere. This is knowledge about any system, physical thing and stuff that isn't human but is real. 
-### 🌐 [[Social\|Social]]
+### 🌐 [[Many notes and files/Social/Social\|Social]]
 *People, communication, relationships, culture, influence*
 A list of stuff that is from or about other people. Could be both an about page created by anyone or summarized by me. 
-### 🌱 [[Personal Hub\|Personal Hub]]
+### 🌱 [[Many notes and files/Personal Hub/Personal Hub\|Personal Hub]]
 *My story, memories, values, identity, growth*
 All stuff personal to and about me. 
 
-### 🚀 [[Many notes and files/Exploration\|Exploration]]
+### 🚀 [[Many notes and files/Exploration/Exploration\|Exploration]]
 *Future plans, bucket list, seeds, experiments*
 More for personal use. Things I am looking foreward too doing and or picking up. This content isn't finalized. 
 
-### 📚 [[The Library\|The Library]]
+### 📚 [[Many notes and files/The Library/The Library\|The Library]]
 *All books, videos, articles, quotes, podcasts across all domains*
 Anything from the outside will be stored here as a note link to that specific place.
 Rule: As long as it is something not curated by me or changed in any way by me you can find it here. 
@@ -60,14 +60,14 @@ Actual final notes of importance by me. This is what I distilled with my mind.
 | Note                                                                                        | Updated                    | Tags                                                          |
 | ------------------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------------------- |
 | [[Curated Knowledge/Systems\|Systems]]                                                   | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[The Library\|The Library]]                                                             | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[Many notes and files/Exploration\|Exploration]]                                        | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[Personal Hub\|Personal Hub]]                                                           | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[Social\|Social]]                                                                       | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[Technical Knowledge\|Technical Knowledge]]                                             | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[The Workshop\|The Workshop]]                                                           | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[The Body\|The Body]]                                                                   | 9:03 PM - October 09, 2025 | <ul></ul>                                                     |
-| [[The Mind\|The Mind]]                                                                   | 9:03 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/The Library/The Library\|The Library]]                            | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/Exploration/Exploration\|Exploration]]                            | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/Personal Hub/Personal Hub\|Personal Hub]]                         | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/Social/Social\|Social]]                                           | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/Technical Knowledge/Technical Knowledge\|Technical Knowledge]]    | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/The Workshop/The Workshop\|The Workshop]]                         | 9:04 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/The Body/The Body\|The Body]]                                     | 9:03 PM - October 09, 2025 | <ul></ul>                                                     |
+| [[Many notes and files/The Mind/The Mind\|The Mind]]                                     | 9:03 PM - October 09, 2025 | <ul></ul>                                                     |
 | [[Home Base\|Home Base]]                                                                 | 9:02 PM - October 09, 2025 | <ul></ul>                                                     |
 | [[Visual Shortcuts\|Visual Shortcuts]]                                                   | 8:29 PM - October 05, 2025 | <ul></ul>                                                     |
 | [[Many notes and files/Events/Super Mario Galaxy Movie\|Super Mario Galaxy Movie]]       | 8:18 PM - October 05, 2025 | <ul><li>#event</li></ul>                                      |
@@ -79,18 +79,18 @@ Actual final notes of importance by me. This is what I distilled with my mind.
 
 ### Most Connected
 
-| Note                                                                                                                              | Connections | Links Out |
-| --------------------------------------------------------------------------------------------------------------------------------- | ----------- | --------- |
-| [[img/_attachments/_Excalidraw/Add to Site.excalidraw\|Add to Site.excalidraw]]                                                | 1           | 0         |
-| [[img/_attachments/_Excalidraw/Drawing 2025-05-14 21.37.21.excalidraw\|Drawing 2025-05-14 21.37.21.excalidraw]]                | 1           | 0         |
-| [[Many notes and files/Concepts/Body first living\|Body first living]]                                                         | 1           | 0         |
-| [[Many notes and files/Concepts/Radical alignment\|Radical alignment]]                                                         | 1           | 0         |
-| [[Many notes and files/Exploration\|Exploration]]                                                                              | 1           | 0         |
-| [[_Look back/01-Home/01-Home\|01-Home]]                                                                                        | 1           | 0         |
-| [[_Look back/01-Home/what-is-this/Quick syntax summary (copy, paste reference)\|Quick syntax summary (copy, paste reference)]] | 1           | 0         |
-| [[_Look back/02-Atlas/02-Atlas\|02-Atlas]]                                                                                     | 1           | 0         |
-| [[_Look back/03-Workshop/03-Workshop\|03-Workshop]]                                                                            | 1           | 0         |
-| [[_Look back/04-Vault/04-Vault\|04-Vault]]                                                                                     | 1           | 0         |
+| Note                                                                                                               | Connections | Links Out |
+| ------------------------------------------------------------------------------------------------------------------ | ----------- | --------- |
+| [[img/_attachments/_Excalidraw/Add to Site.excalidraw\|Add to Site.excalidraw]]                                 | 1           | 0         |
+| [[img/_attachments/_Excalidraw/Drawing 2025-05-14 21.37.21.excalidraw\|Drawing 2025-05-14 21.37.21.excalidraw]] | 1           | 0         |
+| [[Many notes and files/Concepts/Body first living\|Body first living]]                                          | 1           | 0         |
+| [[Many notes and files/Concepts/Radical alignment\|Radical alignment]]                                          | 1           | 0         |
+| [[Many notes and files/Social/Social\|Social]]                                                                  | 1           | 0         |
+| [[Many notes and files/The Library/The Library\|The Library]]                                                   | 1           | 0         |
+| [[Many notes and files/The Body/The Body\|The Body]]                                                            | 1           | 0         |
+| [[Many notes and files/The Mind/The Mind\|The Mind]]                                                            | 1           | 0         |
+| [[Many notes and files/The Workshop/The Workshop\|The Workshop]]                                                | 1           | 0         |
+| [[Many notes and files/Technical Knowledge/Technical Knowledge\|Technical Knowledge]]                           | 1           | 0         |
 
 { .block-language-dataview}
 
