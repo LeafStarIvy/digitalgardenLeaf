@@ -1,13 +1,10 @@
 ---
-{"dg-publish":true,"permalink":"/many-notes-and-files/01-the-mind/the-mind/","noteIcon":"","created":"2025-10-09T21:03:37.897+02:00","updated":"2025-10-09T21:16:19.867+02:00"}
+{"dg-publish":true,"permalink":"/many-notes-and-files/01-the-mind/the-mind/","noteIcon":"","created":"2025-10-09T21:03:37.897+02:00","updated":"2025-10-13T20:34:46.602+02:00"}
 ---
 
 # The Mind
 
-
-
-
-
+<div><table class="dataview table-view-table"><thead class="table-view-thead"><tr class="table-view-tr-header"><th class="table-view-th"><span>Note</span><span class="dataview small-text">1</span></th><th class="table-view-th"><span>Last Edited</span></th><th class="table-view-th"><span>Tags</span></th><th class="table-view-th"><span>Linked From</span></th><th class="table-view-th"><span>Links To</span></th><th class="table-view-th"><span>Word Count</span></th><th class="table-view-th"><span>Excerpt</span></th></tr></thead><tbody class="table-view-tbody"><tr><td><span><a data-tooltip-position="top" aria-label="Skyrocket your energy levels.md" data-href="Skyrocket your energy levels.md" href="Skyrocket your energy levels.md" class="internal-link" target="_blank" rel="noopener nofollow">Skyrocket your energy levels</a></span></td><td>8:35 PM - October 13, 2025</td><td><ul class="dataview dataview-ul dataview-result-list-ul"><li class="dataview-result-list-li"><span><a href="#mental-fatigue" class="tag" target="_blank" rel="noopener nofollow">#mental-fatigue</a></span></li><li class="dataview-result-list-li"><span><a href="#mind" class="tag" target="_blank" rel="noopener nofollow">#mind</a></span></li><li class="dataview-result-list-li"><span><a href="#health" class="tag" target="_blank" rel="noopener nofollow">#health</a></span></li></ul></td><td>0</td><td>0</td><td>92</td><td><span>Mental fatigue and it's relation too tasks you need to do</span></td></tr></tbody></table></div>
 
 
 
