@@ -67,8 +67,8 @@ These are mostly used for me to clear things up and explain what meaning I used 
 ### Recently Active
 | Note                                                                                                                              | Updated                     | Tags                                                            |
 | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------- | --------------------------------------------------------------- |
+| [[Navigation notes/The Mind\|The Mind]]                                                                                        | 9:15 PM - October 13, 2025  | <ul></ul>                                                       |
 | [[Many notes and files/01-The Mind/Skyrocket your energy levels\|Skyrocket your energy levels]]                                | 8:39 PM - October 13, 2025  | <ul><li>#mental-fatigue</li><li>#health</li><li>#mind</li></ul> |
-| [[Navigation notes/The Mind\|The Mind]]                                                                                        | 8:34 PM - October 13, 2025  | <ul></ul>                                                       |
 | [[Tags\|Tags]]                                                                                                                 | 7:58 PM - October 13, 2025  | <ul></ul>                                                       |
 | [[Navigation notes/_Home Base\|_Home Base]]                                                                                    | 5:15 PM - October 12, 2025  | <ul></ul>                                                       |
 | [[Navigation notes/All Concepts\|All Concepts]]                                                                                | 12:04 PM - October 10, 2025 | <ul></ul>                                                       |
