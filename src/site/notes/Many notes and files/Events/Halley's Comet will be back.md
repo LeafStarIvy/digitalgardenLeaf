@@ -12,7 +12,7 @@
 **Date:** 2061-07-28T00:00:00.000+02:00 
 **Category:** 🌌SpaceEvent 
 **Status:** ⏳ Upcoming 
-**Days Until:** 35 years, 9 months, 2 weeks, 4 days days
+**Days Until:** 35 years, 9 months, 2 weeks, 1 day days
 
 ## 🎯 Why I'm Looking Forward to This
 
@@ -25,4 +25,4 @@ This game is dear to my heart and when I heard this it made me very excited abou
 
 ---
 
-_Last updated: 2025-10-10T00:00:00.000+02:00_
+_Last updated: 2025-10-13T00:00:00.000+02:00_

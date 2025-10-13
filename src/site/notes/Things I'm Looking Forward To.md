@@ -6,12 +6,12 @@
 
 ## Upcoming Events
 
-| Event                                                                                       | Date             | Type            | Days Until                               | Why I'm Looking Forward                                 |
-| ------------------------------------------------------------------------------------------- | ---------------- | --------------- | ---------------------------------------- | ------------------------------------------------------- |
-| [[Many notes and files/Events/Ghost of Tsushima 2 Release\|Ghost of Tsushima 2 Release]] | Sat, Nov 15 2025 | 🎮 Game Release | 1 month, 5 days days                     | The sequel to one of my favorite samurai games!         |
-| [[Many notes and files/Events/Amsterdam Music Festival\|Amsterdam Music Festival]]       | Sun, Dec 07 2025 | 🎵 Event        | 1 month, 3 weeks, 6 days days            | Going with friends to see my favorite DJs perform live! |
-| [[Many notes and files/Events/Super Mario Galaxy Movie\|Super Mario Galaxy Movie]]       | Fri, Apr 03 2026 | 🎞️Movie        | 5 months, 3 weeks, 3 days days           | The Super Mario Galaxy Movie will be released           |
-| [[Many notes and files/Events/Halley's Comet will be back\|Halley's Comet will be back]] | Thu, Jul 28 2061 | 🌌SpaceEvent    | 35 years, 9 months, 2 weeks, 4 days days | \-                                                      |
+| Event                                                                                       | Date             | Type            | Days Until                              | Why I'm Looking Forward                                 |
+| ------------------------------------------------------------------------------------------- | ---------------- | --------------- | --------------------------------------- | ------------------------------------------------------- |
+| [[Many notes and files/Events/Ghost of Tsushima 2 Release\|Ghost of Tsushima 2 Release]] | Sat, Nov 15 2025 | 🎮 Game Release | 1 month, 2 days days                    | The sequel to one of my favorite samurai games!         |
+| [[Many notes and files/Events/Amsterdam Music Festival\|Amsterdam Music Festival]]       | Sun, Dec 07 2025 | 🎵 Event        | 1 month, 3 weeks, 3 days days           | Going with friends to see my favorite DJs perform live! |
+| [[Many notes and files/Events/Super Mario Galaxy Movie\|Super Mario Galaxy Movie]]       | Fri, Apr 03 2026 | 🎞️Movie        | 5 months, 3 weeks days                  | The Super Mario Galaxy Movie will be released           |
+| [[Many notes and files/Events/Halley's Comet will be back\|Halley's Comet will be back]] | Thu, Jul 28 2061 | 🌌SpaceEvent    | 35 years, 9 months, 2 weeks, 1 day days | \-                                                      |
 
 { .block-language-dataview}
 
