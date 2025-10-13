@@ -1,6 +1,8 @@
 ---
-{"dg-publish":true,"permalink":"/many-notes-and-files/01-the-mind/skyrocket-your-energy-levels/","tags":["#mental-fatigue","#health","#mind"],"noteIcon":"","created":"2025-10-13T19:43:50.046+02:00","updated":"2025-10-13T20:39:05.957+02:00"}
+{"dg-publish":true,"permalink":"/many-notes-and-files/01-the-mind/skyrocket-your-energy-levels/","tags":["#mental-fatigue","#health","#mind"],"noteIcon":"","created":"2025-10-13T19:43:50.046+02:00","updated":"2025-10-13T21:25:48.375+02:00"}
 ---
+
+**Source:** https://youtu.be/VxnPpVa5q8Y?si=RDBGfaddYluDbaW9
 
 For 10x more energy close your open loops.
 
