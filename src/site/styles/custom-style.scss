@@ -4055,13 +4055,12 @@ tr:last-child td {
    SECTION 23: Focus quotes
    ============================================ */
 
-/* Digital Garden Focus Cards */
+/* Digital garden focus cards — enable as a CSS snippet in Appearance > CSS snippets */
 .dg-focus-grid {
   display: grid;
   gap: 0.9rem;
   margin: 0.6rem 0;
-  align-items: stretch;
-  grid-auto-rows: 1fr;
+  align-items: start;
 }
 
 .dg-focus-card {
@@ -4070,11 +4069,10 @@ tr:last-child td {
   background: var(--background-modifier-card);
   box-shadow: 0 6px 18px rgba(0,0,0,0.04);
   border: 1px solid rgba(0,0,0,0.04);
+  min-height: 110px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
-  min-height: 110px;
 }
 
 .dg-focus-quote {
@@ -4082,7 +4080,7 @@ tr:last-child td {
   line-height: 1.25;
   margin: 0 0 0.6rem 0;
   padding-left: 0.45rem;
-  border-left: 3px solid var(--text-accent);
+  border-left: 3px solid var(--text-accent); /* subtle quote accent */
 }
 
 .dg-focus-meta {
@@ -4091,7 +4089,7 @@ tr:last-child td {
   display:flex;
   gap:0.4rem;
   align-items:center;
-  justify-content:flex-start;
+  justify-content: flex-start;
   margin-top: 0.2rem;
 }
 
@@ -4106,6 +4104,78 @@ tr:last-child td {
   color: var(--text-muted);
   margin-left: 0.3rem;
 }
+
+/* Focus.md stacked windows — compact, each quote is its own small 'window' */
+.dg-focus-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin: 0.6rem 0;
+}
+
+/* each card/window */
+.dg-focus-window {
+  padding: 0.75rem 0.9rem;
+  border-radius: 10px;
+  background: var(--background-modifier-card);
+  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  transition: transform .08s ease, box-shadow .08s ease;
+}
+
+/* subtle lift on hover — helps quick scanning */
+.dg-focus-window:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+}
+
+/* quote styling (clipped visually by JS) */
+.dg-focus-quote {
+  margin: 0;
+  padding-left: 0.5rem;
+  border-left: 3px solid var(--text-accent);
+  font-size: 1.02rem;
+  line-height: 1.25;
+  color: var(--text-normal);
+}
+
+/* meta row (compact) */
+.dg-focus-meta {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+/* the link to the note (lighter, inline) */
+.dg-focus-link {
+  text-decoration: none;
+  font-weight: 700;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* small meta text (source • yyyy-mm-dd) */
+.dg-focus-small {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+/* optional short context / notes line (muted, single-line) */
+.dg-focus-context {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  max-height: 1.6rem; /* roughly one line */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
 
 
 
