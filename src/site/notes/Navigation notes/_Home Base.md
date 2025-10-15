@@ -69,12 +69,12 @@ Mail: gerardvdlinde@live.nl
 ### Recently Active
 | Note                                                                                      | Updated                    | Tags                                              |
 | ----------------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------- |
+| [[Focus\|Focus]]                                                                       | 8:46 PM - October 15, 2025 | <ul></ul>                                         |
+| [[Garden/Focus/Atomic\|Atomic]]                                                        | 8:45 PM - October 15, 2025 | <ul></ul>                                         |
 | [[Navigation notes/_Home Base\|_Home Base]]                                            | 8:38 PM - October 15, 2025 | <ul></ul>                                         |
 | [[Garden/Focus/Teede\|Teede]]                                                          | 8:11 PM - October 15, 2025 | <ul></ul>                                         |
 | [[Garden/Focus/Nooo\|Nooo]]                                                            | 8:11 PM - October 15, 2025 | <ul></ul>                                         |
 | [[Garden/Focus/EEEDE\|EEEDE]]                                                          | 8:11 PM - October 15, 2025 | <ul></ul>                                         |
-| [[Garden/Focus/Atomic\|Atomic]]                                                        | 8:11 PM - October 15, 2025 | <ul></ul>                                         |
-| [[Focus\|Focus]]                                                                       | 8:08 PM - October 15, 2025 | <ul></ul>                                         |
 | [[Focus Archive\|Focus Archive]]                                                       | 7:59 PM - October 15, 2025 | <ul></ul>                                         |
 | [[Double meanings\|Double meanings]]                                                   | 5:36 PM - October 15, 2025 | <ul></ul>                                         |
 | [[Many notes and files/Events/Examen Topdesk KT3\|Examen Topdesk KT3]]                 | 4:17 PM - October 14, 2025 | <ul><li>#event</li><li>#education</li></ul>       |
