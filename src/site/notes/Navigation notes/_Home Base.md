@@ -1,11 +1,11 @@
 ---
-{"dg-publish":true,"permalink":"/navigation-notes/home-base/","tags":["gardenEntry"],"noteIcon":"","created":"2025-10-02T18:10:01.621+02:00","updated":"2025-10-12T17:15:57.953+02:00"}
+{"dg-publish":true,"permalink":"/navigation-notes/home-base/","tags":["gardenEntry"],"noteIcon":"","created":"2025-10-02T18:10:01.621+02:00","updated":"2025-10-15T20:02:30.380+02:00"}
 ---
 
 
 Mail: gerardvdlinde@live.nl
 
-
+<div class="dg-focus-grid"><span>-</span><div class="dg-focus-card"><blockquote class="dg-focus-quote">Every time you check for something trivial, you train your mind to expect distraction.</blockquote><div class="dg-focus-meta"><a href="obsidian://open?path=Garden%2FFocus%2FTeede.md" class="dg-focus-link">Teede</a><span class="dg-focus-small"> • Cal Newport - Deep Work • 2025-10-15</span></div><div class="dg-focus-actions"><button class="dg-focus-btn">Mark integrated ✓</button></div></div><div class="dg-focus-card"><blockquote class="dg-focus-quote">Understanding is compression: if you can’t compress an idea, you don’t yet understand it.</blockquote><div class="dg-focus-meta"><a href="obsidian://open?path=Garden%2FFocus%2FAtomic.md" class="dg-focus-link">Atomic</a><span class="dg-focus-small"> • Andy Matuschak - Quantum Country • 2025-10-13</span></div><div class="dg-focus-actions"><button class="dg-focus-btn">Mark integrated ✓</button></div></div><div class="dg-focus-card"><blockquote class="dg-focus-quote">You become what you repeatedly tell yourself you are.</blockquote><div class="dg-focus-meta"><a href="obsidian://open?path=Garden%2FFocus%2FNooo.md" class="dg-focus-link">Nooo</a><span class="dg-focus-small"> • James Clear - Atomic Habits • 2025-10-12</span></div><div class="dg-focus-actions"><button class="dg-focus-btn">Mark integrated ✓</button></div></div><div class="dg-focus-card"><blockquote class="dg-focus-quote">Between stimulus and response, there is a pause — that’s where choice lives.</blockquote><div class="dg-focus-meta"><a href="obsidian://open?path=Garden%2FFocus%2FEEEDE.md" class="dg-focus-link">EEEDE</a><span class="dg-focus-small"> • Stoicism / Epictetus • 2025-10-10</span></div><div class="dg-focus-actions"><button class="dg-focus-btn">Mark integrated ✓</button></div></div></div>
 
 # Welcome to My Digital Garden
 This is my digital garden that will grow with me with the things I want to do in my life. I am using this to store concepts, thoughts, ideas, memories, tools and all kinds of other things I use and want to keep. It could expand to things I want to present with projects when I come to them. It grows with how my brain works and what I use it for and I will try to make it more presentable trough time. 
@@ -65,49 +65,49 @@ These are mostly used for me to clear things up and explain what meaning I used 
 ## Discovery
 
 ### Recently Active
-| Note                                                                                                                              | Updated                     | Tags                                                            |
-| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------- | --------------------------------------------------------------- |
-| [[Navigation notes/The Mind\|The Mind]]                                                                                        | 9:15 PM - October 13, 2025  | <ul></ul>                                                       |
-| [[Many notes and files/01-The Mind/Skyrocket your energy levels\|Skyrocket your energy levels]]                                | 8:39 PM - October 13, 2025  | <ul><li>#mental-fatigue</li><li>#health</li><li>#mind</li></ul> |
-| [[Tags\|Tags]]                                                                                                                 | 7:58 PM - October 13, 2025  | <ul></ul>                                                       |
-| [[Navigation notes/_Home Base\|_Home Base]]                                                                                    | 5:15 PM - October 12, 2025  | <ul></ul>                                                       |
-| [[Navigation notes/All Concepts\|All Concepts]]                                                                                | 12:04 PM - October 10, 2025 | <ul></ul>                                                       |
-| [[Navigation notes/Systems\|Systems]]                                                                                          | 9:18 PM - October 09, 2025  | <ul></ul>                                                       |
-| [[Navigation notes/The Library\|The Library]]                                                                                  | 9:18 PM - October 09, 2025  | <ul></ul>                                                       |
-| [[Navigation notes/Exploration\|Exploration]]                                                                                  | 9:17 PM - October 09, 2025  | <ul></ul>                                                       |
-| [[Navigation notes/Social\|Social]]                                                                                            | 9:17 PM - October 09, 2025  | <ul></ul>                                                       |
-| [[Navigation notes/Technical Knowledge\|Technical Knowledge]]                                                                  | 9:17 PM - October 09, 2025  | <ul></ul>                                                       |
-| [[Navigation notes/The Workshop\|The Workshop]]                                                                                | 9:17 PM - October 09, 2025  | <ul></ul>                                                       |
-| [[Navigation notes/The Body\|The Body]]                                                                                        | 9:17 PM - October 09, 2025  | <ul></ul>                                                       |
-| [[Navigation notes/Personal Hub\|Personal Hub]]                                                                                | 9:17 PM - October 09, 2025  | <ul></ul>                                                       |
-| [[_Look back/01-Home/what-is-this/Quick syntax summary (copy, paste reference)\|Quick syntax summary (copy, paste reference)]] | 9:09 PM - October 09, 2025  | <ul></ul>                                                       |
-| [[_Look back/01-Home/what-is-this/Obsidian and how to work with it\|Obsidian and how to work with it]]                         | 9:09 PM - October 09, 2025  | <ul><li>#tag</li><li>#topic/subtopic</li><li>#topic</li></ul>   |
+| Note                                                                                      | Updated                    | Tags                                              |
+| ----------------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------- |
+| [[Garden/Focus/Nooo\|Nooo]]                                                            | 8:10 PM - October 15, 2025 | <ul></ul>                                         |
+| [[Garden/Focus/Teede\|Teede]]                                                          | 8:10 PM - October 15, 2025 | <ul></ul>                                         |
+| [[Garden/Focus/Atomic\|Atomic]]                                                        | 8:08 PM - October 15, 2025 | <ul></ul>                                         |
+| [[Focus\|Focus]]                                                                       | 8:08 PM - October 15, 2025 | <ul></ul>                                         |
+| [[Garden/Focus/EEEDE\|EEEDE]]                                                          | 8:07 PM - October 15, 2025 | <ul></ul>                                         |
+| [[Navigation notes/_Home Base\|_Home Base]]                                            | 8:02 PM - October 15, 2025 | <ul></ul>                                         |
+| [[Focus Archive\|Focus Archive]]                                                       | 7:59 PM - October 15, 2025 | <ul></ul>                                         |
+| [[Double meanings\|Double meanings]]                                                   | 5:36 PM - October 15, 2025 | <ul></ul>                                         |
+| [[Many notes and files/Events/Examen Topdesk KT3\|Examen Topdesk KT3]]                 | 4:17 PM - October 14, 2025 | <ul><li>#event</li><li>#education</li></ul>       |
+| [[Examen 15 October\|Examen 15 October]]                                               | 4:11 PM - October 14, 2025 | <ul></ul>                                         |
+| [[Many notes and files/06-Personal Hub/Do I believe in god\|Do I believe in god]]      | 4:10 PM - October 14, 2025 | <ul><li>#spirituality</li><li>#religion</li></ul> |
+| [[Many notes and files/08-The Library/Video/Video by I Am Rey 2\|Video by I Am Rey 2]] | 4:10 PM - October 14, 2025 | <ul><li>#video</li><li>#spirituality</li></ul>    |
+| [[Many notes and files/08-The Library/Books/Sublimia Syndrome\|Sublimia Syndrome]]     | 2:36 PM - October 14, 2025 | <ul><li>#book</li></ul>                           |
+| [[Tags\|Tags]]                                                                         | 2:30 PM - October 14, 2025 | <ul></ul>                                         |
+| [[Many notes and files/_templates/Basic note template\|Basic note template]]           | 2:20 PM - October 14, 2025 | <ul></ul>                                         |
 
 { .block-language-dataview}`
 
 ### Most Connected
 
-| Note                                                                                                                              | Connections | Links Out |
-| --------------------------------------------------------------------------------------------------------------------------------- | ----------- | --------- |
-| [[img/_attachments/_Excalidraw/Add to Site.excalidraw\|Add to Site.excalidraw]]                                                | 1           | 0         |
-| [[img/_attachments/_Excalidraw/Drawing 2025-05-14 21.37.21.excalidraw\|Drawing 2025-05-14 21.37.21.excalidraw]]                | 1           | 0         |
-| [[Many notes and files/Concepts/Body first living\|Body first living]]                                                         | 1           | 0         |
-| [[Many notes and files/Concepts/Radical alignment\|Radical alignment]]                                                         | 1           | 0         |
-| [[_Look back/01-Home/01-Home\|01-Home]]                                                                                        | 1           | 0         |
-| [[_Look back/01-Home/what-is-this/Quick syntax summary (copy, paste reference)\|Quick syntax summary (copy, paste reference)]] | 1           | 0         |
-| [[_Look back/02-Atlas/02-Atlas\|02-Atlas]]                                                                                     | 1           | 0         |
-| [[_Look back/03-Workshop/03-Workshop\|03-Workshop]]                                                                            | 1           | 0         |
-| [[_Look back/04-Vault/04-Vault\|04-Vault]]                                                                                     | 1           | 0         |
-| [[_Look back/04-Vault/collections/Creative with Amel\|Creative with Amel]]                                                     | 1           | 0         |
+| Note                                                                                                               | Connections | Links Out |
+| ------------------------------------------------------------------------------------------------------------------ | ----------- | --------- |
+| [[Many notes and files/06-Personal Hub/Do I believe in god\|Do I believe in god]]                               | 1           | 0         |
+| [[Many notes and files/Concepts/Body first living\|Body first living]]                                          | 1           | 0         |
+| [[Many notes and files/Concepts/Radical alignment\|Radical alignment]]                                          | 1           | 0         |
+| [[img/_attachments/_Excalidraw/Add to Site.excalidraw\|Add to Site.excalidraw]]                                 | 1           | 0         |
+| [[img/_attachments/_Excalidraw/Drawing 2025-05-14 21.37.21.excalidraw\|Drawing 2025-05-14 21.37.21.excalidraw]] | 1           | 0         |
+| [[Navigation notes/Exploration\|Exploration]]                                                                   | 1           | 0         |
+| [[Navigation notes/Personal Hub\|Personal Hub]]                                                                 | 1           | 0         |
+| [[Navigation notes/All Concepts\|All Concepts]]                                                                 | 1           | 0         |
+| [[Navigation notes/Social\|Social]]                                                                             | 1           | 0         |
+| [[Navigation notes/Technical Knowledge\|Technical Knowledge]]                                                   | 1           | 0         |
 
 { .block-language-dataview}
 
 ### Random Discovery
 
 
-| Explore This                                                                       |
-| ---------------------------------------------------------------------------------- |
-| [[img/_attachments/_Excalidraw/Add to Site.excalidraw\|Add to Site.excalidraw]] |
+| Explore This                            |
+| --------------------------------------- |
+| [[Double meanings\|Double meanings]] |
 
 { .block-language-dataview}
 
@@ -145,12 +145,15 @@ These are mostly used for me to clear things up and explain what meaning I used 
 
 | Status | Count |
 | ------ | ----- |
-| 📄     | 73    |
+| 📄     | 82    |
 | 📄     | 29    |
 | 📄     | 9     |
 | 📄     | 6     |
 | 📄     | 5     |
 | 📄     | 2     |
+| 📄     | 1     |
+| 📄     | 1     |
+| 📄     | 1     |
 | 📄     | 1     |
 | 📄     | 1     |
 | 📄     | 1     |
