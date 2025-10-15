@@ -4055,28 +4055,32 @@ tr:last-child td {
 
 
 
-/* Digital garden focus cards — paste into a CSS snippet and enable it in Appearance > CSS snippets */
+/* Digital garden focus cards — enable as a CSS snippet in Appearance > CSS snippets */
 .dg-focus-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 0.8rem;
+  gap: 0.9rem;
   margin: 0.6rem 0;
+  align-items: start;
 }
 
 .dg-focus-card {
   padding: 0.9rem;
   border-radius: 10px;
-  background: var(--background-modifier-card); /* respects theme */
+  background: var(--background-modifier-card);
   box-shadow: 0 6px 18px rgba(0,0,0,0.04);
   border: 1px solid rgba(0,0,0,0.04);
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .dg-focus-quote {
   font-size: 1.02rem;
   line-height: 1.25;
-  margin: 0 0 0.5rem 0;
-  padding-left: 0.4rem;
-  border-left: 3px solid var(--text-accent);
+  margin: 0 0 0.6rem 0;
+  padding-left: 0.45rem;
+  border-left: 3px solid var(--text-accent); /* subtle quote accent */
 }
 
 .dg-focus-meta {
@@ -4085,34 +4089,22 @@ tr:last-child td {
   display:flex;
   gap:0.4rem;
   align-items:center;
+  justify-content: flex-start;
+  margin-top: 0.2rem;
 }
 
 .dg-focus-link {
   text-decoration: none;
   font-weight: 600;
+  color: inherit;
 }
 
 .dg-focus-small {
   font-size: 0.82rem;
   color: var(--text-muted);
-  margin-left: 0.4rem;
+  margin-left: 0.3rem;
 }
 
-.dg-focus-actions {
-  margin-top: 0.6rem;
-  display:flex;
-  justify-content:flex-end;
-}
-
-.dg-focus-btn {
-  background: transparent;
-  border: 1px solid var(--text-accent);
-  padding: 0.28rem 0.6rem;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.85rem;
-}
-.dg-focus-btn:hover { opacity: 0.95; transform: translateY(-1px); transition: .12s ease; }
 
 
 /* ============================================
