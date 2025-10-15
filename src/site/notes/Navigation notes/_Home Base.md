@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/navigation-notes/home-base/","tags":["gardenEntry"],"noteIcon":"","created":"2025-10-02T18:10:01.621+02:00","updated":"2025-10-15T20:30:23.938+02:00"}
+{"dg-publish":true,"permalink":"/navigation-notes/home-base/","tags":["gardenEntry"],"noteIcon":"","created":"2025-10-02T18:10:01.621+02:00","updated":"2025-10-15T20:33:05.427+02:00"}
 ---
 
 
@@ -69,7 +69,7 @@ Mail: gerardvdlinde@live.nl
 ### Recently Active
 | Note                                                                                      | Updated                    | Tags                                              |
 | ----------------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------- |
-| [[Navigation notes/_Home Base\|_Home Base]]                                            | 8:30 PM - October 15, 2025 | <ul></ul>                                         |
+| [[Navigation notes/_Home Base\|_Home Base]]                                            | 8:33 PM - October 15, 2025 | <ul></ul>                                         |
 | [[Garden/Focus/Teede\|Teede]]                                                          | 8:11 PM - October 15, 2025 | <ul></ul>                                         |
 | [[Garden/Focus/Nooo\|Nooo]]                                                            | 8:11 PM - October 15, 2025 | <ul></ul>                                         |
 | [[Garden/Focus/EEEDE\|EEEDE]]                                                          | 8:11 PM - October 15, 2025 | <ul></ul>                                         |
