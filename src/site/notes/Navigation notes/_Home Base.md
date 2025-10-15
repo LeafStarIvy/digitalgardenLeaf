@@ -67,11 +67,11 @@ These are mostly used for me to clear things up and explain what meaning I used 
 ### Recently Active
 | Note                                                                                      | Updated                    | Tags                                              |
 | ----------------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------- |
-| [[Garden/Focus/Nooo\|Nooo]]                                                            | 8:10 PM - October 15, 2025 | <ul></ul>                                         |
-| [[Garden/Focus/Teede\|Teede]]                                                          | 8:10 PM - October 15, 2025 | <ul></ul>                                         |
-| [[Garden/Focus/Atomic\|Atomic]]                                                        | 8:08 PM - October 15, 2025 | <ul></ul>                                         |
+| [[Garden/Focus/Teede\|Teede]]                                                          | 8:11 PM - October 15, 2025 | <ul></ul>                                         |
+| [[Garden/Focus/Nooo\|Nooo]]                                                            | 8:11 PM - October 15, 2025 | <ul></ul>                                         |
+| [[Garden/Focus/EEEDE\|EEEDE]]                                                          | 8:11 PM - October 15, 2025 | <ul></ul>                                         |
+| [[Garden/Focus/Atomic\|Atomic]]                                                        | 8:11 PM - October 15, 2025 | <ul></ul>                                         |
 | [[Focus\|Focus]]                                                                       | 8:08 PM - October 15, 2025 | <ul></ul>                                         |
-| [[Garden/Focus/EEEDE\|EEEDE]]                                                          | 8:07 PM - October 15, 2025 | <ul></ul>                                         |
 | [[Navigation notes/_Home Base\|_Home Base]]                                            | 8:02 PM - October 15, 2025 | <ul></ul>                                         |
 | [[Focus Archive\|Focus Archive]]                                                       | 7:59 PM - October 15, 2025 | <ul></ul>                                         |
 | [[Double meanings\|Double meanings]]                                                   | 5:36 PM - October 15, 2025 | <ul></ul>                                         |

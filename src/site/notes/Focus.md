@@ -1,9 +1,7 @@
 ---
-{"dg-publish":true,"permalink":"/focus/","noteIcon":"","created":"2025-10-15T19:51:18.830+02:00","updated":"2025-10-15T19:52:58.677+02:00"}
+{"dg-publish":true,"permalink":"/focus/","noteIcon":"","created":"2025-10-15T19:51:18.830+02:00","updated":"2025-10-15T20:08:15.449+02:00"}
 ---
 
 
 
-
-
-<p><span>No active focus items — add an atomic note with <code>in_focus: true</code>.</span></p>
+<blockquote><span>Every time you check for something trivial, you train your mind to expect distraction.</span></blockquote><p><span><a data-href="Teede" href="Teede" class="internal-link" target="_blank" rel="noopener nofollow">Teede</a> • Cal Newport - Deep Work • 2025-10-15T00:00:00.000+02:00</span></p><p><span></span></p><blockquote><span>Understanding is compression: if you can’t compress an idea, you don’t yet understand it.</span></blockquote><p><span><a data-href="Atomic" href="Atomic" class="internal-link" target="_blank" rel="noopener nofollow">Atomic</a> • Andy Matuschak - Quantum Country • 2025-10-13T00:00:00.000+02:00</span></p><p><span></span></p><blockquote><span>You become what you repeatedly tell yourself you are.</span></blockquote><p><span><a data-href="Nooo" href="Nooo" class="internal-link" target="_blank" rel="noopener nofollow">Nooo</a> • James Clear - Atomic Habits • 2025-10-12T00:00:00.000+02:00</span></p><p><span></span></p><blockquote><span>Between stimulus and response, there is a pause — that’s where choice lives.</span></blockquote><p><span><a data-href="EEEDE" href="EEEDE" class="internal-link" target="_blank" rel="noopener nofollow">EEEDE</a> • Stoicism / Epictetus • 2025-10-10T00:00:00.000+02:00</span></p><p><span></span></p>

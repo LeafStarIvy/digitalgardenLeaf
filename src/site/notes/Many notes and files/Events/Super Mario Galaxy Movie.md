@@ -12,7 +12,7 @@
 **Date:** 2026-04-03T00:00:00.000+02:00 
 **Category:** 🎞️Movie 
 **Status:** ⏳ Upcoming 
-**Days Until:** 5 months, 3 weeks days
+**Days Until:** 5 months, 2 weeks, 5 days days
 
 ## 🎯 Why I'm Looking Forward to This
 
@@ -24,4 +24,4 @@ So I am waiting for this to be released. And I will buy a ticket as soon as it i
 
 ---
 
-_Last updated: 2025-10-13T00:00:00.000+02:00_
+_Last updated: 2025-10-15T00:00:00.000+02:00_
