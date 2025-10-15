@@ -4055,13 +4055,13 @@ tr:last-child td {
    SECTION 23: Focus quotes
    ============================================ */
 
-/* Digital garden focus cards — enable as a CSS snippet in Appearance > CSS snippets */
+/* Digital Garden Focus Cards */
 .dg-focus-grid {
   display: grid;
   gap: 0.9rem;
   margin: 0.6rem 0;
-  align-items: stretch;    /* ensure rows stretch to equal height */
-  grid-auto-rows: 1fr;     /* force equal-height rows */
+  align-items: stretch;
+  grid-auto-rows: 1fr;
 }
 
 .dg-focus-card {
@@ -4099,7 +4099,6 @@ tr:last-child td {
   text-decoration: none;
   font-weight: 600;
   color: inherit;
-  cursor: pointer;
 }
 
 .dg-focus-small {
@@ -4107,6 +4106,7 @@ tr:last-child td {
   color: var(--text-muted);
   margin-left: 0.3rem;
 }
+
 
 
 
