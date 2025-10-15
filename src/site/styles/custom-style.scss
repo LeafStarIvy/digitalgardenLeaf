@@ -4055,576 +4055,64 @@ tr:last-child td {
 
 
 
-/* ============================================
-   PREMIUM ADAPTIVE SPINE & RIBCAGE SYSTEM
-   Seamless anatomical structure with superior visual quality
-   ============================================ */
-
-/* Ensure content container is positioned */
-.content {
-  position: relative;
+/* Digital garden focus cards — paste into a CSS snippet and enable it in Appearance > CSS snippets */
+.dg-focus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.8rem;
+  margin: 0.6rem 0;
 }
 
-/* Main spine container */
-.spine-ribcage {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 900px;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
+.dg-focus-card {
+  padding: 0.9rem;
+  border-radius: 10px;
+  background: var(--background-modifier-card); /* respects theme */
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0.04);
 }
 
-/* Cervical spine (C1-C7: top 12% of content) */
-.spine-ribcage::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(38px, 4vw, 52px);
-  height: 12%;
-  min-height: 80px;
-  max-height: 140px;
-  
-  /* Premium vertebral structure */
-  background: 
-    /* Vertebral bodies with intervertebral discs */
-    repeating-linear-gradient(
-      0deg,
-      transparent 0px,
-      transparent 14px,
-      /* Superior endplate */
-      rgba(255, 255, 255, 0.14) 14px,
-      rgba(255, 255, 255, 0.14) 15px,
-      /* Disc space */
-      rgba(255, 255, 255, 0.08) 15px,
-      rgba(255, 255, 255, 0.10) 17px,
-      rgba(255, 255, 255, 0.08) 18px,
-      /* Vertebral body - gradient for depth */
-      rgba(255, 255, 255, 0.16) 18px,
-      rgba(255, 255, 255, 0.22) 21px,
-      rgba(255, 255, 255, 0.28) 24px,
-      rgba(255, 255, 255, 0.32) 27px,
-      rgba(255, 255, 255, 0.28) 30px,
-      rgba(255, 255, 255, 0.22) 33px,
-      rgba(255, 255, 255, 0.16) 36px,
-      /* Inferior endplate */
-      rgba(255, 255, 255, 0.08) 36px,
-      rgba(255, 255, 255, 0.10) 38px,
-      rgba(255, 255, 255, 0.08) 39px,
-      rgba(255, 255, 255, 0.14) 39px,
-      rgba(255, 255, 255, 0.14) 40px,
-      transparent 40px,
-      transparent 54px
-    ),
-    /* Spinal cord with meninges */
-    linear-gradient(
-      90deg,
-      transparent 0%,
-      transparent calc(50% - 3px),
-      rgba(255, 255, 255, 0.10) calc(50% - 3px),
-      rgba(255, 255, 255, 0.16) calc(50% - 2px),
-      rgba(255, 255, 255, 0.24) calc(50% - 1px),
-      rgba(255, 255, 255, 0.32) 50%,
-      rgba(255, 255, 255, 0.24) calc(50% + 1px),
-      rgba(255, 255, 255, 0.16) calc(50% + 2px),
-      rgba(255, 255, 255, 0.10) calc(50% + 3px),
-      transparent calc(50% + 3px),
-      transparent 100%
-    ),
-    /* Subtle depth shading */
-    radial-gradient(
-      ellipse at center,
-      rgba(0, 0, 0, 0.04) 0%,
-      transparent 60%
-    );
-  
-  backdrop-filter: blur(10px) saturate(1.25) brightness(1.02);
-  -webkit-backdrop-filter: blur(10px) saturate(1.25) brightness(1.02);
-  border-left: 1.5px solid rgba(255, 255, 255, 0.18);
-  border-right: 1.5px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 
-    /* Inner glow */
-    inset 0 0 30px rgba(255, 255, 255, 0.10),
-    inset 0 3px 6px rgba(255, 255, 255, 0.14),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.06),
-    /* Outer depth */
-    0 0 24px rgba(0, 0, 0, 0.12),
-    0 6px 16px rgba(0, 0, 0, 0.08),
-    0 2px 4px rgba(0, 0, 0, 0.04);
-  border-radius: 3px 3px 2px 2px;
+.dg-focus-quote {
+  font-size: 1.02rem;
+  line-height: 1.25;
+  margin: 0 0 0.5rem 0;
+  padding-left: 0.4rem;
+  border-left: 3px solid var(--text-accent);
 }
 
-/* Thoracic and lumbar spine (T1-L5: 12% to 100%) - CONNECTS SEAMLESSLY */
-.spine-ribcage::after {
-  content: '';
-  position: absolute;
-  top: 12%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(52px, 5vw, 76px);
-  height: 88%;
-  
-  /* Premium thoracic/lumbar vertebrae with superior detail */
-  background: 
-    /* Spinous processes (posterior projections) */
-    repeating-linear-gradient(
-      0deg,
-      transparent 0px,
-      transparent 22px,
-      /* Process tip */
-      rgba(255, 255, 255, 0.16) 22px,
-      rgba(255, 255, 255, 0.18) 24px,
-      rgba(255, 255, 255, 0.16) 26px,
-      transparent 26px,
-      transparent 30px,
-      /* Lamina */
-      rgba(255, 255, 255, 0.18) 30px,
-      rgba(255, 255, 255, 0.20) 32px,
-      rgba(255, 255, 255, 0.18) 34px,
-      /* Disc space */
-      rgba(255, 255, 255, 0.08) 34px,
-      rgba(255, 255, 255, 0.12) 37px,
-      rgba(255, 255, 255, 0.08) 40px,
-      /* Vertebral body - larger, more detailed */
-      rgba(255, 255, 255, 0.18) 40px,
-      rgba(255, 255, 255, 0.26) 44px,
-      rgba(255, 255, 255, 0.34) 49px,
-      rgba(255, 255, 255, 0.40) 55px,
-      rgba(255, 255, 255, 0.44) 61px,
-      rgba(255, 255, 255, 0.40) 67px,
-      rgba(255, 255, 255, 0.34) 73px,
-      rgba(255, 255, 255, 0.26) 78px,
-      rgba(255, 255, 255, 0.18) 82px,
-      /* Disc space */
-      rgba(255, 255, 255, 0.08) 82px,
-      rgba(255, 255, 255, 0.12) 85px,
-      rgba(255, 255, 255, 0.08) 88px,
-      /* Lamina */
-      rgba(255, 255, 255, 0.18) 88px,
-      rgba(255, 255, 255, 0.20) 90px,
-      rgba(255, 255, 255, 0.18) 92px,
-      transparent 92px,
-      transparent 114px
-    ),
-    /* Spinal cord - thicker in thoracic region */
-    linear-gradient(
-      90deg,
-      transparent 0%,
-      transparent calc(50% - 4px),
-      rgba(255, 255, 255, 0.10) calc(50% - 4px),
-      rgba(255, 255, 255, 0.18) calc(50% - 2px),
-      rgba(255, 255, 255, 0.28) calc(50% - 1px),
-      rgba(255, 255, 255, 0.36) 50%,
-      rgba(255, 255, 255, 0.28) calc(50% + 1px),
-      rgba(255, 255, 255, 0.18) calc(50% + 2px),
-      rgba(255, 255, 255, 0.10) calc(50% + 4px),
-      transparent calc(50% + 4px),
-      transparent 100%
-    ),
-    /* Vertebral foramen (darker center) */
-    radial-gradient(
-      ellipse at center,
-      rgba(0, 0, 0, 0.14) 0%,
-      rgba(0, 0, 0, 0.08) 25%,
-      rgba(0, 0, 0, 0.04) 40%,
-      transparent 55%
-    ),
-    /* Subtle lateral gradient for 3D effect */
-    linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.03) 0%,
-      transparent 20%,
-      transparent 80%,
-      rgba(0, 0, 0, 0.03) 100%
-    );
-  
-  backdrop-filter: blur(12px) saturate(1.35) brightness(1.02);
-  -webkit-backdrop-filter: blur(12px) saturate(1.35) brightness(1.02);
-  border-left: 2px solid rgba(255, 255, 255, 0.20);
-  border-right: 2px solid rgba(255, 255, 255, 0.20);
-  box-shadow: 
-    /* Premium inner glow */
-    inset 0 0 45px rgba(255, 255, 255, 0.12),
-    inset 0 6px 12px rgba(255, 255, 255, 0.16),
-    inset 0 -6px 12px rgba(0, 0, 0, 0.10),
-    inset 2px 0 8px rgba(255, 255, 255, 0.08),
-    inset -2px 0 8px rgba(255, 255, 255, 0.08),
-    /* Premium outer shadow */
-    0 0 36px rgba(0, 0, 0, 0.16),
-    0 8px 20px rgba(0, 0, 0, 0.12),
-    0 3px 6px rgba(0, 0, 0, 0.06);
-  border-radius: 2px 2px 4px 4px;
+.dg-focus-meta {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  display:flex;
+  gap:0.4rem;
+  align-items:center;
 }
 
-/* ========================================
-   PREMIUM RIB SYSTEM - Enhanced visual quality
-   ======================================== */
-
-/* Upper ribs (T1-T5) - RIGHT SIDE */
-.spine-ribcage .rib-upper-r1,
-.spine-ribcage .rib-upper-r2,
-.spine-ribcage .rib-upper-r3,
-.spine-ribcage .rib-upper-r4,
-.spine-ribcage .rib-upper-r5 {
-  position: absolute;
-  left: 50%;
-  height: 2.5px;
-  background: 
-    /* Premium gradient with anatomical curve */
-    linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.26),
-      rgba(255, 255, 255, 0.32) 12%,
-      rgba(255, 255, 255, 0.28) 25%,
-      rgba(255, 255, 255, 0.22) 50%,
-      rgba(255, 255, 255, 0.16) 70%,
-      rgba(255, 255, 255, 0.10) 85%,
-      transparent 100%
-    );
-  border-radius: 0 50% 50% 0;
-  backdrop-filter: blur(6px) saturate(1.2);
-  box-shadow: 
-    0 2px 8px rgba(255, 255, 255, 0.14),
-    0 1px 3px rgba(255, 255, 255, 0.10),
-    inset 0 1px 0 rgba(255, 255, 255, 0.20),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.08);
-  transform-origin: left center;
+.dg-focus-link {
+  text-decoration: none;
+  font-weight: 600;
 }
 
-.spine-ribcage .rib-upper-r1 { top: 13%; width: clamp(75px, 8.5vw, 100px); transform: rotate(-4deg); }
-.spine-ribcage .rib-upper-r2 { top: 16%; width: clamp(90px, 9.5vw, 115px); transform: rotate(-7deg); }
-.spine-ribcage .rib-upper-r3 { top: 19%; width: clamp(100px, 10.5vw, 125px); transform: rotate(-10deg); }
-.spine-ribcage .rib-upper-r4 { top: 22%; width: clamp(110px, 11.5vw, 135px); transform: rotate(-13deg); }
-.spine-ribcage .rib-upper-r5 { top: 25%; width: clamp(120px, 12.5vw, 145px); transform: rotate(-15deg); }
-
-/* Upper ribs - LEFT SIDE */
-.spine-ribcage .rib-upper-l1,
-.spine-ribcage .rib-upper-l2,
-.spine-ribcage .rib-upper-l3,
-.spine-ribcage .rib-upper-l4,
-.spine-ribcage .rib-upper-l5 {
-  position: absolute;
-  right: 50%;
-  height: 2.5px;
-  background: 
-    linear-gradient(
-      270deg,
-      rgba(255, 255, 255, 0.26),
-      rgba(255, 255, 255, 0.32) 12%,
-      rgba(255, 255, 255, 0.28) 25%,
-      rgba(255, 255, 255, 0.22) 50%,
-      rgba(255, 255, 255, 0.16) 70%,
-      rgba(255, 255, 255, 0.10) 85%,
-      transparent 100%
-    );
-  border-radius: 50% 0 0 50%;
-  backdrop-filter: blur(6px) saturate(1.2);
-  box-shadow: 
-    0 2px 8px rgba(255, 255, 255, 0.14),
-    0 1px 3px rgba(255, 255, 255, 0.10),
-    inset 0 1px 0 rgba(255, 255, 255, 0.20),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.08);
-  transform-origin: right center;
+.dg-focus-small {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-left: 0.4rem;
 }
 
-.spine-ribcage .rib-upper-l1 { top: 13%; width: clamp(75px, 8.5vw, 100px); transform: rotate(4deg); }
-.spine-ribcage .rib-upper-l2 { top: 16%; width: clamp(90px, 9.5vw, 115px); transform: rotate(7deg); }
-.spine-ribcage .rib-upper-l3 { top: 19%; width: clamp(100px, 10.5vw, 125px); transform: rotate(10deg); }
-.spine-ribcage .rib-upper-l4 { top: 22%; width: clamp(110px, 11.5vw, 135px); transform: rotate(13deg); }
-.spine-ribcage .rib-upper-l5 { top: 25%; width: clamp(120px, 12.5vw, 145px); transform: rotate(15deg); }
-
-/* Middle ribs (T6-T12 - true ribs, most prominent) - RIGHT SIDE */
-.spine-ribcage .rib-mid-r1,
-.spine-ribcage .rib-mid-r2,
-.spine-ribcage .rib-mid-r3,
-.spine-ribcage .rib-mid-r4,
-.spine-ribcage .rib-mid-r5,
-.spine-ribcage .rib-mid-r6,
-.spine-ribcage .rib-mid-r7 {
-  position: absolute;
-  left: 50%;
-  height: 3px;
-  background: 
-    /* Premium gradient with depth */
-    linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.30),
-      rgba(255, 255, 255, 0.38) 10%,
-      rgba(255, 255, 255, 0.34) 22%,
-      rgba(255, 255, 255, 0.26) 45%,
-      rgba(255, 255, 255, 0.18) 65%,
-      rgba(255, 255, 255, 0.12) 80%,
-      transparent 100%
-    );
-  border-radius: 0 50% 50% 0;
-  backdrop-filter: blur(7px) saturate(1.25);
-  box-shadow: 
-    0 3px 10px rgba(255, 255, 255, 0.16),
-    0 1px 4px rgba(255, 255, 255, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.24),
-    inset 0 -1px 3px rgba(0, 0, 0, 0.10);
-  transform-origin: left center;
+.dg-focus-actions {
+  margin-top: 0.6rem;
+  display:flex;
+  justify-content:flex-end;
 }
 
-.spine-ribcage .rib-mid-r1 { top: 29%; width: clamp(130px, 14vw, 165px); transform: rotate(-17deg); }
-.spine-ribcage .rib-mid-r2 { top: 33%; width: clamp(145px, 16vw, 185px); transform: rotate(-20deg); }
-.spine-ribcage .rib-mid-r3 { top: 37%; width: clamp(160px, 18vw, 200px); transform: rotate(-23deg); }
-.spine-ribcage .rib-mid-r4 { top: 41%; width: clamp(170px, 19vw, 210px); transform: rotate(-25deg); }
-.spine-ribcage .rib-mid-r5 { top: 45%; width: clamp(175px, 20vw, 215px); transform: rotate(-26deg); }
-.spine-ribcage .rib-mid-r6 { top: 49%; width: clamp(170px, 19vw, 205px); transform: rotate(-25deg); }
-.spine-ribcage .rib-mid-r7 { top: 53%; width: clamp(160px, 18vw, 195px); transform: rotate(-23deg); }
-
-/* Middle ribs - LEFT SIDE */
-.spine-ribcage .rib-mid-l1,
-.spine-ribcage .rib-mid-l2,
-.spine-ribcage .rib-mid-l3,
-.spine-ribcage .rib-mid-l4,
-.spine-ribcage .rib-mid-l5,
-.spine-ribcage .rib-mid-l6,
-.spine-ribcage .rib-mid-l7 {
-  position: absolute;
-  right: 50%;
-  height: 3px;
-  background: 
-    linear-gradient(
-      270deg,
-      rgba(255, 255, 255, 0.30),
-      rgba(255, 255, 255, 0.38) 10%,
-      rgba(255, 255, 255, 0.34) 22%,
-      rgba(255, 255, 255, 0.26) 45%,
-      rgba(255, 255, 255, 0.18) 65%,
-      rgba(255, 255, 255, 0.12) 80%,
-      transparent 100%
-    );
-  border-radius: 50% 0 0 50%;
-  backdrop-filter: blur(7px) saturate(1.25);
-  box-shadow: 
-    0 3px 10px rgba(255, 255, 255, 0.16),
-    0 1px 4px rgba(255, 255, 255, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.24),
-    inset 0 -1px 3px rgba(0, 0, 0, 0.10);
-  transform-origin: right center;
+.dg-focus-btn {
+  background: transparent;
+  border: 1px solid var(--text-accent);
+  padding: 0.28rem 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
 }
-
-.spine-ribcage .rib-mid-l1 { top: 29%; width: clamp(130px, 14vw, 165px); transform: rotate(17deg); }
-.spine-ribcage .rib-mid-l2 { top: 33%; width: clamp(145px, 16vw, 185px); transform: rotate(20deg); }
-.spine-ribcage .rib-mid-l3 { top: 37%; width: clamp(160px, 18vw, 200px); transform: rotate(23deg); }
-.spine-ribcage .rib-mid-l4 { top: 41%; width: clamp(170px, 19vw, 210px); transform: rotate(25deg); }
-.spine-ribcage .rib-mid-l5 { top: 45%; width: clamp(175px, 20vw, 215px); transform: rotate(26deg); }
-.spine-ribcage .rib-mid-l6 { top: 49%; width: clamp(170px, 19vw, 205px); transform: rotate(25deg); }
-.spine-ribcage .rib-mid-l7 { top: 53%; width: clamp(160px, 18vw, 195px); transform: rotate(23deg); }
-
-/* Lower ribs (false and floating) - RIGHT SIDE */
-.spine-ribcage .rib-lower-r1,
-.spine-ribcage .rib-lower-r2,
-.spine-ribcage .rib-lower-r3,
-.spine-ribcage .rib-lower-r4,
-.spine-ribcage .rib-lower-r5 {
-  position: absolute;
-  left: 50%;
-  height: 2.5px;
-  background: 
-    linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.24),
-      rgba(255, 255, 255, 0.28) 18%,
-      rgba(255, 255, 255, 0.22) 42%,
-      rgba(255, 255, 255, 0.16) 62%,
-      rgba(255, 255, 255, 0.10) 80%,
-      transparent 100%
-    );
-  border-radius: 0 50% 50% 0;
-  backdrop-filter: blur(6px) saturate(1.2);
-  box-shadow: 
-    0 2px 8px rgba(255, 255, 255, 0.14),
-    0 1px 3px rgba(255, 255, 255, 0.10),
-    inset 0 1px 0 rgba(255, 255, 255, 0.20),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.08);
-  transform-origin: left center;
-}
-
-.spine-ribcage .rib-lower-r1 { top: 57%; width: clamp(150px, 17vw, 185px); transform: rotate(-21deg); }
-.spine-ribcage .rib-lower-r2 { top: 61%; width: clamp(140px, 16vw, 170px); transform: rotate(-19deg); }
-.spine-ribcage .rib-lower-r3 { top: 65%; width: clamp(130px, 14vw, 155px); transform: rotate(-17deg); }
-.spine-ribcage .rib-lower-r4 { top: 69%; width: clamp(115px, 13vw, 140px); transform: rotate(-15deg); }
-.spine-ribcage .rib-lower-r5 { top: 73%; width: clamp(100px, 11vw, 125px); transform: rotate(-12deg); }
-
-/* Lower ribs - LEFT SIDE */
-.spine-ribcage .rib-lower-l1,
-.spine-ribcage .rib-lower-l2,
-.spine-ribcage .rib-lower-l3,
-.spine-ribcage .rib-lower-l4,
-.spine-ribcage .rib-lower-l5 {
-  position: absolute;
-  right: 50%;
-  height: 2.5px;
-  background: 
-    linear-gradient(
-      270deg,
-      rgba(255, 255, 255, 0.24),
-      rgba(255, 255, 255, 0.28) 18%,
-      rgba(255, 255, 255, 0.22) 42%,
-      rgba(255, 255, 255, 0.16) 62%,
-      rgba(255, 255, 255, 0.10) 80%,
-      transparent 100%
-    );
-  border-radius: 50% 0 0 50%;
-  backdrop-filter: blur(6px) saturate(1.2);
-  box-shadow: 
-    0 2px 8px rgba(255, 255, 255, 0.14),
-    0 1px 3px rgba(255, 255, 255, 0.10),
-    inset 0 1px 0 rgba(255, 255, 255, 0.20),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.08);
-  transform-origin: right center;
-}
-
-.spine-ribcage .rib-lower-l1 { top: 57%; width: clamp(150px, 17vw, 185px); transform: rotate(21deg); }
-.spine-ribcage .rib-lower-l2 { top: 61%; width: clamp(140px, 16vw, 170px); transform: rotate(19deg); }
-.spine-ribcage .rib-lower-l3 { top: 65%; width: clamp(130px, 14vw, 155px); transform: rotate(17deg); }
-.spine-ribcage .rib-lower-l4 { top: 69%; width: clamp(115px, 13vw, 140px); transform: rotate(15deg); }
-.spine-ribcage .rib-lower-l5 { top: 73%; width: clamp(100px, 11vw, 125px); transform: rotate(12deg); }
-
-/* Lumbar ribs (vestigial) - RIGHT SIDE */
-.spine-ribcage .rib-lumbar-r1,
-.spine-ribcage .rib-lumbar-r2 {
-  position: absolute;
-  left: 50%;
-  height: 2px;
-  background: 
-    linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.20),
-      rgba(255, 255, 255, 0.24) 24%,
-      rgba(255, 255, 255, 0.16) 58%,
-      rgba(255, 255, 255, 0.08) 82%,
-      transparent 100%
-    );
-  border-radius: 0 50% 50% 0;
-  backdrop-filter: blur(5px);
-  box-shadow: 
-    0 1px 6px rgba(255, 255, 255, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16);
-  transform-origin: left center;
-}
-
-.spine-ribcage .rib-lumbar-r1 { top: 77%; width: clamp(85px, 9.5vw, 110px); transform: rotate(-10deg); }
-.spine-ribcage .rib-lumbar-r2 { top: 81%; width: clamp(70px, 8vw, 95px); transform: rotate(-8deg); }
-
-/* Lumbar ribs - LEFT SIDE */
-.spine-ribcage .rib-lumbar-l1,
-.spine-ribcage .rib-lumbar-l2 {
-  position: absolute;
-  right: 50%;
-  height: 2px;
-  background: 
-    linear-gradient(
-      270deg,
-      rgba(255, 255, 255, 0.20),
-      rgba(255, 255, 255, 0.24) 24%,
-      rgba(255, 255, 255, 0.16) 58%,
-      rgba(255, 255, 255, 0.08) 82%,
-      transparent 100%
-    );
-  border-radius: 50% 0 0 50%;
-  backdrop-filter: blur(5px);
-  box-shadow: 
-    0 1px 6px rgba(255, 255, 255, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16);
-  transform-origin: right center;
-}
-
-.spine-ribcage .rib-lumbar-l1 { top: 77%; width: clamp(85px, 9.5vw, 110px); transform: rotate(10deg); }
-.spine-ribcage .rib-lumbar-l2 { top: 81%; width: clamp(70px, 8vw, 95px); transform: rotate(8deg); }
-
-/* ========================================
-   PREMIUM STYLE VARIANTS
-   ======================================== */
-
-/* Subtle variant */
-.spine-ribcage.spine-subtle::before,
-.spine-ribcage.spine-subtle::after {
-  opacity: 0.50;
-}
-
-.spine-ribcage.spine-subtle [class*="rib-"] {
-  opacity: 0.50;
-}
-
-/* Strong variant */
-.spine-ribcage.spine-strong::before,
-.spine-ribcage.spine-strong::after {
-  opacity: 1;
-  border-width: 3px;
-  box-shadow: 
-    inset 0 0 55px rgba(255, 255, 255, 0.16),
-    inset 0 8px 16px rgba(255, 255, 255, 0.18),
-    0 0 42px rgba(0, 0, 0, 0.20),
-    0 12px 28px rgba(0, 0, 0, 0.14);
-}
-
-.spine-ribcage.spine-strong [class*="rib-upper"],
-.spine-ribcage.spine-strong [class*="rib-lower"],
-.spine-ribcage.spine-strong [class*="rib-lumbar"] {
-  height: 3.5px;
-}
-
-.spine-ribcage.spine-strong [class*="rib-mid"] {
-  height: 4px;
-}
-
-/* Minimal variant */
-.spine-ribcage.spine-minimal::before,
-.spine-ribcage.spine-minimal::after {
-  opacity: 0.32;
-}
-
-.spine-ribcage.spine-minimal [class*="rib-"] {
-  opacity: 0.32;
-}
-
-/* ========================================
-   RESPONSIVE OPTIMIZATIONS
-   ======================================== */
-
-@media (max-width: 768px) {
-  .spine-ribcage {
-    max-width: 100%;
-  }
-  
-  .spine-ribcage::before {
-    width: clamp(32px, 4.5vw, 42px);
-  }
-  
-  .spine-ribcage::after {
-    width: clamp(42px, 5.5vw, 60px);
-  }
-}
-
-@media (max-width: 480px) {
-  .spine-ribcage [class*="rib-"] {
-    opacity: 0.70;
-  }
-  
-  .spine-ribcage::before,
-  .spine-ribcage::after {
-    opacity: 0.80;
-  }
-}
-
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .spine-ribcage *,
-  .spine-ribcage::before,
-  .spine-ribcage::after {
-    animation: none !important;
-    transition: none !important;
-  }
-}
+.dg-focus-btn:hover { opacity: 0.95; transform: translateY(-1px); transition: .12s ease; }
 
 
 /* ============================================
