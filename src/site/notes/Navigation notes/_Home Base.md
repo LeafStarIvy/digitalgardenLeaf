@@ -1,10 +1,10 @@
 ---
-{"dg-publish":true,"permalink":"/navigation-notes/home-base/","tags":["gardenEntry"],"noteIcon":"","created":"2025-10-02T18:10:01.621+02:00","updated":"2025-10-15T20:38:30.435+02:00"}
+{"dg-publish":true,"permalink":"/navigation-notes/home-base/","tags":["gardenEntry"],"noteIcon":"","created":"2025-10-02T18:10:01.621+02:00","updated":"2025-10-22T16:00:37.147+02:00"}
 ---
 
 
 
-
+<h2><span>Hubs (mode: both)</span></h2><div><table class="dataview table-view-table"><thead class="table-view-thead"><tr class="table-view-tr-header"><th class="table-view-th"><span>Hub</span><span class="dataview small-text">2</span></th><th class="table-view-th"><span>Linked notes count</span></th></tr></thead><tbody class="table-view-tbody"><tr><td><span><a data-tooltip-position="top" aria-label="Navigation notes/All Concepts.md" data-href="Navigation notes/All Concepts.md" href="Navigation notes/All Concepts.md" class="internal-link" target="_blank" rel="noopener nofollow">All Concepts</a></span></td><td>0</td></tr><tr><td><span><a data-tooltip-position="top" aria-label="Bettering focus.md" data-href="Bettering focus.md" href="Bettering focus.md" class="internal-link" target="_blank" rel="noopener nofollow">Bettering focus</a></span></td><td>0</td></tr></tbody></table></div>
 
 
 # Welcome to My Digital Garden
@@ -67,23 +67,23 @@ Mail: gerardvdlinde@live.nl
 ## Discovery
 
 ### Recently Active
-| Note                                                                                      | Updated                    | Tags                                              |
-| ----------------------------------------------------------------------------------------- | -------------------------- | ------------------------------------------------- |
-| [[Focus\|Focus]]                                                                       | 8:46 PM - October 15, 2025 | <ul></ul>                                         |
-| [[Garden/Focus/Atomic\|Atomic]]                                                        | 8:45 PM - October 15, 2025 | <ul></ul>                                         |
-| [[Navigation notes/_Home Base\|_Home Base]]                                            | 8:38 PM - October 15, 2025 | <ul></ul>                                         |
-| [[Garden/Focus/Teede\|Teede]]                                                          | 8:11 PM - October 15, 2025 | <ul></ul>                                         |
-| [[Garden/Focus/Nooo\|Nooo]]                                                            | 8:11 PM - October 15, 2025 | <ul></ul>                                         |
-| [[Garden/Focus/EEEDE\|EEEDE]]                                                          | 8:11 PM - October 15, 2025 | <ul></ul>                                         |
-| [[Focus Archive\|Focus Archive]]                                                       | 7:59 PM - October 15, 2025 | <ul></ul>                                         |
-| [[Double meanings\|Double meanings]]                                                   | 5:36 PM - October 15, 2025 | <ul></ul>                                         |
-| [[Many notes and files/Events/Examen Topdesk KT3\|Examen Topdesk KT3]]                 | 4:17 PM - October 14, 2025 | <ul><li>#event</li><li>#education</li></ul>       |
-| [[Examen 15 October\|Examen 15 October]]                                               | 4:11 PM - October 14, 2025 | <ul></ul>                                         |
-| [[Many notes and files/06-Personal Hub/Do I believe in god\|Do I believe in god]]      | 4:10 PM - October 14, 2025 | <ul><li>#spirituality</li><li>#religion</li></ul> |
-| [[Many notes and files/08-The Library/Video/Video by I Am Rey 2\|Video by I Am Rey 2]] | 4:10 PM - October 14, 2025 | <ul><li>#video</li><li>#spirituality</li></ul>    |
-| [[Many notes and files/08-The Library/Books/Sublimia Syndrome\|Sublimia Syndrome]]     | 2:36 PM - October 14, 2025 | <ul><li>#book</li></ul>                           |
-| [[Tags\|Tags]]                                                                         | 2:30 PM - October 14, 2025 | <ul></ul>                                         |
-| [[Many notes and files/_templates/Basic note template\|Basic note template]]           | 2:20 PM - October 14, 2025 | <ul></ul>                                         |
+| Note                                                                      | Updated                    | Tags                                        |
+| ------------------------------------------------------------------------- | -------------------------- | ------------------------------------------- |
+| [[Bettering focus\|Bettering focus]]                                   | 4:01 PM - October 22, 2025 | <ul></ul>                                   |
+| [[Navigation notes/_Home Base\|_Home Base]]                            | 4:00 PM - October 22, 2025 | <ul></ul>                                   |
+| [[Navigation notes/All Concepts\|All Concepts]]                        | 3:48 PM - October 22, 2025 | <ul><li>#problem</li></ul>                  |
+| [[Slope-Maxxing\|Slope-Maxxing]]                                       | 3:14 PM - October 22, 2025 | <ul></ul>                                   |
+| [[Navigation notes/Tasks Note\|Tasks Note]]                            | 2:58 PM - October 22, 2025 | <ul></ul>                                   |
+| [[Inbox/X\|X]]                                                         | 4:37 PM - October 17, 2025 | <ul></ul>                                   |
+| [[Inbox/Focus\|Focus]]                                                 | 8:46 PM - October 15, 2025 | <ul></ul>                                   |
+| [[Garden/Focus/Atomic\|Atomic]]                                        | 8:45 PM - October 15, 2025 | <ul></ul>                                   |
+| [[Garden/Focus/Teede\|Teede]]                                          | 8:11 PM - October 15, 2025 | <ul></ul>                                   |
+| [[Garden/Focus/Nooo\|Nooo]]                                            | 8:11 PM - October 15, 2025 | <ul></ul>                                   |
+| [[Garden/Focus/EEEDE\|EEEDE]]                                          | 8:11 PM - October 15, 2025 | <ul></ul>                                   |
+| [[Inbox/Focus Archive\|Focus Archive]]                                 | 7:59 PM - October 15, 2025 | <ul></ul>                                   |
+| [[Inbox/Double meanings\|Double meanings]]                             | 5:36 PM - October 15, 2025 | <ul></ul>                                   |
+| [[Many notes and files/Events/Examen Topdesk KT3\|Examen Topdesk KT3]] | 4:17 PM - October 14, 2025 | <ul><li>#event</li><li>#education</li></ul> |
+| [[Inbox/Examen 15 October\|Examen 15 October]]                         | 4:11 PM - October 14, 2025 | <ul></ul>                                   |
 
 { .block-language-dataview}`
 
@@ -92,24 +92,24 @@ Mail: gerardvdlinde@live.nl
 | Note                                                                                                               | Connections | Links Out |
 | ------------------------------------------------------------------------------------------------------------------ | ----------- | --------- |
 | [[Many notes and files/06-Personal Hub/Do I believe in god\|Do I believe in god]]                               | 1           | 0         |
-| [[Many notes and files/Concepts/Body first living\|Body first living]]                                          | 1           | 0         |
 | [[Many notes and files/Concepts/Radical alignment\|Radical alignment]]                                          | 1           | 0         |
+| [[Many notes and files/Concepts/Body first living\|Body first living]]                                          | 1           | 0         |
 | [[img/_attachments/_Excalidraw/Add to Site.excalidraw\|Add to Site.excalidraw]]                                 | 1           | 0         |
 | [[img/_attachments/_Excalidraw/Drawing 2025-05-14 21.37.21.excalidraw\|Drawing 2025-05-14 21.37.21.excalidraw]] | 1           | 0         |
-| [[Navigation notes/Exploration\|Exploration]]                                                                   | 1           | 0         |
-| [[Navigation notes/Personal Hub\|Personal Hub]]                                                                 | 1           | 0         |
 | [[Navigation notes/All Concepts\|All Concepts]]                                                                 | 1           | 0         |
+| [[Navigation notes/Personal Hub\|Personal Hub]]                                                                 | 1           | 0         |
+| [[Navigation notes/Exploration\|Exploration]]                                                                   | 1           | 0         |
 | [[Navigation notes/Social\|Social]]                                                                             | 1           | 0         |
-| [[Navigation notes/Technical Knowledge\|Technical Knowledge]]                                                   | 1           | 0         |
+| [[Navigation notes/Systems\|Systems]]                                                                           | 1           | 0         |
 
 { .block-language-dataview}
 
 ### Random Discovery
 
 
-| Explore This                            |
-| --------------------------------------- |
-| [[Double meanings\|Double meanings]] |
+| Explore This                       |
+| ---------------------------------- |
+| [[Garden/Focus/Atomic\|Atomic]] |
 
 { .block-language-dataview}
 
@@ -147,12 +147,13 @@ Mail: gerardvdlinde@live.nl
 
 | Status | Count |
 | ------ | ----- |
-| 📄     | 82    |
+| 📄     | 85    |
 | 📄     | 29    |
 | 📄     | 9     |
 | 📄     | 6     |
 | 📄     | 5     |
 | 📄     | 2     |
+| 📄     | 1     |
 | 📄     | 1     |
 | 📄     | 1     |
 | 📄     | 1     |
