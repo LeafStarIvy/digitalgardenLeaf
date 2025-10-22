@@ -1,8 +1,8 @@
 ---
-{"dg-publish":true,"permalink":"/slope-maxxing/","noteIcon":"","created":"2025-10-22T14:02:39.429+02:00","updated":"2025-10-22T16:15:07.812+02:00"}
+{"dg-publish":true,"permalink":"/slope-maxxing/","noteIcon":"","created":"2025-10-22T14:02:39.429+02:00","updated":"2025-10-22T16:42:23.618+02:00"}
 ---
 
-[[Hub template\|Hub template]]
+[[Many notes and files/_templates/Hub template\|Hub template]]
 
 
 # To Slope-Maxx

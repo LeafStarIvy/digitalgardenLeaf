@@ -1,10 +1,10 @@
 ---
-{"dg-publish":true,"permalink":"/navigation-notes/home-base/","tags":["gardenEntry"],"noteIcon":"","created":"2025-10-02T18:10:01.621+02:00","updated":"2025-10-22T16:00:37.147+02:00"}
+{"dg-publish":true,"permalink":"/navigation-notes/home-base/","tags":["gardenEntry"],"noteIcon":"","created":"2025-10-02T18:10:01.621+02:00","updated":"2025-10-22T17:19:53.597+02:00"}
 ---
 
 
 
-<h2><span>Hubs (mode: both)</span></h2><div><table class="dataview table-view-table"><thead class="table-view-thead"><tr class="table-view-tr-header"><th class="table-view-th"><span>Hub</span><span class="dataview small-text">2</span></th><th class="table-view-th"><span>Linked notes count</span></th></tr></thead><tbody class="table-view-tbody"><tr><td><span><a data-tooltip-position="top" aria-label="Navigation notes/All Concepts.md" data-href="Navigation notes/All Concepts.md" href="Navigation notes/All Concepts.md" class="internal-link" target="_blank" rel="noopener nofollow">All Concepts</a></span></td><td>0</td></tr><tr><td><span><a data-tooltip-position="top" aria-label="Hub template.md" data-href="Hub template.md" href="Hub template.md" class="internal-link" target="_blank" rel="noopener nofollow">Hub template</a></span></td><td>0</td></tr></tbody></table></div>
+<h2><span>Hubs (mode: both)</span></h2><div><table class="dataview table-view-table"><thead class="table-view-thead"><tr class="table-view-tr-header"><th class="table-view-th"><span>Hub</span><span class="dataview small-text">2</span></th><th class="table-view-th"><span>Linked notes count</span></th></tr></thead><tbody class="table-view-tbody"><tr><td><span><a data-tooltip-position="top" aria-label="Many notes and files/_templates/Hub template.md" data-href="Many notes and files/_templates/Hub template.md" href="Many notes and files/_templates/Hub template.md" class="internal-link" target="_blank" rel="noopener nofollow">Hub template</a></span></td><td>1</td></tr><tr><td><span><a data-tooltip-position="top" aria-label="Navigation notes/All Concepts.md" data-href="Navigation notes/All Concepts.md" href="Navigation notes/All Concepts.md" class="internal-link" target="_blank" rel="noopener nofollow">All Concepts</a></span></td><td>0</td></tr></tbody></table></div>
 
 
 # Welcome to My Digital Garden
@@ -69,9 +69,9 @@ Mail: gerardvdlinde@live.nl
 ### Recently Active
 | Note                                                                      | Updated                    | Tags                                        |
 | ------------------------------------------------------------------------- | -------------------------- | ------------------------------------------- |
-| [[Hub template\|Hub template]]                                         | 4:21 PM - October 22, 2025 | <ul></ul>                                   |
-| [[Slope-Maxxing\|Slope-Maxxing]]                                       | 4:15 PM - October 22, 2025 | <ul></ul>                                   |
-| [[Navigation notes/_Home Base\|_Home Base]]                            | 4:00 PM - October 22, 2025 | <ul></ul>                                   |
+| [[Navigation notes/_Home Base\|_Home Base]]                            | 5:19 PM - October 22, 2025 | <ul></ul>                                   |
+| [[Many notes and files/_templates/Hub template\|Hub template]]         | 4:45 PM - October 22, 2025 | <ul></ul>                                   |
+| [[Slope-Maxxing\|Slope-Maxxing]]                                       | 4:42 PM - October 22, 2025 | <ul></ul>                                   |
 | [[Navigation notes/All Concepts\|All Concepts]]                        | 3:48 PM - October 22, 2025 | <ul><li>#problem</li></ul>                  |
 | [[Navigation notes/Tasks Note\|Tasks Note]]                            | 2:58 PM - October 22, 2025 | <ul></ul>                                   |
 | [[Inbox/X\|X]]                                                         | 4:37 PM - October 17, 2025 | <ul></ul>                                   |
@@ -94,13 +94,13 @@ Mail: gerardvdlinde@live.nl
 | [[Many notes and files/06-Personal Hub/Do I believe in god\|Do I believe in god]]                               | 1           | 0         |
 | [[Many notes and files/Concepts/Radical alignment\|Radical alignment]]                                          | 1           | 0         |
 | [[Many notes and files/Concepts/Body first living\|Body first living]]                                          | 1           | 0         |
+| [[Many notes and files/_templates/Hub template\|Hub template]]                                                  | 1           | 0         |
 | [[img/_attachments/_Excalidraw/Add to Site.excalidraw\|Add to Site.excalidraw]]                                 | 1           | 0         |
 | [[img/_attachments/_Excalidraw/Drawing 2025-05-14 21.37.21.excalidraw\|Drawing 2025-05-14 21.37.21.excalidraw]] | 1           | 0         |
 | [[Navigation notes/All Concepts\|All Concepts]]                                                                 | 1           | 0         |
 | [[Navigation notes/Personal Hub\|Personal Hub]]                                                                 | 1           | 0         |
 | [[Navigation notes/Exploration\|Exploration]]                                                                   | 1           | 0         |
 | [[Navigation notes/Social\|Social]]                                                                             | 1           | 0         |
-| [[Navigation notes/Systems\|Systems]]                                                                           | 1           | 0         |
 
 { .block-language-dataview}
 
