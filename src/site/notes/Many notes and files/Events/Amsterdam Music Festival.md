@@ -9,7 +9,7 @@ This note if fake
 
 ## 📅 Event Details
 
-**Date:** 2025-12-07T00:00:00.000+01:00 **Category:** `= this.category` **Status:** ⏳ Upcoming **Days Until:** 1 month, 3 weeks, 1 day days
+**Date:** 2025-12-07T00:00:00.000+01:00 **Category:** `= this.category` **Status:** ⏳ Upcoming **Days Until:** 1 month, 2 weeks, 1 day days
 
 ## 🎯 Why I'm Looking Forward to This
 
@@ -28,4 +28,4 @@ First major festival since the pandemic! Going with my best friends to see Armin
 
 ---
 
-_Last updated: 2025-10-15T00:00:00.000+02:00_
+_Last updated: 2025-10-22T00:00:00.000+02:00_

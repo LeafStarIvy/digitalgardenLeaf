@@ -4,7 +4,7 @@
 
 
 
-<h2><span>Hubs (mode: both)</span></h2><div><table class="dataview table-view-table"><thead class="table-view-thead"><tr class="table-view-tr-header"><th class="table-view-th"><span>Hub</span><span class="dataview small-text">2</span></th><th class="table-view-th"><span>Linked notes count</span></th></tr></thead><tbody class="table-view-tbody"><tr><td><span><a data-tooltip-position="top" aria-label="Navigation notes/All Concepts.md" data-href="Navigation notes/All Concepts.md" href="Navigation notes/All Concepts.md" class="internal-link" target="_blank" rel="noopener nofollow">All Concepts</a></span></td><td>0</td></tr><tr><td><span><a data-tooltip-position="top" aria-label="Bettering focus.md" data-href="Bettering focus.md" href="Bettering focus.md" class="internal-link" target="_blank" rel="noopener nofollow">Bettering focus</a></span></td><td>0</td></tr></tbody></table></div>
+<h2><span>Hubs (mode: both)</span></h2><div><table class="dataview table-view-table"><thead class="table-view-thead"><tr class="table-view-tr-header"><th class="table-view-th"><span>Hub</span><span class="dataview small-text">2</span></th><th class="table-view-th"><span>Linked notes count</span></th></tr></thead><tbody class="table-view-tbody"><tr><td><span><a data-tooltip-position="top" aria-label="Navigation notes/All Concepts.md" data-href="Navigation notes/All Concepts.md" href="Navigation notes/All Concepts.md" class="internal-link" target="_blank" rel="noopener nofollow">All Concepts</a></span></td><td>0</td></tr><tr><td><span><a data-tooltip-position="top" aria-label="Hub template.md" data-href="Hub template.md" href="Hub template.md" class="internal-link" target="_blank" rel="noopener nofollow">Hub template</a></span></td><td>0</td></tr></tbody></table></div>
 
 
 # Welcome to My Digital Garden
@@ -69,10 +69,10 @@ Mail: gerardvdlinde@live.nl
 ### Recently Active
 | Note                                                                      | Updated                    | Tags                                        |
 | ------------------------------------------------------------------------- | -------------------------- | ------------------------------------------- |
-| [[Bettering focus\|Bettering focus]]                                   | 4:01 PM - October 22, 2025 | <ul></ul>                                   |
+| [[Hub template\|Hub template]]                                         | 4:21 PM - October 22, 2025 | <ul></ul>                                   |
+| [[Slope-Maxxing\|Slope-Maxxing]]                                       | 4:15 PM - October 22, 2025 | <ul></ul>                                   |
 | [[Navigation notes/_Home Base\|_Home Base]]                            | 4:00 PM - October 22, 2025 | <ul></ul>                                   |
 | [[Navigation notes/All Concepts\|All Concepts]]                        | 3:48 PM - October 22, 2025 | <ul><li>#problem</li></ul>                  |
-| [[Slope-Maxxing\|Slope-Maxxing]]                                       | 3:14 PM - October 22, 2025 | <ul></ul>                                   |
 | [[Navigation notes/Tasks Note\|Tasks Note]]                            | 2:58 PM - October 22, 2025 | <ul></ul>                                   |
 | [[Inbox/X\|X]]                                                         | 4:37 PM - October 17, 2025 | <ul></ul>                                   |
 | [[Inbox/Focus\|Focus]]                                                 | 8:46 PM - October 15, 2025 | <ul></ul>                                   |

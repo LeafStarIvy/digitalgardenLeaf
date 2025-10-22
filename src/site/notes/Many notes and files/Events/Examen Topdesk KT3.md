@@ -10,7 +10,7 @@
 
 ## 📅 Event Details
 
-**Date:** 2025-11-11T00:00:00.000+01:00 **Category:** `= this.category` **Status:** ⏳ Upcoming **Days Until:** 3 weeks, 6 days days
+**Date:** 2025-11-11T00:00:00.000+01:00 **Category:** `= this.category` **Status:** ⏳ Upcoming **Days Until:** 2 weeks, 6 days days
 
 ## 🎯 Why I'm Looking Forward to This
 
@@ -21,4 +21,4 @@ This will be my second last exam before my last networking exam. Then I will hav
 - I have to study TOPDESK 9 till 14 in Stichting praktijkleren. 
 ---
 
-_Last updated: 2025-10-15T00:00:00.000+02:00_
+_Last updated: 2025-10-22T00:00:00.000+02:00_
